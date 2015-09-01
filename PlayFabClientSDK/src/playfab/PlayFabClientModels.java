@@ -338,6 +338,13 @@ public class PlayFabClientModels {
     	
     }
 
+    public static class CharacterResult {
+    	public String CharacterId;
+    	public String CharacterName;
+    	public String CharacterType;
+    	
+    }
+
     public static class ConfirmPurchaseRequest {
     	/**
     	 * Purchase order identifier returned from StartPurchase.
@@ -371,6 +378,10 @@ public class PlayFabClientModels {
     	 * Number of uses to consume from the item.
     	 */
     	public Integer ConsumeCount;
+    	/**
+    	 * Unique PlayFab assigned ID for a specific character owned by a user
+    	 */
+    	public String CharacterId;
     	
     }
 
@@ -1748,6 +1759,19 @@ public class PlayFabClientModels {
     	
     }
 
+    public static class ListUsersCharactersRequest {
+    	/**
+    	 * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+    	 */
+    	public String PlayFabId;
+    	
+    }
+
+    public static class ListUsersCharactersResult {
+    	public ArrayList<CharacterResult> Characters;
+    	
+    }
+
     public static class LogEventRequest {
     	/**
     	 * Optional timestamp for this event. If null, the a timestamp is auto-assigned to the event on the server.
@@ -2221,6 +2245,10 @@ public class PlayFabClientModels {
     	 * Store to buy this item through. If not set, prices default to those in the catalog.
     	 */
     	public String StoreId;
+    	/**
+    	 * Unique PlayFab assigned ID for a specific character owned by a user
+    	 */
+    	public String CharacterId;
     	
     }
 
@@ -2835,6 +2863,10 @@ public class PlayFabClientModels {
     	 * Catalog version of the container.
     	 */
     	public String CatalogVersion;
+    	/**
+    	 * Unique PlayFab assigned ID for a specific character owned by a user
+    	 */
+    	public String CharacterId;
     	
     }
 

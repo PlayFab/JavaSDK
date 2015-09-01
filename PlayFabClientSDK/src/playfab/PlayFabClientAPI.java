@@ -4734,6 +4734,60 @@ public class PlayFabClientAPI {
         return pfResult;
     }
 	/**
+	 * Lists all of the characters that belong to a specific user.
+	 */
+    public static FutureTask<PlayFabResult<ListUsersCharactersResult>> GetAllUsersCharactersAsync(ListUsersCharactersRequest request) {
+		return new FutureTask(new Callable<PlayFabResult<ListUsersCharactersResult>>() {
+			public PlayFabResult<ListUsersCharactersResult> call() throws Exception {
+				return privateGetAllUsersCharactersAsync(request);
+			}
+		});
+	}
+
+    /**
+	 * Lists all of the characters that belong to a specific user.
+	 */
+    public static PlayFabResult<ListUsersCharactersResult> GetAllUsersCharacters(ListUsersCharactersRequest request) {
+		FutureTask<PlayFabResult<ListUsersCharactersResult>> task = new FutureTask(new Callable<PlayFabResult<ListUsersCharactersResult>>() {
+			public PlayFabResult<ListUsersCharactersResult> call() throws Exception {
+				return privateGetAllUsersCharactersAsync(request);
+			}
+		});
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+	}
+	
+	/**
+	 * Lists all of the characters that belong to a specific user.
+	 */
+    private static PlayFabResult<ListUsersCharactersResult> privateGetAllUsersCharactersAsync(ListUsersCharactersRequest request) throws Exception {
+        if (AuthKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetAllUsersCharacters", request, "X-Authorization", AuthKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+			PlayFabResult result = new PlayFabResult<ListUsersCharactersResult>();
+			result.Error = error;
+			return result;
+        }
+		String resultRawJson = (String) httpResult;
+        
+		PlayFabJsonSuccess<ListUsersCharactersResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListUsersCharactersResult>>(){}.getType()); 
+		ListUsersCharactersResult result = resultData.data;
+		
+		PlayFabResult<ListUsersCharactersResult> pfResult = new PlayFabResult<ListUsersCharactersResult>();
+		pfResult.Result = result;
+        return pfResult;
+    }
+	/**
 	 * Retrieves a list of ranked characters for the given statistic, starting from the indicated point in the leaderboard
 	 */
     public static FutureTask<PlayFabResult<GetCharacterLeaderboardResult>> GetCharacterLeaderboardAsync(GetCharacterLeaderboardRequest request) {
