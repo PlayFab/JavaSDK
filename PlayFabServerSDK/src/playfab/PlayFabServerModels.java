@@ -512,6 +512,18 @@ public class PlayFabServerModels {
     	
     }
 
+    public static class FacebookPlayFabIdPair {
+    	/**
+    	 * Unique Facebook identifier for a user.
+    	 */
+    	public String FacebookId;
+    	/**
+    	 * Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Facebook identifier.
+    	 */
+    	public String PlayFabId;
+    	
+    }
+
     public static class FriendInfo {
     	/**
     	 * PlayFab unique identifier for this friend.
@@ -882,6 +894,22 @@ public class PlayFabServerModels {
     	
     }
 
+    public static class GetPlayFabIDsFromFacebookIDsRequest {
+    	/**
+    	 * Array of unique Facebook identifiers for which the title needs to get PlayFab identifiers.
+    	 */
+    	public ArrayList<String> FacebookIDs;
+    	
+    }
+
+    public static class GetPlayFabIDsFromFacebookIDsResult {
+    	/**
+    	 * Mapping of Facebook identifiers to PlayFab identifiers.
+    	 */
+    	public ArrayList<FacebookPlayFabIdPair> Data;
+    	
+    }
+
     public static class GetPublisherDataRequest {
     	/**
     	 *  array of keys to get back data from the Publisher data blob, set by the admin tools
@@ -939,6 +967,22 @@ public class PlayFabServerModels {
     	 * a dictionary object of key / value pairs
     	 */
     	public Map<String,String> Data;
+    	
+    }
+
+    public static class GetTitleNewsRequest {
+    	/**
+    	 * Limits the results to the last n entries. Defaults to 10 if not set.
+    	 */
+    	public Integer Count;
+    	
+    }
+
+    public static class GetTitleNewsResult {
+    	/**
+    	 * Array of news items.
+    	 */
+    	public ArrayList<TitleNewsItem> News;
     	
     }
 
@@ -1731,6 +1775,26 @@ public class PlayFabServerModels {
     	PendingSteam,
     	ActivatedSteam,
     	RevokedSteam
+    }
+
+    public static class TitleNewsItem {
+    	/**
+    	 * Date and time when the news items was posted.
+    	 */
+    	public Date Timestamp;
+    	/**
+    	 * Unique identifier of news item.
+    	 */
+    	public String NewsId;
+    	/**
+    	 * Title of the news item.
+    	 */
+    	public String Title;
+    	/**
+    	 * News item text.
+    	 */
+    	public String Body;
+    	
     }
 
     public static class UpdateCharacterDataRequest {
