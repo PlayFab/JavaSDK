@@ -70,6 +70,60 @@ public class PlayFabServerAPI {
         return pfResult;
     }
 	/**
+	 * Retrieves the unique PlayFab identifiers for the given set of Facebook identifiers.
+	 */
+    public static FutureTask<PlayFabResult<GetPlayFabIDsFromFacebookIDsResult>> GetPlayFabIDsFromFacebookIDsAsync(GetPlayFabIDsFromFacebookIDsRequest request) {
+		return new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromFacebookIDsResult>>() {
+			public PlayFabResult<GetPlayFabIDsFromFacebookIDsResult> call() throws Exception {
+				return privateGetPlayFabIDsFromFacebookIDsAsync(request);
+			}
+		});
+	}
+
+    /**
+	 * Retrieves the unique PlayFab identifiers for the given set of Facebook identifiers.
+	 */
+    public static PlayFabResult<GetPlayFabIDsFromFacebookIDsResult> GetPlayFabIDsFromFacebookIDs(GetPlayFabIDsFromFacebookIDsRequest request) {
+		FutureTask<PlayFabResult<GetPlayFabIDsFromFacebookIDsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromFacebookIDsResult>>() {
+			public PlayFabResult<GetPlayFabIDsFromFacebookIDsResult> call() throws Exception {
+				return privateGetPlayFabIDsFromFacebookIDsAsync(request);
+			}
+		});
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+	}
+	
+	/**
+	 * Retrieves the unique PlayFab identifiers for the given set of Facebook identifiers.
+	 */
+    private static PlayFabResult<GetPlayFabIDsFromFacebookIDsResult> privateGetPlayFabIDsFromFacebookIDsAsync(GetPlayFabIDsFromFacebookIDsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetPlayFabIDsFromFacebookIDs", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+			PlayFabResult result = new PlayFabResult<GetPlayFabIDsFromFacebookIDsResult>();
+			result.Error = error;
+			return result;
+        }
+		String resultRawJson = (String) httpResult;
+        
+		PlayFabJsonSuccess<GetPlayFabIDsFromFacebookIDsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayFabIDsFromFacebookIDsResult>>(){}.getType()); 
+		GetPlayFabIDsFromFacebookIDsResult result = resultData.data;
+		
+		PlayFabResult<GetPlayFabIDsFromFacebookIDsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromFacebookIDsResult>();
+		pfResult.Result = result;
+        return pfResult;
+    }
+	/**
 	 * Retrieves the relevant details for a specified user
 	 */
     public static FutureTask<PlayFabResult<GetUserAccountInfoResult>> GetUserAccountInfoAsync(GetUserAccountInfoRequest request) {
@@ -1200,6 +1254,60 @@ public class PlayFabServerAPI {
 		GetTitleDataResult result = resultData.data;
 		
 		PlayFabResult<GetTitleDataResult> pfResult = new PlayFabResult<GetTitleDataResult>();
+		pfResult.Result = result;
+        return pfResult;
+    }
+	/**
+	 * Retrieves the title news feed, as configured in the developer portal
+	 */
+    public static FutureTask<PlayFabResult<GetTitleNewsResult>> GetTitleNewsAsync(GetTitleNewsRequest request) {
+		return new FutureTask(new Callable<PlayFabResult<GetTitleNewsResult>>() {
+			public PlayFabResult<GetTitleNewsResult> call() throws Exception {
+				return privateGetTitleNewsAsync(request);
+			}
+		});
+	}
+
+    /**
+	 * Retrieves the title news feed, as configured in the developer portal
+	 */
+    public static PlayFabResult<GetTitleNewsResult> GetTitleNews(GetTitleNewsRequest request) {
+		FutureTask<PlayFabResult<GetTitleNewsResult>> task = new FutureTask(new Callable<PlayFabResult<GetTitleNewsResult>>() {
+			public PlayFabResult<GetTitleNewsResult> call() throws Exception {
+				return privateGetTitleNewsAsync(request);
+			}
+		});
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+	}
+	
+	/**
+	 * Retrieves the title news feed, as configured in the developer portal
+	 */
+    private static PlayFabResult<GetTitleNewsResult> privateGetTitleNewsAsync(GetTitleNewsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetTitleNews", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+			PlayFabResult result = new PlayFabResult<GetTitleNewsResult>();
+			result.Error = error;
+			return result;
+        }
+		String resultRawJson = (String) httpResult;
+        
+		PlayFabJsonSuccess<GetTitleNewsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetTitleNewsResult>>(){}.getType()); 
+		GetTitleNewsResult result = resultData.data;
+		
+		PlayFabResult<GetTitleNewsResult> pfResult = new PlayFabResult<GetTitleNewsResult>();
 		pfResult.Result = result;
         return pfResult;
     }
