@@ -187,7 +187,7 @@ public class PlayFabClientModels {
     	 */
     	public String ItemClass;
     	/**
-    	 * catalog item for this item
+    	 * catalog version for this item
     	 */
     	public String CatalogVersion;
     	/**
@@ -239,6 +239,10 @@ public class PlayFabClientModels {
     	 * if true, then an item instance of this type can be traded between players using the trading APIs
     	 */
     	public Boolean IsTradable;
+    	/**
+    	 * URL to the item image. For Facebook purchase to display the image on the item purchase page, this must be set to an HTTP URL.
+    	 */
+    	public String ItemImageUrl;
     	
     	public int compareTo(CatalogItem other) {
             if (other == null || other.ItemId == null) return 1;
@@ -874,6 +878,10 @@ public class PlayFabClientModels {
     	 * Array of virtual currency balance(s) belonging to the character.
     	 */
     	public Map<String,Integer> VirtualCurrency;
+    	/**
+    	 * Array of remaining times and timestamps for virtual currencies.
+    	 */
+    	public Map<String,VirtualCurrencyRechargeTime> VirtualCurrencyRechargeTimes;
     	
     }
 
@@ -1660,6 +1668,10 @@ public class PlayFabClientModels {
     	 * Unique identifier from Facebook for the user.
     	 */
     	public String AccessToken;
+    	/**
+    	 * If this Facebook account is already linked to a Playfab account, this will unlink the old account before linking the new one. Be careful when using this call, as it may orphan the old account. Defaults to false.
+    	 */
+    	public Boolean ForceLink;
     	
     }
 
@@ -1715,7 +1727,7 @@ public class PlayFabClientModels {
     	/**
     	 * Numeric user ID assigned by Kongregate
     	 */
-    	public Long KongregateId;
+    	public String KongregateId;
     	/**
     	 * Valid session auth ticket issued by Kongregate
     	 */
@@ -1933,7 +1945,7 @@ public class PlayFabClientModels {
     	/**
     	 * Unique identifier from Kongregate for the user.
     	 */
-    	public Long KongregateId;
+    	public String KongregateId;
     	/**
     	 * Token issued by Kongregate's client API for the user.
     	 */

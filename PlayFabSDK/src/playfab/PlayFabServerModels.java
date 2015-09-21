@@ -141,7 +141,7 @@ public class PlayFabServerModels {
     	 */
     	public String ItemClass;
     	/**
-    	 * catalog item for this item
+    	 * catalog version for this item
     	 */
     	public String CatalogVersion;
     	/**
@@ -193,6 +193,10 @@ public class PlayFabServerModels {
     	 * if true, then an item instance of this type can be traded between players using the trading APIs
     	 */
     	public Boolean IsTradable;
+    	/**
+    	 * URL to the item image. For Facebook purchase to display the image on the item purchase page, this must be set to an HTTP URL.
+    	 */
+    	public String ItemImageUrl;
     	
     	public int compareTo(CatalogItem other) {
             if (other == null || other.ItemId == null) return 1;
@@ -651,6 +655,10 @@ public class PlayFabServerModels {
     	 * Array of virtual currency balance(s) belonging to the character.
     	 */
     	public Map<String,Integer> VirtualCurrency;
+    	/**
+    	 * Array of remaining times and timestamps for virtual currencies.
+    	 */
+    	public Map<String,VirtualCurrencyRechargeTime> VirtualCurrencyRechargeTimes;
     	
     }
 

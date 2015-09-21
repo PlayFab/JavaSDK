@@ -137,7 +137,7 @@ public class PlayFabAdminModels {
     	 */
     	public String ItemClass;
     	/**
-    	 * catalog item for this item
+    	 * catalog version for this item
     	 */
     	public String CatalogVersion;
     	/**
@@ -189,6 +189,10 @@ public class PlayFabAdminModels {
     	 * if true, then an item instance of this type can be traded between players using the trading APIs
     	 */
     	public Boolean IsTradable;
+    	/**
+    	 * URL to the item image. For Facebook purchase to display the image on the item purchase page, this must be set to an HTTP URL.
+    	 */
+    	public String ItemImageUrl;
     	
     	public int compareTo(CatalogItem other) {
             if (other == null || other.ItemId == null) return 1;
