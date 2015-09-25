@@ -17,7 +17,7 @@ To connect to the PlayFab service, your machine must be running TLS v1.2 or bett
 
 3. Source Code & Key Repository Components:
 ----
-This package contains three different versions of the PlayFab SDK. 
+This package contains three different versions of the PlayFab SDK.
 * PlayFabClientSDK - This version contains only client libraries and is designed for integration with your game client
 * PlayFabServerSDK - Contains server and admin APIs designed to be called from your custom logic server or build process
 * PlayFabSDK - Contains all APIs in one SDK.
@@ -26,15 +26,41 @@ This package contains three different versions of the PlayFab SDK.
 4. Installation & Configuration Instructions:
 ----
 
-Coming soon!
+The playfab API source code is located within:
 
+    {JavaSDK-Location}/PlayFabSDK/src/playfab
+
+The playfab API relies on the Google gson library, located within:
+
+    {JavaSDK-Location}/PlayFabSDK/src/com
+
+To create a new project using PlayFab, copy the indicated playfab and com directories into the source directory for your project.
+
+
+4b. Using the example project:
+----
+
+The PlayFabApiTest example project can be run from the console.  These instructions assume Windows operating system.
+
+* Extract the JavaSDK Sdk to your computer (referenced as {JavaSDK-Location} within this document)
+* Navigate to: {JavaSDK-Location}/PlayFabSDK/src
+* Open {JavaSDK-Location}/PlayFabSDK/src/RunPfTests.bat in a text editor such as Notepad++ or FlashDevelop (Regular notepad may not load unix line endings properly)
+* Update the path for your testTitleData.json file:
+ * java -DtestTitleData=C:\depot\pf-main\tools\SDKBuildScripts\testTitleData.json ... etc
+ * You will need to create a new testTitleData.json file, and change the above path to match your new file (see next section for details)
+* Executing RunPfTests.bat should compile the example project, execute the project, make a handful of API calls, and exit
+ * This uses the standard JUnit testing suite
+ * The exit code for the example will be 0 for success, or non-zero for failure
+ * Detailed info about test failures will be in the console output (stdout)
+
+ 
 5. Troubleshooting:
 ----
 For a complete list of available APIs, check out the [online documentation](http://api.playfab.com/Documentation/).
 
 #### Contact Us
-We love to hear from our developer community! 
-Do you have ideas on how we can make our products and services better? 
+We love to hear from our developer community!
+Do you have ideas on how we can make our products and services better?
 
 Our Developer Success Team can assist with answering any questions as well as process any feedback you have about PlayFab services.
 
@@ -43,7 +69,7 @@ Our Developer Success Team can assist with answering any questions as well as pr
 
 6. Copyright and Licensing Information:
 ----
-  Apache License -- 
+  Apache License --
   Version 2.0, January 2004
   http://www.apache.org/licenses/
 
