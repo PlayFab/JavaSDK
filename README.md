@@ -45,7 +45,7 @@ The PlayFabApiTest example project can be run from the console.  These instructi
 * Extract the JavaSDK Sdk to your computer (referenced as {JavaSDK-Location} within this document)
 * Navigate to: {JavaSDK-Location}/PlayFabSDK/src
 * Open {JavaSDK-Location}/PlayFabSDK/src/RunPfTests.bat in a text editor such as Notepad++ or FlashDevelop (Regular notepad may not load unix line endings properly)
-* Update the path for your testTitleData.json file:
+* Update the titleData path in your RunPfTests.bat file:
  * java -DtestTitleData=C:\depot\pf-main\tools\SDKBuildScripts\testTitleData.json ... etc
  * You will need to create a new testTitleData.json file, and change the above path to match your new file (see next section for details)
 * Executing RunPfTests.bat should compile the example project, execute the project, make a handful of API calls, and exit
