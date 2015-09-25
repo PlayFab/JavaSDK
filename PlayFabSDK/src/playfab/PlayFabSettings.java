@@ -3,7 +3,6 @@ package playfab;
 import playfab.PlayFabErrors.ErrorCallback;
 
 public class PlayFabSettings {
-    
     public static String TitleId = null;
     public static ErrorCallback GlobalErrorHandler;
     public static String LogicServerURL = null;
@@ -11,7 +10,7 @@ public class PlayFabSettings {
     
     
     public static String GetLogicURL() {
-        return "https://" + LogicServerURL;
+        return LogicServerURL;
     }
     
     public static String GetURL() {
