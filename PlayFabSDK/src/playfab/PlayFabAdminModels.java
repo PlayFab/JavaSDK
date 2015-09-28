@@ -1440,6 +1440,10 @@ public class PlayFabAdminModels {
          */
         public String PlayFabId;
         /**
+         * Unique PlayFab assigned ID for a specific character owned by a user
+         */
+        public String CharacterId;
+        /**
          * unique PlayFab identifier for the item instance to be removed
          */
         public String ItemInstanceId;
