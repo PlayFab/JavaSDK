@@ -107,7 +107,7 @@ public class PlayFabAdminModels {
          */
         public String VirtualCurrency;
         /**
-         * Amount to be added to the user balance of the specified virtual currency.
+         * Amount to be added to the user balance of the specified virtual currency. Maximum VC balance is Int32 (2,147,483,647). Any increase over this value will be discarded.
          */
         public Integer Amount;
         
@@ -1259,7 +1259,7 @@ public class PlayFabAdminModels {
          */
         public String VirtualCurrency;
         /**
-         * Amount added or subtracted from the user's virtual currency.
+         * Amount added or subtracted from the user's virtual currency. Maximum VC balance is Int32 (2,147,483,647). Any increase over this value will be discarded.
          */
         public Integer BalanceChange;
         /**
@@ -1898,7 +1898,7 @@ public class PlayFabAdminModels {
          */
         public String DisplayName;
         /**
-         * amount to automatically grant users upon first login to the tilte
+         * amount to automatically grant users upon first login to the title
          */
         public Integer InitialDeposit;
         /**

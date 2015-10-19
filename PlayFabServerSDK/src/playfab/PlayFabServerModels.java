@@ -19,7 +19,7 @@ public class PlayFabServerModels {
          */
         public String VirtualCurrency;
         /**
-         * Amount to be added to the user balance of the specified virtual currency.
+         * Amount to be added to the character balance of the specified virtual currency. Maximum VC balance is Int32 (2,147,483,647). Any increase over this value will be discarded.
          */
         public Integer Amount;
         
@@ -75,7 +75,7 @@ public class PlayFabServerModels {
          */
         public String VirtualCurrency;
         /**
-         * Amount to be added to the user balance of the specified virtual currency.
+         * Amount to be added to the user balance of the specified virtual currency. Maximum VC balance is Int32 (2,147,483,647). Any increase over this value will be discarded.
          */
         public Integer Amount;
         
@@ -1465,7 +1465,7 @@ public class PlayFabServerModels {
          */
         public String VirtualCurrency;
         /**
-         * Amount added or subtracted from the user's virtual currency.
+         * Amount added or subtracted from the user's virtual currency. Maximum VC balance is Int32 (2,147,483,647). Any increase over this value will be discarded.
          */
         public Integer BalanceChange;
         /**
