@@ -1096,7 +1096,7 @@ public class PlayFabAdminAPI {
         return pfResult;
     }
     /**
-     * Adds one or more virtual currencies to the set defined for the title
+     * Adds one or more virtual currencies to the set defined for the title. Virtual Currencies have a maximum value of 2,147,483,647 when granted to a player. Any value over that will be discarded.
      */
     public static FutureTask<PlayFabResult<BlankResult>> AddVirtualCurrencyTypesAsync(AddVirtualCurrencyTypesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<BlankResult>>() {
@@ -1107,7 +1107,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Adds one or more virtual currencies to the set defined for the title
+     * Adds one or more virtual currencies to the set defined for the title. Virtual Currencies have a maximum value of 2,147,483,647 when granted to a player. Any value over that will be discarded.
      */
     public static PlayFabResult<BlankResult> AddVirtualCurrencyTypes(AddVirtualCurrencyTypesRequest request) {
         FutureTask<PlayFabResult<BlankResult>> task = new FutureTask(new Callable<PlayFabResult<BlankResult>>() {
@@ -1124,7 +1124,7 @@ public class PlayFabAdminAPI {
     }
     
     /**
-     * Adds one or more virtual currencies to the set defined for the title
+     * Adds one or more virtual currencies to the set defined for the title. Virtual Currencies have a maximum value of 2,147,483,647 when granted to a player. Any value over that will be discarded.
      */
     private static PlayFabResult<BlankResult> privateAddVirtualCurrencyTypesAsync(AddVirtualCurrencyTypesRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
