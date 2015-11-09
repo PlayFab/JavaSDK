@@ -3221,7 +3221,7 @@ public class PlayFabClientAPI {
         return pfResult;
     }
     /**
-     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the Promotions->Coupons tab in the PlayFab Game Manager. See this post for more information on coupons:  https://playfab.com/blog/2015/06/18/using-stores-and-coupons-game-manager
+     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the Promotions->Coupons tab in the PlayFab Game Manager. See this post for more information on coupons:  https://playfab.com/blog/using-stores-and-coupons-game-manager/
      */
     public static FutureTask<PlayFabResult<RedeemCouponResult>> RedeemCouponAsync(RedeemCouponRequest request) {
         return new FutureTask(new Callable<PlayFabResult<RedeemCouponResult>>() {
@@ -3232,7 +3232,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the Promotions->Coupons tab in the PlayFab Game Manager. See this post for more information on coupons:  https://playfab.com/blog/2015/06/18/using-stores-and-coupons-game-manager
+     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the Promotions->Coupons tab in the PlayFab Game Manager. See this post for more information on coupons:  https://playfab.com/blog/using-stores-and-coupons-game-manager/
      */
     public static PlayFabResult<RedeemCouponResult> RedeemCoupon(RedeemCouponRequest request) {
         FutureTask<PlayFabResult<RedeemCouponResult>> task = new FutureTask(new Callable<PlayFabResult<RedeemCouponResult>>() {
@@ -3249,7 +3249,7 @@ public class PlayFabClientAPI {
     }
     
     /**
-     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the Promotions->Coupons tab in the PlayFab Game Manager. See this post for more information on coupons:  https://playfab.com/blog/2015/06/18/using-stores-and-coupons-game-manager
+     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the Promotions->Coupons tab in the PlayFab Game Manager. See this post for more information on coupons:  https://playfab.com/blog/using-stores-and-coupons-game-manager/
      */
     private static PlayFabResult<RedeemCouponResult> privateRedeemCouponAsync(RedeemCouponRequest request) throws Exception {
         if (AuthKey == null) throw new Exception ("Must be logged in to call this method");
