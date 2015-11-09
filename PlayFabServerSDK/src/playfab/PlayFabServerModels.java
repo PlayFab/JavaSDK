@@ -1587,6 +1587,30 @@ public class PlayFabServerModels {
         
     }
 
+    public static class RedeemCouponRequest {
+        /**
+         * Generated coupon code to redeem.
+         */
+        public String CouponCode;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Catalog version of the coupon.
+         */
+        public String CatalogVersion;
+        
+    }
+
+    public static class RedeemCouponResult {
+        /**
+         * Items granted to the player as a result of redeeming the coupon.
+         */
+        public ArrayList<ItemInstance> GrantedItems;
+        
+    }
+
     public static class RedeemMatchmakerTicketRequest {
         /**
          * Server authorization ticket passed back from a call to Matchmake or StartGame.
@@ -1621,7 +1645,7 @@ public class PlayFabServerModels {
          */
         public String FriendPlayFabId;
         /**
-         * The PlayFab identifier of the player to lose a friend
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
          */
         public String PlayFabId;
         
@@ -1819,6 +1843,10 @@ public class PlayFabServerModels {
          */
         public Map<String,String> Data;
         /**
+         * Optional list of Data-keys to remove from CharacterData.  Some SDKs cannot insert null-values into Data due to language constraints.  Use this to delete the keys directly.
+         */
+        public ArrayList<String> KeysToRemove;
+        /**
          * Permission to be applied to all user data keys written in this request. Defaults to "private" if not set.
          */
         public UserDataPermission Permission;
@@ -1863,6 +1891,10 @@ public class PlayFabServerModels {
          */
         public Map<String,String> Data;
         /**
+         * Optional list of Data-keys to remove from GroupData.  Some SDKs cannot insert null-values into Data due to language constraints.  Use this to delete the keys directly.
+         */
+        public ArrayList<String> KeysToRemove;
+        /**
          * Permission to be applied to all user data keys in this request.
          */
         public UserDataPermission Permission;
@@ -1882,6 +1914,10 @@ public class PlayFabServerModels {
          * Data to be written to the user's custom data. Note that keys are trimmed of whitespace, are limited to 1024 characters, and may not begin with a '!' character.
          */
         public Map<String,String> Data;
+        /**
+         * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language constraints.  Use this to delete the keys directly.
+         */
+        public ArrayList<String> KeysToRemove;
         /**
          * Permission to be applied to all user data keys written in this request. Defaults to "private" if not set.
          */
@@ -1906,6 +1942,10 @@ public class PlayFabServerModels {
          * Data to be written to the user's custom data.
          */
         public Map<String,String> Data;
+        /**
+         * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language constraints.  Use this to delete the keys directly.
+         */
+        public ArrayList<String> KeysToRemove;
         
     }
 
@@ -1926,6 +1966,10 @@ public class PlayFabServerModels {
          * Data to be written to the item's custom data. Note that keys are trimmed of whitespace.
          */
         public Map<String,String> Data;
+        /**
+         * Optional list of Data-keys to remove from ItemData.  Some SDKs cannot insert null-values into Data due to language constraints.  Use this to delete the keys directly.
+         */
+        public ArrayList<String> KeysToRemove;
         
     }
 
