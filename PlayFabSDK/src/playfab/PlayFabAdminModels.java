@@ -1680,6 +1680,10 @@ public class PlayFabAdminModels {
          */
         public Map<String,String> Data;
         /**
+         * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language constraints.  Use this to delete the keys directly.
+         */
+        public ArrayList<String> KeysToRemove;
+        /**
          * Permission to be applied to all user data keys written in this request. Defaults to "private" if not set.
          */
         public UserDataPermission Permission;
@@ -1703,6 +1707,10 @@ public class PlayFabAdminModels {
          * Data to be written to the user's custom data.
          */
         public Map<String,String> Data;
+        /**
+         * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language constraints.  Use this to delete the keys directly.
+         */
+        public ArrayList<String> KeysToRemove;
         
     }
 

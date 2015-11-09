@@ -2913,6 +2913,10 @@ public class PlayFabClientModels {
          */
         public Map<String,String> Data;
         /**
+         * Optional list of Data-keys to remove from CharacterData.  Some SDKs cannot insert null-values into Data due to language constraints.  Use this to delete the keys directly.
+         */
+        public ArrayList<String> KeysToRemove;
+        /**
          * Permission to be applied to all user data keys written in this request. Defaults to "private" if not set.
          */
         public UserDataPermission Permission;
@@ -2937,6 +2941,10 @@ public class PlayFabClientModels {
          */
         public Map<String,String> Data;
         /**
+         * Optional list of Data-keys to remove from GroupData.  Some SDKs cannot insert null-values into Data due to language constraints.  Use this to delete the keys directly.
+         */
+        public ArrayList<String> KeysToRemove;
+        /**
          * Permission to be applied to all user data keys in this request.
          */
         public UserDataPermission Permission;
@@ -2952,6 +2960,10 @@ public class PlayFabClientModels {
          * Data to be written to the user's custom data. Note that keys are trimmed of whitespace, are limited to 1024 characters, and may not begin with a '!' character.
          */
         public Map<String,String> Data;
+        /**
+         * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language constraints.  Use this to delete the keys directly.
+         */
+        public ArrayList<String> KeysToRemove;
         /**
          * Permission to be applied to all user data keys written in this request. Defaults to "private" if not set.
          */
