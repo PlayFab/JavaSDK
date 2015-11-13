@@ -1676,7 +1676,7 @@ public class PlayFabAdminModels {
          */
         public String PlayFabId;
         /**
-         * Data to be written to the user's custom data. Note that keys are trimmed of whitespace, are limited to 1024 characters, and may not begin with a '!' character.
+         * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character.
          */
         public Map<String,String> Data;
         /**
@@ -1704,7 +1704,7 @@ public class PlayFabAdminModels {
          */
         public String PlayFabId;
         /**
-         * Data to be written to the user's custom data.
+         * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character.
          */
         public Map<String,String> Data;
         /**
@@ -1837,7 +1837,8 @@ public class PlayFabAdminModels {
         Android,
         PSN,
         GameCenter,
-        CustomId
+        CustomId,
+        XboxLive
     }
 
     public static class UserPrivateAccountInfo {
