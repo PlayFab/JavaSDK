@@ -13,7 +13,7 @@ import com.google.gson.reflect.*;
  * Enables the use of an external match-making service in conjunction with PlayFab hosted Game Server instances
  */
 public class PlayFabMatchmakerAPI {
-    private static Gson gson = new GsonBuilder().setDateFormat("YYYY-MM-DD'T'hh:mm:ss.SSS'Z'").create();
+    private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
     
     /**
      * Validates a user with the PlayFab service

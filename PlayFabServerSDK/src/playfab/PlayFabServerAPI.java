@@ -13,7 +13,7 @@ import com.google.gson.reflect.*;
  * Provides functionality to allow external (developer-controlled) servers to interact with user inventories and data in a trusted manner, and to handle matchmaking and client connection orchestration
  */
 public class PlayFabServerAPI {
-    private static Gson gson = new GsonBuilder().setDateFormat("YYYY-MM-DD'T'hh:mm:ss.SSS'Z'").create();
+    private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
     
     /**
      * Validated a client's session ticket, and if successful, returns details for that user

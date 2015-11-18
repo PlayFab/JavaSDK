@@ -13,7 +13,7 @@ import com.google.gson.reflect.*;
  * APIs which provide the full range of PlayFab features available to the client - authentication, account and data management, inventory, friends, matchmaking, reporting, and platform-specific functionality
  */
 public class PlayFabClientAPI {
-    private static Gson gson = new GsonBuilder().setDateFormat("YYYY-MM-DD'T'hh:mm:ss.SSS'Z'").create();
+    private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
     
     /**
      * Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See https://playfab.com/using-photon-playfab for more details.
