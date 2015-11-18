@@ -13,7 +13,7 @@ import com.google.gson.reflect.*;
  * APIs for managing title configurations, uploaded Game Server code executables, and user data
  */
 public class PlayFabAdminAPI {
-    private static Gson gson = new GsonBuilder().setDateFormat("YYYY-MM-DD'T'hh:mm:ss.SSS'Z'").create();
+    private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
     
     /**
      * Retrieves the relevant details for a specified user, based upon a match against a supplied unique identifier
