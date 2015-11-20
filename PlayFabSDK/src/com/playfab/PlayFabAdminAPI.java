@@ -18,6 +18,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the relevant details for a specified user, based upon a match against a supplied unique identifier
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<LookupUserAccountInfoResult>> GetUserAccountInfoAsync(final LookupUserAccountInfoRequest request) {
         return new FutureTask(new Callable<PlayFabResult<LookupUserAccountInfoResult>>() {
             public PlayFabResult<LookupUserAccountInfoResult> call() throws Exception {
@@ -29,6 +30,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the relevant details for a specified user, based upon a match against a supplied unique identifier
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<LookupUserAccountInfoResult> GetUserAccountInfo(final LookupUserAccountInfoRequest request) {
         FutureTask<PlayFabResult<LookupUserAccountInfoResult>> task = new FutureTask(new Callable<PlayFabResult<LookupUserAccountInfoResult>>() {
             public PlayFabResult<LookupUserAccountInfoResult> call() throws Exception {
@@ -46,6 +48,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the relevant details for a specified user, based upon a match against a supplied unique identifier
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<LookupUserAccountInfoResult> privateGetUserAccountInfoAsync(final LookupUserAccountInfoRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -72,6 +75,7 @@ public class PlayFabAdminAPI {
     /**
      * Resets all title-specific information about a particular account, including user data, virtual currency balances, inventory, purchase history, and statistics
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<BlankResult>> ResetUsersAsync(final ResetUsersRequest request) {
         return new FutureTask(new Callable<PlayFabResult<BlankResult>>() {
             public PlayFabResult<BlankResult> call() throws Exception {
@@ -83,6 +87,7 @@ public class PlayFabAdminAPI {
     /**
      * Resets all title-specific information about a particular account, including user data, virtual currency balances, inventory, purchase history, and statistics
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<BlankResult> ResetUsers(final ResetUsersRequest request) {
         FutureTask<PlayFabResult<BlankResult>> task = new FutureTask(new Callable<PlayFabResult<BlankResult>>() {
             public PlayFabResult<BlankResult> call() throws Exception {
@@ -100,6 +105,7 @@ public class PlayFabAdminAPI {
     /**
      * Resets all title-specific information about a particular account, including user data, virtual currency balances, inventory, purchase history, and statistics
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<BlankResult> privateResetUsersAsync(final ResetUsersRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -126,6 +132,7 @@ public class PlayFabAdminAPI {
     /**
      * Forces an email to be sent to the registered email address for the specified account, with a link allowing the user to change the password
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<SendAccountRecoveryEmailResult>> SendAccountRecoveryEmailAsync(final SendAccountRecoveryEmailRequest request) {
         return new FutureTask(new Callable<PlayFabResult<SendAccountRecoveryEmailResult>>() {
             public PlayFabResult<SendAccountRecoveryEmailResult> call() throws Exception {
@@ -137,6 +144,7 @@ public class PlayFabAdminAPI {
     /**
      * Forces an email to be sent to the registered email address for the specified account, with a link allowing the user to change the password
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<SendAccountRecoveryEmailResult> SendAccountRecoveryEmail(final SendAccountRecoveryEmailRequest request) {
         FutureTask<PlayFabResult<SendAccountRecoveryEmailResult>> task = new FutureTask(new Callable<PlayFabResult<SendAccountRecoveryEmailResult>>() {
             public PlayFabResult<SendAccountRecoveryEmailResult> call() throws Exception {
@@ -154,6 +162,7 @@ public class PlayFabAdminAPI {
     /**
      * Forces an email to be sent to the registered email address for the specified account, with a link allowing the user to change the password
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<SendAccountRecoveryEmailResult> privateSendAccountRecoveryEmailAsync(final SendAccountRecoveryEmailRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -180,6 +189,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the title specific display name for a user
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateUserTitleDisplayNameResult>> UpdateUserTitleDisplayNameAsync(final UpdateUserTitleDisplayNameRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateUserTitleDisplayNameResult>>() {
             public PlayFabResult<UpdateUserTitleDisplayNameResult> call() throws Exception {
@@ -191,6 +201,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the title specific display name for a user
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateUserTitleDisplayNameResult> UpdateUserTitleDisplayName(final UpdateUserTitleDisplayNameRequest request) {
         FutureTask<PlayFabResult<UpdateUserTitleDisplayNameResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateUserTitleDisplayNameResult>>() {
             public PlayFabResult<UpdateUserTitleDisplayNameResult> call() throws Exception {
@@ -208,6 +219,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the title specific display name for a user
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserTitleDisplayNameResult> privateUpdateUserTitleDisplayNameAsync(final UpdateUserTitleDisplayNameRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -234,6 +246,7 @@ public class PlayFabAdminAPI {
     /**
      * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<DeleteUsersResult>> DeleteUsersAsync(final DeleteUsersRequest request) {
         return new FutureTask(new Callable<PlayFabResult<DeleteUsersResult>>() {
             public PlayFabResult<DeleteUsersResult> call() throws Exception {
@@ -245,6 +258,7 @@ public class PlayFabAdminAPI {
     /**
      * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<DeleteUsersResult> DeleteUsers(final DeleteUsersRequest request) {
         FutureTask<PlayFabResult<DeleteUsersResult>> task = new FutureTask(new Callable<PlayFabResult<DeleteUsersResult>>() {
             public PlayFabResult<DeleteUsersResult> call() throws Exception {
@@ -262,6 +276,7 @@ public class PlayFabAdminAPI {
     /**
      * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteUsersResult> privateDeleteUsersAsync(final DeleteUsersRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -288,6 +303,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves a download URL for the requested report
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetDataReportResult>> GetDataReportAsync(final GetDataReportRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetDataReportResult>>() {
             public PlayFabResult<GetDataReportResult> call() throws Exception {
@@ -299,6 +315,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves a download URL for the requested report
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GetDataReportResult> GetDataReport(final GetDataReportRequest request) {
         FutureTask<PlayFabResult<GetDataReportResult>> task = new FutureTask(new Callable<PlayFabResult<GetDataReportResult>>() {
             public PlayFabResult<GetDataReportResult> call() throws Exception {
@@ -316,6 +333,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves a download URL for the requested report
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GetDataReportResult> privateGetDataReportAsync(final GetDataReportRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -342,6 +360,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the title-specific custom data for the user which is readable and writable by the client
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetUserDataResult>> GetUserDataAsync(final GetUserDataRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetUserDataResult>>() {
             public PlayFabResult<GetUserDataResult> call() throws Exception {
@@ -353,6 +372,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the title-specific custom data for the user which is readable and writable by the client
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GetUserDataResult> GetUserData(final GetUserDataRequest request) {
         FutureTask<PlayFabResult<GetUserDataResult>> task = new FutureTask(new Callable<PlayFabResult<GetUserDataResult>>() {
             public PlayFabResult<GetUserDataResult> call() throws Exception {
@@ -370,6 +390,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the title-specific custom data for the user which is readable and writable by the client
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -396,6 +417,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the title-specific custom data for the user which cannot be accessed by the client
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetUserDataResult>> GetUserInternalDataAsync(final GetUserDataRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetUserDataResult>>() {
             public PlayFabResult<GetUserDataResult> call() throws Exception {
@@ -407,6 +429,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the title-specific custom data for the user which cannot be accessed by the client
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GetUserDataResult> GetUserInternalData(final GetUserDataRequest request) {
         FutureTask<PlayFabResult<GetUserDataResult>> task = new FutureTask(new Callable<PlayFabResult<GetUserDataResult>>() {
             public PlayFabResult<GetUserDataResult> call() throws Exception {
@@ -424,6 +447,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the title-specific custom data for the user which cannot be accessed by the client
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserInternalDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -450,6 +474,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the publisher-specific custom data for the user which is readable and writable by the client
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetUserDataResult>> GetUserPublisherDataAsync(final GetUserDataRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetUserDataResult>>() {
             public PlayFabResult<GetUserDataResult> call() throws Exception {
@@ -461,6 +486,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the publisher-specific custom data for the user which is readable and writable by the client
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GetUserDataResult> GetUserPublisherData(final GetUserDataRequest request) {
         FutureTask<PlayFabResult<GetUserDataResult>> task = new FutureTask(new Callable<PlayFabResult<GetUserDataResult>>() {
             public PlayFabResult<GetUserDataResult> call() throws Exception {
@@ -478,6 +504,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the publisher-specific custom data for the user which is readable and writable by the client
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserPublisherDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -504,6 +531,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the publisher-specific custom data for the user which cannot be accessed by the client
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetUserDataResult>> GetUserPublisherInternalDataAsync(final GetUserDataRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetUserDataResult>>() {
             public PlayFabResult<GetUserDataResult> call() throws Exception {
@@ -515,6 +543,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the publisher-specific custom data for the user which cannot be accessed by the client
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GetUserDataResult> GetUserPublisherInternalData(final GetUserDataRequest request) {
         FutureTask<PlayFabResult<GetUserDataResult>> task = new FutureTask(new Callable<PlayFabResult<GetUserDataResult>>() {
             public PlayFabResult<GetUserDataResult> call() throws Exception {
@@ -532,6 +561,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the publisher-specific custom data for the user which cannot be accessed by the client
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserPublisherInternalDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -558,6 +588,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the publisher-specific custom data for the user which can only be read by the client
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetUserDataResult>> GetUserPublisherReadOnlyDataAsync(final GetUserDataRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetUserDataResult>>() {
             public PlayFabResult<GetUserDataResult> call() throws Exception {
@@ -569,6 +600,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the publisher-specific custom data for the user which can only be read by the client
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GetUserDataResult> GetUserPublisherReadOnlyData(final GetUserDataRequest request) {
         FutureTask<PlayFabResult<GetUserDataResult>> task = new FutureTask(new Callable<PlayFabResult<GetUserDataResult>>() {
             public PlayFabResult<GetUserDataResult> call() throws Exception {
@@ -586,6 +618,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the publisher-specific custom data for the user which can only be read by the client
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserPublisherReadOnlyDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -612,6 +645,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the title-specific custom data for the user which can only be read by the client
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetUserDataResult>> GetUserReadOnlyDataAsync(final GetUserDataRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetUserDataResult>>() {
             public PlayFabResult<GetUserDataResult> call() throws Exception {
@@ -623,6 +657,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the title-specific custom data for the user which can only be read by the client
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GetUserDataResult> GetUserReadOnlyData(final GetUserDataRequest request) {
         FutureTask<PlayFabResult<GetUserDataResult>> task = new FutureTask(new Callable<PlayFabResult<GetUserDataResult>>() {
             public PlayFabResult<GetUserDataResult> call() throws Exception {
@@ -640,6 +675,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the title-specific custom data for the user which can only be read by the client
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserReadOnlyDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -666,6 +702,7 @@ public class PlayFabAdminAPI {
     /**
      * Completely removes all statistics for the specified user, for the current game
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ResetUserStatisticsResult>> ResetUserStatisticsAsync(final ResetUserStatisticsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ResetUserStatisticsResult>>() {
             public PlayFabResult<ResetUserStatisticsResult> call() throws Exception {
@@ -677,6 +714,7 @@ public class PlayFabAdminAPI {
     /**
      * Completely removes all statistics for the specified user, for the current game
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<ResetUserStatisticsResult> ResetUserStatistics(final ResetUserStatisticsRequest request) {
         FutureTask<PlayFabResult<ResetUserStatisticsResult>> task = new FutureTask(new Callable<PlayFabResult<ResetUserStatisticsResult>>() {
             public PlayFabResult<ResetUserStatisticsResult> call() throws Exception {
@@ -694,6 +732,7 @@ public class PlayFabAdminAPI {
     /**
      * Completely removes all statistics for the specified user, for the current game
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<ResetUserStatisticsResult> privateResetUserStatisticsAsync(final ResetUserStatisticsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -720,6 +759,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the title-specific custom data for the user which is readable and writable by the client
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateUserDataResult>> UpdateUserDataAsync(final UpdateUserDataRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateUserDataResult>>() {
             public PlayFabResult<UpdateUserDataResult> call() throws Exception {
@@ -731,6 +771,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the title-specific custom data for the user which is readable and writable by the client
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateUserDataResult> UpdateUserData(final UpdateUserDataRequest request) {
         FutureTask<PlayFabResult<UpdateUserDataResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateUserDataResult>>() {
             public PlayFabResult<UpdateUserDataResult> call() throws Exception {
@@ -748,6 +789,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the title-specific custom data for the user which is readable and writable by the client
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserDataAsync(final UpdateUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -774,6 +816,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the title-specific custom data for the user which cannot be accessed by the client
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateUserDataResult>> UpdateUserInternalDataAsync(final UpdateUserInternalDataRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateUserDataResult>>() {
             public PlayFabResult<UpdateUserDataResult> call() throws Exception {
@@ -785,6 +828,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the title-specific custom data for the user which cannot be accessed by the client
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateUserDataResult> UpdateUserInternalData(final UpdateUserInternalDataRequest request) {
         FutureTask<PlayFabResult<UpdateUserDataResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateUserDataResult>>() {
             public PlayFabResult<UpdateUserDataResult> call() throws Exception {
@@ -802,6 +846,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the title-specific custom data for the user which cannot be accessed by the client
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserInternalDataAsync(final UpdateUserInternalDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -828,6 +873,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the publisher-specific custom data for the user which is readable and writable by the client
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateUserDataResult>> UpdateUserPublisherDataAsync(final UpdateUserDataRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateUserDataResult>>() {
             public PlayFabResult<UpdateUserDataResult> call() throws Exception {
@@ -839,6 +885,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the publisher-specific custom data for the user which is readable and writable by the client
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateUserDataResult> UpdateUserPublisherData(final UpdateUserDataRequest request) {
         FutureTask<PlayFabResult<UpdateUserDataResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateUserDataResult>>() {
             public PlayFabResult<UpdateUserDataResult> call() throws Exception {
@@ -856,6 +903,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the publisher-specific custom data for the user which is readable and writable by the client
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserPublisherDataAsync(final UpdateUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -882,6 +930,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the publisher-specific custom data for the user which cannot be accessed by the client
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateUserDataResult>> UpdateUserPublisherInternalDataAsync(final UpdateUserInternalDataRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateUserDataResult>>() {
             public PlayFabResult<UpdateUserDataResult> call() throws Exception {
@@ -893,6 +942,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the publisher-specific custom data for the user which cannot be accessed by the client
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateUserDataResult> UpdateUserPublisherInternalData(final UpdateUserInternalDataRequest request) {
         FutureTask<PlayFabResult<UpdateUserDataResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateUserDataResult>>() {
             public PlayFabResult<UpdateUserDataResult> call() throws Exception {
@@ -910,6 +960,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the publisher-specific custom data for the user which cannot be accessed by the client
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserPublisherInternalDataAsync(final UpdateUserInternalDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -936,6 +987,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the publisher-specific custom data for the user which can only be read by the client
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateUserDataResult>> UpdateUserPublisherReadOnlyDataAsync(final UpdateUserDataRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateUserDataResult>>() {
             public PlayFabResult<UpdateUserDataResult> call() throws Exception {
@@ -947,6 +999,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the publisher-specific custom data for the user which can only be read by the client
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateUserDataResult> UpdateUserPublisherReadOnlyData(final UpdateUserDataRequest request) {
         FutureTask<PlayFabResult<UpdateUserDataResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateUserDataResult>>() {
             public PlayFabResult<UpdateUserDataResult> call() throws Exception {
@@ -964,6 +1017,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the publisher-specific custom data for the user which can only be read by the client
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserPublisherReadOnlyDataAsync(final UpdateUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -990,6 +1044,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the title-specific custom data for the user which can only be read by the client
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateUserDataResult>> UpdateUserReadOnlyDataAsync(final UpdateUserDataRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateUserDataResult>>() {
             public PlayFabResult<UpdateUserDataResult> call() throws Exception {
@@ -1001,6 +1056,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the title-specific custom data for the user which can only be read by the client
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateUserDataResult> UpdateUserReadOnlyData(final UpdateUserDataRequest request) {
         FutureTask<PlayFabResult<UpdateUserDataResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateUserDataResult>>() {
             public PlayFabResult<UpdateUserDataResult> call() throws Exception {
@@ -1018,6 +1074,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the title-specific custom data for the user which can only be read by the client
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserReadOnlyDataAsync(final UpdateUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -1044,6 +1101,7 @@ public class PlayFabAdminAPI {
     /**
      * Adds a new news item to the title's news feed
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<AddNewsResult>> AddNewsAsync(final AddNewsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<AddNewsResult>>() {
             public PlayFabResult<AddNewsResult> call() throws Exception {
@@ -1055,6 +1113,7 @@ public class PlayFabAdminAPI {
     /**
      * Adds a new news item to the title's news feed
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<AddNewsResult> AddNews(final AddNewsRequest request) {
         FutureTask<PlayFabResult<AddNewsResult>> task = new FutureTask(new Callable<PlayFabResult<AddNewsResult>>() {
             public PlayFabResult<AddNewsResult> call() throws Exception {
@@ -1072,6 +1131,7 @@ public class PlayFabAdminAPI {
     /**
      * Adds a new news item to the title's news feed
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<AddNewsResult> privateAddNewsAsync(final AddNewsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -1098,6 +1158,7 @@ public class PlayFabAdminAPI {
     /**
      * Adds one or more virtual currencies to the set defined for the title. Virtual Currencies have a maximum value of 2,147,483,647 when granted to a player. Any value over that will be discarded.
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<BlankResult>> AddVirtualCurrencyTypesAsync(final AddVirtualCurrencyTypesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<BlankResult>>() {
             public PlayFabResult<BlankResult> call() throws Exception {
@@ -1109,6 +1170,7 @@ public class PlayFabAdminAPI {
     /**
      * Adds one or more virtual currencies to the set defined for the title. Virtual Currencies have a maximum value of 2,147,483,647 when granted to a player. Any value over that will be discarded.
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<BlankResult> AddVirtualCurrencyTypes(final AddVirtualCurrencyTypesRequest request) {
         FutureTask<PlayFabResult<BlankResult>> task = new FutureTask(new Callable<PlayFabResult<BlankResult>>() {
             public PlayFabResult<BlankResult> call() throws Exception {
@@ -1126,6 +1188,7 @@ public class PlayFabAdminAPI {
     /**
      * Adds one or more virtual currencies to the set defined for the title. Virtual Currencies have a maximum value of 2,147,483,647 when granted to a player. Any value over that will be discarded.
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<BlankResult> privateAddVirtualCurrencyTypesAsync(final AddVirtualCurrencyTypesRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -1152,6 +1215,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetCatalogItemsResult>> GetCatalogItemsAsync(final GetCatalogItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetCatalogItemsResult>>() {
             public PlayFabResult<GetCatalogItemsResult> call() throws Exception {
@@ -1163,6 +1227,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GetCatalogItemsResult> GetCatalogItems(final GetCatalogItemsRequest request) {
         FutureTask<PlayFabResult<GetCatalogItemsResult>> task = new FutureTask(new Callable<PlayFabResult<GetCatalogItemsResult>>() {
             public PlayFabResult<GetCatalogItemsResult> call() throws Exception {
@@ -1180,6 +1245,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCatalogItemsResult> privateGetCatalogItemsAsync(final GetCatalogItemsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -1206,6 +1272,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the random drop table configuration for the title
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetRandomResultTablesResult>> GetRandomResultTablesAsync(final GetRandomResultTablesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetRandomResultTablesResult>>() {
             public PlayFabResult<GetRandomResultTablesResult> call() throws Exception {
@@ -1217,6 +1284,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the random drop table configuration for the title
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GetRandomResultTablesResult> GetRandomResultTables(final GetRandomResultTablesRequest request) {
         FutureTask<PlayFabResult<GetRandomResultTablesResult>> task = new FutureTask(new Callable<PlayFabResult<GetRandomResultTablesResult>>() {
             public PlayFabResult<GetRandomResultTablesResult> call() throws Exception {
@@ -1234,6 +1302,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the random drop table configuration for the title
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GetRandomResultTablesResult> privateGetRandomResultTablesAsync(final GetRandomResultTablesRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -1260,6 +1329,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the set of items defined for the specified store, including all prices defined
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetStoreItemsResult>> GetStoreItemsAsync(final GetStoreItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetStoreItemsResult>>() {
             public PlayFabResult<GetStoreItemsResult> call() throws Exception {
@@ -1271,6 +1341,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the set of items defined for the specified store, including all prices defined
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GetStoreItemsResult> GetStoreItems(final GetStoreItemsRequest request) {
         FutureTask<PlayFabResult<GetStoreItemsResult>> task = new FutureTask(new Callable<PlayFabResult<GetStoreItemsResult>>() {
             public PlayFabResult<GetStoreItemsResult> call() throws Exception {
@@ -1288,6 +1359,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the set of items defined for the specified store, including all prices defined
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GetStoreItemsResult> privateGetStoreItemsAsync(final GetStoreItemsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -1314,6 +1386,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the key-value store of custom title settings
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetTitleDataResult>> GetTitleDataAsync(final GetTitleDataRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetTitleDataResult>>() {
             public PlayFabResult<GetTitleDataResult> call() throws Exception {
@@ -1325,6 +1398,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the key-value store of custom title settings
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GetTitleDataResult> GetTitleData(final GetTitleDataRequest request) {
         FutureTask<PlayFabResult<GetTitleDataResult>> task = new FutureTask(new Callable<PlayFabResult<GetTitleDataResult>>() {
             public PlayFabResult<GetTitleDataResult> call() throws Exception {
@@ -1342,6 +1416,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the key-value store of custom title settings
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTitleDataResult> privateGetTitleDataAsync(final GetTitleDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -1368,6 +1443,7 @@ public class PlayFabAdminAPI {
     /**
      * Retuns the list of all defined virtual currencies for the title
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListVirtualCurrencyTypesResult>> ListVirtualCurrencyTypesAsync(final ListVirtualCurrencyTypesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListVirtualCurrencyTypesResult>>() {
             public PlayFabResult<ListVirtualCurrencyTypesResult> call() throws Exception {
@@ -1379,6 +1455,7 @@ public class PlayFabAdminAPI {
     /**
      * Retuns the list of all defined virtual currencies for the title
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<ListVirtualCurrencyTypesResult> ListVirtualCurrencyTypes(final ListVirtualCurrencyTypesRequest request) {
         FutureTask<PlayFabResult<ListVirtualCurrencyTypesResult>> task = new FutureTask(new Callable<PlayFabResult<ListVirtualCurrencyTypesResult>>() {
             public PlayFabResult<ListVirtualCurrencyTypesResult> call() throws Exception {
@@ -1396,6 +1473,7 @@ public class PlayFabAdminAPI {
     /**
      * Retuns the list of all defined virtual currencies for the title
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<ListVirtualCurrencyTypesResult> privateListVirtualCurrencyTypesAsync(final ListVirtualCurrencyTypesRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -1422,6 +1500,7 @@ public class PlayFabAdminAPI {
     /**
      * Creates the catalog configuration of all virtual goods for the specified catalog version
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateCatalogItemsResult>> SetCatalogItemsAsync(final UpdateCatalogItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateCatalogItemsResult>>() {
             public PlayFabResult<UpdateCatalogItemsResult> call() throws Exception {
@@ -1433,6 +1512,7 @@ public class PlayFabAdminAPI {
     /**
      * Creates the catalog configuration of all virtual goods for the specified catalog version
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateCatalogItemsResult> SetCatalogItems(final UpdateCatalogItemsRequest request) {
         FutureTask<PlayFabResult<UpdateCatalogItemsResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateCatalogItemsResult>>() {
             public PlayFabResult<UpdateCatalogItemsResult> call() throws Exception {
@@ -1450,6 +1530,7 @@ public class PlayFabAdminAPI {
     /**
      * Creates the catalog configuration of all virtual goods for the specified catalog version
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateCatalogItemsResult> privateSetCatalogItemsAsync(final UpdateCatalogItemsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -1476,6 +1557,7 @@ public class PlayFabAdminAPI {
     /**
      * Sets all the items in one virtual store
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateStoreItemsResult>> SetStoreItemsAsync(final UpdateStoreItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateStoreItemsResult>>() {
             public PlayFabResult<UpdateStoreItemsResult> call() throws Exception {
@@ -1487,6 +1569,7 @@ public class PlayFabAdminAPI {
     /**
      * Sets all the items in one virtual store
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateStoreItemsResult> SetStoreItems(final UpdateStoreItemsRequest request) {
         FutureTask<PlayFabResult<UpdateStoreItemsResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateStoreItemsResult>>() {
             public PlayFabResult<UpdateStoreItemsResult> call() throws Exception {
@@ -1504,6 +1587,7 @@ public class PlayFabAdminAPI {
     /**
      * Sets all the items in one virtual store
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateStoreItemsResult> privateSetStoreItemsAsync(final UpdateStoreItemsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -1530,6 +1614,7 @@ public class PlayFabAdminAPI {
     /**
      * Creates and updates the key-value store of custom title settings
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<SetTitleDataResult>> SetTitleDataAsync(final SetTitleDataRequest request) {
         return new FutureTask(new Callable<PlayFabResult<SetTitleDataResult>>() {
             public PlayFabResult<SetTitleDataResult> call() throws Exception {
@@ -1541,6 +1626,7 @@ public class PlayFabAdminAPI {
     /**
      * Creates and updates the key-value store of custom title settings
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<SetTitleDataResult> SetTitleData(final SetTitleDataRequest request) {
         FutureTask<PlayFabResult<SetTitleDataResult>> task = new FutureTask(new Callable<PlayFabResult<SetTitleDataResult>>() {
             public PlayFabResult<SetTitleDataResult> call() throws Exception {
@@ -1558,6 +1644,7 @@ public class PlayFabAdminAPI {
     /**
      * Creates and updates the key-value store of custom title settings
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<SetTitleDataResult> privateSetTitleDataAsync(final SetTitleDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -1584,6 +1671,7 @@ public class PlayFabAdminAPI {
     /**
      * Sets the Amazon Resource Name (ARN) for iOS and Android push notifications. Documentation on the exact restrictions can be found at: http://docs.aws.amazon.com/sns/latest/api/API_CreatePlatformApplication.html. Currently, Amazon device Messaging is not supported.
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<SetupPushNotificationResult>> SetupPushNotificationAsync(final SetupPushNotificationRequest request) {
         return new FutureTask(new Callable<PlayFabResult<SetupPushNotificationResult>>() {
             public PlayFabResult<SetupPushNotificationResult> call() throws Exception {
@@ -1595,6 +1683,7 @@ public class PlayFabAdminAPI {
     /**
      * Sets the Amazon Resource Name (ARN) for iOS and Android push notifications. Documentation on the exact restrictions can be found at: http://docs.aws.amazon.com/sns/latest/api/API_CreatePlatformApplication.html. Currently, Amazon device Messaging is not supported.
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<SetupPushNotificationResult> SetupPushNotification(final SetupPushNotificationRequest request) {
         FutureTask<PlayFabResult<SetupPushNotificationResult>> task = new FutureTask(new Callable<PlayFabResult<SetupPushNotificationResult>>() {
             public PlayFabResult<SetupPushNotificationResult> call() throws Exception {
@@ -1612,6 +1701,7 @@ public class PlayFabAdminAPI {
     /**
      * Sets the Amazon Resource Name (ARN) for iOS and Android push notifications. Documentation on the exact restrictions can be found at: http://docs.aws.amazon.com/sns/latest/api/API_CreatePlatformApplication.html. Currently, Amazon device Messaging is not supported.
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<SetupPushNotificationResult> privateSetupPushNotificationAsync(final SetupPushNotificationRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -1638,6 +1728,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the catalog configuration for virtual goods in the specified catalog version
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateCatalogItemsResult>> UpdateCatalogItemsAsync(final UpdateCatalogItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateCatalogItemsResult>>() {
             public PlayFabResult<UpdateCatalogItemsResult> call() throws Exception {
@@ -1649,6 +1740,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the catalog configuration for virtual goods in the specified catalog version
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateCatalogItemsResult> UpdateCatalogItems(final UpdateCatalogItemsRequest request) {
         FutureTask<PlayFabResult<UpdateCatalogItemsResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateCatalogItemsResult>>() {
             public PlayFabResult<UpdateCatalogItemsResult> call() throws Exception {
@@ -1666,6 +1758,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the catalog configuration for virtual goods in the specified catalog version
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateCatalogItemsResult> privateUpdateCatalogItemsAsync(final UpdateCatalogItemsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -1692,6 +1785,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the random drop table configuration for the title
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateRandomResultTablesResult>> UpdateRandomResultTablesAsync(final UpdateRandomResultTablesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateRandomResultTablesResult>>() {
             public PlayFabResult<UpdateRandomResultTablesResult> call() throws Exception {
@@ -1703,6 +1797,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the random drop table configuration for the title
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateRandomResultTablesResult> UpdateRandomResultTables(final UpdateRandomResultTablesRequest request) {
         FutureTask<PlayFabResult<UpdateRandomResultTablesResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateRandomResultTablesResult>>() {
             public PlayFabResult<UpdateRandomResultTablesResult> call() throws Exception {
@@ -1720,6 +1815,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the random drop table configuration for the title
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateRandomResultTablesResult> privateUpdateRandomResultTablesAsync(final UpdateRandomResultTablesRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -1746,6 +1842,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates an existing virtual item store with new or modified items
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateStoreItemsResult>> UpdateStoreItemsAsync(final UpdateStoreItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateStoreItemsResult>>() {
             public PlayFabResult<UpdateStoreItemsResult> call() throws Exception {
@@ -1757,6 +1854,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates an existing virtual item store with new or modified items
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateStoreItemsResult> UpdateStoreItems(final UpdateStoreItemsRequest request) {
         FutureTask<PlayFabResult<UpdateStoreItemsResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateStoreItemsResult>>() {
             public PlayFabResult<UpdateStoreItemsResult> call() throws Exception {
@@ -1774,6 +1872,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates an existing virtual item store with new or modified items
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateStoreItemsResult> privateUpdateStoreItemsAsync(final UpdateStoreItemsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -1800,6 +1899,7 @@ public class PlayFabAdminAPI {
     /**
      * Increments the specified virtual currency by the stated amount
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ModifyUserVirtualCurrencyResult>> AddUserVirtualCurrencyAsync(final AddUserVirtualCurrencyRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ModifyUserVirtualCurrencyResult>>() {
             public PlayFabResult<ModifyUserVirtualCurrencyResult> call() throws Exception {
@@ -1811,6 +1911,7 @@ public class PlayFabAdminAPI {
     /**
      * Increments the specified virtual currency by the stated amount
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<ModifyUserVirtualCurrencyResult> AddUserVirtualCurrency(final AddUserVirtualCurrencyRequest request) {
         FutureTask<PlayFabResult<ModifyUserVirtualCurrencyResult>> task = new FutureTask(new Callable<PlayFabResult<ModifyUserVirtualCurrencyResult>>() {
             public PlayFabResult<ModifyUserVirtualCurrencyResult> call() throws Exception {
@@ -1828,6 +1929,7 @@ public class PlayFabAdminAPI {
     /**
      * Increments the specified virtual currency by the stated amount
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyUserVirtualCurrencyResult> privateAddUserVirtualCurrencyAsync(final AddUserVirtualCurrencyRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -1854,6 +1956,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the specified user's current inventory of virtual goods
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetUserInventoryResult>> GetUserInventoryAsync(final GetUserInventoryRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetUserInventoryResult>>() {
             public PlayFabResult<GetUserInventoryResult> call() throws Exception {
@@ -1865,6 +1968,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the specified user's current inventory of virtual goods
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GetUserInventoryResult> GetUserInventory(final GetUserInventoryRequest request) {
         FutureTask<PlayFabResult<GetUserInventoryResult>> task = new FutureTask(new Callable<PlayFabResult<GetUserInventoryResult>>() {
             public PlayFabResult<GetUserInventoryResult> call() throws Exception {
@@ -1882,6 +1986,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the specified user's current inventory of virtual goods
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserInventoryResult> privateGetUserInventoryAsync(final GetUserInventoryRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -1908,6 +2013,7 @@ public class PlayFabAdminAPI {
     /**
      * Adds the specified items to the specified user inventories
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GrantItemsToUsersResult>> GrantItemsToUsersAsync(final GrantItemsToUsersRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GrantItemsToUsersResult>>() {
             public PlayFabResult<GrantItemsToUsersResult> call() throws Exception {
@@ -1919,6 +2025,7 @@ public class PlayFabAdminAPI {
     /**
      * Adds the specified items to the specified user inventories
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GrantItemsToUsersResult> GrantItemsToUsers(final GrantItemsToUsersRequest request) {
         FutureTask<PlayFabResult<GrantItemsToUsersResult>> task = new FutureTask(new Callable<PlayFabResult<GrantItemsToUsersResult>>() {
             public PlayFabResult<GrantItemsToUsersResult> call() throws Exception {
@@ -1936,6 +2043,7 @@ public class PlayFabAdminAPI {
     /**
      * Adds the specified items to the specified user inventories
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GrantItemsToUsersResult> privateGrantItemsToUsersAsync(final GrantItemsToUsersRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -1962,6 +2070,7 @@ public class PlayFabAdminAPI {
     /**
      * Revokes access to an item in a user's inventory
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<RevokeInventoryResult>> RevokeInventoryItemAsync(final RevokeInventoryItemRequest request) {
         return new FutureTask(new Callable<PlayFabResult<RevokeInventoryResult>>() {
             public PlayFabResult<RevokeInventoryResult> call() throws Exception {
@@ -1973,6 +2082,7 @@ public class PlayFabAdminAPI {
     /**
      * Revokes access to an item in a user's inventory
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<RevokeInventoryResult> RevokeInventoryItem(final RevokeInventoryItemRequest request) {
         FutureTask<PlayFabResult<RevokeInventoryResult>> task = new FutureTask(new Callable<PlayFabResult<RevokeInventoryResult>>() {
             public PlayFabResult<RevokeInventoryResult> call() throws Exception {
@@ -1990,6 +2100,7 @@ public class PlayFabAdminAPI {
     /**
      * Revokes access to an item in a user's inventory
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<RevokeInventoryResult> privateRevokeInventoryItemAsync(final RevokeInventoryItemRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -2016,6 +2127,7 @@ public class PlayFabAdminAPI {
     /**
      * Decrements the specified virtual currency by the stated amount
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ModifyUserVirtualCurrencyResult>> SubtractUserVirtualCurrencyAsync(final SubtractUserVirtualCurrencyRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ModifyUserVirtualCurrencyResult>>() {
             public PlayFabResult<ModifyUserVirtualCurrencyResult> call() throws Exception {
@@ -2027,6 +2139,7 @@ public class PlayFabAdminAPI {
     /**
      * Decrements the specified virtual currency by the stated amount
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<ModifyUserVirtualCurrencyResult> SubtractUserVirtualCurrency(final SubtractUserVirtualCurrencyRequest request) {
         FutureTask<PlayFabResult<ModifyUserVirtualCurrencyResult>> task = new FutureTask(new Callable<PlayFabResult<ModifyUserVirtualCurrencyResult>>() {
             public PlayFabResult<ModifyUserVirtualCurrencyResult> call() throws Exception {
@@ -2044,6 +2157,7 @@ public class PlayFabAdminAPI {
     /**
      * Decrements the specified virtual currency by the stated amount
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyUserVirtualCurrencyResult> privateSubtractUserVirtualCurrencyAsync(final SubtractUserVirtualCurrencyRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -2070,6 +2184,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the details for a specific completed session, including links to standard out and standard error logs
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetMatchmakerGameInfoResult>> GetMatchmakerGameInfoAsync(final GetMatchmakerGameInfoRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetMatchmakerGameInfoResult>>() {
             public PlayFabResult<GetMatchmakerGameInfoResult> call() throws Exception {
@@ -2081,6 +2196,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the details for a specific completed session, including links to standard out and standard error logs
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GetMatchmakerGameInfoResult> GetMatchmakerGameInfo(final GetMatchmakerGameInfoRequest request) {
         FutureTask<PlayFabResult<GetMatchmakerGameInfoResult>> task = new FutureTask(new Callable<PlayFabResult<GetMatchmakerGameInfoResult>>() {
             public PlayFabResult<GetMatchmakerGameInfoResult> call() throws Exception {
@@ -2098,6 +2214,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the details for a specific completed session, including links to standard out and standard error logs
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GetMatchmakerGameInfoResult> privateGetMatchmakerGameInfoAsync(final GetMatchmakerGameInfoRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -2124,6 +2241,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the details of defined game modes for the specified game server executable
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetMatchmakerGameModesResult>> GetMatchmakerGameModesAsync(final GetMatchmakerGameModesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetMatchmakerGameModesResult>>() {
             public PlayFabResult<GetMatchmakerGameModesResult> call() throws Exception {
@@ -2135,6 +2253,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the details of defined game modes for the specified game server executable
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GetMatchmakerGameModesResult> GetMatchmakerGameModes(final GetMatchmakerGameModesRequest request) {
         FutureTask<PlayFabResult<GetMatchmakerGameModesResult>> task = new FutureTask(new Callable<PlayFabResult<GetMatchmakerGameModesResult>>() {
             public PlayFabResult<GetMatchmakerGameModesResult> call() throws Exception {
@@ -2152,6 +2271,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the details of defined game modes for the specified game server executable
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GetMatchmakerGameModesResult> privateGetMatchmakerGameModesAsync(final GetMatchmakerGameModesRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -2178,6 +2298,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the game server mode details for the specified game server executable
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ModifyMatchmakerGameModesResult>> ModifyMatchmakerGameModesAsync(final ModifyMatchmakerGameModesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ModifyMatchmakerGameModesResult>>() {
             public PlayFabResult<ModifyMatchmakerGameModesResult> call() throws Exception {
@@ -2189,6 +2310,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the game server mode details for the specified game server executable
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<ModifyMatchmakerGameModesResult> ModifyMatchmakerGameModes(final ModifyMatchmakerGameModesRequest request) {
         FutureTask<PlayFabResult<ModifyMatchmakerGameModesResult>> task = new FutureTask(new Callable<PlayFabResult<ModifyMatchmakerGameModesResult>>() {
             public PlayFabResult<ModifyMatchmakerGameModesResult> call() throws Exception {
@@ -2206,6 +2328,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the game server mode details for the specified game server executable
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyMatchmakerGameModesResult> privateModifyMatchmakerGameModesAsync(final ModifyMatchmakerGameModesRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -2232,6 +2355,7 @@ public class PlayFabAdminAPI {
     /**
      * Adds the game server executable specified (previously uploaded - see GetServerBuildUploadUrl) to the set of those a client is permitted to request in a call to StartGame
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<AddServerBuildResult>> AddServerBuildAsync(final AddServerBuildRequest request) {
         return new FutureTask(new Callable<PlayFabResult<AddServerBuildResult>>() {
             public PlayFabResult<AddServerBuildResult> call() throws Exception {
@@ -2243,6 +2367,7 @@ public class PlayFabAdminAPI {
     /**
      * Adds the game server executable specified (previously uploaded - see GetServerBuildUploadUrl) to the set of those a client is permitted to request in a call to StartGame
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<AddServerBuildResult> AddServerBuild(final AddServerBuildRequest request) {
         FutureTask<PlayFabResult<AddServerBuildResult>> task = new FutureTask(new Callable<PlayFabResult<AddServerBuildResult>>() {
             public PlayFabResult<AddServerBuildResult> call() throws Exception {
@@ -2260,6 +2385,7 @@ public class PlayFabAdminAPI {
     /**
      * Adds the game server executable specified (previously uploaded - see GetServerBuildUploadUrl) to the set of those a client is permitted to request in a call to StartGame
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<AddServerBuildResult> privateAddServerBuildAsync(final AddServerBuildRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -2286,6 +2412,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the build details for the specified game server executable
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetServerBuildInfoResult>> GetServerBuildInfoAsync(final GetServerBuildInfoRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetServerBuildInfoResult>>() {
             public PlayFabResult<GetServerBuildInfoResult> call() throws Exception {
@@ -2297,6 +2424,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the build details for the specified game server executable
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GetServerBuildInfoResult> GetServerBuildInfo(final GetServerBuildInfoRequest request) {
         FutureTask<PlayFabResult<GetServerBuildInfoResult>> task = new FutureTask(new Callable<PlayFabResult<GetServerBuildInfoResult>>() {
             public PlayFabResult<GetServerBuildInfoResult> call() throws Exception {
@@ -2314,6 +2442,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the build details for the specified game server executable
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GetServerBuildInfoResult> privateGetServerBuildInfoAsync(final GetServerBuildInfoRequest request) throws Exception {
         
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/GetServerBuildInfo", request, null, null);
@@ -2339,6 +2468,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the pre-authorized URL for uploading a game server package containing a build (does not enable the build for use - see AddServerBuild)
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetServerBuildUploadURLResult>> GetServerBuildUploadUrlAsync(final GetServerBuildUploadURLRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetServerBuildUploadURLResult>>() {
             public PlayFabResult<GetServerBuildUploadURLResult> call() throws Exception {
@@ -2350,6 +2480,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the pre-authorized URL for uploading a game server package containing a build (does not enable the build for use - see AddServerBuild)
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GetServerBuildUploadURLResult> GetServerBuildUploadUrl(final GetServerBuildUploadURLRequest request) {
         FutureTask<PlayFabResult<GetServerBuildUploadURLResult>> task = new FutureTask(new Callable<PlayFabResult<GetServerBuildUploadURLResult>>() {
             public PlayFabResult<GetServerBuildUploadURLResult> call() throws Exception {
@@ -2367,6 +2498,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the pre-authorized URL for uploading a game server package containing a build (does not enable the build for use - see AddServerBuild)
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GetServerBuildUploadURLResult> privateGetServerBuildUploadUrlAsync(final GetServerBuildUploadURLRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -2393,6 +2525,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the build details for all game server executables which are currently defined for the title
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListBuildsResult>> ListServerBuildsAsync(final ListBuildsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListBuildsResult>>() {
             public PlayFabResult<ListBuildsResult> call() throws Exception {
@@ -2404,6 +2537,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the build details for all game server executables which are currently defined for the title
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<ListBuildsResult> ListServerBuilds(final ListBuildsRequest request) {
         FutureTask<PlayFabResult<ListBuildsResult>> task = new FutureTask(new Callable<PlayFabResult<ListBuildsResult>>() {
             public PlayFabResult<ListBuildsResult> call() throws Exception {
@@ -2421,6 +2555,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the build details for all game server executables which are currently defined for the title
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<ListBuildsResult> privateListServerBuildsAsync(final ListBuildsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -2447,6 +2582,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the build details for the specified game server executable
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ModifyServerBuildResult>> ModifyServerBuildAsync(final ModifyServerBuildRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ModifyServerBuildResult>>() {
             public PlayFabResult<ModifyServerBuildResult> call() throws Exception {
@@ -2458,6 +2594,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the build details for the specified game server executable
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<ModifyServerBuildResult> ModifyServerBuild(final ModifyServerBuildRequest request) {
         FutureTask<PlayFabResult<ModifyServerBuildResult>> task = new FutureTask(new Callable<PlayFabResult<ModifyServerBuildResult>>() {
             public PlayFabResult<ModifyServerBuildResult> call() throws Exception {
@@ -2475,6 +2612,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the build details for the specified game server executable
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyServerBuildResult> privateModifyServerBuildAsync(final ModifyServerBuildRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -2501,6 +2639,7 @@ public class PlayFabAdminAPI {
     /**
      * Removes the game server executable specified from the set of those a client is permitted to request in a call to StartGame
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<RemoveServerBuildResult>> RemoveServerBuildAsync(final RemoveServerBuildRequest request) {
         return new FutureTask(new Callable<PlayFabResult<RemoveServerBuildResult>>() {
             public PlayFabResult<RemoveServerBuildResult> call() throws Exception {
@@ -2512,6 +2651,7 @@ public class PlayFabAdminAPI {
     /**
      * Removes the game server executable specified from the set of those a client is permitted to request in a call to StartGame
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<RemoveServerBuildResult> RemoveServerBuild(final RemoveServerBuildRequest request) {
         FutureTask<PlayFabResult<RemoveServerBuildResult>> task = new FutureTask(new Callable<PlayFabResult<RemoveServerBuildResult>>() {
             public PlayFabResult<RemoveServerBuildResult> call() throws Exception {
@@ -2529,6 +2669,7 @@ public class PlayFabAdminAPI {
     /**
      * Removes the game server executable specified from the set of those a client is permitted to request in a call to StartGame
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<RemoveServerBuildResult> privateRemoveServerBuildAsync(final RemoveServerBuildRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -2555,6 +2696,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the key-value store of custom publisher settings
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetPublisherDataResult>> GetPublisherDataAsync(final GetPublisherDataRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetPublisherDataResult>>() {
             public PlayFabResult<GetPublisherDataResult> call() throws Exception {
@@ -2566,6 +2708,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the key-value store of custom publisher settings
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GetPublisherDataResult> GetPublisherData(final GetPublisherDataRequest request) {
         FutureTask<PlayFabResult<GetPublisherDataResult>> task = new FutureTask(new Callable<PlayFabResult<GetPublisherDataResult>>() {
             public PlayFabResult<GetPublisherDataResult> call() throws Exception {
@@ -2583,6 +2726,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the key-value store of custom publisher settings
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPublisherDataResult> privateGetPublisherDataAsync(final GetPublisherDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -2609,6 +2753,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the key-value store of custom publisher settings
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<SetPublisherDataResult>> SetPublisherDataAsync(final SetPublisherDataRequest request) {
         return new FutureTask(new Callable<PlayFabResult<SetPublisherDataResult>>() {
             public PlayFabResult<SetPublisherDataResult> call() throws Exception {
@@ -2620,6 +2765,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the key-value store of custom publisher settings
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<SetPublisherDataResult> SetPublisherData(final SetPublisherDataRequest request) {
         FutureTask<PlayFabResult<SetPublisherDataResult>> task = new FutureTask(new Callable<PlayFabResult<SetPublisherDataResult>>() {
             public PlayFabResult<SetPublisherDataResult> call() throws Exception {
@@ -2637,6 +2783,7 @@ public class PlayFabAdminAPI {
     /**
      * Updates the key-value store of custom publisher settings
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<SetPublisherDataResult> privateSetPublisherDataAsync(final SetPublisherDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -2663,6 +2810,7 @@ public class PlayFabAdminAPI {
     /**
      * Gets the contents and information of a specific Cloud Script revision.
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetCloudScriptRevisionResult>> GetCloudScriptRevisionAsync(final GetCloudScriptRevisionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetCloudScriptRevisionResult>>() {
             public PlayFabResult<GetCloudScriptRevisionResult> call() throws Exception {
@@ -2674,6 +2822,7 @@ public class PlayFabAdminAPI {
     /**
      * Gets the contents and information of a specific Cloud Script revision.
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GetCloudScriptRevisionResult> GetCloudScriptRevision(final GetCloudScriptRevisionRequest request) {
         FutureTask<PlayFabResult<GetCloudScriptRevisionResult>> task = new FutureTask(new Callable<PlayFabResult<GetCloudScriptRevisionResult>>() {
             public PlayFabResult<GetCloudScriptRevisionResult> call() throws Exception {
@@ -2691,6 +2840,7 @@ public class PlayFabAdminAPI {
     /**
      * Gets the contents and information of a specific Cloud Script revision.
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCloudScriptRevisionResult> privateGetCloudScriptRevisionAsync(final GetCloudScriptRevisionRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -2717,6 +2867,7 @@ public class PlayFabAdminAPI {
     /**
      * Lists all the current cloud script versions. For each version, information about the current published and latest revisions is also listed.
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetCloudScriptVersionsResult>> GetCloudScriptVersionsAsync(final GetCloudScriptVersionsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetCloudScriptVersionsResult>>() {
             public PlayFabResult<GetCloudScriptVersionsResult> call() throws Exception {
@@ -2728,6 +2879,7 @@ public class PlayFabAdminAPI {
     /**
      * Lists all the current cloud script versions. For each version, information about the current published and latest revisions is also listed.
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GetCloudScriptVersionsResult> GetCloudScriptVersions(final GetCloudScriptVersionsRequest request) {
         FutureTask<PlayFabResult<GetCloudScriptVersionsResult>> task = new FutureTask(new Callable<PlayFabResult<GetCloudScriptVersionsResult>>() {
             public PlayFabResult<GetCloudScriptVersionsResult> call() throws Exception {
@@ -2745,6 +2897,7 @@ public class PlayFabAdminAPI {
     /**
      * Lists all the current cloud script versions. For each version, information about the current published and latest revisions is also listed.
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCloudScriptVersionsResult> privateGetCloudScriptVersionsAsync(final GetCloudScriptVersionsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -2771,6 +2924,7 @@ public class PlayFabAdminAPI {
     /**
      * Sets the currently published revision of a title Cloud Script
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<SetPublishedRevisionResult>> SetPublishedRevisionAsync(final SetPublishedRevisionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<SetPublishedRevisionResult>>() {
             public PlayFabResult<SetPublishedRevisionResult> call() throws Exception {
@@ -2782,6 +2936,7 @@ public class PlayFabAdminAPI {
     /**
      * Sets the currently published revision of a title Cloud Script
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<SetPublishedRevisionResult> SetPublishedRevision(final SetPublishedRevisionRequest request) {
         FutureTask<PlayFabResult<SetPublishedRevisionResult>> task = new FutureTask(new Callable<PlayFabResult<SetPublishedRevisionResult>>() {
             public PlayFabResult<SetPublishedRevisionResult> call() throws Exception {
@@ -2799,6 +2954,7 @@ public class PlayFabAdminAPI {
     /**
      * Sets the currently published revision of a title Cloud Script
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<SetPublishedRevisionResult> privateSetPublishedRevisionAsync(final SetPublishedRevisionRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -2825,6 +2981,7 @@ public class PlayFabAdminAPI {
     /**
      * Creates a new Cloud Script revision and uploads source code to it. Note that at this time, only one file should be submitted in the revision.
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateCloudScriptResult>> UpdateCloudScriptAsync(final UpdateCloudScriptRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateCloudScriptResult>>() {
             public PlayFabResult<UpdateCloudScriptResult> call() throws Exception {
@@ -2836,6 +2993,7 @@ public class PlayFabAdminAPI {
     /**
      * Creates a new Cloud Script revision and uploads source code to it. Note that at this time, only one file should be submitted in the revision.
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateCloudScriptResult> UpdateCloudScript(final UpdateCloudScriptRequest request) {
         FutureTask<PlayFabResult<UpdateCloudScriptResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateCloudScriptResult>>() {
             public PlayFabResult<UpdateCloudScriptResult> call() throws Exception {
@@ -2853,6 +3011,7 @@ public class PlayFabAdminAPI {
     /**
      * Creates a new Cloud Script revision and uploads source code to it. Note that at this time, only one file should be submitted in the revision.
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateCloudScriptResult> privateUpdateCloudScriptAsync(final UpdateCloudScriptRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -2879,6 +3038,7 @@ public class PlayFabAdminAPI {
     /**
      * Delete a content file from the title
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<BlankResult>> DeleteContentAsync(final DeleteContentRequest request) {
         return new FutureTask(new Callable<PlayFabResult<BlankResult>>() {
             public PlayFabResult<BlankResult> call() throws Exception {
@@ -2890,6 +3050,7 @@ public class PlayFabAdminAPI {
     /**
      * Delete a content file from the title
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<BlankResult> DeleteContent(final DeleteContentRequest request) {
         FutureTask<PlayFabResult<BlankResult>> task = new FutureTask(new Callable<PlayFabResult<BlankResult>>() {
             public PlayFabResult<BlankResult> call() throws Exception {
@@ -2907,6 +3068,7 @@ public class PlayFabAdminAPI {
     /**
      * Delete a content file from the title
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<BlankResult> privateDeleteContentAsync(final DeleteContentRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -2933,6 +3095,7 @@ public class PlayFabAdminAPI {
     /**
      * List all contents of the title and get statistics such as size
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetContentListResult>> GetContentListAsync(final GetContentListRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetContentListResult>>() {
             public PlayFabResult<GetContentListResult> call() throws Exception {
@@ -2944,6 +3107,7 @@ public class PlayFabAdminAPI {
     /**
      * List all contents of the title and get statistics such as size
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GetContentListResult> GetContentList(final GetContentListRequest request) {
         FutureTask<PlayFabResult<GetContentListResult>> task = new FutureTask(new Callable<PlayFabResult<GetContentListResult>>() {
             public PlayFabResult<GetContentListResult> call() throws Exception {
@@ -2961,6 +3125,7 @@ public class PlayFabAdminAPI {
     /**
      * List all contents of the title and get statistics such as size
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GetContentListResult> privateGetContentListAsync(final GetContentListRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -2987,6 +3152,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the pre-signed URL for uploading a content file. A subsequent HTTP PUT to the returned URL uploads the content.
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetContentUploadUrlResult>> GetContentUploadUrlAsync(final GetContentUploadUrlRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetContentUploadUrlResult>>() {
             public PlayFabResult<GetContentUploadUrlResult> call() throws Exception {
@@ -2998,6 +3164,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the pre-signed URL for uploading a content file. A subsequent HTTP PUT to the returned URL uploads the content.
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<GetContentUploadUrlResult> GetContentUploadUrl(final GetContentUploadUrlRequest request) {
         FutureTask<PlayFabResult<GetContentUploadUrlResult>> task = new FutureTask(new Callable<PlayFabResult<GetContentUploadUrlResult>>() {
             public PlayFabResult<GetContentUploadUrlResult> call() throws Exception {
@@ -3015,6 +3182,7 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the pre-signed URL for uploading a content file. A subsequent HTTP PUT to the returned URL uploads the content.
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<GetContentUploadUrlResult> privateGetContentUploadUrlAsync(final GetContentUploadUrlRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
@@ -3041,6 +3209,7 @@ public class PlayFabAdminAPI {
     /**
      * Completely removes all statistics for the specified character, for the current game
      */
+    @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ResetCharacterStatisticsResult>> ResetCharacterStatisticsAsync(final ResetCharacterStatisticsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ResetCharacterStatisticsResult>>() {
             public PlayFabResult<ResetCharacterStatisticsResult> call() throws Exception {
@@ -3052,6 +3221,7 @@ public class PlayFabAdminAPI {
     /**
      * Completely removes all statistics for the specified character, for the current game
      */
+    @SuppressWarnings("unchecked")
     public static PlayFabResult<ResetCharacterStatisticsResult> ResetCharacterStatistics(final ResetCharacterStatisticsRequest request) {
         FutureTask<PlayFabResult<ResetCharacterStatisticsResult>> task = new FutureTask(new Callable<PlayFabResult<ResetCharacterStatisticsResult>>() {
             public PlayFabResult<ResetCharacterStatisticsResult> call() throws Exception {
@@ -3069,6 +3239,7 @@ public class PlayFabAdminAPI {
     /**
      * Completely removes all statistics for the specified character, for the current game
      */
+    @SuppressWarnings("unchecked")
     private static PlayFabResult<ResetCharacterStatisticsResult> privateResetCharacterStatisticsAsync(final ResetCharacterStatisticsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
