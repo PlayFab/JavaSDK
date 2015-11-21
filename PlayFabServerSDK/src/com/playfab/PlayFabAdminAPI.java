@@ -14,7 +14,7 @@ import com.google.gson.reflect.*;
  */
 public class PlayFabAdminAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
-    
+
     /**
      * Retrieves the relevant details for a specified user, based upon a match against a supplied unique identifier
      */
@@ -44,7 +44,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Retrieves the relevant details for a specified user, based upon a match against a supplied unique identifier
      */
@@ -64,8 +64,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<LookupUserAccountInfoResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LookupUserAccountInfoResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<LookupUserAccountInfoResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LookupUserAccountInfoResult>>(){}.getType());
         LookupUserAccountInfoResult result = resultData.data;
         
         PlayFabResult<LookupUserAccountInfoResult> pfResult = new PlayFabResult<LookupUserAccountInfoResult>();
@@ -101,7 +101,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Resets all title-specific information about a particular account, including user data, virtual currency balances, inventory, purchase history, and statistics
      */
@@ -121,8 +121,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<BlankResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<BlankResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<BlankResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<BlankResult>>(){}.getType());
         BlankResult result = resultData.data;
         
         PlayFabResult<BlankResult> pfResult = new PlayFabResult<BlankResult>();
@@ -158,7 +158,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Forces an email to be sent to the registered email address for the specified account, with a link allowing the user to change the password
      */
@@ -178,8 +178,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<SendAccountRecoveryEmailResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SendAccountRecoveryEmailResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<SendAccountRecoveryEmailResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SendAccountRecoveryEmailResult>>(){}.getType());
         SendAccountRecoveryEmailResult result = resultData.data;
         
         PlayFabResult<SendAccountRecoveryEmailResult> pfResult = new PlayFabResult<SendAccountRecoveryEmailResult>();
@@ -215,7 +215,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Updates the title specific display name for a user
      */
@@ -235,8 +235,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<UpdateUserTitleDisplayNameResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateUserTitleDisplayNameResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<UpdateUserTitleDisplayNameResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateUserTitleDisplayNameResult>>(){}.getType());
         UpdateUserTitleDisplayNameResult result = resultData.data;
         
         PlayFabResult<UpdateUserTitleDisplayNameResult> pfResult = new PlayFabResult<UpdateUserTitleDisplayNameResult>();
@@ -272,7 +272,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
      */
@@ -292,8 +292,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<DeleteUsersResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<DeleteUsersResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<DeleteUsersResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<DeleteUsersResult>>(){}.getType());
         DeleteUsersResult result = resultData.data;
         
         PlayFabResult<DeleteUsersResult> pfResult = new PlayFabResult<DeleteUsersResult>();
@@ -329,7 +329,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Retrieves a download URL for the requested report
      */
@@ -349,8 +349,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GetDataReportResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetDataReportResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GetDataReportResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetDataReportResult>>(){}.getType());
         GetDataReportResult result = resultData.data;
         
         PlayFabResult<GetDataReportResult> pfResult = new PlayFabResult<GetDataReportResult>();
@@ -386,7 +386,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Retrieves the title-specific custom data for the user which is readable and writable by the client
      */
@@ -406,8 +406,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GetUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetUserDataResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GetUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetUserDataResult>>(){}.getType());
         GetUserDataResult result = resultData.data;
         
         PlayFabResult<GetUserDataResult> pfResult = new PlayFabResult<GetUserDataResult>();
@@ -443,7 +443,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Retrieves the title-specific custom data for the user which cannot be accessed by the client
      */
@@ -463,8 +463,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GetUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetUserDataResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GetUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetUserDataResult>>(){}.getType());
         GetUserDataResult result = resultData.data;
         
         PlayFabResult<GetUserDataResult> pfResult = new PlayFabResult<GetUserDataResult>();
@@ -500,7 +500,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Retrieves the publisher-specific custom data for the user which is readable and writable by the client
      */
@@ -520,8 +520,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GetUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetUserDataResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GetUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetUserDataResult>>(){}.getType());
         GetUserDataResult result = resultData.data;
         
         PlayFabResult<GetUserDataResult> pfResult = new PlayFabResult<GetUserDataResult>();
@@ -557,7 +557,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Retrieves the publisher-specific custom data for the user which cannot be accessed by the client
      */
@@ -577,8 +577,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GetUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetUserDataResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GetUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetUserDataResult>>(){}.getType());
         GetUserDataResult result = resultData.data;
         
         PlayFabResult<GetUserDataResult> pfResult = new PlayFabResult<GetUserDataResult>();
@@ -614,7 +614,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Retrieves the publisher-specific custom data for the user which can only be read by the client
      */
@@ -634,8 +634,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GetUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetUserDataResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GetUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetUserDataResult>>(){}.getType());
         GetUserDataResult result = resultData.data;
         
         PlayFabResult<GetUserDataResult> pfResult = new PlayFabResult<GetUserDataResult>();
@@ -671,7 +671,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Retrieves the title-specific custom data for the user which can only be read by the client
      */
@@ -691,8 +691,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GetUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetUserDataResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GetUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetUserDataResult>>(){}.getType());
         GetUserDataResult result = resultData.data;
         
         PlayFabResult<GetUserDataResult> pfResult = new PlayFabResult<GetUserDataResult>();
@@ -728,7 +728,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Completely removes all statistics for the specified user, for the current game
      */
@@ -748,8 +748,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<ResetUserStatisticsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ResetUserStatisticsResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<ResetUserStatisticsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ResetUserStatisticsResult>>(){}.getType());
         ResetUserStatisticsResult result = resultData.data;
         
         PlayFabResult<ResetUserStatisticsResult> pfResult = new PlayFabResult<ResetUserStatisticsResult>();
@@ -785,7 +785,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Updates the title-specific custom data for the user which is readable and writable by the client
      */
@@ -805,8 +805,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<UpdateUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateUserDataResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<UpdateUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateUserDataResult>>(){}.getType());
         UpdateUserDataResult result = resultData.data;
         
         PlayFabResult<UpdateUserDataResult> pfResult = new PlayFabResult<UpdateUserDataResult>();
@@ -842,7 +842,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Updates the title-specific custom data for the user which cannot be accessed by the client
      */
@@ -862,8 +862,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<UpdateUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateUserDataResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<UpdateUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateUserDataResult>>(){}.getType());
         UpdateUserDataResult result = resultData.data;
         
         PlayFabResult<UpdateUserDataResult> pfResult = new PlayFabResult<UpdateUserDataResult>();
@@ -899,7 +899,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Updates the publisher-specific custom data for the user which is readable and writable by the client
      */
@@ -919,8 +919,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<UpdateUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateUserDataResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<UpdateUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateUserDataResult>>(){}.getType());
         UpdateUserDataResult result = resultData.data;
         
         PlayFabResult<UpdateUserDataResult> pfResult = new PlayFabResult<UpdateUserDataResult>();
@@ -956,7 +956,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Updates the publisher-specific custom data for the user which cannot be accessed by the client
      */
@@ -976,8 +976,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<UpdateUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateUserDataResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<UpdateUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateUserDataResult>>(){}.getType());
         UpdateUserDataResult result = resultData.data;
         
         PlayFabResult<UpdateUserDataResult> pfResult = new PlayFabResult<UpdateUserDataResult>();
@@ -1013,7 +1013,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Updates the publisher-specific custom data for the user which can only be read by the client
      */
@@ -1033,8 +1033,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<UpdateUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateUserDataResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<UpdateUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateUserDataResult>>(){}.getType());
         UpdateUserDataResult result = resultData.data;
         
         PlayFabResult<UpdateUserDataResult> pfResult = new PlayFabResult<UpdateUserDataResult>();
@@ -1070,7 +1070,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Updates the title-specific custom data for the user which can only be read by the client
      */
@@ -1090,8 +1090,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<UpdateUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateUserDataResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<UpdateUserDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateUserDataResult>>(){}.getType());
         UpdateUserDataResult result = resultData.data;
         
         PlayFabResult<UpdateUserDataResult> pfResult = new PlayFabResult<UpdateUserDataResult>();
@@ -1127,7 +1127,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Adds a new news item to the title's news feed
      */
@@ -1147,8 +1147,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<AddNewsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AddNewsResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<AddNewsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AddNewsResult>>(){}.getType());
         AddNewsResult result = resultData.data;
         
         PlayFabResult<AddNewsResult> pfResult = new PlayFabResult<AddNewsResult>();
@@ -1184,7 +1184,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Adds one or more virtual currencies to the set defined for the title. Virtual Currencies have a maximum value of 2,147,483,647 when granted to a player. Any value over that will be discarded.
      */
@@ -1204,8 +1204,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<BlankResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<BlankResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<BlankResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<BlankResult>>(){}.getType());
         BlankResult result = resultData.data;
         
         PlayFabResult<BlankResult> pfResult = new PlayFabResult<BlankResult>();
@@ -1241,7 +1241,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
      */
@@ -1261,8 +1261,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GetCatalogItemsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetCatalogItemsResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GetCatalogItemsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetCatalogItemsResult>>(){}.getType());
         GetCatalogItemsResult result = resultData.data;
         
         PlayFabResult<GetCatalogItemsResult> pfResult = new PlayFabResult<GetCatalogItemsResult>();
@@ -1298,7 +1298,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Retrieves the random drop table configuration for the title
      */
@@ -1318,8 +1318,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GetRandomResultTablesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetRandomResultTablesResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GetRandomResultTablesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetRandomResultTablesResult>>(){}.getType());
         GetRandomResultTablesResult result = resultData.data;
         
         PlayFabResult<GetRandomResultTablesResult> pfResult = new PlayFabResult<GetRandomResultTablesResult>();
@@ -1355,7 +1355,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Retrieves the set of items defined for the specified store, including all prices defined
      */
@@ -1375,8 +1375,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GetStoreItemsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetStoreItemsResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GetStoreItemsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetStoreItemsResult>>(){}.getType());
         GetStoreItemsResult result = resultData.data;
         
         PlayFabResult<GetStoreItemsResult> pfResult = new PlayFabResult<GetStoreItemsResult>();
@@ -1412,7 +1412,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Retrieves the key-value store of custom title settings
      */
@@ -1432,8 +1432,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GetTitleDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetTitleDataResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GetTitleDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetTitleDataResult>>(){}.getType());
         GetTitleDataResult result = resultData.data;
         
         PlayFabResult<GetTitleDataResult> pfResult = new PlayFabResult<GetTitleDataResult>();
@@ -1469,7 +1469,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Retuns the list of all defined virtual currencies for the title
      */
@@ -1489,8 +1489,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<ListVirtualCurrencyTypesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListVirtualCurrencyTypesResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<ListVirtualCurrencyTypesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListVirtualCurrencyTypesResult>>(){}.getType());
         ListVirtualCurrencyTypesResult result = resultData.data;
         
         PlayFabResult<ListVirtualCurrencyTypesResult> pfResult = new PlayFabResult<ListVirtualCurrencyTypesResult>();
@@ -1526,7 +1526,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Creates the catalog configuration of all virtual goods for the specified catalog version
      */
@@ -1546,8 +1546,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<UpdateCatalogItemsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateCatalogItemsResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<UpdateCatalogItemsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateCatalogItemsResult>>(){}.getType());
         UpdateCatalogItemsResult result = resultData.data;
         
         PlayFabResult<UpdateCatalogItemsResult> pfResult = new PlayFabResult<UpdateCatalogItemsResult>();
@@ -1583,7 +1583,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Sets all the items in one virtual store
      */
@@ -1603,8 +1603,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<UpdateStoreItemsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateStoreItemsResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<UpdateStoreItemsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateStoreItemsResult>>(){}.getType());
         UpdateStoreItemsResult result = resultData.data;
         
         PlayFabResult<UpdateStoreItemsResult> pfResult = new PlayFabResult<UpdateStoreItemsResult>();
@@ -1640,7 +1640,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Creates and updates the key-value store of custom title settings
      */
@@ -1660,8 +1660,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<SetTitleDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetTitleDataResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<SetTitleDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetTitleDataResult>>(){}.getType());
         SetTitleDataResult result = resultData.data;
         
         PlayFabResult<SetTitleDataResult> pfResult = new PlayFabResult<SetTitleDataResult>();
@@ -1697,7 +1697,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Sets the Amazon Resource Name (ARN) for iOS and Android push notifications. Documentation on the exact restrictions can be found at: http://docs.aws.amazon.com/sns/latest/api/API_CreatePlatformApplication.html. Currently, Amazon device Messaging is not supported.
      */
@@ -1717,8 +1717,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<SetupPushNotificationResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetupPushNotificationResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<SetupPushNotificationResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetupPushNotificationResult>>(){}.getType());
         SetupPushNotificationResult result = resultData.data;
         
         PlayFabResult<SetupPushNotificationResult> pfResult = new PlayFabResult<SetupPushNotificationResult>();
@@ -1754,7 +1754,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Updates the catalog configuration for virtual goods in the specified catalog version
      */
@@ -1774,8 +1774,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<UpdateCatalogItemsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateCatalogItemsResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<UpdateCatalogItemsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateCatalogItemsResult>>(){}.getType());
         UpdateCatalogItemsResult result = resultData.data;
         
         PlayFabResult<UpdateCatalogItemsResult> pfResult = new PlayFabResult<UpdateCatalogItemsResult>();
@@ -1811,7 +1811,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Updates the random drop table configuration for the title
      */
@@ -1831,8 +1831,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<UpdateRandomResultTablesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateRandomResultTablesResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<UpdateRandomResultTablesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateRandomResultTablesResult>>(){}.getType());
         UpdateRandomResultTablesResult result = resultData.data;
         
         PlayFabResult<UpdateRandomResultTablesResult> pfResult = new PlayFabResult<UpdateRandomResultTablesResult>();
@@ -1868,7 +1868,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Updates an existing virtual item store with new or modified items
      */
@@ -1888,8 +1888,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<UpdateStoreItemsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateStoreItemsResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<UpdateStoreItemsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateStoreItemsResult>>(){}.getType());
         UpdateStoreItemsResult result = resultData.data;
         
         PlayFabResult<UpdateStoreItemsResult> pfResult = new PlayFabResult<UpdateStoreItemsResult>();
@@ -1925,7 +1925,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Increments the specified virtual currency by the stated amount
      */
@@ -1945,8 +1945,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<ModifyUserVirtualCurrencyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ModifyUserVirtualCurrencyResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<ModifyUserVirtualCurrencyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ModifyUserVirtualCurrencyResult>>(){}.getType());
         ModifyUserVirtualCurrencyResult result = resultData.data;
         
         PlayFabResult<ModifyUserVirtualCurrencyResult> pfResult = new PlayFabResult<ModifyUserVirtualCurrencyResult>();
@@ -1982,7 +1982,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Retrieves the specified user's current inventory of virtual goods
      */
@@ -2002,8 +2002,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GetUserInventoryResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetUserInventoryResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GetUserInventoryResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetUserInventoryResult>>(){}.getType());
         GetUserInventoryResult result = resultData.data;
         
         PlayFabResult<GetUserInventoryResult> pfResult = new PlayFabResult<GetUserInventoryResult>();
@@ -2039,7 +2039,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Adds the specified items to the specified user inventories
      */
@@ -2059,8 +2059,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GrantItemsToUsersResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GrantItemsToUsersResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GrantItemsToUsersResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GrantItemsToUsersResult>>(){}.getType());
         GrantItemsToUsersResult result = resultData.data;
         
         PlayFabResult<GrantItemsToUsersResult> pfResult = new PlayFabResult<GrantItemsToUsersResult>();
@@ -2096,7 +2096,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Revokes access to an item in a user's inventory
      */
@@ -2116,8 +2116,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<RevokeInventoryResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RevokeInventoryResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<RevokeInventoryResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RevokeInventoryResult>>(){}.getType());
         RevokeInventoryResult result = resultData.data;
         
         PlayFabResult<RevokeInventoryResult> pfResult = new PlayFabResult<RevokeInventoryResult>();
@@ -2153,7 +2153,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Decrements the specified virtual currency by the stated amount
      */
@@ -2173,8 +2173,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<ModifyUserVirtualCurrencyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ModifyUserVirtualCurrencyResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<ModifyUserVirtualCurrencyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ModifyUserVirtualCurrencyResult>>(){}.getType());
         ModifyUserVirtualCurrencyResult result = resultData.data;
         
         PlayFabResult<ModifyUserVirtualCurrencyResult> pfResult = new PlayFabResult<ModifyUserVirtualCurrencyResult>();
@@ -2210,7 +2210,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Retrieves the details for a specific completed session, including links to standard out and standard error logs
      */
@@ -2230,8 +2230,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GetMatchmakerGameInfoResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetMatchmakerGameInfoResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GetMatchmakerGameInfoResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetMatchmakerGameInfoResult>>(){}.getType());
         GetMatchmakerGameInfoResult result = resultData.data;
         
         PlayFabResult<GetMatchmakerGameInfoResult> pfResult = new PlayFabResult<GetMatchmakerGameInfoResult>();
@@ -2267,7 +2267,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Retrieves the details of defined game modes for the specified game server executable
      */
@@ -2287,8 +2287,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GetMatchmakerGameModesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetMatchmakerGameModesResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GetMatchmakerGameModesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetMatchmakerGameModesResult>>(){}.getType());
         GetMatchmakerGameModesResult result = resultData.data;
         
         PlayFabResult<GetMatchmakerGameModesResult> pfResult = new PlayFabResult<GetMatchmakerGameModesResult>();
@@ -2324,7 +2324,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Updates the game server mode details for the specified game server executable
      */
@@ -2344,8 +2344,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<ModifyMatchmakerGameModesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ModifyMatchmakerGameModesResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<ModifyMatchmakerGameModesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ModifyMatchmakerGameModesResult>>(){}.getType());
         ModifyMatchmakerGameModesResult result = resultData.data;
         
         PlayFabResult<ModifyMatchmakerGameModesResult> pfResult = new PlayFabResult<ModifyMatchmakerGameModesResult>();
@@ -2381,7 +2381,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Adds the game server executable specified (previously uploaded - see GetServerBuildUploadUrl) to the set of those a client is permitted to request in a call to StartGame
      */
@@ -2401,8 +2401,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<AddServerBuildResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AddServerBuildResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<AddServerBuildResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AddServerBuildResult>>(){}.getType());
         AddServerBuildResult result = resultData.data;
         
         PlayFabResult<AddServerBuildResult> pfResult = new PlayFabResult<AddServerBuildResult>();
@@ -2438,7 +2438,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Retrieves the build details for the specified game server executable
      */
@@ -2457,8 +2457,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GetServerBuildInfoResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetServerBuildInfoResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GetServerBuildInfoResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetServerBuildInfoResult>>(){}.getType());
         GetServerBuildInfoResult result = resultData.data;
         
         PlayFabResult<GetServerBuildInfoResult> pfResult = new PlayFabResult<GetServerBuildInfoResult>();
@@ -2494,7 +2494,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Retrieves the pre-authorized URL for uploading a game server package containing a build (does not enable the build for use - see AddServerBuild)
      */
@@ -2514,8 +2514,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GetServerBuildUploadURLResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetServerBuildUploadURLResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GetServerBuildUploadURLResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetServerBuildUploadURLResult>>(){}.getType());
         GetServerBuildUploadURLResult result = resultData.data;
         
         PlayFabResult<GetServerBuildUploadURLResult> pfResult = new PlayFabResult<GetServerBuildUploadURLResult>();
@@ -2551,7 +2551,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Retrieves the build details for all game server executables which are currently defined for the title
      */
@@ -2571,8 +2571,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<ListBuildsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListBuildsResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<ListBuildsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListBuildsResult>>(){}.getType());
         ListBuildsResult result = resultData.data;
         
         PlayFabResult<ListBuildsResult> pfResult = new PlayFabResult<ListBuildsResult>();
@@ -2608,7 +2608,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Updates the build details for the specified game server executable
      */
@@ -2628,8 +2628,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<ModifyServerBuildResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ModifyServerBuildResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<ModifyServerBuildResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ModifyServerBuildResult>>(){}.getType());
         ModifyServerBuildResult result = resultData.data;
         
         PlayFabResult<ModifyServerBuildResult> pfResult = new PlayFabResult<ModifyServerBuildResult>();
@@ -2665,7 +2665,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Removes the game server executable specified from the set of those a client is permitted to request in a call to StartGame
      */
@@ -2685,8 +2685,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<RemoveServerBuildResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RemoveServerBuildResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<RemoveServerBuildResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RemoveServerBuildResult>>(){}.getType());
         RemoveServerBuildResult result = resultData.data;
         
         PlayFabResult<RemoveServerBuildResult> pfResult = new PlayFabResult<RemoveServerBuildResult>();
@@ -2722,7 +2722,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Retrieves the key-value store of custom publisher settings
      */
@@ -2742,8 +2742,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GetPublisherDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPublisherDataResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GetPublisherDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPublisherDataResult>>(){}.getType());
         GetPublisherDataResult result = resultData.data;
         
         PlayFabResult<GetPublisherDataResult> pfResult = new PlayFabResult<GetPublisherDataResult>();
@@ -2779,7 +2779,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Updates the key-value store of custom publisher settings
      */
@@ -2799,8 +2799,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<SetPublisherDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetPublisherDataResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<SetPublisherDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetPublisherDataResult>>(){}.getType());
         SetPublisherDataResult result = resultData.data;
         
         PlayFabResult<SetPublisherDataResult> pfResult = new PlayFabResult<SetPublisherDataResult>();
@@ -2836,7 +2836,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Gets the contents and information of a specific Cloud Script revision.
      */
@@ -2856,8 +2856,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GetCloudScriptRevisionResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetCloudScriptRevisionResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GetCloudScriptRevisionResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetCloudScriptRevisionResult>>(){}.getType());
         GetCloudScriptRevisionResult result = resultData.data;
         
         PlayFabResult<GetCloudScriptRevisionResult> pfResult = new PlayFabResult<GetCloudScriptRevisionResult>();
@@ -2893,7 +2893,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Lists all the current cloud script versions. For each version, information about the current published and latest revisions is also listed.
      */
@@ -2913,8 +2913,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GetCloudScriptVersionsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetCloudScriptVersionsResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GetCloudScriptVersionsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetCloudScriptVersionsResult>>(){}.getType());
         GetCloudScriptVersionsResult result = resultData.data;
         
         PlayFabResult<GetCloudScriptVersionsResult> pfResult = new PlayFabResult<GetCloudScriptVersionsResult>();
@@ -2950,7 +2950,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Sets the currently published revision of a title Cloud Script
      */
@@ -2970,8 +2970,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<SetPublishedRevisionResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetPublishedRevisionResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<SetPublishedRevisionResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetPublishedRevisionResult>>(){}.getType());
         SetPublishedRevisionResult result = resultData.data;
         
         PlayFabResult<SetPublishedRevisionResult> pfResult = new PlayFabResult<SetPublishedRevisionResult>();
@@ -3007,7 +3007,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Creates a new Cloud Script revision and uploads source code to it. Note that at this time, only one file should be submitted in the revision.
      */
@@ -3027,8 +3027,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<UpdateCloudScriptResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateCloudScriptResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<UpdateCloudScriptResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateCloudScriptResult>>(){}.getType());
         UpdateCloudScriptResult result = resultData.data;
         
         PlayFabResult<UpdateCloudScriptResult> pfResult = new PlayFabResult<UpdateCloudScriptResult>();
@@ -3064,7 +3064,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Delete a content file from the title
      */
@@ -3084,8 +3084,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<BlankResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<BlankResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<BlankResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<BlankResult>>(){}.getType());
         BlankResult result = resultData.data;
         
         PlayFabResult<BlankResult> pfResult = new PlayFabResult<BlankResult>();
@@ -3121,7 +3121,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * List all contents of the title and get statistics such as size
      */
@@ -3141,8 +3141,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GetContentListResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetContentListResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GetContentListResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetContentListResult>>(){}.getType());
         GetContentListResult result = resultData.data;
         
         PlayFabResult<GetContentListResult> pfResult = new PlayFabResult<GetContentListResult>();
@@ -3178,7 +3178,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Retrieves the pre-signed URL for uploading a content file. A subsequent HTTP PUT to the returned URL uploads the content.
      */
@@ -3198,8 +3198,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<GetContentUploadUrlResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetContentUploadUrlResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<GetContentUploadUrlResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetContentUploadUrlResult>>(){}.getType());
         GetContentUploadUrlResult result = resultData.data;
         
         PlayFabResult<GetContentUploadUrlResult> pfResult = new PlayFabResult<GetContentUploadUrlResult>();
@@ -3235,7 +3235,7 @@ public class PlayFabAdminAPI {
             return null;
         }
     }
-    
+
     /**
      * Completely removes all statistics for the specified character, for the current game
      */
@@ -3255,8 +3255,8 @@ public class PlayFabAdminAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<ResetCharacterStatisticsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ResetCharacterStatisticsResult>>(){}.getType()); 
+
+        PlayFabJsonSuccess<ResetCharacterStatisticsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ResetCharacterStatisticsResult>>(){}.getType());
         ResetCharacterStatisticsResult result = resultData.data;
         
         PlayFabResult<ResetCharacterStatisticsResult> pfResult = new PlayFabResult<ResetCharacterStatisticsResult>();

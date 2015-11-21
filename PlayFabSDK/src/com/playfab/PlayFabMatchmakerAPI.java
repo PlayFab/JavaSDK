@@ -14,7 +14,7 @@ import com.google.gson.reflect.*;
  */
 public class PlayFabMatchmakerAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
-    
+
     /**
      * Validates a user with the PlayFab service
      */
@@ -44,7 +44,7 @@ public class PlayFabMatchmakerAPI {
             return null;
         }
     }
-    
+
     /**
      * Validates a user with the PlayFab service
      */
@@ -64,8 +64,8 @@ public class PlayFabMatchmakerAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<AuthUserResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AuthUserResponse>>(){}.getType()); 
+
+        PlayFabJsonSuccess<AuthUserResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AuthUserResponse>>(){}.getType());
         AuthUserResponse result = resultData.data;
         
         PlayFabResult<AuthUserResponse> pfResult = new PlayFabResult<AuthUserResponse>();
@@ -101,7 +101,7 @@ public class PlayFabMatchmakerAPI {
             return null;
         }
     }
-    
+
     /**
      * Informs the PlayFab game server hosting service that the indicated user has joined the Game Server Instance specified
      */
@@ -121,8 +121,8 @@ public class PlayFabMatchmakerAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<PlayerJoinedResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<PlayerJoinedResponse>>(){}.getType()); 
+
+        PlayFabJsonSuccess<PlayerJoinedResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<PlayerJoinedResponse>>(){}.getType());
         PlayerJoinedResponse result = resultData.data;
         
         PlayFabResult<PlayerJoinedResponse> pfResult = new PlayFabResult<PlayerJoinedResponse>();
@@ -158,7 +158,7 @@ public class PlayFabMatchmakerAPI {
             return null;
         }
     }
-    
+
     /**
      * Informs the PlayFab game server hosting service that the indicated user has left the Game Server Instance specified
      */
@@ -178,8 +178,8 @@ public class PlayFabMatchmakerAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<PlayerLeftResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<PlayerLeftResponse>>(){}.getType()); 
+
+        PlayFabJsonSuccess<PlayerLeftResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<PlayerLeftResponse>>(){}.getType());
         PlayerLeftResponse result = resultData.data;
         
         PlayFabResult<PlayerLeftResponse> pfResult = new PlayFabResult<PlayerLeftResponse>();
@@ -215,7 +215,7 @@ public class PlayFabMatchmakerAPI {
             return null;
         }
     }
-    
+
     /**
      * Instructs the PlayFab game server hosting service to instantiate a new Game Server Instance
      */
@@ -235,8 +235,8 @@ public class PlayFabMatchmakerAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<StartGameResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<StartGameResponse>>(){}.getType()); 
+
+        PlayFabJsonSuccess<StartGameResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<StartGameResponse>>(){}.getType());
         StartGameResponse result = resultData.data;
         
         PlayFabResult<StartGameResponse> pfResult = new PlayFabResult<StartGameResponse>();
@@ -272,7 +272,7 @@ public class PlayFabMatchmakerAPI {
             return null;
         }
     }
-    
+
     /**
      * Retrieves the relevant details for a specified user, which the external match-making service can then use to compute effective matches
      */
@@ -292,8 +292,8 @@ public class PlayFabMatchmakerAPI {
             return result;
         }
         String resultRawJson = (String) httpResult;
-        
-        PlayFabJsonSuccess<UserInfoResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UserInfoResponse>>(){}.getType()); 
+
+        PlayFabJsonSuccess<UserInfoResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UserInfoResponse>>(){}.getType());
         UserInfoResponse result = resultData.data;
         
         PlayFabResult<UserInfoResponse> pfResult = new PlayFabResult<UserInfoResponse>();

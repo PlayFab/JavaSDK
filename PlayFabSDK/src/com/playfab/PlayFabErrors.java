@@ -3,7 +3,7 @@ package com.playfab;
 import java.util.Map;
 
 public class PlayFabErrors {
-    /** 
+    /**
      * Error codes returned by PlayFabAPIs
      */
     public static enum PlayFabErrorCode {
@@ -190,17 +190,17 @@ public class PlayFabErrors {
         TotalDataSizeExceeded(1186),
         DeleteKeyConflict(1187),
         InvalidXboxLiveToken(1188);
-        
+
         public int id;
-        
+
         private PlayFabErrorCode(int id) {
             this.id = id;
         }
-        
+
         public boolean equals(int i) {
             return i == id;
         }
-        
+
         public boolean equals(PlayFabErrorCode o) {
             return equals(o.id);
         }
@@ -213,7 +213,7 @@ public class PlayFabErrors {
             }
             return PlayFabErrorCode.Unknown;
         }
-        
+
     }
 
     public static class PlayFabError {
@@ -241,7 +241,7 @@ public class PlayFabErrors {
         public PlayFabError Error;
         public ResultT Result;
     }
-    
+
     public static interface ErrorCallback {
         public void callback(PlayFabError error);
     }
