@@ -19,17 +19,15 @@ import com.google.gson.reflect.*;
 import com.playfab.PlayFabErrors.*;
 import com.playfab.PlayFabSettings;
 import com.playfab.PlayFabClientModels;
-import com.playfab.PlayFabServerModels;
 import com.playfab.PlayFabClientAPI;
-import com.playfab.PlayFabServerAPI;
 
 public class PlayFabApiTests extends ApplicationTestCase<Application> {
     public PlayFabApiTests() {
         super(Application.class);
         // One time set-up for this suite of tests
 
+        // TODO: your own, real client info, and preferably real title info
         PlayFabSettings.TitleId = "6195";
-        PlayFabSettings.DeveloperSecretKey = "TODO: A big long secret key that you should NEVER publish with your client";
         TITLE_CAN_UPDATE_SETTINGS = true;
         USER_NAME = "paul";
         USER_EMAIL = "paul@playfab.com";
@@ -183,35 +181,19 @@ public class PlayFabApiTests extends ApplicationTestCase<Application> {
     {
         testLoginOrRegister();
 
-        PlayFabServerModels.ListUsersCharactersRequest getRequest = new PlayFabServerModels.ListUsersCharactersRequest();
+        PlayFabClientModels.ListUsersCharactersRequest getRequest = new PlayFabClientModels.ListUsersCharactersRequest();
         getRequest.PlayFabId = playFabId;
-        PlayFabResult<PlayFabServerModels.ListUsersCharactersResult> getCharsResult = PlayFabServerAPI.GetAllUsersCharacters(getRequest);
+        PlayFabResult<PlayFabClientModels.ListUsersCharactersResult> getCharsResult = PlayFabClientAPI.GetAllUsersCharacters(getRequest);
         VerifyResult(getCharsResult, true);
         SaveCharacterId(getCharsResult.Result.Characters);
 
-        if (getCharsResult.Result.Characters == null || getCharsResult.Result.Characters.size() == 0)
-        {
-            PlayFabServerModels.GrantCharacterToUserRequest grantRequest = new PlayFabServerModels.GrantCharacterToUserRequest();
-            grantRequest.PlayFabId = playFabId;
-            grantRequest.CharacterName = CHAR_NAME;
-            grantRequest.CharacterType = CHAR_TEST_TYPE;
-            PlayFabResult<PlayFabServerModels.GrantCharacterToUserResult> grantResult = PlayFabServerAPI.GrantCharacterToUser(grantRequest);
-            VerifyResult(getCharsResult, true);
-
-            getRequest = new PlayFabServerModels.ListUsersCharactersRequest();
-            getRequest.PlayFabId = playFabId;
-            getCharsResult = PlayFabServerAPI.GetAllUsersCharacters(getRequest);
-            VerifyResult(getCharsResult, true);
-            SaveCharacterId(getCharsResult.Result.Characters);
-        }
-
         assertTrue(characterId != null && characterId.length() > 0);
     }
-    private void SaveCharacterId(List<PlayFabServerModels.CharacterResult> characters)
+    private void SaveCharacterId(List<PlayFabClientModels.CharacterResult> characters)
     {
         for (int i = 0; i < characters.size(); i++)
         {
-            PlayFabServerModels.CharacterResult eachChar = characters.get(i);
+            PlayFabClientModels.CharacterResult eachChar = characters.get(i);
             if (eachChar.CharacterName.equals(CHAR_NAME))
                 characterId = eachChar.CharacterId;
         }
@@ -228,23 +210,8 @@ public class PlayFabApiTests extends ApplicationTestCase<Application> {
         PlayFabResult<PlayFabClientModels.GetLeaderboardAroundCurrentUserResult> clientResult = PlayFabClientAPI.GetLeaderboardAroundCurrentUser(clientRequest);
         VerifyResult(clientResult, true);
         assertTrue(GetClLbCount(clientResult.Result.Leaderboard) > 0);
-
-        PlayFabServerModels.GetLeaderboardAroundUserRequest serverRequest = new PlayFabServerModels.GetLeaderboardAroundUserRequest();
-        serverRequest.MaxResultsCount = 3;
-        serverRequest.StatisticName = TEST_STAT_NAME;
-        serverRequest.PlayFabId = playFabId;
-        PlayFabResult<PlayFabServerModels.GetLeaderboardAroundUserResult> serverResult = PlayFabServerAPI.GetLeaderboardAroundUser(serverRequest);
-        VerifyResult(serverResult, true);
-        assertTrue(GetSvLbCount(serverResult.Result.Leaderboard) > 0);
     }
     private int GetClLbCount(List<PlayFabClientModels.PlayerLeaderboardEntry> lb)
-    {
-        int count = 0;
-        if (lb != null)
-            count = lb.size();
-        return count;
-    }
-    private int GetSvLbCount(List<PlayFabServerModels.PlayerLeaderboardEntry> lb)
     {
         int count = 0;
         if (lb != null)
