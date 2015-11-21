@@ -1501,6 +1501,19 @@ public class PlayFabClientModels {
         
     }
 
+    public static class GetXboxEntitlementsRequest {
+        /**
+         * Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", "").
+         */
+        public String XboxToken;
+        
+    }
+
+    public static class GetXboxEntitlementsResult {
+        public String Entitlements;
+        
+    }
+
     public static class GooglePlayFabIdPair {
         /**
          * Unique Google identifier for a user.

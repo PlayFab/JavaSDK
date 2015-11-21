@@ -189,9 +189,7 @@ public class PlayFabErrors {
         CustomIdNotLinked(1185),
         TotalDataSizeExceeded(1186),
         DeleteKeyConflict(1187),
-        InvalidXboxLiveToken(1188),
-        ExpiredXboxLiveToken(1189),
-        ResettableStatisticVersionRequired(1190);
+        InvalidXboxLiveToken(1188);
 
         public int id;
 

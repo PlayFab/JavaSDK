@@ -16,7 +16,7 @@ public class PlayFabClientAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 
     /**
-     * Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See https://api.playfab.com/docs/using-photon-with-playfab/ for more details.
+     * Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See https://playfab.com/using-photon-playfab for more details.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetPhotonAuthenticationTokenResult>> GetPhotonAuthenticationTokenAsync(final GetPhotonAuthenticationTokenRequest request) {
@@ -28,7 +28,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See https://api.playfab.com/docs/using-photon-with-playfab/ for more details.
+     * Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See https://playfab.com/using-photon-playfab for more details.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetPhotonAuthenticationTokenResult> GetPhotonAuthenticationToken(final GetPhotonAuthenticationTokenRequest request) {
@@ -46,7 +46,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See https://api.playfab.com/docs/using-photon-with-playfab/ for more details.
+     * Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See https://playfab.com/using-photon-playfab for more details.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPhotonAuthenticationTokenResult> privateGetPhotonAuthenticationTokenAsync(final GetPhotonAuthenticationTokenRequest request) throws Exception {
