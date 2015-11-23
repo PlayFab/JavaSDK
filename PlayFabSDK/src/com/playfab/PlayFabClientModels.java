@@ -1501,19 +1501,6 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetXboxEntitlementsRequest {
-        /**
-         * Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", "").
-         */
-        public String XboxToken;
-        
-    }
-
-    public static class GetXboxEntitlementsResult {
-        public String Entitlements;
-        
-    }
-
     public static class GooglePlayFabIdPair {
         /**
          * Unique Google identifier for a user.
@@ -1784,18 +1771,6 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LinkXboxAccountRequest {
-        /**
-         * Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", "").
-         */
-        public String XboxToken;
-        
-    }
-
-    public static class LinkXboxAccountResult {
-        
-    }
-
     public static class ListUsersCharactersRequest {
         /**
          * Unique PlayFab assigned ID of the user on whom the operation will be performed.
@@ -2033,22 +2008,6 @@ public class PlayFabClientModels {
         public String SteamTicket;
         /**
          * Automatically create a PlayFab account if one is not currently linked to this Steam account.
-         */
-        public Boolean CreateAccount;
-        
-    }
-
-    public static class LoginWithXboxRequest {
-        /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
-         */
-        public String TitleId;
-        /**
-         * Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", "").
-         */
-        public String XboxToken;
-        /**
-         * Automatically create a PlayFab account if one is not currently linked to this Xbox Live account.
          */
         public Boolean CreateAccount;
         
@@ -2905,18 +2864,6 @@ public class PlayFabClientModels {
     }
 
     public static class UnlinkSteamAccountResult {
-        
-    }
-
-    public static class UnlinkXboxAccountRequest {
-        /**
-         * Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", "").
-         */
-        public String XboxToken;
-        
-    }
-
-    public static class UnlinkXboxAccountResult {
         
     }
 
