@@ -21,6 +21,7 @@ This package contains three different versions of the PlayFab SDK.
 * PlayFabClientSDK - This version contains only client libraries and is designed for integration with your game client
 * PlayFabServerSDK - Contains server and admin APIs designed to be called from your custom logic server or build process
 * PlayFabSDK - Contains all APIs in one SDK.
+* AndroidStudioExample - Client-only integration of PlayFabSDK into an AndroidStudio example project
 
 
 4. Installation & Configuration Instructions:
