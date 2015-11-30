@@ -1821,7 +1821,10 @@ public class PlayFabClientModels {
          * True if the account was newly created on this login.
          */
         public Boolean NewlyCreated;
-        public UserSettings UserSettings;
+        /**
+         * Settings specific to this user.
+         */
+        public UserSettings SettingsForUser;
         
     }
 
@@ -2404,7 +2407,10 @@ public class PlayFabClientModels {
          * PlayFab unique user name.
          */
         public String Username;
-        public UserSettings UserSettings;
+        /**
+         * Settings specific to this user.
+         */
+        public UserSettings SettingsForUser;
         
     }
 
