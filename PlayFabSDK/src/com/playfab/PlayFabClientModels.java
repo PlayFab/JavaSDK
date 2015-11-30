@@ -1821,6 +1821,7 @@ public class PlayFabClientModels {
          * True if the account was newly created on this login.
          */
         public Boolean NewlyCreated;
+        public UserSettings UserSettings;
         
     }
 
@@ -2403,6 +2404,7 @@ public class PlayFabClientModels {
          * PlayFab unique user name.
          */
         public String Username;
+        public UserSettings UserSettings;
         
     }
 
@@ -3107,6 +3109,11 @@ public class PlayFabClientModels {
          * user email address
          */
         public String Email;
+        
+    }
+
+    public static class UserSettings {
+        public Boolean NeedsAttribution;
         
     }
 
