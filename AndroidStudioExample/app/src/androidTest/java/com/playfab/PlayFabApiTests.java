@@ -27,12 +27,12 @@ public class PlayFabApiTests extends ApplicationTestCase<Application> {
         // One time set-up for this suite of tests
 
         // TODO: your own, real client info, and preferably real title info
-        PlayFabSettings.TitleId = "6195";
-        TITLE_CAN_UPDATE_SETTINGS = true;
-        USER_NAME = "paul";
-        USER_EMAIL = "paul@playfab.com";
-        USER_PASSWORD = "testPassword";
-        CHAR_NAME = "Ragnar";
+        PlayFabSettings.TitleId = "put titleId here";
+        TITLE_CAN_UPDATE_SETTINGS = true; // Please create a test title which can update settings from the client.  This is an option in your game manager
+        USER_NAME = "your user name";
+        USER_EMAIL = "valid email for username above";
+        USER_PASSWORD = "valid password for username above";
+        CHAR_NAME = "Pre-existing character within the account above";
     }
 
     // Constants
