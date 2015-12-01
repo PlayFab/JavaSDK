@@ -309,6 +309,65 @@ public class PlayFabClientAPI {
         return pfResult;
     }
     /**
+     * Signs the user in using an iOS Game Center player identifier, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<LoginResult>> LoginWithGameCenterAsync(final LoginWithGameCenterRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
+            public PlayFabResult<LoginResult> call() throws Exception {
+                return privateLoginWithGameCenterAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Signs the user in using an iOS Game Center player identifier, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<LoginResult> LoginWithGameCenter(final LoginWithGameCenterRequest request) {
+        FutureTask<PlayFabResult<LoginResult>> task = new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
+            public PlayFabResult<LoginResult> call() throws Exception {
+                return privateLoginWithGameCenterAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Signs the user in using an iOS Game Center player identifier, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<LoginResult> privateLoginWithGameCenterAsync(final LoginWithGameCenterRequest request) throws Exception {
+        request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
+			if(request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LoginWithGameCenter", request, null, null);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<LoginResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
+        LoginResult result = resultData.data;
+        AuthKey = result.SessionTicket != null ? result.SessionTicket : AuthKey;
+
+        PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+    /**
      * Signs the user in using a Google account access token, returning a session identifier that can subsequently be used for API calls which require an authenticated user
      */
     @SuppressWarnings("unchecked")
@@ -2140,6 +2199,63 @@ public class PlayFabClientAPI {
         GetLeaderboardResult result = resultData.data;
         
         PlayFabResult<GetLeaderboardResult> pfResult = new PlayFabResult<GetLeaderboardResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+    /**
+     * Retrieves a list of ranked friends of the current player for the given statistic, centered on the currently signed-in user
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult>> GetFriendLeaderboardAroundCurrentUserAsync(final GetFriendLeaderboardAroundCurrentUserRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult>>() {
+            public PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult> call() throws Exception {
+                return privateGetFriendLeaderboardAroundCurrentUserAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves a list of ranked friends of the current player for the given statistic, centered on the currently signed-in user
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult> GetFriendLeaderboardAroundCurrentUser(final GetFriendLeaderboardAroundCurrentUserRequest request) {
+        FutureTask<PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult>> task = new FutureTask(new Callable<PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult>>() {
+            public PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult> call() throws Exception {
+                return privateGetFriendLeaderboardAroundCurrentUserAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves a list of ranked friends of the current player for the given statistic, centered on the currently signed-in user
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult> privateGetFriendLeaderboardAroundCurrentUserAsync(final GetFriendLeaderboardAroundCurrentUserRequest request) throws Exception {
+        if (AuthKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetFriendLeaderboardAroundCurrentUser", request, "X-Authorization", AuthKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetFriendLeaderboardAroundCurrentUserResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetFriendLeaderboardAroundCurrentUserResult>>(){}.getType());
+        GetFriendLeaderboardAroundCurrentUserResult result = resultData.data;
+        
+        PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult> pfResult = new PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult>();
         pfResult.Result = result;
         return pfResult;
     }

@@ -957,6 +957,34 @@ public class PlayFabClientModels {
         
     }
 
+    public static class GetFriendLeaderboardAroundCurrentUserRequest {
+        /**
+         * Statistic used to rank players for this leaderboard.
+         */
+        public String StatisticName;
+        /**
+         * Maximum number of entries to retrieve.
+         */
+        public Integer MaxResultsCount;
+        /**
+         * Indicates whether Steam service friends should be included in the response. Default is true.
+         */
+        public Boolean IncludeSteamFriends;
+        /**
+         * Indicates whether Facebook friends should be included in the response. Default is true.
+         */
+        public Boolean IncludeFacebookFriends;
+        
+    }
+
+    public static class GetFriendLeaderboardAroundCurrentUserResult {
+        /**
+         * Ordered listing of users and their positions in the requested leaderboard.
+         */
+        public ArrayList<PlayerLeaderboardEntry> Leaderboard;
+        
+    }
+
     public static class GetFriendLeaderboardRequest {
         /**
          * Statistic used to rank friends for this leaderboard.
@@ -1895,6 +1923,22 @@ public class PlayFabClientModels {
         public String AccessToken;
         /**
          * Automatically create a PlayFab account if one is not currently linked to this Facebook account.
+         */
+        public Boolean CreateAccount;
+        
+    }
+
+    public static class LoginWithGameCenterRequest {
+        /**
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         */
+        public String TitleId;
+        /**
+         * Unique Game Center player id.
+         */
+        public String PlayerId;
+        /**
+         * Automatically create a PlayFab account if one is not currently linked to this Game Center id.
          */
         public Boolean CreateAccount;
         
