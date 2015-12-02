@@ -193,7 +193,8 @@ public class PlayFabErrors {
         ExpiredXboxLiveToken(1189),
         ResettableStatisticVersionRequired(1190),
         NotAuthorizedByTitle(1191),
-        NoPartnerEnabled(1192);
+        NoPartnerEnabled(1192),
+        InvalidPartnerResponse(1193);
 
         public int id;
 

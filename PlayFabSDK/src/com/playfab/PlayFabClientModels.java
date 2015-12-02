@@ -126,6 +126,22 @@ public class PlayFabClientModels {
         
     }
 
+    public static class AttributeInstallRequest {
+        /**
+         * The IdentifierForAdvertisers for iOS Devices.
+         */
+        public String Idfa;
+        /**
+         * The Android Id for this Android device.
+         */
+        public String Android_Id;
+        
+    }
+
+    public static class AttributeInstallResult {
+        
+    }
+
     public static class CancelTradeRequest {
         /**
          * Trade identifier.

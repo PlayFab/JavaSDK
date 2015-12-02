@@ -5851,6 +5851,63 @@ public class PlayFabClientAPI {
         pfResult.Result = result;
         return pfResult;
     }
+    /**
+     * Attributes an install for advertisment.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<AttributeInstallResult>> AttributeInstallAsync(final AttributeInstallRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<AttributeInstallResult>>() {
+            public PlayFabResult<AttributeInstallResult> call() throws Exception {
+                return privateAttributeInstallAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Attributes an install for advertisment.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<AttributeInstallResult> AttributeInstall(final AttributeInstallRequest request) {
+        FutureTask<PlayFabResult<AttributeInstallResult>> task = new FutureTask(new Callable<PlayFabResult<AttributeInstallResult>>() {
+            public PlayFabResult<AttributeInstallResult> call() throws Exception {
+                return privateAttributeInstallAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Attributes an install for advertisment.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<AttributeInstallResult> privateAttributeInstallAsync(final AttributeInstallRequest request) throws Exception {
+        if (AuthKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/AttributeInstall", request, "X-Authorization", AuthKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<AttributeInstallResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<AttributeInstallResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AttributeInstallResult>>(){}.getType());
+        AttributeInstallResult result = resultData.data;
+        
+        PlayFabResult<AttributeInstallResult> pfResult = new PlayFabResult<AttributeInstallResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
 
     
     private static String AuthKey = null;
