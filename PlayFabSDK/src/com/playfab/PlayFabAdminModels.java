@@ -160,7 +160,7 @@ public class PlayFabAdminModels {
          * list of item tags
          */
         @Unordered
-		public ArrayList<String> Tags;
+        public ArrayList<String> Tags;
         /**
          * game specific custom data
          */
@@ -207,12 +207,12 @@ public class PlayFabAdminModels {
          * unique ItemId values for all items which will be added to the player inventory when the bundle is added
          */
         @Unordered
-		public ArrayList<String> BundledItems;
+        public ArrayList<String> BundledItems;
         /**
          * unique TableId values for all RandomResultTable objects which are part of the bundle (random tables will be resolved and add the relevant items to the player inventory when the bundle is added)
          */
         @Unordered
-		public ArrayList<String> BundledResultTables;
+        public ArrayList<String> BundledResultTables;
         /**
          * virtual currency types and balances which will be added to the player inventory when the bundle is added
          */
@@ -247,12 +247,12 @@ public class PlayFabAdminModels {
          * unique ItemId values for all items which will be added to the player inventory, once the container has been unlocked
          */
         @Unordered
-		public ArrayList<String> ItemContents;
+        public ArrayList<String> ItemContents;
         /**
          * unique TableId values for all RandomResultTable objects which are part of the container (once unlocked, random tables will be resolved and add the relevant items to the player inventory)
          */
         @Unordered
-		public ArrayList<String> ResultTableContents;
+        public ArrayList<String> ResultTableContents;
         /**
          * virtual currency types and balances which will be added to the player inventory when the container is unlocked
          */
@@ -530,7 +530,7 @@ public class PlayFabAdminModels {
          * Array of items which can be purchased.
          */
         @Unordered("ItemId")
-		public ArrayList<CatalogItem> Catalog;
+        public ArrayList<CatalogItem> Catalog;
         
     }
 
@@ -689,7 +689,7 @@ public class PlayFabAdminModels {
          * array of unique PlayFab identifiers for users currently connected to this Game Server Instance
          */
         @Unordered
-		public ArrayList<String> Players;
+        public ArrayList<String> Players;
         /**
          * IP address for this Game Server Instance
          */
@@ -768,7 +768,7 @@ public class PlayFabAdminModels {
          * array of regions where this build can used, when it is active
          */
         @Unordered
-		public ArrayList<Region> ActiveRegions;
+        public ArrayList<Region> ActiveRegions;
         /**
          * maximum number of game server instances that can run on a single host machine
          */
@@ -835,7 +835,7 @@ public class PlayFabAdminModels {
          * Array of items which can be purchased from this store.
          */
         @Unordered("ItemId")
-		public ArrayList<StoreItem> Store;
+        public ArrayList<StoreItem> Store;
         
     }
 
@@ -904,7 +904,7 @@ public class PlayFabAdminModels {
          * Array of inventory items belonging to the user.
          */
         @Unordered("ItemInstanceId")
-		public ArrayList<ItemInstance> Inventory;
+        public ArrayList<ItemInstance> Inventory;
         /**
          * Array of virtual currency balance(s) belonging to the user.
          */
@@ -1006,7 +1006,7 @@ public class PlayFabAdminModels {
          * Array of items to grant and the users to whom the items are to be granted.
          */
         @Unordered
-		public ArrayList<ItemGrant> ItemGrants;
+        public ArrayList<ItemGrant> ItemGrants;
         
     }
 
@@ -1116,7 +1116,7 @@ public class PlayFabAdminModels {
          * array of uploaded game server builds
          */
         @Unordered("BuildId")
-		public ArrayList<GetServerBuildInfoResult> Builds;
+        public ArrayList<GetServerBuildInfoResult> Builds;
         
     }
 
@@ -1129,7 +1129,7 @@ public class PlayFabAdminModels {
          * List of virtual currency names defined for this title
          */
         @Unordered
-		public ArrayList<VirtualCurrencyData> VirtualCurrencies;
+        public ArrayList<VirtualCurrencyData> VirtualCurrencies;
         
     }
 
