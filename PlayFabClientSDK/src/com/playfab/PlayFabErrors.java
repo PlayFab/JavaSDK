@@ -194,7 +194,8 @@ public class PlayFabErrors {
         ResettableStatisticVersionRequired(1190),
         NotAuthorizedByTitle(1191),
         NoPartnerEnabled(1192),
-        InvalidPartnerResponse(1193);
+        InvalidPartnerResponse(1193),
+        APINotEnabledForGameServerAccess(1194);
 
         public int id;
 

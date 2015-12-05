@@ -244,6 +244,63 @@ public class PlayFabServerAPI {
         return pfResult;
     }
     /**
+     * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<DeleteUsersResult>> DeleteUsersAsync(final DeleteUsersRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<DeleteUsersResult>>() {
+            public PlayFabResult<DeleteUsersResult> call() throws Exception {
+                return privateDeleteUsersAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<DeleteUsersResult> DeleteUsers(final DeleteUsersRequest request) {
+        FutureTask<PlayFabResult<DeleteUsersResult>> task = new FutureTask(new Callable<PlayFabResult<DeleteUsersResult>>() {
+            public PlayFabResult<DeleteUsersResult> call() throws Exception {
+                return privateDeleteUsersAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<DeleteUsersResult> privateDeleteUsersAsync(final DeleteUsersRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/DeleteUsers", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<DeleteUsersResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<DeleteUsersResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<DeleteUsersResult>>(){}.getType());
+        DeleteUsersResult result = resultData.data;
+        
+        PlayFabResult<DeleteUsersResult> pfResult = new PlayFabResult<DeleteUsersResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+    /**
      * Retrieves a list of ranked users for the given statistic, starting from the indicated point in the leaderboard
      */
     @SuppressWarnings("unchecked")
