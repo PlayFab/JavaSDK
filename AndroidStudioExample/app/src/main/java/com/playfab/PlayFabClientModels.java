@@ -3179,6 +3179,9 @@ public class PlayFabClientModels {
     }
 
     public static class UserSettings {
+        /**
+         * Boolean for whether this player is eligible for ad tracking.
+         */
         public Boolean NeedsAttribution;
         
     }
