@@ -164,7 +164,7 @@ public class PlayFabServerModels {
          * list of item tags
          */
         @Unordered
-		public ArrayList<String> Tags;
+        public ArrayList<String> Tags;
         /**
          * game specific custom data
          */
@@ -211,12 +211,12 @@ public class PlayFabServerModels {
          * unique ItemId values for all items which will be added to the player inventory when the bundle is added
          */
         @Unordered
-		public ArrayList<String> BundledItems;
+        public ArrayList<String> BundledItems;
         /**
          * unique TableId values for all RandomResultTable objects which are part of the bundle (random tables will be resolved and add the relevant items to the player inventory when the bundle is added)
          */
         @Unordered
-		public ArrayList<String> BundledResultTables;
+        public ArrayList<String> BundledResultTables;
         /**
          * virtual currency types and balances which will be added to the player inventory when the bundle is added
          */
@@ -251,12 +251,12 @@ public class PlayFabServerModels {
          * unique ItemId values for all items which will be added to the player inventory, once the container has been unlocked
          */
         @Unordered
-		public ArrayList<String> ItemContents;
+        public ArrayList<String> ItemContents;
         /**
          * unique TableId values for all RandomResultTable objects which are part of the container (once unlocked, random tables will be resolved and add the relevant items to the player inventory)
          */
         @Unordered
-		public ArrayList<String> ResultTableContents;
+        public ArrayList<String> ResultTableContents;
         /**
          * virtual currency types and balances which will be added to the player inventory when the container is unlocked
          */
@@ -512,6 +512,22 @@ public class PlayFabServerModels {
         
     }
 
+    public static class DeleteUsersRequest {
+        /**
+         * An array of unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public ArrayList<String> PlayFabIds;
+        /**
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         */
+        public String TitleId;
+        
+    }
+
+    public static class DeleteUsersResult {
+        
+    }
+
     public static class EmptyResult {
         
     }
@@ -577,7 +593,7 @@ public class PlayFabServerModels {
          * Array of items which can be purchased.
          */
         @Unordered("ItemId")
-		public ArrayList<CatalogItem> Catalog;
+        public ArrayList<CatalogItem> Catalog;
         
     }
 
@@ -650,7 +666,7 @@ public class PlayFabServerModels {
          * Array of inventory items belonging to the character.
          */
         @Unordered("ItemInstanceId")
-		public ArrayList<ItemInstance> Inventory;
+        public ArrayList<ItemInstance> Inventory;
         /**
          * Array of virtual currency balance(s) belonging to the character.
          */
@@ -902,6 +918,30 @@ public class PlayFabServerModels {
         
     }
 
+    public static class GetPlayerStatisticsRequest {
+        /**
+         * user for whom statistics are being requested
+         */
+        public String PlayFabId;
+        /**
+         * statistics to return
+         */
+        public ArrayList<String> StatisticNames;
+        
+    }
+
+    public static class GetPlayerStatisticsResult {
+        /**
+         * PlayFab unique identifier of the user whose statistics are being returned
+         */
+        public String PlayFabId;
+        /**
+         * User statistics for the requested user.
+         */
+        public ArrayList<StatisticValue> Statistics;
+        
+    }
+
     public static class GetPlayFabIDsFromFacebookIDsRequest {
         /**
          * Array of unique Facebook identifiers for which the title needs to get PlayFab identifiers.
@@ -1059,7 +1099,7 @@ public class PlayFabServerModels {
          * Array of inventory items belonging to the user.
          */
         @Unordered("ItemInstanceId")
-		public ArrayList<ItemInstance> Inventory;
+        public ArrayList<ItemInstance> Inventory;
         /**
          * Array of virtual currency balance(s) belonging to the user.
          */
@@ -1265,7 +1305,7 @@ public class PlayFabServerModels {
          * Array of items to grant and the users to whom the items are to be granted.
          */
         @Unordered
-		public ArrayList<ItemGrant> ItemGrants;
+        public ArrayList<ItemGrant> ItemGrants;
         
     }
 
@@ -1765,6 +1805,38 @@ public class PlayFabServerModels {
         
     }
 
+    public static class StatisticUpdate {
+        /**
+         * unique name of the statistic
+         */
+        public String StatisticName;
+        /**
+         * for updates to an existing statistic value for a player, the version of the statistic when it was loaded. Null when setting the statistic value for the first time.
+         */
+        public String Version;
+        /**
+         * statistic value for the player
+         */
+        public Integer Value;
+        
+    }
+
+    public static class StatisticValue {
+        /**
+         * unique name of the statistic
+         */
+        public String StatisticName;
+        /**
+         * statistic value for the player
+         */
+        public Integer Value;
+        /**
+         * for updates to an existing statistic value for a player, the version of the statistic when it was loaded
+         */
+        public String Version;
+        
+    }
+
     public static class SubtractCharacterVirtualCurrencyRequest {
         /**
          * Unique PlayFab assigned ID of the user on whom the operation will be performed.
@@ -1878,6 +1950,22 @@ public class PlayFabServerModels {
     }
 
     public static class UpdateCharacterStatisticsResult {
+        
+    }
+
+    public static class UpdatePlayerStatisticsRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Statistics to be updated with the provided values
+         */
+        public ArrayList<StatisticUpdate> Statistics;
+        
+    }
+
+    public static class UpdatePlayerStatisticsResult {
         
     }
 

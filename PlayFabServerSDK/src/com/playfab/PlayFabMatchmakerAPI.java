@@ -3,6 +3,7 @@ package com.playfab;
 import com.playfab.internal.*;
 import com.playfab.PlayFabMatchmakerModels.*;
 import com.playfab.PlayFabErrors.*;
+import com.playfab.PlayFabSettings;
 import java.util.concurrent.*;
 import java.util.*;
 import com.google.gson.*;
@@ -67,11 +68,12 @@ public class PlayFabMatchmakerAPI {
 
         PlayFabJsonSuccess<AuthUserResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AuthUserResponse>>(){}.getType());
         AuthUserResponse result = resultData.data;
-        
+
         PlayFabResult<AuthUserResponse> pfResult = new PlayFabResult<AuthUserResponse>();
         pfResult.Result = result;
         return pfResult;
     }
+
     /**
      * Informs the PlayFab game server hosting service that the indicated user has joined the Game Server Instance specified
      */
@@ -124,11 +126,12 @@ public class PlayFabMatchmakerAPI {
 
         PlayFabJsonSuccess<PlayerJoinedResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<PlayerJoinedResponse>>(){}.getType());
         PlayerJoinedResponse result = resultData.data;
-        
+
         PlayFabResult<PlayerJoinedResponse> pfResult = new PlayFabResult<PlayerJoinedResponse>();
         pfResult.Result = result;
         return pfResult;
     }
+
     /**
      * Informs the PlayFab game server hosting service that the indicated user has left the Game Server Instance specified
      */
@@ -181,11 +184,12 @@ public class PlayFabMatchmakerAPI {
 
         PlayFabJsonSuccess<PlayerLeftResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<PlayerLeftResponse>>(){}.getType());
         PlayerLeftResponse result = resultData.data;
-        
+
         PlayFabResult<PlayerLeftResponse> pfResult = new PlayFabResult<PlayerLeftResponse>();
         pfResult.Result = result;
         return pfResult;
     }
+
     /**
      * Instructs the PlayFab game server hosting service to instantiate a new Game Server Instance
      */
@@ -238,11 +242,12 @@ public class PlayFabMatchmakerAPI {
 
         PlayFabJsonSuccess<StartGameResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<StartGameResponse>>(){}.getType());
         StartGameResponse result = resultData.data;
-        
+
         PlayFabResult<StartGameResponse> pfResult = new PlayFabResult<StartGameResponse>();
         pfResult.Result = result;
         return pfResult;
     }
+
     /**
      * Retrieves the relevant details for a specified user, which the external match-making service can then use to compute effective matches
      */
@@ -295,11 +300,9 @@ public class PlayFabMatchmakerAPI {
 
         PlayFabJsonSuccess<UserInfoResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UserInfoResponse>>(){}.getType());
         UserInfoResponse result = resultData.data;
-        
+
         PlayFabResult<UserInfoResponse> pfResult = new PlayFabResult<UserInfoResponse>();
         pfResult.Result = result;
         return pfResult;
     }
-
-    
 }
