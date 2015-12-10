@@ -1147,6 +1147,22 @@ public class PlayFabClientModels {
         
     }
 
+    public static class GetPlayerStatisticsRequest {
+        /**
+         * statistics to return
+         */
+        public ArrayList<String> StatisticNames;
+        
+    }
+
+    public static class GetPlayerStatisticsResult {
+        /**
+         * User statistics for the requested user.
+         */
+        public ArrayList<StatisticValue> Statistics;
+        
+    }
+
     public static class GetPlayerTradesRequest {
         /**
          * Returns only trades with the given status. If null, returns all trades.
@@ -1815,6 +1831,18 @@ public class PlayFabClientModels {
         
     }
 
+    public static class LinkXboxAccountRequest {
+        /**
+         * Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", "").
+         */
+        public String XboxToken;
+        
+    }
+
+    public static class LinkXboxAccountResult {
+        
+    }
+
     public static class ListUsersCharactersRequest {
         /**
          * Unique PlayFab assigned ID of the user on whom the operation will be performed.
@@ -2072,6 +2100,22 @@ public class PlayFabClientModels {
         public String SteamTicket;
         /**
          * Automatically create a PlayFab account if one is not currently linked to this Steam account.
+         */
+        public Boolean CreateAccount;
+        
+    }
+
+    public static class LoginWithXboxRequest {
+        /**
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         */
+        public String TitleId;
+        /**
+         * Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", "").
+         */
+        public String XboxToken;
+        /**
+         * Automatically create a PlayFab account if one is not currently linked to this Xbox Live account.
          */
         public Boolean CreateAccount;
         
@@ -2725,6 +2769,38 @@ public class PlayFabClientModels {
         
     }
 
+    public static class StatisticUpdate {
+        /**
+         * unique name of the statistic
+         */
+        public String StatisticName;
+        /**
+         * for updates to an existing statistic value for a player, the version of the statistic when it was loaded. Null when setting the statistic value for the first time.
+         */
+        public String Version;
+        /**
+         * statistic value for the player
+         */
+        public Integer Value;
+        
+    }
+
+    public static class StatisticValue {
+        /**
+         * unique name of the statistic
+         */
+        public String StatisticName;
+        /**
+         * statistic value for the player
+         */
+        public Integer Value;
+        /**
+         * for updates to an existing statistic value for a player, the version of the statistic when it was loaded
+         */
+        public String Version;
+        
+    }
+
     public static class SteamPlayFabIdPair {
         /**
          * Unique Steam identifier for a user.
@@ -2935,6 +3011,18 @@ public class PlayFabClientModels {
         
     }
 
+    public static class UnlinkXboxAccountRequest {
+        /**
+         * Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", "").
+         */
+        public String XboxToken;
+        
+    }
+
+    public static class UnlinkXboxAccountResult {
+        
+    }
+
     public static class UnlockContainerItemRequest {
         /**
          * Category ItemId of the container type to unlock.
@@ -2996,6 +3084,18 @@ public class PlayFabClientModels {
          * Indicates the current version of the data that has been set. This is incremented with every set call for that type of data (read-only, internal, etc). This version can be provided in Get calls to find updated data.
          */
         public Long DataVersion;
+        
+    }
+
+    public static class UpdatePlayerStatisticsRequest {
+        /**
+         * Statistics to be updated with the provided values
+         */
+        public ArrayList<StatisticUpdate> Statistics;
+        
+    }
+
+    public static class UpdatePlayerStatisticsResult {
         
     }
 

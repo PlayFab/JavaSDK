@@ -304,6 +304,26 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class CreatePlayerStatisticDefinitionRequest {
+        /**
+         * unique name of the statistic
+         */
+        public String Name;
+        /**
+         * interval at which the values of the statistic for all players are reset. Resets begin at the next interval boundary
+         */
+        public Interval VersionChangeInterval;
+        
+    }
+
+    public static class CreatePlayerStatisticDefinitionResult {
+        /**
+         * created statistic definition
+         */
+        public PlayerStatisticDefinition Statistic;
+        
+    }
+
     public static enum Currency {
         AED,
         AFN,
@@ -717,6 +737,34 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class GetPlayerStatisticDefinitionsRequest {
+        
+    }
+
+    public static class GetPlayerStatisticDefinitionsResult {
+        /**
+         * definitions of all statistics for the title
+         */
+        public ArrayList<PlayerStatisticDefinition> Statistics;
+        
+    }
+
+    public static class GetPlayerStatisticVersionsRequest {
+        /**
+         * unique name of the statistic
+         */
+        public String StatisticName;
+        
+    }
+
+    public static class GetPlayerStatisticVersionsResult {
+        /**
+         * version change history of the statistic
+         */
+        public ArrayList<PlayerStatisticVersion> StatisticVersions;
+        
+    }
+
     public static class GetPublisherDataRequest {
         /**
          *  array of keys to get back data from the Publisher data blob, set by the admin tools
@@ -1018,6 +1066,29 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class IncrementPlayerStatisticVersionRequest {
+        /**
+         * unique name of the statistic
+         */
+        public String StatisticName;
+        
+    }
+
+    public static class IncrementPlayerStatisticVersionResult {
+        /**
+         * version change history of the statistic
+         */
+        public PlayerStatisticVersion StatisticVersion;
+        
+    }
+
+    public static enum Interval {
+        Hour,
+        Day,
+        Week,
+        Month
+    }
+
     public static class ItemGrant {
         /**
          * Unique PlayFab assigned ID of the user on whom the operation will be performed.
@@ -1266,6 +1337,50 @@ public class PlayFabAdminModels {
          * Balance of the virtual currency after modification.
          */
         public Integer Balance;
+        
+    }
+
+    public static class PlayerStatisticDefinition {
+        /**
+         * unique name of the statistic
+         */
+        public String StatisticName;
+        /**
+         * current active version of the statistic, incremented each time the statistic resets
+         */
+        public String CurrentVersion;
+        /**
+         * interval at which the values of the statistic for all players are reset
+         */
+        public Interval VersionChangeInterval;
+        
+    }
+
+    public static class PlayerStatisticVersion {
+        /**
+         * name of the statistic when the version became active
+         */
+        public String StatisticName;
+        /**
+         * version of the statistic
+         */
+        public String Version;
+        /**
+         * time for which the statistic version was scheduled to become active, based on the configured ResetInterval
+         */
+        public Date ScheduledVersionChangeIntervalTime;
+        /**
+         * time when the statistic version became active
+         */
+        public Date CreatedTime;
+        /**
+         * status of the process of saving player statistic values of the previous version to a downloadable archive, if configured
+         */
+        public StatisticVersionArchivalStatus ArchivalStatus;
+        /**
+         * reset interval that triggered the version to become active, if configured
+         */
+        public Interval ResetInterval;
         
     }
 
@@ -1545,6 +1660,14 @@ public class PlayFabAdminModels {
         public String ARN;
         
     }
+
+    public static enum StatisticVersionArchivalStatus {
+        NotScheduled,
+        Scheduled,
+        InProgress,
+        Failed,
+        Complete
+    }
     /**
      *  A store entry that list a catalog item at a particular price
      */
@@ -1631,6 +1754,26 @@ public class PlayFabAdminModels {
          * New revision number created
          */
         public Integer Revision;
+        
+    }
+
+    public static class UpdatePlayerStatisticDefinitionRequest {
+        /**
+         * unique name of the statistic
+         */
+        public String StatisticName;
+        /**
+         * interval at which the values of the statistic for all players are reset. Changes are effective at the next interval boundary
+         */
+        public Interval VersionChangeInterval;
+        
+    }
+
+    public static class UpdatePlayerStatisticDefinitionResult {
+        /**
+         * updated statistic definition
+         */
+        public PlayerStatisticDefinition Statistic;
         
     }
 

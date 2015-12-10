@@ -918,6 +918,30 @@ public class PlayFabServerModels {
         
     }
 
+    public static class GetPlayerStatisticsRequest {
+        /**
+         * user for whom statistics are being requested
+         */
+        public String PlayFabId;
+        /**
+         * statistics to return
+         */
+        public ArrayList<String> StatisticNames;
+        
+    }
+
+    public static class GetPlayerStatisticsResult {
+        /**
+         * PlayFab unique identifier of the user whose statistics are being returned
+         */
+        public String PlayFabId;
+        /**
+         * User statistics for the requested user.
+         */
+        public ArrayList<StatisticValue> Statistics;
+        
+    }
+
     public static class GetPlayFabIDsFromFacebookIDsRequest {
         /**
          * Array of unique Facebook identifiers for which the title needs to get PlayFab identifiers.
@@ -1781,6 +1805,38 @@ public class PlayFabServerModels {
         
     }
 
+    public static class StatisticUpdate {
+        /**
+         * unique name of the statistic
+         */
+        public String StatisticName;
+        /**
+         * for updates to an existing statistic value for a player, the version of the statistic when it was loaded. Null when setting the statistic value for the first time.
+         */
+        public String Version;
+        /**
+         * statistic value for the player
+         */
+        public Integer Value;
+        
+    }
+
+    public static class StatisticValue {
+        /**
+         * unique name of the statistic
+         */
+        public String StatisticName;
+        /**
+         * statistic value for the player
+         */
+        public Integer Value;
+        /**
+         * for updates to an existing statistic value for a player, the version of the statistic when it was loaded
+         */
+        public String Version;
+        
+    }
+
     public static class SubtractCharacterVirtualCurrencyRequest {
         /**
          * Unique PlayFab assigned ID of the user on whom the operation will be performed.
@@ -1894,6 +1950,22 @@ public class PlayFabServerModels {
     }
 
     public static class UpdateCharacterStatisticsResult {
+        
+    }
+
+    public static class UpdatePlayerStatisticsRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Statistics to be updated with the provided values
+         */
+        public ArrayList<StatisticUpdate> Statistics;
+        
+    }
+
+    public static class UpdatePlayerStatisticsResult {
         
     }
 
