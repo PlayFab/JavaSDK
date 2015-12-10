@@ -205,7 +205,7 @@ public class PlayFabMatchmakerModels {
          * Array of inventory items in the user's current inventory.
          */
         @Unordered("ItemInstanceId")
-		public ArrayList<ItemInstance> Inventory;
+        public ArrayList<ItemInstance> Inventory;
         /**
          * Array of virtual currency balance(s) belonging to the user.
          */

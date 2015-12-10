@@ -160,7 +160,7 @@ public class PlayFabAdminModels {
          * list of item tags
          */
         @Unordered
-		public ArrayList<String> Tags;
+        public ArrayList<String> Tags;
         /**
          * game specific custom data
          */
@@ -207,12 +207,12 @@ public class PlayFabAdminModels {
          * unique ItemId values for all items which will be added to the player inventory when the bundle is added
          */
         @Unordered
-		public ArrayList<String> BundledItems;
+        public ArrayList<String> BundledItems;
         /**
          * unique TableId values for all RandomResultTable objects which are part of the bundle (random tables will be resolved and add the relevant items to the player inventory when the bundle is added)
          */
         @Unordered
-		public ArrayList<String> BundledResultTables;
+        public ArrayList<String> BundledResultTables;
         /**
          * virtual currency types and balances which will be added to the player inventory when the bundle is added
          */
@@ -247,12 +247,12 @@ public class PlayFabAdminModels {
          * unique ItemId values for all items which will be added to the player inventory, once the container has been unlocked
          */
         @Unordered
-		public ArrayList<String> ItemContents;
+        public ArrayList<String> ItemContents;
         /**
          * unique TableId values for all RandomResultTable objects which are part of the container (once unlocked, random tables will be resolved and add the relevant items to the player inventory)
          */
         @Unordered
-		public ArrayList<String> ResultTableContents;
+        public ArrayList<String> ResultTableContents;
         /**
          * virtual currency types and balances which will be added to the player inventory when the container is unlocked
          */
@@ -301,6 +301,26 @@ public class PlayFabAdminModels {
          * Last modified time
          */
         public Date LastModified;
+        
+    }
+
+    public static class CreatePlayerStatisticDefinitionRequest {
+        /**
+         * unique name of the statistic
+         */
+        public String Name;
+        /**
+         * interval at which the values of the statistic for all players are reset. Resets begin at the next interval boundary
+         */
+        public Interval VersionChangeInterval;
+        
+    }
+
+    public static class CreatePlayerStatisticDefinitionResult {
+        /**
+         * created statistic definition
+         */
+        public PlayerStatisticDefinition Statistic;
         
     }
 
@@ -530,7 +550,7 @@ public class PlayFabAdminModels {
          * Array of items which can be purchased.
          */
         @Unordered("ItemId")
-		public ArrayList<CatalogItem> Catalog;
+        public ArrayList<CatalogItem> Catalog;
         
     }
 
@@ -689,7 +709,7 @@ public class PlayFabAdminModels {
          * array of unique PlayFab identifiers for users currently connected to this Game Server Instance
          */
         @Unordered
-		public ArrayList<String> Players;
+        public ArrayList<String> Players;
         /**
          * IP address for this Game Server Instance
          */
@@ -714,6 +734,34 @@ public class PlayFabAdminModels {
          * array of game modes available for the specified build
          */
         public ArrayList<GameModeInfo> GameModes;
+        
+    }
+
+    public static class GetPlayerStatisticDefinitionsRequest {
+        
+    }
+
+    public static class GetPlayerStatisticDefinitionsResult {
+        /**
+         * definitions of all statistics for the title
+         */
+        public ArrayList<PlayerStatisticDefinition> Statistics;
+        
+    }
+
+    public static class GetPlayerStatisticVersionsRequest {
+        /**
+         * unique name of the statistic
+         */
+        public String StatisticName;
+        
+    }
+
+    public static class GetPlayerStatisticVersionsResult {
+        /**
+         * version change history of the statistic
+         */
+        public ArrayList<PlayerStatisticVersion> StatisticVersions;
         
     }
 
@@ -768,7 +816,7 @@ public class PlayFabAdminModels {
          * array of regions where this build can used, when it is active
          */
         @Unordered
-		public ArrayList<Region> ActiveRegions;
+        public ArrayList<Region> ActiveRegions;
         /**
          * maximum number of game server instances that can run on a single host machine
          */
@@ -835,7 +883,7 @@ public class PlayFabAdminModels {
          * Array of items which can be purchased from this store.
          */
         @Unordered("ItemId")
-		public ArrayList<StoreItem> Store;
+        public ArrayList<StoreItem> Store;
         
     }
 
@@ -904,7 +952,7 @@ public class PlayFabAdminModels {
          * Array of inventory items belonging to the user.
          */
         @Unordered("ItemInstanceId")
-		public ArrayList<ItemInstance> Inventory;
+        public ArrayList<ItemInstance> Inventory;
         /**
          * Array of virtual currency balance(s) belonging to the user.
          */
@@ -1006,7 +1054,7 @@ public class PlayFabAdminModels {
          * Array of items to grant and the users to whom the items are to be granted.
          */
         @Unordered
-		public ArrayList<ItemGrant> ItemGrants;
+        public ArrayList<ItemGrant> ItemGrants;
         
     }
 
@@ -1016,6 +1064,29 @@ public class PlayFabAdminModels {
          */
         public ArrayList<GrantedItemInstance> ItemGrantResults;
         
+    }
+
+    public static class IncrementPlayerStatisticVersionRequest {
+        /**
+         * unique name of the statistic
+         */
+        public String StatisticName;
+        
+    }
+
+    public static class IncrementPlayerStatisticVersionResult {
+        /**
+         * version change history of the statistic
+         */
+        public PlayerStatisticVersion StatisticVersion;
+        
+    }
+
+    public static enum Interval {
+        Hour,
+        Day,
+        Week,
+        Month
     }
 
     public static class ItemGrant {
@@ -1116,7 +1187,7 @@ public class PlayFabAdminModels {
          * array of uploaded game server builds
          */
         @Unordered("BuildId")
-		public ArrayList<GetServerBuildInfoResult> Builds;
+        public ArrayList<GetServerBuildInfoResult> Builds;
         
     }
 
@@ -1129,7 +1200,7 @@ public class PlayFabAdminModels {
          * List of virtual currency names defined for this title
          */
         @Unordered
-		public ArrayList<VirtualCurrencyData> VirtualCurrencies;
+        public ArrayList<VirtualCurrencyData> VirtualCurrencies;
         
     }
 
@@ -1266,6 +1337,50 @@ public class PlayFabAdminModels {
          * Balance of the virtual currency after modification.
          */
         public Integer Balance;
+        
+    }
+
+    public static class PlayerStatisticDefinition {
+        /**
+         * unique name of the statistic
+         */
+        public String StatisticName;
+        /**
+         * current active version of the statistic, incremented each time the statistic resets
+         */
+        public String CurrentVersion;
+        /**
+         * interval at which the values of the statistic for all players are reset
+         */
+        public Interval VersionChangeInterval;
+        
+    }
+
+    public static class PlayerStatisticVersion {
+        /**
+         * name of the statistic when the version became active
+         */
+        public String StatisticName;
+        /**
+         * version of the statistic
+         */
+        public String Version;
+        /**
+         * time for which the statistic version was scheduled to become active, based on the configured ResetInterval
+         */
+        public Date ScheduledVersionChangeIntervalTime;
+        /**
+         * time when the statistic version became active
+         */
+        public Date CreatedTime;
+        /**
+         * status of the process of saving player statistic values of the previous version to a downloadable archive, if configured
+         */
+        public StatisticVersionArchivalStatus ArchivalStatus;
+        /**
+         * reset interval that triggered the version to become active, if configured
+         */
+        public Interval ResetInterval;
         
     }
 
@@ -1545,6 +1660,14 @@ public class PlayFabAdminModels {
         public String ARN;
         
     }
+
+    public static enum StatisticVersionArchivalStatus {
+        NotScheduled,
+        Scheduled,
+        InProgress,
+        Failed,
+        Complete
+    }
     /**
      *  A store entry that list a catalog item at a particular price
      */
@@ -1631,6 +1754,26 @@ public class PlayFabAdminModels {
          * New revision number created
          */
         public Integer Revision;
+        
+    }
+
+    public static class UpdatePlayerStatisticDefinitionRequest {
+        /**
+         * unique name of the statistic
+         */
+        public String StatisticName;
+        /**
+         * interval at which the values of the statistic for all players are reset. Changes are effective at the next interval boundary
+         */
+        public Interval VersionChangeInterval;
+        
+    }
+
+    public static class UpdatePlayerStatisticDefinitionResult {
+        /**
+         * updated statistic definition
+         */
+        public PlayerStatisticDefinition Statistic;
         
     }
 
