@@ -87,7 +87,11 @@ public class PlayFabApiTests extends ApplicationTestCase<Application> {
 
     }
 
-    // Tests
+    /// <summary>
+    /// CLIENT API
+    /// Try to deliberately log in with an inappropriate password,
+    ///   and verify that the error displays as expected.
+    /// </summary>
     public void testInvalidLogin()
     {
         PlayFabClientModels.LoginWithEmailAddressRequest request = new PlayFabClientModels.LoginWithEmailAddressRequest();
@@ -101,6 +105,10 @@ public class PlayFabApiTests extends ApplicationTestCase<Application> {
         assertTrue("Unexpected Error: " + result.Error.errorMessage, result.Error.errorMessage.contains("password"));
     }
 
+    /// <summary>
+    /// CLIENT API
+    /// Log in or create a user, track their PlayFabId
+    /// </summary>
     public void testLoginOrRegister()
     {
         PlayFabClientModels.LoginWithEmailAddressRequest request = new PlayFabClientModels.LoginWithEmailAddressRequest();
@@ -117,6 +125,31 @@ public class PlayFabApiTests extends ApplicationTestCase<Application> {
         // TODO: Register if the login failed
     }
 
+    /// <summary>
+    /// CLIENT API
+    /// Test that the login call sequence sends the AdvertisingId when set
+    /// </summary>
+    public void testLoginWithAdvertisingId()
+    {
+        PlayFabSettings.AdvertisingIdType = PlayFabSettings.AD_TYPE_ANDROID_ID;
+        PlayFabSettings.AdvertisingIdValue = "PlayFabTestId";
+
+        PlayFabClientModels.LoginWithEmailAddressRequest request = new PlayFabClientModels.LoginWithEmailAddressRequest();
+        request.TitleId = PlayFabSettings.TitleId;
+        request.Email = USER_EMAIL;
+        request.Password = USER_PASSWORD;
+        PlayFabResult<PlayFabClientModels.LoginResult> result = PlayFabClientAPI.LoginWithEmailAddress(request);
+
+        assertEquals(PlayFabSettings.AD_TYPE_ANDROID_ID + "_Successful", PlayFabSettings.AdvertisingIdType);
+    }
+
+    /// <summary>
+    /// CLIENT API
+    /// Test a sequence of calls that modifies saved data,
+    ///   and verifies that the next sequential API call contains updated data.
+    /// Verify that the data is correctly modified on the next call.
+    /// Parameter types tested: string, Dictionary<string, string>, DateTime
+    /// </summary>
     public void testUserDataApi()
     {
         testLoginOrRegister();
@@ -154,6 +187,13 @@ public class PlayFabApiTests extends ApplicationTestCase<Application> {
         assertTrue(testMin.before(timeUpdated) && timeUpdated.before(testMax));
     }
 
+    /// <summary>
+    /// CLIENT API
+    /// Test a sequence of calls that modifies saved data,
+    ///   and verifies that the next sequential API call contains updated data.
+    /// Verify that the data is saved correctly, and that specific types are tested
+    /// Parameter types tested: Dictionary<string, int>
+    /// </summary>
     public void testUserStatisticsApi()
     {
         testLoginOrRegister();
@@ -177,6 +217,11 @@ public class PlayFabApiTests extends ApplicationTestCase<Application> {
         assertEquals(testStatExpected, testStatActual);
     }
 
+    /// <summary>
+    /// SERVER API
+    /// Get or create the given test character for the given user
+    /// Parameter types tested: Contained-Classes, string
+    /// </summary>
     public void testUserCharacter()
     {
         testLoginOrRegister();
@@ -199,6 +244,11 @@ public class PlayFabApiTests extends ApplicationTestCase<Application> {
         }
     }
 
+    /// <summary>
+    /// CLIENT AND SERVER API
+    /// Test that leaderboard results can be requested
+    /// Parameter types tested: List of contained-classes
+    /// </summary>
     public void testLeaderBoard()
     {
         testLoginOrRegister();

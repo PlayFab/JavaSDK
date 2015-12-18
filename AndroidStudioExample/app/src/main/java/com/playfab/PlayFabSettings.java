@@ -1,5 +1,6 @@
 package com.playfab;
 
+import android.content.Context;
 import com.playfab.PlayFabErrors.ErrorCallback;
 
 public class PlayFabSettings {
@@ -8,6 +9,7 @@ public class PlayFabSettings {
     public static String LogicServerURL = null; // Assigned by GetCloudScriptUrl, used by RunCloudScript
     public static String AdvertisingIdType = null; // Set this to the appropriate AD_TYPE_X constant below
     public static String AdvertisingIdValue = null; // Set this to corresponding device value
+    public static Context androidContext = null; // Context object for android devices
 
     // DisableAdvertising is provided for completeness, but changing it is not suggested
     // Disabling this may prevent your advertising-related PlayFab marketplace partners from working correctly

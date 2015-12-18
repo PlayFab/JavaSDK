@@ -1,5 +1,6 @@
 package com.playfab;
 
+import android.util.Log;
 import com.playfab.internal.*;
 import com.playfab.PlayFabClientModels.*;
 import com.playfab.PlayFabErrors.*;
@@ -6603,6 +6604,7 @@ public class PlayFabClientAPI {
 
         PlayFabJsonSuccess<AttributeInstallResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AttributeInstallResult>>(){}.getType());
         AttributeInstallResult result = resultData.data;
+        // Modify AdvertisingIdType:  Prevents us from sending the id multiple times, and allows automated tests to determine id was sent successfully
         PlayFabSettings.AdvertisingIdType += "_Successful";
 
         PlayFabResult<AttributeInstallResult> pfResult = new PlayFabResult<AttributeInstallResult>();
@@ -6611,8 +6613,27 @@ public class PlayFabClientAPI {
     }
 
     public static void MultiStepClientLogin(Boolean needsAttribution) {
-        if (needsAttribution && !PlayFabSettings.DisableAdvertising && PlayFabSettings.AdvertisingIdType != null && PlayFabSettings.AdvertisingIdValue != null)
-        {
+        if (needsAttribution && !PlayFabSettings.DisableAdvertising
+        && (PlayFabSettings.AdvertisingIdType == null || PlayFabSettings.AdvertisingIdType == "")
+        && (PlayFabSettings.AdvertisingIdValue == null || PlayFabSettings.AdvertisingIdValue == "")
+        && PlayFabSettings.androidContext != null) {
+            try {
+                // Grab the android advertisingId and fill it in when needed
+                PlayFabGetAdvertId.AdInfo adInfo = com.playfab.PlayFabGetAdvertId.getAdvertisingIdInfo(PlayFabSettings.androidContext);
+                if (adInfo != null) {
+                    PlayFabSettings.AdvertisingIdType = PlayFabSettings.AD_TYPE_ANDROID_ID;
+                    PlayFabSettings.AdvertisingIdValue = adInfo.advertisingId;
+                    PlayFabSettings.DisableAdvertising = adInfo.limitAdTrackingEnabled;
+                } // else change nothing, I just can't provide any automatic values
+            } catch (Exception e) {
+                Log.e("MYAPP", "exception", e);
+                PlayFabSettings.AdvertisingIdType = "error";
+                PlayFabSettings.AdvertisingIdValue = null;
+                PlayFabSettings.DisableAdvertising = null;
+            }
+        }
+
+        if (needsAttribution && !PlayFabSettings.DisableAdvertising && PlayFabSettings.AdvertisingIdType != null && PlayFabSettings.AdvertisingIdValue != null) {
             PlayFabClientModels.AttributeInstallRequest request = new PlayFabClientModels.AttributeInstallRequest();
             if (PlayFabSettings.AdvertisingIdType == PlayFabSettings.AD_TYPE_IDFA)
                 request.Idfa = PlayFabSettings.AdvertisingIdValue;

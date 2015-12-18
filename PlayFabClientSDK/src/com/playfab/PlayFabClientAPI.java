@@ -1,5 +1,6 @@
 package com.playfab;
 
+import android.util.Log;
 import com.playfab.internal.*;
 import com.playfab.PlayFabClientModels.*;
 import com.playfab.PlayFabErrors.*;
@@ -6603,6 +6604,7 @@ public class PlayFabClientAPI {
 
         PlayFabJsonSuccess<AttributeInstallResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AttributeInstallResult>>(){}.getType());
         AttributeInstallResult result = resultData.data;
+        // Modify AdvertisingIdType:  Prevents us from sending the id multiple times, and allows automated tests to determine id was sent successfully
         PlayFabSettings.AdvertisingIdType += "_Successful";
 
         PlayFabResult<AttributeInstallResult> pfResult = new PlayFabResult<AttributeInstallResult>();
@@ -6611,8 +6613,7 @@ public class PlayFabClientAPI {
     }
 
     public static void MultiStepClientLogin(Boolean needsAttribution) {
-        if (needsAttribution && !PlayFabSettings.DisableAdvertising && PlayFabSettings.AdvertisingIdType != null && PlayFabSettings.AdvertisingIdValue != null)
-        {
+        if (needsAttribution && !PlayFabSettings.DisableAdvertising && PlayFabSettings.AdvertisingIdType != null && PlayFabSettings.AdvertisingIdValue != null) {
             PlayFabClientModels.AttributeInstallRequest request = new PlayFabClientModels.AttributeInstallRequest();
             if (PlayFabSettings.AdvertisingIdType == PlayFabSettings.AD_TYPE_IDFA)
                 request.Idfa = PlayFabSettings.AdvertisingIdValue;
