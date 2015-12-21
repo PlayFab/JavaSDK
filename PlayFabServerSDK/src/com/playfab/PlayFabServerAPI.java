@@ -307,6 +307,64 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Retrieves a list of ranked friends of the given player for the given statistic, starting from the indicated point in the leaderboard
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetLeaderboardResult>> GetFriendLeaderboardAsync(final GetFriendLeaderboardRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetLeaderboardResult>>() {
+            public PlayFabResult<GetLeaderboardResult> call() throws Exception {
+                return privateGetFriendLeaderboardAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves a list of ranked friends of the given player for the given statistic, starting from the indicated point in the leaderboard
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetLeaderboardResult> GetFriendLeaderboard(final GetFriendLeaderboardRequest request) {
+        FutureTask<PlayFabResult<GetLeaderboardResult>> task = new FutureTask(new Callable<PlayFabResult<GetLeaderboardResult>>() {
+            public PlayFabResult<GetLeaderboardResult> call() throws Exception {
+                return privateGetFriendLeaderboardAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves a list of ranked friends of the given player for the given statistic, starting from the indicated point in the leaderboard
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetLeaderboardResult> privateGetFriendLeaderboardAsync(final GetFriendLeaderboardRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetFriendLeaderboard", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetLeaderboardResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetLeaderboardResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetLeaderboardResult>>(){}.getType());
+        GetLeaderboardResult result = resultData.data;
+
+        PlayFabResult<GetLeaderboardResult> pfResult = new PlayFabResult<GetLeaderboardResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves a list of ranked users for the given statistic, starting from the indicated point in the leaderboard
      */
     @SuppressWarnings("unchecked")
@@ -418,6 +476,57 @@ public class PlayFabServerAPI {
         GetLeaderboardAroundUserResult result = resultData.data;
 
         PlayFabResult<GetLeaderboardAroundUserResult> pfResult = new PlayFabResult<GetLeaderboardAroundUserResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayerStatisticsResult>> GetPlayerStatisticsAsync(final GetPlayerStatisticsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayerStatisticsResult>>() {
+            public PlayFabResult<GetPlayerStatisticsResult> call() throws Exception {
+                return privateGetPlayerStatisticsAsync(request);
+            }
+        });
+    }
+
+    
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayerStatisticsResult> GetPlayerStatistics(final GetPlayerStatisticsRequest request) {
+        FutureTask<PlayFabResult<GetPlayerStatisticsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayerStatisticsResult>>() {
+            public PlayFabResult<GetPlayerStatisticsResult> call() throws Exception {
+                return privateGetPlayerStatisticsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayerStatisticsResult> privateGetPlayerStatisticsAsync(final GetPlayerStatisticsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetPlayerStatistics", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayerStatisticsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayerStatisticsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayerStatisticsResult>>(){}.getType());
+        GetPlayerStatisticsResult result = resultData.data;
+
+        PlayFabResult<GetPlayerStatisticsResult> pfResult = new PlayFabResult<GetPlayerStatisticsResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -824,6 +933,57 @@ public class PlayFabServerAPI {
         GetUserStatisticsResult result = resultData.data;
 
         PlayFabResult<GetUserStatisticsResult> pfResult = new PlayFabResult<GetUserStatisticsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<UpdatePlayerStatisticsResult>> UpdatePlayerStatisticsAsync(final UpdatePlayerStatisticsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<UpdatePlayerStatisticsResult>>() {
+            public PlayFabResult<UpdatePlayerStatisticsResult> call() throws Exception {
+                return privateUpdatePlayerStatisticsAsync(request);
+            }
+        });
+    }
+
+    
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<UpdatePlayerStatisticsResult> UpdatePlayerStatistics(final UpdatePlayerStatisticsRequest request) {
+        FutureTask<PlayFabResult<UpdatePlayerStatisticsResult>> task = new FutureTask(new Callable<PlayFabResult<UpdatePlayerStatisticsResult>>() {
+            public PlayFabResult<UpdatePlayerStatisticsResult> call() throws Exception {
+                return privateUpdatePlayerStatisticsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<UpdatePlayerStatisticsResult> privateUpdatePlayerStatisticsAsync(final UpdatePlayerStatisticsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UpdatePlayerStatistics", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<UpdatePlayerStatisticsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<UpdatePlayerStatisticsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdatePlayerStatisticsResult>>(){}.getType());
+        UpdatePlayerStatisticsResult result = resultData.data;
+
+        PlayFabResult<UpdatePlayerStatisticsResult> pfResult = new PlayFabResult<UpdatePlayerStatisticsResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -2506,6 +2666,180 @@ public class PlayFabServerAPI {
         UpdateUserInventoryItemDataResult result = resultData.data;
 
         PlayFabResult<UpdateUserInventoryItemDataResult> pfResult = new PlayFabResult<UpdateUserInventoryItemDataResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Adds the Friend user to the friendlist of the user with PlayFabId. At least one of FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResult>> AddFriendAsync(final AddFriendRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateAddFriendAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Adds the Friend user to the friendlist of the user with PlayFabId. At least one of FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResult> AddFriend(final AddFriendRequest request) {
+        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateAddFriendAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Adds the Friend user to the friendlist of the user with PlayFabId. At least one of FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResult> privateAddFriendAsync(final AddFriendRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/AddFriend", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
+        EmptyResult result = resultData.data;
+
+        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Retrieves the current friends for the user with PlayFabId, constrained to users who have PlayFab accounts. Friends from linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetFriendsListResult>> GetFriendsListAsync(final GetFriendsListRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetFriendsListResult>>() {
+            public PlayFabResult<GetFriendsListResult> call() throws Exception {
+                return privateGetFriendsListAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the current friends for the user with PlayFabId, constrained to users who have PlayFab accounts. Friends from linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetFriendsListResult> GetFriendsList(final GetFriendsListRequest request) {
+        FutureTask<PlayFabResult<GetFriendsListResult>> task = new FutureTask(new Callable<PlayFabResult<GetFriendsListResult>>() {
+            public PlayFabResult<GetFriendsListResult> call() throws Exception {
+                return privateGetFriendsListAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves the current friends for the user with PlayFabId, constrained to users who have PlayFab accounts. Friends from linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetFriendsListResult> privateGetFriendsListAsync(final GetFriendsListRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetFriendsList", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetFriendsListResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetFriendsListResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetFriendsListResult>>(){}.getType());
+        GetFriendsListResult result = resultData.data;
+
+        PlayFabResult<GetFriendsListResult> pfResult = new PlayFabResult<GetFriendsListResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Removes the specified friend from the the user's friend list
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResult>> RemoveFriendAsync(final RemoveFriendRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateRemoveFriendAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Removes the specified friend from the the user's friend list
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResult> RemoveFriend(final RemoveFriendRequest request) {
+        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateRemoveFriendAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Removes the specified friend from the the user's friend list
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResult> privateRemoveFriendAsync(final RemoveFriendRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/RemoveFriend", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
+        EmptyResult result = resultData.data;
+
+        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
         pfResult.Result = result;
         return pfResult;
     }
