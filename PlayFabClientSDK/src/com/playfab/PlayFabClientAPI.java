@@ -1,6 +1,5 @@
 package com.playfab;
 
-import android.util.Log;
 import com.playfab.internal.*;
 import com.playfab.PlayFabClientModels.*;
 import com.playfab.PlayFabErrors.*;
