@@ -68,6 +68,9 @@ public class PlayFabMatchmakerModels {
          * Unique identifier for the parent inventory item, as defined in the catalog, for object which were added from a bundle or container.
          */
         public String BundleParent;
+        /**
+         * CatalogItem.DisplayName at the time this item was purchased.
+         */
         public String DisplayName;
         /**
          * Currency type for the cost of the catalog item.

@@ -616,9 +616,12 @@ public class PlayFabAdminModels {
          */
         public Long ItemCount;
         /**
-         * The total size of listed contents in bytes
+         * The total size of listed contents in bytes.
          */
         public Long TotalSize;
+        /**
+         * List of content items.
+         */
         public ArrayList<ContentInfo> Contents;
         
     }
@@ -664,6 +667,9 @@ public class PlayFabAdminModels {
     }
 
     public static class GetDataReportResult {
+        /**
+         * The URL where the requested report can be downloaded.
+         */
         public String DownloadUrl;
         
     }
@@ -1019,6 +1025,9 @@ public class PlayFabAdminModels {
          * Unique identifier for the parent inventory item, as defined in the catalog, for object which were added from a bundle or container.
          */
         public String BundleParent;
+        /**
+         * CatalogItem.DisplayName at the time this item was purchased.
+         */
         public String DisplayName;
         /**
          * Currency type for the cost of the catalog item.
@@ -1152,6 +1161,9 @@ public class PlayFabAdminModels {
          * Unique identifier for the parent inventory item, as defined in the catalog, for object which were added from a bundle or container.
          */
         public String BundleParent;
+        /**
+         * CatalogItem.DisplayName at the time this item was purchased.
+         */
         public String DisplayName;
         /**
          * Currency type for the cost of the catalog item.
