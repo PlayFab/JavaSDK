@@ -297,8 +297,17 @@ public class PlayFabServerModels {
     }
 
     public static class CharacterResult {
+        /**
+         * The id for this character on this player.
+         */
         public String CharacterId;
+        /**
+         * The name of this character.
+         */
         public String CharacterName;
+        /**
+         * The type-string that was given to this character on creation.
+         */
         public String CharacterType;
         
     }
@@ -1210,6 +1219,9 @@ public class PlayFabServerModels {
          * Unique identifier for the parent inventory item, as defined in the catalog, for object which were added from a bundle or container.
          */
         public String BundleParent;
+        /**
+         * CatalogItem.DisplayName at the time this item was purchased.
+         */
         public String DisplayName;
         /**
          * Currency type for the cost of the catalog item.
@@ -1380,6 +1392,9 @@ public class PlayFabServerModels {
          * Unique identifier for the parent inventory item, as defined in the catalog, for object which were added from a bundle or container.
          */
         public String BundleParent;
+        /**
+         * CatalogItem.DisplayName at the time this item was purchased.
+         */
         public String DisplayName;
         /**
          * Currency type for the cost of the catalog item.
@@ -1415,6 +1430,9 @@ public class PlayFabServerModels {
     }
 
     public static class ListUsersCharactersResult {
+        /**
+         * The requested list of characters.
+         */
         public ArrayList<CharacterResult> Characters;
         
     }
@@ -1728,7 +1746,13 @@ public class PlayFabServerModels {
     }
 
     public static class ReportPlayerServerResult {
+        /**
+         * Indicates whether this action completed successfully.
+         */
         public Boolean Updated;
+        /**
+         * The number of remaining reports which may be filed today by this reporting player.
+         */
         public Integer SubmissionsRemaining;
         
     }
