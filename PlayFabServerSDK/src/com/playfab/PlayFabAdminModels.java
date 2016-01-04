@@ -1731,11 +1731,11 @@ public class PlayFabAdminModels {
 
     public static class UpdateCatalogItemsRequest {
         /**
-         * which catalog is being updated
+         * Which catalog is being updated
          */
         public String CatalogVersion;
         /**
-         * array of catalog items to be submitted
+         * Array of catalog items to be submitted. Note that while CatalogItem has a parameter for CatalogVersion, it is not required and ignored in this call.
          */
         public ArrayList<CatalogItem> Catalog;
         
