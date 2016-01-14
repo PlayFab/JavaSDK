@@ -2723,6 +2723,64 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Retrieves a list of ranked friends of the current player for the given statistic, centered on the requested PlayFab user. If PlayFabId is empty or null will return currently logged in user.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetFriendLeaderboardAroundPlayerResult>> GetFriendLeaderboardAroundPlayerAsync(final GetFriendLeaderboardAroundPlayerRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetFriendLeaderboardAroundPlayerResult>>() {
+            public PlayFabResult<GetFriendLeaderboardAroundPlayerResult> call() throws Exception {
+                return privateGetFriendLeaderboardAroundPlayerAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves a list of ranked friends of the current player for the given statistic, centered on the requested PlayFab user. If PlayFabId is empty or null will return currently logged in user.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetFriendLeaderboardAroundPlayerResult> GetFriendLeaderboardAroundPlayer(final GetFriendLeaderboardAroundPlayerRequest request) {
+        FutureTask<PlayFabResult<GetFriendLeaderboardAroundPlayerResult>> task = new FutureTask(new Callable<PlayFabResult<GetFriendLeaderboardAroundPlayerResult>>() {
+            public PlayFabResult<GetFriendLeaderboardAroundPlayerResult> call() throws Exception {
+                return privateGetFriendLeaderboardAroundPlayerAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves a list of ranked friends of the current player for the given statistic, centered on the requested PlayFab user. If PlayFabId is empty or null will return currently logged in user.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetFriendLeaderboardAroundPlayerResult> privateGetFriendLeaderboardAroundPlayerAsync(final GetFriendLeaderboardAroundPlayerRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetFriendLeaderboardAroundPlayer", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetFriendLeaderboardAroundPlayerResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetFriendLeaderboardAroundPlayerResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetFriendLeaderboardAroundPlayerResult>>(){}.getType());
+        GetFriendLeaderboardAroundPlayerResult result = resultData.data;
+
+        PlayFabResult<GetFriendLeaderboardAroundPlayerResult> pfResult = new PlayFabResult<GetFriendLeaderboardAroundPlayerResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves a list of ranked users for the given statistic, starting from the indicated point in the leaderboard
      */
     @SuppressWarnings("unchecked")
@@ -2834,6 +2892,64 @@ public class PlayFabClientAPI {
         GetLeaderboardAroundCurrentUserResult result = resultData.data;
 
         PlayFabResult<GetLeaderboardAroundCurrentUserResult> pfResult = new PlayFabResult<GetLeaderboardAroundCurrentUserResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Retrieves a list of ranked users for the given statistic, centered on the requested player. If PlayFabId is empty or null will return currently logged in user.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetLeaderboardAroundPlayerResult>> GetLeaderboardAroundPlayerAsync(final GetLeaderboardAroundPlayerRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetLeaderboardAroundPlayerResult>>() {
+            public PlayFabResult<GetLeaderboardAroundPlayerResult> call() throws Exception {
+                return privateGetLeaderboardAroundPlayerAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves a list of ranked users for the given statistic, centered on the requested player. If PlayFabId is empty or null will return currently logged in user.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetLeaderboardAroundPlayerResult> GetLeaderboardAroundPlayer(final GetLeaderboardAroundPlayerRequest request) {
+        FutureTask<PlayFabResult<GetLeaderboardAroundPlayerResult>> task = new FutureTask(new Callable<PlayFabResult<GetLeaderboardAroundPlayerResult>>() {
+            public PlayFabResult<GetLeaderboardAroundPlayerResult> call() throws Exception {
+                return privateGetLeaderboardAroundPlayerAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves a list of ranked users for the given statistic, centered on the requested player. If PlayFabId is empty or null will return currently logged in user.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetLeaderboardAroundPlayerResult> privateGetLeaderboardAroundPlayerAsync(final GetLeaderboardAroundPlayerRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetLeaderboardAroundPlayer", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetLeaderboardAroundPlayerResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetLeaderboardAroundPlayerResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetLeaderboardAroundPlayerResult>>(){}.getType());
+        GetLeaderboardAroundPlayerResult result = resultData.data;
+
+        PlayFabResult<GetLeaderboardAroundPlayerResult> pfResult = new PlayFabResult<GetLeaderboardAroundPlayerResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -5856,7 +5972,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a list of ranked characters for the given statistic, centered on the currently signed-in user
+     * Retrieves a list of ranked characters for the given statistic, centered on the requested Character ID
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetLeaderboardAroundCharacterResult>> GetLeaderboardAroundCharacterAsync(final GetLeaderboardAroundCharacterRequest request) {
@@ -5868,7 +5984,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a list of ranked characters for the given statistic, centered on the currently signed-in user
+     * Retrieves a list of ranked characters for the given statistic, centered on the requested Character ID
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetLeaderboardAroundCharacterResult> GetLeaderboardAroundCharacter(final GetLeaderboardAroundCharacterRequest request) {
@@ -5886,7 +6002,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a list of ranked characters for the given statistic, centered on the currently signed-in user
+     * Retrieves a list of ranked characters for the given statistic, centered on the requested Character ID
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetLeaderboardAroundCharacterResult> privateGetLeaderboardAroundCharacterAsync(final GetLeaderboardAroundCharacterRequest request) throws Exception {
