@@ -2221,15 +2221,15 @@ public class PlayFabClientModels {
 
     public static class MatchmakeRequest {
         /**
-         * build version to match against
+         * build version to match against [Note: Required if LobbyId is not specified]
          */
         public String BuildVersion;
         /**
-         * region to match make against
+         * region to match make against [Note: Required if LobbyId is not specified]
          */
         public Region Region;
         /**
-         * game mode to match make against
+         * game mode to match make against [Note: Required if LobbyId is not specified]
          */
         public String GameMode;
         /**
