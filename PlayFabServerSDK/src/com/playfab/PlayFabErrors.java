@@ -199,7 +199,8 @@ public class PlayFabErrors {
         StatisticNotFound(1195),
         StatisticNameConflict(1196),
         StatisticVersionClosedForWrites(1197),
-        StatisticVersionInvalid(1198);
+        StatisticVersionInvalid(1198),
+        APIClientRequestRateLimitExceeded(1199);
 
         public int id;
 
