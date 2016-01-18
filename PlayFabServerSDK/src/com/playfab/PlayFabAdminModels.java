@@ -1360,7 +1360,7 @@ public class PlayFabAdminModels {
         /**
          * current active version of the statistic, incremented each time the statistic resets
          */
-        public String CurrentVersion;
+        public Long CurrentVersion;
         /**
          * interval at which the values of the statistic for all players are reset
          */
@@ -1376,23 +1376,31 @@ public class PlayFabAdminModels {
         /**
          * version of the statistic
          */
-        public String Version;
+        public Long Version;
         /**
-         * time for which the statistic version was scheduled to become active, based on the configured ResetInterval
+         * time at which the statistic version was scheduled to become active, based on the configured ResetInterval
          */
-        public Date ScheduledVersionChangeIntervalTime;
+        public Date ScheduledActivationTime;
         /**
          * time when the statistic version became active
          */
-        public Date CreatedTime;
+        public Date ActivationTime;
         /**
-         * status of the process of saving player statistic values of the previous version to a downloadable archive, if configured
+         * time at which the statistic version was scheduled to become inactive, based on the configured ResetInterval
+         */
+        public Date ScheduledDeactivationTime;
+        /**
+         * time when the statistic version became inactive due to statistic version incrementing
+         */
+        public Date DeactivationTime;
+        /**
+         * status of the process of saving player statistic values of the previous version to a downloadable archive
          */
         public StatisticVersionArchivalStatus ArchivalStatus;
         /**
-         * reset interval that triggered the version to become active, if configured
+         * URL for the downloadable archive of player statistic values, if available
          */
-        public Interval ResetInterval;
+        public String ArchiveDownloadUrl;
         
     }
 
@@ -1676,8 +1684,8 @@ public class PlayFabAdminModels {
     public static enum StatisticVersionArchivalStatus {
         NotScheduled,
         Scheduled,
+        Queued,
         InProgress,
-        Failed,
         Complete
     }
     /**
@@ -1731,11 +1739,11 @@ public class PlayFabAdminModels {
 
     public static class UpdateCatalogItemsRequest {
         /**
-         * which catalog is being updated
+         * Which catalog is being updated
          */
         public String CatalogVersion;
         /**
-         * array of catalog items to be submitted
+         * Array of catalog items to be submitted. Note that while CatalogItem has a parameter for CatalogVersion, it is not required and ignored in this call.
          */
         public ArrayList<CatalogItem> Catalog;
         

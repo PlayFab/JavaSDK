@@ -930,7 +930,7 @@ public class PlayFabClientModels {
          */
         public Integer StartPosition;
         /**
-         * Maximum number of entries to retrieve.
+         * Maximum number of entries to retrieve. Default 10, maximum 100.
          */
         public Integer MaxResultsCount;
         
@@ -994,7 +994,7 @@ public class PlayFabClientModels {
          */
         public String StatisticName;
         /**
-         * Maximum number of entries to retrieve.
+         * Maximum number of entries to retrieve. Default 10, maximum 100.
          */
         public Integer MaxResultsCount;
         /**
@@ -1016,6 +1016,38 @@ public class PlayFabClientModels {
         
     }
 
+    public static class GetFriendLeaderboardAroundPlayerRequest {
+        /**
+         * Statistic used to rank players for this leaderboard.
+         */
+        public String StatisticName;
+        /**
+         * Maximum number of entries to retrieve. Default 10, maximum 100.
+         */
+        public Integer MaxResultsCount;
+        /**
+         * PlayFab unique identifier of the user to center the leaderboard around. If null will center on the logged in user.
+         */
+        public String PlayFabId;
+        /**
+         * Indicates whether Steam service friends should be included in the response. Default is true.
+         */
+        public Boolean IncludeSteamFriends;
+        /**
+         * Indicates whether Facebook friends should be included in the response. Default is true.
+         */
+        public Boolean IncludeFacebookFriends;
+        
+    }
+
+    public static class GetFriendLeaderboardAroundPlayerResult {
+        /**
+         * Ordered listing of users and their positions in the requested leaderboard.
+         */
+        public ArrayList<PlayerLeaderboardEntry> Leaderboard;
+        
+    }
+
     public static class GetFriendLeaderboardRequest {
         /**
          * Statistic used to rank friends for this leaderboard.
@@ -1026,7 +1058,7 @@ public class PlayFabClientModels {
          */
         public Integer StartPosition;
         /**
-         * Maximum number of entries to retrieve.
+         * Maximum number of entries to retrieve. Default 10, maximum 100.
          */
         public Integer MaxResultsCount;
         /**
@@ -1066,7 +1098,7 @@ public class PlayFabClientModels {
          */
         public String StatisticName;
         /**
-         * Unique PlayFab assigned ID for a specific character owned by a user
+         * Unique PlayFab assigned ID for a specific character on which to center the leaderboard.
          */
         public String CharacterId;
         /**
@@ -1074,7 +1106,7 @@ public class PlayFabClientModels {
          */
         public String CharacterType;
         /**
-         * Maximum number of entries to retrieve.
+         * Maximum number of entries to retrieve. Default 10, maximum 100.
          */
         public Integer MaxResultsCount;
         
@@ -1094,13 +1126,37 @@ public class PlayFabClientModels {
          */
         public String StatisticName;
         /**
-         * Maximum number of entries to retrieve.
+         * Maximum number of entries to retrieve. Default 10, maximum 100.
          */
         public Integer MaxResultsCount;
         
     }
 
     public static class GetLeaderboardAroundCurrentUserResult {
+        /**
+         * Ordered listing of users and their positions in the requested leaderboard.
+         */
+        public ArrayList<PlayerLeaderboardEntry> Leaderboard;
+        
+    }
+
+    public static class GetLeaderboardAroundPlayerRequest {
+        /**
+         * PlayFab unique identifier of the user to center the leaderboard around. If null will center on the logged in user.
+         */
+        public String PlayFabId;
+        /**
+         * Statistic used to rank players for this leaderboard.
+         */
+        public String StatisticName;
+        /**
+         * Maximum number of entries to retrieve. Default 10, maximum 100.
+         */
+        public Integer MaxResultsCount;
+        
+    }
+
+    public static class GetLeaderboardAroundPlayerResult {
         /**
          * Ordered listing of users and their positions in the requested leaderboard.
          */
@@ -1138,7 +1194,7 @@ public class PlayFabClientModels {
          */
         public Integer StartPosition;
         /**
-         * Maximum number of entries to retrieve.
+         * Maximum number of entries to retrieve. Default 10, maximum 100.
          */
         public Integer MaxResultsCount;
         
@@ -2165,15 +2221,15 @@ public class PlayFabClientModels {
 
     public static class MatchmakeRequest {
         /**
-         * build version to match against
+         * build version to match against [Note: Required if LobbyId is not specified]
          */
         public String BuildVersion;
         /**
-         * region to match make against
+         * region to match make against [Note: Required if LobbyId is not specified]
          */
         public Region Region;
         /**
-         * game mode to match make against
+         * game mode to match make against [Note: Required if LobbyId is not specified]
          */
         public String GameMode;
         /**
@@ -2831,7 +2887,7 @@ public class PlayFabClientModels {
         /**
          * for updates to an existing statistic value for a player, the version of the statistic when it was loaded. Null when setting the statistic value for the first time.
          */
-        public String Version;
+        public Long Version;
         /**
          * statistic value for the player
          */
