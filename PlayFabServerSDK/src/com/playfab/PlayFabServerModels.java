@@ -1757,6 +1757,26 @@ public class PlayFabServerModels {
         
     }
 
+    public static class RevokeInventoryItemRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Unique PlayFab assigned ID for a specific character owned by a user
+         */
+        public String CharacterId;
+        /**
+         * Unique PlayFab assigned instance identifier of the item
+         */
+        public String ItemInstanceId;
+        
+    }
+
+    public static class RevokeInventoryResult {
+        
+    }
+
     public static class SendPushNotificationRequest {
         /**
          * PlayFabId of the recipient of the push notification.

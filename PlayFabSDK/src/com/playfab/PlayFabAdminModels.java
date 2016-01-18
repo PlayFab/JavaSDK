@@ -1571,7 +1571,7 @@ public class PlayFabAdminModels {
 
     public static class RevokeInventoryItemRequest {
         /**
-         * unique PlayFab identifier for the user account which is to have the specified item removed
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
          */
         public String PlayFabId;
         /**
@@ -1579,7 +1579,7 @@ public class PlayFabAdminModels {
          */
         public String CharacterId;
         /**
-         * unique PlayFab identifier for the item instance to be removed
+         * Unique PlayFab assigned instance identifier of the item
          */
         public String ItemInstanceId;
         

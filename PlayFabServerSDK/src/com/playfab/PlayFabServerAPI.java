@@ -2337,6 +2337,64 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Revokes access to an item in a user's inventory
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RevokeInventoryResult>> RevokeInventoryItemAsync(final RevokeInventoryItemRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RevokeInventoryResult>>() {
+            public PlayFabResult<RevokeInventoryResult> call() throws Exception {
+                return privateRevokeInventoryItemAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Revokes access to an item in a user's inventory
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RevokeInventoryResult> RevokeInventoryItem(final RevokeInventoryItemRequest request) {
+        FutureTask<PlayFabResult<RevokeInventoryResult>> task = new FutureTask(new Callable<PlayFabResult<RevokeInventoryResult>>() {
+            public PlayFabResult<RevokeInventoryResult> call() throws Exception {
+                return privateRevokeInventoryItemAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Revokes access to an item in a user's inventory
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RevokeInventoryResult> privateRevokeInventoryItemAsync(final RevokeInventoryItemRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/RevokeInventoryItem", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RevokeInventoryResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RevokeInventoryResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RevokeInventoryResult>>(){}.getType());
+        RevokeInventoryResult result = resultData.data;
+
+        PlayFabResult<RevokeInventoryResult> pfResult = new PlayFabResult<RevokeInventoryResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Decrements the character's balance of the specified virtual currency by the stated amount
      */
     @SuppressWarnings("unchecked")
