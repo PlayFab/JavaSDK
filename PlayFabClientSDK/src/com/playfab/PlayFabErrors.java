@@ -197,7 +197,10 @@ public class PlayFabErrors {
         InvalidPartnerResponse(1193),
         APINotEnabledForGameServerAccess(1194),
         StatisticNotFound(1195),
-        StatisticNameConflict(1196);
+        StatisticNameConflict(1196),
+        StatisticVersionClosedForWrites(1197),
+        StatisticVersionInvalid(1198),
+        APIClientRequestRateLimitExceeded(1199);
 
         public int id;
 

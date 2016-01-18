@@ -1,5 +1,6 @@
 package com.playfab;
 
+import android.util.Log;
 import com.playfab.internal.*;
 import com.playfab.PlayFabClientModels.*;
 import com.playfab.PlayFabErrors.*;
@@ -2723,6 +2724,64 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Retrieves a list of ranked friends of the current player for the given statistic, centered on the requested PlayFab user. If PlayFabId is empty or null will return currently logged in user.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetFriendLeaderboardAroundPlayerResult>> GetFriendLeaderboardAroundPlayerAsync(final GetFriendLeaderboardAroundPlayerRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetFriendLeaderboardAroundPlayerResult>>() {
+            public PlayFabResult<GetFriendLeaderboardAroundPlayerResult> call() throws Exception {
+                return privateGetFriendLeaderboardAroundPlayerAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves a list of ranked friends of the current player for the given statistic, centered on the requested PlayFab user. If PlayFabId is empty or null will return currently logged in user.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetFriendLeaderboardAroundPlayerResult> GetFriendLeaderboardAroundPlayer(final GetFriendLeaderboardAroundPlayerRequest request) {
+        FutureTask<PlayFabResult<GetFriendLeaderboardAroundPlayerResult>> task = new FutureTask(new Callable<PlayFabResult<GetFriendLeaderboardAroundPlayerResult>>() {
+            public PlayFabResult<GetFriendLeaderboardAroundPlayerResult> call() throws Exception {
+                return privateGetFriendLeaderboardAroundPlayerAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves a list of ranked friends of the current player for the given statistic, centered on the requested PlayFab user. If PlayFabId is empty or null will return currently logged in user.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetFriendLeaderboardAroundPlayerResult> privateGetFriendLeaderboardAroundPlayerAsync(final GetFriendLeaderboardAroundPlayerRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetFriendLeaderboardAroundPlayer", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetFriendLeaderboardAroundPlayerResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetFriendLeaderboardAroundPlayerResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetFriendLeaderboardAroundPlayerResult>>(){}.getType());
+        GetFriendLeaderboardAroundPlayerResult result = resultData.data;
+
+        PlayFabResult<GetFriendLeaderboardAroundPlayerResult> pfResult = new PlayFabResult<GetFriendLeaderboardAroundPlayerResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves a list of ranked users for the given statistic, starting from the indicated point in the leaderboard
      */
     @SuppressWarnings("unchecked")
@@ -2834,6 +2893,64 @@ public class PlayFabClientAPI {
         GetLeaderboardAroundCurrentUserResult result = resultData.data;
 
         PlayFabResult<GetLeaderboardAroundCurrentUserResult> pfResult = new PlayFabResult<GetLeaderboardAroundCurrentUserResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Retrieves a list of ranked users for the given statistic, centered on the requested player. If PlayFabId is empty or null will return currently logged in user.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetLeaderboardAroundPlayerResult>> GetLeaderboardAroundPlayerAsync(final GetLeaderboardAroundPlayerRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetLeaderboardAroundPlayerResult>>() {
+            public PlayFabResult<GetLeaderboardAroundPlayerResult> call() throws Exception {
+                return privateGetLeaderboardAroundPlayerAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves a list of ranked users for the given statistic, centered on the requested player. If PlayFabId is empty or null will return currently logged in user.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetLeaderboardAroundPlayerResult> GetLeaderboardAroundPlayer(final GetLeaderboardAroundPlayerRequest request) {
+        FutureTask<PlayFabResult<GetLeaderboardAroundPlayerResult>> task = new FutureTask(new Callable<PlayFabResult<GetLeaderboardAroundPlayerResult>>() {
+            public PlayFabResult<GetLeaderboardAroundPlayerResult> call() throws Exception {
+                return privateGetLeaderboardAroundPlayerAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves a list of ranked users for the given statistic, centered on the requested player. If PlayFabId is empty or null will return currently logged in user.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetLeaderboardAroundPlayerResult> privateGetLeaderboardAroundPlayerAsync(final GetLeaderboardAroundPlayerRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetLeaderboardAroundPlayer", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetLeaderboardAroundPlayerResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetLeaderboardAroundPlayerResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetLeaderboardAroundPlayerResult>>(){}.getType());
+        GetLeaderboardAroundPlayerResult result = resultData.data;
+
+        PlayFabResult<GetLeaderboardAroundPlayerResult> pfResult = new PlayFabResult<GetLeaderboardAroundPlayerResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -4811,7 +4928,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Attempts to locate a game session matching the given parameters. Note that parameters specified in the search are required (they are not weighting factors). If a slot is found in a server instance matching the parameters, the slot will be assigned to that player, removing it from the availabe set. In that case, the information on the game session will be returned, otherwise the Status returned will be GameNotFound. Note that EnableQueue is deprecated at this time.
+     * Attempts to locate a game session matching the given parameters. If the goal is to match the player into a specific active session, only the LobbyId is required. Otherwise, the BuildVersion, GameMode, and Region are all required parameters. Note that parameters specified in the search are required (they are not weighting factors). If a slot is found in a server instance matching the parameters, the slot will be assigned to that player, removing it from the availabe set. In that case, the information on the game session will be returned, otherwise the Status returned will be GameNotFound. Note that EnableQueue is deprecated at this time.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<MatchmakeResult>> MatchmakeAsync(final MatchmakeRequest request) {
@@ -4823,7 +4940,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Attempts to locate a game session matching the given parameters. Note that parameters specified in the search are required (they are not weighting factors). If a slot is found in a server instance matching the parameters, the slot will be assigned to that player, removing it from the availabe set. In that case, the information on the game session will be returned, otherwise the Status returned will be GameNotFound. Note that EnableQueue is deprecated at this time.
+     * Attempts to locate a game session matching the given parameters. If the goal is to match the player into a specific active session, only the LobbyId is required. Otherwise, the BuildVersion, GameMode, and Region are all required parameters. Note that parameters specified in the search are required (they are not weighting factors). If a slot is found in a server instance matching the parameters, the slot will be assigned to that player, removing it from the availabe set. In that case, the information on the game session will be returned, otherwise the Status returned will be GameNotFound. Note that EnableQueue is deprecated at this time.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<MatchmakeResult> Matchmake(final MatchmakeRequest request) {
@@ -4841,7 +4958,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Attempts to locate a game session matching the given parameters. Note that parameters specified in the search are required (they are not weighting factors). If a slot is found in a server instance matching the parameters, the slot will be assigned to that player, removing it from the availabe set. In that case, the information on the game session will be returned, otherwise the Status returned will be GameNotFound. Note that EnableQueue is deprecated at this time.
+     * Attempts to locate a game session matching the given parameters. If the goal is to match the player into a specific active session, only the LobbyId is required. Otherwise, the BuildVersion, GameMode, and Region are all required parameters. Note that parameters specified in the search are required (they are not weighting factors). If a slot is found in a server instance matching the parameters, the slot will be assigned to that player, removing it from the availabe set. In that case, the information on the game session will be returned, otherwise the Status returned will be GameNotFound. Note that EnableQueue is deprecated at this time.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<MatchmakeResult> privateMatchmakeAsync(final MatchmakeRequest request) throws Exception {
@@ -5856,7 +5973,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a list of ranked characters for the given statistic, centered on the currently signed-in user
+     * Retrieves a list of ranked characters for the given statistic, centered on the requested Character ID
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetLeaderboardAroundCharacterResult>> GetLeaderboardAroundCharacterAsync(final GetLeaderboardAroundCharacterRequest request) {
@@ -5868,7 +5985,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a list of ranked characters for the given statistic, centered on the currently signed-in user
+     * Retrieves a list of ranked characters for the given statistic, centered on the requested Character ID
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetLeaderboardAroundCharacterResult> GetLeaderboardAroundCharacter(final GetLeaderboardAroundCharacterRequest request) {
@@ -5886,7 +6003,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a list of ranked characters for the given statistic, centered on the currently signed-in user
+     * Retrieves a list of ranked characters for the given statistic, centered on the requested Character ID
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetLeaderboardAroundCharacterResult> privateGetLeaderboardAroundCharacterAsync(final GetLeaderboardAroundCharacterRequest request) throws Exception {
@@ -6603,6 +6720,7 @@ public class PlayFabClientAPI {
 
         PlayFabJsonSuccess<AttributeInstallResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AttributeInstallResult>>(){}.getType());
         AttributeInstallResult result = resultData.data;
+        // Modify AdvertisingIdType:  Prevents us from sending the id multiple times, and allows automated tests to determine id was sent successfully
         PlayFabSettings.AdvertisingIdType += "_Successful";
 
         PlayFabResult<AttributeInstallResult> pfResult = new PlayFabResult<AttributeInstallResult>();
@@ -6611,8 +6729,27 @@ public class PlayFabClientAPI {
     }
 
     public static void MultiStepClientLogin(Boolean needsAttribution) {
-        if (needsAttribution && !PlayFabSettings.DisableAdvertising && PlayFabSettings.AdvertisingIdType != null && PlayFabSettings.AdvertisingIdValue != null)
-        {
+        if (needsAttribution && !PlayFabSettings.DisableAdvertising
+        && (PlayFabSettings.AdvertisingIdType == null || PlayFabSettings.AdvertisingIdType == "")
+        && (PlayFabSettings.AdvertisingIdValue == null || PlayFabSettings.AdvertisingIdValue == "")
+        && PlayFabSettings.androidContext != null) {
+            try {
+                // Grab the android advertisingId and fill it in when needed
+                PlayFabGetAdvertId.AdInfo adInfo = com.playfab.PlayFabGetAdvertId.getAdvertisingIdInfo(PlayFabSettings.androidContext);
+                if (adInfo != null) {
+                    PlayFabSettings.AdvertisingIdType = PlayFabSettings.AD_TYPE_ANDROID_ID;
+                    PlayFabSettings.AdvertisingIdValue = adInfo.advertisingId;
+                    PlayFabSettings.DisableAdvertising = adInfo.limitAdTrackingEnabled;
+                } // else change nothing, I just can't provide any automatic values
+            } catch (Exception e) {
+                Log.e("MYAPP", "exception", e);
+                PlayFabSettings.AdvertisingIdType = "error";
+                PlayFabSettings.AdvertisingIdValue = null;
+                PlayFabSettings.DisableAdvertising = null;
+            }
+        }
+
+        if (needsAttribution && !PlayFabSettings.DisableAdvertising && PlayFabSettings.AdvertisingIdType != null && PlayFabSettings.AdvertisingIdValue != null) {
             PlayFabClientModels.AttributeInstallRequest request = new PlayFabClientModels.AttributeInstallRequest();
             if (PlayFabSettings.AdvertisingIdType == PlayFabSettings.AD_TYPE_IDFA)
                 request.Idfa = PlayFabSettings.AdvertisingIdValue;

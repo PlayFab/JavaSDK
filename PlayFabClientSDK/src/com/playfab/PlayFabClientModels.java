@@ -22,6 +22,9 @@ public class PlayFabClientModels {
     }
 
     public static class AcceptTradeResponse {
+        /**
+         * Details about trade which was just accepted.
+         */
         public TradeInfo Trade;
         
     }
@@ -151,6 +154,9 @@ public class PlayFabClientModels {
     }
 
     public static class CancelTradeResponse {
+        /**
+         * Details about trade which was just canceled.
+         */
         public TradeInfo Trade;
         
     }
@@ -359,8 +365,17 @@ public class PlayFabClientModels {
     }
 
     public static class CharacterResult {
+        /**
+         * The id for this character on this player.
+         */
         public String CharacterId;
+        /**
+         * The name of this character.
+         */
         public String CharacterName;
+        /**
+         * The type-string that was given to this character on creation.
+         */
         public String CharacterType;
         
     }
@@ -915,7 +930,7 @@ public class PlayFabClientModels {
          */
         public Integer StartPosition;
         /**
-         * Maximum number of entries to retrieve.
+         * Maximum number of entries to retrieve. Default 10, maximum 100.
          */
         public Integer MaxResultsCount;
         
@@ -979,7 +994,7 @@ public class PlayFabClientModels {
          */
         public String StatisticName;
         /**
-         * Maximum number of entries to retrieve.
+         * Maximum number of entries to retrieve. Default 10, maximum 100.
          */
         public Integer MaxResultsCount;
         /**
@@ -1001,6 +1016,38 @@ public class PlayFabClientModels {
         
     }
 
+    public static class GetFriendLeaderboardAroundPlayerRequest {
+        /**
+         * Statistic used to rank players for this leaderboard.
+         */
+        public String StatisticName;
+        /**
+         * Maximum number of entries to retrieve. Default 10, maximum 100.
+         */
+        public Integer MaxResultsCount;
+        /**
+         * PlayFab unique identifier of the user to center the leaderboard around. If null will center on the logged in user.
+         */
+        public String PlayFabId;
+        /**
+         * Indicates whether Steam service friends should be included in the response. Default is true.
+         */
+        public Boolean IncludeSteamFriends;
+        /**
+         * Indicates whether Facebook friends should be included in the response. Default is true.
+         */
+        public Boolean IncludeFacebookFriends;
+        
+    }
+
+    public static class GetFriendLeaderboardAroundPlayerResult {
+        /**
+         * Ordered listing of users and their positions in the requested leaderboard.
+         */
+        public ArrayList<PlayerLeaderboardEntry> Leaderboard;
+        
+    }
+
     public static class GetFriendLeaderboardRequest {
         /**
          * Statistic used to rank friends for this leaderboard.
@@ -1011,7 +1058,7 @@ public class PlayFabClientModels {
          */
         public Integer StartPosition;
         /**
-         * Maximum number of entries to retrieve.
+         * Maximum number of entries to retrieve. Default 10, maximum 100.
          */
         public Integer MaxResultsCount;
         /**
@@ -1051,7 +1098,7 @@ public class PlayFabClientModels {
          */
         public String StatisticName;
         /**
-         * Unique PlayFab assigned ID for a specific character owned by a user
+         * Unique PlayFab assigned ID for a specific character on which to center the leaderboard.
          */
         public String CharacterId;
         /**
@@ -1059,7 +1106,7 @@ public class PlayFabClientModels {
          */
         public String CharacterType;
         /**
-         * Maximum number of entries to retrieve.
+         * Maximum number of entries to retrieve. Default 10, maximum 100.
          */
         public Integer MaxResultsCount;
         
@@ -1079,13 +1126,37 @@ public class PlayFabClientModels {
          */
         public String StatisticName;
         /**
-         * Maximum number of entries to retrieve.
+         * Maximum number of entries to retrieve. Default 10, maximum 100.
          */
         public Integer MaxResultsCount;
         
     }
 
     public static class GetLeaderboardAroundCurrentUserResult {
+        /**
+         * Ordered listing of users and their positions in the requested leaderboard.
+         */
+        public ArrayList<PlayerLeaderboardEntry> Leaderboard;
+        
+    }
+
+    public static class GetLeaderboardAroundPlayerRequest {
+        /**
+         * PlayFab unique identifier of the user to center the leaderboard around. If null will center on the logged in user.
+         */
+        public String PlayFabId;
+        /**
+         * Statistic used to rank players for this leaderboard.
+         */
+        public String StatisticName;
+        /**
+         * Maximum number of entries to retrieve. Default 10, maximum 100.
+         */
+        public Integer MaxResultsCount;
+        
+    }
+
+    public static class GetLeaderboardAroundPlayerResult {
         /**
          * Ordered listing of users and their positions in the requested leaderboard.
          */
@@ -1123,7 +1194,7 @@ public class PlayFabClientModels {
          */
         public Integer StartPosition;
         /**
-         * Maximum number of entries to retrieve.
+         * Maximum number of entries to retrieve. Default 10, maximum 100.
          */
         public Integer MaxResultsCount;
         
@@ -1138,11 +1209,17 @@ public class PlayFabClientModels {
     }
 
     public static class GetPhotonAuthenticationTokenRequest {
+        /**
+         * The Photon applicationId for the game you wish to log into.
+         */
         public String PhotonApplicationId;
         
     }
 
     public static class GetPhotonAuthenticationTokenResult {
+        /**
+         * The Photon authentication token for this game-session.
+         */
         public String PhotonCustomAuthenticationToken;
         
     }
@@ -1172,7 +1249,13 @@ public class PlayFabClientModels {
     }
 
     public static class GetPlayerTradesResponse {
+        /**
+         * The trades for this player which are currently available to be accepted.
+         */
         public ArrayList<TradeInfo> OpenedTrades;
+        /**
+         * History of trades which this player has accepted.
+         */
         public ArrayList<TradeInfo> AcceptedTrades;
         
     }
@@ -1407,6 +1490,9 @@ public class PlayFabClientModels {
     }
 
     public static class GetTradeStatusResponse {
+        /**
+         * Information about the requested trade.
+         */
         public TradeInfo Trade;
         
     }
@@ -1598,6 +1684,9 @@ public class PlayFabClientModels {
          * Type of character that was created.
          */
         public String CharacterType;
+        /**
+         * Indicates whether this character was created successfully.
+         */
         public Boolean Result;
         
     }
@@ -1645,6 +1734,9 @@ public class PlayFabClientModels {
          * Unique identifier for the parent inventory item, as defined in the catalog, for object which were added from a bundle or container.
          */
         public String BundleParent;
+        /**
+         * CatalogItem.DisplayName at the time this item was purchased.
+         */
         public String DisplayName;
         /**
          * Currency type for the cost of the catalog item.
@@ -1852,6 +1944,9 @@ public class PlayFabClientModels {
     }
 
     public static class ListUsersCharactersResult {
+        /**
+         * The requested list of characters.
+         */
         public ArrayList<CharacterResult> Characters;
         
     }
@@ -2001,6 +2096,9 @@ public class PlayFabClientModels {
          * Automatically create a PlayFab account if one is not currently linked to this Google account.
          */
         public Boolean CreateAccount;
+        /**
+         * Deprecated - unused
+         */
         public String PublisherId;
         
     }
@@ -2123,15 +2221,15 @@ public class PlayFabClientModels {
 
     public static class MatchmakeRequest {
         /**
-         * build version to match against
+         * build version to match against [Note: Required if LobbyId is not specified]
          */
         public String BuildVersion;
         /**
-         * region to match make against
+         * region to match make against [Note: Required if LobbyId is not specified]
          */
         public Region Region;
         /**
-         * game mode to match make against
+         * game mode to match make against [Note: Required if LobbyId is not specified]
          */
         public String GameMode;
         /**
@@ -2228,6 +2326,9 @@ public class PlayFabClientModels {
     }
 
     public static class OpenTradeResponse {
+        /**
+         * The information about the trade that was just opened.
+         */
         public TradeInfo Trade;
         
     }
@@ -2559,7 +2660,13 @@ public class PlayFabClientModels {
     }
 
     public static class ReportPlayerClientResult {
+        /**
+         * Indicates whether this action completed successfully.
+         */
         public Boolean Updated;
+        /**
+         * The number of remaining reports which may be filed today.
+         */
         public Integer SubmissionsRemaining;
         
     }
@@ -2633,6 +2740,9 @@ public class PlayFabClientModels {
          * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
          */
         public String TitleId;
+        /**
+         * Deprecated - unused
+         */
         public String PublisherId;
         
     }
@@ -2777,7 +2887,7 @@ public class PlayFabClientModels {
         /**
          * for updates to an existing statistic value for a player, the version of the statistic when it was loaded. Null when setting the statistic value for the first time.
          */
-        public String Version;
+        public Long Version;
         /**
          * statistic value for the player
          */
@@ -2878,18 +2988,57 @@ public class PlayFabClientModels {
     }
 
     public static class TradeInfo {
+        /**
+         * Describes the current state of this trade.
+         */
         public TradeStatus Status;
+        /**
+         * The identifier for this trade.
+         */
         public String TradeId;
+        /**
+         * The PlayFabId for the offering player.
+         */
         public String OfferingPlayerId;
+        /**
+         * The itemInstance Ids that are being offered.
+         */
         public ArrayList<String> OfferedInventoryInstanceIds;
+        /**
+         * The catalogItem Ids of the item instances being offered.
+         */
         public ArrayList<String> OfferedCatalogItemIds;
+        /**
+         * The catalogItem Ids requested in exchange.
+         */
         public ArrayList<String> RequestedCatalogItemIds;
+        /**
+         * An optional list of players allowed to complete this trade.  If null, anybody can complete the trade.
+         */
         public ArrayList<String> AllowedPlayerIds;
+        /**
+         * The PlayFab ID of the player who accepted the trade. If null, no one has accepted the trade.
+         */
         public String AcceptedPlayerId;
+        /**
+         * Item instances from the accepting player that are used to fulfill the trade. If null, no one has accepted the trade.
+         */
         public ArrayList<String> AcceptedInventoryInstanceIds;
+        /**
+         * The UTC time when this trade was created.
+         */
         public Date OpenedAt;
+        /**
+         * If set, The UTC time when this trade was fulfilled.
+         */
         public Date FilledAt;
+        /**
+         * If set, The UTC time when this trade was canceled.
+         */
         public Date CancelledAt;
+        /**
+         * If set, The UTC time when this trade was made invalid.
+         */
         public Date InvalidatedAt;
         
     }

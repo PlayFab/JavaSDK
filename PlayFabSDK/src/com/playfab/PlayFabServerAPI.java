@@ -2279,7 +2279,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Submit a report about a player (due to bad bahavior, etc.) on behalf of another player, so that customer service representatives for the title can take action concerning potentially poxic players.
+     * Submit a report about a player (due to bad bahavior, etc.) on behalf of another player, so that customer service representatives for the title can take action concerning potentially toxic players.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ReportPlayerServerResult>> ReportPlayerAsync(final ReportPlayerServerRequest request) {
@@ -2291,7 +2291,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Submit a report about a player (due to bad bahavior, etc.) on behalf of another player, so that customer service representatives for the title can take action concerning potentially poxic players.
+     * Submit a report about a player (due to bad bahavior, etc.) on behalf of another player, so that customer service representatives for the title can take action concerning potentially toxic players.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ReportPlayerServerResult> ReportPlayer(final ReportPlayerServerRequest request) {
@@ -2309,7 +2309,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Submit a report about a player (due to bad bahavior, etc.) on behalf of another player, so that customer service representatives for the title can take action concerning potentially poxic players.
+     * Submit a report about a player (due to bad bahavior, etc.) on behalf of another player, so that customer service representatives for the title can take action concerning potentially toxic players.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ReportPlayerServerResult> privateReportPlayerAsync(final ReportPlayerServerRequest request) throws Exception {
