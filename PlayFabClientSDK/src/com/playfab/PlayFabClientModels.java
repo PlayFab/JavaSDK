@@ -1992,6 +1992,10 @@ public class PlayFabClientModels {
          * Settings specific to this user.
          */
         public UserSettings SettingsForUser;
+        /**
+         * The time of this user's previous login. If there was no previous login, then it's DateTime.MinValue
+         */
+        public Date LastLoginTime;
         
     }
 
