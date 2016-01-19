@@ -54,6 +54,10 @@ public class PlayFabAdminModels {
          * maximum number of game server instances that can run on a single host machine
          */
         public Integer MaxGamesPerHost;
+        /**
+         * minimum capacity of additional game server instances that can be started before the autoscaling service starts new host machines (given the number of current running host machines and game server instances)
+         */
+        public Integer MinFreeGameSlots;
         
     }
 
@@ -70,6 +74,10 @@ public class PlayFabAdminModels {
          * maximum number of game server instances that can run on a single host machine
          */
         public Integer MaxGamesPerHost;
+        /**
+         * minimum capacity of additional game server instances that can be started before the autoscaling service starts new host machines (given the number of current running host machines and game server instances)
+         */
+        public Integer MinFreeGameSlots;
         /**
          * appended to the end of the command line when starting game servers
          */
@@ -828,6 +836,10 @@ public class PlayFabAdminModels {
          */
         public Integer MaxGamesPerHost;
         /**
+         * minimum capacity of additional game server instances that can be started before the autoscaling service starts new host machines (given the number of current running host machines and game server instances)
+         */
+        public Integer MinFreeGameSlots;
+        /**
          * developer comment(s) for this build
          */
         public String Comment;
@@ -1278,6 +1290,10 @@ public class PlayFabAdminModels {
          */
         public Integer MaxGamesPerHost;
         /**
+         * minimum capacity of additional game server instances that can be started before the autoscaling service starts new host machines (given the number of current running host machines and game server instances)
+         */
+        public Integer MinFreeGameSlots;
+        /**
          * appended to the end of the command line when starting game servers
          */
         public String CommandLineTemplate;
@@ -1305,6 +1321,10 @@ public class PlayFabAdminModels {
          * maximum number of game server instances that can run on a single host machine
          */
         public Integer MaxGamesPerHost;
+        /**
+         * minimum capacity of additional game server instances that can be started before the autoscaling service starts new host machines (given the number of current running host machines and game server instances)
+         */
+        public Integer MinFreeGameSlots;
         /**
          * appended to the end of the command line when starting game servers
          */
