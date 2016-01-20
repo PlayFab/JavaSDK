@@ -944,6 +944,22 @@ public class PlayFabClientModels {
         
     }
 
+    public static class GetCharacterStatisticsRequest {
+        /**
+         * Unique PlayFab assigned ID for a specific character owned by a user
+         */
+        public String CharacterId;
+        
+    }
+
+    public static class GetCharacterStatisticsResult {
+        /**
+         * The requested character statistics.
+         */
+        public Map<String,Integer> CharacterStatistics;
+        
+    }
+
     public static class GetCloudScriptUrlRequest {
         /**
          * Cloud Script Version to use. Defaults to 1.
@@ -3237,6 +3253,22 @@ public class PlayFabClientModels {
          * Indicates the current version of the data that has been set. This is incremented with every set call for that type of data (read-only, internal, etc). This version can be provided in Get calls to find updated data.
          */
         public Long DataVersion;
+        
+    }
+
+    public static class UpdateCharacterStatisticsRequest {
+        /**
+         * Unique PlayFab assigned ID for a specific character owned by a user
+         */
+        public String CharacterId;
+        /**
+         * Statistics to be updated with the provided values.
+         */
+        public Map<String,Integer> CharacterStatistics;
+        
+    }
+
+    public static class UpdateCharacterStatisticsResult {
         
     }
 

@@ -5973,6 +5973,64 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Retrieves the details of all title-specific statistics for the user
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetCharacterStatisticsResult>> GetCharacterStatisticsAsync(final GetCharacterStatisticsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetCharacterStatisticsResult>>() {
+            public PlayFabResult<GetCharacterStatisticsResult> call() throws Exception {
+                return privateGetCharacterStatisticsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the details of all title-specific statistics for the user
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetCharacterStatisticsResult> GetCharacterStatistics(final GetCharacterStatisticsRequest request) {
+        FutureTask<PlayFabResult<GetCharacterStatisticsResult>> task = new FutureTask(new Callable<PlayFabResult<GetCharacterStatisticsResult>>() {
+            public PlayFabResult<GetCharacterStatisticsResult> call() throws Exception {
+                return privateGetCharacterStatisticsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves the details of all title-specific statistics for the user
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetCharacterStatisticsResult> privateGetCharacterStatisticsAsync(final GetCharacterStatisticsRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetCharacterStatistics", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetCharacterStatisticsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetCharacterStatisticsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetCharacterStatisticsResult>>(){}.getType());
+        GetCharacterStatisticsResult result = resultData.data;
+
+        PlayFabResult<GetCharacterStatisticsResult> pfResult = new PlayFabResult<GetCharacterStatisticsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves a list of ranked characters for the given statistic, centered on the requested Character ID
      */
     @SuppressWarnings("unchecked")
@@ -6142,6 +6200,63 @@ public class PlayFabClientAPI {
         GrantCharacterToUserResult result = resultData.data;
 
         PlayFabResult<GrantCharacterToUserResult> pfResult = new PlayFabResult<GrantCharacterToUserResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Updates the values of the specified title-specific statistics for the specific character
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<UpdateCharacterStatisticsResult>> UpdateCharacterStatisticsAsync(final UpdateCharacterStatisticsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<UpdateCharacterStatisticsResult>>() {
+            public PlayFabResult<UpdateCharacterStatisticsResult> call() throws Exception {
+                return privateUpdateCharacterStatisticsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Updates the values of the specified title-specific statistics for the specific character
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<UpdateCharacterStatisticsResult> UpdateCharacterStatistics(final UpdateCharacterStatisticsRequest request) {
+        FutureTask<PlayFabResult<UpdateCharacterStatisticsResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateCharacterStatisticsResult>>() {
+            public PlayFabResult<UpdateCharacterStatisticsResult> call() throws Exception {
+                return privateUpdateCharacterStatisticsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Updates the values of the specified title-specific statistics for the specific character
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<UpdateCharacterStatisticsResult> privateUpdateCharacterStatisticsAsync(final UpdateCharacterStatisticsRequest request) throws Exception {
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UpdateCharacterStatistics", request, null, null);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<UpdateCharacterStatisticsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<UpdateCharacterStatisticsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateCharacterStatisticsResult>>(){}.getType());
+        UpdateCharacterStatisticsResult result = resultData.data;
+
+        PlayFabResult<UpdateCharacterStatisticsResult> pfResult = new PlayFabResult<UpdateCharacterStatisticsResult>();
         pfResult.Result = result;
         return pfResult;
     }
