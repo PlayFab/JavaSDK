@@ -1779,7 +1779,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class ItemPuchaseRequest {
+    public static class ItemPurchaseRequest {
         /**
          * Unique ItemId of the item to purchase.
          */
@@ -2875,7 +2875,7 @@ public class PlayFabClientModels {
         /**
          * Array of items to purchase.
          */
-        public ArrayList<ItemPuchaseRequest> Items;
+        public ArrayList<ItemPurchaseRequest> Items;
         
     }
 
