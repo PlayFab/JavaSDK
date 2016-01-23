@@ -1324,6 +1324,22 @@ public class PlayFabClientModels {
         
     }
 
+    public static class GetPlayFabIDsFromKongregateIDsRequest {
+        /**
+         * Array of unique Kongregate identifiers (Kongregate's user_id) for which the title needs to get PlayFab identifiers.
+         */
+        public ArrayList<String> KongregateIDs;
+        
+    }
+
+    public static class GetPlayFabIDsFromKongregateIDsResult {
+        /**
+         * Mapping of Kongregate identifiers to PlayFab identifiers.
+         */
+        public ArrayList<KongregatePlayFabIdPair> Data;
+        
+    }
+
     public static class GetPlayFabIDsFromPSNAccountIDsRequest {
         /**
          * Array of unique PlayStation Network identifiers for which the title needs to get PlayFab identifiers.
@@ -1796,6 +1812,18 @@ public class PlayFabClientModels {
          * Items to be upgraded as a result of this purchase (upgraded items are hidden, as they are "replaced" by the new items).
          */
         public ArrayList<String> UpgradeFromItems;
+        
+    }
+
+    public static class KongregatePlayFabIdPair {
+        /**
+         * Unique Kongregate identifier for a user.
+         */
+        public String KongregateId;
+        /**
+         * Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Kongregate identifier.
+         */
+        public String PlayFabId;
         
     }
 
