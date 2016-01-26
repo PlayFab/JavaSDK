@@ -1053,7 +1053,7 @@ public class PlayFabServerModels {
 
     public static class GetUserAccountInfoResult {
         /**
-         * Account info for the user whose information was requested.
+         * Account details for the user whose information was requested.
          */
         public UserAccountInfo UserInfo;
         
@@ -1757,6 +1757,26 @@ public class PlayFabServerModels {
         
     }
 
+    public static class RevokeInventoryItemRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Unique PlayFab assigned ID for a specific character owned by a user
+         */
+        public String CharacterId;
+        /**
+         * Unique PlayFab assigned instance identifier of the item
+         */
+        public String ItemInstanceId;
+        
+    }
+
+    public static class RevokeInventoryResult {
+        
+    }
+
     public static class SendPushNotificationRequest {
         /**
          * PlayFabId of the recipient of the push notification.
@@ -2107,37 +2127,81 @@ public class PlayFabServerModels {
 
     public static class UserAccountInfo {
         /**
-         * unique identifier for the user account
+         * Unique identifier for the user account
          */
         public String PlayFabId;
         /**
-         * timestamp indicating when the user account was created
+         * Timestamp indicating when the user account was created
          */
         public Date Created;
         /**
-         * user account name in the PlayFab service
+         * User account name in the PlayFab service
          */
         public String Username;
         /**
-         * title-specific information for the user account
+         * Title-specific information for the user account
          */
         public UserTitleInfo TitleInfo;
         /**
-         * personal information for the user which is considered more sensitive
+         * Personal information for the user which is considered more sensitive
          */
         public UserPrivateAccountInfo PrivateInfo;
         /**
-         * user Facebook information, if a Facebook account has been linked
+         * User Facebook information, if a Facebook account has been linked
          */
         public UserFacebookInfo FacebookInfo;
         /**
-         * user Steam information, if a Steam account has been linked
+         * User Steam information, if a Steam account has been linked
          */
         public UserSteamInfo SteamInfo;
         /**
-         * user Gamecenter information, if a Gamecenter account has been linked
+         * User Gamecenter information, if a Gamecenter account has been linked
          */
         public UserGameCenterInfo GameCenterInfo;
+        /**
+         * User iOS device information, if an iOS device has been linked
+         */
+        public UserIosDeviceInfo IosDeviceInfo;
+        /**
+         * User Android device information, if an Android device has been linked
+         */
+        public UserAndroidDeviceInfo AndroidDeviceInfo;
+        /**
+         * User Kongregate account information, if a Kongregate account has been linked
+         */
+        public UserKongregateInfo KongregateInfo;
+        /**
+         * User PSN account information, if a PSN account has been linked
+         */
+        public UserPsnInfo PsnInfo;
+        /**
+         * User Google account information, if a Google account has been linked
+         */
+        public UserGoogleInfo GoogleInfo;
+        /**
+         * User XBox account information, if a XBox account has been linked
+         */
+        public UserXboxInfo XboxInfo;
+        /**
+         * Custom ID information, if a custom ID has been assigned
+         */
+        public UserCustomIdInfo CustomIdInfo;
+        
+    }
+
+    public static class UserAndroidDeviceInfo {
+        /**
+         * Android device ID
+         */
+        public String AndroidDeviceId;
+        
+    }
+
+    public static class UserCustomIdInfo {
+        /**
+         * Custom ID
+         */
+        public String CustomId;
         
     }
 
@@ -2182,6 +2246,46 @@ public class PlayFabServerModels {
         
     }
 
+    public static class UserGoogleInfo {
+        /**
+         * Google ID
+         */
+        public String GoogleId;
+        /**
+         * Email address of the Google account
+         */
+        public String GoogleEmail;
+        /**
+         * Locale of the Google account
+         */
+        public String GoogleLocale;
+        /**
+         * Gender information of the Google account
+         */
+        public String GoogleGender;
+        
+    }
+
+    public static class UserIosDeviceInfo {
+        /**
+         * iOS device ID
+         */
+        public String IosDeviceId;
+        
+    }
+
+    public static class UserKongregateInfo {
+        /**
+         * Kongregate ID
+         */
+        public String KongregateId;
+        /**
+         * Kongregate Username
+         */
+        public String KongregateName;
+        
+    }
+
     public static enum UserOrigination {
         Organic,
         Steam,
@@ -2205,6 +2309,18 @@ public class PlayFabServerModels {
          * user email address
          */
         public String Email;
+        
+    }
+
+    public static class UserPsnInfo {
+        /**
+         * PSN account ID
+         */
+        public String PsnAccountId;
+        /**
+         * PSN online ID
+         */
+        public String PsnOnlineId;
         
     }
 
@@ -2253,6 +2369,14 @@ public class PlayFabServerModels {
          * boolean indicating whether or not the user is currently banned for a title
          */
         public Boolean isBanned;
+        
+    }
+
+    public static class UserXboxInfo {
+        /**
+         * XBox user ID
+         */
+        public String XboxUserId;
         
     }
 
