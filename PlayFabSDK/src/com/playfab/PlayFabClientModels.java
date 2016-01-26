@@ -944,6 +944,22 @@ public class PlayFabClientModels {
         
     }
 
+    public static class GetCharacterStatisticsRequest {
+        /**
+         * Unique PlayFab assigned ID for a specific character owned by a user
+         */
+        public String CharacterId;
+        
+    }
+
+    public static class GetCharacterStatisticsResult {
+        /**
+         * The requested character statistics.
+         */
+        public Map<String,Integer> CharacterStatistics;
+        
+    }
+
     public static class GetCloudScriptUrlRequest {
         /**
          * Cloud Script Version to use. Defaults to 1.
@@ -1305,6 +1321,22 @@ public class PlayFabClientModels {
          * Mapping of Google identifiers to PlayFab identifiers.
          */
         public ArrayList<GooglePlayFabIdPair> Data;
+        
+    }
+
+    public static class GetPlayFabIDsFromKongregateIDsRequest {
+        /**
+         * Array of unique Kongregate identifiers (Kongregate's user_id) for which the title needs to get PlayFab identifiers.
+         */
+        public ArrayList<String> KongregateIDs;
+        
+    }
+
+    public static class GetPlayFabIDsFromKongregateIDsResult {
+        /**
+         * Mapping of Kongregate identifiers to PlayFab identifiers.
+         */
+        public ArrayList<KongregatePlayFabIdPair> Data;
         
     }
 
@@ -1763,7 +1795,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class ItemPuchaseRequest {
+    public static class ItemPurchaseRequest {
         /**
          * Unique ItemId of the item to purchase.
          */
@@ -1780,6 +1812,18 @@ public class PlayFabClientModels {
          * Items to be upgraded as a result of this purchase (upgraded items are hidden, as they are "replaced" by the new items).
          */
         public ArrayList<String> UpgradeFromItems;
+        
+    }
+
+    public static class KongregatePlayFabIdPair {
+        /**
+         * Unique Kongregate identifier for a user.
+         */
+        public String KongregateId;
+        /**
+         * Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Kongregate identifier.
+         */
+        public String PlayFabId;
         
     }
 
@@ -1992,6 +2036,10 @@ public class PlayFabClientModels {
          * Settings specific to this user.
          */
         public UserSettings SettingsForUser;
+        /**
+         * The time of this user's previous login. If there was no previous login, then it's DateTime.MinValue
+         */
+        public Date LastLoginTime;
         
     }
 
@@ -2855,7 +2903,7 @@ public class PlayFabClientModels {
         /**
          * Array of items to purchase.
          */
-        public ArrayList<ItemPuchaseRequest> Items;
+        public ArrayList<ItemPurchaseRequest> Items;
         
     }
 
@@ -3236,6 +3284,22 @@ public class PlayFabClientModels {
         
     }
 
+    public static class UpdateCharacterStatisticsRequest {
+        /**
+         * Unique PlayFab assigned ID for a specific character owned by a user
+         */
+        public String CharacterId;
+        /**
+         * Statistics to be updated with the provided values.
+         */
+        public Map<String,Integer> CharacterStatistics;
+        
+    }
+
+    public static class UpdateCharacterStatisticsResult {
+        
+    }
+
     public static class UpdatePlayerStatisticsRequest {
         /**
          * Statistics to be updated with the provided values
@@ -3326,37 +3390,81 @@ public class PlayFabClientModels {
 
     public static class UserAccountInfo {
         /**
-         * unique identifier for the user account
+         * Unique identifier for the user account
          */
         public String PlayFabId;
         /**
-         * timestamp indicating when the user account was created
+         * Timestamp indicating when the user account was created
          */
         public Date Created;
         /**
-         * user account name in the PlayFab service
+         * User account name in the PlayFab service
          */
         public String Username;
         /**
-         * title-specific information for the user account
+         * Title-specific information for the user account
          */
         public UserTitleInfo TitleInfo;
         /**
-         * personal information for the user which is considered more sensitive
+         * Personal information for the user which is considered more sensitive
          */
         public UserPrivateAccountInfo PrivateInfo;
         /**
-         * user Facebook information, if a Facebook account has been linked
+         * User Facebook information, if a Facebook account has been linked
          */
         public UserFacebookInfo FacebookInfo;
         /**
-         * user Steam information, if a Steam account has been linked
+         * User Steam information, if a Steam account has been linked
          */
         public UserSteamInfo SteamInfo;
         /**
-         * user Gamecenter information, if a Gamecenter account has been linked
+         * User Gamecenter information, if a Gamecenter account has been linked
          */
         public UserGameCenterInfo GameCenterInfo;
+        /**
+         * User iOS device information, if an iOS device has been linked
+         */
+        public UserIosDeviceInfo IosDeviceInfo;
+        /**
+         * User Android device information, if an Android device has been linked
+         */
+        public UserAndroidDeviceInfo AndroidDeviceInfo;
+        /**
+         * User Kongregate account information, if a Kongregate account has been linked
+         */
+        public UserKongregateInfo KongregateInfo;
+        /**
+         * User PSN account information, if a PSN account has been linked
+         */
+        public UserPsnInfo PsnInfo;
+        /**
+         * User Google account information, if a Google account has been linked
+         */
+        public UserGoogleInfo GoogleInfo;
+        /**
+         * User XBox account information, if a XBox account has been linked
+         */
+        public UserXboxInfo XboxInfo;
+        /**
+         * Custom ID information, if a custom ID has been assigned
+         */
+        public UserCustomIdInfo CustomIdInfo;
+        
+    }
+
+    public static class UserAndroidDeviceInfo {
+        /**
+         * Android device ID
+         */
+        public String AndroidDeviceId;
+        
+    }
+
+    public static class UserCustomIdInfo {
+        /**
+         * Custom ID
+         */
+        public String CustomId;
         
     }
 
@@ -3401,6 +3509,46 @@ public class PlayFabClientModels {
         
     }
 
+    public static class UserGoogleInfo {
+        /**
+         * Google ID
+         */
+        public String GoogleId;
+        /**
+         * Email address of the Google account
+         */
+        public String GoogleEmail;
+        /**
+         * Locale of the Google account
+         */
+        public String GoogleLocale;
+        /**
+         * Gender information of the Google account
+         */
+        public String GoogleGender;
+        
+    }
+
+    public static class UserIosDeviceInfo {
+        /**
+         * iOS device ID
+         */
+        public String IosDeviceId;
+        
+    }
+
+    public static class UserKongregateInfo {
+        /**
+         * Kongregate ID
+         */
+        public String KongregateId;
+        /**
+         * Kongregate Username
+         */
+        public String KongregateName;
+        
+    }
+
     public static enum UserOrigination {
         Organic,
         Steam,
@@ -3424,6 +3572,18 @@ public class PlayFabClientModels {
          * user email address
          */
         public String Email;
+        
+    }
+
+    public static class UserPsnInfo {
+        /**
+         * PSN account ID
+         */
+        public String PsnAccountId;
+        /**
+         * PSN online ID
+         */
+        public String PsnOnlineId;
         
     }
 
@@ -3480,6 +3640,14 @@ public class PlayFabClientModels {
          * boolean indicating whether or not the user is currently banned for a title
          */
         public Boolean isBanned;
+        
+    }
+
+    public static class UserXboxInfo {
+        /**
+         * XBox user ID
+         */
+        public String XboxUserId;
         
     }
 
