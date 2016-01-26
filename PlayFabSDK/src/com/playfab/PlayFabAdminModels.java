@@ -1104,6 +1104,8 @@ public class PlayFabAdminModels {
     }
 
     public static enum Interval {
+        FiveMinutes,
+        FifteenMinutes,
         Hour,
         Day,
         Week,
