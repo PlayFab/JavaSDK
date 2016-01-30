@@ -203,7 +203,9 @@ public class PlayFabErrors {
         APIClientRequestRateLimitExceeded(1199),
         InvalidJSONContent(1200),
         InvalidDropTable(1201),
-        StatisticVersionAlreadyIncrementedForScheduledInterval(1202);
+        StatisticVersionAlreadyIncrementedForScheduledInterval(1202),
+        StatisticCountLimitExceeded(1203),
+        StatisticVersionIncrementRateExceeded(1204);
 
         public int id;
 
