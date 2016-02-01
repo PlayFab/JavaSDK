@@ -1699,6 +1699,64 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's inventory.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ConsumeItemResult>> ConsumeItemAsync(final ConsumeItemRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ConsumeItemResult>>() {
+            public PlayFabResult<ConsumeItemResult> call() throws Exception {
+                return privateConsumeItemAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's inventory.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ConsumeItemResult> ConsumeItem(final ConsumeItemRequest request) {
+        FutureTask<PlayFabResult<ConsumeItemResult>> task = new FutureTask(new Callable<PlayFabResult<ConsumeItemResult>>() {
+            public PlayFabResult<ConsumeItemResult> call() throws Exception {
+                return privateConsumeItemAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's inventory.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ConsumeItemResult> privateConsumeItemAsync(final ConsumeItemRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/ConsumeItem", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ConsumeItemResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ConsumeItemResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ConsumeItemResult>>(){}.getType());
+        ConsumeItemResult result = resultData.data;
+
+        PlayFabResult<ConsumeItemResult> pfResult = new PlayFabResult<ConsumeItemResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the specified character's current inventory of virtual goods
      */
     @SuppressWarnings("unchecked")

@@ -622,7 +622,7 @@ public class PlayFabAdminModels {
         /**
          * Number of content items returned. We currently have a maximum of 1000 items limit.
          */
-        public Long ItemCount;
+        public Integer ItemCount;
         /**
          * The total size of listed contents in bytes.
          */
@@ -1104,6 +1104,8 @@ public class PlayFabAdminModels {
     }
 
     public static enum Interval {
+        FiveMinutes,
+        FifteenMinutes,
         Hour,
         Day,
         Week,
