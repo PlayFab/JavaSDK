@@ -312,6 +312,38 @@ public class PlayFabServerModels {
         
     }
 
+    public static class ConsumeItemRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Unique instance identifier of the item to be consumed.
+         */
+        public String ItemInstanceId;
+        /**
+         * Number of uses to consume from the item.
+         */
+        public Integer ConsumeCount;
+        /**
+         * Unique PlayFab assigned ID for a specific character owned by a user
+         */
+        public String CharacterId;
+        
+    }
+
+    public static class ConsumeItemResult {
+        /**
+         * Unique instance identifier of the item with uses consumed.
+         */
+        public String ItemInstanceId;
+        /**
+         * Number of uses remaining on the item.
+         */
+        public Integer RemainingUses;
+        
+    }
+
     public static class CreateSharedGroupRequest {
         /**
          * Unique identifier for the shared group (a random identifier will be assigned, if one is not specified).
