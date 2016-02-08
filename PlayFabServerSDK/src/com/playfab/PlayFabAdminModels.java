@@ -316,11 +316,11 @@ public class PlayFabAdminModels {
         /**
          * unique name of the statistic
          */
-        public String Name;
+        public String StatisticName;
         /**
          * interval at which the values of the statistic for all players are reset. Resets begin at the next interval boundary
          */
-        public Interval VersionChangeInterval;
+        public StatisticResetIntervalOption VersionChangeInterval;
         
     }
 
@@ -1103,15 +1103,6 @@ public class PlayFabAdminModels {
         
     }
 
-    public static enum Interval {
-        FiveMinutes,
-        FifteenMinutes,
-        Hour,
-        Day,
-        Week,
-        Month
-    }
-
     public static class ItemGrant {
         /**
          * Unique PlayFab assigned ID of the user on whom the operation will be performed.
@@ -1386,7 +1377,7 @@ public class PlayFabAdminModels {
         /**
          * interval at which the values of the statistic for all players are reset
          */
-        public Interval VersionChangeInterval;
+        public StatisticResetIntervalOption VersionChangeInterval;
         
     }
 
@@ -1703,6 +1694,14 @@ public class PlayFabAdminModels {
         
     }
 
+    public static enum StatisticResetIntervalOption {
+        Never,
+        Hour,
+        Day,
+        Week,
+        Month
+    }
+
     public static enum StatisticVersionArchivalStatus {
         NotScheduled,
         Scheduled,
@@ -1807,7 +1806,7 @@ public class PlayFabAdminModels {
         /**
          * interval at which the values of the statistic for all players are reset. Changes are effective at the next interval boundary
          */
-        public Interval VersionChangeInterval;
+        public StatisticResetIntervalOption VersionChangeInterval;
         
     }
 

@@ -3220,13 +3220,33 @@ public class PlayFabClientModels {
         
     }
 
+    public static class UnlockContainerInstanceRequest {
+        /**
+         * Unique PlayFab assigned ID for a specific character owned by a user
+         */
+        public String CharacterId;
+        /**
+         * ItemInstanceId of the container to unlock.
+         */
+        public String ContainerItemInstanceId;
+        /**
+         * ItemInstanceId of the key that will be consumed by unlocking this container.  If the container requires a key, this parameter is required.
+         */
+        public String KeyItemInstanceId;
+        /**
+         * Specifies the catalog version that should be used to determine container contents.  If unspecified, uses catalog associated with the item instance.
+         */
+        public String CatalogVersion;
+        
+    }
+
     public static class UnlockContainerItemRequest {
         /**
-         * Category ItemId of the container type to unlock.
+         * Catalog ItemId of the container type to unlock.
          */
         public String ContainerItemId;
         /**
-         * Catalog version of the container.
+         * Specifies the catalog version that should be used to determine container contents.  If unspecified, uses default/primary catalog.
          */
         public String CatalogVersion;
         /**
