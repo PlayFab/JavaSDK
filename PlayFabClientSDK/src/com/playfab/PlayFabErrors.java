@@ -205,7 +205,8 @@ public class PlayFabErrors {
         InvalidDropTable(1201),
         StatisticVersionAlreadyIncrementedForScheduledInterval(1202),
         StatisticCountLimitExceeded(1203),
-        StatisticVersionIncrementRateExceeded(1204);
+        StatisticVersionIncrementRateExceeded(1204),
+        ContainerKeyInvalid(1205);
 
         public int id;
 
