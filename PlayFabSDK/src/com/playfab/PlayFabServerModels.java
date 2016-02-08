@@ -1977,6 +1977,70 @@ public class PlayFabServerModels {
         
     }
 
+    public static class UnlockContainerInstanceRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Unique PlayFab assigned ID for a specific character owned by a user
+         */
+        public String CharacterId;
+        /**
+         * ItemInstanceId of the container to unlock.
+         */
+        public String ContainerItemInstanceId;
+        /**
+         * ItemInstanceId of the key that will be consumed by unlocking this container.  If the container requires a key, this parameter is required.
+         */
+        public String KeyItemInstanceId;
+        /**
+         * Specifies the catalog version that should be used to determine container contents.  If unspecified, uses catalog associated with the item instance.
+         */
+        public String CatalogVersion;
+        
+    }
+
+    public static class UnlockContainerItemRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Unique PlayFab assigned ID for a specific character owned by a user
+         */
+        public String CharacterId;
+        /**
+         * Catalog ItemId of the container type to unlock.
+         */
+        public String ContainerItemId;
+        /**
+         * Specifies the catalog version that should be used to determine container contents.  If unspecified, uses default/primary catalog.
+         */
+        public String CatalogVersion;
+        
+    }
+
+    public static class UnlockContainerItemResult {
+        /**
+         * Unique instance identifier of the container unlocked.
+         */
+        public String UnlockedItemInstanceId;
+        /**
+         * Unique instance identifier of the key used to unlock the container, if applicable.
+         */
+        public String UnlockedWithItemInstanceId;
+        /**
+         * Items granted to the player as a result of unlocking the container.
+         */
+        public ArrayList<ItemInstance> GrantedItems;
+        /**
+         * Virtual currency granted to the player as a result of unlocking the container.
+         */
+        public Map<String,Long> VirtualCurrency;
+        
+    }
+
     public static class UpdateCharacterDataRequest {
         /**
          * Unique PlayFab assigned ID of the user on whom the operation will be performed.
