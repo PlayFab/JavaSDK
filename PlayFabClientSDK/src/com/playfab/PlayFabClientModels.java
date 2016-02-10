@@ -1362,9 +1362,13 @@ public class PlayFabClientModels {
 
     public static class GetPlayFabIDsFromSteamIDsRequest {
         /**
-         * Array of unique Steam identifiers (Steam profile IDs) for which the title needs to get PlayFab identifiers.
+         * Deprecated: Please use SteamStringIDs
          */
         public ArrayList<Long> SteamIDs;
+        /**
+         * Array of unique Steam identifiers (Steam profile IDs) for which the title needs to get PlayFab identifiers.
+         */
+        public ArrayList<String> SteamStringIDs;
         
     }
 
@@ -2961,9 +2965,13 @@ public class PlayFabClientModels {
 
     public static class SteamPlayFabIdPair {
         /**
-         * Unique Steam identifier for a user.
+         * Deprecated: Please use SteamStringId
          */
         public Long SteamId;
+        /**
+         * Unique Steam identifier for a user.
+         */
+        public String SteamStringId;
         /**
          * Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Steam identifier.
          */
