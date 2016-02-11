@@ -2185,7 +2185,7 @@ public class PlayFabClientModels {
          */
         public String TitleId;
         /**
-         * Unique identifier from Kongregate for the user.
+         * Numeric user ID assigned by Kongregate
          */
         public String KongregateId;
         /**
