@@ -3592,7 +3592,8 @@ public class PlayFabClientModels {
         PSN,
         GameCenter,
         CustomId,
-        XboxLive
+        XboxLive,
+        Parse
     }
 
     public static class UserPrivateAccountInfo {
