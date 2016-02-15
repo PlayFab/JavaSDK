@@ -318,7 +318,7 @@ public class PlayFabAdminModels {
          */
         public String StatisticName;
         /**
-         * interval at which the values of the statistic for all players are reset. Resets begin at the next interval boundary
+         * interval at which the values of the statistic for all players are reset (resets begin at the next interval boundary)
          */
         public StatisticResetIntervalOption VersionChangeInterval;
         
@@ -757,7 +757,7 @@ public class PlayFabAdminModels {
 
     public static class GetPlayerStatisticDefinitionsResult {
         /**
-         * definitions of all statistics for the title
+         * the player statistic definitions for the title
          */
         public ArrayList<PlayerStatisticDefinition> Statistics;
         
@@ -1375,7 +1375,7 @@ public class PlayFabAdminModels {
          */
         public Long CurrentVersion;
         /**
-         * interval at which the values of the statistic for all players are reset
+         * interval at which the values of the statistic for all players are reset automatically
          */
         public StatisticResetIntervalOption VersionChangeInterval;
         
@@ -1804,7 +1804,7 @@ public class PlayFabAdminModels {
          */
         public String StatisticName;
         /**
-         * interval at which the values of the statistic for all players are reset. Changes are effective at the next interval boundary
+         * interval at which the values of the statistic for all players are reset (changes are effective at the next occurance of the new interval boundary)
          */
         public StatisticResetIntervalOption VersionChangeInterval;
         
@@ -2106,7 +2106,8 @@ public class PlayFabAdminModels {
         PSN,
         GameCenter,
         CustomId,
-        XboxLive
+        XboxLive,
+        Parse
     }
 
     public static class UserPrivateAccountInfo {
