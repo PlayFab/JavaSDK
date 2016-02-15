@@ -249,6 +249,64 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Adds a new player statistic configuration to the title, optionally allowing the developer to specify a reset interval.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<CreatePlayerStatisticDefinitionResult>> CreatePlayerStatisticDefinitionAsync(final CreatePlayerStatisticDefinitionRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<CreatePlayerStatisticDefinitionResult>>() {
+            public PlayFabResult<CreatePlayerStatisticDefinitionResult> call() throws Exception {
+                return privateCreatePlayerStatisticDefinitionAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Adds a new player statistic configuration to the title, optionally allowing the developer to specify a reset interval.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<CreatePlayerStatisticDefinitionResult> CreatePlayerStatisticDefinition(final CreatePlayerStatisticDefinitionRequest request) {
+        FutureTask<PlayFabResult<CreatePlayerStatisticDefinitionResult>> task = new FutureTask(new Callable<PlayFabResult<CreatePlayerStatisticDefinitionResult>>() {
+            public PlayFabResult<CreatePlayerStatisticDefinitionResult> call() throws Exception {
+                return privateCreatePlayerStatisticDefinitionAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Adds a new player statistic configuration to the title, optionally allowing the developer to specify a reset interval.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<CreatePlayerStatisticDefinitionResult> privateCreatePlayerStatisticDefinitionAsync(final CreatePlayerStatisticDefinitionRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/CreatePlayerStatisticDefinition", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<CreatePlayerStatisticDefinitionResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<CreatePlayerStatisticDefinitionResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<CreatePlayerStatisticDefinitionResult>>(){}.getType());
+        CreatePlayerStatisticDefinitionResult result = resultData.data;
+
+        PlayFabResult<CreatePlayerStatisticDefinitionResult> pfResult = new PlayFabResult<CreatePlayerStatisticDefinitionResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
      */
     @SuppressWarnings("unchecked")
@@ -360,6 +418,122 @@ public class PlayFabAdminAPI {
         GetDataReportResult result = resultData.data;
 
         PlayFabResult<GetDataReportResult> pfResult = new PlayFabResult<GetDataReportResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Retrieves the configuration information for all player statistics defined in the title, regardless of whether they have a reset interval.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayerStatisticDefinitionsResult>> GetPlayerStatisticDefinitionsAsync(final GetPlayerStatisticDefinitionsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayerStatisticDefinitionsResult>>() {
+            public PlayFabResult<GetPlayerStatisticDefinitionsResult> call() throws Exception {
+                return privateGetPlayerStatisticDefinitionsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the configuration information for all player statistics defined in the title, regardless of whether they have a reset interval.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayerStatisticDefinitionsResult> GetPlayerStatisticDefinitions(final GetPlayerStatisticDefinitionsRequest request) {
+        FutureTask<PlayFabResult<GetPlayerStatisticDefinitionsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayerStatisticDefinitionsResult>>() {
+            public PlayFabResult<GetPlayerStatisticDefinitionsResult> call() throws Exception {
+                return privateGetPlayerStatisticDefinitionsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves the configuration information for all player statistics defined in the title, regardless of whether they have a reset interval.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayerStatisticDefinitionsResult> privateGetPlayerStatisticDefinitionsAsync(final GetPlayerStatisticDefinitionsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/GetPlayerStatisticDefinitions", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayerStatisticDefinitionsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayerStatisticDefinitionsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayerStatisticDefinitionsResult>>(){}.getType());
+        GetPlayerStatisticDefinitionsResult result = resultData.data;
+
+        PlayFabResult<GetPlayerStatisticDefinitionsResult> pfResult = new PlayFabResult<GetPlayerStatisticDefinitionsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Retrieves the information on the available versions of the specified statistic.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayerStatisticVersionsResult>> GetPlayerStatisticVersionsAsync(final GetPlayerStatisticVersionsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayerStatisticVersionsResult>>() {
+            public PlayFabResult<GetPlayerStatisticVersionsResult> call() throws Exception {
+                return privateGetPlayerStatisticVersionsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the information on the available versions of the specified statistic.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayerStatisticVersionsResult> GetPlayerStatisticVersions(final GetPlayerStatisticVersionsRequest request) {
+        FutureTask<PlayFabResult<GetPlayerStatisticVersionsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayerStatisticVersionsResult>>() {
+            public PlayFabResult<GetPlayerStatisticVersionsResult> call() throws Exception {
+                return privateGetPlayerStatisticVersionsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves the information on the available versions of the specified statistic.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayerStatisticVersionsResult> privateGetPlayerStatisticVersionsAsync(final GetPlayerStatisticVersionsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/GetPlayerStatisticVersions", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayerStatisticVersionsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayerStatisticVersionsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayerStatisticVersionsResult>>(){}.getType());
+        GetPlayerStatisticVersionsResult result = resultData.data;
+
+        PlayFabResult<GetPlayerStatisticVersionsResult> pfResult = new PlayFabResult<GetPlayerStatisticVersionsResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -713,6 +887,64 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Resets the indicated statistic, removing all player entries for it and backing up the old values.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<IncrementPlayerStatisticVersionResult>> IncrementPlayerStatisticVersionAsync(final IncrementPlayerStatisticVersionRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<IncrementPlayerStatisticVersionResult>>() {
+            public PlayFabResult<IncrementPlayerStatisticVersionResult> call() throws Exception {
+                return privateIncrementPlayerStatisticVersionAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Resets the indicated statistic, removing all player entries for it and backing up the old values.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<IncrementPlayerStatisticVersionResult> IncrementPlayerStatisticVersion(final IncrementPlayerStatisticVersionRequest request) {
+        FutureTask<PlayFabResult<IncrementPlayerStatisticVersionResult>> task = new FutureTask(new Callable<PlayFabResult<IncrementPlayerStatisticVersionResult>>() {
+            public PlayFabResult<IncrementPlayerStatisticVersionResult> call() throws Exception {
+                return privateIncrementPlayerStatisticVersionAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Resets the indicated statistic, removing all player entries for it and backing up the old values.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<IncrementPlayerStatisticVersionResult> privateIncrementPlayerStatisticVersionAsync(final IncrementPlayerStatisticVersionRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/IncrementPlayerStatisticVersion", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<IncrementPlayerStatisticVersionResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<IncrementPlayerStatisticVersionResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<IncrementPlayerStatisticVersionResult>>(){}.getType());
+        IncrementPlayerStatisticVersionResult result = resultData.data;
+
+        PlayFabResult<IncrementPlayerStatisticVersionResult> pfResult = new PlayFabResult<IncrementPlayerStatisticVersionResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Completely removes all statistics for the specified user, for the current game
      */
     @SuppressWarnings("unchecked")
@@ -766,6 +998,64 @@ public class PlayFabAdminAPI {
         ResetUserStatisticsResult result = resultData.data;
 
         PlayFabResult<ResetUserStatisticsResult> pfResult = new PlayFabResult<ResetUserStatisticsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Updates a player statistic configuration for the title, optionally allowing the developer to specify a reset interval.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<UpdatePlayerStatisticDefinitionResult>> UpdatePlayerStatisticDefinitionAsync(final UpdatePlayerStatisticDefinitionRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<UpdatePlayerStatisticDefinitionResult>>() {
+            public PlayFabResult<UpdatePlayerStatisticDefinitionResult> call() throws Exception {
+                return privateUpdatePlayerStatisticDefinitionAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Updates a player statistic configuration for the title, optionally allowing the developer to specify a reset interval.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<UpdatePlayerStatisticDefinitionResult> UpdatePlayerStatisticDefinition(final UpdatePlayerStatisticDefinitionRequest request) {
+        FutureTask<PlayFabResult<UpdatePlayerStatisticDefinitionResult>> task = new FutureTask(new Callable<PlayFabResult<UpdatePlayerStatisticDefinitionResult>>() {
+            public PlayFabResult<UpdatePlayerStatisticDefinitionResult> call() throws Exception {
+                return privateUpdatePlayerStatisticDefinitionAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Updates a player statistic configuration for the title, optionally allowing the developer to specify a reset interval.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<UpdatePlayerStatisticDefinitionResult> privateUpdatePlayerStatisticDefinitionAsync(final UpdatePlayerStatisticDefinitionRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/UpdatePlayerStatisticDefinition", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<UpdatePlayerStatisticDefinitionResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<UpdatePlayerStatisticDefinitionResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdatePlayerStatisticDefinitionResult>>(){}.getType());
+        UpdatePlayerStatisticDefinitionResult result = resultData.data;
+
+        PlayFabResult<UpdatePlayerStatisticDefinitionResult> pfResult = new PlayFabResult<UpdatePlayerStatisticDefinitionResult>();
         pfResult.Result = result;
         return pfResult;
     }
