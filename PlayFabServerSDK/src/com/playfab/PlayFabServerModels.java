@@ -999,6 +999,26 @@ public class PlayFabServerModels {
         
     }
 
+    public static class GetPlayFabIDsFromSteamIDsRequest {
+        /**
+         * Deprecated: Please use SteamStringIDs
+         */
+        public ArrayList<Long> SteamIDs;
+        /**
+         * Array of unique Steam identifiers (Steam profile IDs) for which the title needs to get PlayFab identifiers.
+         */
+        public ArrayList<String> SteamStringIDs;
+        
+    }
+
+    public static class GetPlayFabIDsFromSteamIDsResult {
+        /**
+         * Mapping of Steam identifiers to PlayFab identifiers.
+         */
+        public ArrayList<SteamPlayFabIdPair> Data;
+        
+    }
+
     public static class GetPublisherDataRequest {
         /**
          *  array of keys to get back data from the Publisher data blob, set by the admin tools
@@ -1910,6 +1930,22 @@ public class PlayFabServerModels {
          * for updates to an existing statistic value for a player, the version of the statistic when it was loaded
          */
         public String Version;
+        
+    }
+
+    public static class SteamPlayFabIdPair {
+        /**
+         * Deprecated: Please use SteamStringId
+         */
+        public Long SteamId;
+        /**
+         * Unique Steam identifier for a user.
+         */
+        public String SteamStringId;
+        /**
+         * Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Steam identifier.
+         */
+        public String PlayFabId;
         
     }
 
