@@ -779,6 +779,26 @@ public class PlayFabServerModels {
         
     }
 
+    public static class GetCloudScriptUrlRequest {
+        /**
+         * Cloud Script Version to use. Defaults to 1.
+         */
+        public Integer Version;
+        /**
+         * Specifies whether the URL returned should be the one for the most recently uploaded Revision of the Cloud Script (true), or the Revision most recently set to live (false). Defaults to false.
+         */
+        public Boolean Testing;
+        
+    }
+
+    public static class GetCloudScriptUrlResult {
+        /**
+         * URL of the Cloud Script logic server.
+         */
+        public String Url;
+        
+    }
+
     public static class GetContentDownloadUrlRequest {
         /**
          * Key of the content item to fetch, usually formatted as a path, e.g. images/a.png
@@ -1826,6 +1846,58 @@ public class PlayFabServerModels {
     }
 
     public static class RevokeInventoryResult {
+        
+    }
+
+    public static class RunCloudScriptResult {
+        /**
+         * id of Cloud Script run
+         */
+        public String ActionId;
+        /**
+         * version of Cloud Script run
+         */
+        public Integer Version;
+        /**
+         * revision of Cloud Script run
+         */
+        public Integer Revision;
+        /**
+         * return values from the server action as a dynamic object
+         */
+        public Object Results;
+        /**
+         * return values from the server action as a JSON encoded string
+         */
+        public String ResultsEncoded;
+        /**
+         * any log statements generated during the run of this action
+         */
+        public String ActionLog;
+        /**
+         * time this script took to run, in seconds
+         */
+        public Double ExecutionTime;
+        
+    }
+
+    public static class RunServerCloudScriptRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * server action to trigger
+         */
+        public String ActionId;
+        /**
+         * parameters to pass into the action (If you use this, don't use ParamsEncoded)
+         */
+        public Object Params;
+        /**
+         * json-encoded parameters to pass into the action (If you use this, don't use Params)
+         */
+        public String ParamsEncoded;
         
     }
 
