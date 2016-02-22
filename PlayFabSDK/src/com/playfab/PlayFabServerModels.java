@@ -779,6 +779,26 @@ public class PlayFabServerModels {
         
     }
 
+    public static class GetCloudScriptUrlRequest {
+        /**
+         * Cloud Script Version to use. Defaults to 1.
+         */
+        public Integer Version;
+        /**
+         * Specifies whether the URL returned should be the one for the most recently uploaded Revision of the Cloud Script (true), or the Revision most recently set to live (false). Defaults to false.
+         */
+        public Boolean Testing;
+        
+    }
+
+    public static class GetCloudScriptUrlResult {
+        /**
+         * URL of the Cloud Script logic server.
+         */
+        public String Url;
+        
+    }
+
     public static class GetContentDownloadUrlRequest {
         /**
          * Key of the content item to fetch, usually formatted as a path, e.g. images/a.png
@@ -996,6 +1016,26 @@ public class PlayFabServerModels {
          * Mapping of Facebook identifiers to PlayFab identifiers.
          */
         public ArrayList<FacebookPlayFabIdPair> Data;
+        
+    }
+
+    public static class GetPlayFabIDsFromSteamIDsRequest {
+        /**
+         * Deprecated: Please use SteamStringIDs
+         */
+        public ArrayList<Long> SteamIDs;
+        /**
+         * Array of unique Steam identifiers (Steam profile IDs) for which the title needs to get PlayFab identifiers.
+         */
+        public ArrayList<String> SteamStringIDs;
+        
+    }
+
+    public static class GetPlayFabIDsFromSteamIDsResult {
+        /**
+         * Mapping of Steam identifiers to PlayFab identifiers.
+         */
+        public ArrayList<SteamPlayFabIdPair> Data;
         
     }
 
@@ -1809,6 +1849,58 @@ public class PlayFabServerModels {
         
     }
 
+    public static class RunCloudScriptResult {
+        /**
+         * id of Cloud Script run
+         */
+        public String ActionId;
+        /**
+         * version of Cloud Script run
+         */
+        public Integer Version;
+        /**
+         * revision of Cloud Script run
+         */
+        public Integer Revision;
+        /**
+         * return values from the server action as a dynamic object
+         */
+        public Object Results;
+        /**
+         * return values from the server action as a JSON encoded string
+         */
+        public String ResultsEncoded;
+        /**
+         * any log statements generated during the run of this action
+         */
+        public String ActionLog;
+        /**
+         * time this script took to run, in seconds
+         */
+        public Double ExecutionTime;
+        
+    }
+
+    public static class RunServerCloudScriptRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * server action to trigger
+         */
+        public String ActionId;
+        /**
+         * parameters to pass into the action (If you use this, don't use ParamsEncoded)
+         */
+        public Object Params;
+        /**
+         * json-encoded parameters to pass into the action (If you use this, don't use Params)
+         */
+        public String ParamsEncoded;
+        
+    }
+
     public static class SendPushNotificationRequest {
         /**
          * PlayFabId of the recipient of the push notification.
@@ -1910,6 +2002,22 @@ public class PlayFabServerModels {
          * for updates to an existing statistic value for a player, the version of the statistic when it was loaded
          */
         public String Version;
+        
+    }
+
+    public static class SteamPlayFabIdPair {
+        /**
+         * Deprecated: Please use SteamStringId
+         */
+        public Long SteamId;
+        /**
+         * Unique Steam identifier for a user.
+         */
+        public String SteamStringId;
+        /**
+         * Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Steam identifier.
+         */
+        public String PlayFabId;
         
     }
 
