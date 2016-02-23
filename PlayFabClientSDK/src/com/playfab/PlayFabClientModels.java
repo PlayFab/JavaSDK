@@ -432,27 +432,6 @@ public class PlayFabClientModels {
         
     }
 
-    public static class ConsumePSNEntitlementsRequest {
-        /**
-         * Which catalog to match granted entitlements against. If null, defaults to title default catalog
-         */
-        public String CatalogVersion;
-        /**
-         * Id of the PSN service label to consume entitlements from
-         */
-        public Integer ServiceLabel;
-        
-    }
-
-    public static class ConsumePSNEntitlementsResult {
-        /**
-         * Array of items granted to the player as a result of consuming entitlements.
-         */
-        @Unordered
-        public ArrayList<ItemInstance> ItemsGranted;
-        
-    }
-
     public static class CreateSharedGroupRequest {
         /**
          * Unique identifier for the shared group (a random identifier will be assigned, if one is not specified).
@@ -1340,26 +1319,6 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetPlayFabIDsFromPSNAccountIDsRequest {
-        /**
-         * Array of unique PlayStation Network identifiers for which the title needs to get PlayFab identifiers.
-         */
-        public ArrayList<String> PSNAccountIDs;
-        /**
-         * Id of the PSN issuer environment. If null, defaults to 256 (production)
-         */
-        public Integer IssuerId;
-        
-    }
-
-    public static class GetPlayFabIDsFromPSNAccountIDsResult {
-        /**
-         * Mapping of PlayStation Network identifiers to PlayFab identifiers.
-         */
-        public ArrayList<PSNAccountPlayFabIdPair> Data;
-        
-    }
-
     public static class GetPlayFabIDsFromSteamIDsRequest {
         /**
          * Deprecated: Please use SteamStringIDs
@@ -1939,26 +1898,6 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LinkPSNAccountRequest {
-        /**
-         * Authentication code provided by the PlayStation Network.
-         */
-        public String AuthCode;
-        /**
-         * Redirect URI supplied to PSN when requesting an auth code
-         */
-        public String RedirectUri;
-        /**
-         * Id of the PSN issuer environment. If null, defaults to 256 (production)
-         */
-        public Integer IssuerId;
-        
-    }
-
-    public static class LinkPSNAccountResult {
-        
-    }
-
     public static class LinkSteamAccountRequest {
         /**
          * Authentication token for the user, returned as a byte array from Steam, and converted to a string (for example, the byte 0x08 should become "08").
@@ -1968,18 +1907,6 @@ public class PlayFabClientModels {
     }
 
     public static class LinkSteamAccountResult {
-        
-    }
-
-    public static class LinkXboxAccountRequest {
-        /**
-         * Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", "").
-         */
-        public String XboxToken;
-        
-    }
-
-    public static class LinkXboxAccountResult {
         
     }
 
@@ -2215,30 +2142,6 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LoginWithPSNRequest {
-        /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
-         */
-        public String TitleId;
-        /**
-         * Auth code provided by the PSN OAuth provider.
-         */
-        public String AuthCode;
-        /**
-         * Redirect URI supplied to PSN when requesting an auth code
-         */
-        public String RedirectUri;
-        /**
-         * Id of the PSN issuer environment. If null, defaults to 256 (production)
-         */
-        public Integer IssuerId;
-        /**
-         * Automatically create a PlayFab account if one is not currently linked to this PSN account.
-         */
-        public Boolean CreateAccount;
-        
-    }
-
     public static class LoginWithSteamRequest {
         /**
          * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
@@ -2250,22 +2153,6 @@ public class PlayFabClientModels {
         public String SteamTicket;
         /**
          * Automatically create a PlayFab account if one is not currently linked to this Steam account.
-         */
-        public Boolean CreateAccount;
-        
-    }
-
-    public static class LoginWithXboxRequest {
-        /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
-         */
-        public String TitleId;
-        /**
-         * Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", "").
-         */
-        public String XboxToken;
-        /**
-         * Automatically create a PlayFab account if one is not currently linked to this Xbox Live account.
          */
         public Boolean CreateAccount;
         
@@ -2485,18 +2372,6 @@ public class PlayFabClientModels {
         
     }
 
-    public static class PSNAccountPlayFabIdPair {
-        /**
-         * Unique PlayStation Network identifier for a user.
-         */
-        public String PSNAccountId;
-        /**
-         * Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the PlayStation Network identifier.
-         */
-        public String PlayFabId;
-        
-    }
-
     public static class PurchaseItemRequest {
         /**
          * Unique identifier of the item to purchase.
@@ -2550,22 +2425,6 @@ public class PlayFabClientModels {
          * Items granted to the player as a result of redeeming the coupon.
          */
         public ArrayList<ItemInstance> GrantedItems;
-        
-    }
-
-    public static class RefreshPSNAuthTokenRequest {
-        /**
-         * Auth code returned by PSN OAuth system.
-         */
-        public String AuthCode;
-        /**
-         * Redirect URI supplied to PSN when requesting an auth code
-         */
-        public String RedirectUri;
-        /**
-         * Id of the PSN issuer environment. If null, defaults to 256 (production)
-         */
-        public Integer IssuerId;
         
     }
 
@@ -3200,31 +3059,11 @@ public class PlayFabClientModels {
         
     }
 
-    public static class UnlinkPSNAccountRequest {
-        
-    }
-
-    public static class UnlinkPSNAccountResult {
-        
-    }
-
     public static class UnlinkSteamAccountRequest {
         
     }
 
     public static class UnlinkSteamAccountResult {
-        
-    }
-
-    public static class UnlinkXboxAccountRequest {
-        /**
-         * Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", "").
-         */
-        public String XboxToken;
-        
-    }
-
-    public static class UnlinkXboxAccountResult {
         
     }
 
