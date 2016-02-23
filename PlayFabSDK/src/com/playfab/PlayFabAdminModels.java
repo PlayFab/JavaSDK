@@ -557,7 +557,7 @@ public class PlayFabAdminModels {
         /**
          * Array of items which can be purchased.
          */
-        @Unordered
+        @Unordered("ItemId")
         public ArrayList<CatalogItem> Catalog;
         
     }
@@ -900,7 +900,7 @@ public class PlayFabAdminModels {
         /**
          * Array of items which can be purchased from this store.
          */
-        @Unordered
+        @Unordered("ItemId")
         public ArrayList<StoreItem> Store;
         
     }
@@ -969,7 +969,7 @@ public class PlayFabAdminModels {
         /**
          * Array of inventory items belonging to the user.
          */
-        @Unordered
+        @Unordered("ItemInstanceId")
         public ArrayList<ItemInstance> Inventory;
         /**
          * Array of virtual currency balance(s) belonging to the user.
@@ -1203,7 +1203,7 @@ public class PlayFabAdminModels {
         /**
          * array of uploaded game server builds
          */
-        @Unordered
+        @Unordered("BuildId")
         public ArrayList<GetServerBuildInfoResult> Builds;
         
     }

@@ -609,7 +609,7 @@ public class PlayFabServerModels {
         /**
          * Array of items which can be purchased.
          */
-        @Unordered
+        @Unordered("ItemId")
         public ArrayList<CatalogItem> Catalog;
         
     }
@@ -682,7 +682,7 @@ public class PlayFabServerModels {
         /**
          * Array of inventory items belonging to the character.
          */
-        @Unordered
+        @Unordered("ItemInstanceId")
         public ArrayList<ItemInstance> Inventory;
         /**
          * Array of virtual currency balance(s) belonging to the character.
@@ -1103,7 +1103,7 @@ public class PlayFabServerModels {
         /**
          * Array of inventory items belonging to the user.
          */
-        @Unordered
+        @Unordered("ItemInstanceId")
         public ArrayList<ItemInstance> Inventory;
         /**
          * Array of virtual currency balance(s) belonging to the user.

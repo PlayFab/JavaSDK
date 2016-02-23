@@ -813,7 +813,7 @@ public class PlayFabClientModels {
         /**
          * Array of inventory objects.
          */
-        @Unordered
+        @Unordered("ItemId")
         public ArrayList<CatalogItem> Catalog;
         
     }
@@ -882,7 +882,7 @@ public class PlayFabClientModels {
         /**
          * Array of inventory items belonging to the character.
          */
-        @Unordered
+        @Unordered("ItemInstanceId")
         public ArrayList<ItemInstance> Inventory;
         /**
          * Array of virtual currency balance(s) belonging to the character.
@@ -1435,7 +1435,7 @@ public class PlayFabClientModels {
         /**
          * Array of store items.
          */
-        @Unordered
+        @Unordered("ItemId")
         public ArrayList<StoreItem> Store;
         
     }
@@ -1552,7 +1552,7 @@ public class PlayFabClientModels {
         /**
          * Array of inventory items in the user's current inventory.
          */
-        @Unordered
+        @Unordered("ItemInstanceId")
         public ArrayList<ItemInstance> Inventory;
         /**
          * Array of virtual currency balance(s) belonging to the user.
@@ -1617,7 +1617,7 @@ public class PlayFabClientModels {
         /**
          * Array of inventory items in the user's current inventory.
          */
-        @Unordered
+        @Unordered("ItemInstanceId")
         public ArrayList<ItemInstance> Inventory;
         /**
          * Array of virtual currency balance(s) belonging to the user.
