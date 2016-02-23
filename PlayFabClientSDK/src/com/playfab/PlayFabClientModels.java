@@ -448,7 +448,7 @@ public class PlayFabClientModels {
         /**
          * Array of items granted to the player as a result of consuming entitlements.
          */
-        @Unordered("ItemInstanceId")
+        @Unordered
         public ArrayList<ItemInstance> ItemsGranted;
         
     }
@@ -834,7 +834,7 @@ public class PlayFabClientModels {
         /**
          * Array of inventory objects.
          */
-        @Unordered("ItemId")
+        @Unordered
         public ArrayList<CatalogItem> Catalog;
         
     }
@@ -903,7 +903,7 @@ public class PlayFabClientModels {
         /**
          * Array of inventory items belonging to the character.
          */
-        @Unordered("ItemInstanceId")
+        @Unordered
         public ArrayList<ItemInstance> Inventory;
         /**
          * Array of virtual currency balance(s) belonging to the character.
@@ -1476,7 +1476,7 @@ public class PlayFabClientModels {
         /**
          * Array of store items.
          */
-        @Unordered("ItemId")
+        @Unordered
         public ArrayList<StoreItem> Store;
         
     }
@@ -1593,7 +1593,7 @@ public class PlayFabClientModels {
         /**
          * Array of inventory items in the user's current inventory.
          */
-        @Unordered("ItemInstanceId")
+        @Unordered
         public ArrayList<ItemInstance> Inventory;
         /**
          * Array of virtual currency balance(s) belonging to the user.
@@ -1658,7 +1658,7 @@ public class PlayFabClientModels {
         /**
          * Array of inventory items in the user's current inventory.
          */
-        @Unordered("ItemInstanceId")
+        @Unordered
         public ArrayList<ItemInstance> Inventory;
         /**
          * Array of virtual currency balance(s) belonging to the user.

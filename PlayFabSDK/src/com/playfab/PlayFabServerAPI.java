@@ -365,6 +365,64 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Retrieves a list of ranked friends of the given player for the given statistic, starting from the indicated point in the leaderboard
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetLeaderboardResult>> GetFriendLeaderboardAsync(final GetFriendLeaderboardRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetLeaderboardResult>>() {
+            public PlayFabResult<GetLeaderboardResult> call() throws Exception {
+                return privateGetFriendLeaderboardAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves a list of ranked friends of the given player for the given statistic, starting from the indicated point in the leaderboard
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetLeaderboardResult> GetFriendLeaderboard(final GetFriendLeaderboardRequest request) {
+        FutureTask<PlayFabResult<GetLeaderboardResult>> task = new FutureTask(new Callable<PlayFabResult<GetLeaderboardResult>>() {
+            public PlayFabResult<GetLeaderboardResult> call() throws Exception {
+                return privateGetFriendLeaderboardAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves a list of ranked friends of the given player for the given statistic, starting from the indicated point in the leaderboard
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetLeaderboardResult> privateGetFriendLeaderboardAsync(final GetFriendLeaderboardRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetFriendLeaderboard", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetLeaderboardResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetLeaderboardResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetLeaderboardResult>>(){}.getType());
+        GetLeaderboardResult result = resultData.data;
+
+        PlayFabResult<GetLeaderboardResult> pfResult = new PlayFabResult<GetLeaderboardResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves a list of ranked users for the given statistic, starting from the indicated point in the leaderboard
      */
     @SuppressWarnings("unchecked")
@@ -2917,6 +2975,180 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Adds the Friend user to the friendlist of the user with PlayFabId. At least one of FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResult>> AddFriendAsync(final AddFriendRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateAddFriendAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Adds the Friend user to the friendlist of the user with PlayFabId. At least one of FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResult> AddFriend(final AddFriendRequest request) {
+        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateAddFriendAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Adds the Friend user to the friendlist of the user with PlayFabId. At least one of FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResult> privateAddFriendAsync(final AddFriendRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/AddFriend", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
+        EmptyResult result = resultData.data;
+
+        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Retrieves the current friends for the user with PlayFabId, constrained to users who have PlayFab accounts. Friends from linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetFriendsListResult>> GetFriendsListAsync(final GetFriendsListRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetFriendsListResult>>() {
+            public PlayFabResult<GetFriendsListResult> call() throws Exception {
+                return privateGetFriendsListAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the current friends for the user with PlayFabId, constrained to users who have PlayFab accounts. Friends from linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetFriendsListResult> GetFriendsList(final GetFriendsListRequest request) {
+        FutureTask<PlayFabResult<GetFriendsListResult>> task = new FutureTask(new Callable<PlayFabResult<GetFriendsListResult>>() {
+            public PlayFabResult<GetFriendsListResult> call() throws Exception {
+                return privateGetFriendsListAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves the current friends for the user with PlayFabId, constrained to users who have PlayFab accounts. Friends from linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetFriendsListResult> privateGetFriendsListAsync(final GetFriendsListRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetFriendsList", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetFriendsListResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetFriendsListResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetFriendsListResult>>(){}.getType());
+        GetFriendsListResult result = resultData.data;
+
+        PlayFabResult<GetFriendsListResult> pfResult = new PlayFabResult<GetFriendsListResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Removes the specified friend from the the user's friend list
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResult>> RemoveFriendAsync(final RemoveFriendRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateRemoveFriendAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Removes the specified friend from the the user's friend list
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResult> RemoveFriend(final RemoveFriendRequest request) {
+        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateRemoveFriendAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Removes the specified friend from the the user's friend list
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResult> privateRemoveFriendAsync(final RemoveFriendRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/RemoveFriend", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
+        EmptyResult result = resultData.data;
+
+        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Informs the PlayFab match-making service that the user specified has left the Game Server Instance
      */
     @SuppressWarnings("unchecked")
@@ -3608,6 +3840,122 @@ public class PlayFabServerAPI {
         UpdateSharedGroupDataResult result = resultData.data;
 
         PlayFabResult<UpdateSharedGroupDataResult> pfResult = new PlayFabResult<UpdateSharedGroupDataResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Retrieves the title-specific URL for Cloud Script servers. This must be queried once, prior  to making any calls to RunCloudScript.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetCloudScriptUrlResult>> GetCloudScriptUrlAsync(final GetCloudScriptUrlRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetCloudScriptUrlResult>>() {
+            public PlayFabResult<GetCloudScriptUrlResult> call() throws Exception {
+                return privateGetCloudScriptUrlAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the title-specific URL for Cloud Script servers. This must be queried once, prior  to making any calls to RunCloudScript.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetCloudScriptUrlResult> GetCloudScriptUrl(final GetCloudScriptUrlRequest request) {
+        FutureTask<PlayFabResult<GetCloudScriptUrlResult>> task = new FutureTask(new Callable<PlayFabResult<GetCloudScriptUrlResult>>() {
+            public PlayFabResult<GetCloudScriptUrlResult> call() throws Exception {
+                return privateGetCloudScriptUrlAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves the title-specific URL for Cloud Script servers. This must be queried once, prior  to making any calls to RunCloudScript.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetCloudScriptUrlResult> privateGetCloudScriptUrlAsync(final GetCloudScriptUrlRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetCloudScriptUrl", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetCloudScriptUrlResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetCloudScriptUrlResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetCloudScriptUrlResult>>(){}.getType());
+        GetCloudScriptUrlResult result = resultData.data;
+
+        PlayFabResult<GetCloudScriptUrlResult> pfResult = new PlayFabResult<GetCloudScriptUrlResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Triggers a particular server action, passing the provided inputs to the hosted Cloud Script. An action in this context is a handler in the JavaScript. NOTE: Before calling this API, you must call GetCloudScriptUrl to be assigned a Cloud Script server URL. When using an official PlayFab SDK, this URL is stored internally in the SDK, but GetCloudScriptUrl must still be manually called.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RunCloudScriptResult>> RunServerCloudScriptAsync(final RunServerCloudScriptRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RunCloudScriptResult>>() {
+            public PlayFabResult<RunCloudScriptResult> call() throws Exception {
+                return privateRunServerCloudScriptAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Triggers a particular server action, passing the provided inputs to the hosted Cloud Script. An action in this context is a handler in the JavaScript. NOTE: Before calling this API, you must call GetCloudScriptUrl to be assigned a Cloud Script server URL. When using an official PlayFab SDK, this URL is stored internally in the SDK, but GetCloudScriptUrl must still be manually called.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RunCloudScriptResult> RunServerCloudScript(final RunServerCloudScriptRequest request) {
+        FutureTask<PlayFabResult<RunCloudScriptResult>> task = new FutureTask(new Callable<PlayFabResult<RunCloudScriptResult>>() {
+            public PlayFabResult<RunCloudScriptResult> call() throws Exception {
+                return privateRunServerCloudScriptAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Triggers a particular server action, passing the provided inputs to the hosted Cloud Script. An action in this context is a handler in the JavaScript. NOTE: Before calling this API, you must call GetCloudScriptUrl to be assigned a Cloud Script server URL. When using an official PlayFab SDK, this URL is stored internally in the SDK, but GetCloudScriptUrl must still be manually called.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RunCloudScriptResult> privateRunServerCloudScriptAsync(final RunServerCloudScriptRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetLogicURL() + "/Server/RunServerCloudScript", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RunCloudScriptResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RunCloudScriptResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RunCloudScriptResult>>(){}.getType());
+        RunCloudScriptResult result = resultData.data;
+
+        PlayFabResult<RunCloudScriptResult> pfResult = new PlayFabResult<RunCloudScriptResult>();
         pfResult.Result = result;
         return pfResult;
     }
