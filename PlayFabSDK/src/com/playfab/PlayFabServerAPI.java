@@ -539,64 +539,6 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the information on the available versions of the specified statistic.
-     */
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<GetPlayerStatisticVersionsResult>> GetPlayerStatisticVersionsAsync(final GetPlayerStatisticVersionsRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<GetPlayerStatisticVersionsResult>>() {
-            public PlayFabResult<GetPlayerStatisticVersionsResult> call() throws Exception {
-                return privateGetPlayerStatisticVersionsAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Retrieves the information on the available versions of the specified statistic.
-     */
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<GetPlayerStatisticVersionsResult> GetPlayerStatisticVersions(final GetPlayerStatisticVersionsRequest request) {
-        FutureTask<PlayFabResult<GetPlayerStatisticVersionsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayerStatisticVersionsResult>>() {
-            public PlayFabResult<GetPlayerStatisticVersionsResult> call() throws Exception {
-                return privateGetPlayerStatisticVersionsAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * Retrieves the information on the available versions of the specified statistic.
-     */
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<GetPlayerStatisticVersionsResult> privateGetPlayerStatisticVersionsAsync(final GetPlayerStatisticVersionsRequest request) throws Exception {
-        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetPlayerStatisticVersions", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<GetPlayerStatisticVersionsResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<GetPlayerStatisticVersionsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayerStatisticVersionsResult>>(){}.getType());
-        GetPlayerStatisticVersionsResult result = resultData.data;
-
-        PlayFabResult<GetPlayerStatisticVersionsResult> pfResult = new PlayFabResult<GetPlayerStatisticVersionsResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
      * Retrieves the title-specific custom data for the user which is readable and writable by the client
      */
     @SuppressWarnings("unchecked")

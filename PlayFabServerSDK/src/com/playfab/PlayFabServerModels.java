@@ -912,10 +912,6 @@ public class PlayFabServerModels {
          * statistics to return
          */
         public ArrayList<String> StatisticNames;
-        /**
-         * statistics to return, if StatisticNames is not set (only statistics which have a version matching that provided will be returned)
-         */
-        public ArrayList<StatisticNameVersion> StatisticNameVersions;
         
     }
 
@@ -928,22 +924,6 @@ public class PlayFabServerModels {
          * User statistics for the requested user.
          */
         public ArrayList<StatisticValue> Statistics;
-        
-    }
-
-    public static class GetPlayerStatisticVersionsRequest {
-        /**
-         * unique name of the statistic
-         */
-        public String StatisticName;
-        
-    }
-
-    public static class GetPlayerStatisticVersionsResult {
-        /**
-         * version change history of the statistic
-         */
-        public ArrayList<PlayerStatisticVersion> StatisticVersions;
         
     }
 
@@ -1661,34 +1641,6 @@ public class PlayFabServerModels {
         
     }
 
-    public static class PlayerStatisticVersion {
-        /**
-         * name of the statistic when the version became active
-         */
-        public String StatisticName;
-        /**
-         * version of the statistic
-         */
-        public Long Version;
-        /**
-         * time at which the statistic version was scheduled to become active, based on the configured ResetInterval
-         */
-        public Date ScheduledActivationTime;
-        /**
-         * time when the statistic version became active
-         */
-        public Date ActivationTime;
-        /**
-         * time at which the statistic version was scheduled to become inactive, based on the configured ResetInterval
-         */
-        public Date ScheduledDeactivationTime;
-        /**
-         * time when the statistic version became inactive due to statistic version incrementing
-         */
-        public Date DeactivationTime;
-        
-    }
-
     public static class RedeemCouponRequest {
         /**
          * Generated coupon code to redeem.
@@ -1913,18 +1865,6 @@ public class PlayFabServerModels {
         
     }
 
-    public static class StatisticNameVersion {
-        /**
-         * unique name of the statistic
-         */
-        public String StatisticName;
-        /**
-         * the version of the statistic to be returned
-         */
-        public Long Version;
-        
-    }
-
     public static class StatisticUpdate {
         /**
          * unique name of the statistic
@@ -1953,7 +1893,7 @@ public class PlayFabServerModels {
         /**
          * for updates to an existing statistic value for a player, the version of the statistic when it was loaded
          */
-        public String Version;
+        public Long Version;
         
     }
 

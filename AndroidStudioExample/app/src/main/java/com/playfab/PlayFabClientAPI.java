@@ -2602,7 +2602,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the indicated statistics (current version and values for all statistics, if none are specified), for the local player.
+     * Retrieves the current version and values for the indicated statistics, for the local player.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetPlayerStatisticsResult>> GetPlayerStatisticsAsync(final GetPlayerStatisticsRequest request) {
@@ -2614,7 +2614,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the indicated statistics (current version and values for all statistics, if none are specified), for the local player.
+     * Retrieves the current version and values for the indicated statistics, for the local player.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetPlayerStatisticsResult> GetPlayerStatistics(final GetPlayerStatisticsRequest request) {
@@ -2632,7 +2632,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the indicated statistics (current version and values for all statistics, if none are specified), for the local player.
+     * Retrieves the current version and values for the indicated statistics, for the local player.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayerStatisticsResult> privateGetPlayerStatisticsAsync(final GetPlayerStatisticsRequest request) throws Exception {
@@ -2655,64 +2655,6 @@ public class PlayFabClientAPI {
         GetPlayerStatisticsResult result = resultData.data;
 
         PlayFabResult<GetPlayerStatisticsResult> pfResult = new PlayFabResult<GetPlayerStatisticsResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
-     * Retrieves the information on the available versions of the specified statistic.
-     */
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<GetPlayerStatisticVersionsResult>> GetPlayerStatisticVersionsAsync(final GetPlayerStatisticVersionsRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<GetPlayerStatisticVersionsResult>>() {
-            public PlayFabResult<GetPlayerStatisticVersionsResult> call() throws Exception {
-                return privateGetPlayerStatisticVersionsAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Retrieves the information on the available versions of the specified statistic.
-     */
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<GetPlayerStatisticVersionsResult> GetPlayerStatisticVersions(final GetPlayerStatisticVersionsRequest request) {
-        FutureTask<PlayFabResult<GetPlayerStatisticVersionsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayerStatisticVersionsResult>>() {
-            public PlayFabResult<GetPlayerStatisticVersionsResult> call() throws Exception {
-                return privateGetPlayerStatisticVersionsAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * Retrieves the information on the available versions of the specified statistic.
-     */
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<GetPlayerStatisticVersionsResult> privateGetPlayerStatisticVersionsAsync(final GetPlayerStatisticVersionsRequest request) throws Exception {
-        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayerStatisticVersions", request, "X-Authorization", _authKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<GetPlayerStatisticVersionsResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<GetPlayerStatisticVersionsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayerStatisticVersionsResult>>(){}.getType());
-        GetPlayerStatisticVersionsResult result = resultData.data;
-
-        PlayFabResult<GetPlayerStatisticVersionsResult> pfResult = new PlayFabResult<GetPlayerStatisticVersionsResult>();
         pfResult.Result = result;
         return pfResult;
     }
