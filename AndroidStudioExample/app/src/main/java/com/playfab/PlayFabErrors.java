@@ -206,7 +206,8 @@ public class PlayFabErrors {
         StatisticVersionAlreadyIncrementedForScheduledInterval(1202),
         StatisticCountLimitExceeded(1203),
         StatisticVersionIncrementRateExceeded(1204),
-        ContainerKeyInvalid(1205);
+        ContainerKeyInvalid(1205),
+        CloudScriptExecutionTimeLimitExceeded(1206);
 
         public int id;
 
