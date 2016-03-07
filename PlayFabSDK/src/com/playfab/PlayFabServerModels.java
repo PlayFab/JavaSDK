@@ -25,30 +25,6 @@ public class PlayFabServerModels {
         
     }
 
-    public static class AddFriendRequest {
-        /**
-         * PlayFab identifier of the player to add a new friend.
-         */
-        public String PlayFabId;
-        /**
-         * The PlayFab identifier of the user being added.
-         */
-        public String FriendPlayFabId;
-        /**
-         * The PlayFab username of the user being added
-         */
-        public String FriendUsername;
-        /**
-         * Email address of the user being added.
-         */
-        public String FriendEmail;
-        /**
-         * Title-specific display name of the user to being added.
-         */
-        public String FriendTitleDisplayName;
-        
-    }
-
     public static class AddSharedGroupMembersRequest {
         /**
          * Unique identifier for the shared group.
@@ -823,58 +799,6 @@ public class PlayFabServerModels {
         
     }
 
-    public static class GetFriendLeaderboardRequest {
-        /**
-         * The player whose friend leaderboard to get
-         */
-        public String PlayFabId;
-        /**
-         * Statistic used to rank friends for this leaderboard.
-         */
-        public String StatisticName;
-        /**
-         * Position in the leaderboard to start this listing (defaults to the first entry).
-         */
-        public Integer StartPosition;
-        /**
-         * Maximum number of entries to retrieve.
-         */
-        public Integer MaxResultsCount;
-        /**
-         * Indicates whether Steam service friends should be included in the response. Default is true.
-         */
-        public Boolean IncludeSteamFriends;
-        /**
-         * Indicates whether Facebook friends should be included in the response. Default is true.
-         */
-        public Boolean IncludeFacebookFriends;
-        
-    }
-
-    public static class GetFriendsListRequest {
-        /**
-         * PlayFab identifier of the player whose friend list to get.
-         */
-        public String PlayFabId;
-        /**
-         * Indicates whether Steam service friends should be included in the response. Default is true.
-         */
-        public Boolean IncludeSteamFriends;
-        /**
-         * Indicates whether Facebook friends should be included in the response. Default is true.
-         */
-        public Boolean IncludeFacebookFriends;
-        
-    }
-
-    public static class GetFriendsListResult {
-        /**
-         * Array of friends found.
-         */
-        public ArrayList<FriendInfo> Friends;
-        
-    }
-
     public static class GetLeaderboardAroundCharacterRequest {
         /**
          * Unique identifier for the title-specific statistic for the leaderboard.
@@ -988,6 +912,10 @@ public class PlayFabServerModels {
          * statistics to return
          */
         public ArrayList<String> StatisticNames;
+        /**
+         * statistics to return, if StatisticNames is not set (only statistics which have a version matching that provided will be returned)
+         */
+        public ArrayList<StatisticNameVersion> StatisticNameVersions;
         
     }
 
@@ -1000,6 +928,22 @@ public class PlayFabServerModels {
          * User statistics for the requested user.
          */
         public ArrayList<StatisticValue> Statistics;
+        
+    }
+
+    public static class GetPlayerStatisticVersionsRequest {
+        /**
+         * unique name of the statistic
+         */
+        public String StatisticName;
+        
+    }
+
+    public static class GetPlayerStatisticVersionsResult {
+        /**
+         * version change history of the statistic
+         */
+        public ArrayList<PlayerStatisticVersion> StatisticVersions;
         
     }
 
@@ -1717,6 +1661,34 @@ public class PlayFabServerModels {
         
     }
 
+    public static class PlayerStatisticVersion {
+        /**
+         * name of the statistic when the version became active
+         */
+        public String StatisticName;
+        /**
+         * version of the statistic
+         */
+        public Long Version;
+        /**
+         * time at which the statistic version was scheduled to become active, based on the configured ResetInterval
+         */
+        public Date ScheduledActivationTime;
+        /**
+         * time when the statistic version became active
+         */
+        public Date ActivationTime;
+        /**
+         * time at which the statistic version was scheduled to become inactive, based on the configured ResetInterval
+         */
+        public Date ScheduledDeactivationTime;
+        /**
+         * time when the statistic version became inactive due to statistic version incrementing
+         */
+        public Date DeactivationTime;
+        
+    }
+
     public static class RedeemCouponRequest {
         /**
          * Generated coupon code to redeem.
@@ -1766,18 +1738,6 @@ public class PlayFabServerModels {
          * User account information for the user validated.
          */
         public UserAccountInfo UserInfo;
-        
-    }
-
-    public static class RemoveFriendRequest {
-        /**
-         * PlayFab identifier of the friend account which is to be removed.
-         */
-        public String FriendPlayFabId;
-        /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
         
     }
 
@@ -1881,26 +1841,6 @@ public class PlayFabServerModels {
         
     }
 
-    public static class RunServerCloudScriptRequest {
-        /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
-         * server action to trigger
-         */
-        public String ActionId;
-        /**
-         * parameters to pass into the action (If you use this, don't use ParamsEncoded)
-         */
-        public Object Params;
-        /**
-         * json-encoded parameters to pass into the action (If you use this, don't use Params)
-         */
-        public String ParamsEncoded;
-        
-    }
-
     public static class SendPushNotificationRequest {
         /**
          * PlayFabId of the recipient of the push notification.
@@ -1973,6 +1913,18 @@ public class PlayFabServerModels {
         
     }
 
+    public static class StatisticNameVersion {
+        /**
+         * unique name of the statistic
+         */
+        public String StatisticName;
+        /**
+         * the version of the statistic to be returned
+         */
+        public Long Version;
+        
+    }
+
     public static class StatisticUpdate {
         /**
          * unique name of the statistic
@@ -2001,7 +1953,7 @@ public class PlayFabServerModels {
         /**
          * for updates to an existing statistic value for a player, the version of the statistic when it was loaded
          */
-        public String Version;
+        public Long Version;
         
     }
 
