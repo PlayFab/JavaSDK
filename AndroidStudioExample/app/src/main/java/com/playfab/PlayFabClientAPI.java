@@ -5444,6 +5444,64 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Executes a CloudScript function, with the 'currentPlayerId' set to the PlayFab ID of the authenticated player.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ExecuteCloudScriptResult>> ExecuteCloudScriptAsync(final ExecuteCloudScriptRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ExecuteCloudScriptResult>>() {
+            public PlayFabResult<ExecuteCloudScriptResult> call() throws Exception {
+                return privateExecuteCloudScriptAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Executes a CloudScript function, with the 'currentPlayerId' set to the PlayFab ID of the authenticated player.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ExecuteCloudScriptResult> ExecuteCloudScript(final ExecuteCloudScriptRequest request) {
+        FutureTask<PlayFabResult<ExecuteCloudScriptResult>> task = new FutureTask(new Callable<PlayFabResult<ExecuteCloudScriptResult>>() {
+            public PlayFabResult<ExecuteCloudScriptResult> call() throws Exception {
+                return privateExecuteCloudScriptAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Executes a CloudScript function, with the 'currentPlayerId' set to the PlayFab ID of the authenticated player.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ExecuteCloudScriptResult> privateExecuteCloudScriptAsync(final ExecuteCloudScriptRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ExecuteCloudScript", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ExecuteCloudScriptResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ExecuteCloudScriptResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ExecuteCloudScriptResult>>(){}.getType());
+        ExecuteCloudScriptResult result = resultData.data;
+
+        PlayFabResult<ExecuteCloudScriptResult> pfResult = new PlayFabResult<ExecuteCloudScriptResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the title-specific URL for Cloud Script servers. This must be queried once, prior  to making any calls to RunCloudScript.
      */
     @SuppressWarnings("unchecked")

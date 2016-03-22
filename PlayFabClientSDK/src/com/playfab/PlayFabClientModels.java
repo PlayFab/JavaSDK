@@ -380,6 +380,12 @@ public class PlayFabClientModels {
         
     }
 
+    public static enum CloudScriptRevisionOption {
+        Live,
+        Latest,
+        Specific
+    }
+
     public static class ConfirmPurchaseRequest {
         /**
          * Purchase order identifier returned from StartPurchase.
@@ -650,6 +656,64 @@ public class PlayFabClientModels {
     }
 
     public static class EmptyResult {
+        
+    }
+
+    public static class ExecuteCloudScriptRequest {
+        /**
+         * The name of the CloudScript function to execute
+         */
+        public String FunctionName;
+        /**
+         * Object that is passed in to the function as the first argument
+         */
+        public Object FunctionParameter;
+        /**
+         * Option for which revision of the CloudScript to execute. 'Latest' executes the most recently created revision, 'Live' executes the current live, published revision, and 'Specific' executes the specified revision.
+         */
+        public CloudScriptRevisionOption RevisionSelection;
+        /**
+         * The specivic revision to execute, when RevisionSelection is set to 'Specific'
+         */
+        public Integer SpecificRevision;
+        /**
+         * Generate a 'player_executed_cloudscript' PlayStream event containing the results of the function execution and other contextual information. This event will show up in the PlayStream debugger console for the player in Game Manager.
+         */
+        public Boolean GeneratePlayStreamEvent;
+        
+    }
+
+    public static class ExecuteCloudScriptResult {
+        /**
+         * The name of the function that executed
+         */
+        public String FunctionName;
+        /**
+         * The revision of the CloudScript that executed
+         */
+        public Integer Revision;
+        /**
+         * The object returned from the CloudScript function, if any
+         */
+        public Object FunctionResult;
+        /**
+         * Entries logged during the function execution. These include both entries logged in the function code using log.info() and log.error() and error entries for API and HTTP request failures.
+         */
+        public ArrayList<LogStatement> Logs;
+        public Double ExecutionTimeSeconds;
+        public Long MemoryConsumedBytes;
+        /**
+         * Number of PlayFab API requests issued by the CloudScript function
+         */
+        public Integer APIRequestsIssued;
+        /**
+         * Number of external HTTP requests issued by the CloudScript function
+         */
+        public Integer HttpRequestsIssued;
+        /**
+         * Information about the error, if any, that occured during execution
+         */
+        public ScriptExecutionError Error;
         
     }
 
@@ -1848,7 +1912,7 @@ public class PlayFabClientModels {
          */
         public String AccessToken;
         /**
-         * If this Facebook account is already linked to a Playfab account, this will unlink the old account before linking the new one. Be careful when using this call, as it may orphan the old account. Defaults to false.
+         * If another user is already linked to the account, unlink the other user and re-link.
          */
         public Boolean ForceLink;
         
@@ -2178,6 +2242,19 @@ public class PlayFabClientModels {
         
     }
 
+    public static class LogStatement {
+        /**
+         * 'Debug', 'Info', or 'Error'
+         */
+        public String Level;
+        public String Message;
+        /**
+         * Optional object accompanying the message as contextual information
+         */
+        public Object Data;
+        
+    }
+
     public static class MatchmakeRequest {
         /**
          * build version to match against [Note: Required if LobbyId is not specified]
@@ -2417,6 +2494,22 @@ public class PlayFabClientModels {
          * time when the statistic version became inactive due to statistic version incrementing
          */
         public Date DeactivationTime;
+        
+    }
+
+    public static class PlayStreamEventHistory {
+        /**
+         * The ID of the trigger that caused this event to be created.
+         */
+        public String ParentTriggerId;
+        /**
+         * The ID of the previous event that caused this event to be created by hitting a trigger.
+         */
+        public String ParentEventId;
+        /**
+         * If true, then this event was allowed to trigger subsequent events in a trigger.
+         */
+        public Boolean TriggeredEvents;
         
     }
 
@@ -2690,6 +2783,22 @@ public class PlayFabClientModels {
         
     }
 
+    public static class ScriptExecutionError {
+        /**
+         * Error code, such as CloudScriptNotFound, JavascriptException, CloudScriptFunctionArgumentSizeExceeded, CloudScriptAPIRequestCountExceeded, CloudScriptAPIRequestError, or CloudScriptHTTPRequestError
+         */
+        public String Error;
+        /**
+         * Details about the error
+         */
+        public String Message;
+        /**
+         * Point during the execution of the script at which the error occurred, if any
+         */
+        public String StackTrace;
+        
+    }
+
     public static class SendAccountRecoveryEmailRequest {
         /**
          * User email address attached to their account
@@ -2744,6 +2853,15 @@ public class PlayFabClientModels {
          */
         public UserDataPermission Permission;
         
+    }
+
+    public static enum SourceType {
+        Admin,
+        BackEnd,
+        GameClient,
+        GameServer,
+        Partner,
+        Stream
     }
 
     public static class StartGameRequest {
