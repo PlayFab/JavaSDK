@@ -214,7 +214,8 @@ public class PlayFabErrors {
         CloudScriptAPIRequestError(1210),
         CloudScriptHTTPRequestError(1211),
         InsufficientGuildRole(1212),
-        GuildNotFound(1213);
+        GuildNotFound(1213),
+        OverLimit(1214);
 
         public int id;
 
