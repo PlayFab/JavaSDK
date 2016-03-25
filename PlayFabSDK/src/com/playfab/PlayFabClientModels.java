@@ -7,7 +7,7 @@ public class PlayFabClientModels {
 
     public static class AcceptTradeRequest {
         /**
-         * Player who opened trade.
+         * Player who opened the trade.
          */
         public String OfferingPlayerId;
         /**
@@ -15,7 +15,7 @@ public class PlayFabClientModels {
          */
         public String TradeId;
         /**
-         * Items from the accepting player's inventory in exchange for the offered items in the trade. In the case of a gift, this will be null.
+         * Items from the accepting player's or guild's inventory in exchange for the offered items in the trade. In the case of a gift, this will be null.
          */
         public ArrayList<String> AcceptedInventoryInstanceIds;
         
@@ -875,7 +875,7 @@ public class PlayFabClientModels {
 
     public static class GetCatalogItemsResult {
         /**
-         * Array of inventory objects.
+         * Array of items which can be purchased.
          */
         @Unordered("ItemId")
         public ArrayList<CatalogItem> Catalog;
@@ -920,10 +920,6 @@ public class PlayFabClientModels {
 
     public static class GetCharacterInventoryRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
          * Unique PlayFab assigned ID for a specific character owned by a user
          */
         public String CharacterId;
@@ -935,10 +931,6 @@ public class PlayFabClientModels {
     }
 
     public static class GetCharacterInventoryResult {
-        /**
-         * PlayFab unique identifier of the user whose character inventory is being returned.
-         */
-        public String PlayFabId;
         /**
          * Unique identifier of the character for this inventory.
          */
@@ -1505,19 +1497,19 @@ public class PlayFabClientModels {
 
     public static class GetStoreItemsRequest {
         /**
+         * catalog version to store items from. Use default catalog version if null
+         */
+        public String CatalogVersion;
+        /**
          * Unqiue identifier for the store which is being requested.
          */
         public String StoreId;
-        /**
-         * Catalog version for the requested store items. If null, defaults to most recent catalog.
-         */
-        public String CatalogVersion;
         
     }
 
     public static class GetStoreItemsResult {
         /**
-         * Array of store items.
+         * Array of items which can be purchased from this store.
          */
         @Unordered("ItemId")
         public ArrayList<StoreItem> Store;
@@ -1699,7 +1691,7 @@ public class PlayFabClientModels {
 
     public static class GetUserInventoryResult {
         /**
-         * Array of inventory items in the user's current inventory.
+         * Array of inventory items belonging to the user.
          */
         @Unordered("ItemInstanceId")
         public ArrayList<ItemInstance> Inventory;
@@ -2355,7 +2347,7 @@ public class PlayFabClientModels {
          */
         public ArrayList<String> RequestedCatalogItemIds;
         /**
-         * Players who are allowed to accept the trade. If null, the trade may be accepted by any player.
+         * Players who are allowed to accept the trade. If null, the trade may be accepted by any player. If empty, the trade may not be accepted by any player.
          */
         public ArrayList<String> AllowedPlayerIds;
         

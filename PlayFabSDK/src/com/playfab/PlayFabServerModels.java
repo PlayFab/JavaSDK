@@ -672,7 +672,7 @@ public class PlayFabServerModels {
 
     public static class GetCharacterInventoryResult {
         /**
-         * PlayFab unique identifier of the user whose character inventory is being returned.
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
          */
         public String PlayFabId;
         /**
@@ -1117,7 +1117,7 @@ public class PlayFabServerModels {
 
     public static class GetUserInventoryResult {
         /**
-         * PlayFab unique identifier of the user whose inventory is being returned.
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
          */
         public String PlayFabId;
         /**
@@ -2264,13 +2264,13 @@ public class PlayFabServerModels {
 
     public static class UpdateUserInventoryItemDataRequest {
         /**
-         * Unique PlayFab assigned ID for a specific character owned by a user
-         */
-        public String CharacterId;
-        /**
          * Unique PlayFab assigned ID of the user on whom the operation will be performed.
          */
         public String PlayFabId;
+        /**
+         * Unique PlayFab assigned ID for a specific character owned by a user
+         */
+        public String CharacterId;
         /**
          * Unique PlayFab assigned instance identifier of the item
          */
@@ -2283,10 +2283,6 @@ public class PlayFabServerModels {
          * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language constraints.  Use this to delete the keys directly.
          */
         public ArrayList<String> KeysToRemove;
-        
-    }
-
-    public static class UpdateUserInventoryItemDataResult {
         
     }
 
