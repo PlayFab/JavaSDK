@@ -321,6 +321,10 @@ public class PlayFabAdminModels {
          * interval at which the values of the statistic for all players are reset (resets begin at the next interval boundary)
          */
         public StatisticResetIntervalOption VersionChangeInterval;
+        /**
+         * the aggregation method to use in updating the statistic (defaults to last)
+         */
+        public StatisticAggregationMethod AggregationMethod;
         
     }
 
@@ -963,7 +967,7 @@ public class PlayFabAdminModels {
 
     public static class GetUserInventoryResult {
         /**
-         * PlayFab unique identifier of the user whose inventory is being returned.
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
          */
         public String PlayFabId;
         /**
@@ -1378,6 +1382,10 @@ public class PlayFabAdminModels {
          * interval at which the values of the statistic for all players are reset automatically
          */
         public StatisticResetIntervalOption VersionChangeInterval;
+        /**
+         * the aggregation method to use in updating the statistic (defaults to last)
+         */
+        public StatisticAggregationMethod AggregationMethod;
         
     }
 
@@ -1636,6 +1644,13 @@ public class PlayFabAdminModels {
         
     }
 
+    public static enum StatisticAggregationMethod {
+        Last,
+        Min,
+        Max,
+        Sum
+    }
+
     public static enum StatisticResetIntervalOption {
         Never,
         Hour,
@@ -1718,13 +1733,17 @@ public class PlayFabAdminModels {
 
     public static class UpdateCloudScriptRequest {
         /**
-         * Cloud Script version to update. If null, defaults to most recent version
+         * Deprecated - unused
          */
         public Integer Version;
         /**
          * List of Cloud Script files to upload to create the new revision. Must have at least one file.
          */
         public ArrayList<CloudScriptFile> Files;
+        /**
+         * Immediately publish the new revision
+         */
+        public Boolean Publish;
         
     }
 
@@ -1749,6 +1768,10 @@ public class PlayFabAdminModels {
          * interval at which the values of the statistic for all players are reset (changes are effective at the next occurance of the new interval boundary)
          */
         public StatisticResetIntervalOption VersionChangeInterval;
+        /**
+         * the aggregation method to use in updating the statistic (defaults to last)
+         */
+        public StatisticAggregationMethod AggregationMethod;
         
     }
 
