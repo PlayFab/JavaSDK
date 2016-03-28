@@ -2920,9 +2920,9 @@ public class PlayFabServerAPI {
      * Updates the key-value pair data tagged to the specified item, which is read-only from the client.
      */
     @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<UpdateUserInventoryItemDataResult>> UpdateUserInventoryItemCustomDataAsync(final UpdateUserInventoryItemDataRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<UpdateUserInventoryItemDataResult>>() {
-            public PlayFabResult<UpdateUserInventoryItemDataResult> call() throws Exception {
+    public static FutureTask<PlayFabResult<EmptyResult>> UpdateUserInventoryItemCustomDataAsync(final UpdateUserInventoryItemDataRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
                 return privateUpdateUserInventoryItemCustomDataAsync(request);
             }
         });
@@ -2932,9 +2932,9 @@ public class PlayFabServerAPI {
      * Updates the key-value pair data tagged to the specified item, which is read-only from the client.
      */
     @SuppressWarnings("unchecked")
-    public static PlayFabResult<UpdateUserInventoryItemDataResult> UpdateUserInventoryItemCustomData(final UpdateUserInventoryItemDataRequest request) {
-        FutureTask<PlayFabResult<UpdateUserInventoryItemDataResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateUserInventoryItemDataResult>>() {
-            public PlayFabResult<UpdateUserInventoryItemDataResult> call() throws Exception {
+    public static PlayFabResult<EmptyResult> UpdateUserInventoryItemCustomData(final UpdateUserInventoryItemDataRequest request) {
+        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
                 return privateUpdateUserInventoryItemCustomDataAsync(request);
             }
         });
@@ -2950,7 +2950,7 @@ public class PlayFabServerAPI {
      * Updates the key-value pair data tagged to the specified item, which is read-only from the client.
      */
     @SuppressWarnings("unchecked")
-    private static PlayFabResult<UpdateUserInventoryItemDataResult> privateUpdateUserInventoryItemCustomDataAsync(final UpdateUserInventoryItemDataRequest request) throws Exception {
+    private static PlayFabResult<EmptyResult> privateUpdateUserInventoryItemCustomDataAsync(final UpdateUserInventoryItemDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UpdateUserInventoryItemCustomData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
@@ -2960,16 +2960,16 @@ public class PlayFabServerAPI {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<UpdateUserInventoryItemDataResult>();
+            PlayFabResult result = new PlayFabResult<EmptyResult>();
             result.Error = error;
             return result;
         }
         String resultRawJson = (String) httpResult;
 
-        PlayFabJsonSuccess<UpdateUserInventoryItemDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateUserInventoryItemDataResult>>(){}.getType());
-        UpdateUserInventoryItemDataResult result = resultData.data;
+        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
+        EmptyResult result = resultData.data;
 
-        PlayFabResult<UpdateUserInventoryItemDataResult> pfResult = new PlayFabResult<UpdateUserInventoryItemDataResult>();
+        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
         pfResult.Result = result;
         return pfResult;
     }
