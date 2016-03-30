@@ -3671,6 +3671,64 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Executes a CloudScript function, with the 'currentPlayerId' variable set to the specified PlayFabId parameter value.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ExecuteCloudScriptResult>> ExecuteCloudScriptAsync(final ExecuteCloudScriptServerRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ExecuteCloudScriptResult>>() {
+            public PlayFabResult<ExecuteCloudScriptResult> call() throws Exception {
+                return privateExecuteCloudScriptAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Executes a CloudScript function, with the 'currentPlayerId' variable set to the specified PlayFabId parameter value.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ExecuteCloudScriptResult> ExecuteCloudScript(final ExecuteCloudScriptServerRequest request) {
+        FutureTask<PlayFabResult<ExecuteCloudScriptResult>> task = new FutureTask(new Callable<PlayFabResult<ExecuteCloudScriptResult>>() {
+            public PlayFabResult<ExecuteCloudScriptResult> call() throws Exception {
+                return privateExecuteCloudScriptAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Executes a CloudScript function, with the 'currentPlayerId' variable set to the specified PlayFabId parameter value.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ExecuteCloudScriptResult> privateExecuteCloudScriptAsync(final ExecuteCloudScriptServerRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/ExecuteCloudScript", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ExecuteCloudScriptResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ExecuteCloudScriptResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ExecuteCloudScriptResult>>(){}.getType());
+        ExecuteCloudScriptResult result = resultData.data;
+
+        PlayFabResult<ExecuteCloudScriptResult> pfResult = new PlayFabResult<ExecuteCloudScriptResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded, the query to retrieve the data will fail. See this post for more information:  https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service
      */
     @SuppressWarnings("unchecked")

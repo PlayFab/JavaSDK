@@ -288,6 +288,12 @@ public class PlayFabServerModels {
         
     }
 
+    public static enum CloudScriptRevisionOption {
+        Live,
+        Latest,
+        Specific
+    }
+
     public static class ConsumeItemRequest {
         /**
          * Unique PlayFab assigned ID of the user on whom the operation will be performed.
@@ -549,6 +555,68 @@ public class PlayFabServerModels {
         
     }
 
+    public static class ExecuteCloudScriptResult {
+        /**
+         * The name of the function that executed
+         */
+        public String FunctionName;
+        /**
+         * The revision of the CloudScript that executed
+         */
+        public Integer Revision;
+        /**
+         * The object returned from the CloudScript function, if any
+         */
+        public Object FunctionResult;
+        /**
+         * Entries logged during the function execution. These include both entries logged in the function code using log.info() and log.error() and error entries for API and HTTP request failures.
+         */
+        public ArrayList<LogStatement> Logs;
+        public Double ExecutionTimeSeconds;
+        public Long MemoryConsumedBytes;
+        /**
+         * Number of PlayFab API requests issued by the CloudScript function
+         */
+        public Integer APIRequestsIssued;
+        /**
+         * Number of external HTTP requests issued by the CloudScript function
+         */
+        public Integer HttpRequestsIssued;
+        /**
+         * Information about the error, if any, that occured during execution
+         */
+        public ScriptExecutionError Error;
+        
+    }
+
+    public static class ExecuteCloudScriptServerRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * The name of the CloudScript function to execute
+         */
+        public String FunctionName;
+        /**
+         * Object that is passed in to the function as the first argument
+         */
+        public Object FunctionParameter;
+        /**
+         * Option for which revision of the CloudScript to execute. 'Latest' executes the most recently created revision, 'Live' executes the current live, published revision, and 'Specific' executes the specified revision.
+         */
+        public CloudScriptRevisionOption RevisionSelection;
+        /**
+         * The specivic revision to execute, when RevisionSelection is set to 'Specific'
+         */
+        public Integer SpecificRevision;
+        /**
+         * Generate a 'player_executed_cloudscript' PlayStream event containing the results of the function execution and other contextual information. This event will show up in the PlayStream debugger console for the player in Game Manager.
+         */
+        public Boolean GeneratePlayStreamEvent;
+        
+    }
+
     public static class FacebookPlayFabIdPair {
         /**
          * Unique Facebook identifier for a user.
@@ -752,26 +820,6 @@ public class PlayFabServerModels {
          * Character statistics for the requested user.
          */
         public Map<String,Integer> CharacterStatistics;
-        
-    }
-
-    public static class GetCloudScriptUrlRequest {
-        /**
-         * Cloud Script Version to use. Defaults to 1.
-         */
-        public Integer Version;
-        /**
-         * Specifies whether the URL returned should be the one for the most recently uploaded Revision of the Cloud Script (true), or the Revision most recently set to live (false). Defaults to false.
-         */
-        public Boolean Testing;
-        
-    }
-
-    public static class GetCloudScriptUrlResult {
-        /**
-         * URL of the Cloud Script logic server.
-         */
-        public String Url;
         
     }
 
@@ -1489,6 +1537,19 @@ public class PlayFabServerModels {
         
     }
 
+    public static class LogStatement {
+        /**
+         * 'Debug', 'Info', or 'Error'
+         */
+        public String Level;
+        public String Message;
+        /**
+         * Optional object accompanying the message as contextual information
+         */
+        public Object Data;
+        
+    }
+
     public static class ModifyCharacterVirtualCurrencyResult {
         /**
          * Name of the virtual currency which was modified.
@@ -1825,35 +1886,19 @@ public class PlayFabServerModels {
         
     }
 
-    public static class RunCloudScriptResult {
+    public static class ScriptExecutionError {
         /**
-         * id of Cloud Script run
+         * Error code, such as CloudScriptNotFound, JavascriptException, CloudScriptFunctionArgumentSizeExceeded, CloudScriptAPIRequestCountExceeded, CloudScriptAPIRequestError, or CloudScriptHTTPRequestError
          */
-        public String ActionId;
+        public String Error;
         /**
-         * version of Cloud Script run
+         * Details about the error
          */
-        public Integer Version;
+        public String Message;
         /**
-         * revision of Cloud Script run
+         * Point during the execution of the script at which the error occurred, if any
          */
-        public Integer Revision;
-        /**
-         * return values from the server action as a dynamic object
-         */
-        public Object Results;
-        /**
-         * return values from the server action as a JSON encoded string
-         */
-        public String ResultsEncoded;
-        /**
-         * any log statements generated during the run of this action
-         */
-        public String ActionLog;
-        /**
-         * time this script took to run, in seconds
-         */
-        public Double ExecutionTime;
+        public String StackTrace;
         
     }
 
