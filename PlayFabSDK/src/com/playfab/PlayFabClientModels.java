@@ -3399,7 +3399,7 @@ public class PlayFabClientModels {
 
     public static class UpdateUserStatisticsRequest {
         /**
-         * Statistics to be updated with the provided values.
+         * Statistics to be updated with the provided values. UserStatistics object must follow the Key(string), Value(int) pattern.
          */
         public Map<String,Integer> UserStatistics;
         

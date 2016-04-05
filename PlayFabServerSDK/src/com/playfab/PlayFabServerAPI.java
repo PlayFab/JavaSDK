@@ -1409,7 +1409,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the user
+     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateUserStatisticsResult>> UpdateUserStatisticsAsync(final UpdateUserStatisticsRequest request) {
@@ -1421,7 +1421,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the user
+     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateUserStatisticsResult> UpdateUserStatistics(final UpdateUserStatisticsRequest request) {
@@ -1439,7 +1439,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the user
+     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserStatisticsResult> privateUpdateUserStatisticsAsync(final UpdateUserStatisticsRequest request) throws Exception {
@@ -1520,6 +1520,64 @@ public class PlayFabServerAPI {
         GetCatalogItemsResult result = resultData.data;
 
         PlayFabResult<GetCatalogItemsResult> pfResult = new PlayFabResult<GetCatalogItemsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Retrieves the key-value store of custom publisher settings
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPublisherDataResult>> GetPublisherDataAsync(final GetPublisherDataRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPublisherDataResult>>() {
+            public PlayFabResult<GetPublisherDataResult> call() throws Exception {
+                return privateGetPublisherDataAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the key-value store of custom publisher settings
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPublisherDataResult> GetPublisherData(final GetPublisherDataRequest request) {
+        FutureTask<PlayFabResult<GetPublisherDataResult>> task = new FutureTask(new Callable<PlayFabResult<GetPublisherDataResult>>() {
+            public PlayFabResult<GetPublisherDataResult> call() throws Exception {
+                return privateGetPublisherDataAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves the key-value store of custom publisher settings
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPublisherDataResult> privateGetPublisherDataAsync(final GetPublisherDataRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetPublisherData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPublisherDataResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPublisherDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPublisherDataResult>>(){}.getType());
+        GetPublisherDataResult result = resultData.data;
+
+        PlayFabResult<GetPublisherDataResult> pfResult = new PlayFabResult<GetPublisherDataResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -1694,6 +1752,64 @@ public class PlayFabServerAPI {
         GetTitleNewsResult result = resultData.data;
 
         PlayFabResult<GetTitleNewsResult> pfResult = new PlayFabResult<GetTitleNewsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Updates the key-value store of custom publisher settings
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<SetPublisherDataResult>> SetPublisherDataAsync(final SetPublisherDataRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<SetPublisherDataResult>>() {
+            public PlayFabResult<SetPublisherDataResult> call() throws Exception {
+                return privateSetPublisherDataAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Updates the key-value store of custom publisher settings
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<SetPublisherDataResult> SetPublisherData(final SetPublisherDataRequest request) {
+        FutureTask<PlayFabResult<SetPublisherDataResult>> task = new FutureTask(new Callable<PlayFabResult<SetPublisherDataResult>>() {
+            public PlayFabResult<SetPublisherDataResult> call() throws Exception {
+                return privateSetPublisherDataAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Updates the key-value store of custom publisher settings
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<SetPublisherDataResult> privateSetPublisherDataAsync(final SetPublisherDataRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SetPublisherData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<SetPublisherDataResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<SetPublisherDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetPublisherDataResult>>(){}.getType());
+        SetPublisherDataResult result = resultData.data;
+
+        PlayFabResult<SetPublisherDataResult> pfResult = new PlayFabResult<SetPublisherDataResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -3381,64 +3497,6 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the key-value store of custom publisher settings
-     */
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<GetPublisherDataResult>> GetPublisherDataAsync(final GetPublisherDataRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<GetPublisherDataResult>>() {
-            public PlayFabResult<GetPublisherDataResult> call() throws Exception {
-                return privateGetPublisherDataAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Retrieves the key-value store of custom publisher settings
-     */
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<GetPublisherDataResult> GetPublisherData(final GetPublisherDataRequest request) {
-        FutureTask<PlayFabResult<GetPublisherDataResult>> task = new FutureTask(new Callable<PlayFabResult<GetPublisherDataResult>>() {
-            public PlayFabResult<GetPublisherDataResult> call() throws Exception {
-                return privateGetPublisherDataAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * Retrieves the key-value store of custom publisher settings
-     */
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<GetPublisherDataResult> privateGetPublisherDataAsync(final GetPublisherDataRequest request) throws Exception {
-        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetPublisherData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<GetPublisherDataResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<GetPublisherDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPublisherDataResult>>(){}.getType());
-        GetPublisherDataResult result = resultData.data;
-
-        PlayFabResult<GetPublisherDataResult> pfResult = new PlayFabResult<GetPublisherDataResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
      * Retrieves data stored in a shared group object, as well as the list of members in the group. The server can access all public and private group data.
      */
     @SuppressWarnings("unchecked")
@@ -3550,64 +3608,6 @@ public class PlayFabServerAPI {
         RemoveSharedGroupMembersResult result = resultData.data;
 
         PlayFabResult<RemoveSharedGroupMembersResult> pfResult = new PlayFabResult<RemoveSharedGroupMembersResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
-     * Updates the key-value store of custom publisher settings
-     */
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<SetPublisherDataResult>> SetPublisherDataAsync(final SetPublisherDataRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<SetPublisherDataResult>>() {
-            public PlayFabResult<SetPublisherDataResult> call() throws Exception {
-                return privateSetPublisherDataAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Updates the key-value store of custom publisher settings
-     */
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<SetPublisherDataResult> SetPublisherData(final SetPublisherDataRequest request) {
-        FutureTask<PlayFabResult<SetPublisherDataResult>> task = new FutureTask(new Callable<PlayFabResult<SetPublisherDataResult>>() {
-            public PlayFabResult<SetPublisherDataResult> call() throws Exception {
-                return privateSetPublisherDataAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * Updates the key-value store of custom publisher settings
-     */
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<SetPublisherDataResult> privateSetPublisherDataAsync(final SetPublisherDataRequest request) throws Exception {
-        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SetPublisherData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<SetPublisherDataResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<SetPublisherDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetPublisherDataResult>>(){}.getType());
-        SetPublisherDataResult result = resultData.data;
-
-        PlayFabResult<SetPublisherDataResult> pfResult = new PlayFabResult<SetPublisherDataResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -3845,7 +3845,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Lists all of the characters that belong to a specific user.
+     * Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListUsersCharactersResult>> GetAllUsersCharactersAsync(final ListUsersCharactersRequest request) {
@@ -3857,7 +3857,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Lists all of the characters that belong to a specific user.
+     * Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListUsersCharactersResult> GetAllUsersCharacters(final ListUsersCharactersRequest request) {
@@ -3875,7 +3875,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Lists all of the characters that belong to a specific user.
+     * Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListUsersCharactersResult> privateGetAllUsersCharactersAsync(final ListUsersCharactersRequest request) throws Exception {
@@ -4135,7 +4135,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Grants the specified character type to the user.
+     * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GrantCharacterToUserResult>> GrantCharacterToUserAsync(final GrantCharacterToUserRequest request) {
@@ -4147,7 +4147,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Grants the specified character type to the user.
+     * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GrantCharacterToUserResult> GrantCharacterToUser(final GrantCharacterToUserRequest request) {
@@ -4165,7 +4165,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Grants the specified character type to the user.
+     * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GrantCharacterToUserResult> privateGrantCharacterToUserAsync(final GrantCharacterToUserRequest request) throws Exception {

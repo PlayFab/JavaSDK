@@ -1674,6 +1674,64 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Submit a report for another player (due to bad bahavior, etc.), so that customer service representatives for the title can take action concerning potentially toxic players.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ReportPlayerClientResult>> ReportPlayerAsync(final ReportPlayerClientRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ReportPlayerClientResult>>() {
+            public PlayFabResult<ReportPlayerClientResult> call() throws Exception {
+                return privateReportPlayerAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Submit a report for another player (due to bad bahavior, etc.), so that customer service representatives for the title can take action concerning potentially toxic players.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ReportPlayerClientResult> ReportPlayer(final ReportPlayerClientRequest request) {
+        FutureTask<PlayFabResult<ReportPlayerClientResult>> task = new FutureTask(new Callable<PlayFabResult<ReportPlayerClientResult>>() {
+            public PlayFabResult<ReportPlayerClientResult> call() throws Exception {
+                return privateReportPlayerAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Submit a report for another player (due to bad bahavior, etc.), so that customer service representatives for the title can take action concerning potentially toxic players.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ReportPlayerClientResult> privateReportPlayerAsync(final ReportPlayerClientRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ReportPlayer", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ReportPlayerClientResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ReportPlayerClientResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ReportPlayerClientResult>>(){}.getType());
+        ReportPlayerClientResult result = resultData.data;
+
+        PlayFabResult<ReportPlayerClientResult> pfResult = new PlayFabResult<ReportPlayerClientResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Forces an email to be sent to the registered email address for the user's account, with a link allowing the user to change the password
      */
     @SuppressWarnings("unchecked")
@@ -3007,7 +3065,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the user
+     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdatePlayerStatisticsResult>> UpdatePlayerStatisticsAsync(final UpdatePlayerStatisticsRequest request) {
@@ -3019,7 +3077,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the user
+     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdatePlayerStatisticsResult> UpdatePlayerStatistics(final UpdatePlayerStatisticsRequest request) {
@@ -3037,7 +3095,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the user
+     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdatePlayerStatisticsResult> privateUpdatePlayerStatisticsAsync(final UpdatePlayerStatisticsRequest request) throws Exception {
@@ -3181,7 +3239,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the user
+     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateUserStatisticsResult>> UpdateUserStatisticsAsync(final UpdateUserStatisticsRequest request) {
@@ -3193,7 +3251,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the user
+     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateUserStatisticsResult> UpdateUserStatistics(final UpdateUserStatisticsRequest request) {
@@ -3211,7 +3269,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the user
+     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserStatisticsResult> privateUpdateUserStatisticsAsync(final UpdateUserStatisticsRequest request) throws Exception {
@@ -3292,6 +3350,64 @@ public class PlayFabClientAPI {
         GetCatalogItemsResult result = resultData.data;
 
         PlayFabResult<GetCatalogItemsResult> pfResult = new PlayFabResult<GetCatalogItemsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Retrieves the key-value store of custom publisher settings
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPublisherDataResult>> GetPublisherDataAsync(final GetPublisherDataRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPublisherDataResult>>() {
+            public PlayFabResult<GetPublisherDataResult> call() throws Exception {
+                return privateGetPublisherDataAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the key-value store of custom publisher settings
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPublisherDataResult> GetPublisherData(final GetPublisherDataRequest request) {
+        FutureTask<PlayFabResult<GetPublisherDataResult>> task = new FutureTask(new Callable<PlayFabResult<GetPublisherDataResult>>() {
+            public PlayFabResult<GetPublisherDataResult> call() throws Exception {
+                return privateGetPublisherDataAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves the key-value store of custom publisher settings
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPublisherDataResult> privateGetPublisherDataAsync(final GetPublisherDataRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPublisherData", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPublisherDataResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPublisherDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPublisherDataResult>>(){}.getType());
+        GetPublisherDataResult result = resultData.data;
+
+        PlayFabResult<GetPublisherDataResult> pfResult = new PlayFabResult<GetPublisherDataResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -3988,64 +4104,6 @@ public class PlayFabClientAPI {
         RedeemCouponResult result = resultData.data;
 
         PlayFabResult<RedeemCouponResult> pfResult = new PlayFabResult<RedeemCouponResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
-     * Submit a report for another player (due to bad bahavior, etc.), so that customer service representatives for the title can take action concerning potentially toxic players.
-     */
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<ReportPlayerClientResult>> ReportPlayerAsync(final ReportPlayerClientRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<ReportPlayerClientResult>>() {
-            public PlayFabResult<ReportPlayerClientResult> call() throws Exception {
-                return privateReportPlayerAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Submit a report for another player (due to bad bahavior, etc.), so that customer service representatives for the title can take action concerning potentially toxic players.
-     */
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<ReportPlayerClientResult> ReportPlayer(final ReportPlayerClientRequest request) {
-        FutureTask<PlayFabResult<ReportPlayerClientResult>> task = new FutureTask(new Callable<PlayFabResult<ReportPlayerClientResult>>() {
-            public PlayFabResult<ReportPlayerClientResult> call() throws Exception {
-                return privateReportPlayerAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * Submit a report for another player (due to bad bahavior, etc.), so that customer service representatives for the title can take action concerning potentially toxic players.
-     */
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<ReportPlayerClientResult> privateReportPlayerAsync(final ReportPlayerClientRequest request) throws Exception {
-        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ReportPlayer", request, "X-Authorization", _authKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<ReportPlayerClientResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<ReportPlayerClientResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ReportPlayerClientResult>>(){}.getType());
-        ReportPlayerClientResult result = resultData.data;
-
-        PlayFabResult<ReportPlayerClientResult> pfResult = new PlayFabResult<ReportPlayerClientResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -5211,64 +5269,6 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the key-value store of custom publisher settings
-     */
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<GetPublisherDataResult>> GetPublisherDataAsync(final GetPublisherDataRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<GetPublisherDataResult>>() {
-            public PlayFabResult<GetPublisherDataResult> call() throws Exception {
-                return privateGetPublisherDataAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Retrieves the key-value store of custom publisher settings
-     */
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<GetPublisherDataResult> GetPublisherData(final GetPublisherDataRequest request) {
-        FutureTask<PlayFabResult<GetPublisherDataResult>> task = new FutureTask(new Callable<PlayFabResult<GetPublisherDataResult>>() {
-            public PlayFabResult<GetPublisherDataResult> call() throws Exception {
-                return privateGetPublisherDataAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * Retrieves the key-value store of custom publisher settings
-     */
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<GetPublisherDataResult> privateGetPublisherDataAsync(final GetPublisherDataRequest request) throws Exception {
-        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPublisherData", request, "X-Authorization", _authKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<GetPublisherDataResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<GetPublisherDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPublisherDataResult>>(){}.getType());
-        GetPublisherDataResult result = resultData.data;
-
-        PlayFabResult<GetPublisherDataResult> pfResult = new PlayFabResult<GetPublisherDataResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
      * Retrieves data stored in a shared group object, as well as the list of members in the group. Non-members of the group may use this to retrieve group data, including membership, but they will not receive data for keys marked as private.
      */
     @SuppressWarnings("unchecked")
@@ -5676,7 +5676,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Lists all of the characters that belong to a specific user.
+     * Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListUsersCharactersResult>> GetAllUsersCharactersAsync(final ListUsersCharactersRequest request) {
@@ -5688,7 +5688,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Lists all of the characters that belong to a specific user.
+     * Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListUsersCharactersResult> GetAllUsersCharacters(final ListUsersCharactersRequest request) {
@@ -5706,7 +5706,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Lists all of the characters that belong to a specific user.
+     * Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListUsersCharactersResult> privateGetAllUsersCharactersAsync(final ListUsersCharactersRequest request) throws Exception {
@@ -5966,7 +5966,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Grants the specified character type to the user.
+     * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GrantCharacterToUserResult>> GrantCharacterToUserAsync(final GrantCharacterToUserRequest request) {
@@ -5978,7 +5978,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Grants the specified character type to the user.
+     * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GrantCharacterToUserResult> GrantCharacterToUser(final GrantCharacterToUserRequest request) {
@@ -5996,7 +5996,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Grants the specified character type to the user.
+     * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GrantCharacterToUserResult> privateGrantCharacterToUserAsync(final GrantCharacterToUserRequest request) throws Exception {
@@ -6024,7 +6024,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the specific character
+     * Updates the values of the specified title-specific statistics for the specific character. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateCharacterStatisticsResult>> UpdateCharacterStatisticsAsync(final UpdateCharacterStatisticsRequest request) {
@@ -6036,7 +6036,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the specific character
+     * Updates the values of the specified title-specific statistics for the specific character. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateCharacterStatisticsResult> UpdateCharacterStatistics(final UpdateCharacterStatisticsRequest request) {
@@ -6054,7 +6054,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the specific character
+     * Updates the values of the specified title-specific statistics for the specific character. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateCharacterStatisticsResult> privateUpdateCharacterStatisticsAsync(final UpdateCharacterStatisticsRequest request) throws Exception {
