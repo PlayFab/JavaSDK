@@ -381,7 +381,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user in using a Google account access token, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user in using a Google account access token(https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods), returning a session identifier that can subsequently be used for API calls which require an authenticated user
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<LoginResult>> LoginWithGoogleAccountAsync(final LoginWithGoogleAccountRequest request) {
@@ -393,7 +393,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user in using a Google account access token, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user in using a Google account access token(https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods), returning a session identifier that can subsequently be used for API calls which require an authenticated user
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<LoginResult> LoginWithGoogleAccount(final LoginWithGoogleAccountRequest request) {
@@ -411,7 +411,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user in using a Google account access token, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user in using a Google account access token(https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods), returning a session identifier that can subsequently be used for API calls which require an authenticated user
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LoginResult> privateLoginWithGoogleAccountAsync(final LoginWithGoogleAccountRequest request) throws Exception {
@@ -1443,7 +1443,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Links the currently signed-in user account to the Google account specified by the Google account access token
+     * Links the currently signed-in user account to the Google account specified by the Google account access token (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods).
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<LinkGoogleAccountResult>> LinkGoogleAccountAsync(final LinkGoogleAccountRequest request) {
@@ -1455,7 +1455,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Links the currently signed-in user account to the Google account specified by the Google account access token
+     * Links the currently signed-in user account to the Google account specified by the Google account access token (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods).
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<LinkGoogleAccountResult> LinkGoogleAccount(final LinkGoogleAccountRequest request) {
@@ -1473,7 +1473,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Links the currently signed-in user account to the Google account specified by the Google account access token
+     * Links the currently signed-in user account to the Google account specified by the Google account access token (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods).
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LinkGoogleAccountResult> privateLinkGoogleAccountAsync(final LinkGoogleAccountRequest request) throws Exception {
@@ -2022,7 +2022,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Unlinks the related Google account from the user's PlayFab account
+     * Unlinks the related Google account from the user's PlayFab account (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods).
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UnlinkGoogleAccountResult>> UnlinkGoogleAccountAsync(final UnlinkGoogleAccountRequest request) {
@@ -2034,7 +2034,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Unlinks the related Google account from the user's PlayFab account
+     * Unlinks the related Google account from the user's PlayFab account (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods).
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<UnlinkGoogleAccountResult> UnlinkGoogleAccount(final UnlinkGoogleAccountRequest request) {
@@ -2052,7 +2052,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Unlinks the related Google account from the user's PlayFab account
+     * Unlinks the related Google account from the user's PlayFab account (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods).
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UnlinkGoogleAccountResult> privateUnlinkGoogleAccountAsync(final UnlinkGoogleAccountRequest request) throws Exception {

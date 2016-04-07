@@ -1750,22 +1750,6 @@ public class PlayFabServerModels {
         
     }
 
-    public static class PlayStreamEventHistory {
-        /**
-         * The ID of the trigger that caused this event to be created.
-         */
-        public String ParentTriggerId;
-        /**
-         * The ID of the previous event that caused this event to be created by hitting a trigger.
-         */
-        public String ParentEventId;
-        /**
-         * If true, then this event was allowed to trigger subsequent events in a trigger.
-         */
-        public Boolean TriggeredEvents;
-        
-    }
-
     public static class RedeemCouponRequest {
         /**
          * Generated coupon code to redeem.
@@ -1972,15 +1956,6 @@ public class PlayFabServerModels {
          */
         public UserDataPermission Permission;
         
-    }
-
-    public static enum SourceType {
-        Admin,
-        BackEnd,
-        GameClient,
-        GameServer,
-        Partner,
-        Stream
     }
 
     public static class StatisticNameVersion {

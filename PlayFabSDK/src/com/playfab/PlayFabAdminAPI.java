@@ -365,7 +365,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Retrieves a download URL for the requested report. Currently available reports: Daily / Monthly API Usage, Daily / Monthly Overview, Monthly Real Money Purchase History, Monthly Top Items, Monthly Top Spenders, Monthly VC Purcahse History, Sevan Day Retention
+     * Retrieves a download URL for the requested report
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetDataReportResult>> GetDataReportAsync(final GetDataReportRequest request) {
@@ -377,7 +377,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Retrieves a download URL for the requested report. Currently available reports: Daily / Monthly API Usage, Daily / Monthly Overview, Monthly Real Money Purchase History, Monthly Top Items, Monthly Top Spenders, Monthly VC Purcahse History, Sevan Day Retention
+     * Retrieves a download URL for the requested report
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetDataReportResult> GetDataReport(final GetDataReportRequest request) {
@@ -395,7 +395,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Retrieves a download URL for the requested report. Currently available reports: Daily / Monthly API Usage, Daily / Monthly Overview, Monthly Real Money Purchase History, Monthly Top Items, Monthly Top Spenders, Monthly VC Purcahse History, Sevan Day Retention
+     * Retrieves a download URL for the requested report
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetDataReportResult> privateGetDataReportAsync(final GetDataReportRequest request) throws Exception {
