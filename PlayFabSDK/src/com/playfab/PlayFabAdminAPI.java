@@ -1583,6 +1583,64 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Retrieves the key-value store of custom publisher settings
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPublisherDataResult>> GetPublisherDataAsync(final GetPublisherDataRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPublisherDataResult>>() {
+            public PlayFabResult<GetPublisherDataResult> call() throws Exception {
+                return privateGetPublisherDataAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the key-value store of custom publisher settings
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPublisherDataResult> GetPublisherData(final GetPublisherDataRequest request) {
+        FutureTask<PlayFabResult<GetPublisherDataResult>> task = new FutureTask(new Callable<PlayFabResult<GetPublisherDataResult>>() {
+            public PlayFabResult<GetPublisherDataResult> call() throws Exception {
+                return privateGetPublisherDataAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves the key-value store of custom publisher settings
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPublisherDataResult> privateGetPublisherDataAsync(final GetPublisherDataRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/GetPublisherData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPublisherDataResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPublisherDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPublisherDataResult>>(){}.getType());
+        GetPublisherDataResult result = resultData.data;
+
+        PlayFabResult<GetPublisherDataResult> pfResult = new PlayFabResult<GetPublisherDataResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the random drop table configuration for the title
      */
     @SuppressWarnings("unchecked")
@@ -3028,64 +3086,6 @@ public class PlayFabAdminAPI {
         RemoveServerBuildResult result = resultData.data;
 
         PlayFabResult<RemoveServerBuildResult> pfResult = new PlayFabResult<RemoveServerBuildResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
-     * Retrieves the key-value store of custom publisher settings
-     */
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<GetPublisherDataResult>> GetPublisherDataAsync(final GetPublisherDataRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<GetPublisherDataResult>>() {
-            public PlayFabResult<GetPublisherDataResult> call() throws Exception {
-                return privateGetPublisherDataAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Retrieves the key-value store of custom publisher settings
-     */
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<GetPublisherDataResult> GetPublisherData(final GetPublisherDataRequest request) {
-        FutureTask<PlayFabResult<GetPublisherDataResult>> task = new FutureTask(new Callable<PlayFabResult<GetPublisherDataResult>>() {
-            public PlayFabResult<GetPublisherDataResult> call() throws Exception {
-                return privateGetPublisherDataAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * Retrieves the key-value store of custom publisher settings
-     */
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<GetPublisherDataResult> privateGetPublisherDataAsync(final GetPublisherDataRequest request) throws Exception {
-        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/GetPublisherData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<GetPublisherDataResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<GetPublisherDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPublisherDataResult>>(){}.getType());
-        GetPublisherDataResult result = resultData.data;
-
-        PlayFabResult<GetPublisherDataResult> pfResult = new PlayFabResult<GetPublisherDataResult>();
         pfResult.Result = result;
         return pfResult;
     }
