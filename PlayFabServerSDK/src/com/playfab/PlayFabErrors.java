@@ -215,7 +215,10 @@ public class PlayFabErrors {
         CloudScriptHTTPRequestError(1211),
         InsufficientGuildRole(1212),
         GuildNotFound(1213),
-        OverLimit(1214);
+        OverLimit(1214),
+        EventNotFound(1215),
+        InvalidEventEntity(1216),
+        InvalidEventName(1217);
 
         public int id;
 
