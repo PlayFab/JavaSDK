@@ -1,6 +1,7 @@
 package com.playfab;
 
 import java.util.Map;
+import java.util.List;
 
 public class PlayFabErrors {
     /**
@@ -217,8 +218,9 @@ public class PlayFabErrors {
         GuildNotFound(1213),
         OverLimit(1214),
         EventNotFound(1215),
-        InvalidEventEntity(1216),
-        InvalidEventName(1217);
+        InvalidEventField(1216),
+        InvalidEventName(1217),
+        CatalogNotConfigured(1218);
 
         public int id;
 
@@ -245,19 +247,23 @@ public class PlayFabErrors {
 
     }
 
+    // This is the external definition of an error as exposed to the developer
     public static class PlayFabError {
         public int httpCode;
         public String httpStatus;
         public PlayFabErrorCode pfErrorCode;
         public String errorMessage;
+        public Map<String, List<String>> errorDetails;
     }
 
+    // This is the internal definition of an error, that matches the json we receive
     public static class PlayFabJsonError {
         public int code;
         public String status;
         public String error;
         public int errorCode;
         public String errorMessage;
+        public Map<String, List<String>> errorDetails;
     }
 
     public static class PlayFabJsonSuccess<E> {

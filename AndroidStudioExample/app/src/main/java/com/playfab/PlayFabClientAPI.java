@@ -5154,6 +5154,180 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Writes a character-based event into PlayStream.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<WriteEventResponse>> WriteCharacterEventAsync(final WriteClientCharacterEventRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<WriteEventResponse>>() {
+            public PlayFabResult<WriteEventResponse> call() throws Exception {
+                return privateWriteCharacterEventAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Writes a character-based event into PlayStream.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<WriteEventResponse> WriteCharacterEvent(final WriteClientCharacterEventRequest request) {
+        FutureTask<PlayFabResult<WriteEventResponse>> task = new FutureTask(new Callable<PlayFabResult<WriteEventResponse>>() {
+            public PlayFabResult<WriteEventResponse> call() throws Exception {
+                return privateWriteCharacterEventAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Writes a character-based event into PlayStream.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<WriteEventResponse> privateWriteCharacterEventAsync(final WriteClientCharacterEventRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/WriteCharacterEvent", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<WriteEventResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<WriteEventResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<WriteEventResponse>>(){}.getType());
+        WriteEventResponse result = resultData.data;
+
+        PlayFabResult<WriteEventResponse> pfResult = new PlayFabResult<WriteEventResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Writes a player-based event into PlayStream.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<WriteEventResponse>> WritePlayerEventAsync(final WriteClientPlayerEventRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<WriteEventResponse>>() {
+            public PlayFabResult<WriteEventResponse> call() throws Exception {
+                return privateWritePlayerEventAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Writes a player-based event into PlayStream.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<WriteEventResponse> WritePlayerEvent(final WriteClientPlayerEventRequest request) {
+        FutureTask<PlayFabResult<WriteEventResponse>> task = new FutureTask(new Callable<PlayFabResult<WriteEventResponse>>() {
+            public PlayFabResult<WriteEventResponse> call() throws Exception {
+                return privateWritePlayerEventAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Writes a player-based event into PlayStream.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<WriteEventResponse> privateWritePlayerEventAsync(final WriteClientPlayerEventRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/WritePlayerEvent", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<WriteEventResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<WriteEventResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<WriteEventResponse>>(){}.getType());
+        WriteEventResponse result = resultData.data;
+
+        PlayFabResult<WriteEventResponse> pfResult = new PlayFabResult<WriteEventResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Writes a title-based event into PlayStream.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<WriteEventResponse>> WriteTitleEventAsync(final WriteTitleEventRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<WriteEventResponse>>() {
+            public PlayFabResult<WriteEventResponse> call() throws Exception {
+                return privateWriteTitleEventAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Writes a title-based event into PlayStream.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<WriteEventResponse> WriteTitleEvent(final WriteTitleEventRequest request) {
+        FutureTask<PlayFabResult<WriteEventResponse>> task = new FutureTask(new Callable<PlayFabResult<WriteEventResponse>>() {
+            public PlayFabResult<WriteEventResponse> call() throws Exception {
+                return privateWriteTitleEventAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Writes a title-based event into PlayStream.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<WriteEventResponse> privateWriteTitleEventAsync(final WriteTitleEventRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/WriteTitleEvent", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<WriteEventResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<WriteEventResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<WriteEventResponse>>(){}.getType());
+        WriteEventResponse result = resultData.data;
+
+        PlayFabResult<WriteEventResponse> pfResult = new PlayFabResult<WriteEventResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Adds users to the set of those able to update both the shared data, as well as the set of users in the group. Only users in the group can add new members.
      */
     @SuppressWarnings("unchecked")
