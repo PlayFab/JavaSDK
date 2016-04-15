@@ -3752,4 +3752,64 @@ public class PlayFabClientModels {
         
     }
 
+    public static class WriteClientCharacterEventRequest {
+        /**
+         * Unique PlayFab assigned ID for a specific character owned by a user
+         */
+        public String CharacterId;
+        /**
+         * The name of this event. This field is alphanumeric and at most 64 characters long. It is internally namespaced down onto the calling title. Best practices are to name in subject_verb_object format (player_logged_in).
+         */
+        public String EventName;
+        /**
+         * The time (in UTC) associated with this event. If omitted, a timestamp of now in UTC will be applied.
+         */
+        public Date Timestamp;
+        /**
+         * Arbitrary json values that represent the custom body of this event.
+         */
+        public Map<String,Object> Body;
+        
+    }
+
+    public static class WriteClientPlayerEventRequest {
+        /**
+         * The name of this event. This field is alphanumeric and at most 64 characters long. It is internally namespaced down onto the calling title. Best practices are to name in subject_verb_object format (player_logged_in).
+         */
+        public String EventName;
+        /**
+         * The time (in UTC) associated with this event. If omitted, a timestamp of 'now' in UTC will be applied.
+         */
+        public Date Timestamp;
+        /**
+         * Arbitrary json values that represent the custom body of this event.
+         */
+        public Map<String,Object> Body;
+        
+    }
+
+    public static class WriteEventResponse {
+        /**
+         * The ID of the event as it was written to PlayStream. This is an alphanumeric GUID.
+         */
+        public String EventId;
+        
+    }
+
+    public static class WriteTitleEventRequest {
+        /**
+         * The name of this event. This field is alphanumeric and at most 64 characters long. It is internally namespaced down onto the calling title. Best practices are to name in subject_verb_object format (player_logged_in).
+         */
+        public String EventName;
+        /**
+         * The time (in UTC) associated with this event. If omitted, a timestamp of now in UTC will be applied.
+         */
+        public Date Timestamp;
+        /**
+         * Arbitrary json values that represent the custom body of this event.
+         */
+        public Map<String,Object> Body;
+        
+    }
+
 }
