@@ -555,6 +555,26 @@ public class PlayFabServerModels {
         
     }
 
+    public static class EvaluateRandomResultTableRequest {
+        /**
+         * The unique identifier of the Random Result Table to use.
+         */
+        public String TableId;
+        /**
+         * Specifies the catalog version that should be used to evaluate the Random Result Table.  If unspecified, uses default/primary catalog.
+         */
+        public String CatalogVersion;
+        
+    }
+
+    public static class EvaluateRandomResultTableResult {
+        /**
+         * Unique identifier for the item returned from the Random Result Table evaluation, for the given catalog.
+         */
+        public String ResultItemId;
+        
+    }
+
     public static class ExecuteCloudScriptResult {
         /**
          * The name of the function that executed
