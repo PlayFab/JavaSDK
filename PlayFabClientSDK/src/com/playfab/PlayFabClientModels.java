@@ -122,6 +122,10 @@ public class PlayFabClientModels {
          * Message to display when confirming push notification.
          */
         public String ConfirmationMessege;
+        /**
+         * Message to display when confirming push notification.
+         */
+        public String ConfirmationMessage;
         
     }
 
