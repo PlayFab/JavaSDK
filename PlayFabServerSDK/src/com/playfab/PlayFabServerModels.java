@@ -623,7 +623,7 @@ public class PlayFabServerModels {
          */
         public Object FunctionParameter;
         /**
-         * Option for which revision of the CloudScript to execute. 'Latest' executes the most recently created revision, 'Live' executes the current live, published revision, and 'Specific' executes the specified revision.
+         * Option for which revision of the CloudScript to execute. 'Latest' executes the most recently created revision, 'Live' executes the current live, published revision, and 'Specific' executes the specified revision. The default value is 'Specific', if the SpeificRevision parameter is specified, otherwise it is 'Live'.
          */
         public CloudScriptRevisionOption RevisionSelection;
         /**
