@@ -249,7 +249,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Adds a new player statistic configuration to the title, optionally allowing the developer to specify a reset interval.
+     * Adds a new player statistic configuration to the title, optionally allowing the developer to specify a reset interval and an aggregation method.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreatePlayerStatisticDefinitionResult>> CreatePlayerStatisticDefinitionAsync(final CreatePlayerStatisticDefinitionRequest request) {
@@ -261,7 +261,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Adds a new player statistic configuration to the title, optionally allowing the developer to specify a reset interval.
+     * Adds a new player statistic configuration to the title, optionally allowing the developer to specify a reset interval and an aggregation method.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreatePlayerStatisticDefinitionResult> CreatePlayerStatisticDefinition(final CreatePlayerStatisticDefinitionRequest request) {
@@ -279,7 +279,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Adds a new player statistic configuration to the title, optionally allowing the developer to specify a reset interval.
+     * Adds a new player statistic configuration to the title, optionally allowing the developer to specify a reset interval and an aggregation method.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreatePlayerStatisticDefinitionResult> privateCreatePlayerStatisticDefinitionAsync(final CreatePlayerStatisticDefinitionRequest request) throws Exception {
