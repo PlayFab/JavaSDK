@@ -2105,6 +2105,64 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would have been added to the player inventory, if the Random Result Table were added via a Bundle or a call to UnlockContainer.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EvaluateRandomResultTableResult>> EvaluateRandomResultTableAsync(final EvaluateRandomResultTableRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EvaluateRandomResultTableResult>>() {
+            public PlayFabResult<EvaluateRandomResultTableResult> call() throws Exception {
+                return privateEvaluateRandomResultTableAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would have been added to the player inventory, if the Random Result Table were added via a Bundle or a call to UnlockContainer.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EvaluateRandomResultTableResult> EvaluateRandomResultTable(final EvaluateRandomResultTableRequest request) {
+        FutureTask<PlayFabResult<EvaluateRandomResultTableResult>> task = new FutureTask(new Callable<PlayFabResult<EvaluateRandomResultTableResult>>() {
+            public PlayFabResult<EvaluateRandomResultTableResult> call() throws Exception {
+                return privateEvaluateRandomResultTableAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would have been added to the player inventory, if the Random Result Table were added via a Bundle or a call to UnlockContainer.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EvaluateRandomResultTableResult> privateEvaluateRandomResultTableAsync(final EvaluateRandomResultTableRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/EvaluateRandomResultTable", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EvaluateRandomResultTableResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EvaluateRandomResultTableResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EvaluateRandomResultTableResult>>(){}.getType());
+        EvaluateRandomResultTableResult result = resultData.data;
+
+        PlayFabResult<EvaluateRandomResultTableResult> pfResult = new PlayFabResult<EvaluateRandomResultTableResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the specified character's current inventory of virtual goods
      */
     @SuppressWarnings("unchecked")
