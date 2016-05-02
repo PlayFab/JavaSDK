@@ -121,10 +121,6 @@ public class PlayFabClientModels {
         /**
          * Message to display when confirming push notification.
          */
-        public String ConfirmationMessege;
-        /**
-         * Message to display when confirming push notification.
-         */
         public String ConfirmationMessage;
         
     }
@@ -1907,10 +1903,6 @@ public class PlayFabClientModels {
          * Unique identifier from Facebook for the user.
          */
         public String AccessToken;
-        /**
-         * If another user is already linked to the account, unlink the other user and re-link.
-         */
-        public Boolean ForceLink;
         
     }
 
