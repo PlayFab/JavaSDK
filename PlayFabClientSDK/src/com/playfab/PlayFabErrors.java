@@ -221,7 +221,9 @@ public class PlayFabErrors {
         InvalidEventField(1216),
         InvalidEventName(1217),
         CatalogNotConfigured(1218),
-        OperationNotSupportedForPlatform(1219);
+        OperationNotSupportedForPlatform(1219),
+        SegmentNotFound(1220),
+        StoreNotFound(1221);
 
         public int id;
 

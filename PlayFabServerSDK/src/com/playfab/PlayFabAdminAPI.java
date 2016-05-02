@@ -1989,6 +1989,64 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Sets up a store to be used in an AB test using segments
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<SetStoreSegemntOverridesResult>> SetStoreSegmentOverridesAsync(final SetStoreSegmentOverridesRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<SetStoreSegemntOverridesResult>>() {
+            public PlayFabResult<SetStoreSegemntOverridesResult> call() throws Exception {
+                return privateSetStoreSegmentOverridesAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Sets up a store to be used in an AB test using segments
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<SetStoreSegemntOverridesResult> SetStoreSegmentOverrides(final SetStoreSegmentOverridesRequest request) {
+        FutureTask<PlayFabResult<SetStoreSegemntOverridesResult>> task = new FutureTask(new Callable<PlayFabResult<SetStoreSegemntOverridesResult>>() {
+            public PlayFabResult<SetStoreSegemntOverridesResult> call() throws Exception {
+                return privateSetStoreSegmentOverridesAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Sets up a store to be used in an AB test using segments
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<SetStoreSegemntOverridesResult> privateSetStoreSegmentOverridesAsync(final SetStoreSegmentOverridesRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/SetStoreSegmentOverrides", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<SetStoreSegemntOverridesResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<SetStoreSegemntOverridesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetStoreSegemntOverridesResult>>(){}.getType());
+        SetStoreSegemntOverridesResult result = resultData.data;
+
+        PlayFabResult<SetStoreSegemntOverridesResult> pfResult = new PlayFabResult<SetStoreSegemntOverridesResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Creates and updates the key-value store of custom title settings
      */
     @SuppressWarnings("unchecked")
