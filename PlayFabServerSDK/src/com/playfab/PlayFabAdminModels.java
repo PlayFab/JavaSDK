@@ -1596,26 +1596,6 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class SetStoreSegemntOverridesResult {
-        
-    }
-
-    public static class SetStoreSegmentOverridesRequest {
-        /**
-         * Catalog version to use for the request. Defaults to most recent catalog if null.
-         */
-        public String CatalogVersion;
-        /**
-         * The id of the store being overridden. Requests from the client api to store will return the store associated with the override
-         */
-        public String BaseStoreId;
-        /**
-         * The list of overrides in order of evaluation.
-         */
-        public ArrayList<StoreSegmentNamePair> Overrides;
-        
-    }
-
     public static class SetTitleDataRequest {
         /**
          * key we want to set a value on (note, this is additive - will only replace an existing key's value if they are the same name.) Keys are trimmed of whitespace. Keys may not begin with the '!' character.
@@ -1708,18 +1688,6 @@ public class PlayFabAdminModels {
             if (ItemId == null) return -1;
             return ItemId.compareTo(other.ItemId);
         }
-        
-    }
-
-    public static class StoreSegmentNamePair {
-        /**
-         * The id of the store being referenced
-         */
-        public String StoreId;
-        /**
-         * The name of the segment being referenced
-         */
-        public String SegmentName;
         
     }
 
