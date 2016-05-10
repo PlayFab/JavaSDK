@@ -3265,6 +3265,64 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Sets the state of the indicated Game Server Instance
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<SetGameServerInstanceStateResult>> SetGameServerInstanceStateAsync(final SetGameServerInstanceStateRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<SetGameServerInstanceStateResult>>() {
+            public PlayFabResult<SetGameServerInstanceStateResult> call() throws Exception {
+                return privateSetGameServerInstanceStateAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Sets the state of the indicated Game Server Instance
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<SetGameServerInstanceStateResult> SetGameServerInstanceState(final SetGameServerInstanceStateRequest request) {
+        FutureTask<PlayFabResult<SetGameServerInstanceStateResult>> task = new FutureTask(new Callable<PlayFabResult<SetGameServerInstanceStateResult>>() {
+            public PlayFabResult<SetGameServerInstanceStateResult> call() throws Exception {
+                return privateSetGameServerInstanceStateAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Sets the state of the indicated Game Server Instance
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<SetGameServerInstanceStateResult> privateSetGameServerInstanceStateAsync(final SetGameServerInstanceStateRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SetGameServerInstanceState", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<SetGameServerInstanceStateResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<SetGameServerInstanceStateResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetGameServerInstanceStateResult>>(){}.getType());
+        SetGameServerInstanceStateResult result = resultData.data;
+
+        PlayFabResult<SetGameServerInstanceStateResult> pfResult = new PlayFabResult<SetGameServerInstanceStateResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Awards the specified users the specified Steam achievements
      */
     @SuppressWarnings("unchecked")

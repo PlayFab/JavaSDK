@@ -546,6 +546,10 @@ public class PlayFabAdminModels {
          * maximum user count a specific Game Server Instance can support
          */
         public Long MaxPlayerCount;
+        /**
+         * whether to start as an open session, meaning that players can matchmake into it (defaults to true)
+         */
+        public Boolean StartOpen;
         
     }
 

@@ -2269,6 +2269,10 @@ public class PlayFabClientModels {
          */
         public String CharacterId;
         /**
+         * start a game session if one with an open slot is not found. Defaults to true
+         */
+        public Boolean StartNewIfNoneFound;
+        /**
          * [deprecated]
          */
         public Boolean EnableQueue;
@@ -2310,7 +2314,9 @@ public class PlayFabClientModels {
     public static enum MatchmakeStatus {
         Complete,
         Waiting,
-        GameNotFound
+        GameNotFound,
+        NoAvailableSlots,
+        SessionClosed
     }
 
     public static class ModifyUserVirtualCurrencyResult {
