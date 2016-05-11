@@ -898,7 +898,7 @@ public class PlayFabClientModels {
         /**
          * The version that currently exists according to the caller. The call will return the data for all of the keys if the version in the system is greater than this.
          */
-        public Integer IfChangedFromDataVersion;
+        public Long IfChangedFromDataVersion;
         
     }
 
@@ -1669,7 +1669,7 @@ public class PlayFabClientModels {
         /**
          * The version that currently exists according to the caller. The call will return the data for all of the keys if the version in the system is greater than this.
          */
-        public Integer IfChangedFromDataVersion;
+        public Long IfChangedFromDataVersion;
         
     }
 
