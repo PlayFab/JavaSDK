@@ -83,7 +83,7 @@ public class PlayFabClientModels {
          */
         public String Email;
         /**
-         * Password for the PlayFab account (6-30 characters)
+         * Password for the PlayFab account (6-100 characters)
          */
         public String Password;
         
@@ -2096,7 +2096,7 @@ public class PlayFabClientModels {
          */
         public String Email;
         /**
-         * Password for the PlayFab account (6-30 characters)
+         * Password for the PlayFab account (6-100 characters)
          */
         public String Password;
         
@@ -2208,7 +2208,7 @@ public class PlayFabClientModels {
          */
         public String Username;
         /**
-         * Password for the PlayFab account (6-30 characters)
+         * Password for the PlayFab account (6-100 characters)
          */
         public String Password;
         
@@ -2611,7 +2611,7 @@ public class PlayFabClientModels {
          */
         public String Email;
         /**
-         * Password for the PlayFab account (6-30 characters)
+         * Password for the PlayFab account (6-100 characters)
          */
         public String Password;
         /**

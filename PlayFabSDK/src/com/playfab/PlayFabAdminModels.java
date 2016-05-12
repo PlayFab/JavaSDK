@@ -1748,6 +1748,10 @@ public class PlayFabAdminModels {
          * Immediately publish the new revision
          */
         public Boolean Publish;
+        /**
+         * PlayFab user ID of the developer initiating the request.
+         */
+        public String DeveloperPlayFabId;
         
     }
 
@@ -1965,7 +1969,7 @@ public class PlayFabAdminModels {
          */
         public String Username;
         /**
-         * Password for the PlayFab account (6-30 characters)
+         * Password for the PlayFab account (6-100 characters)
          */
         public String Password;
         
