@@ -38,7 +38,7 @@ The playfab API relies on the Google gson library, located within:
 To create a new project using PlayFab, copy the indicated playfab and com directories into the source directory for your project.
 
 
-4b. Using the example project:
+5. Using the example project:
 ----
 
 The PlayFabApiTest example project can be run from the console.  These instructions assume Windows operating system.
@@ -54,8 +54,28 @@ The PlayFabApiTest example project can be run from the console.  These instructi
  * The exit code for the example will be 0 for success, or non-zero for failure
  * Detailed info about test failures will be in the console output (stdout)
 
- 
-5. Troubleshooting:
+
+6. testTitleData.json file required for example test files.
+----
+
+This sdk includes an optional example project that is used by PlayFab to verify sdk features are fully functional.  The testTitleData.json file provides your secret title information to the unit-test project, so it can execute tests in your own PlayFab title.
+
+The format is as follows:
+
+    {
+    	"titleId": "your Game Title ID, found in the settings/credentials section of your dashboard on the website",
+    	"developerSecretKey": "your PlayFab API Secret Key, found in the settings/credentials section of your dashboard on the website - NEVER SHARE THIS KEY WITH PLAYERS",
+    	"titleCanUpdateSettings": "false",  // "true" or "false", based on your Allow Client to Post Player Statistics option, found in the settings/general section of your dashboard on the website
+    	"userName": "testUser", // Arbitrary username, you can change this to any valid username
+    	"userEmail": "your@email.com", // This email address will be bound to the username above
+    	"userPassword": "testPassword", // This must be the correct password for the testUser above (if that user does not exist yet, this will be the new password)
+    	"characterName": "testCharacter" // Arbitrary characterName, you can change this to any valid characterName
+    }
+
+See the previous section for how to use this file in the example test project.
+
+
+7. Troubleshooting:
 ----
 For a complete list of available APIs, check out the [online documentation](http://api.playfab.com/Documentation/).
 
@@ -68,7 +88,7 @@ Our Developer Success Team can assist with answering any questions as well as pr
 [Forums, Support and Knowledge Base](https://community.playfab.com/hc/en-us)
 
 
-6. Copyright and Licensing Information:
+8. Copyright and Licensing Information:
 ----
   Apache License --
   Version 2.0, January 2004

@@ -223,7 +223,8 @@ public class PlayFabErrors {
         CatalogNotConfigured(1218),
         OperationNotSupportedForPlatform(1219),
         SegmentNotFound(1220),
-        StoreNotFound(1221);
+        StoreNotFound(1221),
+        InvalidStatisticName(1222);
 
         public int id;
 

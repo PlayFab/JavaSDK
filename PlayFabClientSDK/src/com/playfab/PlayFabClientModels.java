@@ -83,7 +83,7 @@ public class PlayFabClientModels {
          */
         public String Email;
         /**
-         * Password for the PlayFab account (6-30 characters)
+         * Password for the PlayFab account (6-100 characters)
          */
         public String Password;
         
@@ -898,7 +898,7 @@ public class PlayFabClientModels {
         /**
          * The version that currently exists according to the caller. The call will return the data for all of the keys if the version in the system is greater than this.
          */
-        public Integer IfChangedFromDataVersion;
+        public Long IfChangedFromDataVersion;
         
     }
 
@@ -1669,7 +1669,7 @@ public class PlayFabClientModels {
         /**
          * The version that currently exists according to the caller. The call will return the data for all of the keys if the version in the system is greater than this.
          */
-        public Integer IfChangedFromDataVersion;
+        public Long IfChangedFromDataVersion;
         
     }
 
@@ -2096,7 +2096,7 @@ public class PlayFabClientModels {
          */
         public String Email;
         /**
-         * Password for the PlayFab account (6-30 characters)
+         * Password for the PlayFab account (6-100 characters)
          */
         public String Password;
         
@@ -2208,7 +2208,7 @@ public class PlayFabClientModels {
          */
         public String Username;
         /**
-         * Password for the PlayFab account (6-30 characters)
+         * Password for the PlayFab account (6-100 characters)
          */
         public String Password;
         
@@ -2269,6 +2269,10 @@ public class PlayFabClientModels {
          */
         public String CharacterId;
         /**
+         * start a game session if one with an open slot is not found. Defaults to true
+         */
+        public Boolean StartNewIfNoneFound;
+        /**
          * [deprecated]
          */
         public Boolean EnableQueue;
@@ -2310,7 +2314,9 @@ public class PlayFabClientModels {
     public static enum MatchmakeStatus {
         Complete,
         Waiting,
-        GameNotFound
+        GameNotFound,
+        NoAvailableSlots,
+        SessionClosed
     }
 
     public static class ModifyUserVirtualCurrencyResult {
@@ -2605,7 +2611,7 @@ public class PlayFabClientModels {
          */
         public String Email;
         /**
-         * Password for the PlayFab account (6-30 characters)
+         * Password for the PlayFab account (6-100 characters)
          */
         public String Password;
         /**
