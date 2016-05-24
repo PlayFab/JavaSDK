@@ -546,6 +546,10 @@ public class PlayFabAdminModels {
          * maximum user count a specific Game Server Instance can support
          */
         public Long MaxPlayerCount;
+        /**
+         * whether to start as an open session, meaning that players can matchmake into it (defaults to true)
+         */
+        public Boolean StartOpen;
         
     }
 
@@ -937,7 +941,7 @@ public class PlayFabAdminModels {
         /**
          * The version that currently exists according to the caller. The call will return the data for all of the keys if the version in the system is greater than this.
          */
-        public Integer IfChangedFromDataVersion;
+        public Long IfChangedFromDataVersion;
         
     }
 
@@ -1596,26 +1600,6 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class SetStoreSegemntOverridesResult {
-        
-    }
-
-    public static class SetStoreSegmentOverridesRequest {
-        /**
-         * Catalog version to use for the request. Defaults to most recent catalog if null.
-         */
-        public String CatalogVersion;
-        /**
-         * The id of the store being overridden. Requests from the client api to store will return the store associated with the override
-         */
-        public String BaseStoreId;
-        /**
-         * The list of overrides in order of evaluation.
-         */
-        public ArrayList<StoreSegmentNamePair> Overrides;
-        
-    }
-
     public static class SetTitleDataRequest {
         /**
          * key we want to set a value on (note, this is additive - will only replace an existing key's value if they are the same name.) Keys are trimmed of whitespace. Keys may not begin with the '!' character.
@@ -1711,18 +1695,6 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class StoreSegmentNamePair {
-        /**
-         * The id of the store being referenced
-         */
-        public String StoreId;
-        /**
-         * The name of the segment being referenced
-         */
-        public String SegmentName;
-        
-    }
-
     public static class SubtractUserVirtualCurrencyRequest {
         /**
          * PlayFab unique identifier of the user whose virtual currency balance is to be decreased.
@@ -1776,6 +1748,10 @@ public class PlayFabAdminModels {
          * Immediately publish the new revision
          */
         public Boolean Publish;
+        /**
+         * PlayFab user ID of the developer initiating the request.
+         */
+        public String DeveloperPlayFabId;
         
     }
 
@@ -1993,7 +1969,7 @@ public class PlayFabAdminModels {
          */
         public String Username;
         /**
-         * Password for the PlayFab account (6-30 characters)
+         * Password for the PlayFab account (6-100 characters)
          */
         public String Password;
         

@@ -685,6 +685,11 @@ public class PlayFabServerModels {
         
     }
 
+    public static enum GameInstanceState {
+        Open,
+        Closed
+    }
+
     public static class GetCatalogItemsRequest {
         /**
          * Which catalog is being requested.
@@ -718,7 +723,7 @@ public class PlayFabServerModels {
         /**
          * The version that currently exists according to the caller. The call will return the data for all of the keys if the version in the system is greater than this.
          */
-        public Integer IfChangedFromDataVersion;
+        public Long IfChangedFromDataVersion;
         
     }
 
@@ -1155,7 +1160,7 @@ public class PlayFabServerModels {
         /**
          * The version that currently exists according to the caller. The call will return the data for all of the keys if the version in the system is greater than this.
          */
-        public Integer IfChangedFromDataVersion;
+        public Long IfChangedFromDataVersion;
         
     }
 
@@ -1923,6 +1928,22 @@ public class PlayFabServerModels {
     }
 
     public static class SendPushNotificationResult {
+        
+    }
+
+    public static class SetGameServerInstanceStateRequest {
+        /**
+         * Unique identifier of the Game Instance to be updated.
+         */
+        public String LobbyId;
+        /**
+         * State to set for the specified game server instance.
+         */
+        public GameInstanceState State;
+        
+    }
+
+    public static class SetGameServerInstanceStateResult {
         
     }
 
