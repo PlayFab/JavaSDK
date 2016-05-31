@@ -1457,6 +1457,30 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class RefundPurchaseRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Unique order ID for the purchase in question.
+         */
+        public String OrderId;
+        /**
+         * Reason for refund. In the case of Facebook this must match one of their refund or dispute resolution enums (See: https://developers.facebook.com/docs/payments/implementation-guide/handling-disputes-refunds)
+         */
+        public String Reason;
+        
+    }
+
+    public static class RefundPurchaseResponse {
+        /**
+         * The order's updated purchase status.
+         */
+        public String PurchaseStatus;
+        
+    }
+
     public static enum Region {
         USCentral,
         USEast,
@@ -1512,6 +1536,40 @@ public class PlayFabAdminModels {
     }
 
     public static class ResetUserStatisticsResult {
+        
+    }
+
+    public static enum ResolutionOutcome {
+        Revoke,
+        Reinstate,
+        Manual
+    }
+
+    public static class ResolvePurchaseDisputeRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Unique order ID for the purchase in question.
+         */
+        public String OrderId;
+        /**
+         * Reason for refund. In the case of Facebook this must match one of their refund or dispute resolution enums (See: https://developers.facebook.com/docs/payments/implementation-guide/handling-disputes-refunds)
+         */
+        public String Reason;
+        /**
+         * Enum for the desired purchase result state after notifying the payment provider. Valid values are Revoke, Reinstate and Manual. Manual will cause no change to the order state.
+         */
+        public ResolutionOutcome Outcome;
+        
+    }
+
+    public static class ResolvePurchaseDisputeResponse {
+        /**
+         * The order's updated purchase status.
+         */
+        public String PurchaseStatus;
         
     }
 
@@ -1597,6 +1655,26 @@ public class PlayFabAdminModels {
     }
 
     public static class SetPublisherDataResult {
+        
+    }
+
+    public static class SetStoreSegemntOverridesResult {
+        
+    }
+
+    public static class SetStoreSegmentOverridesRequest {
+        /**
+         * Catalog version to use for the request. Defaults to most recent catalog if null.
+         */
+        public String CatalogVersion;
+        /**
+         * The id of the store being overridden. Requests from the client api to store will return the store associated with the override
+         */
+        public String BaseStoreId;
+        /**
+         * The list of overrides in order of evaluation.
+         */
+        public ArrayList<StoreSegmentNamePair> Overrides;
         
     }
 
@@ -1692,6 +1770,18 @@ public class PlayFabAdminModels {
             if (ItemId == null) return -1;
             return ItemId.compareTo(other.ItemId);
         }
+        
+    }
+
+    public static class StoreSegmentNamePair {
+        /**
+         * The id of the store being referenced
+         */
+        public String StoreId;
+        /**
+         * The name of the segment being referenced
+         */
+        public String SegmentName;
         
     }
 

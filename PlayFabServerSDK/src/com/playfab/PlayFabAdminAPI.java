@@ -945,6 +945,64 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Attempts to process an order refund through the original real money payment provider.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RefundPurchaseResponse>> RefundPurchaseAsync(final RefundPurchaseRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RefundPurchaseResponse>>() {
+            public PlayFabResult<RefundPurchaseResponse> call() throws Exception {
+                return privateRefundPurchaseAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Attempts to process an order refund through the original real money payment provider.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RefundPurchaseResponse> RefundPurchase(final RefundPurchaseRequest request) {
+        FutureTask<PlayFabResult<RefundPurchaseResponse>> task = new FutureTask(new Callable<PlayFabResult<RefundPurchaseResponse>>() {
+            public PlayFabResult<RefundPurchaseResponse> call() throws Exception {
+                return privateRefundPurchaseAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Attempts to process an order refund through the original real money payment provider.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RefundPurchaseResponse> privateRefundPurchaseAsync(final RefundPurchaseRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/RefundPurchase", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RefundPurchaseResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RefundPurchaseResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RefundPurchaseResponse>>(){}.getType());
+        RefundPurchaseResponse result = resultData.data;
+
+        PlayFabResult<RefundPurchaseResponse> pfResult = new PlayFabResult<RefundPurchaseResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Completely removes all statistics for the specified user, for the current game
      */
     @SuppressWarnings("unchecked")
@@ -998,6 +1056,64 @@ public class PlayFabAdminAPI {
         ResetUserStatisticsResult result = resultData.data;
 
         PlayFabResult<ResetUserStatisticsResult> pfResult = new PlayFabResult<ResetUserStatisticsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Attempts to resolve a dispute with the original order's payment provider.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ResolvePurchaseDisputeResponse>> ResolvePurchaseDisputeAsync(final ResolvePurchaseDisputeRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ResolvePurchaseDisputeResponse>>() {
+            public PlayFabResult<ResolvePurchaseDisputeResponse> call() throws Exception {
+                return privateResolvePurchaseDisputeAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Attempts to resolve a dispute with the original order's payment provider.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ResolvePurchaseDisputeResponse> ResolvePurchaseDispute(final ResolvePurchaseDisputeRequest request) {
+        FutureTask<PlayFabResult<ResolvePurchaseDisputeResponse>> task = new FutureTask(new Callable<PlayFabResult<ResolvePurchaseDisputeResponse>>() {
+            public PlayFabResult<ResolvePurchaseDisputeResponse> call() throws Exception {
+                return privateResolvePurchaseDisputeAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Attempts to resolve a dispute with the original order's payment provider.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ResolvePurchaseDisputeResponse> privateResolvePurchaseDisputeAsync(final ResolvePurchaseDisputeRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/ResolvePurchaseDispute", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ResolvePurchaseDisputeResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ResolvePurchaseDisputeResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ResolvePurchaseDisputeResponse>>(){}.getType());
+        ResolvePurchaseDisputeResponse result = resultData.data;
+
+        PlayFabResult<ResolvePurchaseDisputeResponse> pfResult = new PlayFabResult<ResolvePurchaseDisputeResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -1984,6 +2100,64 @@ public class PlayFabAdminAPI {
         UpdateStoreItemsResult result = resultData.data;
 
         PlayFabResult<UpdateStoreItemsResult> pfResult = new PlayFabResult<UpdateStoreItemsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Sets up a store to be used in an AB test using segments
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<SetStoreSegemntOverridesResult>> SetStoreSegmentOverridesAsync(final SetStoreSegmentOverridesRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<SetStoreSegemntOverridesResult>>() {
+            public PlayFabResult<SetStoreSegemntOverridesResult> call() throws Exception {
+                return privateSetStoreSegmentOverridesAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Sets up a store to be used in an AB test using segments
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<SetStoreSegemntOverridesResult> SetStoreSegmentOverrides(final SetStoreSegmentOverridesRequest request) {
+        FutureTask<PlayFabResult<SetStoreSegemntOverridesResult>> task = new FutureTask(new Callable<PlayFabResult<SetStoreSegemntOverridesResult>>() {
+            public PlayFabResult<SetStoreSegemntOverridesResult> call() throws Exception {
+                return privateSetStoreSegmentOverridesAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Sets up a store to be used in an AB test using segments
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<SetStoreSegemntOverridesResult> privateSetStoreSegmentOverridesAsync(final SetStoreSegmentOverridesRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/SetStoreSegmentOverrides", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<SetStoreSegemntOverridesResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<SetStoreSegemntOverridesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetStoreSegemntOverridesResult>>(){}.getType());
+        SetStoreSegemntOverridesResult result = resultData.data;
+
+        PlayFabResult<SetStoreSegemntOverridesResult> pfResult = new PlayFabResult<SetStoreSegemntOverridesResult>();
         pfResult.Result = result;
         return pfResult;
     }
