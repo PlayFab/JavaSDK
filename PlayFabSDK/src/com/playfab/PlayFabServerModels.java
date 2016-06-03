@@ -25,46 +25,6 @@ public class PlayFabServerModels {
         
     }
 
-    public static class AddFriendRequest {
-        /**
-         * PlayFab identifier of the player to add a new friend.
-         */
-        public String PlayFabId;
-        /**
-         * The PlayFab identifier of the user being added.
-         */
-        public String FriendPlayFabId;
-        /**
-         * The PlayFab username of the user being added
-         */
-        public String FriendUsername;
-        /**
-         * Email address of the user being added.
-         */
-        public String FriendEmail;
-        /**
-         * Title-specific display name of the user to being added.
-         */
-        public String FriendTitleDisplayName;
-        
-    }
-
-    public static class AddGuildVirtualCurrencyRequest {
-        /**
-         * PlayFab unique identifier of the Guild whose virtual currency balance is to be increased.
-         */
-        public String GuildId;
-        /**
-         * Name of the virtual currency which is to be incremented.
-         */
-        public String VirtualCurrency;
-        /**
-         * Amount to be added to the Guild balance of the specified virtual currency. Maximum VC balance is Int32 (2,147,483,647). Any increase over this value will be discarded.
-         */
-        public Integer Amount;
-        
-    }
-
     public static class AddSharedGroupMembersRequest {
         /**
          * Unique identifier for the shared group.
@@ -912,110 +872,6 @@ public class PlayFabServerModels {
         
     }
 
-    public static class GetFriendLeaderboardRequest {
-        /**
-         * The player whose friend leaderboard to get
-         */
-        public String PlayFabId;
-        /**
-         * Statistic used to rank friends for this leaderboard.
-         */
-        public String StatisticName;
-        /**
-         * Position in the leaderboard to start this listing (defaults to the first entry).
-         */
-        public Integer StartPosition;
-        /**
-         * Maximum number of entries to retrieve.
-         */
-        public Integer MaxResultsCount;
-        /**
-         * Indicates whether Steam service friends should be included in the response. Default is true.
-         */
-        public Boolean IncludeSteamFriends;
-        /**
-         * Indicates whether Facebook friends should be included in the response. Default is true.
-         */
-        public Boolean IncludeFacebookFriends;
-        
-    }
-
-    public static class GetFriendsListRequest {
-        /**
-         * PlayFab identifier of the player whose friend list to get.
-         */
-        public String PlayFabId;
-        /**
-         * Indicates whether Steam service friends should be included in the response. Default is true.
-         */
-        public Boolean IncludeSteamFriends;
-        /**
-         * Indicates whether Facebook friends should be included in the response. Default is true.
-         */
-        public Boolean IncludeFacebookFriends;
-        
-    }
-
-    public static class GetFriendsListResult {
-        /**
-         * Array of friends found.
-         */
-        public ArrayList<FriendInfo> Friends;
-        
-    }
-
-    public static class GetGuildDataRequest {
-        /**
-         * Unique PlayFab assigned ID for a specific guild
-         */
-        public String GuildId;
-        /**
-         * Specific keys to search for in the custom user data.
-         */
-        public ArrayList<String> Keys;
-        /**
-         * The version that currently exists according to the caller. The call will return the data for all of the keys if the version in the system is greater than this.
-         */
-        public Long IfChangedFromDataVersion;
-        
-    }
-
-    public static class GetGuildDataResult {
-        /**
-         * Indicates the current version of the data that has been set. This is incremented with every set call for that type of data (read-only, internal, etc). This version can be provided in Get calls to find updated data.
-         */
-        public Long DataVersion;
-        /**
-         * Guild specific data for this title.
-         */
-        public Map<String,UserDataRecord> Data;
-        
-    }
-
-    public static class GetGuildStatisticsRequest {
-        /**
-         * guild for which statistics are being requested
-         */
-        public String GuildId;
-        /**
-         * statistics to return
-         */
-        public ArrayList<String> StatisticNames;
-        /**
-         * statistics to return, if StatisticNames is not set (only statistics which have a version matching that provided will be returned)
-         */
-        public ArrayList<StatisticNameVersion> StatisticNameVersions;
-        
-    }
-
-    public static class GetGuildStatisticsResult {
-        /**
-         * User statistics for the requested user.
-         */
-        public ArrayList<StatisticValue> Statistics;
-        
-    }
-
     public static class GetLeaderboardAroundCharacterRequest {
         /**
          * Unique identifier for the title-specific statistic for the leaderboard.
@@ -1513,34 +1369,6 @@ public class PlayFabServerModels {
         
     }
 
-    public static class GrantItemsToGuildRequest {
-        /**
-         * Catalog version from which items are to be granted.
-         */
-        public String CatalogVersion;
-        /**
-         * Unique PlayFab assigned ID for a specific guild
-         */
-        public String GuildId;
-        /**
-         * String detailing any additional information concerning this operation.
-         */
-        public String Annotation;
-        /**
-         * Array of itemIds specifying which catalog items to grant to the Guild.
-         */
-        public ArrayList<String> ItemIds;
-        
-    }
-
-    public static class GrantItemsToGuildResult {
-        /**
-         * Array of items granted to Guild.
-         */
-        public ArrayList<GrantedItemInstance> ItemGrantResults;
-        
-    }
-
     public static class GrantItemsToUserRequest {
         /**
          * Catalog version from which items are to be granted.
@@ -1752,22 +1580,6 @@ public class PlayFabServerModels {
          * Name of the virtual currency which was modified.
          */
         public String VirtualCurrency;
-        /**
-         * Balance of the virtual currency after modification.
-         */
-        public Integer Balance;
-        
-    }
-
-    public static class ModifyGuildVirtualCurrencyResult {
-        /**
-         * Name of the virtual currency which was modified.
-         */
-        public String VirtualCurrency;
-        /**
-         * Amount added or subtracted from the Guild's virtual currency. Maximum VC balance is Int32 (2,147,483,647). Any increase over this value will be discarded.
-         */
-        public Integer BalanceChange;
         /**
          * Balance of the virtual currency after modification.
          */
@@ -2012,18 +1824,6 @@ public class PlayFabServerModels {
          * User account information for the user validated.
          */
         public UserAccountInfo UserInfo;
-        
-    }
-
-    public static class RemoveFriendRequest {
-        /**
-         * PlayFab identifier of the friend account which is to be removed.
-         */
-        public String FriendPlayFabId;
-        /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
         
     }
 
@@ -2279,22 +2079,6 @@ public class PlayFabServerModels {
         
     }
 
-    public static class SubtractGuildVirtualCurrencyRequest {
-        /**
-         * PlayFab unique identifier of the Guild whose virtual currency balance is to be decreased.
-         */
-        public String GuildId;
-        /**
-         * Name of the virtual currency which is to be decremented.
-         */
-        public String VirtualCurrency;
-        /**
-         * Amount to be subtracted from the Guild balance of the specified virtual currency.
-         */
-        public Integer Amount;
-        
-    }
-
     public static class SubtractUserVirtualCurrencyRequest {
         /**
          * PlayFab unique identifier of the user whose virtual currency balance is to be decreased.
@@ -2452,50 +2236,6 @@ public class PlayFabServerModels {
     }
 
     public static class UpdateCharacterStatisticsResult {
-        
-    }
-
-    public static class UpdateGuildDataRequest {
-        /**
-         * Unique PlayFab assigned ID for a specific guild
-         */
-        public String GuildId;
-        /**
-         * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character.
-         */
-        public Map<String,String> Data;
-        /**
-         * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language constraints.  Use this to delete the keys directly.
-         */
-        public ArrayList<String> KeysToRemove;
-        /**
-         * Permission to be applied to all user data keys written in this request. Defaults to "private" if not set.
-         */
-        public UserDataPermission Permission;
-        
-    }
-
-    public static class UpdateGuildDataResult {
-        /**
-         * Indicates the current version of the data that has been set. This is incremented with every set call for that type of data (read-only, internal, etc). This version can be provided in Get calls to find updated data.
-         */
-        public Long DataVersion;
-        
-    }
-
-    public static class UpdateGuildStatisticsRequest {
-        /**
-         * Unique PlayFab assigned ID for a specific guild
-         */
-        public String GuildId;
-        /**
-         * Statistics to be updated with the provided values
-         */
-        public ArrayList<StatisticUpdate> Statistics;
-        
-    }
-
-    public static class UpdateGuildStatisticsResult {
         
     }
 

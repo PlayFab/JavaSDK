@@ -129,22 +129,6 @@ public class PlayFabClientModels {
         
     }
 
-    public static class ApproveGuildRoleChangeRequest {
-        /**
-         * Unique identifier of the guild
-         */
-        public String GuildId;
-        /**
-         * Unique identifier of the role change request
-         */
-        public String GuildRoleRequestId;
-        
-    }
-
-    public static class ApproveGuildRoleChangeResult {
-        
-    }
-
     public static class AttributeInstallRequest {
         /**
          * The IdentifierForAdvertisers for iOS Devices.
@@ -348,26 +332,6 @@ public class PlayFabClientModels {
         
     }
 
-    public static class ChangeGuildMemberRoleRequest {
-        /**
-         * Unique identifier of the guild
-         */
-        public String GuildId;
-        /**
-         * Unique identifier of the player to change
-         */
-        public String PlayerId;
-        /**
-         * New role for the player
-         */
-        public GuildRole Role;
-        
-    }
-
-    public static class ChangeGuildMemberRoleResult {
-        
-    }
-
     public static class CharacterLeaderboardEntry {
         /**
          * PlayFab unique identifier of the user for this leaderboard entry.
@@ -471,43 +435,6 @@ public class PlayFabClientModels {
          * Number of uses remaining on the item.
          */
         public Integer RemainingUses;
-        
-    }
-
-    public static class ConsumePSNEntitlementsRequest {
-        /**
-         * Which catalog to match granted entitlements against. If null, defaults to title default catalog
-         */
-        public String CatalogVersion;
-        /**
-         * Id of the PSN service label to consume entitlements from
-         */
-        public Integer ServiceLabel;
-        
-    }
-
-    public static class ConsumePSNEntitlementsResult {
-        /**
-         * Array of items granted to the player as a result of consuming entitlements.
-         */
-        @Unordered("ItemInstanceId")
-        public ArrayList<ItemInstance> ItemsGranted;
-        
-    }
-
-    public static class CreateGuildRequest {
-        /**
-         * Guild name
-         */
-        public String Name;
-        
-    }
-
-    public static class CreateGuildResult {
-        /**
-         * Created guild
-         */
-        public GuildProperties Guild;
         
     }
 
@@ -725,34 +652,6 @@ public class PlayFabClientModels {
          * number of games running
          */
         public Integer GameCount;
-        
-    }
-
-    public static class DeleteGuildRequest {
-        /**
-         * Unique identifier of the guild to delete
-         */
-        public String GuildId;
-        
-    }
-
-    public static class DeleteGuildResult {
-        
-    }
-
-    public static class DenyGuildRoleChangeRequest {
-        /**
-         * Unique identifier of the guild
-         */
-        public String GuildId;
-        /**
-         * Unique identifier of the role change request
-         */
-        public String GuildRoleRequestId;
-        
-    }
-
-    public static class DenyGuildRoleChangeResult {
         
     }
 
@@ -1244,155 +1143,6 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetGuildDataRequest {
-        /**
-         * Unique identifier of the guild.
-         */
-        public String GuildId;
-        /**
-         * Specific keys to search for in the guild data.
-         */
-        public ArrayList<String> Keys;
-        /**
-         * The version that currently exists according to the caller. The call will return the data for all of the keys if the version in the system is greater than this.
-         */
-        public Long IfChangedFromDataVersion;
-        
-    }
-
-    public static class GetGuildDataResult {
-        /**
-         * Guild specific data for this title.
-         */
-        public Map<String,UserDataRecord> Data;
-        /**
-         * Latest version of the data.
-         */
-        public Long DataVersion;
-        
-    }
-
-    public static class GetGuildInventoryRequest {
-        /**
-         * Unique PlayFab assigned ID for a specific guild
-         */
-        public String GuildId;
-        /**
-         * Used to limit results to only those from a specific catalog version.
-         */
-        public String CatalogVersion;
-        
-    }
-
-    public static class GetGuildInventoryResult {
-        /**
-         * Array of inventory items belonging to the guild.
-         */
-        @Unordered("ItemInstanceId")
-        public ArrayList<ItemInstance> Inventory;
-        /**
-         * Array of virtual currency balance(s) belonging to the guild.
-         */
-        public Map<String,Integer> VirtualCurrency;
-        
-    }
-
-    public static class GetGuildMembershipLeaderboardRequest {
-        /**
-         * Statistic used to rank players for this leaderboard.
-         */
-        public String StatisticName;
-        /**
-         * Unique PlayFab assigned ID for a specific Guild on which to center the leaderboard.
-         */
-        public String GuildId;
-        /**
-         * First entry in the leaderboard to be retrieved.
-         */
-        public Integer StartPosition;
-        /**
-         * Maximum number of entries to retrieve. Default 10, maximum 100.
-         */
-        public Integer MaxResultsCount;
-        
-    }
-
-    public static class GetGuildMembershipLeaderboardResult {
-        /**
-         * Ordered listing of players and their positions in the requested leaderboard.
-         */
-        public ArrayList<PlayerLeaderboardEntry> Leaderboard;
-        
-    }
-
-    public static class GetGuildsLeaderboardAroundGuildRequest {
-        /**
-         * Unique identifier for the title-specific statistic for the leaderboard.
-         */
-        public String StatisticName;
-        /**
-         * Unique PlayFab assigned ID for a specific Guild on which to center the leaderboard.
-         */
-        public String GuildId;
-        /**
-         * Maximum number of entries to retrieve. Default 10, maximum 100.
-         */
-        public Integer MaxResultsCount;
-        
-    }
-
-    public static class GetGuildsLeaderboardAroundGuildResult {
-        /**
-         * Ordered list of leaderboard entries.
-         */
-        public ArrayList<GuildLeaderboardEntry> Leaderboard;
-        
-    }
-
-    public static class GetGuildsLeaderboardRequest {
-        /**
-         * Unique identifier for the title-specific statistic for the leaderboard.
-         */
-        public String StatisticName;
-        /**
-         * First entry in the leaderboard to be retrieved.
-         */
-        public Integer StartPosition;
-        /**
-         * Maximum number of entries to retrieve. Default 10, maximum 100.
-         */
-        public Integer MaxResultsCount;
-        
-    }
-
-    public static class GetGuildsLeaderboardResult {
-        /**
-         * Ordered list of leaderboard entries.
-         */
-        public ArrayList<GuildLeaderboardEntry> Leaderboard;
-        
-    }
-
-    public static class GetGuildStatisticsRequest {
-        /**
-         * Unique PlayFab assigned ID for a specific guild
-         */
-        public String GuildId;
-        /**
-         * statistics to return, if StatisticNames is not set (only statistics which have a version matching that provided will be returned)
-         */
-        public ArrayList<StatisticNameVersion> StatisticNameVersions;
-        
-    }
-
-    public static class GetGuildStatisticsResult {
-        /**
-         * Guild statistics for the requested guild.
-         */
-        public ArrayList<StatisticValue> Statistics;
-        
-    }
-
     public static class GetLeaderboardAroundCharacterRequest {
         /**
          * Unique identifier for the title-specific statistic for the leaderboard.
@@ -1482,26 +1232,6 @@ public class PlayFabClientModels {
          * Ordered list of leaderboard entries.
          */
         public ArrayList<CharacterLeaderboardEntry> Leaderboard;
-        
-    }
-
-    public static class GetLeaderboardOfPlayersGuildsRequest {
-        /**
-         * Unique identifier for the title-specific statistic for the leaderboard.
-         */
-        public String StatisticName;
-        /**
-         * Maximum number of entries to retrieve.
-         */
-        public Integer MaxResultsCount;
-        
-    }
-
-    public static class GetLeaderboardOfPlayersGuildsResult {
-        /**
-         * Ordered list of leaderboard entries.
-         */
-        public ArrayList<GuildLeaderboardEntry> Leaderboard;
         
     }
 
@@ -1662,26 +1392,6 @@ public class PlayFabClientModels {
          * Mapping of Kongregate identifiers to PlayFab identifiers.
          */
         public ArrayList<KongregatePlayFabIdPair> Data;
-        
-    }
-
-    public static class GetPlayFabIDsFromPSNAccountIDsRequest {
-        /**
-         * Array of unique PlayStation Network identifiers for which the title needs to get PlayFab identifiers.
-         */
-        public ArrayList<String> PSNAccountIDs;
-        /**
-         * Id of the PSN issuer environment. If null, defaults to 256 (production)
-         */
-        public Integer IssuerId;
-        
-    }
-
-    public static class GetPlayFabIDsFromPSNAccountIDsResult {
-        /**
-         * Mapping of PlayStation Network identifiers to PlayFab identifiers.
-         */
-        public ArrayList<PSNAccountPlayFabIdPair> Data;
         
     }
 
@@ -2051,83 +1761,6 @@ public class PlayFabClientModels {
         public Boolean Result;
         
     }
-
-    public static class GuildLeaderboardEntry {
-        /**
-         * PlayFab unique identifier of the guild for this leaderboard entry.
-         */
-        public String GuildId;
-        /**
-         * Display name of the guild for this leaderboard entry.
-         */
-        public String GuildName;
-        /**
-         * Specific value of the user's statistic.
-         */
-        public Integer StatValue;
-        /**
-         * User's overall position in the leaderboard.
-         */
-        public Integer Position;
-        
-    }
-
-    public static class GuildMember {
-        /**
-         * Unique identifier of the player
-         */
-        public String PlayerId;
-        /**
-         * Role of the player in the guild
-         */
-        public GuildRole Role;
-        
-    }
-
-    public static class GuildMembership {
-        /**
-         * Guild properties
-         */
-        public GuildProperties Guild;
-        /**
-         * Player's role in the guild
-         */
-        public GuildRole Role;
-        
-    }
-
-    public static class GuildProperties {
-        /**
-         * Unique identifier of the guild
-         */
-        public String Id;
-        /**
-         * Guild name
-         */
-        public String Name;
-        
-    }
-
-    public static enum GuildRole {
-        Owner,
-        Member
-    }
-
-    public static class GuildRoleRequest {
-        /**
-         * Unique identifier of the role change request
-         */
-        public String GuildRoleRequestId;
-        /**
-         * Unique identifier of the player requesting the role change
-         */
-        public String PlayerId;
-        /**
-         * Desired role of the player requesting the role change
-         */
-        public GuildRole Role;
-        
-    }
     /**
      *  A unique instance of an item in a user's inventory
      */
@@ -2230,18 +1863,6 @@ public class PlayFabClientModels {
          * Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Kongregate identifier.
          */
         public String PlayFabId;
-        
-    }
-
-    public static class LeaveGuildRequest {
-        /**
-         * Unique identifier of the guild
-         */
-        public String GuildId;
-        
-    }
-
-    public static class LeaveGuildResult {
         
     }
 
@@ -2349,26 +1970,6 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LinkPSNAccountRequest {
-        /**
-         * Authentication code provided by the PlayStation Network.
-         */
-        public String AuthCode;
-        /**
-         * Redirect URI supplied to PSN when requesting an auth code
-         */
-        public String RedirectUri;
-        /**
-         * Id of the PSN issuer environment. If null, defaults to 256 (production)
-         */
-        public Integer IssuerId;
-        
-    }
-
-    public static class LinkPSNAccountResult {
-        
-    }
-
     public static class LinkSteamAccountRequest {
         /**
          * Authentication token for the user, returned as a byte array from Steam, and converted to a string (for example, the byte 0x08 should become "08").
@@ -2378,62 +1979,6 @@ public class PlayFabClientModels {
     }
 
     public static class LinkSteamAccountResult {
-        
-    }
-
-    public static class LinkXboxAccountRequest {
-        /**
-         * Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", "").
-         */
-        public String XboxToken;
-        
-    }
-
-    public static class LinkXboxAccountResult {
-        
-    }
-
-    public static class ListGuildMembersRequest {
-        /**
-         * Unique identifier of the guild
-         */
-        public String GuildId;
-        
-    }
-
-    public static class ListGuildMembersResult {
-        /**
-         * Members of the guild
-         */
-        public ArrayList<GuildMember> Members;
-        
-    }
-
-    public static class ListPendingGuildRoleChangeRequestsRequest {
-        /**
-         * Unique identifier of the guild
-         */
-        public String GuildId;
-        
-    }
-
-    public static class ListPendingGuildRoleChangeRequestsResult {
-        /**
-         * Pending role change requests
-         */
-        public ArrayList<GuildRoleRequest> RoleRequests;
-        
-    }
-
-    public static class ListPlayerGuildMembershipsRequest {
-        
-    }
-
-    public static class ListPlayerGuildMembershipsResult {
-        /**
-         * Guild memberships for the player
-         */
-        public ArrayList<GuildMembership> Memberships;
         
     }
 
@@ -2669,30 +2214,6 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LoginWithPSNRequest {
-        /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
-         */
-        public String TitleId;
-        /**
-         * Auth code provided by the PSN OAuth provider.
-         */
-        public String AuthCode;
-        /**
-         * Redirect URI supplied to PSN when requesting an auth code
-         */
-        public String RedirectUri;
-        /**
-         * Id of the PSN issuer environment. If null, defaults to 256 (production)
-         */
-        public Integer IssuerId;
-        /**
-         * Automatically create a PlayFab account if one is not currently linked to this PSN account.
-         */
-        public Boolean CreateAccount;
-        
-    }
-
     public static class LoginWithSteamRequest {
         /**
          * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
@@ -2704,22 +2225,6 @@ public class PlayFabClientModels {
         public String SteamTicket;
         /**
          * Automatically create a PlayFab account if one is not currently linked to this Steam account.
-         */
-        public Boolean CreateAccount;
-        
-    }
-
-    public static class LoginWithXboxRequest {
-        /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
-         */
-        public String TitleId;
-        /**
-         * Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", "").
-         */
-        public String XboxToken;
-        /**
-         * Automatically create a PlayFab account if one is not currently linked to this Xbox Live account.
          */
         public Boolean CreateAccount;
         
@@ -2986,18 +2491,6 @@ public class PlayFabClientModels {
         
     }
 
-    public static class PSNAccountPlayFabIdPair {
-        /**
-         * Unique PlayStation Network identifier for a user.
-         */
-        public String PSNAccountId;
-        /**
-         * Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the PlayStation Network identifier.
-         */
-        public String PlayFabId;
-        
-    }
-
     public static class PurchaseItemRequest {
         /**
          * Unique identifier of the item to purchase.
@@ -3051,22 +2544,6 @@ public class PlayFabClientModels {
          * Items granted to the player as a result of redeeming the coupon.
          */
         public ArrayList<ItemInstance> GrantedItems;
-        
-    }
-
-    public static class RefreshPSNAuthTokenRequest {
-        /**
-         * Auth code returned by PSN OAuth system.
-         */
-        public String AuthCode;
-        /**
-         * Redirect URI supplied to PSN when requesting an auth code
-         */
-        public String RedirectUri;
-        /**
-         * Id of the PSN issuer environment. If null, defaults to 256 (production)
-         */
-        public Integer IssuerId;
         
     }
 
@@ -3184,22 +2661,6 @@ public class PlayFabClientModels {
         
     }
 
-    public static class RemoveGuildMemberRequest {
-        /**
-         * Unique identifier of the guild
-         */
-        public String GuildId;
-        /**
-         * Unique identifier of the player to change
-         */
-        public String PlayerId;
-        
-    }
-
-    public static class RemoveGuildMemberResult {
-        
-    }
-
     public static class RemoveSharedGroupMembersRequest {
         /**
          * Unique identifier for the shared group.
@@ -3237,26 +2698,6 @@ public class PlayFabClientModels {
          * The number of remaining reports which may be filed today.
          */
         public Integer SubmissionsRemaining;
-        
-    }
-
-    public static class RequestGuildRoleChangeRequest {
-        /**
-         * Unique identifier of the guild
-         */
-        public String GuildId;
-        /**
-         * Desired role of the player in the guild
-         */
-        public GuildRole Role;
-        
-    }
-
-    public static class RequestGuildRoleChangeResult {
-        /**
-         * Unique identifier of the role change request
-         */
-        public String GuildRoleRequestId;
         
     }
 
@@ -3765,31 +3206,11 @@ public class PlayFabClientModels {
         
     }
 
-    public static class UnlinkPSNAccountRequest {
-        
-    }
-
-    public static class UnlinkPSNAccountResult {
-        
-    }
-
     public static class UnlinkSteamAccountRequest {
         
     }
 
     public static class UnlinkSteamAccountResult {
-        
-    }
-
-    public static class UnlinkXboxAccountRequest {
-        /**
-         * Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", "").
-         */
-        public String XboxToken;
-        
-    }
-
-    public static class UnlinkXboxAccountResult {
         
     }
 
@@ -3890,50 +3311,6 @@ public class PlayFabClientModels {
     }
 
     public static class UpdateCharacterStatisticsResult {
-        
-    }
-
-    public static class UpdateGuildDataRequest {
-        /**
-         * Unique PlayFab assigned ID for a specific guild
-         */
-        public String GuildId;
-        /**
-         * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character.
-         */
-        public Map<String,String> Data;
-        /**
-         * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language constraints.  Use this to delete the keys directly.
-         */
-        public ArrayList<String> KeysToRemove;
-        /**
-         * Permission to be applied to all user data keys written in this request. Defaults to "private" if not set.
-         */
-        public UserDataPermission Permission;
-        
-    }
-
-    public static class UpdateGuildDataResult {
-        /**
-         * Indicates the current version of the data that has been set. This is incremented with every set call for that type of data (read-only, internal, etc). This version can be provided in Get calls to find updated data.
-         */
-        public Long DataVersion;
-        
-    }
-
-    public static class UpdateGuildStatisticsRequest {
-        /**
-         * Id of the guild to update
-         */
-        public String GuildId;
-        /**
-         * Statistics to be updated with the provided values
-         */
-        public ArrayList<StatisticUpdate> Statistics;
-        
-    }
-
-    public static class UpdateGuildStatisticsResult {
         
     }
 
