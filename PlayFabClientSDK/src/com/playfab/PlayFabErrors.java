@@ -224,7 +224,10 @@ public class PlayFabErrors {
         OperationNotSupportedForPlatform(1219),
         SegmentNotFound(1220),
         StoreNotFound(1221),
-        InvalidStatisticName(1222);
+        InvalidStatisticName(1222),
+        TitleNotQualifiedForLimit(1223),
+        InvalidServiceLimitLevel(1224),
+        ServiceLimitLevelInTransition(1225);
 
         public int id;
 
