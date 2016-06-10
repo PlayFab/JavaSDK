@@ -5,7 +5,7 @@ import com.playfab.PlayFabErrors.ErrorCallback;
 
 public class PlayFabSettings {
     public static String SdkVersion = "0.26.160606";
-    public static String BuildIdentifier = "jbuild_javasdk_1223";
+    public static String BuildIdentifier = "jbuild_javasdk_1224";
     public static String SdkVersionString = "JavaSDK-0.26.160606";
 
     public static String TitleId = null; // You must set this value for PlayFabSdk to work properly (Found in the Game Manager for your title, at the PlayFab Website)
