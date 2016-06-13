@@ -813,8 +813,17 @@ public class PlayFabClientModels {
         /**
          * game specific string denoting server configuration
          */
-        public String GameServerState;
+        public GameInstanceState GameServerState;
+        /**
+         * game session custom data
+         */
+        public String GameServerData;
         
+    }
+
+    public static enum GameInstanceState {
+        Open,
+        Closed
     }
 
     public static class GameServerRegionsRequest {

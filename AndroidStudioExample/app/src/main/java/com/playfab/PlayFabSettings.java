@@ -4,9 +4,13 @@ import android.content.Context;
 import com.playfab.PlayFabErrors.ErrorCallback;
 
 public class PlayFabSettings {
+    public static String SdkVersion = "0.27.160613";
+    public static String BuildIdentifier = "jbuild_0";
+    public static String SdkVersionString = "JavaSDK-0.27.160613";
+
     public static String TitleId = null; // You must set this value for PlayFabSdk to work properly (Found in the Game Manager for your title, at the PlayFab Website)
     public static ErrorCallback GlobalErrorHandler;
-    public static String LogicServerURL = null; // Assigned by GetCloudScriptUrl, used by RunCloudScript
+    public static String LogicServerURL = null; // Deprecated
     public static String AdvertisingIdType = null; // Set this to the appropriate AD_TYPE_X constant below
     public static String AdvertisingIdValue = null; // Set this to corresponding device value
     public static Context androidContext = null; // Context object for android devices

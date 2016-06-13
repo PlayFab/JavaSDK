@@ -1931,6 +1931,22 @@ public class PlayFabServerModels {
         
     }
 
+    public static class SetGameServerInstanceDataRequest {
+        /**
+         * Unique identifier of the Game Instance to be updated.
+         */
+        public String LobbyId;
+        /**
+         * Custom data to set for the specified game server instance.
+         */
+        public String GameServerData;
+        
+    }
+
+    public static class SetGameServerInstanceDataResult {
+        
+    }
+
     public static class SetGameServerInstanceStateRequest {
         /**
          * Unique identifier of the Game Instance to be updated.

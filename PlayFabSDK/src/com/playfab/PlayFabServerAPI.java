@@ -3265,6 +3265,64 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Sets the custom data of the indicated Game Server Instance
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<SetGameServerInstanceDataResult>> SetGameServerInstanceDataAsync(final SetGameServerInstanceDataRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<SetGameServerInstanceDataResult>>() {
+            public PlayFabResult<SetGameServerInstanceDataResult> call() throws Exception {
+                return privateSetGameServerInstanceDataAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Sets the custom data of the indicated Game Server Instance
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<SetGameServerInstanceDataResult> SetGameServerInstanceData(final SetGameServerInstanceDataRequest request) {
+        FutureTask<PlayFabResult<SetGameServerInstanceDataResult>> task = new FutureTask(new Callable<PlayFabResult<SetGameServerInstanceDataResult>>() {
+            public PlayFabResult<SetGameServerInstanceDataResult> call() throws Exception {
+                return privateSetGameServerInstanceDataAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Sets the custom data of the indicated Game Server Instance
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<SetGameServerInstanceDataResult> privateSetGameServerInstanceDataAsync(final SetGameServerInstanceDataRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SetGameServerInstanceData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<SetGameServerInstanceDataResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<SetGameServerInstanceDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetGameServerInstanceDataResult>>(){}.getType());
+        SetGameServerInstanceDataResult result = resultData.data;
+
+        PlayFabResult<SetGameServerInstanceDataResult> pfResult = new PlayFabResult<SetGameServerInstanceDataResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Sets the state of the indicated Game Server Instance
      */
     @SuppressWarnings("unchecked")
