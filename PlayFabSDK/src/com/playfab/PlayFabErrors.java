@@ -227,7 +227,8 @@ public class PlayFabErrors {
         InvalidStatisticName(1222),
         TitleNotQualifiedForLimit(1223),
         InvalidServiceLimitLevel(1224),
-        ServiceLimitLevelInTransition(1225);
+        ServiceLimitLevelInTransition(1225),
+        CouponAlreadyRedeemed(1226);
 
         public int id;
 
