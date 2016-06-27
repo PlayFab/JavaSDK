@@ -1757,7 +1757,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Retrieves the key-value store of custom title settings
+     * Retrieves the key-value store of custom title settings which can be read by the client
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetTitleDataResult>> GetTitleDataAsync(final GetTitleDataRequest request) {
@@ -1769,7 +1769,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Retrieves the key-value store of custom title settings
+     * Retrieves the key-value store of custom title settings which can be read by the client
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetTitleDataResult> GetTitleData(final GetTitleDataRequest request) {
@@ -1787,13 +1787,71 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Retrieves the key-value store of custom title settings
+     * Retrieves the key-value store of custom title settings which can be read by the client
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTitleDataResult> privateGetTitleDataAsync(final GetTitleDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/GetTitleData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetTitleDataResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetTitleDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetTitleDataResult>>(){}.getType());
+        GetTitleDataResult result = resultData.data;
+
+        PlayFabResult<GetTitleDataResult> pfResult = new PlayFabResult<GetTitleDataResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Retrieves the key-value store of custom title settings which cannot be read by the client
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetTitleDataResult>> GetTitleInternalDataAsync(final GetTitleDataRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetTitleDataResult>>() {
+            public PlayFabResult<GetTitleDataResult> call() throws Exception {
+                return privateGetTitleInternalDataAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the key-value store of custom title settings which cannot be read by the client
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetTitleDataResult> GetTitleInternalData(final GetTitleDataRequest request) {
+        FutureTask<PlayFabResult<GetTitleDataResult>> task = new FutureTask(new Callable<PlayFabResult<GetTitleDataResult>>() {
+            public PlayFabResult<GetTitleDataResult> call() throws Exception {
+                return privateGetTitleInternalDataAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves the key-value store of custom title settings which cannot be read by the client
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetTitleDataResult> privateGetTitleInternalDataAsync(final GetTitleDataRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/GetTitleInternalData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
         if(httpResult instanceof PlayFabError) {
@@ -1989,7 +2047,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Creates and updates the key-value store of custom title settings
+     * Creates and updates the key-value store of custom title settings which can be read by the client
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<SetTitleDataResult>> SetTitleDataAsync(final SetTitleDataRequest request) {
@@ -2001,7 +2059,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Creates and updates the key-value store of custom title settings
+     * Creates and updates the key-value store of custom title settings which can be read by the client
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<SetTitleDataResult> SetTitleData(final SetTitleDataRequest request) {
@@ -2019,13 +2077,71 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Creates and updates the key-value store of custom title settings
+     * Creates and updates the key-value store of custom title settings which can be read by the client
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetTitleDataResult> privateSetTitleDataAsync(final SetTitleDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/SetTitleData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<SetTitleDataResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<SetTitleDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetTitleDataResult>>(){}.getType());
+        SetTitleDataResult result = resultData.data;
+
+        PlayFabResult<SetTitleDataResult> pfResult = new PlayFabResult<SetTitleDataResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Updates the key-value store of custom title settings which cannot be read by the client
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<SetTitleDataResult>> SetTitleInternalDataAsync(final SetTitleDataRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<SetTitleDataResult>>() {
+            public PlayFabResult<SetTitleDataResult> call() throws Exception {
+                return privateSetTitleInternalDataAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Updates the key-value store of custom title settings which cannot be read by the client
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<SetTitleDataResult> SetTitleInternalData(final SetTitleDataRequest request) {
+        FutureTask<PlayFabResult<SetTitleDataResult>> task = new FutureTask(new Callable<PlayFabResult<SetTitleDataResult>>() {
+            public PlayFabResult<SetTitleDataResult> call() throws Exception {
+                return privateSetTitleInternalDataAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Updates the key-value store of custom title settings which cannot be read by the client
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<SetTitleDataResult> privateSetTitleInternalDataAsync(final SetTitleDataRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/SetTitleInternalData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
         if(httpResult instanceof PlayFabError) {
