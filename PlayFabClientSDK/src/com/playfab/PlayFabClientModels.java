@@ -332,6 +332,18 @@ public class PlayFabClientModels {
         
     }
 
+    public static class CharacterInventory {
+        /**
+         * The id of this character.
+         */
+        public String CharacterId;
+        /**
+         * The inventory of this character.
+         */
+        public ArrayList<ItemInstance> Inventory;
+        
+    }
+
     public static class CharacterLeaderboardEntry {
         /**
          * PlayFab unique identifier of the user for this leaderboard entry.
@@ -1284,6 +1296,139 @@ public class PlayFabClientModels {
         
     }
 
+    public static class GetPlayerCombinedInfoRequest {
+        /**
+         * PlayFabId of the user whose data will be returned. If not filled included, we return the data for the calling player. 
+         */
+        public String PlayFabId;
+        /**
+         * Flags for which pieces of info to return for the user.
+         */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        
+    }
+
+    public static class GetPlayerCombinedInfoRequestParams {
+        /**
+         * Whether to get the player's account Info. Defaults to false
+         */
+        public Boolean GetUserAccountInfo;
+        /**
+         * Whether to get the player's inventory. Defaults to false
+         */
+        public Boolean GetUserInventory;
+        /**
+         * Whether to get the player's virtual currency balances. Defaults to false
+         */
+        public Boolean GetUserVirtualCurrency;
+        /**
+         * Whether to get the player's custom data. Defaults to false
+         */
+        public Boolean GetUserData;
+        /**
+         * Specific keys to search for in the custom data. Leave null to get all keys. Has no effect if UserDataKeys is false
+         */
+        public ArrayList<String> UserDataKeys;
+        /**
+         * Whether to get the player's read only data. Defaults to false
+         */
+        public Boolean GetUserReadOnlyData;
+        /**
+         * Specific keys to search for in the custom data. Leave null to get all keys. Has no effect if GetUserReadOnlyData is false
+         */
+        public ArrayList<String> UserReadOnlyDataKeys;
+        /**
+         * Whether to get character inventories. Defaults to false.
+         */
+        public Boolean GetCharacterInventories;
+        /**
+         * Whether to get the list of characters. Defaults to false.
+         */
+        public Boolean GetCharacterList;
+        /**
+         * Whether to get title data. Defaults to false.
+         */
+        public Boolean GetTitleData;
+        /**
+         * Specific keys to search for in the custom data. Leave null to get all keys. Has no effect if GetTitleData is false
+         */
+        public ArrayList<String> TitleDataKeys;
+        /**
+         * Whether to get player statistics. Defaults to false.
+         */
+        public Boolean GetPlayerStatistics;
+        /**
+         * Specific statistics to retrieve. Leave null to get all keys. Has no effect if GetPlayerStatistics is false
+         */
+        public ArrayList<String> PlayerStatisticNames;
+        
+    }
+
+    public static class GetPlayerCombinedInfoResult {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Results for requested info.
+         */
+        public GetPlayerCombinedInfoResultPayload InfoResultPayload;
+        
+    }
+
+    public static class GetPlayerCombinedInfoResultPayload {
+        /**
+         * Account information for the user. This is always retrieved.
+         */
+        public UserAccountInfo AccountInfo;
+        /**
+         * Array of inventory items in the user's current inventory.
+         */
+        @Unordered("ItemInstanceId")
+        public ArrayList<ItemInstance> UserInventory;
+        /**
+         * Dictionary of virtual currency balance(s) belonging to the user.
+         */
+        public Map<String,Integer> UserVirtualCurrency;
+        /**
+         * Dictionary of remaining times and timestamps for virtual currencies.
+         */
+        public Map<String,VirtualCurrencyRechargeTime> UserVirtualCurrencyRechargeTimes;
+        /**
+         * User specific custom data.
+         */
+        public Map<String,UserDataRecord> UserData;
+        /**
+         * The version of the UserData that was returned.
+         */
+        public Long UserDataVersion;
+        /**
+         * User specific read-only data.
+         */
+        public Map<String,UserDataRecord> UserReadOnlyData;
+        /**
+         * The version of the Read-Only UserData that was returned.
+         */
+        public Long UserReadOnlyDataVersion;
+        /**
+         * List of characters for the user.
+         */
+        public ArrayList<CharacterResult> CharacterList;
+        /**
+         * Inventories for each character for the user.
+         */
+        public ArrayList<CharacterInventory> CharacterInventories;
+        /**
+         * Title data for this title.
+         */
+        public Map<String,String> TitleData;
+        /**
+         * List of statistics for this player.
+         */
+        public ArrayList<StatisticValue> PlayerStatistics;
+        
+    }
+
     public static class GetPlayerStatisticsRequest {
         /**
          * statistics to return (current version will be returned for each)
@@ -1672,7 +1817,7 @@ public class PlayFabClientModels {
          */
         public ArrayList<String> Keys;
         /**
-         * Unique PlayFab identifier of the user to load data for. Optional, defaults to yourself if not set.
+         * Unique PlayFab identifier of the user to load data for. Optional, defaults to yourself if not set. When specified to a PlayFab id of another player, then this will only return public keys for that account.
          */
         public String PlayFabId;
         /**
@@ -2052,6 +2197,10 @@ public class PlayFabClientModels {
          * The time of this user's previous login. If there was no previous login, then it's DateTime.MinValue
          */
         public Date LastLoginTime;
+        /**
+         * Results for requested info.
+         */
+        public GetPlayerCombinedInfoResultPayload InfoResultPayload;
         
     }
 
@@ -2076,6 +2225,10 @@ public class PlayFabClientModels {
          * Automatically create a PlayFab account if one is not currently linked to this Android device.
          */
         public Boolean CreateAccount;
+        /**
+         * Flags for which pieces of info to return for the user.
+         */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         
     }
 
@@ -2092,6 +2245,10 @@ public class PlayFabClientModels {
          * Automatically create a PlayFab account if one is not currently linked to this Custom ID.
          */
         public Boolean CreateAccount;
+        /**
+         * Flags for which pieces of info to return for the user.
+         */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         
     }
 
@@ -2108,6 +2265,10 @@ public class PlayFabClientModels {
          * Password for the PlayFab account (6-100 characters)
          */
         public String Password;
+        /**
+         * Flags for which pieces of info to return for the user.
+         */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         
     }
 
@@ -2124,6 +2285,10 @@ public class PlayFabClientModels {
          * Automatically create a PlayFab account if one is not currently linked to this Facebook account.
          */
         public Boolean CreateAccount;
+        /**
+         * Flags for which pieces of info to return for the user.
+         */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         
     }
 
@@ -2140,6 +2305,10 @@ public class PlayFabClientModels {
          * Automatically create a PlayFab account if one is not currently linked to this Game Center id.
          */
         public Boolean CreateAccount;
+        /**
+         * Flags for which pieces of info to return for the user.
+         */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         
     }
 
@@ -2160,6 +2329,10 @@ public class PlayFabClientModels {
          * Deprecated - unused
          */
         public String PublisherId;
+        /**
+         * Flags for which pieces of info to return for the user.
+         */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         
     }
 
@@ -2180,6 +2353,10 @@ public class PlayFabClientModels {
          * Specific model of the user's device.
          */
         public String DeviceModel;
+        /**
+         * Flags for which pieces of info to return for the user.
+         */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         /**
          * Automatically create a PlayFab account if one is not currently linked to this iOS device.
          */
@@ -2204,6 +2381,10 @@ public class PlayFabClientModels {
          * Automatically create a PlayFab account if one is not currently linked to this Kongregate account.
          */
         public Boolean CreateAccount;
+        /**
+         * Flags for which pieces of info to return for the user.
+         */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         
     }
 
@@ -2220,6 +2401,10 @@ public class PlayFabClientModels {
          * Password for the PlayFab account (6-100 characters)
          */
         public String Password;
+        /**
+         * Flags for which pieces of info to return for the user.
+         */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         
     }
 
@@ -2236,6 +2421,10 @@ public class PlayFabClientModels {
          * Automatically create a PlayFab account if one is not currently linked to this Steam account.
          */
         public Boolean CreateAccount;
+        /**
+         * Flags for which pieces of info to return for the user.
+         */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         
     }
 
@@ -3369,7 +3558,7 @@ public class PlayFabClientModels {
          */
         public ArrayList<String> KeysToRemove;
         /**
-         * Permission to be applied to all user data keys written in this request. Defaults to "private" if not set.
+         * Permission to be applied to all user data keys written in this request. Defaults to "private" if not set. This is used for requests by one player for information about another player; those requests will only return Public keys.
          */
         public UserDataPermission Permission;
         
@@ -3490,7 +3679,9 @@ public class PlayFabClientModels {
         public String CustomId;
         
     }
-
+    /**
+     *  Indicates whether a given data key is private (readable only by the player) or public (readable by all players). When a player makes a GetUserData request about another player, only keys marked Public will be returned.
+     */ 
     public static enum UserDataPermission {
         Private,
         Public
@@ -3506,7 +3697,7 @@ public class PlayFabClientModels {
          */
         public Date LastUpdated;
         /**
-         * Indicates whether this data can be read by all users (public) or only the user (private).
+         * Indicates whether this data can be read by all users (public) or only the user (private). This is used for GetUserData requests being made by one player about another player.
          */
         public UserDataPermission Permission;
         
