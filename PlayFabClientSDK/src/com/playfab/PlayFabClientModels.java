@@ -122,10 +122,6 @@ public class PlayFabClientModels {
          * Message to display when confirming push notification.
          */
         public String ConfirmationMessage;
-        /**
-         * Flags for which pieces of info to return for the user.
-         */
-        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         
     }
 
@@ -1302,7 +1298,7 @@ public class PlayFabClientModels {
 
     public static class GetPlayerCombinedInfoRequest {
         /**
-         * PlayFabId of the user whose data will be returned. If not filled included, we return the dat
+         * PlayFabId of the user whose data will be returned. If not filled included, we return the data for the calling player. 
          */
         public String PlayFabId;
         /**
@@ -1313,6 +1309,10 @@ public class PlayFabClientModels {
     }
 
     public static class GetPlayerCombinedInfoRequestParams {
+        /**
+         * Whether to get the player's account Info. Defaults to false
+         */
+        public Boolean GetUserAccountInfo;
         /**
          * Whether to get the player's inventory. Defaults to false
          */
