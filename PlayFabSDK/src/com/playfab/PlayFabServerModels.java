@@ -2425,6 +2425,10 @@ public class PlayFabServerModels {
          */
         public UserKongregateInfo KongregateInfo;
         /**
+         * User Twitch account information, if a Twitch account has been linked
+         */
+        public UserTwitchInfo TwitchInfo;
+        /**
          * User PSN account information, if a PSN account has been linked
          */
         public UserPsnInfo PsnInfo;
@@ -2627,6 +2631,18 @@ public class PlayFabServerModels {
          * boolean indicating whether or not the user is currently banned for a title
          */
         public Boolean isBanned;
+        
+    }
+
+    public static class UserTwitchInfo {
+        /**
+         * Twitch ID
+         */
+        public String TwitchId;
+        /**
+         * Twitch Username
+         */
+        public String TwitchUserName;
         
     }
 
