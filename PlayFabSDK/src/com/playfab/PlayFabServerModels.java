@@ -1435,6 +1435,14 @@ public class PlayFabServerModels {
          * Unique PlayFab assigned ID for a specific character owned by a user
          */
         public String CharacterId;
+        /**
+         * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character.
+         */
+        public Map<String,String> Data;
+        /**
+         * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language constraints.  Use this to delete the keys directly.
+         */
+        public ArrayList<String> KeysToRemove;
         
     }
     /**
