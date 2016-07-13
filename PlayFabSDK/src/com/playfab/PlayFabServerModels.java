@@ -541,7 +541,7 @@ public class PlayFabServerModels {
          */
         public ArrayList<String> PlayFabIds;
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         

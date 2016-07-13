@@ -844,7 +844,7 @@ public class PlayFabClientModels {
          */
         public String BuildVersion;
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         
@@ -2234,7 +2234,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithAndroidDeviceIDRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2262,7 +2262,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithCustomIDRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2282,7 +2282,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithEmailAddressRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2302,7 +2302,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithFacebookRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2322,7 +2322,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithGameCenterRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2342,7 +2342,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithGoogleAccountRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2366,7 +2366,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithIOSDeviceIDRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2394,7 +2394,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithKongregateRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2418,7 +2418,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithPlayFabRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2438,7 +2438,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithSteamRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2458,7 +2458,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithTwitchRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2845,7 +2845,7 @@ public class PlayFabClientModels {
 
     public static class RegisterPlayFabUserRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -3029,7 +3029,7 @@ public class PlayFabClientModels {
          */
         public String Email;
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**

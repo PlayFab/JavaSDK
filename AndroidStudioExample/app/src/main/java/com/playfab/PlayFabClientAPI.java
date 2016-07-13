@@ -1272,7 +1272,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Twitch identifiers. The Twitch identifiers are the IDs for the user accounts, available as "_id" from the Twitch API methods(ex: https://github.com/justintv/Twitch-API/blob/master/v3_resources/users.md#get-usersuser).
+     * Retrieves the unique PlayFab identifiers for the given set of Twitch identifiers. The Twitch identifiers are the IDs for the user accounts, available as "_id" from the Twitch API methods (ex: https://github.com/justintv/Twitch-API/blob/master/v3_resources/users.md#get-usersuser).
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetPlayFabIDsFromTwitchIDsResult>> GetPlayFabIDsFromTwitchIDsAsync(final GetPlayFabIDsFromTwitchIDsRequest request) {
@@ -1284,7 +1284,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Twitch identifiers. The Twitch identifiers are the IDs for the user accounts, available as "_id" from the Twitch API methods(ex: https://github.com/justintv/Twitch-API/blob/master/v3_resources/users.md#get-usersuser).
+     * Retrieves the unique PlayFab identifiers for the given set of Twitch identifiers. The Twitch identifiers are the IDs for the user accounts, available as "_id" from the Twitch API methods (ex: https://github.com/justintv/Twitch-API/blob/master/v3_resources/users.md#get-usersuser).
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetPlayFabIDsFromTwitchIDsResult> GetPlayFabIDsFromTwitchIDs(final GetPlayFabIDsFromTwitchIDsRequest request) {
@@ -1302,7 +1302,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Twitch identifiers. The Twitch identifiers are the IDs for the user accounts, available as "_id" from the Twitch API methods(ex: https://github.com/justintv/Twitch-API/blob/master/v3_resources/users.md#get-usersuser).
+     * Retrieves the unique PlayFab identifiers for the given set of Twitch identifiers. The Twitch identifiers are the IDs for the user accounts, available as "_id" from the Twitch API methods (ex: https://github.com/justintv/Twitch-API/blob/master/v3_resources/users.md#get-usersuser).
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayFabIDsFromTwitchIDsResult> privateGetPlayFabIDsFromTwitchIDsAsync(final GetPlayFabIDsFromTwitchIDsRequest request) throws Exception {
@@ -1852,7 +1852,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Links the Twitch account associated with the token to the user's PlayFab account
+     * Links the Twitch account associated with the token to the user's PlayFab account.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<LinkTwitchAccountResult>> LinkTwitchAsync(final LinkTwitchAccountRequest request) {
@@ -1864,7 +1864,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Links the Twitch account associated with the token to the user's PlayFab account
+     * Links the Twitch account associated with the token to the user's PlayFab account.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<LinkTwitchAccountResult> LinkTwitch(final LinkTwitchAccountRequest request) {
@@ -1882,7 +1882,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Links the Twitch account associated with the token to the user's PlayFab account
+     * Links the Twitch account associated with the token to the user's PlayFab account.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LinkTwitchAccountResult> privateLinkTwitchAsync(final LinkTwitchAccountRequest request) throws Exception {
@@ -2489,7 +2489,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Unlinks the related Twitch account from the user's PlayFab account
+     * Unlinks the related Twitch account from the user's PlayFab account.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UnlinkTwitchAccountResult>> UnlinkTwitchAsync(final UnlinkTwitchAccountRequest request) {
@@ -2501,7 +2501,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Unlinks the related Twitch account from the user's PlayFab account
+     * Unlinks the related Twitch account from the user's PlayFab account.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<UnlinkTwitchAccountResult> UnlinkTwitch(final UnlinkTwitchAccountRequest request) {
@@ -2519,7 +2519,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Unlinks the related Twitch account from the user's PlayFab account
+     * Unlinks the related Twitch account from the user's PlayFab account.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UnlinkTwitchAccountResult> privateUnlinkTwitchAsync(final UnlinkTwitchAccountRequest request) throws Exception {
