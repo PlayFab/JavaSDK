@@ -95,7 +95,7 @@ public class PlayFabAdminModels {
          */
         public Date Timestamp;
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -515,7 +515,7 @@ public class PlayFabAdminModels {
          */
         public ArrayList<String> PlayFabIds;
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         
@@ -856,7 +856,7 @@ public class PlayFabAdminModels {
          */
         public Date Timestamp;
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -1128,6 +1128,14 @@ public class PlayFabAdminModels {
          * Unique PlayFab assigned ID for a specific character owned by a user
          */
         public String CharacterId;
+        /**
+         * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character.
+         */
+        public Map<String,String> Data;
+        /**
+         * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language constraints.  Use this to delete the keys directly.
+         */
+        public ArrayList<String> KeysToRemove;
         
     }
     /**
@@ -1343,7 +1351,7 @@ public class PlayFabAdminModels {
          */
         public Date Timestamp;
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -1937,6 +1945,10 @@ public class PlayFabAdminModels {
          */
         public UserKongregateInfo KongregateInfo;
         /**
+         * User Twitch account information, if a Twitch account has been linked
+         */
+        public UserTwitchInfo TwitchInfo;
+        /**
          * User PSN account information, if a PSN account has been linked
          */
         public UserPsnInfo PsnInfo;
@@ -2082,7 +2094,8 @@ public class PlayFabAdminModels {
         GameCenter,
         CustomId,
         XboxLive,
-        Parse
+        Parse,
+        Twitch
     }
 
     public static class UserPrivateAccountInfo {
@@ -2150,6 +2163,18 @@ public class PlayFabAdminModels {
          * boolean indicating whether or not the user is currently banned for a title
          */
         public Boolean isBanned;
+        
+    }
+
+    public static class UserTwitchInfo {
+        /**
+         * Twitch ID
+         */
+        public String TwitchId;
+        /**
+         * Twitch Username
+         */
+        public String TwitchUserName;
         
     }
 

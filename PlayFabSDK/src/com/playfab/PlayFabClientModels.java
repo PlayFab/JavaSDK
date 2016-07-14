@@ -844,7 +844,7 @@ public class PlayFabClientModels {
          */
         public String BuildVersion;
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         
@@ -1569,6 +1569,22 @@ public class PlayFabClientModels {
         
     }
 
+    public static class GetPlayFabIDsFromTwitchIDsRequest {
+        /**
+         * Array of unique Twitch identifiers (Twitch's _id) for which the title needs to get PlayFab identifiers.
+         */
+        public ArrayList<String> TwitchIds;
+        
+    }
+
+    public static class GetPlayFabIDsFromTwitchIDsResult {
+        /**
+         * Mapping of Twitch identifiers to PlayFab identifiers.
+         */
+        public ArrayList<TwitchPlayFabIdPair> Data;
+        
+    }
+
     public static class GetPublisherDataRequest {
         /**
          *  array of keys to get back data from the Publisher data blob, set by the admin tools
@@ -2136,6 +2152,18 @@ public class PlayFabClientModels {
         
     }
 
+    public static class LinkTwitchAccountRequest {
+        /**
+         * Valid token issued by Twitch
+         */
+        public String AccessToken;
+        
+    }
+
+    public static class LinkTwitchAccountResult {
+        
+    }
+
     public static class ListUsersCharactersRequest {
         /**
          * Unique PlayFab assigned ID of the user on whom the operation will be performed.
@@ -2206,7 +2234,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithAndroidDeviceIDRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2234,7 +2262,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithCustomIDRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2254,7 +2282,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithEmailAddressRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2274,7 +2302,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithFacebookRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2294,7 +2322,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithGameCenterRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2314,7 +2342,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithGoogleAccountRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2338,7 +2366,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithIOSDeviceIDRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2366,7 +2394,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithKongregateRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2390,7 +2418,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithPlayFabRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2410,7 +2438,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithSteamRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2419,6 +2447,26 @@ public class PlayFabClientModels {
         public String SteamTicket;
         /**
          * Automatically create a PlayFab account if one is not currently linked to this Steam account.
+         */
+        public Boolean CreateAccount;
+        /**
+         * Flags for which pieces of info to return for the user.
+         */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        
+    }
+
+    public static class LoginWithTwitchRequest {
+        /**
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
+         */
+        public String TitleId;
+        /**
+         * Token issued by Twitch's API for the user.
+         */
+        public String AccessToken;
+        /**
+         * Automatically create a PlayFab account if one is not currently linked to this Twitch account.
          */
         public Boolean CreateAccount;
         /**
@@ -2797,7 +2845,7 @@ public class PlayFabClientModels {
 
     public static class RegisterPlayFabUserRequest {
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2981,7 +3029,7 @@ public class PlayFabClientModels {
          */
         public String Email;
         /**
-         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected
+         * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -3336,6 +3384,18 @@ public class PlayFabClientModels {
         Failed
     }
 
+    public static class TwitchPlayFabIdPair {
+        /**
+         * Unique Twitch identifier for a user.
+         */
+        public String TwitchId;
+        /**
+         * Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Twitch identifier.
+         */
+        public String PlayFabId;
+        
+    }
+
     public static class UnlinkAndroidDeviceIDRequest {
         /**
          * Android device identifier for the user's device. If not specified, the most recently signed in Android Device ID will be used.
@@ -3409,6 +3469,14 @@ public class PlayFabClientModels {
     }
 
     public static class UnlinkSteamAccountResult {
+        
+    }
+
+    public static class UnlinkTwitchAccountRequest {
+        
+    }
+
+    public static class UnlinkTwitchAccountResult {
         
     }
 
@@ -3646,6 +3714,10 @@ public class PlayFabClientModels {
          */
         public UserKongregateInfo KongregateInfo;
         /**
+         * User Twitch account information, if a Twitch account has been linked
+         */
+        public UserTwitchInfo TwitchInfo;
+        /**
          * User PSN account information, if a PSN account has been linked
          */
         public UserPsnInfo PsnInfo;
@@ -3779,7 +3851,8 @@ public class PlayFabClientModels {
         GameCenter,
         CustomId,
         XboxLive,
-        Parse
+        Parse,
+        Twitch
     }
 
     public static class UserPrivateAccountInfo {
@@ -3855,6 +3928,18 @@ public class PlayFabClientModels {
          * boolean indicating whether or not the user is currently banned for a title
          */
         public Boolean isBanned;
+        
+    }
+
+    public static class UserTwitchInfo {
+        /**
+         * Twitch ID
+         */
+        public String TwitchId;
+        /**
+         * Twitch Username
+         */
+        public String TwitchUserName;
         
     }
 
