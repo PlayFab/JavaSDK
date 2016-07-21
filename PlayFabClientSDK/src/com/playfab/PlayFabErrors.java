@@ -236,7 +236,8 @@ public class PlayFabErrors {
         TitleNewsItemCountLimitExceeded(1231),
         InvalidTwitchToken(1232),
         TwitchResponseError(1233),
-        ProfaneDisplayName(1234);
+        ProfaneDisplayName(1234),
+        UserAlreadyAdded(1235);
 
         public int id;
 
