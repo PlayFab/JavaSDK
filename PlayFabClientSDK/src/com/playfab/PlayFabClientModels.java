@@ -397,6 +397,20 @@ public class PlayFabClientModels {
         Latest,
         Specific
     }
+    /**
+     *  Collection filter to include and/or exclude collections with certain key-value pairs. The filter generates a collection set defined by Includes rules and then remove collections that matches the Excludes rules. A collection is considered matching a rule if the rule describes a subset of the collection. 
+     */
+    public static class CollectionFilter {
+        /**
+         * List of Include rules, with any of which if a collection matches, it is included by the filter, unless it is excluded by one of the Exclude rule
+         */
+        public ArrayList<Container_Dictionary_String_String> Includes;
+        /**
+         * List of Exclude rules, with any of which if a collection matches, it is excluded by the filter.
+         */
+        public ArrayList<Container_Dictionary_String_String> Excludes;
+        
+    }
 
     public static class ConfirmPurchaseRequest {
         /**
@@ -447,6 +461,16 @@ public class PlayFabClientModels {
          * Number of uses remaining on the item.
          */
         public Integer RemainingUses;
+        
+    }
+    /**
+     *  A data container
+     */
+    public static class Container_Dictionary_String_String {
+        /**
+         * Content of data
+         */
+        public Map<String,String> Data;
         
     }
 
@@ -633,21 +657,25 @@ public class PlayFabClientModels {
 
     public static class CurrentGamesRequest {
         /**
-         * region to check for game instances
+         * Region to check for Game Server Instances.
          */
         public Region Region;
         /**
-         * version of build to match against
+         * Build to match against.
          */
         public String BuildVersion;
         /**
-         * game mode to look for (optional)
+         * Game mode to look for.
          */
         public String GameMode;
         /**
-         * statistic name to find statistic-based matches (optional)
+         * Statistic name to find statistic-based matches.
          */
         public String StatisticName;
+        /**
+         * Filter to include and/or exclude Game Server Instances associated with certain tags.
+         */
+        public CollectionFilter TagFilter;
         
     }
 
@@ -815,7 +843,7 @@ public class PlayFabClientModels {
          */
         public Integer MaxPlayers;
         /**
-         * array of strings of current player names on this server (note that these are PlayFab usernames, as opposed to title display names)
+         * array of current player IDs on this server
          */
         public ArrayList<String> PlayerUserIds;
         /**
@@ -830,6 +858,14 @@ public class PlayFabClientModels {
          * game session custom data
          */
         public String GameServerData;
+        /**
+         * game session tags
+         */
+        public Map<String,String> Tags;
+        /**
+         * last heartbeat of the game server instance, used in external game server provider mode
+         */
+        public Date LastHeartbeat;
         
     }
 
@@ -2491,33 +2527,37 @@ public class PlayFabClientModels {
 
     public static class MatchmakeRequest {
         /**
-         * build version to match against [Note: Required if LobbyId is not specified]
+         * Build version to match against. [Note: Required if LobbyId is not specified]
          */
         public String BuildVersion;
         /**
-         * region to match make against [Note: Required if LobbyId is not specified]
+         * Region to match make against. [Note: Required if LobbyId is not specified]
          */
         public Region Region;
         /**
-         * game mode to match make against [Note: Required if LobbyId is not specified]
+         * Game mode to match make against. [Note: Required if LobbyId is not specified]
          */
         public String GameMode;
         /**
-         * lobby identifier to match make against (used to select a specific server)
+         * Lobby identifier to match make against. This is used to select a specific Game Server Instance.
          */
         public String LobbyId;
         /**
-         * player statistic to use in finding a match. May be null for no stat-based matching
+         * Player statistic to use in finding a match. May be null for no stat-based matching.
          */
         public String StatisticName;
         /**
-         * character to use for stats based matching. Leave null to use account stats
+         * Character to use for stats based matching. Leave null to use account stats.
          */
         public String CharacterId;
         /**
-         * start a game session if one with an open slot is not found. Defaults to true
+         * Start a game session if one with an open slot is not found. Defaults to true.
          */
         public Boolean StartNewIfNoneFound;
+        /**
+         * Filter to include and/or exclude Game Server Instances associated with certain Tags
+         */
+        public CollectionFilter TagFilter;
         /**
          * [deprecated]
          */

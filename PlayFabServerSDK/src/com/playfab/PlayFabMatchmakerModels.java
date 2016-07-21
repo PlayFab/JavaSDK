@@ -165,7 +165,7 @@ public class PlayFabMatchmakerModels {
 
     public static class StartGameResponse {
         /**
-         * Unique identifier for the lobby in the new Game Server Instance.
+         * Unique identifier for the game/lobby in the new Game Server Instance.
          */
         public String GameID;
         /**
