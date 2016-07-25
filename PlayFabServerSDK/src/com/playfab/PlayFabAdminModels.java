@@ -1466,13 +1466,13 @@ public class PlayFabAdminModels {
     }
 
     public static enum Region {
+        USCentral,
         USEast,
         EUWest,
         Singapore,
         Japan,
-        Australia,
         Brazil,
-        USCentral
+        Australia
     }
 
     public static class RemoveServerBuildRequest {

@@ -2834,13 +2834,13 @@ public class PlayFabClientModels {
     }
 
     public static enum Region {
+        USCentral,
         USEast,
         EUWest,
         Singapore,
         Japan,
-        Australia,
         Brazil,
-        USCentral
+        Australia
     }
 
     public static class RegionInfo {
