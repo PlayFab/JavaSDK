@@ -2188,7 +2188,7 @@ public class PlayFabAdminModels {
 
     public static class VirtualCurrencyData {
         /**
-         * unique two-character identifier for this currency type (e.g.: "CC", "GC")
+         * unique one- or two-character identifier for this currency type (e.g.: "CC", "G")
          */
         public String CurrencyCode;
         /**
