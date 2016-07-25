@@ -3323,7 +3323,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Sets the state of the indicated Game Server Instance
+     * Set the state of the indicated Game Server Instance.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<SetGameServerInstanceStateResult>> SetGameServerInstanceStateAsync(final SetGameServerInstanceStateRequest request) {
@@ -3335,7 +3335,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Sets the state of the indicated Game Server Instance
+     * Set the state of the indicated Game Server Instance.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<SetGameServerInstanceStateResult> SetGameServerInstanceState(final SetGameServerInstanceStateRequest request) {
@@ -3353,7 +3353,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Sets the state of the indicated Game Server Instance
+     * Set the state of the indicated Game Server Instance.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetGameServerInstanceStateResult> privateSetGameServerInstanceStateAsync(final SetGameServerInstanceStateRequest request) throws Exception {
