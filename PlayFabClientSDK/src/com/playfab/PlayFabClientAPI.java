@@ -807,6 +807,64 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as authentication credentials, as the intent is that it is easily accessible by other players.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<AddGenericIDResult>> AddGenericIDAsync(final AddGenericIDRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<AddGenericIDResult>>() {
+            public PlayFabResult<AddGenericIDResult> call() throws Exception {
+                return privateAddGenericIDAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as authentication credentials, as the intent is that it is easily accessible by other players.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<AddGenericIDResult> AddGenericID(final AddGenericIDRequest request) {
+        FutureTask<PlayFabResult<AddGenericIDResult>> task = new FutureTask(new Callable<PlayFabResult<AddGenericIDResult>>() {
+            public PlayFabResult<AddGenericIDResult> call() throws Exception {
+                return privateAddGenericIDAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as authentication credentials, as the intent is that it is easily accessible by other players.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<AddGenericIDResult> privateAddGenericIDAsync(final AddGenericIDRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/AddGenericID", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<AddGenericIDResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<AddGenericIDResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AddGenericIDResult>>(){}.getType());
+        AddGenericIDResult result = resultData.data;
+
+        PlayFabResult<AddGenericIDResult> pfResult = new PlayFabResult<AddGenericIDResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Adds playfab username/password auth to an existing semi-anonymous account created via a 3rd party auth method.
      */
     @SuppressWarnings("unchecked")
@@ -1092,6 +1150,64 @@ public class PlayFabClientAPI {
         GetPlayFabIDsFromGameCenterIDsResult result = resultData.data;
 
         PlayFabResult<GetPlayFabIDsFromGameCenterIDsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromGameCenterIDsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of generic service identifiers. A generic identifier is the service name plus the service-specific ID for the player, as specified by the title when the generic identifier was added to the player account.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayFabIDsFromGenericIDsResult>> GetPlayFabIDsFromGenericIDsAsync(final GetPlayFabIDsFromGenericIDsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromGenericIDsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromGenericIDsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromGenericIDsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of generic service identifiers. A generic identifier is the service name plus the service-specific ID for the player, as specified by the title when the generic identifier was added to the player account.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayFabIDsFromGenericIDsResult> GetPlayFabIDsFromGenericIDs(final GetPlayFabIDsFromGenericIDsRequest request) {
+        FutureTask<PlayFabResult<GetPlayFabIDsFromGenericIDsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromGenericIDsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromGenericIDsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromGenericIDsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of generic service identifiers. A generic identifier is the service name plus the service-specific ID for the player, as specified by the title when the generic identifier was added to the player account.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayFabIDsFromGenericIDsResult> privateGetPlayFabIDsFromGenericIDsAsync(final GetPlayFabIDsFromGenericIDsRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayFabIDsFromGenericIDs", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayFabIDsFromGenericIDsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayFabIDsFromGenericIDsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayFabIDsFromGenericIDsResult>>(){}.getType());
+        GetPlayFabIDsFromGenericIDsResult result = resultData.data;
+
+        PlayFabResult<GetPlayFabIDsFromGenericIDsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromGenericIDsResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -1904,6 +2020,64 @@ public class PlayFabClientAPI {
         LinkTwitchAccountResult result = resultData.data;
 
         PlayFabResult<LinkTwitchAccountResult> pfResult = new PlayFabResult<LinkTwitchAccountResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Removes the specified generic service identifier from the player's PlayFab account.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RemoveGenericIDResult>> RemoveGenericIDAsync(final RemoveGenericIDRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RemoveGenericIDResult>>() {
+            public PlayFabResult<RemoveGenericIDResult> call() throws Exception {
+                return privateRemoveGenericIDAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Removes the specified generic service identifier from the player's PlayFab account.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RemoveGenericIDResult> RemoveGenericID(final RemoveGenericIDRequest request) {
+        FutureTask<PlayFabResult<RemoveGenericIDResult>> task = new FutureTask(new Callable<PlayFabResult<RemoveGenericIDResult>>() {
+            public PlayFabResult<RemoveGenericIDResult> call() throws Exception {
+                return privateRemoveGenericIDAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Removes the specified generic service identifier from the player's PlayFab account.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RemoveGenericIDResult> privateRemoveGenericIDAsync(final RemoveGenericIDRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/RemoveGenericID", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RemoveGenericIDResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RemoveGenericIDResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RemoveGenericIDResult>>(){}.getType());
+        RemoveGenericIDResult result = resultData.data;
+
+        PlayFabResult<RemoveGenericIDResult> pfResult = new PlayFabResult<RemoveGenericIDResult>();
         pfResult.Result = result;
         return pfResult;
     }
