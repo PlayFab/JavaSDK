@@ -1931,6 +1931,64 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Removes one or more virtual currencies from the set defined for the title.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<BlankResult>> RemoveVirtualCurrencyTypesAsync(final RemoveVirtualCurrencyTypesRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<BlankResult>>() {
+            public PlayFabResult<BlankResult> call() throws Exception {
+                return privateRemoveVirtualCurrencyTypesAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Removes one or more virtual currencies from the set defined for the title.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<BlankResult> RemoveVirtualCurrencyTypes(final RemoveVirtualCurrencyTypesRequest request) {
+        FutureTask<PlayFabResult<BlankResult>> task = new FutureTask(new Callable<PlayFabResult<BlankResult>>() {
+            public PlayFabResult<BlankResult> call() throws Exception {
+                return privateRemoveVirtualCurrencyTypesAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Removes one or more virtual currencies from the set defined for the title.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<BlankResult> privateRemoveVirtualCurrencyTypesAsync(final RemoveVirtualCurrencyTypesRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/RemoveVirtualCurrencyTypes", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<BlankResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<BlankResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<BlankResult>>(){}.getType());
+        BlankResult result = resultData.data;
+
+        PlayFabResult<BlankResult> pfResult = new PlayFabResult<BlankResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Creates the catalog configuration of all virtual goods for the specified catalog version
      */
     @SuppressWarnings("unchecked")

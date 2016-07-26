@@ -1487,6 +1487,14 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class RemoveVirtualCurrencyTypesRequest {
+        /**
+         * List of virtual currencies to delete
+         */
+        public ArrayList<VirtualCurrencyData> VirtualCurrencies;
+        
+    }
+
     public static class ResetCharacterStatisticsRequest {
         /**
          * Unique PlayFab assigned ID of the user on whom the operation will be performed.
