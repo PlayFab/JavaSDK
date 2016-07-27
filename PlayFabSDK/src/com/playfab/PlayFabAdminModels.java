@@ -2012,15 +2012,15 @@ public class PlayFabAdminModels {
 
     public static class UserDataRecord {
         /**
-         * User-supplied data for this user data key.
+         * Data stored for the specified user data key.
          */
         public String Value;
         /**
-         * Timestamp indicating when this data was last updated.
+         * Timestamp for when this data was last updated.
          */
         public Date LastUpdated;
         /**
-         * Permissions on this data key.
+         * Indicates whether this data can be read by all users (public) or only the user (private). This is used for GetUserData requests being made by one player about another player.
          */
         public UserDataPermission Permission;
         

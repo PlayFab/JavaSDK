@@ -240,6 +240,18 @@ public class PlayFabServerModels {
         
     }
 
+    public static class CharacterInventory {
+        /**
+         * The id of this character.
+         */
+        public String CharacterId;
+        /**
+         * The inventory of this character.
+         */
+        public ArrayList<ItemInstance> Inventory;
+        
+    }
+
     public static class CharacterLeaderboardEntry {
         /**
          * PlayFab unique identifier of the user for this leaderboard entry.
@@ -973,6 +985,139 @@ public class PlayFabServerModels {
          * Ordered list of leaderboard entries.
          */
         public ArrayList<PlayerLeaderboardEntry> Leaderboard;
+        
+    }
+
+    public static class GetPlayerCombinedInfoRequest {
+        /**
+         * PlayFabId of the user whose data will be returned
+         */
+        public String PlayFabId;
+        /**
+         * Flags for which pieces of info to return for the user.
+         */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        
+    }
+
+    public static class GetPlayerCombinedInfoRequestParams {
+        /**
+         * Whether to get the player's account Info. Defaults to false
+         */
+        public Boolean GetUserAccountInfo;
+        /**
+         * Whether to get the player's inventory. Defaults to false
+         */
+        public Boolean GetUserInventory;
+        /**
+         * Whether to get the player's virtual currency balances. Defaults to false
+         */
+        public Boolean GetUserVirtualCurrency;
+        /**
+         * Whether to get the player's custom data. Defaults to false
+         */
+        public Boolean GetUserData;
+        /**
+         * Specific keys to search for in the custom data. Leave null to get all keys. Has no effect if UserDataKeys is false
+         */
+        public ArrayList<String> UserDataKeys;
+        /**
+         * Whether to get the player's read only data. Defaults to false
+         */
+        public Boolean GetUserReadOnlyData;
+        /**
+         * Specific keys to search for in the custom data. Leave null to get all keys. Has no effect if GetUserReadOnlyData is false
+         */
+        public ArrayList<String> UserReadOnlyDataKeys;
+        /**
+         * Whether to get character inventories. Defaults to false.
+         */
+        public Boolean GetCharacterInventories;
+        /**
+         * Whether to get the list of characters. Defaults to false.
+         */
+        public Boolean GetCharacterList;
+        /**
+         * Whether to get title data. Defaults to false.
+         */
+        public Boolean GetTitleData;
+        /**
+         * Specific keys to search for in the custom data. Leave null to get all keys. Has no effect if GetTitleData is false
+         */
+        public ArrayList<String> TitleDataKeys;
+        /**
+         * Whether to get player statistics. Defaults to false.
+         */
+        public Boolean GetPlayerStatistics;
+        /**
+         * Specific statistics to retrieve. Leave null to get all keys. Has no effect if GetPlayerStatistics is false
+         */
+        public ArrayList<String> PlayerStatisticNames;
+        
+    }
+
+    public static class GetPlayerCombinedInfoResult {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Results for requested info.
+         */
+        public GetPlayerCombinedInfoResultPayload InfoResultPayload;
+        
+    }
+
+    public static class GetPlayerCombinedInfoResultPayload {
+        /**
+         * Account information for the user. This is always retrieved.
+         */
+        public UserAccountInfo AccountInfo;
+        /**
+         * Array of inventory items in the user's current inventory.
+         */
+        @Unordered("ItemInstanceId")
+        public ArrayList<ItemInstance> UserInventory;
+        /**
+         * Dictionary of virtual currency balance(s) belonging to the user.
+         */
+        public Map<String,Integer> UserVirtualCurrency;
+        /**
+         * Dictionary of remaining times and timestamps for virtual currencies.
+         */
+        public Map<String,VirtualCurrencyRechargeTime> UserVirtualCurrencyRechargeTimes;
+        /**
+         * User specific custom data.
+         */
+        public Map<String,UserDataRecord> UserData;
+        /**
+         * The version of the UserData that was returned.
+         */
+        public Long UserDataVersion;
+        /**
+         * User specific read-only data.
+         */
+        public Map<String,UserDataRecord> UserReadOnlyData;
+        /**
+         * The version of the Read-Only UserData that was returned.
+         */
+        public Long UserReadOnlyDataVersion;
+        /**
+         * List of characters for the user.
+         */
+        public ArrayList<CharacterResult> CharacterList;
+        /**
+         * Inventories for each character for the user.
+         */
+        public ArrayList<CharacterInventory> CharacterInventories;
+        /**
+         * Title data for this title.
+         */
+        public Map<String,String> TitleData;
+        /**
+         * List of statistics for this player.
+         */
+        public ArrayList<StatisticValue> PlayerStatistics;
         
     }
 
@@ -2480,15 +2625,15 @@ public class PlayFabServerModels {
 
     public static class UserDataRecord {
         /**
-         * User-supplied data for this user data key.
+         * Data stored for the specified user data key.
          */
         public String Value;
         /**
-         * Timestamp indicating when this data was last updated.
+         * Timestamp for when this data was last updated.
          */
         public Date LastUpdated;
         /**
-         * Permissions on this data key.
+         * Indicates whether this data can be read by all users (public) or only the user (private). This is used for GetUserData requests being made by one player about another player.
          */
         public UserDataPermission Permission;
         
