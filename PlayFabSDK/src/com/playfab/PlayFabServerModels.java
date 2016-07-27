@@ -1687,7 +1687,7 @@ public class PlayFabServerModels {
         
     }
     /**
-     *  A unique instance of an item in a user's inventory
+     *  A unique instance of an item in a user's inventory. Note, To retrieve additional information for an item instance (such as Tags, Description, or Custom Data that are set on the root catalog item), a call to GetCatalogItems is required. The Item ID of the instance can then be matched to a catalog entry, which contains the additional information.
      */
     public static class ItemInstance implements Comparable<ItemInstance> {
         /**
