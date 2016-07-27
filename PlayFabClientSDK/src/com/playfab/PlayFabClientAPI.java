@@ -7304,6 +7304,64 @@ public class PlayFabClientAPI {
         return pfResult;
     }
 
+    /**
+     * List all segments that a player currently belongs to at this moment in time.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayerSegmentsResult>> GetPlayerSegmentsAsync(final GetPlayerSegmentsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayerSegmentsResult>>() {
+            public PlayFabResult<GetPlayerSegmentsResult> call() throws Exception {
+                return privateGetPlayerSegmentsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * List all segments that a player currently belongs to at this moment in time.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayerSegmentsResult> GetPlayerSegments(final GetPlayerSegmentsRequest request) {
+        FutureTask<PlayFabResult<GetPlayerSegmentsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayerSegmentsResult>>() {
+            public PlayFabResult<GetPlayerSegmentsResult> call() throws Exception {
+                return privateGetPlayerSegmentsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * List all segments that a player currently belongs to at this moment in time.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayerSegmentsResult> privateGetPlayerSegmentsAsync(final GetPlayerSegmentsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayerSegments", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayerSegmentsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayerSegmentsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayerSegmentsResult>>(){}.getType());
+        GetPlayerSegmentsResult result = resultData.data;
+
+        PlayFabResult<GetPlayerSegmentsResult> pfResult = new PlayFabResult<GetPlayerSegmentsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
     public static void MultiStepClientLogin(Boolean needsAttribution) {
         if (needsAttribution && !PlayFabSettings.DisableAdvertising && PlayFabSettings.AdvertisingIdType != null && PlayFabSettings.AdvertisingIdValue != null) {
             PlayFabClientModels.AttributeInstallRequest request = new PlayFabClientModels.AttributeInstallRequest();

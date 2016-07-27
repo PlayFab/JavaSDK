@@ -240,7 +240,10 @@ public class PlayFabErrors {
         InvalidVirtualCurrencyCode(1236),
         VirtualCurrencyCannotBeDeleted(1237),
         IdentifierAlreadyClaimed(1238),
-        IdentifierNotLinked(1239);
+        IdentifierNotLinked(1239),
+        InvalidContinuationToken(1240),
+        ExpiredContinuationToken(1241),
+        InvalidSegment(1242);
 
         public int id;
 

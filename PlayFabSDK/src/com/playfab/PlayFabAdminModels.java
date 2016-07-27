@@ -5,6 +5,22 @@ import com.playfab.PlayFabUtil.*;
 
 public class PlayFabAdminModels {
 
+    public static class AdCampaignAttribution {
+        /**
+         * Attribution network name
+         */
+        public String Platform;
+        /**
+         * Attribution campaign identifier
+         */
+        public String CampaignId;
+        /**
+         * UTC time stamp of attribution
+         */
+        public Date AttributedAt;
+        
+    }
+
     public static class AddNewsRequest {
         /**
          * Time this news was published. If not set, defaults to now.
@@ -553,6 +569,18 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class GetAllSegmentsRequest {
+        
+    }
+
+    public static class GetAllSegmentsResult {
+        /**
+         * Array of segments for this title.
+         */
+        public ArrayList<GetSegmentResult> Segments;
+        
+    }
+
     public static class GetCatalogItemsRequest {
         /**
          * Which catalog is being requested.
@@ -759,6 +787,58 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class GetPlayerSegmentsResult {
+        /**
+         * Array of segments the requested player currently belongs to.
+         */
+        public ArrayList<GetSegmentResult> Segments;
+        
+    }
+
+    public static class GetPlayersInSegmentRequest {
+        /**
+         * Unique identifier for this segment.
+         */
+        public String SegmentId;
+        /**
+         * Number of seconds to keep the continuation token active. After token expiration it is not possible to continue paging results. Default is 300 (5 minutes). Maximum is 1,800 (30 minutes).
+         */
+        public Long SecondsToLive;
+        /**
+         * Maximum number of profiles to load. Default is 1,000. Maximum is 10,000.
+         */
+        public Long MaxBatchSize;
+        /**
+         * Continuation token if retrieving subsequent pages of results.
+         */
+        public String ContinuationToken;
+        
+    }
+
+    public static class GetPlayersInSegmentResult {
+        /**
+         * Count of profiles matching this segment.
+         */
+        public Integer ProfilesInSegment;
+        /**
+         * Continuation token to use to retrieve subsequent pages of results. If token returns null there are no more results.
+         */
+        public String ContinuationToken;
+        /**
+         * Array of player profiles in this segment.
+         */
+        public ArrayList<PlayerProfile> PlayerProfiles;
+        
+    }
+
+    public static class GetPlayersSegmentsRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        
+    }
+
     public static class GetPlayerStatisticDefinitionsRequest {
         
     }
@@ -816,6 +896,22 @@ public class PlayFabAdminModels {
          * array of random result tables currently available
          */
         public Map<String,RandomResultTableListing> Tables;
+        
+    }
+
+    public static class GetSegmentResult {
+        /**
+         * Unique identifier for this segment.
+         */
+        public String Id;
+        /**
+         * Segment name.
+         */
+        public String Name;
+        /**
+         * Identifier of the segments AB Test, if it is attached to one.
+         */
+        public String ABTestParent;
         
     }
 
@@ -1237,6 +1333,22 @@ public class PlayFabAdminModels {
         
     }
 
+    public static enum LoginIdentityProvider {
+        Unknown,
+        PlayFab,
+        Custom,
+        GameCenter,
+        GooglePlay,
+        Steam,
+        XBoxLive,
+        PSN,
+        Kongregate,
+        Facebook,
+        IOSDevice,
+        AndroidDevice,
+        Twitch
+    }
+
     public static class LookupUserAccountInfoRequest {
         /**
          * Unique PlayFab assigned ID of the user on whom the operation will be performed.
@@ -1381,6 +1493,102 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class PlayerLinkedAccount {
+        /**
+         * Authentication platform
+         */
+        public LoginIdentityProvider Platform;
+        /**
+         * Platform user identifier
+         */
+        public String PlatformUserId;
+        /**
+         * Linked account's username
+         */
+        public String Username;
+        /**
+         * Linked account's email
+         */
+        public String Email;
+        
+    }
+
+    public static class PlayerProfile {
+        /**
+         * PlayFab Player ID
+         */
+        public String PlayerId;
+        /**
+         * Title ID this profile applies to
+         */
+        public String TitleId;
+        /**
+         * Player Display Name
+         */
+        public String DisplayName;
+        /**
+         * Player account origination
+         */
+        public LoginIdentityProvider Origination;
+        /**
+         * Player record created
+         */
+        public Date Created;
+        /**
+         * Last login
+         */
+        public Date LastLogin;
+        /**
+         * Banned until UTC Date. If permanent ban this is set for 20 years after the original ban date.
+         */
+        public Date BannedUntil;
+        /**
+         * Dictionary of player's statistics using only the latest version's value
+         */
+        public Map<String,Integer> Statistics;
+        /**
+         * Dictionary of player's virtual currency balances
+         */
+        public Map<String,Integer> VirtualCurrencyBalances;
+        /**
+         * Array of ad campaigns player has been attributed to
+         */
+        public ArrayList<AdCampaignAttribution> AdCampaignAttributions;
+        /**
+         * Array of configured push notification end points
+         */
+        public ArrayList<PushNotificationRegistration> PushNotificationRegistrations;
+        /**
+         * Array of third party accounts linked to this player
+         */
+        public ArrayList<PlayerLinkedAccount> LinkedAccounts;
+        /**
+         * Array of player statistics
+         */
+        public ArrayList<PlayerStatistic> PlayerStatistics;
+        
+    }
+
+    public static class PlayerStatistic {
+        /**
+         * Statistic ID
+         */
+        public String Id;
+        /**
+         * Statistic version (0 if not a versioned statistic)
+         */
+        public Integer StatisticVersion;
+        /**
+         * Current statistic value
+         */
+        public Integer StatisticValue;
+        /**
+         * Statistic name
+         */
+        public String Name;
+        
+    }
+
     public static class PlayerStatisticDefinition {
         /**
          * unique name of the statistic
@@ -1434,6 +1642,23 @@ public class PlayFabAdminModels {
          * URL for the downloadable archive of player statistic values, if available
          */
         public String ArchiveDownloadUrl;
+        
+    }
+
+    public static enum PushNotificationPlatform {
+        ApplePushNotificationService,
+        GoogleCloudMessaging
+    }
+
+    public static class PushNotificationRegistration {
+        /**
+         * Push notification platform
+         */
+        public PushNotificationPlatform Platform;
+        /**
+         * Notification configured endpoint
+         */
+        public String NotificationEndpointARN;
         
     }
 

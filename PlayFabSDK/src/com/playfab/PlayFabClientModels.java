@@ -1501,6 +1501,18 @@ public class PlayFabClientModels {
         
     }
 
+    public static class GetPlayerSegmentsRequest {
+        
+    }
+
+    public static class GetPlayerSegmentsResult {
+        /**
+         * Array of segments the requested player currently belongs to.
+         */
+        public ArrayList<GetSegmentResult> Segments;
+        
+    }
+
     public static class GetPlayerStatisticsRequest {
         /**
          * statistics to return (current version will be returned for each)
@@ -1722,6 +1734,22 @@ public class PlayFabClientModels {
          * Array of items purchased.
          */
         public ArrayList<ItemInstance> Items;
+        
+    }
+
+    public static class GetSegmentResult {
+        /**
+         * Unique identifier for this segment.
+         */
+        public String Id;
+        /**
+         * Segment name.
+         */
+        public String Name;
+        /**
+         * Identifier of the segments AB Test, if it is attached to one.
+         */
+        public String ABTestParent;
         
     }
 
