@@ -7339,9 +7339,9 @@ public class PlayFabClientAPI {
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayerSegmentsResult> privateGetPlayerSegmentsAsync(final GetPlayerSegmentsRequest request) throws Exception {
-        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayerSegments", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayerSegments", request, "X-Authorization", _authKey);
         task.run();
         Object httpResult = task.get();
         if(httpResult instanceof PlayFabError) {
