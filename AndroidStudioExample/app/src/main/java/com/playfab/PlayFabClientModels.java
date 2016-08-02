@@ -57,6 +57,18 @@ public class PlayFabClientModels {
         
     }
 
+    public static class AddGenericIDRequest {
+        /**
+         * Generic service identifier to add to the player account.
+         */
+        public GenericServiceId GenericId;
+        
+    }
+
+    public static class AddGenericIDResult {
+        
+    }
+
     public static class AddSharedGroupMembersRequest {
         /**
          * Unique identifier for the shared group.
@@ -894,6 +906,30 @@ public class PlayFabClientModels {
         
     }
 
+    public static class GenericPlayFabIdPair {
+        /**
+         * Unique generic service identifier for a user.
+         */
+        public GenericServiceId GenericId;
+        /**
+         * Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the given generic identifier.
+         */
+        public String PlayFabId;
+        
+    }
+
+    public static class GenericServiceId {
+        /**
+         * Name of the service for which the player has a unique identifier.
+         */
+        public String ServiceName;
+        /**
+         * Unique identifier of the player in that service.
+         */
+        public String UserId;
+        
+    }
+
     public static class GetAccountInfoRequest {
         /**
          * Unique PlayFab identifier of the user whose info is being requested. Optional, defaults to the authenticated user if no other lookup identifier set.
@@ -1465,6 +1501,18 @@ public class PlayFabClientModels {
         
     }
 
+    public static class GetPlayerSegmentsRequest {
+        
+    }
+
+    public static class GetPlayerSegmentsResult {
+        /**
+         * Array of segments the requested player currently belongs to.
+         */
+        public ArrayList<GetSegmentResult> Segments;
+        
+    }
+
     public static class GetPlayerStatisticsRequest {
         /**
          * statistics to return (current version will be returned for each)
@@ -1550,6 +1598,22 @@ public class PlayFabClientModels {
          * Mapping of Game Center identifiers to PlayFab identifiers.
          */
         public ArrayList<GameCenterPlayFabIdPair> Data;
+        
+    }
+
+    public static class GetPlayFabIDsFromGenericIDsRequest {
+        /**
+         * Array of unique generic service identifiers for which the title needs to get PlayFab identifiers. Currently limited to a maximum of 10 in a single request.
+         */
+        public ArrayList<GenericServiceId> GenericIDs;
+        
+    }
+
+    public static class GetPlayFabIDsFromGenericIDsResult {
+        /**
+         * Mapping of generic service identifiers to PlayFab identifiers.
+         */
+        public ArrayList<GenericPlayFabIdPair> Data;
         
     }
 
@@ -1670,6 +1734,22 @@ public class PlayFabClientModels {
          * Array of items purchased.
          */
         public ArrayList<ItemInstance> Items;
+        
+    }
+
+    public static class GetSegmentResult {
+        /**
+         * Unique identifier for this segment.
+         */
+        public String Id;
+        /**
+         * Segment name.
+         */
+        public String Name;
+        /**
+         * Identifier of the segments AB Test, if it is attached to one.
+         */
+        public String ABTestParent;
         
     }
 
@@ -1968,7 +2048,7 @@ public class PlayFabClientModels {
         
     }
     /**
-     *  A unique instance of an item in a user's inventory
+     *  A unique instance of an item in a user's inventory. Note, To retrieve additional information for an item instance (such as Tags, Description, or Custom Data that are set on the root catalog item), a call to GetCatalogItems is required. The Item ID of the instance can then be matched to a catalog entry, which contains the additional information.
      */
     public static class ItemInstance implements Comparable<ItemInstance> {
         /**
@@ -2944,6 +3024,18 @@ public class PlayFabClientModels {
     }
 
     public static class RemoveFriendResult {
+        
+    }
+
+    public static class RemoveGenericIDRequest {
+        /**
+         * Generic service identifier to be removed from the player.
+         */
+        public GenericServiceId GenericId;
+        
+    }
+
+    public static class RemoveGenericIDResult {
         
     }
 
