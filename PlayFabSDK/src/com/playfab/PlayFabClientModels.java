@@ -960,7 +960,7 @@ public class PlayFabClientModels {
 
     public static class GetCatalogItemsRequest {
         /**
-         * Which catalog is being requested.
+         * Which catalog is being requested. If null, uses the default catalog.
          */
         public String CatalogVersion;
         

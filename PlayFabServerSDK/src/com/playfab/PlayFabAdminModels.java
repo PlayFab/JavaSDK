@@ -583,7 +583,7 @@ public class PlayFabAdminModels {
 
     public static class GetCatalogItemsRequest {
         /**
-         * Which catalog is being requested.
+         * Which catalog is being requested. If null, uses the default catalog.
          */
         public String CatalogVersion;
         
@@ -1962,7 +1962,7 @@ public class PlayFabAdminModels {
 
     public static class UpdateCatalogItemsRequest {
         /**
-         * Which catalog is being updated
+         * Which catalog is being updated. If null, uses the default catalog.
          */
         public String CatalogVersion;
         /**
@@ -2050,7 +2050,7 @@ public class PlayFabAdminModels {
 
     public static class UpdateStoreItemsRequest {
         /**
-         * catalog version of the store to update. Use default catalog version if null
+         * catalog version of the store to update. If null, uses the default catalog.
          */
         public String CatalogVersion;
         /**
