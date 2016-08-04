@@ -2068,7 +2068,7 @@ public class PlayFabServerModels {
         /**
          * Dictionary of player's total currency purchases. The key VTD is a sum of all player_realmoney_purchase events OrderTotals.
          */
-        public Map<String,Double> ValuesToDate;
+        public Map<String,Long> ValuesToDate;
         /**
          * Dictionary of player's virtual currency balances
          */
