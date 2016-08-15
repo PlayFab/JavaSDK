@@ -732,7 +732,7 @@ public class PlayFabServerModels {
 
     public static class GetCatalogItemsRequest {
         /**
-         * Which catalog is being requested.
+         * Which catalog is being requested. If null, uses the default catalog.
          */
         public String CatalogVersion;
         
@@ -1687,7 +1687,7 @@ public class PlayFabServerModels {
         
     }
     /**
-     *  A unique instance of an item in a user's inventory. Note, To retrieve additional information for an item instance (such as Tags, Description, or Custom Data that are set on the root catalog item), a call to GetCatalogItems is required. The Item ID of the instance can then be matched to a catalog entry, which contains the additional information.
+     *  A unique instance of an item in a user's inventory. Note, to retrieve additional information for an item instance (such as Tags, Description, or Custom Data that are set on the root catalog item), a call to GetCatalogItems is required. The Item ID of the instance can then be matched to a catalog entry, which contains the additional information. Also note that Custom Data is only set here from a call to UpdateUserInventoryItemCustomData.
      */
     public static class ItemInstance implements Comparable<ItemInstance> {
         /**
@@ -2065,6 +2065,10 @@ public class PlayFabServerModels {
          * Dictionary of player's statistics using only the latest version's value
          */
         public Map<String,Integer> Statistics;
+        /**
+         * Dictionary of player's total currency purchases. The key VTD is a sum of all player_realmoney_purchase events OrderTotals.
+         */
+        public Map<String,Long> ValuesToDate;
         /**
          * Dictionary of player's virtual currency balances
          */

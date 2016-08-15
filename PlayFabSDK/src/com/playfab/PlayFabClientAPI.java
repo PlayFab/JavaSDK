@@ -865,7 +865,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds playfab username/password auth to an existing semi-anonymous account created via a 3rd party auth method.
+     * Adds playfab username/password auth to an existing account created via an anonymous auth method, e.g. automatic device ID login.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<AddUsernamePasswordResult>> AddUsernamePasswordAsync(final AddUsernamePasswordRequest request) {
@@ -877,7 +877,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds playfab username/password auth to an existing semi-anonymous account created via a 3rd party auth method.
+     * Adds playfab username/password auth to an existing account created via an anonymous auth method, e.g. automatic device ID login.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<AddUsernamePasswordResult> AddUsernamePassword(final AddUsernamePasswordRequest request) {
@@ -895,7 +895,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds playfab username/password auth to an existing semi-anonymous account created via a 3rd party auth method.
+     * Adds playfab username/password auth to an existing account created via an anonymous auth method, e.g. automatic device ID login.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AddUsernamePasswordResult> privateAddUsernamePasswordAsync(final AddUsernamePasswordRequest request) throws Exception {
