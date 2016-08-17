@@ -1527,6 +1527,10 @@ public class PlayFabAdminModels {
          */
         public String DisplayName;
         /**
+         * Publisher this player belongs to
+         */
+        public String PublisherId;
+        /**
          * Player account origination
          */
         public LoginIdentityProvider Origination;
@@ -1970,6 +1974,10 @@ public class PlayFabAdminModels {
          */
         public String CatalogVersion;
         /**
+         * Should this catalog be set as the default catalog. Defaults to true. If there is currently no default catalog, this will always set it.
+         */
+        public Boolean SetAsDefaultCatalog;
+        /**
          * Array of catalog items to be submitted. Note that while CatalogItem has a parameter for CatalogVersion, it is not required and ignored in this call.
          */
         public ArrayList<CatalogItem> Catalog;
@@ -1982,7 +1990,7 @@ public class PlayFabAdminModels {
 
     public static class UpdateCloudScriptRequest {
         /**
-         * Deprecated - unused
+         * Deprecated - Do not use
          */
         public Integer Version;
         /**

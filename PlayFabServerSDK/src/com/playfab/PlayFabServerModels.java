@@ -2046,6 +2046,10 @@ public class PlayFabServerModels {
          */
         public String DisplayName;
         /**
+         * Publisher this player belongs to
+         */
+        public String PublisherId;
+        /**
          * Player account origination
          */
         public LoginIdentityProvider Origination;
@@ -2443,7 +2447,7 @@ public class PlayFabServerModels {
 
     public static class SteamPlayFabIdPair {
         /**
-         * Deprecated: Please use SteamStringId
+         * Deprecated: Please use SteamStringIDs
          */
         public Long SteamId;
         /**
