@@ -247,7 +247,8 @@ public class PlayFabErrors {
         InvalidSessionId(1243),
         SessionLogNotFound(1244),
         InvalidSearchTerm(1245),
-        TwoFactorAuthenticationTokenRequired(1246);
+        TwoFactorAuthenticationTokenRequired(1246),
+        GameServerHostCountLimitExceeded(1247);
 
         public int id;
 
