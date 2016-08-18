@@ -2447,7 +2447,7 @@ public class PlayFabServerModels {
 
     public static class SteamPlayFabIdPair {
         /**
-         * Deprecated: Please use SteamStringIDs
+         * Deprecated: Please use SteamStringId
          */
         public Long SteamId;
         /**
