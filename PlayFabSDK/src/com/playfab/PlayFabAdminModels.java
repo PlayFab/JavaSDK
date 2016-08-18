@@ -525,6 +525,22 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class DeleteStoreRequest {
+        /**
+         * catalog version of the store to delete. If null, uses the default catalog.
+         */
+        public String CatalogVersion;
+        /**
+         * unqiue identifier for the store which is to be deleted
+         */
+        public String StoreId;
+        
+    }
+
+    public static class DeleteStoreResult {
+        
+    }
+
     public static class DeleteUsersRequest {
         /**
          * An array of unique PlayFab assigned ID of the user on whom the operation will be performed.

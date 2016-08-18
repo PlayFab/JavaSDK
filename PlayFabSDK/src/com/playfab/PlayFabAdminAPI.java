@@ -1525,6 +1525,64 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Deletes an existing virtual item store
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<DeleteStoreResult>> DeleteStoreAsync(final DeleteStoreRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<DeleteStoreResult>>() {
+            public PlayFabResult<DeleteStoreResult> call() throws Exception {
+                return privateDeleteStoreAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Deletes an existing virtual item store
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<DeleteStoreResult> DeleteStore(final DeleteStoreRequest request) {
+        FutureTask<PlayFabResult<DeleteStoreResult>> task = new FutureTask(new Callable<PlayFabResult<DeleteStoreResult>>() {
+            public PlayFabResult<DeleteStoreResult> call() throws Exception {
+                return privateDeleteStoreAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Deletes an existing virtual item store
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<DeleteStoreResult> privateDeleteStoreAsync(final DeleteStoreRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/DeleteStore", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<DeleteStoreResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<DeleteStoreResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<DeleteStoreResult>>(){}.getType());
+        DeleteStoreResult result = resultData.data;
+
+        PlayFabResult<DeleteStoreResult> pfResult = new PlayFabResult<DeleteStoreResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
      */
     @SuppressWarnings("unchecked")
