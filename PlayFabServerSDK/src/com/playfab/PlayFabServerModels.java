@@ -1297,6 +1297,26 @@ public class PlayFabServerModels {
         
     }
 
+    public static class GetRandomResultTablesRequest {
+        /**
+         * Specifies the catalog version that should be used to retrieve the Random Result Tables.  If unspecified, uses default/primary catalog.
+         */
+        public String CatalogVersion;
+        /**
+         * The unique identifier of the Random Result Table to use.
+         */
+        public ArrayList<String> TableIDs;
+        
+    }
+
+    public static class GetRandomResultTablesResult {
+        /**
+         * array of random result tables currently available
+         */
+        public Map<String,RandomResultTableListing> Tables;
+        
+    }
+
     public static class GetSegmentResult {
         /**
          * Unique identifier for this segment.
@@ -2161,6 +2181,22 @@ public class PlayFabServerModels {
         
     }
 
+    public static class RandomResultTableListing {
+        /**
+         * Catalog version this table is associated with
+         */
+        public String CatalogVersion;
+        /**
+         * Unique name for this drop table
+         */
+        public String TableId;
+        /**
+         * Child nodes that indicate what kind of drop table item this actually is.
+         */
+        public ArrayList<ResultTableNode> Nodes;
+        
+    }
+
     public static class RedeemCouponRequest {
         /**
          * Generated coupon code to redeem.
@@ -2259,6 +2295,27 @@ public class PlayFabServerModels {
          */
         public Integer SubmissionsRemaining;
         
+    }
+
+    public static class ResultTableNode {
+        /**
+         * Whether this entry in the table is an item or a link to another table
+         */
+        public ResultTableNodeType ResultItemType;
+        /**
+         * Either an ItemId, or the TableId of another random result table
+         */
+        public String ResultItem;
+        /**
+         * How likely this is to be rolled - larger numbers add more weight
+         */
+        public Integer Weight;
+        
+    }
+
+    public static enum ResultTableNodeType {
+        ItemId,
+        TableId
     }
 
     public static class RevokeInventoryItemRequest {

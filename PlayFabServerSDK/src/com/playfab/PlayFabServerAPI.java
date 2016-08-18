@@ -2279,6 +2279,64 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Retrieves the configuration information for the specified random results tables for the title, including all ItemId values and weights
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetRandomResultTablesResult>> GetRandomResultTablesAsync(final GetRandomResultTablesRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetRandomResultTablesResult>>() {
+            public PlayFabResult<GetRandomResultTablesResult> call() throws Exception {
+                return privateGetRandomResultTablesAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the configuration information for the specified random results tables for the title, including all ItemId values and weights
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetRandomResultTablesResult> GetRandomResultTables(final GetRandomResultTablesRequest request) {
+        FutureTask<PlayFabResult<GetRandomResultTablesResult>> task = new FutureTask(new Callable<PlayFabResult<GetRandomResultTablesResult>>() {
+            public PlayFabResult<GetRandomResultTablesResult> call() throws Exception {
+                return privateGetRandomResultTablesAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves the configuration information for the specified random results tables for the title, including all ItemId values and weights
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetRandomResultTablesResult> privateGetRandomResultTablesAsync(final GetRandomResultTablesRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetRandomResultTables", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetRandomResultTablesResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetRandomResultTablesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetRandomResultTablesResult>>(){}.getType());
+        GetRandomResultTablesResult result = resultData.data;
+
+        PlayFabResult<GetRandomResultTablesResult> pfResult = new PlayFabResult<GetRandomResultTablesResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the specified user's current inventory of virtual goods
      */
     @SuppressWarnings("unchecked")
