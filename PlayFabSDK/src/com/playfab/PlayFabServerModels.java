@@ -2094,6 +2094,10 @@ public class PlayFabServerModels {
          */
         public Map<String,Long> ValuesToDate;
         /**
+         * List of player's tags for segmentation.
+         */
+        public ArrayList<String> Tags;
+        /**
          * Dictionary of player's virtual currency balances
          */
         public Map<String,Integer> VirtualCurrencyBalances;
