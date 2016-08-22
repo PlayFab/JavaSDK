@@ -121,6 +121,86 @@ public class PlayFabServerModels {
         
     }
     /**
+     *  Contains information for a ban.
+     */
+    public static class BanInfo {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * The unique Ban Id associated with this ban.
+         */
+        public String BanId;
+        /**
+         * The IP address on which the ban was applied. May affect multiple players.
+         */
+        public String IPAddress;
+        /**
+         * The MAC address on which the ban was applied. May affect multiple players.
+         */
+        public String MACAddress;
+        /**
+         * The time when this ban was applied.
+         */
+        public Date Created;
+        /**
+         * The time when this ban expires. Permanent bans do not have expiration date.
+         */
+        public Date Expires;
+        /**
+         * The reason why this ban was applied.
+         */
+        public String Reason;
+        /**
+         * The active state of this ban. Expired bans may still have this value set to true but they will have no effect.
+         */
+        public Boolean Active;
+        
+    }
+    /**
+     *  Represents a single ban request.
+     */
+    public static class BanRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * IP address to be banned. May affect multiple players.
+         */
+        public String IPAddress;
+        /**
+         * MAC address to be banned. May affect multiple players.
+         */
+        public String MACAddress;
+        /**
+         * The reason for this ban. Maximum 140 characters.
+         */
+        public String Reason;
+        /**
+         * The duration in hours for the ban. Leave this blank for a permanent ban.
+         */
+        public Long DurationInHours;
+        
+    }
+
+    public static class BanUsersRequest {
+        /**
+         * List of ban requests to be applied. Maximum 100.
+         */
+        public ArrayList<BanRequest> Bans;
+        
+    }
+
+    public static class BanUsersResult {
+        /**
+         * Information on the bans that were applied
+         */
+        public ArrayList<BanInfo> BanData;
+        
+    }
+    /**
      *  A purchasable item from the item catalog
      */
     public static class CatalogItem implements Comparable<CatalogItem> {
@@ -1297,6 +1377,26 @@ public class PlayFabServerModels {
         
     }
 
+    public static class GetRandomResultTablesRequest {
+        /**
+         * Specifies the catalog version that should be used to retrieve the Random Result Tables.  If unspecified, uses default/primary catalog.
+         */
+        public String CatalogVersion;
+        /**
+         * The unique identifier of the Random Result Table to use.
+         */
+        public ArrayList<String> TableIDs;
+        
+    }
+
+    public static class GetRandomResultTablesResult {
+        /**
+         * array of random result tables currently available
+         */
+        public Map<String,RandomResultTableListing> Tables;
+        
+    }
+
     public static class GetSegmentResult {
         /**
          * Unique identifier for this segment.
@@ -1386,6 +1486,22 @@ public class PlayFabServerModels {
          * Account details for the user whose information was requested.
          */
         public UserAccountInfo UserInfo;
+        
+    }
+
+    public static class GetUserBansRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        
+    }
+
+    public static class GetUserBansResult {
+        /**
+         * Information about the bans
+         */
+        public ArrayList<BanInfo> BanData;
         
     }
 
@@ -2046,6 +2162,10 @@ public class PlayFabServerModels {
          */
         public String DisplayName;
         /**
+         * Publisher this player belongs to
+         */
+        public String PublisherId;
+        /**
          * Player account origination
          */
         public LoginIdentityProvider Origination;
@@ -2069,6 +2189,10 @@ public class PlayFabServerModels {
          * Dictionary of player's total currency purchases. The key VTD is a sum of all player_realmoney_purchase events OrderTotals.
          */
         public Map<String,Long> ValuesToDate;
+        /**
+         * List of player's tags for segmentation.
+         */
+        public ArrayList<String> Tags;
         /**
          * Dictionary of player's virtual currency balances
          */
@@ -2154,6 +2278,22 @@ public class PlayFabServerModels {
          * Notification configured endpoint
          */
         public String NotificationEndpointARN;
+        
+    }
+
+    public static class RandomResultTableListing {
+        /**
+         * Catalog version this table is associated with
+         */
+        public String CatalogVersion;
+        /**
+         * Unique name for this drop table
+         */
+        public String TableId;
+        /**
+         * Child nodes that indicate what kind of drop table item this actually is.
+         */
+        public ArrayList<ResultTableNode> Nodes;
         
     }
 
@@ -2254,6 +2394,59 @@ public class PlayFabServerModels {
          * The number of remaining reports which may be filed today by this reporting player.
          */
         public Integer SubmissionsRemaining;
+        
+    }
+
+    public static class ResultTableNode {
+        /**
+         * Whether this entry in the table is an item or a link to another table
+         */
+        public ResultTableNodeType ResultItemType;
+        /**
+         * Either an ItemId, or the TableId of another random result table
+         */
+        public String ResultItem;
+        /**
+         * How likely this is to be rolled - larger numbers add more weight
+         */
+        public Integer Weight;
+        
+    }
+
+    public static enum ResultTableNodeType {
+        ItemId,
+        TableId
+    }
+
+    public static class RevokeAllBansForUserRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        
+    }
+
+    public static class RevokeAllBansForUserResult {
+        /**
+         * Information on the bans that were revoked.
+         */
+        public ArrayList<BanInfo> BanData;
+        
+    }
+
+    public static class RevokeBansRequest {
+        /**
+         * Ids of the bans to be revoked. Maximum 100.
+         */
+        public ArrayList<String> BanIds;
+        
+    }
+
+    public static class RevokeBansResult {
+        /**
+         * Information on the bans that were revoked
+         */
+        public ArrayList<BanInfo> BanData;
         
     }
 
@@ -2582,6 +2775,56 @@ public class PlayFabServerModels {
          * Virtual currency granted to the player as a result of unlocking the container.
          */
         public Map<String,Long> VirtualCurrency;
+        
+    }
+    /**
+     *  Represents a single update ban request.
+     */
+    public static class UpdateBanRequest {
+        /**
+         * The id of the ban to be updated.
+         */
+        public String BanId;
+        /**
+         * The updated reason for the ban to be updated. Maximum 140 characters. Null for no change.
+         */
+        public String Reason;
+        /**
+         * The updated expiration date for the ban. Null for no change.
+         */
+        public Date Expires;
+        /**
+         * The updated IP address for the ban. Null for no change.
+         */
+        public String IPAddress;
+        /**
+         * The updated MAC address for the ban. Null for no change.
+         */
+        public String MACAddress;
+        /**
+         * Whether to make this ban permanent. Set to true to make this ban permanent. This will not modify Active state.
+         */
+        public Boolean Permanent;
+        /**
+         * The updated active state for the ban. Null for no change.
+         */
+        public Boolean Active;
+        
+    }
+
+    public static class UpdateBansRequest {
+        /**
+         * List of bans to be updated. Maximum 100.
+         */
+        public ArrayList<UpdateBanRequest> Bans;
+        
+    }
+
+    public static class UpdateBansResult {
+        /**
+         * Information on the bans that were updated
+         */
+        public ArrayList<BanInfo> BanData;
         
     }
 

@@ -144,6 +144,86 @@ public class PlayFabAdminModels {
         public ArrayList<VirtualCurrencyData> VirtualCurrencies;
         
     }
+    /**
+     *  Contains information for a ban.
+     */
+    public static class BanInfo {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * The unique Ban Id associated with this ban.
+         */
+        public String BanId;
+        /**
+         * The IP address on which the ban was applied. May affect multiple players.
+         */
+        public String IPAddress;
+        /**
+         * The MAC address on which the ban was applied. May affect multiple players.
+         */
+        public String MACAddress;
+        /**
+         * The time when this ban was applied.
+         */
+        public Date Created;
+        /**
+         * The time when this ban expires. Permanent bans do not have expiration date.
+         */
+        public Date Expires;
+        /**
+         * The reason why this ban was applied.
+         */
+        public String Reason;
+        /**
+         * The active state of this ban. Expired bans may still have this value set to true but they will have no effect.
+         */
+        public Boolean Active;
+        
+    }
+    /**
+     *  Represents a single ban request.
+     */
+    public static class BanRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * IP address to be banned. May affect multiple players.
+         */
+        public String IPAddress;
+        /**
+         * MAC address to be banned. May affect multiple players.
+         */
+        public String MACAddress;
+        /**
+         * The reason for this ban. Maximum 140 characters.
+         */
+        public String Reason;
+        /**
+         * The duration in hours for the ban. Leave this blank for a permanent ban.
+         */
+        public Long DurationInHours;
+        
+    }
+
+    public static class BanUsersRequest {
+        /**
+         * List of ban requests to be applied. Maximum 100.
+         */
+        public ArrayList<BanRequest> Bans;
+        
+    }
+
+    public static class BanUsersResult {
+        /**
+         * Information on the bans that were applied
+         */
+        public ArrayList<BanInfo> BanData;
+        
+    }
 
     public static class BlankResult {
         
@@ -522,6 +602,22 @@ public class PlayFabAdminModels {
          * Key of the content item to be deleted
          */
         public String Key;
+        
+    }
+
+    public static class DeleteStoreRequest {
+        /**
+         * catalog version of the store to delete. If null, uses the default catalog.
+         */
+        public String CatalogVersion;
+        /**
+         * unqiue identifier for the store which is to be deleted
+         */
+        public String StoreId;
+        
+    }
+
+    public static class DeleteStoreResult {
         
     }
 
@@ -1022,6 +1118,22 @@ public class PlayFabAdminModels {
          * a dictionary object of key / value pairs
          */
         public Map<String,String> Data;
+        
+    }
+
+    public static class GetUserBansRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        
+    }
+
+    public static class GetUserBansResult {
+        /**
+         * Information about the bans
+         */
+        public ArrayList<BanInfo> BanData;
         
     }
 
@@ -1527,6 +1639,10 @@ public class PlayFabAdminModels {
          */
         public String DisplayName;
         /**
+         * Publisher this player belongs to
+         */
+        public String PublisherId;
+        /**
          * Player account origination
          */
         public LoginIdentityProvider Origination;
@@ -1550,6 +1666,10 @@ public class PlayFabAdminModels {
          * Dictionary of player's total currency purchases. The key VTD is a sum of all player_realmoney_purchase events OrderTotals.
          */
         public Map<String,Long> ValuesToDate;
+        /**
+         * List of player's tags for segmentation.
+         */
+        public ArrayList<String> Tags;
         /**
          * Dictionary of player's virtual currency balances
          */
@@ -1781,6 +1901,38 @@ public class PlayFabAdminModels {
         TableId
     }
 
+    public static class RevokeAllBansForUserRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        
+    }
+
+    public static class RevokeAllBansForUserResult {
+        /**
+         * Information on the bans that were revoked.
+         */
+        public ArrayList<BanInfo> BanData;
+        
+    }
+
+    public static class RevokeBansRequest {
+        /**
+         * Ids of the bans to be revoked. Maximum 100.
+         */
+        public ArrayList<String> BanIds;
+        
+    }
+
+    public static class RevokeBansResult {
+        /**
+         * Information on the bans that were revoked
+         */
+        public ArrayList<BanInfo> BanData;
+        
+    }
+
     public static class RevokeInventoryItemRequest {
         /**
          * Unique PlayFab assigned ID of the user on whom the operation will be performed.
@@ -1963,12 +2115,66 @@ public class PlayFabAdminModels {
         ActivatedSteam,
         RevokedSteam
     }
+    /**
+     *  Represents a single update ban request.
+     */
+    public static class UpdateBanRequest {
+        /**
+         * The id of the ban to be updated.
+         */
+        public String BanId;
+        /**
+         * The updated reason for the ban to be updated. Maximum 140 characters. Null for no change.
+         */
+        public String Reason;
+        /**
+         * The updated expiration date for the ban. Null for no change.
+         */
+        public Date Expires;
+        /**
+         * The updated IP address for the ban. Null for no change.
+         */
+        public String IPAddress;
+        /**
+         * The updated MAC address for the ban. Null for no change.
+         */
+        public String MACAddress;
+        /**
+         * Whether to make this ban permanent. Set to true to make this ban permanent. This will not modify Active state.
+         */
+        public Boolean Permanent;
+        /**
+         * The updated active state for the ban. Null for no change.
+         */
+        public Boolean Active;
+        
+    }
+
+    public static class UpdateBansRequest {
+        /**
+         * List of bans to be updated. Maximum 100.
+         */
+        public ArrayList<UpdateBanRequest> Bans;
+        
+    }
+
+    public static class UpdateBansResult {
+        /**
+         * Information on the bans that were updated
+         */
+        public ArrayList<BanInfo> BanData;
+        
+    }
 
     public static class UpdateCatalogItemsRequest {
         /**
          * Which catalog is being updated. If null, uses the default catalog.
          */
         public String CatalogVersion;
+        /**
+         * Should this catalog be set as the default catalog. Defaults to true. If there is currently no default catalog, this will always set it.
+         */
+        public Boolean SetAsDefaultCatalog;
         /**
          * Array of catalog items to be submitted. Note that while CatalogItem has a parameter for CatalogVersion, it is not required and ignored in this call.
          */
@@ -1982,7 +2188,7 @@ public class PlayFabAdminModels {
 
     public static class UpdateCloudScriptRequest {
         /**
-         * Deprecated - unused
+         * Deprecated - Do not use
          */
         public Integer Version;
         /**

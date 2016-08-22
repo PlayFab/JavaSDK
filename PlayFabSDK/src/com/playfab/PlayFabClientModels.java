@@ -2470,7 +2470,7 @@ public class PlayFabClientModels {
          */
         public Boolean CreateAccount;
         /**
-         * Deprecated - unused
+         * Deprecated - Do not use
          */
         public String PublisherId;
         /**
@@ -2639,7 +2639,7 @@ public class PlayFabClientModels {
          */
         public CollectionFilter TagFilter;
         /**
-         * [deprecated]
+         * Deprecated - Do not use
          */
         public Boolean EnableQueue;
         
@@ -2659,7 +2659,7 @@ public class PlayFabClientModels {
          */
         public Integer ServerPort;
         /**
-         * server authorization ticket (used by RedeemCoupon to validate user insertion into the game)
+         * server authorization ticket (used by RedeemMatchmakerTicket to validate user insertion into the game)
          */
         public String Ticket;
         /**
@@ -2899,7 +2899,7 @@ public class PlayFabClientModels {
          */
         public String CouponCode;
         /**
-         * Catalog version of the coupon.
+         * Catalog version of the coupon. If null, uses the default catalog
          */
         public String CatalogVersion;
         
@@ -2989,7 +2989,7 @@ public class PlayFabClientModels {
          */
         public String DisplayName;
         /**
-         * [Deprecated - The Origination of a user is determined by the API call used to create the account. In the case of RegisterPlayFabUser, it will be Organic.
+         * The Origination of a user is determined by the API call used to create the account. In the case of RegisterPlayFabUser, it will be Organic.
          */
         public String Origination;
         
@@ -3165,7 +3165,7 @@ public class PlayFabClientModels {
          */
         public String TitleId;
         /**
-         * Deprecated - unused
+         * Deprecated - Do not use
          */
         public String PublisherId;
         

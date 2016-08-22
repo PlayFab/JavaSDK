@@ -75,6 +75,64 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Bans users by PlayFab ID with optional IP address, or MAC address for the provided game.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<BanUsersResult>> BanUsersAsync(final BanUsersRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<BanUsersResult>>() {
+            public PlayFabResult<BanUsersResult> call() throws Exception {
+                return privateBanUsersAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Bans users by PlayFab ID with optional IP address, or MAC address for the provided game.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<BanUsersResult> BanUsers(final BanUsersRequest request) {
+        FutureTask<PlayFabResult<BanUsersResult>> task = new FutureTask(new Callable<PlayFabResult<BanUsersResult>>() {
+            public PlayFabResult<BanUsersResult> call() throws Exception {
+                return privateBanUsersAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Bans users by PlayFab ID with optional IP address, or MAC address for the provided game.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<BanUsersResult> privateBanUsersAsync(final BanUsersRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/BanUsers", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<BanUsersResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<BanUsersResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<BanUsersResult>>(){}.getType());
+        BanUsersResult result = resultData.data;
+
+        PlayFabResult<BanUsersResult> pfResult = new PlayFabResult<BanUsersResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the unique PlayFab identifiers for the given set of Facebook identifiers.
      */
     @SuppressWarnings("unchecked")
@@ -249,6 +307,180 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Gets all bans for a user.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetUserBansResult>> GetUserBansAsync(final GetUserBansRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetUserBansResult>>() {
+            public PlayFabResult<GetUserBansResult> call() throws Exception {
+                return privateGetUserBansAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Gets all bans for a user.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetUserBansResult> GetUserBans(final GetUserBansRequest request) {
+        FutureTask<PlayFabResult<GetUserBansResult>> task = new FutureTask(new Callable<PlayFabResult<GetUserBansResult>>() {
+            public PlayFabResult<GetUserBansResult> call() throws Exception {
+                return privateGetUserBansAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Gets all bans for a user.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetUserBansResult> privateGetUserBansAsync(final GetUserBansRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetUserBans", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetUserBansResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetUserBansResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetUserBansResult>>(){}.getType());
+        GetUserBansResult result = resultData.data;
+
+        PlayFabResult<GetUserBansResult> pfResult = new PlayFabResult<GetUserBansResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Revoke all active bans for a user.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RevokeAllBansForUserResult>> RevokeAllBansForUserAsync(final RevokeAllBansForUserRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RevokeAllBansForUserResult>>() {
+            public PlayFabResult<RevokeAllBansForUserResult> call() throws Exception {
+                return privateRevokeAllBansForUserAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Revoke all active bans for a user.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RevokeAllBansForUserResult> RevokeAllBansForUser(final RevokeAllBansForUserRequest request) {
+        FutureTask<PlayFabResult<RevokeAllBansForUserResult>> task = new FutureTask(new Callable<PlayFabResult<RevokeAllBansForUserResult>>() {
+            public PlayFabResult<RevokeAllBansForUserResult> call() throws Exception {
+                return privateRevokeAllBansForUserAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Revoke all active bans for a user.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RevokeAllBansForUserResult> privateRevokeAllBansForUserAsync(final RevokeAllBansForUserRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/RevokeAllBansForUser", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RevokeAllBansForUserResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RevokeAllBansForUserResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RevokeAllBansForUserResult>>(){}.getType());
+        RevokeAllBansForUserResult result = resultData.data;
+
+        PlayFabResult<RevokeAllBansForUserResult> pfResult = new PlayFabResult<RevokeAllBansForUserResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Revoke all active bans specified with BanId.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RevokeBansResult>> RevokeBansAsync(final RevokeBansRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RevokeBansResult>>() {
+            public PlayFabResult<RevokeBansResult> call() throws Exception {
+                return privateRevokeBansAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Revoke all active bans specified with BanId.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RevokeBansResult> RevokeBans(final RevokeBansRequest request) {
+        FutureTask<PlayFabResult<RevokeBansResult>> task = new FutureTask(new Callable<PlayFabResult<RevokeBansResult>>() {
+            public PlayFabResult<RevokeBansResult> call() throws Exception {
+                return privateRevokeBansAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Revoke all active bans specified with BanId.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RevokeBansResult> privateRevokeBansAsync(final RevokeBansRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/RevokeBans", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RevokeBansResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RevokeBansResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RevokeBansResult>>(){}.getType());
+        RevokeBansResult result = resultData.data;
+
+        PlayFabResult<RevokeBansResult> pfResult = new PlayFabResult<RevokeBansResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Sends an iOS/Android Push Notification to a specific user, if that user's device has been configured for Push Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
      */
     @SuppressWarnings("unchecked")
@@ -302,6 +534,64 @@ public class PlayFabServerAPI {
         SendPushNotificationResult result = resultData.data;
 
         PlayFabResult<SendPushNotificationResult> pfResult = new PlayFabResult<SendPushNotificationResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Updates information of a list of existing bans specified with Ban Ids.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<UpdateBansResult>> UpdateBansAsync(final UpdateBansRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<UpdateBansResult>>() {
+            public PlayFabResult<UpdateBansResult> call() throws Exception {
+                return privateUpdateBansAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Updates information of a list of existing bans specified with Ban Ids.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<UpdateBansResult> UpdateBans(final UpdateBansRequest request) {
+        FutureTask<PlayFabResult<UpdateBansResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateBansResult>>() {
+            public PlayFabResult<UpdateBansResult> call() throws Exception {
+                return privateUpdateBansAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Updates information of a list of existing bans specified with Ban Ids.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<UpdateBansResult> privateUpdateBansAsync(final UpdateBansRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UpdateBans", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<UpdateBansResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<UpdateBansResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateBansResult>>(){}.getType());
+        UpdateBansResult result = resultData.data;
+
+        PlayFabResult<UpdateBansResult> pfResult = new PlayFabResult<UpdateBansResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -2279,6 +2569,64 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Retrieves the configuration information for the specified random results tables for the title, including all ItemId values and weights
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetRandomResultTablesResult>> GetRandomResultTablesAsync(final GetRandomResultTablesRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetRandomResultTablesResult>>() {
+            public PlayFabResult<GetRandomResultTablesResult> call() throws Exception {
+                return privateGetRandomResultTablesAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the configuration information for the specified random results tables for the title, including all ItemId values and weights
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetRandomResultTablesResult> GetRandomResultTables(final GetRandomResultTablesRequest request) {
+        FutureTask<PlayFabResult<GetRandomResultTablesResult>> task = new FutureTask(new Callable<PlayFabResult<GetRandomResultTablesResult>>() {
+            public PlayFabResult<GetRandomResultTablesResult> call() throws Exception {
+                return privateGetRandomResultTablesAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves the configuration information for the specified random results tables for the title, including all ItemId values and weights
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetRandomResultTablesResult> privateGetRandomResultTablesAsync(final GetRandomResultTablesRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetRandomResultTables", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetRandomResultTablesResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetRandomResultTablesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetRandomResultTablesResult>>(){}.getType());
+        GetRandomResultTablesResult result = resultData.data;
+
+        PlayFabResult<GetRandomResultTablesResult> pfResult = new PlayFabResult<GetRandomResultTablesResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the specified user's current inventory of virtual goods
      */
     @SuppressWarnings("unchecked")
@@ -2743,7 +3091,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the Promotions->Coupons tab in the PlayFab Game Manager. See this post for more information on coupons:  https://playfab.com/blog/2015/06/18/using-stores-and-coupons-game-manager
+     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the Economy->Catalogs tab in the PlayFab Game Manager.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<RedeemCouponResult>> RedeemCouponAsync(final RedeemCouponRequest request) {
@@ -2755,7 +3103,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the Promotions->Coupons tab in the PlayFab Game Manager. See this post for more information on coupons:  https://playfab.com/blog/2015/06/18/using-stores-and-coupons-game-manager
+     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the Economy->Catalogs tab in the PlayFab Game Manager.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<RedeemCouponResult> RedeemCoupon(final RedeemCouponRequest request) {
@@ -2773,7 +3121,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the Promotions->Coupons tab in the PlayFab Game Manager. See this post for more information on coupons:  https://playfab.com/blog/2015/06/18/using-stores-and-coupons-game-manager
+     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the Economy->Catalogs tab in the PlayFab Game Manager.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RedeemCouponResult> privateRedeemCouponAsync(final RedeemCouponRequest request) throws Exception {
