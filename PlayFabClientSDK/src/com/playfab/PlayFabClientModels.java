@@ -208,8 +208,9 @@ public class PlayFabClientModels {
         public Map<String,Long> VCAmount;
         
     }
+
     /**
-     *  A purchasable item from the item catalog
+     * A purchasable item from the item catalog
      */
     public static class CatalogItem implements Comparable<CatalogItem> {
         /**
@@ -283,7 +284,6 @@ public class PlayFabClientModels {
             if (ItemId == null) return -1;
             return ItemId.compareTo(other.ItemId);
         }
-        
     }
 
     public static class CatalogItemBundleInfo {
@@ -319,8 +319,9 @@ public class PlayFabClientModels {
         public String UsagePeriodGroup;
         
     }
+
     /**
-     *  Containers are inventory items that can hold other items defined in the catalog, as well as virtual currency, which is added to the player inventory when the container is unlocked, using the UnlockContainerItem API. The items can be anything defined in the catalog, as well as RandomResultTable objects which will be resolved when the container is unlocked. Containers and their keys should be defined as Consumable (having a limited number of uses) in their catalog defintiions, unless the intent is for the player to be able to re-use them infinitely.
+     * Containers are inventory items that can hold other items defined in the catalog, as well as virtual currency, which is added to the player inventory when the container is unlocked, using the UnlockContainerItem API. The items can be anything defined in the catalog, as well as RandomResultTable objects which will be resolved when the container is unlocked. Containers and their keys should be defined as Consumable (having a limited number of uses) in their catalog defintiions, unless the intent is for the player to be able to re-use them infinitely.
      */
     public static class CatalogItemContainerInfo {
         /**
@@ -409,8 +410,9 @@ public class PlayFabClientModels {
         Latest,
         Specific
     }
+
     /**
-     *  Collection filter to include and/or exclude collections with certain key-value pairs. The filter generates a collection set defined by Includes rules and then remove collections that matches the Excludes rules. A collection is considered matching a rule if the rule describes a subset of the collection. 
+     * Collection filter to include and/or exclude collections with certain key-value pairs. The filter generates a collection set defined by Includes rules and then remove collections that matches the Excludes rules. A collection is considered matching a rule if the rule describes a subset of the collection. 
      */
     public static class CollectionFilter {
         /**
@@ -475,8 +477,9 @@ public class PlayFabClientModels {
         public Integer RemainingUses;
         
     }
+
     /**
-     *  A data container
+     * A data container
      */
     public static class Container_Dictionary_String_String {
         /**
@@ -1088,6 +1091,10 @@ public class PlayFabClientModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class GetCloudScriptUrlRequest {
         /**
          * Cloud Script Version to use. Defaults to 1.
@@ -1100,6 +1107,10 @@ public class PlayFabClientModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class GetCloudScriptUrlResult {
         /**
          * URL of the Cloud Script logic server.
@@ -1132,6 +1143,10 @@ public class PlayFabClientModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class GetFriendLeaderboardAroundCurrentUserRequest {
         /**
          * Statistic used to rank players for this leaderboard.
@@ -1152,6 +1167,10 @@ public class PlayFabClientModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class GetFriendLeaderboardAroundCurrentUserResult {
         /**
          * Ordered listing of users and their positions in the requested leaderboard.
@@ -1264,6 +1283,10 @@ public class PlayFabClientModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class GetLeaderboardAroundCurrentUserRequest {
         /**
          * Statistic used to rank players for this leaderboard.
@@ -1276,6 +1299,10 @@ public class PlayFabClientModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class GetLeaderboardAroundCurrentUserResult {
         /**
          * Ordered listing of users and their positions in the requested leaderboard.
@@ -1651,8 +1678,9 @@ public class PlayFabClientModels {
 
     public static class GetPlayFabIDsFromSteamIDsRequest {
         /**
-         * Deprecated: Please use SteamStringIDs
+         * @deprecated Please use SteamStringIDs instead. 
          */
+        @Deprecated
         public ArrayList<Long> SteamIDs;
         /**
          * Array of unique Steam identifiers (Steam profile IDs) for which the title needs to get PlayFab identifiers.
@@ -1854,6 +1882,10 @@ public class PlayFabClientModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class GetUserCombinedInfoRequest {
         /**
          * Unique PlayFab identifier of the user whose info is being requested. Optional, defaults to the authenticated user if no other lookup identifier set.
@@ -1902,6 +1934,10 @@ public class PlayFabClientModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class GetUserCombinedInfoResult {
         /**
          * Unique PlayFab identifier of the owner of the combined info.
@@ -1992,10 +2028,18 @@ public class PlayFabClientModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class GetUserStatisticsRequest {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class GetUserStatisticsResult {
         /**
          * User statistics for the active title.
@@ -2047,8 +2091,9 @@ public class PlayFabClientModels {
         public Boolean Result;
         
     }
+
     /**
-     *  A unique instance of an item in a user's inventory. Note, to retrieve additional information for an item instance (such as Tags, Description, or Custom Data that are set on the root catalog item), a call to GetCatalogItems is required. The Item ID of the instance can then be matched to a catalog entry, which contains the additional information. Also note that Custom Data is only set here from a call to UpdateUserInventoryItemCustomData.
+     * A unique instance of an item in a user's inventory. Note, to retrieve additional information for an item instance (such as Tags, Description, or Custom Data that are set on the root catalog item), a call to GetCatalogItems is required. The Item ID of the instance can then be matched to a catalog entry, which contains the additional information. Also note that Custom Data is only set here from a call to UpdateUserInventoryItemCustomData.
      */
     public static class ItemInstance implements Comparable<ItemInstance> {
         /**
@@ -2117,7 +2162,6 @@ public class PlayFabClientModels {
             if (ItemInstanceId == null) return -1;
             return ItemInstanceId.compareTo(other.ItemInstanceId);
         }
-        
     }
 
     public static class ItemPurchaseRequest {
@@ -2296,6 +2340,10 @@ public class PlayFabClientModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class LogEventRequest {
         /**
          * Optional timestamp for this event. If null, the a timestamp is auto-assigned to the event on the server.
@@ -2316,6 +2364,10 @@ public class PlayFabClientModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class LogEventResult {
         
     }
@@ -2470,8 +2522,9 @@ public class PlayFabClientModels {
          */
         public Boolean CreateAccount;
         /**
-         * Deprecated - Do not use
+         * @deprecated Do not use
          */
+        @Deprecated
         public String PublisherId;
         /**
          * Flags for which pieces of info to return for the user.
@@ -2639,8 +2692,9 @@ public class PlayFabClientModels {
          */
         public CollectionFilter TagFilter;
         /**
-         * Deprecated - Do not use
+         * @deprecated Do not use
          */
+        @Deprecated
         public Boolean EnableQueue;
         
     }
@@ -2989,8 +3043,9 @@ public class PlayFabClientModels {
          */
         public String DisplayName;
         /**
-         * The Origination of a user is determined by the API call used to create the account. In the case of RegisterPlayFabUser, it will be Organic.
+         * @deprecated Do not use
          */
+        @Deprecated
         public String Origination;
         
     }
@@ -3091,6 +3146,10 @@ public class PlayFabClientModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class RunCloudScriptRequest {
         /**
          * server action to trigger
@@ -3107,6 +3166,10 @@ public class PlayFabClientModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class RunCloudScriptResult {
         /**
          * id of Cloud Script run
@@ -3165,8 +3228,9 @@ public class PlayFabClientModels {
          */
         public String TitleId;
         /**
-         * Deprecated - Do not use
+         * @deprecated Do not use
          */
+        @Deprecated
         public String PublisherId;
         
     }
@@ -3349,8 +3413,9 @@ public class PlayFabClientModels {
 
     public static class SteamPlayFabIdPair {
         /**
-         * Deprecated: Please use SteamStringId
+         * @deprecated Please use SteamStringId instead. 
          */
+        @Deprecated
         public Long SteamId;
         /**
          * Unique Steam identifier for a user.
@@ -3362,8 +3427,9 @@ public class PlayFabClientModels {
         public String PlayFabId;
         
     }
+
     /**
-     *  A store entry that list a catalog item at a particular price
+     * A store entry that list a catalog item at a particular price
      */
     public static class StoreItem implements Comparable<StoreItem> {
         /**
@@ -3384,7 +3450,6 @@ public class PlayFabClientModels {
             if (ItemId == null) return -1;
             return ItemId.compareTo(other.ItemId);
         }
-        
     }
 
     public static class SubtractUserVirtualCurrencyRequest {
@@ -3772,6 +3837,10 @@ public class PlayFabClientModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class UpdateUserStatisticsRequest {
         /**
          * Statistics to be updated with the provided values. UserStatistics object must follow the Key(string), Value(int) pattern.
@@ -3780,6 +3849,10 @@ public class PlayFabClientModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class UpdateUserStatisticsResult {
         
     }
@@ -3883,9 +3956,10 @@ public class PlayFabClientModels {
         public String CustomId;
         
     }
+
     /**
-     *  Indicates whether a given data key is private (readable only by the player) or public (readable by all players). When a player makes a GetUserData request about another player, only keys marked Public will be returned.
-     */ 
+     * Indicates whether a given data key is private (readable only by the player) or public (readable by all players). When a player makes a GetUserData request about another player, only keys marked Public will be returned.
+     */
     public static enum UserDataPermission {
         Private,
         Public

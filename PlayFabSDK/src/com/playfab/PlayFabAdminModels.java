@@ -144,8 +144,9 @@ public class PlayFabAdminModels {
         public ArrayList<VirtualCurrencyData> VirtualCurrencies;
         
     }
+
     /**
-     *  Contains information for a ban.
+     * Contains information for a ban.
      */
     public static class BanInfo {
         /**
@@ -182,8 +183,9 @@ public class PlayFabAdminModels {
         public Boolean Active;
         
     }
+
     /**
-     *  Represents a single ban request.
+     * Represents a single ban request.
      */
     public static class BanRequest {
         /**
@@ -228,8 +230,9 @@ public class PlayFabAdminModels {
     public static class BlankResult {
         
     }
+
     /**
-     *  A purchasable item from the item catalog
+     * A purchasable item from the item catalog
      */
     public static class CatalogItem implements Comparable<CatalogItem> {
         /**
@@ -303,7 +306,6 @@ public class PlayFabAdminModels {
             if (ItemId == null) return -1;
             return ItemId.compareTo(other.ItemId);
         }
-        
     }
 
     public static class CatalogItemBundleInfo {
@@ -339,8 +341,9 @@ public class PlayFabAdminModels {
         public String UsagePeriodGroup;
         
     }
+
     /**
-     *  Containers are inventory items that can hold other items defined in the catalog, as well as virtual currency, which is added to the player inventory when the container is unlocked, using the UnlockContainerItem API. The items can be anything defined in the catalog, as well as RandomResultTable objects which will be resolved when the container is unlocked. Containers and their keys should be defined as Consumable (having a limited number of uses) in their catalog defintiions, unless the intent is for the player to be able to re-use them infinitely.
+     * Containers are inventory items that can hold other items defined in the catalog, as well as virtual currency, which is added to the player inventory when the container is unlocked, using the UnlockContainerItem API. The items can be anything defined in the catalog, as well as RandomResultTable objects which will be resolved when the container is unlocked. Containers and their keys should be defined as Consumable (having a limited number of uses) in their catalog defintiions, unless the intent is for the player to be able to re-use them infinitely.
      */
     public static class CatalogItemContainerInfo {
         /**
@@ -1018,8 +1021,9 @@ public class PlayFabAdminModels {
         public String BuildId;
         
     }
+
     /**
-     *  Information about a particular server build
+     * Information about a particular server build
      */
     public static class GetServerBuildInfoResult implements Comparable<GetServerBuildInfoResult> {
         /**
@@ -1065,7 +1069,6 @@ public class PlayFabAdminModels {
             if (BuildId == null) return -1;
             return BuildId.compareTo(other.BuildId);
         }
-        
     }
 
     public static class GetServerBuildUploadURLRequest {
@@ -1197,8 +1200,9 @@ public class PlayFabAdminModels {
         public Map<String,VirtualCurrencyRechargeTime> VirtualCurrencyRechargeTimes;
         
     }
+
     /**
-     *  Result of granting an item to a user
+     * Result of granting an item to a user
      */
     public static class GrantedItemInstance implements Comparable<GrantedItemInstance> {
         /**
@@ -1279,7 +1283,6 @@ public class PlayFabAdminModels {
             if (ItemInstanceId == null) return -1;
             return ItemInstanceId.compareTo(other.ItemInstanceId);
         }
-        
     }
 
     public static class GrantItemsToUsersRequest {
@@ -1346,8 +1349,9 @@ public class PlayFabAdminModels {
         public ArrayList<String> KeysToRemove;
         
     }
+
     /**
-     *  A unique instance of an item in a user's inventory. Note, to retrieve additional information for an item instance (such as Tags, Description, or Custom Data that are set on the root catalog item), a call to GetCatalogItems is required. The Item ID of the instance can then be matched to a catalog entry, which contains the additional information. Also note that Custom Data is only set here from a call to UpdateUserInventoryItemCustomData.
+     * A unique instance of an item in a user's inventory. Note, to retrieve additional information for an item instance (such as Tags, Description, or Custom Data that are set on the root catalog item), a call to GetCatalogItems is required. The Item ID of the instance can then be matched to a catalog entry, which contains the additional information. Also note that Custom Data is only set here from a call to UpdateUserInventoryItemCustomData.
      */
     public static class ItemInstance implements Comparable<ItemInstance> {
         /**
@@ -1416,7 +1420,6 @@ public class PlayFabAdminModels {
             if (ItemInstanceId == null) return -1;
             return ItemInstanceId.compareTo(other.ItemInstanceId);
         }
-        
     }
 
     public static class ListBuildsRequest {
@@ -2067,8 +2070,9 @@ public class PlayFabAdminModels {
         InProgress,
         Complete
     }
+
     /**
-     *  A store entry that list a catalog item at a particular price
+     * A store entry that list a catalog item at a particular price
      */
     public static class StoreItem implements Comparable<StoreItem> {
         /**
@@ -2089,7 +2093,6 @@ public class PlayFabAdminModels {
             if (ItemId == null) return -1;
             return ItemId.compareTo(other.ItemId);
         }
-        
     }
 
     public static class SubtractUserVirtualCurrencyRequest {
@@ -2115,8 +2118,9 @@ public class PlayFabAdminModels {
         ActivatedSteam,
         RevokedSteam
     }
+
     /**
-     *  Represents a single update ban request.
+     * Represents a single update ban request.
      */
     public static class UpdateBanRequest {
         /**
@@ -2188,8 +2192,9 @@ public class PlayFabAdminModels {
 
     public static class UpdateCloudScriptRequest {
         /**
-         * Deprecated - Do not use
+         * @deprecated Do not use
          */
+        @Deprecated
         public Integer Version;
         /**
          * List of Cloud Script files to upload to create the new revision. Must have at least one file.
@@ -2437,9 +2442,10 @@ public class PlayFabAdminModels {
         public String CustomId;
         
     }
+
     /**
-     *  Indicates whether a given data key is private (readable only by the player) or public (readable by all players). When a player makes a GetUserData request about another player, only keys marked Public will be returned.
-     */ 
+     * Indicates whether a given data key is private (readable only by the player) or public (readable by all players). When a player makes a GetUserData request about another player, only keys marked Public will be returned.
+     */
     public static enum UserDataPermission {
         Private,
         Public

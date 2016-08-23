@@ -1293,8 +1293,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the details of all title-specific statistics for the user
+     * @deprecated Please use GetPlayerStatistics instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetUserStatisticsResult>> GetUserStatisticsAsync(final GetUserStatisticsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetUserStatisticsResult>>() {
@@ -1305,8 +1306,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the details of all title-specific statistics for the user
+     * @deprecated Please use GetPlayerStatistics instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetUserStatisticsResult> GetUserStatistics(final GetUserStatisticsRequest request) {
         FutureTask<PlayFabResult<GetUserStatisticsResult>> task = new FutureTask(new Callable<PlayFabResult<GetUserStatisticsResult>>() {
@@ -1323,8 +1325,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the details of all title-specific statistics for the user
+     * @deprecated Please use GetPlayerStatistics instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserStatisticsResult> privateGetUserStatisticsAsync(final GetUserStatisticsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1757,8 +1760,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
+     * @deprecated Please use UpdatePlayerStatistics instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateUserStatisticsResult>> UpdateUserStatisticsAsync(final UpdateUserStatisticsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateUserStatisticsResult>>() {
@@ -1769,8 +1773,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
+     * @deprecated Please use UpdatePlayerStatistics instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateUserStatisticsResult> UpdateUserStatistics(final UpdateUserStatisticsRequest request) {
         FutureTask<PlayFabResult<UpdateUserStatisticsResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateUserStatisticsResult>>() {
@@ -1787,8 +1792,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
+     * @deprecated Please use UpdatePlayerStatistics instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserStatisticsResult> privateUpdateUserStatisticsAsync(final UpdateUserStatisticsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3845,8 +3851,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Logs a custom analytics event
+     * @deprecated Please use WritePlayerEvent instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<LogEventResult>> LogEventAsync(final LogEventRequest request) {
         return new FutureTask(new Callable<PlayFabResult<LogEventResult>>() {
@@ -3857,8 +3864,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Logs a custom analytics event
+     * @deprecated Please use WritePlayerEvent instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<LogEventResult> LogEvent(final LogEventRequest request) {
         FutureTask<PlayFabResult<LogEventResult>> task = new FutureTask(new Callable<PlayFabResult<LogEventResult>>() {
@@ -3875,8 +3883,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Logs a custom analytics event
+     * @deprecated Please use WritePlayerEvent instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LogEventResult> privateLogEventAsync(final LogEventRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
