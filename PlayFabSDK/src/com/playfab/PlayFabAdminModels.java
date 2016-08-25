@@ -45,6 +45,22 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class AddPlayerTagRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Unique tag for player profile.
+         */
+        public String TagName;
+        
+    }
+
+    public static class AddPlayerTagResult {
+        
+    }
+
     public static class AddServerBuildRequest {
         /**
          * unique identifier for the build executable
@@ -966,6 +982,30 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class GetPlayerTagsRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Optional namespace to filter results by
+         */
+        public String Namespace;
+        
+    }
+
+    public static class GetPlayerTagsResult {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Canonical tags (including namespace and tag's name) for the requested user
+         */
+        public ArrayList<String> Tags;
+        
+    }
+
     public static class GetPublisherDataRequest {
         /**
          *  array of keys to get back data from the Publisher data blob, set by the admin tools
@@ -1825,6 +1865,22 @@ public class PlayFabAdminModels {
         Japan,
         Brazil,
         Australia
+    }
+
+    public static class RemovePlayerTagRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Unique tag for player profile.
+         */
+        public String TagName;
+        
+    }
+
+    public static class RemovePlayerTagResult {
+        
     }
 
     public static class RemoveServerBuildRequest {

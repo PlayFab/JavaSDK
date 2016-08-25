@@ -1576,6 +1576,30 @@ public class PlayFabClientModels {
         
     }
 
+    public static class GetPlayerTagsRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Optional namespace to filter results by
+         */
+        public String Namespace;
+        
+    }
+
+    public static class GetPlayerTagsResult {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Canonical tags (including namespace and tag's name) for the requested user
+         */
+        public ArrayList<String> Tags;
+        
+    }
+
     public static class GetPlayerTradesRequest {
         /**
          * Returns only trades with the given status. If null, returns all trades.

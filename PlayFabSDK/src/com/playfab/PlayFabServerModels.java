@@ -41,6 +41,22 @@ public class PlayFabServerModels {
         
     }
 
+    public static class AddPlayerTagRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Unique tag for player profile.
+         */
+        public String TagName;
+        
+    }
+
+    public static class AddPlayerTagResult {
+        
+    }
+
     public static class AddSharedGroupMembersRequest {
         /**
          * Unique identifier for the shared group.
@@ -1328,6 +1344,30 @@ public class PlayFabServerModels {
         
     }
 
+    public static class GetPlayerTagsRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Optional namespace to filter results by
+         */
+        public String Namespace;
+        
+    }
+
+    public static class GetPlayerTagsResult {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Canonical tags (including namespace and tag's name) for the requested user
+         */
+        public ArrayList<String> Tags;
+        
+    }
+
     public static class GetPlayFabIDsFromFacebookIDsRequest {
         /**
          * Array of unique Facebook identifiers for which the title needs to get PlayFab identifiers.
@@ -2366,6 +2406,22 @@ public class PlayFabServerModels {
          * User account information for the user validated.
          */
         public UserAccountInfo UserInfo;
+        
+    }
+
+    public static class RemovePlayerTagRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Unique tag for player profile.
+         */
+        public String TagName;
+        
+    }
+
+    public static class RemovePlayerTagResult {
         
     }
 

@@ -7387,6 +7387,64 @@ public class PlayFabClientAPI {
         return pfResult;
     }
 
+    /**
+     * Get all tags with a given Namespace (optional) from a player profile.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayerTagsResult>> GetPlayerTagsAsync(final GetPlayerTagsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayerTagsResult>>() {
+            public PlayFabResult<GetPlayerTagsResult> call() throws Exception {
+                return privateGetPlayerTagsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Get all tags with a given Namespace (optional) from a player profile.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayerTagsResult> GetPlayerTags(final GetPlayerTagsRequest request) {
+        FutureTask<PlayFabResult<GetPlayerTagsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayerTagsResult>>() {
+            public PlayFabResult<GetPlayerTagsResult> call() throws Exception {
+                return privateGetPlayerTagsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Get all tags with a given Namespace (optional) from a player profile.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayerTagsResult> privateGetPlayerTagsAsync(final GetPlayerTagsRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayerTags", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayerTagsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayerTagsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayerTagsResult>>(){}.getType());
+        GetPlayerTagsResult result = resultData.data;
+
+        PlayFabResult<GetPlayerTagsResult> pfResult = new PlayFabResult<GetPlayerTagsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
     public static void MultiStepClientLogin(Boolean needsAttribution) {
         if (needsAttribution && !PlayFabSettings.DisableAdvertising
         && (PlayFabSettings.AdvertisingIdType == null || PlayFabSettings.AdvertisingIdType == "")
