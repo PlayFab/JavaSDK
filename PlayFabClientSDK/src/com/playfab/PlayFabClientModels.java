@@ -1851,6 +1851,22 @@ public class PlayFabClientModels {
          */
         @Unordered("ItemId")
         public ArrayList<StoreItem> Store;
+        /**
+         * How the store was last updated (Admin or a third party).
+         */
+        public SourceType Source;
+        /**
+         * The base catalog that this store is a part of.
+         */
+        public String CatalogVersion;
+        /**
+         * The ID of this store.
+         */
+        public String StoreId;
+        /**
+         * Additional data about the store.
+         */
+        public StoreMarketingModel MarketingData;
         
     }
 
@@ -3299,6 +3315,15 @@ public class PlayFabClientModels {
         
     }
 
+    public static enum SourceType {
+        Admin,
+        BackEnd,
+        GameClient,
+        GameServer,
+        Partner,
+        Stream
+    }
+
     public static class StartGameRequest {
         /**
          * version information for the build of the game server which is to be started
@@ -3457,23 +3482,50 @@ public class PlayFabClientModels {
      */
     public static class StoreItem implements Comparable<StoreItem> {
         /**
-         * unique identifier of the item as it exists in the catalog - note that this must exactly match the ItemId from the catalog
+         * Unique identifier of the item as it exists in the catalog - note that this must exactly match the ItemId from the catalog
          */
         public String ItemId;
         /**
-         * price of this item in virtual currencies and "RM" (the base Real Money purchase price, in USD pennies)
+         * Override prices for this item in virtual currencies and "RM" (the base Real Money purchase price, in USD pennies)
          */
         public Map<String,Long> VirtualCurrencyPrices;
         /**
-         * override prices for this item for specific currencies
+         * Override prices for this item for specific currencies
          */
         public Map<String,Long> RealCurrencyPrices;
+        /**
+         * Store specific custom data. The data only exists as part of this store; it is not transferred to item instances
+         */
+        public Object CustomData;
+        /**
+         * Intended display position for this item. Note that 0 is the first position
+         */
+        public Long DisplayPosition;
         
         public int compareTo(StoreItem other) {
             if (other == null || other.ItemId == null) return 1;
             if (ItemId == null) return -1;
             return ItemId.compareTo(other.ItemId);
         }
+    }
+
+    /**
+     * Marketing data about a specific store
+     */
+    public static class StoreMarketingModel {
+        /**
+         * Display name of a store as it will appear to users.
+         */
+        public String DisplayName;
+        /**
+         * Tagline for a store.
+         */
+        public String Description;
+        /**
+         * Custom data about a store.
+         */
+        public Object Metadata;
+        
     }
 
     public static class SubtractUserVirtualCurrencyRequest {
