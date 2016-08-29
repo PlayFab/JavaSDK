@@ -1293,8 +1293,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the details of all title-specific statistics for the user
+     * @deprecated Please use GetPlayerStatistics instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetUserStatisticsResult>> GetUserStatisticsAsync(final GetUserStatisticsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetUserStatisticsResult>>() {
@@ -1305,8 +1306,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the details of all title-specific statistics for the user
+     * @deprecated Please use GetPlayerStatistics instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetUserStatisticsResult> GetUserStatistics(final GetUserStatisticsRequest request) {
         FutureTask<PlayFabResult<GetUserStatisticsResult>> task = new FutureTask(new Callable<PlayFabResult<GetUserStatisticsResult>>() {
@@ -1323,8 +1325,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the details of all title-specific statistics for the user
+     * @deprecated Please use GetPlayerStatistics instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserStatisticsResult> privateGetUserStatisticsAsync(final GetUserStatisticsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1757,8 +1760,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
+     * @deprecated Please use UpdatePlayerStatistics instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateUserStatisticsResult>> UpdateUserStatisticsAsync(final UpdateUserStatisticsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateUserStatisticsResult>>() {
@@ -1769,8 +1773,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
+     * @deprecated Please use UpdatePlayerStatistics instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateUserStatisticsResult> UpdateUserStatistics(final UpdateUserStatisticsRequest request) {
         FutureTask<PlayFabResult<UpdateUserStatisticsResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateUserStatisticsResult>>() {
@@ -1787,8 +1792,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
+     * @deprecated Please use UpdatePlayerStatistics instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserStatisticsResult> privateUpdateUserStatisticsAsync(final UpdateUserStatisticsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3845,8 +3851,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Logs a custom analytics event
+     * @deprecated Please use WritePlayerEvent instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<LogEventResult>> LogEventAsync(final LogEventRequest request) {
         return new FutureTask(new Callable<PlayFabResult<LogEventResult>>() {
@@ -3857,8 +3864,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Logs a custom analytics event
+     * @deprecated Please use WritePlayerEvent instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<LogEventResult> LogEvent(final LogEventRequest request) {
         FutureTask<PlayFabResult<LogEventResult>> task = new FutureTask(new Callable<PlayFabResult<LogEventResult>>() {
@@ -3875,8 +3883,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Logs a custom analytics event
+     * @deprecated Please use WritePlayerEvent instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LogEventResult> privateLogEventAsync(final LogEventRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5353,6 +5362,64 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Adds a given tag to a player profile. The tag's namespace is automatically generated based on the source of the tag.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<AddPlayerTagResult>> AddPlayerTagAsync(final AddPlayerTagRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<AddPlayerTagResult>>() {
+            public PlayFabResult<AddPlayerTagResult> call() throws Exception {
+                return privateAddPlayerTagAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Adds a given tag to a player profile. The tag's namespace is automatically generated based on the source of the tag.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<AddPlayerTagResult> AddPlayerTag(final AddPlayerTagRequest request) {
+        FutureTask<PlayFabResult<AddPlayerTagResult>> task = new FutureTask(new Callable<PlayFabResult<AddPlayerTagResult>>() {
+            public PlayFabResult<AddPlayerTagResult> call() throws Exception {
+                return privateAddPlayerTagAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Adds a given tag to a player profile. The tag's namespace is automatically generated based on the source of the tag.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<AddPlayerTagResult> privateAddPlayerTagAsync(final AddPlayerTagRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/AddPlayerTag", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<AddPlayerTagResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<AddPlayerTagResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AddPlayerTagResult>>(){}.getType());
+        AddPlayerTagResult result = resultData.data;
+
+        PlayFabResult<AddPlayerTagResult> pfResult = new PlayFabResult<AddPlayerTagResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
      */
     @SuppressWarnings("unchecked")
@@ -5522,6 +5589,122 @@ public class PlayFabServerAPI {
         GetPlayersInSegmentResult result = resultData.data;
 
         PlayFabResult<GetPlayersInSegmentResult> pfResult = new PlayFabResult<GetPlayersInSegmentResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Get all tags with a given Namespace (optional) from a player profile.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayerTagsResult>> GetPlayerTagsAsync(final GetPlayerTagsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayerTagsResult>>() {
+            public PlayFabResult<GetPlayerTagsResult> call() throws Exception {
+                return privateGetPlayerTagsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Get all tags with a given Namespace (optional) from a player profile.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayerTagsResult> GetPlayerTags(final GetPlayerTagsRequest request) {
+        FutureTask<PlayFabResult<GetPlayerTagsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayerTagsResult>>() {
+            public PlayFabResult<GetPlayerTagsResult> call() throws Exception {
+                return privateGetPlayerTagsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Get all tags with a given Namespace (optional) from a player profile.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayerTagsResult> privateGetPlayerTagsAsync(final GetPlayerTagsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetPlayerTags", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayerTagsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayerTagsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayerTagsResult>>(){}.getType());
+        GetPlayerTagsResult result = resultData.data;
+
+        PlayFabResult<GetPlayerTagsResult> pfResult = new PlayFabResult<GetPlayerTagsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Remove a given tag from a player profile. The tag's namespace is automatically generated based on the source of the tag.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RemovePlayerTagResult>> RemovePlayerTagAsync(final RemovePlayerTagRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RemovePlayerTagResult>>() {
+            public PlayFabResult<RemovePlayerTagResult> call() throws Exception {
+                return privateRemovePlayerTagAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Remove a given tag from a player profile. The tag's namespace is automatically generated based on the source of the tag.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RemovePlayerTagResult> RemovePlayerTag(final RemovePlayerTagRequest request) {
+        FutureTask<PlayFabResult<RemovePlayerTagResult>> task = new FutureTask(new Callable<PlayFabResult<RemovePlayerTagResult>>() {
+            public PlayFabResult<RemovePlayerTagResult> call() throws Exception {
+                return privateRemovePlayerTagAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Remove a given tag from a player profile. The tag's namespace is automatically generated based on the source of the tag.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RemovePlayerTagResult> privateRemovePlayerTagAsync(final RemovePlayerTagRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/RemovePlayerTag", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RemovePlayerTagResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RemovePlayerTagResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RemovePlayerTagResult>>(){}.getType());
+        RemovePlayerTagResult result = resultData.data;
+
+        PlayFabResult<RemovePlayerTagResult> pfResult = new PlayFabResult<RemovePlayerTagResult>();
         pfResult.Result = result;
         return pfResult;
     }

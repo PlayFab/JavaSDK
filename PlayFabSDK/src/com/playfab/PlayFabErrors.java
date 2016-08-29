@@ -248,7 +248,9 @@ public class PlayFabErrors {
         SessionLogNotFound(1244),
         InvalidSearchTerm(1245),
         TwoFactorAuthenticationTokenRequired(1246),
-        GameServerHostCountLimitExceeded(1247);
+        GameServerHostCountLimitExceeded(1247),
+        PlayerTagCountLimitExceeded(1248),
+        RequestAlreadyRunning(1249);
 
         public int id;
 
