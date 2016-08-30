@@ -45,6 +45,22 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class AddPlayerTagRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Unique tag for player profile.
+         */
+        public String TagName;
+        
+    }
+
+    public static class AddPlayerTagResult {
+        
+    }
+
     public static class AddServerBuildRequest {
         /**
          * unique identifier for the build executable
@@ -144,8 +160,9 @@ public class PlayFabAdminModels {
         public ArrayList<VirtualCurrencyData> VirtualCurrencies;
         
     }
+
     /**
-     *  Contains information for a ban.
+     * Contains information for a ban.
      */
     public static class BanInfo {
         /**
@@ -182,8 +199,9 @@ public class PlayFabAdminModels {
         public Boolean Active;
         
     }
+
     /**
-     *  Represents a single ban request.
+     * Represents a single ban request.
      */
     public static class BanRequest {
         /**
@@ -228,8 +246,9 @@ public class PlayFabAdminModels {
     public static class BlankResult {
         
     }
+
     /**
-     *  A purchasable item from the item catalog
+     * A purchasable item from the item catalog
      */
     public static class CatalogItem implements Comparable<CatalogItem> {
         /**
@@ -297,13 +316,16 @@ public class PlayFabAdminModels {
          * URL to the item image. For Facebook purchase to display the image on the item purchase page, this must be set to an HTTP URL.
          */
         public String ItemImageUrl;
+        /**
+         * if true, then only a fixed number can ever be granted.
+         */
+        public Boolean IsLimitedEdition;
         
         public int compareTo(CatalogItem other) {
             if (other == null || other.ItemId == null) return 1;
             if (ItemId == null) return -1;
             return ItemId.compareTo(other.ItemId);
         }
-        
     }
 
     public static class CatalogItemBundleInfo {
@@ -339,8 +361,9 @@ public class PlayFabAdminModels {
         public String UsagePeriodGroup;
         
     }
+
     /**
-     *  Containers are inventory items that can hold other items defined in the catalog, as well as virtual currency, which is added to the player inventory when the container is unlocked, using the UnlockContainerItem API. The items can be anything defined in the catalog, as well as RandomResultTable objects which will be resolved when the container is unlocked. Containers and their keys should be defined as Consumable (having a limited number of uses) in their catalog defintiions, unless the intent is for the player to be able to re-use them infinitely.
+     * Containers are inventory items that can hold other items defined in the catalog, as well as virtual currency, which is added to the player inventory when the container is unlocked, using the UnlockContainerItem API. The items can be anything defined in the catalog, as well as RandomResultTable objects which will be resolved when the container is unlocked. Containers and their keys should be defined as Consumable (having a limited number of uses) in their catalog defintiions, unless the intent is for the player to be able to re-use them infinitely.
      */
     public static class CatalogItemContainerInfo {
         /**
@@ -963,6 +986,30 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class GetPlayerTagsRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Optional namespace to filter results by
+         */
+        public String Namespace;
+        
+    }
+
+    public static class GetPlayerTagsResult {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Canonical tags (including namespace and tag's name) for the requested user
+         */
+        public ArrayList<String> Tags;
+        
+    }
+
     public static class GetPublisherDataRequest {
         /**
          *  array of keys to get back data from the Publisher data blob, set by the admin tools
@@ -1018,8 +1065,9 @@ public class PlayFabAdminModels {
         public String BuildId;
         
     }
+
     /**
-     *  Information about a particular server build
+     * Information about a particular server build
      */
     public static class GetServerBuildInfoResult implements Comparable<GetServerBuildInfoResult> {
         /**
@@ -1065,7 +1113,6 @@ public class PlayFabAdminModels {
             if (BuildId == null) return -1;
             return BuildId.compareTo(other.BuildId);
         }
-        
     }
 
     public static class GetServerBuildUploadURLRequest {
@@ -1102,6 +1149,22 @@ public class PlayFabAdminModels {
          */
         @Unordered("ItemId")
         public ArrayList<StoreItem> Store;
+        /**
+         * How the store was last updated (Admin or a third party).
+         */
+        public SourceType Source;
+        /**
+         * The base catalog that this store is a part of.
+         */
+        public String CatalogVersion;
+        /**
+         * The ID of this store.
+         */
+        public String StoreId;
+        /**
+         * Additional data about the store.
+         */
+        public StoreMarketingModel MarketingData;
         
     }
 
@@ -1197,8 +1260,9 @@ public class PlayFabAdminModels {
         public Map<String,VirtualCurrencyRechargeTime> VirtualCurrencyRechargeTimes;
         
     }
+
     /**
-     *  Result of granting an item to a user
+     * Result of granting an item to a user
      */
     public static class GrantedItemInstance implements Comparable<GrantedItemInstance> {
         /**
@@ -1279,7 +1343,6 @@ public class PlayFabAdminModels {
             if (ItemInstanceId == null) return -1;
             return ItemInstanceId.compareTo(other.ItemInstanceId);
         }
-        
     }
 
     public static class GrantItemsToUsersRequest {
@@ -1346,8 +1409,9 @@ public class PlayFabAdminModels {
         public ArrayList<String> KeysToRemove;
         
     }
+
     /**
-     *  A unique instance of an item in a user's inventory. Note, to retrieve additional information for an item instance (such as Tags, Description, or Custom Data that are set on the root catalog item), a call to GetCatalogItems is required. The Item ID of the instance can then be matched to a catalog entry, which contains the additional information. Also note that Custom Data is only set here from a call to UpdateUserInventoryItemCustomData.
+     * A unique instance of an item in a user's inventory. Note, to retrieve additional information for an item instance (such as Tags, Description, or Custom Data that are set on the root catalog item), a call to GetCatalogItems is required. The Item ID of the instance can then be matched to a catalog entry, which contains the additional information. Also note that Custom Data is only set here from a call to UpdateUserInventoryItemCustomData.
      */
     public static class ItemInstance implements Comparable<ItemInstance> {
         /**
@@ -1416,7 +1480,6 @@ public class PlayFabAdminModels {
             if (ItemInstanceId == null) return -1;
             return ItemInstanceId.compareTo(other.ItemInstanceId);
         }
-        
     }
 
     public static class ListBuildsRequest {
@@ -1824,6 +1887,22 @@ public class PlayFabAdminModels {
         Australia
     }
 
+    public static class RemovePlayerTagRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Unique tag for player profile.
+         */
+        public String TagName;
+        
+    }
+
+    public static class RemovePlayerTagResult {
+        
+    }
+
     public static class RemoveServerBuildRequest {
         /**
          * unique identifier of the previously uploaded build executable to be removed
@@ -2045,6 +2124,15 @@ public class PlayFabAdminModels {
         
     }
 
+    public static enum SourceType {
+        Admin,
+        BackEnd,
+        GameClient,
+        GameServer,
+        Partner,
+        Stream
+    }
+
     public static enum StatisticAggregationMethod {
         Last,
         Min,
@@ -2067,28 +2155,55 @@ public class PlayFabAdminModels {
         InProgress,
         Complete
     }
+
     /**
-     *  A store entry that list a catalog item at a particular price
+     * A store entry that list a catalog item at a particular price
      */
     public static class StoreItem implements Comparable<StoreItem> {
         /**
-         * unique identifier of the item as it exists in the catalog - note that this must exactly match the ItemId from the catalog
+         * Unique identifier of the item as it exists in the catalog - note that this must exactly match the ItemId from the catalog
          */
         public String ItemId;
         /**
-         * price of this item in virtual currencies and "RM" (the base Real Money purchase price, in USD pennies)
+         * Override prices for this item in virtual currencies and "RM" (the base Real Money purchase price, in USD pennies)
          */
         public Map<String,Long> VirtualCurrencyPrices;
         /**
-         * override prices for this item for specific currencies
+         * Override prices for this item for specific currencies
          */
         public Map<String,Long> RealCurrencyPrices;
+        /**
+         * Store specific custom data. The data only exists as part of this store; it is not transferred to item instances
+         */
+        public Object CustomData;
+        /**
+         * Intended display position for this item. Note that 0 is the first position
+         */
+        public Long DisplayPosition;
         
         public int compareTo(StoreItem other) {
             if (other == null || other.ItemId == null) return 1;
             if (ItemId == null) return -1;
             return ItemId.compareTo(other.ItemId);
         }
+    }
+
+    /**
+     * Marketing data about a specific store
+     */
+    public static class StoreMarketingModel {
+        /**
+         * Display name of a store as it will appear to users.
+         */
+        public String DisplayName;
+        /**
+         * Tagline for a store.
+         */
+        public String Description;
+        /**
+         * Custom data about a store.
+         */
+        public Object Metadata;
         
     }
 
@@ -2115,8 +2230,9 @@ public class PlayFabAdminModels {
         ActivatedSteam,
         RevokedSteam
     }
+
     /**
-     *  Represents a single update ban request.
+     * Represents a single update ban request.
      */
     public static class UpdateBanRequest {
         /**
@@ -2188,8 +2304,9 @@ public class PlayFabAdminModels {
 
     public static class UpdateCloudScriptRequest {
         /**
-         * Deprecated - Do not use
+         * @deprecated Do not use
          */
+        @Deprecated
         public Integer Version;
         /**
          * List of Cloud Script files to upload to create the new revision. Must have at least one file.
@@ -2260,15 +2377,19 @@ public class PlayFabAdminModels {
 
     public static class UpdateStoreItemsRequest {
         /**
-         * catalog version of the store to update. If null, uses the default catalog.
+         * Catalog version of the store to update. If null, uses the default catalog.
          */
         public String CatalogVersion;
         /**
-         * unqiue identifier for the store which is to be updated
+         * Unique identifier for the store which is to be updated
          */
         public String StoreId;
         /**
-         * array of store items - references to catalog items, with specific pricing - to be added
+         * Additional data about the store
+         */
+        public StoreMarketingModel MarketingData;
+        /**
+         * Array of store items - references to catalog items, with specific pricing - to be added
          */
         public ArrayList<StoreItem> Store;
         
@@ -2437,9 +2558,10 @@ public class PlayFabAdminModels {
         public String CustomId;
         
     }
+
     /**
-     *  Indicates whether a given data key is private (readable only by the player) or public (readable by all players). When a player makes a GetUserData request about another player, only keys marked Public will be returned.
-     */ 
+     * Indicates whether a given data key is private (readable only by the player) or public (readable by all players). When a player makes a GetUserData request about another player, only keys marked Public will be returned.
+     */
     public static enum UserDataPermission {
         Private,
         Public

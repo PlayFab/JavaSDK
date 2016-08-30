@@ -41,6 +41,22 @@ public class PlayFabServerModels {
         
     }
 
+    public static class AddPlayerTagRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Unique tag for player profile.
+         */
+        public String TagName;
+        
+    }
+
+    public static class AddPlayerTagResult {
+        
+    }
+
     public static class AddSharedGroupMembersRequest {
         /**
          * Unique identifier for the shared group.
@@ -120,8 +136,9 @@ public class PlayFabServerModels {
         public ArrayList<AwardSteamAchievementItem> AchievementResults;
         
     }
+
     /**
-     *  Contains information for a ban.
+     * Contains information for a ban.
      */
     public static class BanInfo {
         /**
@@ -158,8 +175,9 @@ public class PlayFabServerModels {
         public Boolean Active;
         
     }
+
     /**
-     *  Represents a single ban request.
+     * Represents a single ban request.
      */
     public static class BanRequest {
         /**
@@ -200,8 +218,9 @@ public class PlayFabServerModels {
         public ArrayList<BanInfo> BanData;
         
     }
+
     /**
-     *  A purchasable item from the item catalog
+     * A purchasable item from the item catalog
      */
     public static class CatalogItem implements Comparable<CatalogItem> {
         /**
@@ -269,13 +288,16 @@ public class PlayFabServerModels {
          * URL to the item image. For Facebook purchase to display the image on the item purchase page, this must be set to an HTTP URL.
          */
         public String ItemImageUrl;
+        /**
+         * if true, then only a fixed number can ever be granted.
+         */
+        public Boolean IsLimitedEdition;
         
         public int compareTo(CatalogItem other) {
             if (other == null || other.ItemId == null) return 1;
             if (ItemId == null) return -1;
             return ItemId.compareTo(other.ItemId);
         }
-        
     }
 
     public static class CatalogItemBundleInfo {
@@ -311,8 +333,9 @@ public class PlayFabServerModels {
         public String UsagePeriodGroup;
         
     }
+
     /**
-     *  Containers are inventory items that can hold other items defined in the catalog, as well as virtual currency, which is added to the player inventory when the container is unlocked, using the UnlockContainerItem API. The items can be anything defined in the catalog, as well as RandomResultTable objects which will be resolved when the container is unlocked. Containers and their keys should be defined as Consumable (having a limited number of uses) in their catalog defintiions, unless the intent is for the player to be able to re-use them infinitely.
+     * Containers are inventory items that can hold other items defined in the catalog, as well as virtual currency, which is added to the player inventory when the container is unlocked, using the UnlockContainerItem API. The items can be anything defined in the catalog, as well as RandomResultTable objects which will be resolved when the container is unlocked. Containers and their keys should be defined as Consumable (having a limited number of uses) in their catalog defintiions, unless the intent is for the player to be able to re-use them infinitely.
      */
     public static class CatalogItemContainerInfo {
         /**
@@ -1325,6 +1348,30 @@ public class PlayFabServerModels {
         
     }
 
+    public static class GetPlayerTagsRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Optional namespace to filter results by
+         */
+        public String Namespace;
+        
+    }
+
+    public static class GetPlayerTagsResult {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Canonical tags (including namespace and tag's name) for the requested user
+         */
+        public ArrayList<String> Tags;
+        
+    }
+
     public static class GetPlayFabIDsFromFacebookIDsRequest {
         /**
          * Array of unique Facebook identifiers for which the title needs to get PlayFab identifiers.
@@ -1343,8 +1390,9 @@ public class PlayFabServerModels {
 
     public static class GetPlayFabIDsFromSteamIDsRequest {
         /**
-         * Deprecated: Please use SteamStringIDs
+         * @deprecated Please use SteamStringIDs instead. 
          */
+        @Deprecated
         public ArrayList<Long> SteamIDs;
         /**
          * Array of unique Steam identifiers (Steam profile IDs) for which the title needs to get PlayFab identifiers.
@@ -1566,6 +1614,10 @@ public class PlayFabServerModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class GetUserStatisticsRequest {
         /**
          * User for whom statistics are being requested.
@@ -1574,6 +1626,10 @@ public class PlayFabServerModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class GetUserStatisticsResult {
         /**
          * PlayFab unique identifier of the user whose statistics are being returned.
@@ -1609,8 +1665,9 @@ public class PlayFabServerModels {
         public String CharacterId;
         
     }
+
     /**
-     *  Result of granting an item to a user
+     * Result of granting an item to a user
      */
     public static class GrantedItemInstance implements Comparable<GrantedItemInstance> {
         /**
@@ -1691,7 +1748,6 @@ public class PlayFabServerModels {
             if (ItemInstanceId == null) return -1;
             return ItemInstanceId.compareTo(other.ItemInstanceId);
         }
-        
     }
 
     public static class GrantItemsToCharacterRequest {
@@ -1802,8 +1858,9 @@ public class PlayFabServerModels {
         public ArrayList<String> KeysToRemove;
         
     }
+
     /**
-     *  A unique instance of an item in a user's inventory. Note, to retrieve additional information for an item instance (such as Tags, Description, or Custom Data that are set on the root catalog item), a call to GetCatalogItems is required. The Item ID of the instance can then be matched to a catalog entry, which contains the additional information. Also note that Custom Data is only set here from a call to UpdateUserInventoryItemCustomData.
+     * A unique instance of an item in a user's inventory. Note, to retrieve additional information for an item instance (such as Tags, Description, or Custom Data that are set on the root catalog item), a call to GetCatalogItems is required. The Item ID of the instance can then be matched to a catalog entry, which contains the additional information. Also note that Custom Data is only set here from a call to UpdateUserInventoryItemCustomData.
      */
     public static class ItemInstance implements Comparable<ItemInstance> {
         /**
@@ -1872,7 +1929,6 @@ public class PlayFabServerModels {
             if (ItemInstanceId == null) return -1;
             return ItemInstanceId.compareTo(other.ItemInstanceId);
         }
-        
     }
 
     public static class ListUsersCharactersRequest {
@@ -1891,6 +1947,10 @@ public class PlayFabServerModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class LogEventRequest {
         /**
          * PlayFab User Id of the player associated with this event. For non-player associated events, this must be null and EntityId must be set.
@@ -1923,6 +1983,10 @@ public class PlayFabServerModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class LogEventResult {
         
     }
@@ -2349,6 +2413,22 @@ public class PlayFabServerModels {
         
     }
 
+    public static class RemovePlayerTagRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Unique tag for player profile.
+         */
+        public String TagName;
+        
+    }
+
+    public static class RemovePlayerTagResult {
+        
+    }
+
     public static class RemoveSharedGroupMembersRequest {
         /**
          * Unique identifier for the shared group.
@@ -2636,8 +2716,9 @@ public class PlayFabServerModels {
 
     public static class SteamPlayFabIdPair {
         /**
-         * Deprecated: Please use SteamStringId
+         * @deprecated Please use SteamStringId instead. 
          */
+        @Deprecated
         public Long SteamId;
         /**
          * Unique Steam identifier for a user.
@@ -2777,8 +2858,9 @@ public class PlayFabServerModels {
         public Map<String,Long> VirtualCurrency;
         
     }
+
     /**
-     *  Represents a single update ban request.
+     * Represents a single update ban request.
      */
     public static class UpdateBanRequest {
         /**
@@ -2988,6 +3070,10 @@ public class PlayFabServerModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class UpdateUserStatisticsRequest {
         /**
          * Unique PlayFab assigned ID of the user on whom the operation will be performed.
@@ -3000,6 +3086,10 @@ public class PlayFabServerModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class UpdateUserStatisticsResult {
         
     }
@@ -3087,9 +3177,10 @@ public class PlayFabServerModels {
         public String CustomId;
         
     }
+
     /**
-     *  Indicates whether a given data key is private (readable only by the player) or public (readable by all players). When a player makes a GetUserData request about another player, only keys marked Public will be returned.
-     */ 
+     * Indicates whether a given data key is private (readable only by the player) or public (readable by all players). When a player makes a GetUserData request about another player, only keys marked Public will be returned.
+     */
     public static enum UserDataPermission {
         Private,
         Public

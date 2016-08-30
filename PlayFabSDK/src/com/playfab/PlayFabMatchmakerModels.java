@@ -24,8 +24,9 @@ public class PlayFabMatchmakerModels {
         public String PlayFabId;
         
     }
+
     /**
-     *  A unique instance of an item in a user's inventory. Note, to retrieve additional information for an item instance (such as Tags, Description, or Custom Data that are set on the root catalog item), a call to GetCatalogItems is required. The Item ID of the instance can then be matched to a catalog entry, which contains the additional information. Also note that Custom Data is only set here from a call to UpdateUserInventoryItemCustomData.
+     * A unique instance of an item in a user's inventory. Note, to retrieve additional information for an item instance (such as Tags, Description, or Custom Data that are set on the root catalog item), a call to GetCatalogItems is required. The Item ID of the instance can then be matched to a catalog entry, which contains the additional information. Also note that Custom Data is only set here from a call to UpdateUserInventoryItemCustomData.
      */
     public static class ItemInstance implements Comparable<ItemInstance> {
         /**
@@ -94,7 +95,6 @@ public class PlayFabMatchmakerModels {
             if (ItemInstanceId == null) return -1;
             return ItemInstanceId.compareTo(other.ItemInstanceId);
         }
-        
     }
 
     public static class PlayerJoinedRequest {

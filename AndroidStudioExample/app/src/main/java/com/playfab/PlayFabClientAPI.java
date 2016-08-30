@@ -1446,8 +1446,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * NOTE: This call will be deprecated soon. For fetching the data for a given user  use GetPlayerCombinedInfo. For looking up users from the client api, we are in the process of adding a new api call. Once that call is ready, this one will be deprecated.  Retrieves all requested data for a user in one unified request. By default, this API returns all  data for the locally signed-in user. The input parameters may be used to limit the data retrieved to any subset of the available data, as well as retrieve the available data for a different user. Note that certain data, including inventory, virtual currency balances, and personally identifying information, may only be retrieved for the locally signed-in user. In the example below, a request is made for the account details, virtual currency balances, and specified user data for the locally signed-in user.
+     * @deprecated Please use GetPlayerCombinedInfo instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetUserCombinedInfoResult>> GetUserCombinedInfoAsync(final GetUserCombinedInfoRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetUserCombinedInfoResult>>() {
@@ -1458,8 +1459,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * NOTE: This call will be deprecated soon. For fetching the data for a given user  use GetPlayerCombinedInfo. For looking up users from the client api, we are in the process of adding a new api call. Once that call is ready, this one will be deprecated.  Retrieves all requested data for a user in one unified request. By default, this API returns all  data for the locally signed-in user. The input parameters may be used to limit the data retrieved to any subset of the available data, as well as retrieve the available data for a different user. Note that certain data, including inventory, virtual currency balances, and personally identifying information, may only be retrieved for the locally signed-in user. In the example below, a request is made for the account details, virtual currency balances, and specified user data for the locally signed-in user.
+     * @deprecated Please use GetPlayerCombinedInfo instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetUserCombinedInfoResult> GetUserCombinedInfo(final GetUserCombinedInfoRequest request) {
         FutureTask<PlayFabResult<GetUserCombinedInfoResult>> task = new FutureTask(new Callable<PlayFabResult<GetUserCombinedInfoResult>>() {
@@ -1476,8 +1478,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * NOTE: This call will be deprecated soon. For fetching the data for a given user  use GetPlayerCombinedInfo. For looking up users from the client api, we are in the process of adding a new api call. Once that call is ready, this one will be deprecated.  Retrieves all requested data for a user in one unified request. By default, this API returns all  data for the locally signed-in user. The input parameters may be used to limit the data retrieved to any subset of the available data, as well as retrieve the available data for a different user. Note that certain data, including inventory, virtual currency balances, and personally identifying information, may only be retrieved for the locally signed-in user. In the example below, a request is made for the account details, virtual currency balances, and specified user data for the locally signed-in user.
+     * @deprecated Please use GetPlayerCombinedInfo instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserCombinedInfoResult> privateGetUserCombinedInfoAsync(final GetUserCombinedInfoRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -2837,8 +2840,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a list of ranked friends of the current player for the given statistic, centered on the currently signed-in user
+     * @deprecated Please use GetFriendLeaderboardAroundPlayer instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult>> GetFriendLeaderboardAroundCurrentUserAsync(final GetFriendLeaderboardAroundCurrentUserRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult>>() {
@@ -2849,8 +2853,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a list of ranked friends of the current player for the given statistic, centered on the currently signed-in user
+     * @deprecated Please use GetFriendLeaderboardAroundPlayer instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult> GetFriendLeaderboardAroundCurrentUser(final GetFriendLeaderboardAroundCurrentUserRequest request) {
         FutureTask<PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult>> task = new FutureTask(new Callable<PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult>>() {
@@ -2867,8 +2872,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a list of ranked friends of the current player for the given statistic, centered on the currently signed-in user
+     * @deprecated Please use GetFriendLeaderboardAroundPlayer instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult> privateGetFriendLeaderboardAroundCurrentUserAsync(final GetFriendLeaderboardAroundCurrentUserRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -3011,8 +3017,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a list of ranked users for the given statistic, centered on the currently signed-in user
+     * @deprecated Please use GetLeaderboardAroundPlayer instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetLeaderboardAroundCurrentUserResult>> GetLeaderboardAroundCurrentUserAsync(final GetLeaderboardAroundCurrentUserRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetLeaderboardAroundCurrentUserResult>>() {
@@ -3023,8 +3030,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a list of ranked users for the given statistic, centered on the currently signed-in user
+     * @deprecated Please use GetLeaderboardAroundPlayer instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetLeaderboardAroundCurrentUserResult> GetLeaderboardAroundCurrentUser(final GetLeaderboardAroundCurrentUserRequest request) {
         FutureTask<PlayFabResult<GetLeaderboardAroundCurrentUserResult>> task = new FutureTask(new Callable<PlayFabResult<GetLeaderboardAroundCurrentUserResult>>() {
@@ -3041,8 +3049,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a list of ranked users for the given statistic, centered on the currently signed-in user
+     * @deprecated Please use GetLeaderboardAroundPlayer instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetLeaderboardAroundCurrentUserResult> privateGetLeaderboardAroundCurrentUserAsync(final GetLeaderboardAroundCurrentUserRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -3475,8 +3484,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the details of all title-specific statistics for the user
+     * @deprecated Please use GetPlayerStatistics instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetUserStatisticsResult>> GetUserStatisticsAsync(final GetUserStatisticsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetUserStatisticsResult>>() {
@@ -3487,8 +3497,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the details of all title-specific statistics for the user
+     * @deprecated Please use GetPlayerStatistics instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetUserStatisticsResult> GetUserStatistics(final GetUserStatisticsRequest request) {
         FutureTask<PlayFabResult<GetUserStatisticsResult>> task = new FutureTask(new Callable<PlayFabResult<GetUserStatisticsResult>>() {
@@ -3505,8 +3516,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the details of all title-specific statistics for the user
+     * @deprecated Please use GetPlayerStatistics instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserStatisticsResult> privateGetUserStatisticsAsync(final GetUserStatisticsRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -3707,8 +3719,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
+     * @deprecated Please use UpdatePlayerStatistics instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateUserStatisticsResult>> UpdateUserStatisticsAsync(final UpdateUserStatisticsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateUserStatisticsResult>>() {
@@ -3719,8 +3732,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
+     * @deprecated Please use UpdatePlayerStatistics instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateUserStatisticsResult> UpdateUserStatistics(final UpdateUserStatisticsRequest request) {
         FutureTask<PlayFabResult<UpdateUserStatisticsResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateUserStatisticsResult>>() {
@@ -3737,8 +3751,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
+     * @deprecated Please use UpdatePlayerStatistics instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserStatisticsResult> privateUpdateUserStatisticsAsync(final UpdateUserStatisticsRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -5563,8 +5578,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Logs a custom analytics event
+     * @deprecated Please use WritePlayerEvent instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<LogEventResult>> LogEventAsync(final LogEventRequest request) {
         return new FutureTask(new Callable<PlayFabResult<LogEventResult>>() {
@@ -5575,8 +5591,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Logs a custom analytics event
+     * @deprecated Please use WritePlayerEvent instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<LogEventResult> LogEvent(final LogEventRequest request) {
         FutureTask<PlayFabResult<LogEventResult>> task = new FutureTask(new Callable<PlayFabResult<LogEventResult>>() {
@@ -5593,8 +5610,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Logs a custom analytics event
+     * @deprecated Please use WritePlayerEvent instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LogEventResult> privateLogEventAsync(final LogEventRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -6143,8 +6161,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the title-specific URL for Cloud Script servers. This must be queried once, prior  to making any calls to RunCloudScript.
+     * @deprecated Please use ExecuteCloudScript instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetCloudScriptUrlResult>> GetCloudScriptUrlAsync(final GetCloudScriptUrlRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetCloudScriptUrlResult>>() {
@@ -6155,8 +6174,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the title-specific URL for Cloud Script servers. This must be queried once, prior  to making any calls to RunCloudScript.
+     * @deprecated Please use ExecuteCloudScript instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetCloudScriptUrlResult> GetCloudScriptUrl(final GetCloudScriptUrlRequest request) {
         FutureTask<PlayFabResult<GetCloudScriptUrlResult>> task = new FutureTask(new Callable<PlayFabResult<GetCloudScriptUrlResult>>() {
@@ -6173,8 +6193,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the title-specific URL for Cloud Script servers. This must be queried once, prior  to making any calls to RunCloudScript.
+     * @deprecated Please use ExecuteCloudScript instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCloudScriptUrlResult> privateGetCloudScriptUrlAsync(final GetCloudScriptUrlRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -6202,8 +6223,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Triggers a particular server action, passing the provided inputs to the hosted Cloud Script. An action in this context is a handler in the JavaScript. NOTE: Before calling this API, you must call GetCloudScriptUrl to be assigned a Cloud Script server URL. When using an official PlayFab SDK, this URL is stored internally in the SDK, but GetCloudScriptUrl must still be manually called.
+     * @deprecated Please use ExecuteCloudScript instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<RunCloudScriptResult>> RunCloudScriptAsync(final RunCloudScriptRequest request) {
         return new FutureTask(new Callable<PlayFabResult<RunCloudScriptResult>>() {
@@ -6214,8 +6236,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Triggers a particular server action, passing the provided inputs to the hosted Cloud Script. An action in this context is a handler in the JavaScript. NOTE: Before calling this API, you must call GetCloudScriptUrl to be assigned a Cloud Script server URL. When using an official PlayFab SDK, this URL is stored internally in the SDK, but GetCloudScriptUrl must still be manually called.
+     * @deprecated Please use ExecuteCloudScript instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<RunCloudScriptResult> RunCloudScript(final RunCloudScriptRequest request) {
         FutureTask<PlayFabResult<RunCloudScriptResult>> task = new FutureTask(new Callable<PlayFabResult<RunCloudScriptResult>>() {
@@ -6232,8 +6255,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Triggers a particular server action, passing the provided inputs to the hosted Cloud Script. An action in this context is a handler in the JavaScript. NOTE: Before calling this API, you must call GetCloudScriptUrl to be assigned a Cloud Script server URL. When using an official PlayFab SDK, this URL is stored internally in the SDK, but GetCloudScriptUrl must still be manually called.
+     * @deprecated Please use ExecuteCloudScript instead. 
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RunCloudScriptResult> privateRunCloudScriptAsync(final RunCloudScriptRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -7359,6 +7383,64 @@ public class PlayFabClientAPI {
         GetPlayerSegmentsResult result = resultData.data;
 
         PlayFabResult<GetPlayerSegmentsResult> pfResult = new PlayFabResult<GetPlayerSegmentsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Get all tags with a given Namespace (optional) from a player profile.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayerTagsResult>> GetPlayerTagsAsync(final GetPlayerTagsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayerTagsResult>>() {
+            public PlayFabResult<GetPlayerTagsResult> call() throws Exception {
+                return privateGetPlayerTagsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Get all tags with a given Namespace (optional) from a player profile.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayerTagsResult> GetPlayerTags(final GetPlayerTagsRequest request) {
+        FutureTask<PlayFabResult<GetPlayerTagsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayerTagsResult>>() {
+            public PlayFabResult<GetPlayerTagsResult> call() throws Exception {
+                return privateGetPlayerTagsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Get all tags with a given Namespace (optional) from a player profile.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayerTagsResult> privateGetPlayerTagsAsync(final GetPlayerTagsRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayerTags", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayerTagsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayerTagsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayerTagsResult>>(){}.getType());
+        GetPlayerTagsResult result = resultData.data;
+
+        PlayFabResult<GetPlayerTagsResult> pfResult = new PlayFabResult<GetPlayerTagsResult>();
         pfResult.Result = result;
         return pfResult;
     }
