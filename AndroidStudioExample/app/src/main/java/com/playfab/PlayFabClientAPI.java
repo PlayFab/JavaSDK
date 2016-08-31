@@ -564,7 +564,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls which require an authenticated user. Unlike other login API calls, LoginWithEmailAddress does not permit the creation of new accounts via the CreateAccountFlag. Email accounts must be created using the RegisterPlayFabUser API or added to existing accounts using AddUsernamePassword.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<LoginResult>> LoginWithPlayFabAsync(final LoginWithPlayFabRequest request) {
@@ -576,7 +576,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls which require an authenticated user. Unlike other login API calls, LoginWithEmailAddress does not permit the creation of new accounts via the CreateAccountFlag. Email accounts must be created using the RegisterPlayFabUser API or added to existing accounts using AddUsernamePassword.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<LoginResult> LoginWithPlayFab(final LoginWithPlayFabRequest request) {
@@ -594,7 +594,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls which require an authenticated user. Unlike other login API calls, LoginWithEmailAddress does not permit the creation of new accounts via the CreateAccountFlag. Email accounts must be created using the RegisterPlayFabUser API or added to existing accounts using AddUsernamePassword.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LoginResult> privateLoginWithPlayFabAsync(final LoginWithPlayFabRequest request) throws Exception {

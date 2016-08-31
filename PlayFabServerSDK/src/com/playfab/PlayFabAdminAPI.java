@@ -597,7 +597,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
+     * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics. This method does not remove the player's event history, login history, inventory items, nor virtual currencies.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<DeleteUsersResult>> DeleteUsersAsync(final DeleteUsersRequest request) {
@@ -609,7 +609,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
+     * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics. This method does not remove the player's event history, login history, inventory items, nor virtual currencies.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<DeleteUsersResult> DeleteUsers(final DeleteUsersRequest request) {
@@ -627,7 +627,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
+     * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics. This method does not remove the player's event history, login history, inventory items, nor virtual currencies.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteUsersResult> privateDeleteUsersAsync(final DeleteUsersRequest request) throws Exception {
