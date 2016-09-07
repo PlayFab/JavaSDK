@@ -5420,6 +5420,64 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Retrieve a list of all PlayStream actions groups.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetAllActionGroupsResult>> GetAllActionGroupsAsync(final GetAllActionGroupsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetAllActionGroupsResult>>() {
+            public PlayFabResult<GetAllActionGroupsResult> call() throws Exception {
+                return privateGetAllActionGroupsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieve a list of all PlayStream actions groups.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetAllActionGroupsResult> GetAllActionGroups(final GetAllActionGroupsRequest request) {
+        FutureTask<PlayFabResult<GetAllActionGroupsResult>> task = new FutureTask(new Callable<PlayFabResult<GetAllActionGroupsResult>>() {
+            public PlayFabResult<GetAllActionGroupsResult> call() throws Exception {
+                return privateGetAllActionGroupsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieve a list of all PlayStream actions groups.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetAllActionGroupsResult> privateGetAllActionGroupsAsync(final GetAllActionGroupsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetAllActionGroups", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetAllActionGroupsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetAllActionGroupsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetAllActionGroupsResult>>(){}.getType());
+        GetAllActionGroupsResult result = resultData.data;
+
+        PlayFabResult<GetAllActionGroupsResult> pfResult = new PlayFabResult<GetAllActionGroupsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
      */
     @SuppressWarnings("unchecked")

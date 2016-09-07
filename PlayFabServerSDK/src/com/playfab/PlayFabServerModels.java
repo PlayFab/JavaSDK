@@ -829,6 +829,30 @@ public class PlayFabServerModels {
         Closed
     }
 
+    public static class GetActionGroupResult {
+        /**
+         * Action Group name
+         */
+        public String Name;
+        /**
+         * Action Group ID
+         */
+        public String Id;
+        
+    }
+
+    public static class GetAllActionGroupsRequest {
+        
+    }
+
+    public static class GetAllActionGroupsResult {
+        /**
+         * List of Action Groups.
+         */
+        public ArrayList<GetActionGroupResult> ActionGroups;
+        
+    }
+
     public static class GetAllSegmentsRequest {
         
     }
