@@ -597,7 +597,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
+     * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics. This method does not remove the player's event history, login history, inventory items, nor virtual currencies.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<DeleteUsersResult>> DeleteUsersAsync(final DeleteUsersRequest request) {
@@ -609,7 +609,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
+     * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics. This method does not remove the player's event history, login history, inventory items, nor virtual currencies.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<DeleteUsersResult> DeleteUsers(final DeleteUsersRequest request) {
@@ -627,7 +627,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
+     * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics. This method does not remove the player's event history, login history, inventory items, nor virtual currencies.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteUsersResult> privateDeleteUsersAsync(final DeleteUsersRequest request) throws Exception {
@@ -4188,6 +4188,64 @@ public class PlayFabAdminAPI {
         AddPlayerTagResult result = resultData.data;
 
         PlayFabResult<AddPlayerTagResult> pfResult = new PlayFabResult<AddPlayerTagResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Retrieve a list of all PlayStream actions groups.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetAllActionGroupsResult>> GetAllActionGroupsAsync(final GetAllActionGroupsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetAllActionGroupsResult>>() {
+            public PlayFabResult<GetAllActionGroupsResult> call() throws Exception {
+                return privateGetAllActionGroupsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieve a list of all PlayStream actions groups.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetAllActionGroupsResult> GetAllActionGroups(final GetAllActionGroupsRequest request) {
+        FutureTask<PlayFabResult<GetAllActionGroupsResult>> task = new FutureTask(new Callable<PlayFabResult<GetAllActionGroupsResult>>() {
+            public PlayFabResult<GetAllActionGroupsResult> call() throws Exception {
+                return privateGetAllActionGroupsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieve a list of all PlayStream actions groups.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetAllActionGroupsResult> privateGetAllActionGroupsAsync(final GetAllActionGroupsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/GetAllActionGroups", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetAllActionGroupsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetAllActionGroupsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetAllActionGroupsResult>>(){}.getType());
+        GetAllActionGroupsResult result = resultData.data;
+
+        PlayFabResult<GetAllActionGroupsResult> pfResult = new PlayFabResult<GetAllActionGroupsResult>();
         pfResult.Result = result;
         return pfResult;
     }
