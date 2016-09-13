@@ -317,9 +317,13 @@ public class PlayFabAdminModels {
          */
         public String ItemImageUrl;
         /**
-         * if true, then only a fixed number can ever be granted.
+         * BETA: If true, then only a fixed number can ever be granted.
          */
         public Boolean IsLimitedEdition;
+        /**
+         * BETA: If IsLImitedEdition is true, then this determines amount of the item initially available. Note that this fieldis ignored if the catalog item already existed in this catalog, or the field is less than 1.
+         */
+        public Integer InitialLimitedEditionCount;
         
         public int compareTo(CatalogItem other) {
             if (other == null || other.ItemId == null) return 1;
@@ -685,6 +689,30 @@ public class PlayFabAdminModels {
          * whether to start as an open session, meaning that players can matchmake into it (defaults to true)
          */
         public Boolean StartOpen;
+        
+    }
+
+    public static class GetActionGroupResult {
+        /**
+         * Action Group name
+         */
+        public String Name;
+        /**
+         * Action Group ID
+         */
+        public String Id;
+        
+    }
+
+    public static class GetAllActionGroupsRequest {
+        
+    }
+
+    public static class GetAllActionGroupsResult {
+        /**
+         * List of Action Groups.
+         */
+        public ArrayList<GetActionGroupResult> ActionGroups;
         
     }
 
@@ -1726,7 +1754,11 @@ public class PlayFabAdminModels {
          */
         public Map<String,Integer> Statistics;
         /**
-         * Dictionary of player's total currency purchases. The key VTD is a sum of all player_realmoney_purchase events OrderTotals.
+         * A sum of player's total purchases in USD across all currencies.
+         */
+        public Long TotalValueToDateInUSD;
+        /**
+         * Dictionary of player's total purchases by currency.
          */
         public Map<String,Long> ValuesToDate;
         /**
