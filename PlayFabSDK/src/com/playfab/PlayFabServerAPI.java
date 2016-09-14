@@ -3561,64 +3561,6 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Inform the matchmaker that a Game Server Instance is removed.
-     */
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<DeregisterGameResponse>> DeregisterGameAsync(final DeregisterGameRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<DeregisterGameResponse>>() {
-            public PlayFabResult<DeregisterGameResponse> call() throws Exception {
-                return privateDeregisterGameAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Inform the matchmaker that a Game Server Instance is removed.
-     */
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<DeregisterGameResponse> DeregisterGame(final DeregisterGameRequest request) {
-        FutureTask<PlayFabResult<DeregisterGameResponse>> task = new FutureTask(new Callable<PlayFabResult<DeregisterGameResponse>>() {
-            public PlayFabResult<DeregisterGameResponse> call() throws Exception {
-                return privateDeregisterGameAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * Inform the matchmaker that a Game Server Instance is removed.
-     */
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<DeregisterGameResponse> privateDeregisterGameAsync(final DeregisterGameRequest request) throws Exception {
-        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/DeregisterGame", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<DeregisterGameResponse>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<DeregisterGameResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<DeregisterGameResponse>>(){}.getType());
-        DeregisterGameResponse result = resultData.data;
-
-        PlayFabResult<DeregisterGameResponse> pfResult = new PlayFabResult<DeregisterGameResponse>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
      * Informs the PlayFab match-making service that the user specified has left the Game Server Instance
      */
     @SuppressWarnings("unchecked")
@@ -3730,64 +3672,6 @@ public class PlayFabServerAPI {
         RedeemMatchmakerTicketResult result = resultData.data;
 
         PlayFabResult<RedeemMatchmakerTicketResult> pfResult = new PlayFabResult<RedeemMatchmakerTicketResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
-     * Inform the matchmaker that a new Game Server Instance is added.
-     */
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<RegisterGameResponse>> RegisterGameAsync(final RegisterGameRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<RegisterGameResponse>>() {
-            public PlayFabResult<RegisterGameResponse> call() throws Exception {
-                return privateRegisterGameAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Inform the matchmaker that a new Game Server Instance is added.
-     */
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<RegisterGameResponse> RegisterGame(final RegisterGameRequest request) {
-        FutureTask<PlayFabResult<RegisterGameResponse>> task = new FutureTask(new Callable<PlayFabResult<RegisterGameResponse>>() {
-            public PlayFabResult<RegisterGameResponse> call() throws Exception {
-                return privateRegisterGameAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * Inform the matchmaker that a new Game Server Instance is added.
-     */
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<RegisterGameResponse> privateRegisterGameAsync(final RegisterGameRequest request) throws Exception {
-        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/RegisterGame", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<RegisterGameResponse>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<RegisterGameResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RegisterGameResponse>>(){}.getType());
-        RegisterGameResponse result = resultData.data;
-
-        PlayFabResult<RegisterGameResponse> pfResult = new PlayFabResult<RegisterGameResponse>();
         pfResult.Result = result;
         return pfResult;
     }

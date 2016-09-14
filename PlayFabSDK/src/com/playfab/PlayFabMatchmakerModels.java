@@ -25,18 +25,6 @@ public class PlayFabMatchmakerModels {
         
     }
 
-    public static class DeregisterGameRequest {
-        /**
-         * Unique identifier for the Game Server Instance that is being deregistered.
-         */
-        public String LobbyId;
-        
-    }
-
-    public static class DeregisterGameResponse {
-        
-    }
-
     /**
      * A unique instance of an item in a user's inventory. Note, to retrieve additional information for an item instance (such as Tags, Description, or Custom Data that are set on the root catalog item), a call to GetCatalogItems is required. The Item ID of the instance can then be matched to a catalog entry, which contains the additional information. Also note that Custom Data is only set here from a call to UpdateUserInventoryItemCustomData.
      */
@@ -149,42 +137,6 @@ public class PlayFabMatchmakerModels {
         Japan,
         Brazil,
         Australia
-    }
-
-    public static class RegisterGameRequest {
-        /**
-         * IP address of the Game Server Instance.
-         */
-        public String ServerHost;
-        /**
-         * Port number for communication with the Game Server Instance.
-         */
-        public String ServerPort;
-        /**
-         * Unique identifier of the build running on the Game Server Instance.
-         */
-        public String Build;
-        /**
-         * Unique identifier of the build running on the Game Server Instance.
-         */
-        public Region Region;
-        /**
-         * Unique identifier of the build running on the Game Server Instance.
-         */
-        public String GameMode;
-        /**
-         * Tags for the Game Server Instance
-         */
-        public Map<String,String> Tags;
-        
-    }
-
-    public static class RegisterGameResponse {
-        /**
-         * Unique identifier generated for the Game Server Instance that is registered.
-         */
-        public String LobbyId;
-        
     }
 
     public static class StartGameRequest {
