@@ -686,6 +686,18 @@ public class PlayFabServerModels {
         
     }
 
+    public static class DeregisterGameRequest {
+        /**
+         * Unique identifier for the Game Server Instance that is being deregistered.
+         */
+        public String LobbyId;
+        
+    }
+
+    public static class DeregisterGameResponse {
+        
+    }
+
     public static class EmptyResult {
         
     }
@@ -2446,6 +2458,52 @@ public class PlayFabServerModels {
          * User account information for the user validated.
          */
         public UserAccountInfo UserInfo;
+        
+    }
+
+    public static enum Region {
+        USCentral,
+        USEast,
+        EUWest,
+        Singapore,
+        Japan,
+        Brazil,
+        Australia
+    }
+
+    public static class RegisterGameRequest {
+        /**
+         * IP address of the Game Server Instance.
+         */
+        public String ServerHost;
+        /**
+         * Port number for communication with the Game Server Instance.
+         */
+        public String ServerPort;
+        /**
+         * Unique identifier of the build running on the Game Server Instance.
+         */
+        public String Build;
+        /**
+         * Unique identifier of the build running on the Game Server Instance.
+         */
+        public Region Region;
+        /**
+         * Unique identifier of the build running on the Game Server Instance.
+         */
+        public String GameMode;
+        /**
+         * Tags for the Game Server Instance
+         */
+        public Map<String,String> Tags;
+        
+    }
+
+    public static class RegisterGameResponse {
+        /**
+         * Unique identifier generated for the Game Server Instance that is registered.
+         */
+        public String LobbyId;
         
     }
 
