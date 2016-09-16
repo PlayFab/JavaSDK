@@ -41,6 +41,30 @@ public class PlayFabServerModels {
         
     }
 
+    public static class AddFriendRequest {
+        /**
+         * PlayFab identifier of the player to add a new friend.
+         */
+        public String PlayFabId;
+        /**
+         * The PlayFab identifier of the user being added.
+         */
+        public String FriendPlayFabId;
+        /**
+         * The PlayFab username of the user being added
+         */
+        public String FriendUsername;
+        /**
+         * Email address of the user being added.
+         */
+        public String FriendEmail;
+        /**
+         * Title-specific display name of the user to being added.
+         */
+        public String FriendTitleDisplayName;
+        
+    }
+
     public static class AddPlayerTagRequest {
         /**
          * Unique PlayFab assigned ID of the user on whom the operation will be performed.
@@ -1056,6 +1080,58 @@ public class PlayFabServerModels {
          * URL for downloading content via HTTP GET or HEAD method. The URL will expire in 1 hour.
          */
         public String URL;
+        
+    }
+
+    public static class GetFriendLeaderboardRequest {
+        /**
+         * The player whose friend leaderboard to get
+         */
+        public String PlayFabId;
+        /**
+         * Statistic used to rank friends for this leaderboard.
+         */
+        public String StatisticName;
+        /**
+         * Position in the leaderboard to start this listing (defaults to the first entry).
+         */
+        public Integer StartPosition;
+        /**
+         * Maximum number of entries to retrieve.
+         */
+        public Integer MaxResultsCount;
+        /**
+         * Indicates whether Steam service friends should be included in the response. Default is true.
+         */
+        public Boolean IncludeSteamFriends;
+        /**
+         * Indicates whether Facebook friends should be included in the response. Default is true.
+         */
+        public Boolean IncludeFacebookFriends;
+        
+    }
+
+    public static class GetFriendsListRequest {
+        /**
+         * PlayFab identifier of the player whose friend list to get.
+         */
+        public String PlayFabId;
+        /**
+         * Indicates whether Steam service friends should be included in the response. Default is true.
+         */
+        public Boolean IncludeSteamFriends;
+        /**
+         * Indicates whether Facebook friends should be included in the response. Default is true.
+         */
+        public Boolean IncludeFacebookFriends;
+        
+    }
+
+    public static class GetFriendsListResult {
+        /**
+         * Array of friends found.
+         */
+        public ArrayList<FriendInfo> Friends;
         
     }
 
@@ -2504,6 +2580,18 @@ public class PlayFabServerModels {
          * Unique identifier generated for the Game Server Instance that is registered.
          */
         public String LobbyId;
+        
+    }
+
+    public static class RemoveFriendRequest {
+        /**
+         * PlayFab identifier of the friend account which is to be removed.
+         */
+        public String FriendPlayFabId;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         
     }
 
