@@ -3967,6 +3967,64 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Set the state of the indicated Game Server Instance. Also update the heartbeat for the instance.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RefreshGameServerInstanceHeartbeatResult>> RefreshGameServerInstanceHeartbeatAsync(final RefreshGameServerInstanceHeartbeatRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RefreshGameServerInstanceHeartbeatResult>>() {
+            public PlayFabResult<RefreshGameServerInstanceHeartbeatResult> call() throws Exception {
+                return privateRefreshGameServerInstanceHeartbeatAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Set the state of the indicated Game Server Instance. Also update the heartbeat for the instance.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RefreshGameServerInstanceHeartbeatResult> RefreshGameServerInstanceHeartbeat(final RefreshGameServerInstanceHeartbeatRequest request) {
+        FutureTask<PlayFabResult<RefreshGameServerInstanceHeartbeatResult>> task = new FutureTask(new Callable<PlayFabResult<RefreshGameServerInstanceHeartbeatResult>>() {
+            public PlayFabResult<RefreshGameServerInstanceHeartbeatResult> call() throws Exception {
+                return privateRefreshGameServerInstanceHeartbeatAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Set the state of the indicated Game Server Instance. Also update the heartbeat for the instance.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RefreshGameServerInstanceHeartbeatResult> privateRefreshGameServerInstanceHeartbeatAsync(final RefreshGameServerInstanceHeartbeatRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/RefreshGameServerInstanceHeartbeat", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RefreshGameServerInstanceHeartbeatResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RefreshGameServerInstanceHeartbeatResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RefreshGameServerInstanceHeartbeatResult>>(){}.getType());
+        RefreshGameServerInstanceHeartbeatResult result = resultData.data;
+
+        PlayFabResult<RefreshGameServerInstanceHeartbeatResult> pfResult = new PlayFabResult<RefreshGameServerInstanceHeartbeatResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Inform the matchmaker that a new Game Server Instance is added.
      */
     @SuppressWarnings("unchecked")
@@ -4136,6 +4194,64 @@ public class PlayFabServerAPI {
         SetGameServerInstanceStateResult result = resultData.data;
 
         PlayFabResult<SetGameServerInstanceStateResult> pfResult = new PlayFabResult<SetGameServerInstanceStateResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Set custom tags for the specified Game Server Instance
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<SetGameServerInstanceTagsResult>> SetGameServerInstanceTagsAsync(final SetGameServerInstanceTagsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<SetGameServerInstanceTagsResult>>() {
+            public PlayFabResult<SetGameServerInstanceTagsResult> call() throws Exception {
+                return privateSetGameServerInstanceTagsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Set custom tags for the specified Game Server Instance
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<SetGameServerInstanceTagsResult> SetGameServerInstanceTags(final SetGameServerInstanceTagsRequest request) {
+        FutureTask<PlayFabResult<SetGameServerInstanceTagsResult>> task = new FutureTask(new Callable<PlayFabResult<SetGameServerInstanceTagsResult>>() {
+            public PlayFabResult<SetGameServerInstanceTagsResult> call() throws Exception {
+                return privateSetGameServerInstanceTagsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Set custom tags for the specified Game Server Instance
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<SetGameServerInstanceTagsResult> privateSetGameServerInstanceTagsAsync(final SetGameServerInstanceTagsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SetGameServerInstanceTags", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<SetGameServerInstanceTagsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<SetGameServerInstanceTagsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetGameServerInstanceTagsResult>>(){}.getType());
+        SetGameServerInstanceTagsResult result = resultData.data;
+
+        PlayFabResult<SetGameServerInstanceTagsResult> pfResult = new PlayFabResult<SetGameServerInstanceTagsResult>();
         pfResult.Result = result;
         return pfResult;
     }

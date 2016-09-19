@@ -2537,6 +2537,18 @@ public class PlayFabServerModels {
         
     }
 
+    public static class RefreshGameServerInstanceHeartbeatRequest {
+        /**
+         * Unique identifier of the Game Server Instance for which the heartbeat is updated.
+         */
+        public String LobbyId;
+        
+    }
+
+    public static class RefreshGameServerInstanceHeartbeatResult {
+        
+    }
+
     public static enum Region {
         USCentral,
         USEast,
@@ -2797,6 +2809,22 @@ public class PlayFabServerModels {
     }
 
     public static class SetGameServerInstanceStateResult {
+        
+    }
+
+    public static class SetGameServerInstanceTagsRequest {
+        /**
+         * Unique identifier of the Game Server Instance to be updated.
+         */
+        public String LobbyId;
+        /**
+         * Tags to set for the specified Game Server Instance. Note that this is the complete list of tags to be associated with the Game Server Instance.
+         */
+        public Map<String,String> Tags;
+        
+    }
+
+    public static class SetGameServerInstanceTagsResult {
         
     }
 
