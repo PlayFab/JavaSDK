@@ -1609,6 +1609,18 @@ public class PlayFabServerModels {
         
     }
 
+    public static class GetTimeRequest {
+        
+    }
+
+    public static class GetTimeResult {
+        /**
+         * Current server time when the request was received, in UTC
+         */
+        public Date Time;
+        
+    }
+
     public static class GetTitleDataRequest {
         /**
          * Specific keys to search for in the title data (leave null to get all keys)
