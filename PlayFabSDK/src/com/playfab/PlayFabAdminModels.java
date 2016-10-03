@@ -2219,8 +2219,7 @@ public class PlayFabAdminModels {
         BackEnd,
         GameClient,
         GameServer,
-        Partner,
-        Stream
+        Partner
     }
 
     public static enum StatisticAggregationMethod {

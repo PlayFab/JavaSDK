@@ -3954,6 +3954,64 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Retrieves the current server time
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetTimeResult>> GetTimeAsync(final GetTimeRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetTimeResult>>() {
+            public PlayFabResult<GetTimeResult> call() throws Exception {
+                return privateGetTimeAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the current server time
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetTimeResult> GetTime(final GetTimeRequest request) {
+        FutureTask<PlayFabResult<GetTimeResult>> task = new FutureTask(new Callable<PlayFabResult<GetTimeResult>>() {
+            public PlayFabResult<GetTimeResult> call() throws Exception {
+                return privateGetTimeAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves the current server time
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetTimeResult> privateGetTimeAsync(final GetTimeRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetTime", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetTimeResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetTimeResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetTimeResult>>(){}.getType());
+        GetTimeResult result = resultData.data;
+
+        PlayFabResult<GetTimeResult> pfResult = new PlayFabResult<GetTimeResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the key-value store of custom title settings
      */
     @SuppressWarnings("unchecked")
