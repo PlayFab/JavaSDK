@@ -2393,11 +2393,6 @@ public class PlayFabAdminModels {
 
     public static class UpdateCloudScriptRequest {
         /**
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Integer Version;
-        /**
          * List of Cloud Script files to upload to create the new revision. Must have at least one file.
          */
         public ArrayList<CloudScriptFile> Files;
@@ -2634,8 +2629,9 @@ public class PlayFabAdminModels {
          */
         public String Username;
         /**
-         * Password for the PlayFab account (6-100 characters)
+         * @deprecated Do not use
          */
+        @Deprecated
         public String Password;
         
     }

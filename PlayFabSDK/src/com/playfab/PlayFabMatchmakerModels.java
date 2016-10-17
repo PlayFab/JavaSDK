@@ -165,11 +165,11 @@ public class PlayFabMatchmakerModels {
          */
         public String Build;
         /**
-         * Unique identifier of the build running on the Game Server Instance.
+         * Region in which the Game Server Instance is running. For matchmaking using non-AWS region names, set this to any AWS region and use Tags (below) to specify your custom region.
          */
         public Region Region;
         /**
-         * Unique identifier of the build running on the Game Server Instance.
+         * Game Mode the Game Server instance is running. Note that this must be defined in the Game Modes tab in the PlayFab Game Manager, along with the Build ID (the same Game Mode can be defined for multiple Build IDs).
          */
         public String GameMode;
         /**

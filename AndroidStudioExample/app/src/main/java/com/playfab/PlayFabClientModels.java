@@ -147,9 +147,14 @@ public class PlayFabClientModels {
          */
         public String Idfa;
         /**
-         * The Android Id for this Android device.
+         * @deprecated Please use Adid instead. 
          */
+        @Deprecated
         public String Android_Id;
+        /**
+         * The adid for this device.
+         */
+        public String Adid;
         
     }
 
@@ -1103,34 +1108,6 @@ public class PlayFabClientModels {
         
     }
 
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class GetCloudScriptUrlRequest {
-        /**
-         * Cloud Script Version to use. Defaults to 1.
-         */
-        public Integer Version;
-        /**
-         * Specifies whether the URL returned should be the one for the most recently uploaded Revision of the Cloud Script (true), or the Revision most recently set to live (false). Defaults to false.
-         */
-        public Boolean Testing;
-        
-    }
-
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class GetCloudScriptUrlResult {
-        /**
-         * URL of the Cloud Script logic server.
-         */
-        public String Url;
-        
-    }
-
     public static class GetContentDownloadUrlRequest {
         /**
          * Key of the content item to fetch, usually formatted as a path, e.g. images/a.png
@@ -1152,42 +1129,6 @@ public class PlayFabClientModels {
          * URL for downloading content via HTTP GET or HEAD method. The URL will expire in 1 hour.
          */
         public String URL;
-        
-    }
-
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class GetFriendLeaderboardAroundCurrentUserRequest {
-        /**
-         * Statistic used to rank players for this leaderboard.
-         */
-        public String StatisticName;
-        /**
-         * Maximum number of entries to retrieve. Default 10, maximum 100.
-         */
-        public Integer MaxResultsCount;
-        /**
-         * Indicates whether Steam service friends should be included in the response. Default is true.
-         */
-        public Boolean IncludeSteamFriends;
-        /**
-         * Indicates whether Facebook friends should be included in the response. Default is true.
-         */
-        public Boolean IncludeFacebookFriends;
-        
-    }
-
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class GetFriendLeaderboardAroundCurrentUserResult {
-        /**
-         * Ordered listing of users and their positions in the requested leaderboard.
-         */
-        public ArrayList<PlayerLeaderboardEntry> Leaderboard;
         
     }
 
@@ -1292,34 +1233,6 @@ public class PlayFabClientModels {
          * Ordered list of leaderboard entries.
          */
         public ArrayList<CharacterLeaderboardEntry> Leaderboard;
-        
-    }
-
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class GetLeaderboardAroundCurrentUserRequest {
-        /**
-         * Statistic used to rank players for this leaderboard.
-         */
-        public String StatisticName;
-        /**
-         * Maximum number of entries to retrieve. Default 10, maximum 100.
-         */
-        public Integer MaxResultsCount;
-        
-    }
-
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class GetLeaderboardAroundCurrentUserResult {
-        /**
-         * Ordered listing of users and their positions in the requested leaderboard.
-         */
-        public ArrayList<PlayerLeaderboardEntry> Leaderboard;
         
     }
 
@@ -1714,11 +1627,6 @@ public class PlayFabClientModels {
 
     public static class GetPlayFabIDsFromSteamIDsRequest {
         /**
-         * @deprecated Please use SteamStringIDs instead. 
-         */
-        @Deprecated
-        public ArrayList<Long> SteamIDs;
-        /**
          * Array of unique Steam identifiers (Steam profile IDs) for which the title needs to get PlayFab identifiers.
          */
         public ArrayList<String> SteamStringIDs;
@@ -2092,26 +2000,6 @@ public class PlayFabClientModels {
         
     }
 
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class GetUserStatisticsRequest {
-        
-    }
-
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class GetUserStatisticsResult {
-        /**
-         * User statistics for the active title.
-         */
-        public Map<String,Integer> UserStatistics;
-        
-    }
-
     public static class GooglePlayFabIdPair {
         /**
          * Unique Google identifier for a user.
@@ -2440,38 +2328,6 @@ public class PlayFabClientModels {
         
     }
 
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class LogEventRequest {
-        /**
-         * Optional timestamp for this event. If null, the a timestamp is auto-assigned to the event on the server.
-         */
-        public Date Timestamp;
-        /**
-         * A unique event name which will be used as the table name in the Redshift database. The name will be made lower case, and cannot not contain spaces. The use of underscores is recommended, for readability. Events also cannot match reserved terms. The PlayFab reserved terms are 'log_in' and 'purchase', 'create' and 'request', while the Redshift reserved terms can be found here: http://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html.
-         */
-        public String EventName;
-        /**
-         * Contains all the data for this event. Event Values can be strings, booleans or numerics (float, double, integer, long) and must be consistent on a per-event basis (if the Value for Key 'A' in Event 'Foo' is an integer the first time it is sent, it must be an integer in all subsequent 'Foo' events). As with event names, Keys must also not use reserved words (see above). Finally, the size of the Body for an event must be less than 32KB (UTF-8 format).
-         */
-        public Map<String,Object> Body;
-        /**
-         * Flag to set event Body as profile details in the Redshift database as well as a standard event.
-         */
-        public Boolean ProfileSetEvent;
-        
-    }
-
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class LogEventResult {
-        
-    }
-
     public static class LoginResult {
         /**
          * Unique token authorizing the user and game at the server level, for the current session.
@@ -2621,11 +2477,6 @@ public class PlayFabClientModels {
          * Automatically create a PlayFab account if one is not currently linked to this Google account.
          */
         public Boolean CreateAccount;
-        /**
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public String PublisherId;
         /**
          * Flags for which pieces of info to return for the user.
          */
@@ -2791,11 +2642,6 @@ public class PlayFabClientModels {
          * Filter to include and/or exclude Game Server Instances associated with certain Tags
          */
         public CollectionFilter TagFilter;
-        /**
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean EnableQueue;
         
     }
 
@@ -3146,11 +2992,6 @@ public class PlayFabClientModels {
          * An optional parameter for setting the display name for this title.
          */
         public String DisplayName;
-        /**
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public String Origination;
         
     }
 
@@ -3250,62 +3091,6 @@ public class PlayFabClientModels {
         
     }
 
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class RunCloudScriptRequest {
-        /**
-         * server action to trigger
-         */
-        public String ActionId;
-        /**
-         * parameters to pass into the action (If you use this, don't use ParamsEncoded)
-         */
-        public Object Params;
-        /**
-         * json-encoded parameters to pass into the action (If you use this, don't use Params)
-         */
-        public String ParamsEncoded;
-        
-    }
-
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class RunCloudScriptResult {
-        /**
-         * id of Cloud Script run
-         */
-        public String ActionId;
-        /**
-         * version of Cloud Script run
-         */
-        public Integer Version;
-        /**
-         * revision of Cloud Script run
-         */
-        public Integer Revision;
-        /**
-         * return values from the server action as a dynamic object
-         */
-        public Object Results;
-        /**
-         * return values from the server action as a JSON encoded string
-         */
-        public String ResultsEncoded;
-        /**
-         * any log statements generated during the run of this action
-         */
-        public String ActionLog;
-        /**
-         * time this script took to run, in seconds
-         */
-        public Double ExecutionTime;
-        
-    }
-
     public static class ScriptExecutionError {
         /**
          * Error code, such as CloudScriptNotFound, JavascriptException, CloudScriptFunctionArgumentSizeExceeded, CloudScriptAPIRequestCountExceeded, CloudScriptAPIRequestError, or CloudScriptHTTPRequestError
@@ -3331,11 +3116,6 @@ public class PlayFabClientModels {
          * Unique identifier for the title, found in the Settings > Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
-        /**
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public String PublisherId;
         
     }
 
@@ -3524,11 +3304,6 @@ public class PlayFabClientModels {
     }
 
     public static class SteamPlayFabIdPair {
-        /**
-         * @deprecated Please use SteamStringId instead. 
-         */
-        @Deprecated
-        public Long SteamId;
         /**
          * Unique Steam identifier for a user.
          */
@@ -3973,26 +3748,6 @@ public class PlayFabClientModels {
          * Indicates the current version of the data that has been set. This is incremented with every set call for that type of data (read-only, internal, etc). This version can be provided in Get calls to find updated data.
          */
         public Long DataVersion;
-        
-    }
-
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class UpdateUserStatisticsRequest {
-        /**
-         * Statistics to be updated with the provided values. UserStatistics object must follow the Key(string), Value(int) pattern.
-         */
-        public Map<String,Integer> UserStatistics;
-        
-    }
-
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class UpdateUserStatisticsResult {
         
     }
 

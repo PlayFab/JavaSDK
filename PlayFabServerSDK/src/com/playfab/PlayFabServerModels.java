@@ -786,7 +786,7 @@ public class PlayFabServerModels {
 
     public static class ExecuteCloudScriptServerRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         * The unique user identifier for the player on whose behalf the script is being run
          */
         public String PlayFabId;
         /**
@@ -1510,11 +1510,6 @@ public class PlayFabServerModels {
 
     public static class GetPlayFabIDsFromSteamIDsRequest {
         /**
-         * @deprecated Please use SteamStringIDs instead. 
-         */
-        @Deprecated
-        public ArrayList<Long> SteamIDs;
-        /**
          * Array of unique Steam identifiers (Steam profile IDs) for which the title needs to get PlayFab identifiers.
          */
         public ArrayList<String> SteamStringIDs;
@@ -1743,34 +1738,6 @@ public class PlayFabServerModels {
          * Array of remaining times and timestamps for virtual currencies.
          */
         public Map<String,VirtualCurrencyRechargeTime> VirtualCurrencyRechargeTimes;
-        
-    }
-
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class GetUserStatisticsRequest {
-        /**
-         * User for whom statistics are being requested.
-         */
-        public String PlayFabId;
-        
-    }
-
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class GetUserStatisticsResult {
-        /**
-         * PlayFab unique identifier of the user whose statistics are being returned.
-         */
-        public String PlayFabId;
-        /**
-         * User statistics for the requested user.
-         */
-        public Map<String,Integer> UserStatistics;
         
     }
 
@@ -2079,50 +2046,6 @@ public class PlayFabServerModels {
         
     }
 
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class LogEventRequest {
-        /**
-         * PlayFab User Id of the player associated with this event. For non-player associated events, this must be null and EntityId must be set.
-         */
-        public String PlayFabId;
-        /**
-         * For non player-associated events, a unique ID for the entity associated with this event. For player associated events, this must be null and PlayFabId must be set.
-         */
-        public String EntityId;
-        /**
-         * For non player-associated events, the type of entity associated with this event. For player associated events, this must be null.
-         */
-        public String EntityType;
-        /**
-         * Optional timestamp for this event. If null, the a timestamp is auto-assigned to the event on the server.
-         */
-        public Date Timestamp;
-        /**
-         * A unique event name which will be used as the table name in the Redshift database. The name will be made lower case, and cannot not contain spaces. The use of underscores is recommended, for readability. Events also cannot match reserved terms. The PlayFab reserved terms are 'log_in' and 'purchase', 'create' and 'request', while the Redshift reserved terms can be found here: http://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html.
-         */
-        public String EventName;
-        /**
-         * Contains all the data for this event. Event Values can be strings, booleans or numerics (float, double, integer, long) and must be consistent on a per-event basis (if the Value for Key 'A' in Event 'Foo' is an integer the first time it is sent, it must be an integer in all subsequent 'Foo' events). As with event names, Keys must also not use reserved words (see above). Finally, the size of the Body for an event must be less than 32KB (UTF-8 format).
-         */
-        public Map<String,Object> Body;
-        /**
-         * Flag to set event Body as profile details in the Redshift database as well as a standard event.
-         */
-        public Boolean ProfileSetEvent;
-        
-    }
-
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class LogEventResult {
-        
-    }
-
     public static enum LoginIdentityProvider {
         Unknown,
         PlayFab,
@@ -2300,8 +2223,7 @@ public class PlayFabServerModels {
         Unassigned,
         Connecting,
         Participating,
-        Participated,
-        Reconnecting
+        Participated
     }
 
     public static class PlayerLeaderboardEntry {
@@ -2585,11 +2507,11 @@ public class PlayFabServerModels {
          */
         public String Build;
         /**
-         * Unique identifier of the build running on the Game Server Instance.
+         * Region in which the Game Server Instance is running. For matchmaking using non-AWS region names, set this to any AWS region and use Tags (below) to specify your custom region.
          */
         public Region Region;
         /**
-         * Unique identifier of the build running on the Game Server Instance.
+         * Game Mode the Game Server instance is running. Note that this must be defined in the Game Modes tab in the PlayFab Game Manager, along with the Build ID (the same Game Mode can be defined for multiple Build IDs).
          */
         public String GameMode;
         /**
@@ -2938,11 +2860,6 @@ public class PlayFabServerModels {
 
     public static class SteamPlayFabIdPair {
         /**
-         * @deprecated Please use SteamStringId instead. 
-         */
-        @Deprecated
-        public Long SteamId;
-        /**
          * Unique Steam identifier for a user.
          */
         public String SteamStringId;
@@ -3289,30 +3206,6 @@ public class PlayFabServerModels {
          * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language constraints.  Use this to delete the keys directly.
          */
         public ArrayList<String> KeysToRemove;
-        
-    }
-
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class UpdateUserStatisticsRequest {
-        /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
-         * Statistics to be updated with the provided values.
-         */
-        public Map<String,Integer> UserStatistics;
-        
-    }
-
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class UpdateUserStatisticsResult {
         
     }
 
