@@ -74,9 +74,10 @@ public class PlayFabApiTest
 
     @BeforeClass
     public static void oneTimeSetUp() {
-        String testTitleDataFile = System.getProperty("testTitleData");
+        Map<String, String> env = System.getenv();
+        String testTitleDataFile = env.get("PF_TEST_TITLE_DATA_JSON"); // Set the PF_TEST_TITLE_DATA_JSON env-var to the path of a testTitleData.json file (described here: https://github.com/PlayFab/SDKGenerator/blob/master/JenkinsConsoleUtility/testTitleData.md)
         String testTitleJson;
-        try{
+        try {
             File file = new File(testTitleDataFile);
             FileInputStream fis = new FileInputStream(file);
             byte[] data = new byte[(int) file.length()];
@@ -84,8 +85,7 @@ public class PlayFabApiTest
             fis.close();
             testTitleJson = new String(data);
         } catch (IOException e) {
-            // NOTE: Un-Comment and put your title-specific information here to test your title, or provide the following command line parameter when running the tests
-            //   -testTitleData=YOUR_FILE_LOCATION\testTitleData.json
+            // NOTE: Un-Comment and put your title-specific information here to test your title, or use PF_TEST_TITLE_DATA_JSON above
             //PlayFabSettings.TitleId = "TODO: TitleID";
             //PlayFabSettings.DeveloperSecretKey = "TODO: A big long secret key that you should NEVER publish with your client";
             //TITLE_CAN_UPDATE_SETTINGS = false; // TODO: Set to true if you've enabled this in your title.
@@ -389,6 +389,24 @@ public class PlayFabApiTest
         assertNotNull(hwResult.Result.FunctionResult);
         Map<String, String> arbitraryResults = (Map<String, String>)hwResult.Result.FunctionResult;
         assertEquals(arbitraryResults.get("messageValue"), "Hello " + playFabId + "!");
+    }
+
+    /// <summary>
+    /// CLIENT API
+    /// Test that CloudScript errors can be deciphered
+    /// </summary>
+    @Test
+    public void CloudScriptError()
+    {
+        LoginOrRegister();
+
+        PlayFabClientModels.ExecuteCloudScriptRequest errRequest = new PlayFabClientModels.ExecuteCloudScriptRequest();
+        errRequest.FunctionName = "throwError";
+        PlayFabResult<PlayFabClientModels.ExecuteCloudScriptResult> errResult = PlayFabClientAPI.ExecuteCloudScript(errRequest);
+        VerifyResult(errResult, true);
+        assertTrue(errResult.Result.FunctionResult == null);
+        assertNotNull(errResult.Result.Error);
+        assertEquals(errResult.Result.Error.Error, "JavascriptException");
     }
 
     /// <summary>

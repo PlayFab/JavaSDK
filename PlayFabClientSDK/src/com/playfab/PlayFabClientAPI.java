@@ -2839,67 +2839,6 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * @deprecated Please use GetFriendLeaderboardAroundPlayer instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult>> GetFriendLeaderboardAroundCurrentUserAsync(final GetFriendLeaderboardAroundCurrentUserRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult>>() {
-            public PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult> call() throws Exception {
-                return privateGetFriendLeaderboardAroundCurrentUserAsync(request);
-            }
-        });
-    }
-
-    /**
-     * @deprecated Please use GetFriendLeaderboardAroundPlayer instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult> GetFriendLeaderboardAroundCurrentUser(final GetFriendLeaderboardAroundCurrentUserRequest request) {
-        FutureTask<PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult>> task = new FutureTask(new Callable<PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult>>() {
-            public PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult> call() throws Exception {
-                return privateGetFriendLeaderboardAroundCurrentUserAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * @deprecated Please use GetFriendLeaderboardAroundPlayer instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult> privateGetFriendLeaderboardAroundCurrentUserAsync(final GetFriendLeaderboardAroundCurrentUserRequest request) throws Exception {
-        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetFriendLeaderboardAroundCurrentUser", request, "X-Authorization", _authKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<GetFriendLeaderboardAroundCurrentUserResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetFriendLeaderboardAroundCurrentUserResult>>(){}.getType());
-        GetFriendLeaderboardAroundCurrentUserResult result = resultData.data;
-
-        PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult> pfResult = new PlayFabResult<GetFriendLeaderboardAroundCurrentUserResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
      * Retrieves a list of ranked friends of the current player for the given statistic, centered on the requested PlayFab user. If PlayFabId is empty or null will return currently logged in user.
      */
     @SuppressWarnings("unchecked")
@@ -3011,67 +2950,6 @@ public class PlayFabClientAPI {
         GetLeaderboardResult result = resultData.data;
 
         PlayFabResult<GetLeaderboardResult> pfResult = new PlayFabResult<GetLeaderboardResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
-     * @deprecated Please use GetLeaderboardAroundPlayer instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<GetLeaderboardAroundCurrentUserResult>> GetLeaderboardAroundCurrentUserAsync(final GetLeaderboardAroundCurrentUserRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<GetLeaderboardAroundCurrentUserResult>>() {
-            public PlayFabResult<GetLeaderboardAroundCurrentUserResult> call() throws Exception {
-                return privateGetLeaderboardAroundCurrentUserAsync(request);
-            }
-        });
-    }
-
-    /**
-     * @deprecated Please use GetLeaderboardAroundPlayer instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<GetLeaderboardAroundCurrentUserResult> GetLeaderboardAroundCurrentUser(final GetLeaderboardAroundCurrentUserRequest request) {
-        FutureTask<PlayFabResult<GetLeaderboardAroundCurrentUserResult>> task = new FutureTask(new Callable<PlayFabResult<GetLeaderboardAroundCurrentUserResult>>() {
-            public PlayFabResult<GetLeaderboardAroundCurrentUserResult> call() throws Exception {
-                return privateGetLeaderboardAroundCurrentUserAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * @deprecated Please use GetLeaderboardAroundPlayer instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<GetLeaderboardAroundCurrentUserResult> privateGetLeaderboardAroundCurrentUserAsync(final GetLeaderboardAroundCurrentUserRequest request) throws Exception {
-        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetLeaderboardAroundCurrentUser", request, "X-Authorization", _authKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<GetLeaderboardAroundCurrentUserResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<GetLeaderboardAroundCurrentUserResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetLeaderboardAroundCurrentUserResult>>(){}.getType());
-        GetLeaderboardAroundCurrentUserResult result = resultData.data;
-
-        PlayFabResult<GetLeaderboardAroundCurrentUserResult> pfResult = new PlayFabResult<GetLeaderboardAroundCurrentUserResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -3483,67 +3361,6 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * @deprecated Please use GetPlayerStatistics instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<GetUserStatisticsResult>> GetUserStatisticsAsync(final GetUserStatisticsRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<GetUserStatisticsResult>>() {
-            public PlayFabResult<GetUserStatisticsResult> call() throws Exception {
-                return privateGetUserStatisticsAsync(request);
-            }
-        });
-    }
-
-    /**
-     * @deprecated Please use GetPlayerStatistics instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<GetUserStatisticsResult> GetUserStatistics(final GetUserStatisticsRequest request) {
-        FutureTask<PlayFabResult<GetUserStatisticsResult>> task = new FutureTask(new Callable<PlayFabResult<GetUserStatisticsResult>>() {
-            public PlayFabResult<GetUserStatisticsResult> call() throws Exception {
-                return privateGetUserStatisticsAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * @deprecated Please use GetPlayerStatistics instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<GetUserStatisticsResult> privateGetUserStatisticsAsync(final GetUserStatisticsRequest request) throws Exception {
-        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetUserStatistics", request, "X-Authorization", _authKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<GetUserStatisticsResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<GetUserStatisticsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetUserStatisticsResult>>(){}.getType());
-        GetUserStatisticsResult result = resultData.data;
-
-        PlayFabResult<GetUserStatisticsResult> pfResult = new PlayFabResult<GetUserStatisticsResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
      * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager > Settings > API Features.
      */
     @SuppressWarnings("unchecked")
@@ -3713,67 +3530,6 @@ public class PlayFabClientAPI {
         UpdateUserDataResult result = resultData.data;
 
         PlayFabResult<UpdateUserDataResult> pfResult = new PlayFabResult<UpdateUserDataResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
-     * @deprecated Please use UpdatePlayerStatistics instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<UpdateUserStatisticsResult>> UpdateUserStatisticsAsync(final UpdateUserStatisticsRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<UpdateUserStatisticsResult>>() {
-            public PlayFabResult<UpdateUserStatisticsResult> call() throws Exception {
-                return privateUpdateUserStatisticsAsync(request);
-            }
-        });
-    }
-
-    /**
-     * @deprecated Please use UpdatePlayerStatistics instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<UpdateUserStatisticsResult> UpdateUserStatistics(final UpdateUserStatisticsRequest request) {
-        FutureTask<PlayFabResult<UpdateUserStatisticsResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateUserStatisticsResult>>() {
-            public PlayFabResult<UpdateUserStatisticsResult> call() throws Exception {
-                return privateUpdateUserStatisticsAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * @deprecated Please use UpdatePlayerStatistics instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<UpdateUserStatisticsResult> privateUpdateUserStatisticsAsync(final UpdateUserStatisticsRequest request) throws Exception {
-        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UpdateUserStatistics", request, "X-Authorization", _authKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<UpdateUserStatisticsResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<UpdateUserStatisticsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateUserStatisticsResult>>(){}.getType());
-        UpdateUserStatisticsResult result = resultData.data;
-
-        PlayFabResult<UpdateUserStatisticsResult> pfResult = new PlayFabResult<UpdateUserStatisticsResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -5635,67 +5391,6 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * @deprecated Please use WritePlayerEvent instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<LogEventResult>> LogEventAsync(final LogEventRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<LogEventResult>>() {
-            public PlayFabResult<LogEventResult> call() throws Exception {
-                return privateLogEventAsync(request);
-            }
-        });
-    }
-
-    /**
-     * @deprecated Please use WritePlayerEvent instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<LogEventResult> LogEvent(final LogEventRequest request) {
-        FutureTask<PlayFabResult<LogEventResult>> task = new FutureTask(new Callable<PlayFabResult<LogEventResult>>() {
-            public PlayFabResult<LogEventResult> call() throws Exception {
-                return privateLogEventAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * @deprecated Please use WritePlayerEvent instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<LogEventResult> privateLogEventAsync(final LogEventRequest request) throws Exception {
-        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LogEvent", request, "X-Authorization", _authKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<LogEventResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<LogEventResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LogEventResult>>(){}.getType());
-        LogEventResult result = resultData.data;
-
-        PlayFabResult<LogEventResult> pfResult = new PlayFabResult<LogEventResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
      * Writes a character-based event into PlayStream.
      */
     @SuppressWarnings("unchecked")
@@ -6213,129 +5908,6 @@ public class PlayFabClientAPI {
         ExecuteCloudScriptResult result = resultData.data;
 
         PlayFabResult<ExecuteCloudScriptResult> pfResult = new PlayFabResult<ExecuteCloudScriptResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
-     * @deprecated Please use ExecuteCloudScript instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<GetCloudScriptUrlResult>> GetCloudScriptUrlAsync(final GetCloudScriptUrlRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<GetCloudScriptUrlResult>>() {
-            public PlayFabResult<GetCloudScriptUrlResult> call() throws Exception {
-                return privateGetCloudScriptUrlAsync(request);
-            }
-        });
-    }
-
-    /**
-     * @deprecated Please use ExecuteCloudScript instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<GetCloudScriptUrlResult> GetCloudScriptUrl(final GetCloudScriptUrlRequest request) {
-        FutureTask<PlayFabResult<GetCloudScriptUrlResult>> task = new FutureTask(new Callable<PlayFabResult<GetCloudScriptUrlResult>>() {
-            public PlayFabResult<GetCloudScriptUrlResult> call() throws Exception {
-                return privateGetCloudScriptUrlAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * @deprecated Please use ExecuteCloudScript instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<GetCloudScriptUrlResult> privateGetCloudScriptUrlAsync(final GetCloudScriptUrlRequest request) throws Exception {
-        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetCloudScriptUrl", request, "X-Authorization", _authKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<GetCloudScriptUrlResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<GetCloudScriptUrlResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetCloudScriptUrlResult>>(){}.getType());
-        GetCloudScriptUrlResult result = resultData.data;
-        PlayFabSettings.LogicServerURL = result.Url;
-
-        PlayFabResult<GetCloudScriptUrlResult> pfResult = new PlayFabResult<GetCloudScriptUrlResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
-     * @deprecated Please use ExecuteCloudScript instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<RunCloudScriptResult>> RunCloudScriptAsync(final RunCloudScriptRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<RunCloudScriptResult>>() {
-            public PlayFabResult<RunCloudScriptResult> call() throws Exception {
-                return privateRunCloudScriptAsync(request);
-            }
-        });
-    }
-
-    /**
-     * @deprecated Please use ExecuteCloudScript instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<RunCloudScriptResult> RunCloudScript(final RunCloudScriptRequest request) {
-        FutureTask<PlayFabResult<RunCloudScriptResult>> task = new FutureTask(new Callable<PlayFabResult<RunCloudScriptResult>>() {
-            public PlayFabResult<RunCloudScriptResult> call() throws Exception {
-                return privateRunCloudScriptAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * @deprecated Please use ExecuteCloudScript instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<RunCloudScriptResult> privateRunCloudScriptAsync(final RunCloudScriptRequest request) throws Exception {
-        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetLogicURL() + "/Client/RunCloudScript", request, "X-Authorization", _authKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<RunCloudScriptResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<RunCloudScriptResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RunCloudScriptResult>>(){}.getType());
-        RunCloudScriptResult result = resultData.data;
-
-        PlayFabResult<RunCloudScriptResult> pfResult = new PlayFabResult<RunCloudScriptResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -7508,7 +7080,7 @@ public class PlayFabClientAPI {
             if (PlayFabSettings.AdvertisingIdType == PlayFabSettings.AD_TYPE_IDFA)
                 request.Idfa = PlayFabSettings.AdvertisingIdValue;
             else if (PlayFabSettings.AdvertisingIdType == PlayFabSettings.AD_TYPE_ANDROID_ID)
-                request.Android_Id = PlayFabSettings.AdvertisingIdValue;
+                request.Adid = PlayFabSettings.AdvertisingIdValue;
             else
                 return;
             FutureTask<PlayFabResult<AttributeInstallResult>> task = AttributeInstallAsync(request);

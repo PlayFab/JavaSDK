@@ -1351,67 +1351,6 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * @deprecated Please use GetPlayerStatistics instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<GetUserStatisticsResult>> GetUserStatisticsAsync(final GetUserStatisticsRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<GetUserStatisticsResult>>() {
-            public PlayFabResult<GetUserStatisticsResult> call() throws Exception {
-                return privateGetUserStatisticsAsync(request);
-            }
-        });
-    }
-
-    /**
-     * @deprecated Please use GetPlayerStatistics instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<GetUserStatisticsResult> GetUserStatistics(final GetUserStatisticsRequest request) {
-        FutureTask<PlayFabResult<GetUserStatisticsResult>> task = new FutureTask(new Callable<PlayFabResult<GetUserStatisticsResult>>() {
-            public PlayFabResult<GetUserStatisticsResult> call() throws Exception {
-                return privateGetUserStatisticsAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * @deprecated Please use GetPlayerStatistics instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<GetUserStatisticsResult> privateGetUserStatisticsAsync(final GetUserStatisticsRequest request) throws Exception {
-        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetUserStatistics", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<GetUserStatisticsResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<GetUserStatisticsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetUserStatisticsResult>>(){}.getType());
-        GetUserStatisticsResult result = resultData.data;
-
-        PlayFabResult<GetUserStatisticsResult> pfResult = new PlayFabResult<GetUserStatisticsResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
      * Updates the values of the specified title-specific statistics for the user
      */
     @SuppressWarnings("unchecked")
@@ -1813,67 +1752,6 @@ public class PlayFabServerAPI {
         UpdateUserDataResult result = resultData.data;
 
         PlayFabResult<UpdateUserDataResult> pfResult = new PlayFabResult<UpdateUserDataResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
-     * @deprecated Please use UpdatePlayerStatistics instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<UpdateUserStatisticsResult>> UpdateUserStatisticsAsync(final UpdateUserStatisticsRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<UpdateUserStatisticsResult>>() {
-            public PlayFabResult<UpdateUserStatisticsResult> call() throws Exception {
-                return privateUpdateUserStatisticsAsync(request);
-            }
-        });
-    }
-
-    /**
-     * @deprecated Please use UpdatePlayerStatistics instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<UpdateUserStatisticsResult> UpdateUserStatistics(final UpdateUserStatisticsRequest request) {
-        FutureTask<PlayFabResult<UpdateUserStatisticsResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateUserStatisticsResult>>() {
-            public PlayFabResult<UpdateUserStatisticsResult> call() throws Exception {
-                return privateUpdateUserStatisticsAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * @deprecated Please use UpdatePlayerStatistics instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<UpdateUserStatisticsResult> privateUpdateUserStatisticsAsync(final UpdateUserStatisticsRequest request) throws Exception {
-        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UpdateUserStatistics", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<UpdateUserStatisticsResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<UpdateUserStatisticsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateUserStatisticsResult>>(){}.getType());
-        UpdateUserStatisticsResult result = resultData.data;
-
-        PlayFabResult<UpdateUserStatisticsResult> pfResult = new PlayFabResult<UpdateUserStatisticsResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -4368,67 +4246,6 @@ public class PlayFabServerAPI {
         AwardSteamAchievementResult result = resultData.data;
 
         PlayFabResult<AwardSteamAchievementResult> pfResult = new PlayFabResult<AwardSteamAchievementResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
-     * @deprecated Please use WritePlayerEvent instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<LogEventResult>> LogEventAsync(final LogEventRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<LogEventResult>>() {
-            public PlayFabResult<LogEventResult> call() throws Exception {
-                return privateLogEventAsync(request);
-            }
-        });
-    }
-
-    /**
-     * @deprecated Please use WritePlayerEvent instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<LogEventResult> LogEvent(final LogEventRequest request) {
-        FutureTask<PlayFabResult<LogEventResult>> task = new FutureTask(new Callable<PlayFabResult<LogEventResult>>() {
-            public PlayFabResult<LogEventResult> call() throws Exception {
-                return privateLogEventAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * @deprecated Please use WritePlayerEvent instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<LogEventResult> privateLogEventAsync(final LogEventRequest request) throws Exception {
-        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/LogEvent", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<LogEventResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<LogEventResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LogEventResult>>(){}.getType());
-        LogEventResult result = resultData.data;
-
-        PlayFabResult<LogEventResult> pfResult = new PlayFabResult<LogEventResult>();
         pfResult.Result = result;
         return pfResult;
     }
