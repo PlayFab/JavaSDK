@@ -5,6 +5,78 @@ import com.playfab.PlayFabUtil.*;
 
 public class PlayFabAdminModels {
 
+    public static class AbortTaskInstanceRequest {
+        /**
+         * ID of a task instance that is being aborted.
+         */
+        public String TaskInstanceId;
+        
+    }
+
+    public static class ActionsOnPlayersInSegmentTaskParameter {
+        /**
+         * ID of the segment to perform actions on.
+         */
+        public String SegmentId;
+        /**
+         * ID of the action to perform on each player in segment.
+         */
+        public String ActionId;
+        
+    }
+
+    public static class ActionsOnPlayersInSegmentTaskSummary {
+        /**
+         * ID of the task instance.
+         */
+        public String TaskInstanceId;
+        /**
+         * Identifier of the task this instance belongs to.
+         */
+        public NameIdentifier TaskIdentifier;
+        /**
+         * UTC timestamp when the task started.
+         */
+        public Date StartedAt;
+        /**
+         * UTC timestamp when the task completed.
+         */
+        public Date CompletedAt;
+        /**
+         * Current status of the task instance.
+         */
+        public TaskInstanceStatus Status;
+        /**
+         * Progress represented as percentage.
+         */
+        public Double PercentComplete;
+        /**
+         * Estimated time remaining in seconds.
+         */
+        public Double EstimatedSecondsRemaining;
+        /**
+         * If manually scheduled, ID of user who scheduled the task.
+         */
+        public String ScheduledByUserId;
+        /**
+         * Error message for last processing attempt, if an error occured.
+         */
+        public String ErrorMessage;
+        /**
+         * Flag indicating if the error was fatal, if false job will be retried.
+         */
+        public Boolean ErrorWasFatal;
+        /**
+         * Total players in segment when task was started.
+         */
+        public Integer TotalPlayersInSegment;
+        /**
+         * Total number of players that have had the actions applied to.
+         */
+        public Integer TotalPlayersProcessed;
+        
+    }
+
     public static class AdCampaignAttribution {
         /**
          * Attribution network name
@@ -321,7 +393,7 @@ public class PlayFabAdminModels {
          */
         public Boolean IsLimitedEdition;
         /**
-         * BETA: If IsLImitedEdition is true, then this determines amount of the item initially available. Note that this fieldis ignored if the catalog item already existed in this catalog, or the field is less than 1.
+         * If IsLImitedEdition is true, then this determines amount of the item initially available. Note that this fieldis ignored if the catalog item already existed in this catalog, or the field is less than 1.
          */
         public Integer InitialLimitedEditionCount;
         
@@ -403,6 +475,58 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class CloudScriptTaskParameter {
+        /**
+         * Name of the CloudScript function to execute.
+         */
+        public String FunctionName;
+        /**
+         * Argument to pass to the CloudScript function.
+         */
+        public Object Argument;
+        
+    }
+
+    public static class CloudScriptTaskSummary {
+        /**
+         * ID of the task instance.
+         */
+        public String TaskInstanceId;
+        /**
+         * Identifier of the task this instance belongs to.
+         */
+        public NameIdentifier TaskIdentifier;
+        /**
+         * UTC timestamp when the task started.
+         */
+        public Date StartedAt;
+        /**
+         * UTC timestamp when the task completed.
+         */
+        public Date CompletedAt;
+        /**
+         * Current status of the task instance.
+         */
+        public TaskInstanceStatus Status;
+        /**
+         * Progress represented as percentage.
+         */
+        public Double PercentComplete;
+        /**
+         * Estimated time remaining in seconds.
+         */
+        public Double EstimatedSecondsRemaining;
+        /**
+         * If manually scheduled, ID of user who scheduled the task.
+         */
+        public String ScheduledByUserId;
+        /**
+         * Result of CloudScript execution
+         */
+        public ExecuteCloudScriptResult Result;
+        
+    }
+
     public static class CloudScriptVersionStatus {
         /**
          * Version number
@@ -435,6 +559,316 @@ public class PlayFabAdminModels {
         
     }
 
+    public static enum ContinentCode {
+        AF,
+        AN,
+        AS,
+        EU,
+        NA,
+        OC,
+        SA
+    }
+
+    public static enum CountryCode {
+        AF,
+        AX,
+        AL,
+        DZ,
+        AS,
+        AD,
+        AO,
+        AI,
+        AQ,
+        AG,
+        AR,
+        AM,
+        AW,
+        AU,
+        AT,
+        AZ,
+        BS,
+        BH,
+        BD,
+        BB,
+        BY,
+        BE,
+        BZ,
+        BJ,
+        BM,
+        BT,
+        BO,
+        BQ,
+        BA,
+        BW,
+        BV,
+        BR,
+        IO,
+        BN,
+        BG,
+        BF,
+        BI,
+        KH,
+        CM,
+        CA,
+        CV,
+        KY,
+        CF,
+        TD,
+        CL,
+        CN,
+        CX,
+        CC,
+        CO,
+        KM,
+        CG,
+        CD,
+        CK,
+        CR,
+        CI,
+        HR,
+        CU,
+        CW,
+        CY,
+        CZ,
+        DK,
+        DJ,
+        DM,
+        DO,
+        EC,
+        EG,
+        SV,
+        GQ,
+        ER,
+        EE,
+        ET,
+        FK,
+        FO,
+        FJ,
+        FI,
+        FR,
+        GF,
+        PF,
+        TF,
+        GA,
+        GM,
+        GE,
+        DE,
+        GH,
+        GI,
+        GR,
+        GL,
+        GD,
+        GP,
+        GU,
+        GT,
+        GG,
+        GN,
+        GW,
+        GY,
+        HT,
+        HM,
+        VA,
+        HN,
+        HK,
+        HU,
+        IS,
+        IN,
+        ID,
+        IR,
+        IQ,
+        IE,
+        IM,
+        IL,
+        IT,
+        JM,
+        JP,
+        JE,
+        JO,
+        KZ,
+        KE,
+        KI,
+        KP,
+        KR,
+        KW,
+        KG,
+        LA,
+        LV,
+        LB,
+        LS,
+        LR,
+        LY,
+        LI,
+        LT,
+        LU,
+        MO,
+        MK,
+        MG,
+        MW,
+        MY,
+        MV,
+        ML,
+        MT,
+        MH,
+        MQ,
+        MR,
+        MU,
+        YT,
+        MX,
+        FM,
+        MD,
+        MC,
+        MN,
+        ME,
+        MS,
+        MA,
+        MZ,
+        MM,
+        NA,
+        NR,
+        NP,
+        NL,
+        NC,
+        NZ,
+        NI,
+        NE,
+        NG,
+        NU,
+        NF,
+        MP,
+        NO,
+        OM,
+        PK,
+        PW,
+        PS,
+        PA,
+        PG,
+        PY,
+        PE,
+        PH,
+        PN,
+        PL,
+        PT,
+        PR,
+        QA,
+        RE,
+        RO,
+        RU,
+        RW,
+        BL,
+        SH,
+        KN,
+        LC,
+        MF,
+        PM,
+        VC,
+        WS,
+        SM,
+        ST,
+        SA,
+        SN,
+        RS,
+        SC,
+        SL,
+        SG,
+        SX,
+        SK,
+        SI,
+        SB,
+        SO,
+        ZA,
+        GS,
+        SS,
+        ES,
+        LK,
+        SD,
+        SR,
+        SJ,
+        SZ,
+        SE,
+        CH,
+        SY,
+        TW,
+        TJ,
+        TZ,
+        TH,
+        TL,
+        TG,
+        TK,
+        TO,
+        TT,
+        TN,
+        TR,
+        TM,
+        TC,
+        TV,
+        UG,
+        UA,
+        AE,
+        GB,
+        US,
+        UM,
+        UY,
+        UZ,
+        VU,
+        VE,
+        VN,
+        VG,
+        VI,
+        WF,
+        EH,
+        YE,
+        ZM,
+        ZW
+    }
+
+    public static class CreateActionsOnPlayerSegmentTaskRequest {
+        /**
+         * Name of the task. This is a unique identifier for tasks in the title.
+         */
+        public String Name;
+        /**
+         * Description the task
+         */
+        public String Description;
+        /**
+         * Cron expression for the run schedule of the task. The expression should be in UTC.
+         */
+        public String Schedule;
+        /**
+         * Whether the schedule is active. Inactive schedule will not trigger task execution.
+         */
+        public Boolean IsActive;
+        /**
+         * Task details related to segment and action
+         */
+        public ActionsOnPlayersInSegmentTaskParameter Parameter;
+        
+    }
+
+    public static class CreateCloudScriptTaskRequest {
+        /**
+         * Name of the task. This is a unique identifier for tasks in the title.
+         */
+        public String Name;
+        /**
+         * Description the task
+         */
+        public String Description;
+        /**
+         * Cron expression for the run schedule of the task. The expression should be in UTC.
+         */
+        public String Schedule;
+        /**
+         * Whether the schedule is active. Inactive schedule will not trigger task execution.
+         */
+        public Boolean IsActive;
+        /**
+         * Task details related to CloudScript
+         */
+        public CloudScriptTaskParameter Parameter;
+        
+    }
+
     public static class CreatePlayerStatisticDefinitionRequest {
         /**
          * unique name of the statistic
@@ -456,6 +890,14 @@ public class PlayFabAdminModels {
          * created statistic definition
          */
         public PlayerStatisticDefinition Statistic;
+        
+    }
+
+    public static class CreateTaskResult {
+        /**
+         * ID of the task
+         */
+        public String TaskId;
         
     }
 
@@ -648,6 +1090,14 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class DeleteTaskRequest {
+        /**
+         * Specify either the task ID or the name of task to be deleted.
+         */
+        public NameIdentifier Identifier;
+        
+    }
+
     public static class DeleteUsersRequest {
         /**
          * An array of unique PlayFab assigned ID of the user on whom the operation will be performed.
@@ -661,6 +1111,48 @@ public class PlayFabAdminModels {
     }
 
     public static class DeleteUsersResult {
+        
+    }
+
+    public static class EmptyResult {
+        
+    }
+
+    public static class ExecuteCloudScriptResult {
+        /**
+         * The name of the function that executed
+         */
+        public String FunctionName;
+        /**
+         * The revision of the CloudScript that executed
+         */
+        public Integer Revision;
+        /**
+         * The object returned from the CloudScript function, if any
+         */
+        public Object FunctionResult;
+        /**
+         * Entries logged during the function execution. These include both entries logged in the function code using log.info() and log.error() and error entries for API and HTTP request failures.
+         */
+        public ArrayList<LogStatement> Logs;
+        public Double ExecutionTimeSeconds;
+        /**
+         * Processor time consumed while executing the function. This does not include time spent waiting on API calls or HTTP requests.
+         */
+        public Double ProcessorTimeSeconds;
+        public Long MemoryConsumedBytes;
+        /**
+         * Number of PlayFab API requests issued by the CloudScript function
+         */
+        public Integer APIRequestsIssued;
+        /**
+         * Number of external HTTP requests issued by the CloudScript function
+         */
+        public Integer HttpRequestsIssued;
+        /**
+         * Information about the error, if any, that occured during execution
+         */
+        public ScriptExecutionError Error;
         
     }
 
@@ -701,6 +1193,18 @@ public class PlayFabAdminModels {
          * Action Group ID
          */
         public String Id;
+        
+    }
+
+    public static class GetActionsOnPlayersInSegmentTaskInstanceResult {
+        /**
+         * Status summary of the actions-on-players-in-segment task instance
+         */
+        public ActionsOnPlayersInSegmentTaskSummary Summary;
+        /**
+         * Parameter of this task instance
+         */
+        public ActionsOnPlayersInSegmentTaskParameter Parameter;
         
     }
 
@@ -778,6 +1282,18 @@ public class PlayFabAdminModels {
          * True if this is the currently published revision
          */
         public Boolean IsPublished;
+        
+    }
+
+    public static class GetCloudScriptTaskInstanceResult {
+        /**
+         * Status summary of the CloudScript task instance
+         */
+        public CloudScriptTaskSummary Summary;
+        /**
+         * Parameter of this task instance
+         */
+        public CloudScriptTaskParameter Parameter;
         
     }
 
@@ -1196,6 +1712,58 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class GetTaskInstanceRequest {
+        /**
+         * ID of the requested task instance.
+         */
+        public String TaskInstanceId;
+        
+    }
+
+    public static class GetTaskInstancesRequest {
+        /**
+         * Name or ID of the task whose instances are being queried. If not specified, return all task instances that satisfy conditions set by other filters.
+         */
+        public NameIdentifier TaskIdentifier;
+        /**
+         * Optional filter for task instances that are of a specific status.
+         */
+        public TaskInstanceStatus StatusFilter;
+        /**
+         * Optional range-from filter for task instances' StartedAt timestamp.
+         */
+        public Date StartedAtRangeFrom;
+        /**
+         * Optional range-to filter for task instances' StartedAt timestamp.
+         */
+        public Date StartedAtRangeTo;
+        
+    }
+
+    public static class GetTaskInstancesResult {
+        /**
+         * Basic status summaries of the queried task instances. Empty If no task instances meets the filter criteria. To get detailed status summary, use Get*TaskInstance API according to task type (e.g. GetActionsOnPlayersInSegmentTaskInstance).
+         */
+        public ArrayList<TaskInstanceBasicSummary> Summaries;
+        
+    }
+
+    public static class GetTasksRequest {
+        /**
+         * Provide either the task ID or the task name to get a specific task. If not specified, return all defined tasks.
+         */
+        public NameIdentifier Identifier;
+        
+    }
+
+    public static class GetTasksResult {
+        /**
+         * Result tasks. Empty if there is no task found.
+         */
+        public ArrayList<ScheduledTask> Tasks;
+        
+    }
+
     public static class GetTitleDataRequest {
         /**
          * Specific keys to search for in the title data (leave null to get all keys)
@@ -1552,6 +2120,19 @@ public class PlayFabAdminModels {
         Twitch
     }
 
+    public static class LogStatement {
+        /**
+         * 'Debug', 'Info', or 'Error'
+         */
+        public String Level;
+        public String Message;
+        /**
+         * Optional object accompanying the message as contextual information
+         */
+        public Object Data;
+        
+    }
+
     public static class LookupUserAccountInfoRequest {
         /**
          * Unique PlayFab assigned ID of the user on whom the operation will be performed.
@@ -1696,6 +2277,15 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Identifier by either name or ID. Note that a name may change due to renaming, or reused after being deleted. ID is immutable and unique.
+     */
+    public static class NameIdentifier {
+        public String Name;
+        public String Id;
+        
+    }
+
     public static class PlayerLinkedAccount {
         /**
          * Authentication platform
@@ -1713,6 +2303,30 @@ public class PlayFabAdminModels {
          * Linked account's email
          */
         public String Email;
+        
+    }
+
+    public static class PlayerLocation {
+        /**
+         * The two-character continent code for this location
+         */
+        public ContinentCode ContinentCode;
+        /**
+         * The two-character ISO 3166-1 country code for the country associated with the location
+         */
+        public CountryCode CountryCode;
+        /**
+         * City of the player's geographic location.
+         */
+        public String City;
+        /**
+         * Latitude coordinate of the player's geographic location.
+         */
+        public Double Latitude;
+        /**
+         * Longitude coordinate of the player's geographic location.
+         */
+        public Double Longitude;
         
     }
 
@@ -1765,6 +2379,10 @@ public class PlayFabAdminModels {
          * List of player's tags for segmentation.
          */
         public ArrayList<String> Tags;
+        /**
+         * Dictionary of player's locations by type.
+         */
+        public Map<String,PlayerLocation> Locations;
         /**
          * Dictionary of player's virtual currency balances
          */
@@ -2122,6 +2740,83 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class RunTaskRequest {
+        /**
+         * Provide either the task ID or the task name to run a task.
+         */
+        public NameIdentifier Identifier;
+        
+    }
+
+    public static class RunTaskResult {
+        /**
+         * ID of the task instance that is started. This can be used in Get*TaskInstance (e.g. GetCloudScriptTaskInstance) API call to retrieve status for the task instance.
+         */
+        public String TaskInstanceId;
+        
+    }
+
+    public static class ScheduledTask {
+        /**
+         * ID of the task
+         */
+        public String TaskId;
+        /**
+         * Name of the task. This is a unique identifier for tasks in the title.
+         */
+        public String Name;
+        /**
+         * Description the task
+         */
+        public String Description;
+        /**
+         * Cron expression for the run schedule of the task. The expression should be in UTC.
+         */
+        public String Schedule;
+        /**
+         * Whether the schedule is active. Inactive schedule will not trigger task execution.
+         */
+        public Boolean IsActive;
+        /**
+         * Task type.
+         */
+        public ScheduledTaskType Type;
+        /**
+         * Task parameter. Different types of task have different parameter structure. See each task type's create API documentation for the details.
+         */
+        public Object Parameter;
+        /**
+         * UTC time of last run
+         */
+        public Date LastRunTime;
+        /**
+         * UTC time of next run
+         */
+        public Date NextRunTime;
+        
+    }
+
+    public static enum ScheduledTaskType {
+        CloudScript,
+        ActionsOnPlayerSegment
+    }
+
+    public static class ScriptExecutionError {
+        /**
+         * Error code, such as CloudScriptNotFound, JavascriptException, CloudScriptFunctionArgumentSizeExceeded, CloudScriptAPIRequestCountExceeded, CloudScriptAPIRequestError, or CloudScriptHTTPRequestError
+         */
+        public String Error;
+        /**
+         * Details about the error
+         */
+        public String Message;
+        /**
+         * Point during the execution of the script at which the error occurred, if any
+         */
+        public String StackTrace;
+        
+    }
+
     public static class SendAccountRecoveryEmailRequest {
         /**
          * User email address attached to their account
@@ -2312,6 +3007,55 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class TaskInstanceBasicSummary {
+        /**
+         * ID of the task instance.
+         */
+        public String TaskInstanceId;
+        /**
+         * Identifier of the task this instance belongs to.
+         */
+        public NameIdentifier TaskIdentifier;
+        /**
+         * UTC timestamp when the task started.
+         */
+        public Date StartedAt;
+        /**
+         * UTC timestamp when the task completed.
+         */
+        public Date CompletedAt;
+        /**
+         * Current status of the task instance.
+         */
+        public TaskInstanceStatus Status;
+        /**
+         * Progress represented as percentage.
+         */
+        public Double PercentComplete;
+        /**
+         * Estimated time remaining in seconds.
+         */
+        public Double EstimatedSecondsRemaining;
+        /**
+         * If manually scheduled, ID of user who scheduled the task.
+         */
+        public String ScheduledByUserId;
+        /**
+         * Type of the task.
+         */
+        public ScheduledTaskType Type;
+        
+    }
+
+    public static enum TaskInstanceStatus {
+        Succeeded,
+        Starting,
+        InProgress,
+        Failed,
+        Aborted,
+        Pending
+    }
+
     public static enum TitleActivationStatus {
         None,
         ActivatedTitleKey,
@@ -2480,6 +3224,38 @@ public class PlayFabAdminModels {
     }
 
     public static class UpdateStoreItemsResult {
+        
+    }
+
+    public static class UpdateTaskRequest {
+        /**
+         * Specify either the task ID or the name of the task to be updated.
+         */
+        public NameIdentifier Identifier;
+        /**
+         * Name of the task. This is a unique identifier for tasks in the title.
+         */
+        public String Name;
+        /**
+         * Description the task
+         */
+        public String Description;
+        /**
+         * Cron expression for the run schedule of the task. The expression should be in UTC.
+         */
+        public String Schedule;
+        /**
+         * Whether the schedule is active. Inactive schedule will not trigger task execution.
+         */
+        public Boolean IsActive;
+        /**
+         * Task type.
+         */
+        public ScheduledTaskType Type;
+        /**
+         * Parameter object specific to the task type. See each task type's create API documentation for details.
+         */
+        public Object Parameter;
         
     }
 

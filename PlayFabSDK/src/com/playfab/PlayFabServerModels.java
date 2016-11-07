@@ -5,6 +5,58 @@ import com.playfab.PlayFabUtil.*;
 
 public class PlayFabServerModels {
 
+    public static class ActionsOnPlayersInSegmentTaskSummary {
+        /**
+         * ID of the task instance.
+         */
+        public String TaskInstanceId;
+        /**
+         * Identifier of the task this instance belongs to.
+         */
+        public NameIdentifier TaskIdentifier;
+        /**
+         * UTC timestamp when the task started.
+         */
+        public Date StartedAt;
+        /**
+         * UTC timestamp when the task completed.
+         */
+        public Date CompletedAt;
+        /**
+         * Current status of the task instance.
+         */
+        public TaskInstanceStatus Status;
+        /**
+         * Progress represented as percentage.
+         */
+        public Double PercentComplete;
+        /**
+         * Estimated time remaining in seconds.
+         */
+        public Double EstimatedSecondsRemaining;
+        /**
+         * If manually scheduled, ID of user who scheduled the task.
+         */
+        public String ScheduledByUserId;
+        /**
+         * Error message for last processing attempt, if an error occured.
+         */
+        public String ErrorMessage;
+        /**
+         * Flag indicating if the error was fatal, if false job will be retried.
+         */
+        public Boolean ErrorWasFatal;
+        /**
+         * Total players in segment when task was started.
+         */
+        public Integer TotalPlayersInSegment;
+        /**
+         * Total number of players that have had the actions applied to.
+         */
+        public Integer TotalPlayersProcessed;
+        
+    }
+
     public static class AdCampaignAttribution {
         /**
          * Attribution network name
@@ -317,7 +369,7 @@ public class PlayFabServerModels {
          */
         public Boolean IsLimitedEdition;
         /**
-         * BETA: If IsLImitedEdition is true, then this determines amount of the item initially available. Note that this fieldis ignored if the catalog item already existed in this catalog, or the field is less than 1.
+         * If IsLImitedEdition is true, then this determines amount of the item initially available. Note that this fieldis ignored if the catalog item already existed in this catalog, or the field is less than 1.
          */
         public Integer InitialLimitedEditionCount;
         
@@ -483,6 +535,268 @@ public class PlayFabServerModels {
          */
         public Integer RemainingUses;
         
+    }
+
+    public static enum ContinentCode {
+        AF,
+        AN,
+        AS,
+        EU,
+        NA,
+        OC,
+        SA
+    }
+
+    public static enum CountryCode {
+        AF,
+        AX,
+        AL,
+        DZ,
+        AS,
+        AD,
+        AO,
+        AI,
+        AQ,
+        AG,
+        AR,
+        AM,
+        AW,
+        AU,
+        AT,
+        AZ,
+        BS,
+        BH,
+        BD,
+        BB,
+        BY,
+        BE,
+        BZ,
+        BJ,
+        BM,
+        BT,
+        BO,
+        BQ,
+        BA,
+        BW,
+        BV,
+        BR,
+        IO,
+        BN,
+        BG,
+        BF,
+        BI,
+        KH,
+        CM,
+        CA,
+        CV,
+        KY,
+        CF,
+        TD,
+        CL,
+        CN,
+        CX,
+        CC,
+        CO,
+        KM,
+        CG,
+        CD,
+        CK,
+        CR,
+        CI,
+        HR,
+        CU,
+        CW,
+        CY,
+        CZ,
+        DK,
+        DJ,
+        DM,
+        DO,
+        EC,
+        EG,
+        SV,
+        GQ,
+        ER,
+        EE,
+        ET,
+        FK,
+        FO,
+        FJ,
+        FI,
+        FR,
+        GF,
+        PF,
+        TF,
+        GA,
+        GM,
+        GE,
+        DE,
+        GH,
+        GI,
+        GR,
+        GL,
+        GD,
+        GP,
+        GU,
+        GT,
+        GG,
+        GN,
+        GW,
+        GY,
+        HT,
+        HM,
+        VA,
+        HN,
+        HK,
+        HU,
+        IS,
+        IN,
+        ID,
+        IR,
+        IQ,
+        IE,
+        IM,
+        IL,
+        IT,
+        JM,
+        JP,
+        JE,
+        JO,
+        KZ,
+        KE,
+        KI,
+        KP,
+        KR,
+        KW,
+        KG,
+        LA,
+        LV,
+        LB,
+        LS,
+        LR,
+        LY,
+        LI,
+        LT,
+        LU,
+        MO,
+        MK,
+        MG,
+        MW,
+        MY,
+        MV,
+        ML,
+        MT,
+        MH,
+        MQ,
+        MR,
+        MU,
+        YT,
+        MX,
+        FM,
+        MD,
+        MC,
+        MN,
+        ME,
+        MS,
+        MA,
+        MZ,
+        MM,
+        NA,
+        NR,
+        NP,
+        NL,
+        NC,
+        NZ,
+        NI,
+        NE,
+        NG,
+        NU,
+        NF,
+        MP,
+        NO,
+        OM,
+        PK,
+        PW,
+        PS,
+        PA,
+        PG,
+        PY,
+        PE,
+        PH,
+        PN,
+        PL,
+        PT,
+        PR,
+        QA,
+        RE,
+        RO,
+        RU,
+        RW,
+        BL,
+        SH,
+        KN,
+        LC,
+        MF,
+        PM,
+        VC,
+        WS,
+        SM,
+        ST,
+        SA,
+        SN,
+        RS,
+        SC,
+        SL,
+        SG,
+        SX,
+        SK,
+        SI,
+        SB,
+        SO,
+        ZA,
+        GS,
+        SS,
+        ES,
+        LK,
+        SD,
+        SR,
+        SJ,
+        SZ,
+        SE,
+        CH,
+        SY,
+        TW,
+        TJ,
+        TZ,
+        TH,
+        TL,
+        TG,
+        TK,
+        TO,
+        TT,
+        TN,
+        TR,
+        TM,
+        TC,
+        TV,
+        UG,
+        UA,
+        AE,
+        GB,
+        US,
+        UM,
+        UY,
+        UZ,
+        VU,
+        VE,
+        VN,
+        VG,
+        VI,
+        WF,
+        EH,
+        YE,
+        ZM,
+        ZW
     }
 
     public static class CreateSharedGroupRequest {
@@ -2199,6 +2513,15 @@ public class PlayFabServerModels {
         
     }
 
+    /**
+     * Identifier by either name or ID. Note that a name may change due to renaming, or reused after being deleted. ID is immutable and unique.
+     */
+    public static class NameIdentifier {
+        public String Name;
+        public String Id;
+        
+    }
+
     public static class NotifyMatchmakerPlayerLeftRequest {
         /**
          * Unique identifier of the Game Instance the user is leaving.
@@ -2266,6 +2589,30 @@ public class PlayFabServerModels {
         
     }
 
+    public static class PlayerLocation {
+        /**
+         * The two-character continent code for this location
+         */
+        public ContinentCode ContinentCode;
+        /**
+         * The two-character ISO 3166-1 country code for the country associated with the location
+         */
+        public CountryCode CountryCode;
+        /**
+         * City of the player's geographic location.
+         */
+        public String City;
+        /**
+         * Latitude coordinate of the player's geographic location.
+         */
+        public Double Latitude;
+        /**
+         * Longitude coordinate of the player's geographic location.
+         */
+        public Double Longitude;
+        
+    }
+
     public static class PlayerProfile {
         /**
          * PlayFab Player ID
@@ -2315,6 +2662,10 @@ public class PlayFabServerModels {
          * List of player's tags for segmentation.
          */
         public ArrayList<String> Tags;
+        /**
+         * Dictionary of player's locations by type.
+         */
+        public Map<String,PlayerLocation> Locations;
         /**
          * Dictionary of player's virtual currency balances
          */
@@ -2432,6 +2783,10 @@ public class PlayFabServerModels {
          * Catalog version of the coupon.
          */
         public String CatalogVersion;
+        /**
+         * Optional identifier for the Character that should receive the item. If null, item is added to the player
+         */
+        public String CharacterId;
         
     }
 
@@ -2906,6 +3261,15 @@ public class PlayFabServerModels {
         
     }
 
+    public static enum TaskInstanceStatus {
+        Succeeded,
+        Starting,
+        InProgress,
+        Failed,
+        Aborted,
+        Pending
+    }
+
     public static enum TitleActivationStatus {
         None,
         ActivatedTitleKey,
@@ -3110,6 +3474,10 @@ public class PlayFabServerModels {
          * Statistics to be updated with the provided values
          */
         public ArrayList<StatisticUpdate> Statistics;
+        /**
+         * Indicates whether the statistics provided should be set, regardless of the aggregation method set on the statistic. Default is false.
+         */
+        public Boolean ForceUpdate;
         
     }
 
@@ -3503,7 +3871,7 @@ public class PlayFabServerModels {
 
     public static class WriteEventResponse {
         /**
-         * The unique identifier of the event. This can be used to retrieve the event's properties using the GetEvent API. The values of this identifier consist of ASCII characters and are not constrained to any particular format.
+         * The unique identifier of the event. The values of this identifier consist of ASCII characters and are not constrained to any particular format.
          */
         public String EventId;
         

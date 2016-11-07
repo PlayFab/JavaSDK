@@ -288,7 +288,7 @@ public class PlayFabClientModels {
          */
         public Boolean IsLimitedEdition;
         /**
-         * BETA: If IsLImitedEdition is true, then this determines amount of the item initially available. Note that this fieldis ignored if the catalog item already existed in this catalog, or the field is less than 1.
+         * If IsLImitedEdition is true, then this determines amount of the item initially available. Note that this fieldis ignored if the catalog item already existed in this catalog, or the field is less than 1.
          */
         public Integer InitialLimitedEditionCount;
         
@@ -898,6 +898,14 @@ public class PlayFabClientModels {
          * last heartbeat of the game server instance, used in external game server provider mode
          */
         public Date LastHeartbeat;
+        /**
+         * IP address of the server
+         */
+        public String ServerHostname;
+        /**
+         * port number to use for non-http communications with the server
+         */
+        public Integer ServerPort;
         
     }
 
@@ -964,7 +972,7 @@ public class PlayFabClientModels {
          */
         public String Email;
         /**
-         * Title-specific username for the account to find (if no Email is set).
+         * Title-specific username for the account to find (if no Email is set). Note that if the non-unique Title Display Names option is enabled for the title, attempts to look up users by Title Display Name will always return AccountNotFound.
          */
         public String TitleDisplayName;
         
@@ -2906,6 +2914,10 @@ public class PlayFabClientModels {
          * Catalog version of the coupon. If null, uses the default catalog
          */
         public String CatalogVersion;
+        /**
+         * Optional identifier for the Character that should receive the item. If null, item is added to the player
+         */
+        public String CharacterId;
         
     }
 
@@ -4177,7 +4189,7 @@ public class PlayFabClientModels {
 
     public static class WriteEventResponse {
         /**
-         * The unique identifier of the event. This can be used to retrieve the event's properties using the GetEvent API. The values of this identifier consist of ASCII characters and are not constrained to any particular format.
+         * The unique identifier of the event. The values of this identifier consist of ASCII characters and are not constrained to any particular format.
          */
         public String EventId;
         
