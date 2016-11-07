@@ -4655,4 +4655,584 @@ public class PlayFabAdminAPI {
         pfResult.Result = result;
         return pfResult;
     }
+
+    /**
+     * Abort an ongoing task instance.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResult>> AbortTaskInstanceAsync(final AbortTaskInstanceRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateAbortTaskInstanceAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Abort an ongoing task instance.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResult> AbortTaskInstance(final AbortTaskInstanceRequest request) {
+        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateAbortTaskInstanceAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Abort an ongoing task instance.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResult> privateAbortTaskInstanceAsync(final AbortTaskInstanceRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/AbortTaskInstance", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
+        EmptyResult result = resultData.data;
+
+        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Create an ActionsOnPlayersInSegment task, which iterates through all players in a segment to execute action.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<CreateTaskResult>> CreateActionsOnPlayersInSegmentTaskAsync(final CreateActionsOnPlayerSegmentTaskRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<CreateTaskResult>>() {
+            public PlayFabResult<CreateTaskResult> call() throws Exception {
+                return privateCreateActionsOnPlayersInSegmentTaskAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Create an ActionsOnPlayersInSegment task, which iterates through all players in a segment to execute action.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<CreateTaskResult> CreateActionsOnPlayersInSegmentTask(final CreateActionsOnPlayerSegmentTaskRequest request) {
+        FutureTask<PlayFabResult<CreateTaskResult>> task = new FutureTask(new Callable<PlayFabResult<CreateTaskResult>>() {
+            public PlayFabResult<CreateTaskResult> call() throws Exception {
+                return privateCreateActionsOnPlayersInSegmentTaskAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Create an ActionsOnPlayersInSegment task, which iterates through all players in a segment to execute action.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<CreateTaskResult> privateCreateActionsOnPlayersInSegmentTaskAsync(final CreateActionsOnPlayerSegmentTaskRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/CreateActionsOnPlayersInSegmentTask", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<CreateTaskResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<CreateTaskResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<CreateTaskResult>>(){}.getType());
+        CreateTaskResult result = resultData.data;
+
+        PlayFabResult<CreateTaskResult> pfResult = new PlayFabResult<CreateTaskResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Create a CloudScript task, which can run a CloudScript on a schedule.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<CreateTaskResult>> CreateCloudScriptTaskAsync(final CreateCloudScriptTaskRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<CreateTaskResult>>() {
+            public PlayFabResult<CreateTaskResult> call() throws Exception {
+                return privateCreateCloudScriptTaskAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Create a CloudScript task, which can run a CloudScript on a schedule.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<CreateTaskResult> CreateCloudScriptTask(final CreateCloudScriptTaskRequest request) {
+        FutureTask<PlayFabResult<CreateTaskResult>> task = new FutureTask(new Callable<PlayFabResult<CreateTaskResult>>() {
+            public PlayFabResult<CreateTaskResult> call() throws Exception {
+                return privateCreateCloudScriptTaskAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Create a CloudScript task, which can run a CloudScript on a schedule.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<CreateTaskResult> privateCreateCloudScriptTaskAsync(final CreateCloudScriptTaskRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/CreateCloudScriptTask", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<CreateTaskResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<CreateTaskResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<CreateTaskResult>>(){}.getType());
+        CreateTaskResult result = resultData.data;
+
+        PlayFabResult<CreateTaskResult> pfResult = new PlayFabResult<CreateTaskResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Delete a task.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResult>> DeleteTaskAsync(final DeleteTaskRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateDeleteTaskAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Delete a task.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResult> DeleteTask(final DeleteTaskRequest request) {
+        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateDeleteTaskAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Delete a task.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResult> privateDeleteTaskAsync(final DeleteTaskRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/DeleteTask", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
+        EmptyResult result = resultData.data;
+
+        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Get information about a ActionsOnPlayersInSegment task instance.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetActionsOnPlayersInSegmentTaskInstanceResult>> GetActionsOnPlayersInSegmentTaskInstanceAsync(final GetTaskInstanceRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetActionsOnPlayersInSegmentTaskInstanceResult>>() {
+            public PlayFabResult<GetActionsOnPlayersInSegmentTaskInstanceResult> call() throws Exception {
+                return privateGetActionsOnPlayersInSegmentTaskInstanceAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Get information about a ActionsOnPlayersInSegment task instance.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetActionsOnPlayersInSegmentTaskInstanceResult> GetActionsOnPlayersInSegmentTaskInstance(final GetTaskInstanceRequest request) {
+        FutureTask<PlayFabResult<GetActionsOnPlayersInSegmentTaskInstanceResult>> task = new FutureTask(new Callable<PlayFabResult<GetActionsOnPlayersInSegmentTaskInstanceResult>>() {
+            public PlayFabResult<GetActionsOnPlayersInSegmentTaskInstanceResult> call() throws Exception {
+                return privateGetActionsOnPlayersInSegmentTaskInstanceAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Get information about a ActionsOnPlayersInSegment task instance.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetActionsOnPlayersInSegmentTaskInstanceResult> privateGetActionsOnPlayersInSegmentTaskInstanceAsync(final GetTaskInstanceRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/GetActionsOnPlayersInSegmentTaskInstance", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetActionsOnPlayersInSegmentTaskInstanceResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetActionsOnPlayersInSegmentTaskInstanceResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetActionsOnPlayersInSegmentTaskInstanceResult>>(){}.getType());
+        GetActionsOnPlayersInSegmentTaskInstanceResult result = resultData.data;
+
+        PlayFabResult<GetActionsOnPlayersInSegmentTaskInstanceResult> pfResult = new PlayFabResult<GetActionsOnPlayersInSegmentTaskInstanceResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Get detail information about a CloudScript task instance.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetCloudScriptTaskInstanceResult>> GetCloudScriptTaskInstanceAsync(final GetTaskInstanceRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetCloudScriptTaskInstanceResult>>() {
+            public PlayFabResult<GetCloudScriptTaskInstanceResult> call() throws Exception {
+                return privateGetCloudScriptTaskInstanceAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Get detail information about a CloudScript task instance.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetCloudScriptTaskInstanceResult> GetCloudScriptTaskInstance(final GetTaskInstanceRequest request) {
+        FutureTask<PlayFabResult<GetCloudScriptTaskInstanceResult>> task = new FutureTask(new Callable<PlayFabResult<GetCloudScriptTaskInstanceResult>>() {
+            public PlayFabResult<GetCloudScriptTaskInstanceResult> call() throws Exception {
+                return privateGetCloudScriptTaskInstanceAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Get detail information about a CloudScript task instance.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetCloudScriptTaskInstanceResult> privateGetCloudScriptTaskInstanceAsync(final GetTaskInstanceRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/GetCloudScriptTaskInstance", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetCloudScriptTaskInstanceResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetCloudScriptTaskInstanceResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetCloudScriptTaskInstanceResult>>(){}.getType());
+        GetCloudScriptTaskInstanceResult result = resultData.data;
+
+        PlayFabResult<GetCloudScriptTaskInstanceResult> pfResult = new PlayFabResult<GetCloudScriptTaskInstanceResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Query for task instances by task, status, or time range.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetTaskInstancesResult>> GetTaskInstancesAsync(final GetTaskInstancesRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetTaskInstancesResult>>() {
+            public PlayFabResult<GetTaskInstancesResult> call() throws Exception {
+                return privateGetTaskInstancesAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Query for task instances by task, status, or time range.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetTaskInstancesResult> GetTaskInstances(final GetTaskInstancesRequest request) {
+        FutureTask<PlayFabResult<GetTaskInstancesResult>> task = new FutureTask(new Callable<PlayFabResult<GetTaskInstancesResult>>() {
+            public PlayFabResult<GetTaskInstancesResult> call() throws Exception {
+                return privateGetTaskInstancesAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Query for task instances by task, status, or time range.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetTaskInstancesResult> privateGetTaskInstancesAsync(final GetTaskInstancesRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/GetTaskInstances", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetTaskInstancesResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetTaskInstancesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetTaskInstancesResult>>(){}.getType());
+        GetTaskInstancesResult result = resultData.data;
+
+        PlayFabResult<GetTaskInstancesResult> pfResult = new PlayFabResult<GetTaskInstancesResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Get definition information on a specified task or all tasks within a title.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetTasksResult>> GetTasksAsync(final GetTasksRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetTasksResult>>() {
+            public PlayFabResult<GetTasksResult> call() throws Exception {
+                return privateGetTasksAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Get definition information on a specified task or all tasks within a title.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetTasksResult> GetTasks(final GetTasksRequest request) {
+        FutureTask<PlayFabResult<GetTasksResult>> task = new FutureTask(new Callable<PlayFabResult<GetTasksResult>>() {
+            public PlayFabResult<GetTasksResult> call() throws Exception {
+                return privateGetTasksAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Get definition information on a specified task or all tasks within a title.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetTasksResult> privateGetTasksAsync(final GetTasksRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/GetTasks", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetTasksResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetTasksResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetTasksResult>>(){}.getType());
+        GetTasksResult result = resultData.data;
+
+        PlayFabResult<GetTasksResult> pfResult = new PlayFabResult<GetTasksResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Run a task immediately regardless of its schedule.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RunTaskResult>> RunTaskAsync(final RunTaskRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RunTaskResult>>() {
+            public PlayFabResult<RunTaskResult> call() throws Exception {
+                return privateRunTaskAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Run a task immediately regardless of its schedule.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RunTaskResult> RunTask(final RunTaskRequest request) {
+        FutureTask<PlayFabResult<RunTaskResult>> task = new FutureTask(new Callable<PlayFabResult<RunTaskResult>>() {
+            public PlayFabResult<RunTaskResult> call() throws Exception {
+                return privateRunTaskAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Run a task immediately regardless of its schedule.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RunTaskResult> privateRunTaskAsync(final RunTaskRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/RunTask", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RunTaskResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RunTaskResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RunTaskResult>>(){}.getType());
+        RunTaskResult result = resultData.data;
+
+        PlayFabResult<RunTaskResult> pfResult = new PlayFabResult<RunTaskResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Update an existing task.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResult>> UpdateTaskAsync(final UpdateTaskRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateUpdateTaskAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Update an existing task.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResult> UpdateTask(final UpdateTaskRequest request) {
+        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateUpdateTaskAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Update an existing task.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResult> privateUpdateTaskAsync(final UpdateTaskRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/UpdateTask", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
+        EmptyResult result = resultData.data;
+
+        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
 }
