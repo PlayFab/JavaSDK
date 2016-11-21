@@ -17,6 +17,122 @@ public class PlayFabAdminAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 
     /**
+     * Gets the requested policy.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPolicyResponse>> GetPolicyAsync(final GetPolicyRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPolicyResponse>>() {
+            public PlayFabResult<GetPolicyResponse> call() throws Exception {
+                return privateGetPolicyAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Gets the requested policy.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPolicyResponse> GetPolicy(final GetPolicyRequest request) {
+        FutureTask<PlayFabResult<GetPolicyResponse>> task = new FutureTask(new Callable<PlayFabResult<GetPolicyResponse>>() {
+            public PlayFabResult<GetPolicyResponse> call() throws Exception {
+                return privateGetPolicyAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Gets the requested policy.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPolicyResponse> privateGetPolicyAsync(final GetPolicyRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/GetPolicy", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPolicyResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPolicyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPolicyResponse>>(){}.getType());
+        GetPolicyResponse result = resultData.data;
+
+        PlayFabResult<GetPolicyResponse> pfResult = new PlayFabResult<GetPolicyResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Changes a policy for a title
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<UpdatePolicyResponse>> UpdatePolicyAsync(final UpdatePolicyRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<UpdatePolicyResponse>>() {
+            public PlayFabResult<UpdatePolicyResponse> call() throws Exception {
+                return privateUpdatePolicyAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Changes a policy for a title
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<UpdatePolicyResponse> UpdatePolicy(final UpdatePolicyRequest request) {
+        FutureTask<PlayFabResult<UpdatePolicyResponse>> task = new FutureTask(new Callable<PlayFabResult<UpdatePolicyResponse>>() {
+            public PlayFabResult<UpdatePolicyResponse> call() throws Exception {
+                return privateUpdatePolicyAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Changes a policy for a title
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<UpdatePolicyResponse> privateUpdatePolicyAsync(final UpdatePolicyRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/UpdatePolicy", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<UpdatePolicyResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<UpdatePolicyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdatePolicyResponse>>(){}.getType());
+        UpdatePolicyResponse result = resultData.data;
+
+        PlayFabResult<UpdatePolicyResponse> pfResult = new PlayFabResult<UpdatePolicyResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Bans users by PlayFab ID with optional IP address, or MAC address for the provided game.
      */
     @SuppressWarnings("unchecked")
