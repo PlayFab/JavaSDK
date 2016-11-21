@@ -393,7 +393,7 @@ public class PlayFabAdminModels {
          */
         public Boolean IsLimitedEdition;
         /**
-         * If IsLImitedEdition is true, then this determines amount of the item initially available. Note that this fieldis ignored if the catalog item already existed in this catalog, or the field is less than 1.
+         * If the item has IsLImitedEdition set to true, and this is the first time this ItemId has been defined as a limited edition item, this value determines the total number of instances to allocate for the title. Once this limit has been reached, no more instances of this ItemId can be created, and attempts to purchase or grant it will return a Result of false for that ItemId. If the item has already been defined to have a limited edition count, or if this value is less than zero, it will be ignored.
          */
         public Integer InitialLimitedEditionCount;
         
@@ -428,7 +428,7 @@ public class PlayFabAdminModels {
          */
         public Long UsageCount;
         /**
-         * duration in seconds for how long the item will remain in the player inventory - once elapsed, the item will be removed
+         * duration in seconds for how long the item will remain in the player inventory - once elapsed, the item will be removed (recommended minimum value is 5 seconds, as lower values can cause the item to expire before operations depending on this item's details have completed)
          */
         public Long UsagePeriod;
         /**
@@ -1114,6 +1114,10 @@ public class PlayFabAdminModels {
         
     }
 
+    public static enum EffectType {
+        Allow
+    }
+
     public static class EmptyResult {
         
     }
@@ -1551,6 +1555,26 @@ public class PlayFabAdminModels {
          * Canonical tags (including namespace and tag's name) for the requested user
          */
         public ArrayList<String> Tags;
+        
+    }
+
+    public static class GetPolicyRequest {
+        /**
+         * The name of the policy to read. Only supported name is 'ApiPolicy'.
+         */
+        public String PolicyName;
+        
+    }
+
+    public static class GetPolicyResponse {
+        /**
+         * The name of the policy read.
+         */
+        public String PolicyName;
+        /**
+         * The statements in the requested policy.
+         */
+        public ArrayList<PermissionStatement> Statements;
         
     }
 
@@ -2283,6 +2307,30 @@ public class PlayFabAdminModels {
     public static class NameIdentifier {
         public String Name;
         public String Id;
+        
+    }
+
+    public static class PermissionStatement {
+        /**
+         * The resource this statements effects. The only supported resources look like 'pfrn:api--*' for all apis, or 'pfrn:api--/Client/ConfirmPurchase' for specific apis.
+         */
+        public String Resource;
+        /**
+         * The action this statement effects. The only supported action is 'Execute'.
+         */
+        public String Action;
+        /**
+         * The effect this statement will have. The only supported effect is 'Allow'.
+         */
+        public EffectType Effect;
+        /**
+         * The principal this statement will effect. The only supported principal is '*'.
+         */
+        public String Principal;
+        /**
+         * A comment about the statement. Intended solely for bookeeping and debugging.
+         */
+        public String Comment;
         
     }
 
@@ -3187,6 +3235,34 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class UpdatePolicyRequest {
+        /**
+         * The name of the policy being updated. Only supported name is 'ApiPolicy'
+         */
+        public String PolicyName;
+        /**
+         * The new statements to include in the policy.
+         */
+        public ArrayList<PermissionStatement> Statements;
+        /**
+         * Whether to overwrite or append to the existing policy.
+         */
+        public Boolean OverwritePolicy;
+        
+    }
+
+    public static class UpdatePolicyResponse {
+        /**
+         * The name of the policy that was updated.
+         */
+        public String PolicyName;
+        /**
+         * The statements included in the new version of the policy.
+         */
+        public ArrayList<PermissionStatement> Statements;
+        
+    }
+
     public static class UpdateRandomResultTablesRequest {
         /**
          * which catalog is being updated. If null, update the current default catalog version
@@ -3404,11 +3480,6 @@ public class PlayFabAdminModels {
          * Username of user to reset
          */
         public String Username;
-        /**
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public String Password;
         
     }
 
@@ -3614,7 +3685,7 @@ public class PlayFabAdminModels {
 
     public static class VirtualCurrencyData {
         /**
-         * unique one- or two-character identifier for this currency type (e.g.: "CC", "G")
+         * unique two-character identifier for this currency type (e.g.: "CC")
          */
         public String CurrencyCode;
         /**

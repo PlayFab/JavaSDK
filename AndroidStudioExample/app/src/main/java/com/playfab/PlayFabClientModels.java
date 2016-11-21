@@ -288,7 +288,7 @@ public class PlayFabClientModels {
          */
         public Boolean IsLimitedEdition;
         /**
-         * If IsLImitedEdition is true, then this determines amount of the item initially available. Note that this fieldis ignored if the catalog item already existed in this catalog, or the field is less than 1.
+         * If the item has IsLImitedEdition set to true, and this is the first time this ItemId has been defined as a limited edition item, this value determines the total number of instances to allocate for the title. Once this limit has been reached, no more instances of this ItemId can be created, and attempts to purchase or grant it will return a Result of false for that ItemId. If the item has already been defined to have a limited edition count, or if this value is less than zero, it will be ignored.
          */
         public Integer InitialLimitedEditionCount;
         
@@ -323,7 +323,7 @@ public class PlayFabClientModels {
          */
         public Long UsageCount;
         /**
-         * duration in seconds for how long the item will remain in the player inventory - once elapsed, the item will be removed
+         * duration in seconds for how long the item will remain in the player inventory - once elapsed, the item will be removed (recommended minimum value is 5 seconds, as lower values can cause the item to expire before operations depending on this item's details have completed)
          */
         public Long UsagePeriod;
         /**
