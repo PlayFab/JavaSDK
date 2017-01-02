@@ -1446,67 +1446,6 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * @deprecated Please use GetPlayerCombinedInfo instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<GetUserCombinedInfoResult>> GetUserCombinedInfoAsync(final GetUserCombinedInfoRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<GetUserCombinedInfoResult>>() {
-            public PlayFabResult<GetUserCombinedInfoResult> call() throws Exception {
-                return privateGetUserCombinedInfoAsync(request);
-            }
-        });
-    }
-
-    /**
-     * @deprecated Please use GetPlayerCombinedInfo instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<GetUserCombinedInfoResult> GetUserCombinedInfo(final GetUserCombinedInfoRequest request) {
-        FutureTask<PlayFabResult<GetUserCombinedInfoResult>> task = new FutureTask(new Callable<PlayFabResult<GetUserCombinedInfoResult>>() {
-            public PlayFabResult<GetUserCombinedInfoResult> call() throws Exception {
-                return privateGetUserCombinedInfoAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * @deprecated Please use GetPlayerCombinedInfo instead. 
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<GetUserCombinedInfoResult> privateGetUserCombinedInfoAsync(final GetUserCombinedInfoRequest request) throws Exception {
-        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetUserCombinedInfo", request, "X-Authorization", _authKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<GetUserCombinedInfoResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<GetUserCombinedInfoResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetUserCombinedInfoResult>>(){}.getType());
-        GetUserCombinedInfoResult result = resultData.data;
-
-        PlayFabResult<GetUserCombinedInfoResult> pfResult = new PlayFabResult<GetUserCombinedInfoResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
      * Links the Android device identifier to the user's PlayFab account
      */
     @SuppressWarnings("unchecked")

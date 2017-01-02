@@ -1358,7 +1358,7 @@ public class PlayFabClientModels {
          */
         public Boolean GetUserData;
         /**
-         * Specific keys to search for in the custom data. Leave null to get all keys. Has no effect if UserDataKeys is false
+         * Specific keys to search for in the custom data. Leave null to get all keys. Has no effect if GetUserData is false
          */
         public ArrayList<String> UserDataKeys;
         /**
@@ -1859,103 +1859,6 @@ public class PlayFabClientModels {
          * Information about the requested trade.
          */
         public TradeInfo Trade;
-        
-    }
-
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class GetUserCombinedInfoRequest {
-        /**
-         * Unique PlayFab identifier of the user whose info is being requested. Optional, defaults to the authenticated user if no other lookup identifier set.
-         */
-        public String PlayFabId;
-        /**
-         * PlayFab Username for the account to find (if no PlayFabId is specified).
-         */
-        public String Username;
-        /**
-         * User email address for the account to find (if no Username is specified).
-         */
-        public String Email;
-        /**
-         * Title-specific username for the account to find (if no Email is set).
-         */
-        public String TitleDisplayName;
-        /**
-         * If set to false, account info will not be returned. Defaults to true.
-         */
-        public Boolean GetAccountInfo;
-        /**
-         * If set to false, inventory will not be returned. Defaults to true. Inventory will never be returned for users other than yourself.
-         */
-        public Boolean GetInventory;
-        /**
-         * If set to false, virtual currency balances will not be returned. Defaults to true. Currency balances will never be returned for users other than yourself.
-         */
-        public Boolean GetVirtualCurrency;
-        /**
-         * If set to false, custom user data will not be returned. Defaults to true.
-         */
-        public Boolean GetUserData;
-        /**
-         * User custom data keys to return. If set to null, all keys will be returned. For users other than yourself, only public data will be returned.
-         */
-        public ArrayList<String> UserDataKeys;
-        /**
-         * If set to false, read-only user data will not be returned. Defaults to true.
-         */
-        public Boolean GetReadOnlyData;
-        /**
-         * User read-only custom data keys to return. If set to null, all keys will be returned. For users other than yourself, only public data will be returned.
-         */
-        public ArrayList<String> ReadOnlyDataKeys;
-        
-    }
-
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class GetUserCombinedInfoResult {
-        /**
-         * Unique PlayFab identifier of the owner of the combined info.
-         */
-        public String PlayFabId;
-        /**
-         * Account information for the user.
-         */
-        public UserAccountInfo AccountInfo;
-        /**
-         * Array of inventory items in the user's current inventory.
-         */
-        @Unordered("ItemInstanceId")
-        public ArrayList<ItemInstance> Inventory;
-        /**
-         * Array of virtual currency balance(s) belonging to the user.
-         */
-        public Map<String,Integer> VirtualCurrency;
-        /**
-         * Array of remaining times and timestamps for virtual currencies.
-         */
-        public Map<String,VirtualCurrencyRechargeTime> VirtualCurrencyRechargeTimes;
-        /**
-         * User specific custom data.
-         */
-        public Map<String,UserDataRecord> Data;
-        /**
-         * The version of the UserData that was returned.
-         */
-        public Long DataVersion;
-        /**
-         * User specific read-only data.
-         */
-        public Map<String,UserDataRecord> ReadOnlyData;
-        /**
-         * The version of the Read-Only UserData that was returned.
-         */
-        public Long ReadOnlyDataVersion;
         
     }
 

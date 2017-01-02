@@ -1583,7 +1583,7 @@ public class PlayFabServerModels {
          */
         public Boolean GetUserData;
         /**
-         * Specific keys to search for in the custom data. Leave null to get all keys. Has no effect if UserDataKeys is false
+         * Specific keys to search for in the custom data. Leave null to get all keys. Has no effect if GetUserData is false
          */
         public ArrayList<String> UserDataKeys;
         /**

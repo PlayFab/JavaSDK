@@ -263,7 +263,10 @@ public class PlayFabErrors {
         LimitNotAnUpgradeOption(1259),
         NoSecretKeyEnabledForCloudScript(1260),
         TaskNotFound(1261),
-        TaskInstanceNotFound(1262);
+        TaskInstanceNotFound(1262),
+        InvalidIdentityProviderId(1263),
+        MisconfiguredIdentityProvider(1264),
+        InvalidScheduledTaskType(1265);
 
         public int id;
 
