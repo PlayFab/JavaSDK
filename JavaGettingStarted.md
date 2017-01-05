@@ -22,7 +22,7 @@ Java Project Setup
     * Select everything in this folder (1 subfolder, and 2 jar files)
     * Copy it to your project folder
 * Your project folder should look like this:
-  * ![Java image](/SdkQuickStart/images/Java/Installed.png)
+  * ![Java image](/images/Java/Installed.png)
 * PlayFab Installation Complete!
 
 Set up your first API call
@@ -106,7 +106,7 @@ public class GettingStarted
 
 * Open a command window in your project folder:
   * Hold shift and right click in the empty-white-space of the Explorer window
-  * ![Java image](/SdkQuickStart/images/Java/CmdExe.png)
+  * ![Java image](/images/Java/CmdExe.png)
   * We will use this window in the next section to execute our program
 
 Finish and Execute
