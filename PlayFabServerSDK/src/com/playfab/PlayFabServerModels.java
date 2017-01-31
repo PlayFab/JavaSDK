@@ -3071,7 +3071,7 @@ public class PlayFabServerModels {
 
     public static class SetGameServerInstanceDataRequest {
         /**
-         * Unique identifier of the Game Instance to be updated.
+         * Unique identifier of the Game Instance to be updated, in decimal format.
          */
         public String LobbyId;
         /**
@@ -3087,7 +3087,7 @@ public class PlayFabServerModels {
 
     public static class SetGameServerInstanceStateRequest {
         /**
-         * Unique identifier of the Game Instance to be updated.
+         * Unique identifier of the Game Instance to be updated, in decimal format.
          */
         public String LobbyId;
         /**
