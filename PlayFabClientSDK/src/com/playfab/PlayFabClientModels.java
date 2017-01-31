@@ -2133,8 +2133,13 @@ public class PlayFabClientModels {
 
     public static class LinkGoogleAccountRequest {
         /**
-         * Unique token (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods) from Google Play for the user.
+         * Server authentication code obtained on the client by calling getServerAuthCode() (https://developers.google.com/identity/sign-in/android/offline-access) from Google Play for the user.
          */
+        public String ServerAuthCode;
+        /**
+         * @deprecated Please use ServerAuthCode instead. 
+         */
+        @Deprecated
         public String AccessToken;
         /**
          * If another user is already linked to the account, unlink the other user and re-link.
@@ -2381,8 +2386,13 @@ public class PlayFabClientModels {
          */
         public String TitleId;
         /**
-         * Unique token (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods) from Google Play for the user.
+         * OAuth 2.0 server authentication code obtained on the client by calling the getServerAuthCode() (https://developers.google.com/identity/sign-in/android/offline-access) Google client API.
          */
+        public String ServerAuthCode;
+        /**
+         * @deprecated Please use ServerAuthCode instead. 
+         */
+        @Deprecated
         public String AccessToken;
         /**
          * Automatically create a PlayFab account if one is not currently linked to this Google account.
@@ -2613,6 +2623,15 @@ public class PlayFabClientModels {
          * Balance of the virtual currency after modification.
          */
         public Integer Balance;
+        
+    }
+
+    /**
+     * Identifier by either name or ID. Note that a name may change due to renaming, or reused after being deleted. ID is immutable and unique.
+     */
+    public static class NameIdentifier {
+        public String Name;
+        public String Id;
         
     }
 
