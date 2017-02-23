@@ -2141,7 +2141,8 @@ public class PlayFabAdminModels {
         Facebook,
         IOSDevice,
         AndroidDevice,
-        Twitch
+        Twitch,
+        WindowsHello
     }
 
     public static class LogStatement {
@@ -2411,6 +2412,10 @@ public class PlayFabAdminModels {
          * Banned until UTC Date. If permanent ban this is set for 20 years after the original ban date.
          */
         public Date BannedUntil;
+        /**
+         * Image URL of the player's avatar.
+         */
+        public String AvatarUrl;
         /**
          * Dictionary of player's statistics using only the latest version's value
          */
@@ -3592,7 +3597,8 @@ public class PlayFabAdminModels {
         CustomId,
         XboxLive,
         Parse,
-        Twitch
+        Twitch,
+        WindowsHello
     }
 
     public static class UserPrivateAccountInfo {
@@ -3660,6 +3666,10 @@ public class PlayFabAdminModels {
          * boolean indicating whether or not the user is currently banned for a title
          */
         public Boolean isBanned;
+        /**
+         * URL to the player's avatar.
+         */
+        public String AvatarUrl;
         
     }
 

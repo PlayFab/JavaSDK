@@ -1422,6 +1422,18 @@ public class PlayFabServerModels {
          * Indicates whether Facebook friends should be included in the response. Default is true.
          */
         public Boolean IncludeFacebookFriends;
+        /**
+         * The version of the leaderboard to get, when UseSpecificVersion is true.
+         */
+        public Integer Version;
+        /**
+         * If true, uses the specified version. If false, gets the most recent version.
+         */
+        public Boolean UseSpecificVersion;
+        /**
+         * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names.
+         */
+        public PlayerProfileViewConstraints ProfileConstraints;
         
     }
 
@@ -1494,14 +1506,34 @@ public class PlayFabServerModels {
          * Maximum number of entries to retrieve.
          */
         public Integer MaxResultsCount;
+        /**
+         * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names.
+         */
+        public PlayerProfileViewConstraints ProfileConstraints;
+        /**
+         * The version of the leaderboard to get, when UseSpecificVersion is true.
+         */
+        public Integer Version;
+        /**
+         * If true, uses the specified version. If false, gets the most recent version.
+         */
+        public Boolean UseSpecificVersion;
         
     }
 
     public static class GetLeaderboardAroundUserResult {
         /**
-         * Ordered list of leaderboard entries.
+         * Ordered listing of users and their positions in the requested leaderboard.
          */
         public ArrayList<PlayerLeaderboardEntry> Leaderboard;
+        /**
+         * The version of the leaderboard returned.
+         */
+        public Integer Version;
+        /**
+         * The time the next scheduled reset will occur. Null if the leaderboard does not reset on a schedule.
+         */
+        public Date NextReset;
         
     }
 
@@ -1542,14 +1574,34 @@ public class PlayFabServerModels {
          * Maximum number of entries to retrieve.
          */
         public Integer MaxResultsCount;
+        /**
+         * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names.
+         */
+        public PlayerProfileViewConstraints ProfileConstraints;
+        /**
+         * The version of the leaderboard to get, when UseSpecificVersion is true.
+         */
+        public Integer Version;
+        /**
+         * If true, uses the specified version. If false, gets the most recent version.
+         */
+        public Boolean UseSpecificVersion;
         
     }
 
     public static class GetLeaderboardResult {
         /**
-         * Ordered list of leaderboard entries.
+         * Ordered listing of users and their positions in the requested leaderboard.
          */
         public ArrayList<PlayerLeaderboardEntry> Leaderboard;
+        /**
+         * The version of the leaderboard returned.
+         */
+        public Integer Version;
+        /**
+         * The time the next scheduled reset will occur. Null if the leaderboard does not reset on a schedule.
+         */
+        public Date NextReset;
         
     }
 
@@ -2373,7 +2425,8 @@ public class PlayFabServerModels {
         Facebook,
         IOSDevice,
         AndroidDevice,
-        Twitch
+        Twitch,
+        WindowsHello
     }
 
     public static class LogStatement {
@@ -2566,6 +2619,10 @@ public class PlayFabServerModels {
          * User's overall position in the leaderboard.
          */
         public Integer Position;
+        /**
+         * The profile of the user, if requested. Note that this profile may have sensitive fields scrubbed.
+         */
+        public PlayerProfile Profile;
         
     }
 
@@ -2647,6 +2704,10 @@ public class PlayFabServerModels {
          */
         public Date BannedUntil;
         /**
+         * Image URL of the player's avatar.
+         */
+        public String AvatarUrl;
+        /**
          * Dictionary of player's statistics using only the latest version's value
          */
         public Map<String,Integer> Statistics;
@@ -2686,6 +2747,70 @@ public class PlayFabServerModels {
          * Array of player statistics
          */
         public ArrayList<PlayerStatistic> PlayerStatistics;
+        
+    }
+
+    public static class PlayerProfileViewConstraints {
+        /**
+         * Whether to show the display name. Defaults to false
+         */
+        public Boolean ShowDisplayName;
+        /**
+         * Whether to show the created date. Defaults to false
+         */
+        public Boolean ShowCreated;
+        /**
+         * Whether to show origination. Defaults to false
+         */
+        public Boolean ShowOrigination;
+        /**
+         * Whether to show the last login time. Defaults to false
+         */
+        public Boolean ShowLastLogin;
+        /**
+         * Whether to show the banned until time. Defaults to false
+         */
+        public Boolean ShowBannedUntil;
+        /**
+         * Whether to show statistics, the most recent version of each stat. Defaults to false
+         */
+        public Boolean ShowStatistics;
+        /**
+         * Whether to show campaign attributions. Defaults to false
+         */
+        public Boolean ShowCampaignAtributions;
+        /**
+         * Whether to show push notification registrations. Defaults to false
+         */
+        public Boolean ShowPushNotificationRegistrations;
+        /**
+         * Whether to show the linked accounts. Defaults to false
+         */
+        public Boolean ShowLinkedAccounts;
+        /**
+         * Whether to show the total value to date in usd. Defaults to false
+         */
+        public Boolean ShowTotalValueToDateInUsd;
+        /**
+         * Whether to show the values to date. Defaults to false
+         */
+        public Boolean ShowValuesToDate;
+        /**
+         * Whether to show tags. Defaults to false
+         */
+        public Boolean ShowTags;
+        /**
+         * Whether to show the virtual currency balances. Defaults to false
+         */
+        public Boolean ShowVirtualCurrencyBalances;
+        /**
+         * Whether to show player's locations. Defaults to false
+         */
+        public Boolean ShowLocations;
+        /**
+         * Whether to show player's avatar URL. Defaults to false
+         */
+        public Boolean ShowAvatarUrl;
         
     }
 
@@ -3069,6 +3194,22 @@ public class PlayFabServerModels {
         
     }
 
+    public static class SetFriendTagsRequest {
+        /**
+         * PlayFab identifier of the player whose friend is to be updated.
+         */
+        public String PlayFabId;
+        /**
+         * PlayFab identifier of the friend account to which the tag(s) should be applied.
+         */
+        public String FriendPlayFabId;
+        /**
+         * Array of tags to set on the friend account.
+         */
+        public ArrayList<String> Tags;
+        
+    }
+
     public static class SetGameServerInstanceDataRequest {
         /**
          * Unique identifier of the Game Instance to be updated, in decimal format.
@@ -3359,6 +3500,18 @@ public class PlayFabServerModels {
          * Virtual currency granted to the player as a result of unlocking the container.
          */
         public Map<String,Long> VirtualCurrency;
+        
+    }
+
+    public static class UpdateAvatarUrlRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * URL of the avatar image. If empty, it removes the existing avatar URL.
+         */
+        public String ImageUrl;
         
     }
 
@@ -3762,7 +3915,8 @@ public class PlayFabServerModels {
         CustomId,
         XboxLive,
         Parse,
-        Twitch
+        Twitch,
+        WindowsHello
     }
 
     public static class UserPrivateAccountInfo {
@@ -3830,6 +3984,10 @@ public class PlayFabServerModels {
          * boolean indicating whether or not the user is currently banned for a title
          */
         public Boolean isBanned;
+        /**
+         * URL to the player's avatar.
+         */
+        public String AvatarUrl;
         
     }
 
