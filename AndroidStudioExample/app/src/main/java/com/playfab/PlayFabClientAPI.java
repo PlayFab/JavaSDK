@@ -76,6 +76,120 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Requests a challenge from the server to be signed by Windows Hello Passport service to authenticate.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetWindowsHelloChallengeResponse>> GetWindowsHelloChallengeAsync(final GetWindowsHelloChallengeRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetWindowsHelloChallengeResponse>>() {
+            public PlayFabResult<GetWindowsHelloChallengeResponse> call() throws Exception {
+                return privateGetWindowsHelloChallengeAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Requests a challenge from the server to be signed by Windows Hello Passport service to authenticate.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetWindowsHelloChallengeResponse> GetWindowsHelloChallenge(final GetWindowsHelloChallengeRequest request) {
+        FutureTask<PlayFabResult<GetWindowsHelloChallengeResponse>> task = new FutureTask(new Callable<PlayFabResult<GetWindowsHelloChallengeResponse>>() {
+            public PlayFabResult<GetWindowsHelloChallengeResponse> call() throws Exception {
+                return privateGetWindowsHelloChallengeAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Requests a challenge from the server to be signed by Windows Hello Passport service to authenticate.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetWindowsHelloChallengeResponse> privateGetWindowsHelloChallengeAsync(final GetWindowsHelloChallengeRequest request) throws Exception {
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetWindowsHelloChallenge", request, null, null);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetWindowsHelloChallengeResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetWindowsHelloChallengeResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetWindowsHelloChallengeResponse>>(){}.getType());
+        GetWindowsHelloChallengeResponse result = resultData.data;
+
+        PlayFabResult<GetWindowsHelloChallengeResponse> pfResult = new PlayFabResult<GetWindowsHelloChallengeResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Link Windows Hello to the current PlayFab Account
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<LinkWindowsHelloAccountResponse>> LinkWindowsHelloAsync(final LinkWindowsHelloAccountRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<LinkWindowsHelloAccountResponse>>() {
+            public PlayFabResult<LinkWindowsHelloAccountResponse> call() throws Exception {
+                return privateLinkWindowsHelloAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Link Windows Hello to the current PlayFab Account
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<LinkWindowsHelloAccountResponse> LinkWindowsHello(final LinkWindowsHelloAccountRequest request) {
+        FutureTask<PlayFabResult<LinkWindowsHelloAccountResponse>> task = new FutureTask(new Callable<PlayFabResult<LinkWindowsHelloAccountResponse>>() {
+            public PlayFabResult<LinkWindowsHelloAccountResponse> call() throws Exception {
+                return privateLinkWindowsHelloAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Link Windows Hello to the current PlayFab Account
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<LinkWindowsHelloAccountResponse> privateLinkWindowsHelloAsync(final LinkWindowsHelloAccountRequest request) throws Exception {
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LinkWindowsHello", request, null, null);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<LinkWindowsHelloAccountResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<LinkWindowsHelloAccountResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LinkWindowsHelloAccountResponse>>(){}.getType());
+        LinkWindowsHelloAccountResponse result = resultData.data;
+
+        PlayFabResult<LinkWindowsHelloAccountResponse> pfResult = new PlayFabResult<LinkWindowsHelloAccountResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Signs the user in using the Android device identifier, returning a session identifier that can subsequently be used for API calls which require an authenticated user
      */
     @SuppressWarnings("unchecked")
@@ -747,6 +861,67 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Completes the Windows Hello login flow by returning the signed value of the challange from GetWindowsHelloChallenge. Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the server. 
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<LoginResult>> LoginWithWindowsHelloAsync(final LoginWithWindowsHelloRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
+            public PlayFabResult<LoginResult> call() throws Exception {
+                return privateLoginWithWindowsHelloAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Completes the Windows Hello login flow by returning the signed value of the challange from GetWindowsHelloChallenge. Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the server. 
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<LoginResult> LoginWithWindowsHello(final LoginWithWindowsHelloRequest request) {
+        FutureTask<PlayFabResult<LoginResult>> task = new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
+            public PlayFabResult<LoginResult> call() throws Exception {
+                return privateLoginWithWindowsHelloAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Completes the Windows Hello login flow by returning the signed value of the challange from GetWindowsHelloChallenge. Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the server. 
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<LoginResult> privateLoginWithWindowsHelloAsync(final LoginWithWindowsHelloRequest request) throws Exception {
+        request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
+        if(request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LoginWithWindowsHello", request, null, null);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<LoginResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
+        LoginResult result = resultData.data;
+        _authKey = result.SessionTicket != null ? result.SessionTicket : _authKey;
+        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
+
+        PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Registers a new Playfab user account, returning a session identifier that can subsequently be used for API calls which require an authenticated user. You must supply either a username or an email address.
      */
     @SuppressWarnings("unchecked")
@@ -803,6 +978,124 @@ public class PlayFabClientAPI {
         MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<RegisterPlayFabUserResult> pfResult = new PlayFabResult<RegisterPlayFabUserResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Register using Windows Hello authentication. Before a user can request a challenge or perform a signin the user must first either register or link a Windows Hello account.
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<LoginResult>> RegisterWithWindowsHelloAsync(final RegisterWithWindowsHelloRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
+            public PlayFabResult<LoginResult> call() throws Exception {
+                return privateRegisterWithWindowsHelloAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Register using Windows Hello authentication. Before a user can request a challenge or perform a signin the user must first either register or link a Windows Hello account.
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<LoginResult> RegisterWithWindowsHello(final RegisterWithWindowsHelloRequest request) {
+        FutureTask<PlayFabResult<LoginResult>> task = new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
+            public PlayFabResult<LoginResult> call() throws Exception {
+                return privateRegisterWithWindowsHelloAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Register using Windows Hello authentication. Before a user can request a challenge or perform a signin the user must first either register or link a Windows Hello account.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<LoginResult> privateRegisterWithWindowsHelloAsync(final RegisterWithWindowsHelloRequest request) throws Exception {
+        request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
+        if(request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/RegisterWithWindowsHello", request, null, null);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<LoginResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
+        LoginResult result = resultData.data;
+        _authKey = result.SessionTicket != null ? result.SessionTicket : _authKey;
+        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
+
+        PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Unlink Windows Hello from the current PlayFab Account
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<UnlinkWindowsHelloAccountResponse>> UnlinkWindowsHelloAsync(final UnlinkWindowsHelloAccountRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<UnlinkWindowsHelloAccountResponse>>() {
+            public PlayFabResult<UnlinkWindowsHelloAccountResponse> call() throws Exception {
+                return privateUnlinkWindowsHelloAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Unlink Windows Hello from the current PlayFab Account
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<UnlinkWindowsHelloAccountResponse> UnlinkWindowsHello(final UnlinkWindowsHelloAccountRequest request) {
+        FutureTask<PlayFabResult<UnlinkWindowsHelloAccountResponse>> task = new FutureTask(new Callable<PlayFabResult<UnlinkWindowsHelloAccountResponse>>() {
+            public PlayFabResult<UnlinkWindowsHelloAccountResponse> call() throws Exception {
+                return privateUnlinkWindowsHelloAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Unlink Windows Hello from the current PlayFab Account
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<UnlinkWindowsHelloAccountResponse> privateUnlinkWindowsHelloAsync(final UnlinkWindowsHelloAccountRequest request) throws Exception {
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UnlinkWindowsHello", request, null, null);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<UnlinkWindowsHelloAccountResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<UnlinkWindowsHelloAccountResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UnlinkWindowsHelloAccountResponse>>(){}.getType());
+        UnlinkWindowsHelloAccountResponse result = resultData.data;
+
+        PlayFabResult<UnlinkWindowsHelloAccountResponse> pfResult = new PlayFabResult<UnlinkWindowsHelloAccountResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -2658,6 +2951,64 @@ public class PlayFabClientAPI {
         UnlinkTwitchAccountResult result = resultData.data;
 
         PlayFabResult<UnlinkTwitchAccountResult> pfResult = new PlayFabResult<UnlinkTwitchAccountResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Update the avatar URL of the player
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResult>> UpdateAvatarUrlAsync(final UpdateAvatarUrlRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateUpdateAvatarUrlAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Update the avatar URL of the player
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResult> UpdateAvatarUrl(final UpdateAvatarUrlRequest request) {
+        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateUpdateAvatarUrlAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Update the avatar URL of the player
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResult> privateUpdateAvatarUrlAsync(final UpdateAvatarUrlRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UpdateAvatarUrl", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
+        EmptyResult result = resultData.data;
+
+        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -7010,6 +7361,63 @@ public class PlayFabClientAPI {
         GetPlayerTagsResult result = resultData.data;
 
         PlayFabResult<GetPlayerTagsResult> pfResult = new PlayFabResult<GetPlayerTagsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Validates with Windows that the receipt for an Windows App Store in-app purchase is valid and that it matches the purchased catalog item
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ValidateWindowsReceiptResult>> ValidateWindowsStoreReceiptAsync(final ValidateWindowsReceiptRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ValidateWindowsReceiptResult>>() {
+            public PlayFabResult<ValidateWindowsReceiptResult> call() throws Exception {
+                return privateValidateWindowsStoreReceiptAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Validates with Windows that the receipt for an Windows App Store in-app purchase is valid and that it matches the purchased catalog item
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ValidateWindowsReceiptResult> ValidateWindowsStoreReceipt(final ValidateWindowsReceiptRequest request) {
+        FutureTask<PlayFabResult<ValidateWindowsReceiptResult>> task = new FutureTask(new Callable<PlayFabResult<ValidateWindowsReceiptResult>>() {
+            public PlayFabResult<ValidateWindowsReceiptResult> call() throws Exception {
+                return privateValidateWindowsStoreReceiptAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Validates with Windows that the receipt for an Windows App Store in-app purchase is valid and that it matches the purchased catalog item
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ValidateWindowsReceiptResult> privateValidateWindowsStoreReceiptAsync(final ValidateWindowsReceiptRequest request) throws Exception {
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ValidateWindowsStoreReceipt", request, null, null);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ValidateWindowsReceiptResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ValidateWindowsReceiptResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ValidateWindowsReceiptResult>>(){}.getType());
+        ValidateWindowsReceiptResult result = resultData.data;
+
+        PlayFabResult<ValidateWindowsReceiptResult> pfResult = new PlayFabResult<ValidateWindowsReceiptResult>();
         pfResult.Result = result;
         return pfResult;
     }

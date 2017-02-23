@@ -539,6 +539,64 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Update the avatar URL of the specified player
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResult>> UpdateAvatarUrlAsync(final UpdateAvatarUrlRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateUpdateAvatarUrlAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Update the avatar URL of the specified player
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResult> UpdateAvatarUrl(final UpdateAvatarUrlRequest request) {
+        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateUpdateAvatarUrlAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Update the avatar URL of the specified player
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResult> privateUpdateAvatarUrlAsync(final UpdateAvatarUrlRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UpdateAvatarUrl", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
+        EmptyResult result = resultData.data;
+
+        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Updates information of a list of existing bans specified with Ban Ids.
      */
     @SuppressWarnings("unchecked")
@@ -3708,6 +3766,64 @@ public class PlayFabServerAPI {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/RemoveFriend", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
+        EmptyResult result = resultData.data;
+
+        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Updates the tag list for a specified user in the friend list of another user
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResult>> SetFriendTagsAsync(final SetFriendTagsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateSetFriendTagsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Updates the tag list for a specified user in the friend list of another user
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResult> SetFriendTags(final SetFriendTagsRequest request) {
+        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateSetFriendTagsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Updates the tag list for a specified user in the friend list of another user
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResult> privateSetFriendTagsAsync(final SetFriendTagsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SetFriendTags", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
         if(httpResult instanceof PlayFabError) {
