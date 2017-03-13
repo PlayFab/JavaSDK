@@ -1115,7 +1115,8 @@ public class PlayFabAdminModels {
     }
 
     public static enum EffectType {
-        Allow
+        Allow,
+        Deny
     }
 
     public static class EmptyResult {
@@ -2321,7 +2322,7 @@ public class PlayFabAdminModels {
          */
         public String Action;
         /**
-         * The effect this statement will have. The only supported effect is 'Allow'.
+         * The effect this statement will have. It could be either Allow or Deny
          */
         public EffectType Effect;
         /**
@@ -2525,9 +2526,14 @@ public class PlayFabAdminModels {
          */
         public Date DeactivationTime;
         /**
-         * status of the process of saving player statistic values of the previous version to a downloadable archive
+         * @deprecated Please use Status instead. 
          */
+        @Deprecated
         public StatisticVersionArchivalStatus ArchivalStatus;
+        /**
+         * status of the statistic version
+         */
+        public StatisticVersionStatus Status;
         /**
          * URL for the downloadable archive of player statistic values, if available
          */
@@ -2991,6 +2997,14 @@ public class PlayFabAdminModels {
         Queued,
         InProgress,
         Complete
+    }
+
+    public static enum StatisticVersionStatus {
+        Active,
+        SnapshotPending,
+        Snapshot,
+        ArchivalPending,
+        Archived
     }
 
     /**
