@@ -73,6 +73,22 @@ public class PlayFabServerModels {
         
     }
 
+    public static class AdCampaignAttributionModel {
+        /**
+         * Attribution network name
+         */
+        public String Platform;
+        /**
+         * Attribution campaign identifier
+         */
+        public String CampaignId;
+        /**
+         * UTC time stamp of attribution
+         */
+        public Date AttributedAt;
+        
+    }
+
     public static class AddCharacterVirtualCurrencyRequest {
         /**
          * PlayFab unique identifier of the user whose virtual currency balance is to be incremented.
@@ -1431,7 +1447,7 @@ public class PlayFabServerModels {
          */
         public Boolean UseSpecificVersion;
         /**
-         * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names.
+         * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
          */
         public PlayerProfileViewConstraints ProfileConstraints;
         
@@ -1507,7 +1523,7 @@ public class PlayFabServerModels {
          */
         public Integer MaxResultsCount;
         /**
-         * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names.
+         * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
          */
         public PlayerProfileViewConstraints ProfileConstraints;
         /**
@@ -1575,7 +1591,7 @@ public class PlayFabServerModels {
          */
         public Integer MaxResultsCount;
         /**
-         * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names.
+         * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
          */
         public PlayerProfileViewConstraints ProfileConstraints;
         /**
@@ -2396,6 +2412,26 @@ public class PlayFabServerModels {
         }
     }
 
+    public static class LinkedPlatformAccountModel {
+        /**
+         * Authentication platform
+         */
+        public LoginIdentityProvider Platform;
+        /**
+         * Unique account identifier of the user on the platform
+         */
+        public String PlatformUserId;
+        /**
+         * Linked account username of the user on the platform, if available
+         */
+        public String Username;
+        /**
+         * Linked account email of the user on the platform, if available
+         */
+        public String Email;
+        
+    }
+
     public static class ListUsersCharactersRequest {
         /**
          * Unique PlayFab assigned ID of the user on whom the operation will be performed.
@@ -2409,6 +2445,30 @@ public class PlayFabServerModels {
          * The requested list of characters.
          */
         public ArrayList<CharacterResult> Characters;
+        
+    }
+
+    public static class LocationModel {
+        /**
+         * The two-character continent code for this location
+         */
+        public ContinentCode ContinentCode;
+        /**
+         * The two-character ISO 3166-1 country code for the country associated with the location
+         */
+        public CountryCode CountryCode;
+        /**
+         * City name.
+         */
+        public String City;
+        /**
+         * Latitude coordinate of the geographic location.
+         */
+        public Double Latitude;
+        /**
+         * Longitude coordinate of the geographic location.
+         */
+        public Double Longitude;
         
     }
 
@@ -2620,9 +2680,9 @@ public class PlayFabServerModels {
          */
         public Integer Position;
         /**
-         * The profile of the user, if requested. Note that this profile may have sensitive fields scrubbed.
+         * The profile of the user, if requested.
          */
-        public PlayerProfile Profile;
+        public PlayerProfileModel Profile;
         
     }
 
@@ -2750,6 +2810,82 @@ public class PlayFabServerModels {
         
     }
 
+    public static class PlayerProfileModel {
+        /**
+         * Publisher this player belongs to
+         */
+        public String PublisherId;
+        /**
+         * Title ID this profile applies to
+         */
+        public String TitleId;
+        /**
+         * PlayFab Player ID
+         */
+        public String PlayerId;
+        /**
+         * Player record created
+         */
+        public Date Created;
+        /**
+         * Player account origination
+         */
+        public LoginIdentityProvider Origination;
+        /**
+         * Last login
+         */
+        public Date LastLogin;
+        /**
+         * If the player is currently banned, the UTC Date when the ban expires
+         */
+        public Date BannedUntil;
+        /**
+         * List of geographic locations where the player has logged-in
+         */
+        public ArrayList<LocationModel> Locations;
+        /**
+         * Player Display Name
+         */
+        public String DisplayName;
+        /**
+         * Image URL of the player's avatar
+         */
+        public String AvatarUrl;
+        /**
+         * List of player's tags for segmentation
+         */
+        public ArrayList<TagModel> Tags;
+        /**
+         * List of configured end points registered for sending the player push notifications
+         */
+        public ArrayList<PushNotificationRegistrationModel> PushNotificationRegistrations;
+        /**
+         * List of third party accounts linked to this player
+         */
+        public ArrayList<LinkedPlatformAccountModel> LinkedAccounts;
+        /**
+         * List of advertising campaigns the player has been attributed to
+         */
+        public ArrayList<AdCampaignAttributionModel> AdCampaignAttributions;
+        /**
+         * A sum of player's total purchases across all real-money currencies, converted to US Dollars equivalent
+         */
+        public Long TotalValueToDateInUSD;
+        /**
+         * List of player's total lifetime real-money purchases by currency
+         */
+        public ArrayList<ValueToDateModel> ValuesToDate;
+        /**
+         * List of player's virtual currency balances
+         */
+        public ArrayList<VirtualCurrencyBalanceModel> VirtualCurrencyBalances;
+        /**
+         * List of leaderboard statistic values for the player
+         */
+        public ArrayList<StatisticModel> Statistics;
+        
+    }
+
     public static class PlayerProfileViewConstraints {
         /**
          * Whether to show the display name. Defaults to false
@@ -2778,7 +2914,7 @@ public class PlayFabServerModels {
         /**
          * Whether to show campaign attributions. Defaults to false
          */
-        public Boolean ShowCampaignAtributions;
+        public Boolean ShowCampaignAttributions;
         /**
          * Whether to show push notification registrations. Defaults to false
          */
@@ -2799,10 +2935,6 @@ public class PlayFabServerModels {
          * Whether to show tags. Defaults to false
          */
         public Boolean ShowTags;
-        /**
-         * Whether to show the virtual currency balances. Defaults to false
-         */
-        public Boolean ShowVirtualCurrencyBalances;
         /**
          * Whether to show player's locations. Defaults to false
          */
@@ -2868,6 +3000,18 @@ public class PlayFabServerModels {
     }
 
     public static class PushNotificationRegistration {
+        /**
+         * Push notification platform
+         */
+        public PushNotificationPlatform Platform;
+        /**
+         * Notification configured endpoint
+         */
+        public String NotificationEndpointARN;
+        
+    }
+
+    public static class PushNotificationRegistrationModel {
         /**
          * Push notification platform
          */
@@ -3310,6 +3454,22 @@ public class PlayFabServerModels {
         
     }
 
+    public static class StatisticModel {
+        /**
+         * Statistic name
+         */
+        public String Name;
+        /**
+         * Statistic version (0 if not a versioned statistic)
+         */
+        public Integer Version;
+        /**
+         * Statistic value
+         */
+        public Integer Value;
+        
+    }
+
     public static class StatisticNameVersion {
         /**
          * unique name of the statistic
@@ -3399,6 +3559,14 @@ public class PlayFabServerModels {
          * Amount to be subtracted from the user balance of the specified virtual currency.
          */
         public Integer Amount;
+        
+    }
+
+    public static class TagModel {
+        /**
+         * Full value of the tag, including namespace
+         */
+        public String TagValue;
         
     }
 
@@ -4008,6 +4176,34 @@ public class PlayFabServerModels {
          * XBox user ID
          */
         public String XboxUserId;
+        
+    }
+
+    public static class ValueToDateModel {
+        /**
+         * ISO 4217 code of the currency used in the purchases
+         */
+        public String Currency;
+        /**
+         * Total value of the purchases in a whole number of 1/100 monetary units. For example 999 indicates nine dollars and ninety-nine cents when Currency is 'USD')
+         */
+        public Long TotalValue;
+        /**
+         * Total value of the purchases in a string representation of decimal monetary units (e.g. '9.99' indicates nine dollars and ninety-nine cents when Currency is 'USD'))
+         */
+        public String TotalValueAsDecimal;
+        
+    }
+
+    public static class VirtualCurrencyBalanceModel {
+        /**
+         * Name of the virtual currency
+         */
+        public String Currency;
+        /**
+         * Balance of the virtual currency
+         */
+        public Integer TotalValue;
         
     }
 

@@ -6899,7 +6899,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Accepts an open trade. If the call is successful, the offered and accepted items will be swapped between the two players' inventories.
+     * Accepts an open trade (one that has not yet been accepted or cancelled), if the locally signed-in player is in the  allowed player list for the trade, or it is open to all players. If the call is successful, the offered and accepted items will be swapped  between the two players' inventories.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<AcceptTradeResponse>> AcceptTradeAsync(final AcceptTradeRequest request) {
@@ -6911,7 +6911,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Accepts an open trade. If the call is successful, the offered and accepted items will be swapped between the two players' inventories.
+     * Accepts an open trade (one that has not yet been accepted or cancelled), if the locally signed-in player is in the  allowed player list for the trade, or it is open to all players. If the call is successful, the offered and accepted items will be swapped  between the two players' inventories.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<AcceptTradeResponse> AcceptTrade(final AcceptTradeRequest request) {
@@ -6929,7 +6929,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Accepts an open trade. If the call is successful, the offered and accepted items will be swapped between the two players' inventories.
+     * Accepts an open trade (one that has not yet been accepted or cancelled), if the locally signed-in player is in the  allowed player list for the trade, or it is open to all players. If the call is successful, the offered and accepted items will be swapped  between the two players' inventories.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AcceptTradeResponse> privateAcceptTradeAsync(final AcceptTradeRequest request) throws Exception {
@@ -6957,7 +6957,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Cancels an open trade.
+     * Cancels an open trade (one that has not yet been accepted or cancelled). Note that only the player who created the trade  can cancel it via this API call, to prevent griefing of the trade system (cancelling trades in order to prevent other players from accepting  them, for trades that can be claimed by more than one player).
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CancelTradeResponse>> CancelTradeAsync(final CancelTradeRequest request) {
@@ -6969,7 +6969,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Cancels an open trade.
+     * Cancels an open trade (one that has not yet been accepted or cancelled). Note that only the player who created the trade  can cancel it via this API call, to prevent griefing of the trade system (cancelling trades in order to prevent other players from accepting  them, for trades that can be claimed by more than one player).
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CancelTradeResponse> CancelTrade(final CancelTradeRequest request) {
@@ -6987,7 +6987,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Cancels an open trade.
+     * Cancels an open trade (one that has not yet been accepted or cancelled). Note that only the player who created the trade  can cancel it via this API call, to prevent griefing of the trade system (cancelling trades in order to prevent other players from accepting  them, for trades that can be claimed by more than one player).
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CancelTradeResponse> privateCancelTradeAsync(final CancelTradeRequest request) throws Exception {
@@ -7131,7 +7131,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Opens a new outstanding trade.
+     * Opens a new outstanding trade. Note that a given item instance may only be in one open trade at a time.
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<OpenTradeResponse>> OpenTradeAsync(final OpenTradeRequest request) {
@@ -7143,7 +7143,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Opens a new outstanding trade.
+     * Opens a new outstanding trade. Note that a given item instance may only be in one open trade at a time.
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<OpenTradeResponse> OpenTrade(final OpenTradeRequest request) {
@@ -7161,7 +7161,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Opens a new outstanding trade.
+     * Opens a new outstanding trade. Note that a given item instance may only be in one open trade at a time.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<OpenTradeResponse> privateOpenTradeAsync(final OpenTradeRequest request) throws Exception {
