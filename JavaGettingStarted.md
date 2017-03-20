@@ -10,7 +10,7 @@ Java Project Setup
 * Installation
   * Download and install the latest JDK
     * http://www.oracle.com/technetwork/java/javase/downloads/index.html
-  * Download the PlayFab ActionScriptSDK
+  * Download the PlayFab JavaSDK
     * https://api.playfab.com/sdks/download/java
     * Download the zip file, and extract it to a location of your choice {PlayFabJavaLocation}
 * New Project Setup
