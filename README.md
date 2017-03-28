@@ -83,6 +83,8 @@ Our Developer Success Team can assist with answering any questions as well as pr
 
 The PlayFab Java SDK was initially created and submitted to PlayFab by [nicosio2](https://github.com/nicosio2)
 
+The PlayFab Java SDK has been restructured for Maven support by Will Iverson at [Game Studio One](https://gamestudioone.com/)
+
 
 9. Copyright and Licensing Information:
 ----
