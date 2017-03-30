@@ -40,29 +40,6 @@
         <!-- Added to show how the dependency/property report will look at properties -->
         <javaLanguage.version>1.7</javaLanguage.version>
     </properties>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.google.code.gson</groupId>
-                <artifactId>gson</artifactId>
-                <version>2.8.0</version>
-            </dependency>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.12</version>
-                <scope>test</scope>
-            </dependency>
-            <!-- Excellent assertion library.  Replaces FEST, which is no longer maintained. -->
-            <!-- http://joel-costigliola.github.io/assertj/ -->
-            <dependency>
-                <groupId>org.assertj</groupId>
-                <artifactId>assertj-core</artifactId>
-                <version>3.6.2</version>
-                <scope>test</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -93,6 +70,18 @@
                 <configuration>
                     <source>${javaLanguage.version}</source>
                     <target>${javaLanguage.version}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <configuration>
+                    <!-- This configuration allows you to specify the environment variable to point at the
+                    testTitleData.json here, without setting an environment variable -->
+                    <environmentVariables>
+                        <PF_TEST_TITLE_DATA_JSON>${settings.localRepository}/../testTitleData.json</PF_TEST_TITLE_DATA_JSON>
+                    </environmentVariables>
                 </configuration>
             </plugin>
         </plugins>

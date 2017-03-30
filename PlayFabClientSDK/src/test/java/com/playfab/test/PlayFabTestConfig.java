@@ -25,6 +25,8 @@ import java.util.Map;
 
 public class PlayFabTestConfig {
 
+    private static final String ENV_VAR = "PF_TEST_TITLE_DATA_JSON";
+
     /**
      * Returns the configured TitleDate
      */
@@ -33,15 +35,23 @@ public class PlayFabTestConfig {
 
         Map<String, String> env = System.getenv();
 
+        for(String x : env.keySet())
+        {
+            System.out.println(x + ":" + env.get(x));
+        }
+
         String testTitleDataFile;
         TitleData resultData;
-        if (env.get("PF_TEST_TITLE_DATA_JSON") != null) {
-            testTitleDataFile = env.get("PF_TEST_TITLE_DATA_JSON");
+        if (env.get(ENV_VAR) != null) {
+            testTitleDataFile = env.get(ENV_VAR);
+            File file = new File(testTitleDataFile);
+            if (!file.exists())
+                System.err.println("Can't find " + file.getAbsolutePath() + " set via " + ENV_VAR);
             resultData = gson.fromJson(new JsonReader(new FileReader(testTitleDataFile)), TitleData.class);
         } else {
             File file = new File("testTitleData.json");
             if (!file.exists())
-                System.err.println("Can't find " + file.getAbsolutePath());
+                System.err.println("Can't find " + file.getAbsolutePath() + " in tests.");
 
             resultData = gson.fromJson(new JsonReader(new FileReader("testTitleData.json")), TitleData.class);
         }
