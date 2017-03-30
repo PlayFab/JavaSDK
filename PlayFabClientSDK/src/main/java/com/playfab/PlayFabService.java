@@ -19,8 +19,6 @@ public class PlayFabService<R> implements PlayFabSuccess<R> {
     private PlayFabSuccess<R> successCallback;
     private PlayFabFailure failureCallback;
     private PlayFabLowLevelFailure lowLevelFailureCallback;
-    private float frequency = 50.0f;
-    private float accumulator = 0;
     private R result;
 
     /**
@@ -28,21 +26,6 @@ public class PlayFabService<R> implements PlayFabSuccess<R> {
      */
     public boolean active() {
         return (!(task == null));
-    }
-
-    /**
-     * How often the service is currently looking for a response
-     */
-    public float getFrequency() {
-        return frequency;
-    }
-
-    /**
-     * Set the frequency to check the result when updating. By default the frequency is 50ms.  This frequency is
-     * modified by the service automatically if you specify automatic retries.
-     */
-    public void setFrequency(float frequency) {
-        this.frequency = frequency;
     }
 
     /**
@@ -76,22 +59,6 @@ public class PlayFabService<R> implements PlayFabSuccess<R> {
      */
     public void onLowLevelFailure(PlayFabLowLevelFailure lowLevelFailureCallback) {
         this.lowLevelFailureCallback = lowLevelFailureCallback;
-    }
-
-    /**
-     * Call this to cause the service to process the response and notify any callbacks.
-     *
-     * @param delta The time since the last check - typically this is the same delta you are getting from your game
-     *              engine for a render.
-     */
-    public void update(float delta) {
-
-        accumulator = accumulator + delta;
-
-        if (accumulator > frequency) {
-            accumulator = 0;
-            updateTask(task);
-        }
     }
 
     /**
@@ -131,7 +98,6 @@ public class PlayFabService<R> implements PlayFabSuccess<R> {
                 if (result != null && result.Result != null) {
                     if (successCallback != null) {
                         successCallback.success(result.Result);
-                        frequency = 50.0f;
                     }
                 }
 
@@ -158,8 +124,6 @@ public class PlayFabService<R> implements PlayFabSuccess<R> {
     }
 
     private void rerun() {
-        if (frequency < 2000)
-            frequency = frequency + 100.0f;
         task.run();
     }
 
