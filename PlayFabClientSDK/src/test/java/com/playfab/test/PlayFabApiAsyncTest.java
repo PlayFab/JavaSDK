@@ -1,7 +1,6 @@
 package com.playfab.test;
 
 import com.playfab.*;
-import com.playfab.PlayFabErrors.PlayFabResult;
 import com.playfab.debug.PlayFabDebug;
 import com.playfab.debug.PlayFabDebugInfoUtil;
 import org.junit.BeforeClass;
@@ -110,8 +109,7 @@ public class PlayFabApiAsyncTest {
         request.Email = "x"; // Provide invalid inputs for multiple parameters, which will show up in errorDetails
         request.Password = "x"; // Provide invalid inputs for multiple parameters, which will show up in errorDetails
 
-        PlayFabService<RegisterPlayFabUserResult> service = new
-                PlayFabService<>();
+        PlayFabService<RegisterPlayFabUserResult> service = new PlayFabService<>();
 
         service.start(RegisterPlayFabUserAsync(request));
 
@@ -321,7 +319,6 @@ public class PlayFabApiAsyncTest {
 
         ListUsersCharactersRequest getRequest = new ListUsersCharactersRequest();
         getRequest.PlayFabId = playFabId;
-        PlayFabResult<ListUsersCharactersResult> getCharsResult = PlayFabClientAPI.GetAllUsersCharacters(getRequest);
 
         PlayFabService<ListUsersCharactersResult> service = new PlayFabService<>();
         service.start(GetAllUsersCharactersAsync(new ListUsersCharactersRequest()));
@@ -382,7 +379,6 @@ public class PlayFabApiAsyncTest {
 
         final GetAccountInfoRequest request = new GetAccountInfoRequest();
         request.PlayFabId = playFabId;
-        PlayFabResult<GetAccountInfoResult> result = PlayFabClientAPI.GetAccountInfo(request);
 
         PlayFabService<GetAccountInfoResult> service = new PlayFabService<>();
         service.start(GetAccountInfoAsync(request));
@@ -416,7 +412,6 @@ public class PlayFabApiAsyncTest {
 
         ExecuteCloudScriptRequest hwRequest = new ExecuteCloudScriptRequest();
         hwRequest.FunctionName = "helloWorld";
-        PlayFabResult<ExecuteCloudScriptResult> hwResult = PlayFabClientAPI.ExecuteCloudScript(hwRequest);
 
         PlayFabService<ExecuteCloudScriptResult> service = new PlayFabService<>();
         service.start(ExecuteCloudScriptAsync(hwRequest));
@@ -482,7 +477,6 @@ public class PlayFabApiAsyncTest {
         request.Body = new HashMap<String, Object>();
         request.Body.put("Subject", "My First Post");
         request.Body.put("Body", "My awesome post.");
-        PlayFabResult<WriteEventResponse> result = PlayFabClientAPI.WritePlayerEvent(request);
 
         PlayFabService<WriteEventResponse> service = new PlayFabService<>();
 
