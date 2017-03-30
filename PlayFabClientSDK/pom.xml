@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <inceptionYear>2016</inceptionYear>
     <groupId>com.playfab</groupId>
     <artifactId>client-sdk</artifactId>
     <version>0.46.170313-SNAPSHOT</version>
     <name>PlayFab Client API</name>
-    <description>PlayFab is the unified backend platform for games — everything you need to build and operate your game, all in one place, so you can focus on creating and delivering a great player experience. </description>
+    <description>PlayFab is the unified backend platform for games — everything you need to build and operate your game,
+        all in one place, so you can focus on creating and delivering a great player experience.
+    </description>
     <url>http://api.playfab.com/</url>
     <organization>
         <name>PlayFab Inc.</name>
@@ -37,29 +40,6 @@
         <!-- Added to show how the dependency/property report will look at properties -->
         <javaLanguage.version>1.7</javaLanguage.version>
     </properties>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.google.code.gson</groupId>
-                <artifactId>gson</artifactId>
-                <version>2.8.0</version>
-            </dependency>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.12</version>
-                <scope>test</scope>
-            </dependency>
-            <!-- Excellent assertion library.  Replaces FEST, which is no longer maintained. -->
-            <!-- http://joel-costigliola.github.io/assertj/ -->
-            <dependency>
-                <groupId>org.assertj</groupId>
-                <artifactId>assertj-core</artifactId>
-                <version>3.6.2</version>
-                <scope>test</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -92,6 +72,18 @@
                     <target>${javaLanguage.version}</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19.1</version>
+                <configuration>
+                    <!-- This configuration allows you to specify the environment variable to point at the
+                    testTitleData.json here, without setting an environment variable -->
+                    <environmentVariables>
+                        <PF_TEST_TITLE_DATA_JSON>${settings.localRepository}/../testTitleData.json</PF_TEST_TITLE_DATA_JSON>
+                    </environmentVariables>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <profiles>
@@ -108,8 +100,31 @@
                                 <id>sign-artifacts</id>
                                 <phase>verify</phase>
                                 <goals>
-                                    <goal>sign</goal>
+                                    <goal>sign-and-deploy-file</goal>
                                 </goals>
+                                <configuration>
+                                    <!-- From list-keys
+                                    https://www.gnupg.org/gph/en/manual/r762.html
+                                    -->
+                                    <keyname>9B64859A</keyname>
+                                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                                    <pomFile>pom.xml</pomFile>
+                                    <artifactId>${project.artifactId}</artifactId>
+                                    <groupId>${project.groupId}</groupId>
+                                    <version>${project.version}</version>
+
+                                    <file>target/${project.artifactId}-${project.version}.jar</file>
+                                    <files>
+                                        target/${project.artifactId}-${project.version}-sources.jar,target/${project.artifactId}-${project.version}-javadoc.jar
+                                    </files>
+                                    <types>jar,jar</types>
+                                    <classifiers>sources,javadoc</classifiers>
+                                    <repositoryId>nexus</repositoryId>
+                                    <gpgArguments>
+                                        <argument>--armor</argument>
+                                        <argument>--detach-sig</argument>
+                                    </gpgArguments>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
@@ -136,8 +151,24 @@
                                 <goals>
                                     <goal>jar</goal>
                                 </goals>
+                                <configuration>
+                                    <linksource>true</linksource>
+                                    <failOnError>false</failOnError>
+                                </configuration>
                             </execution>
                         </executions>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.3</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>nexus</serverId>
+                            <nexusUrl>https://oss.sonatype.org/service/local/staging/deploy/maven2</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
