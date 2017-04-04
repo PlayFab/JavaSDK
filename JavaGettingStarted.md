@@ -235,3 +235,5 @@ pom.xml is a complicated beast
   * &lt;dependency>...&lt;groupId>junit&lt;/groupId>...&lt;scope>test&lt;/scope>
     * The PlayFab tests included with the project require JUnit to run [Optional, but included for simpler steps]
 * Everything else is standard stuff in a Maven pom.xml, and you should [dive into the documentation](https://maven.apache.org/guides/introduction/introduction-to-the-pom.html) for details.
+
+Finally, see our separate [testTitleData.json documentation](https://github.com/PlayFab/SDKGenerator/blob/master/JenkinsConsoleUtility/testTitleData.md)
