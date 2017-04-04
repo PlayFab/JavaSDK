@@ -11,15 +11,15 @@ This guide will help you make your first API call in Java.
   * Download the [PlayFab JavaSDK](https://api.playfab.com/sdks/download/java)
     * Download the zip file, and extract it to a location of your choice {PlayFabJavaLocation}
 * New Project Setup
-  * Create a new empty folder for your JavaGettingStarted project
-    * Create a new empty text file called GettingStarted.java
+  * Create a new empty folder for your JavaGettingStarted project {NewProjectFolder}
+    * Import the PlayFab JavaSDK into this project
+      * In Windows-Explorer, navigate to [{PlayFabJavaLocation}/PlayFabClientSDK/](https://github.com/PlayFab/JavaSDK/tree/master/PlayFabClientSDK/)
+      * Select the src folder, and copy it to {NewProjectFolder}
+    * Create a new empty text file called pom.xml in {NewProjectFolder}
       * We will modify this file in the next section
-  * Import the PlayFab JavaSDK into this project
-    * In Windows-Explorer, navigate to {PlayFabJavaLocation}/PlayFabClientSDK/src
-    * Select everything in this folder (1 subfolder, and 2 jar files)
-    * Copy it to your project folder
-* Your project folder should look like this:
-  * ![Java image](/images/Java/Installed.png)
+    * Navigate to: {NewProjectFolder}/src/main/java
+      * Create a new empty text file called GettingStarted.java (Full path: {NewProjectFolder}/src/main/java/GettingStarted.java )
+      * We will modify this file in the next section
 * PlayFab Installation Complete!
 
 ## Set up your first API call
