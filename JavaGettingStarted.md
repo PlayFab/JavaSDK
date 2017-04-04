@@ -228,10 +228,10 @@ This optional last section describes every line in GettingStarted.java in detail
 pom.xml is a complicated beast
 
 * There are a few lines relevant to our example
-  * <exec.mainClass>GettingStarted</exec.mainClass>
+  * &lt;exec.mainClass>GettingStarted&lt;/exec.mainClass>
     * This tells Maven to run our GettingStarted example when we call "mvn exec:java"
-  * <dependency>...<groupId>com.google.code.gson</groupId>
+  * &lt;dependency>...&lt;groupId>com.google.code.gson&lt;/groupId>
     * PlayFab requires Google gson to operate
-  * <dependency>...<groupId>junit</groupId>...<scope>test</scope>
+  * &lt;dependency>...&lt;groupId>junit&lt;/groupId>...&lt;scope>test&lt;/scope>
     * The PlayFab tests included with the project require JUnit to run [Optional, but included for simpler steps]
 * Everything else is standard stuff in a Maven pom.xml, and you should [dive into the documentation](https://maven.apache.org/guides/introduction/introduction-to-the-pom.html) for details.
