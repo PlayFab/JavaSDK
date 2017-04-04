@@ -224,3 +224,14 @@ This optional last section describes every line in GettingStarted.java in detail
       * PlayFab server issue.   As with all software, there can be issues.  See our [release notes](https://api.playfab.com/releaseNotes/) for updates.
       * The internet is not 100% reliable.  Sometimes the message is corrupted or fails to reach the PlayFab server.
     * If you are having difficulty debugging an issue, and the information within the error callback is not sufficient, please visit us on our [forums](https://community.playfab.com/index.html)
+
+pom.xml is a complicated beast
+
+* There are a few lines relevant to our example
+  * <exec.mainClass>GettingStarted</exec.mainClass>
+    * This tells Maven to run our GettingStarted example when we call "mvn exec:java"
+  * <dependency>...<groupId>com.google.code.gson</groupId>
+    * PlayFab requires Google gson to operate
+  * <dependency>...<groupId>junit</groupId>...<scope>test</scope>
+    * The PlayFab tests included with the project require JUnit to run [Optional, but included for simpler steps]
+* Everything else is standard stuff in a Maven pom.xml, and you should [dive into the documentation](https://maven.apache.org/guides/introduction/introduction-to-the-pom.html) for details.
