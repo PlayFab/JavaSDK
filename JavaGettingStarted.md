@@ -7,6 +7,7 @@ This guide will help you make your first API call in Java.
 * OS: This guide is written for Windows 10, however it should also work fine with a Mac
 * Installation
   * Download and install [Apache Maven](https://maven.apache.org/download.cgi)
+    * You must add the {apache-maven-dir}/bin directory to your Windows Environment PATH variable
   * Download and install the [latest Java Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
   * Download the [PlayFab JavaSDK](https://api.playfab.com/sdks/download/java)
     * Download the zip file, and extract it to a location of your choice {PlayFabJavaLocation}
@@ -17,6 +18,10 @@ This guide will help you make your first API call in Java.
       * Select the src folder, and copy it to {NewProjectFolder}
     * Create a new empty text file called pom.xml in {NewProjectFolder}
       * We will modify this file in the next section
+    * Create a new empty text file called testTitleData.json in {NewProjectFolder}
+      * We will modify this file in the next section
+    * Create a new Windows Environment variable called: PF_TEST_TITLE_DATA_JSON
+      * The value is the full path of your new {NewProjectFolder}/testTitleData.json file
     * Navigate to: {NewProjectFolder}/src/main/java
       * Create a new empty text file called GettingStarted.java (Full path: {NewProjectFolder}/src/main/java/GettingStarted.java )
       * We will modify this file in the next section
@@ -26,7 +31,7 @@ This guide will help you make your first API call in Java.
 
 This guide will provide the minimum steps to make your first PlayFab API call. Confirmation will be visible as console-output text.
 
-In your favorite text-editor, update the contents of GettingStarted.java as follows:
+In your favorite text-editor, update the contents of {NewProjectFolder}/src/main/java/GettingStarted.java as follows:
 
 ```Java
 import java.util.concurrent.*;
@@ -101,19 +106,80 @@ public class GettingStarted
 }
 ```
 
-* Open a command window in your project folder:
-  * Hold shift and right click in the empty-white-space of the Explorer window
-  * ![Java image](/images/Java/CmdExe.png)
-  * We will use this window in the next section to execute our program
+In your favorite text-editor, update the contents of {NewProjectFolder}/pom.xml as follows:
+
+```XML
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.example</groupId>
+    <artifactId>PlayFabExample</artifactId>
+    <version>1.0.0</version>
+    <prerequisites>
+        <maven>3.1.9</maven>
+    </prerequisites>
+    <properties>
+        <!-- Eliminates the file encoding warning. Of course, all of your files should probably be UTF-8 nowadays. -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Added to show how the dependency/property report will look at properties -->
+        <javaLanguage.version>1.7</javaLanguage.version>
+        <exec.mainClass>GettingStarted</exec.mainClass>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+        <!-- Excellent assertion library.  Replaces FEST, which is no longer maintained. -->
+        <!-- http://joel-costigliola.github.io/assertj/ -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.6.2</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.1</version>
+                <configuration>
+                    <source>${javaLanguage.version}</source>
+                    <target>${javaLanguage.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+In your favorite text-editor, update the contents of {NewProjectFolder}/testTitleData.json as follows:
+
+```Json
+{
+	"titleId": "6195",
+	"userEmail": "test@playfab.com"
+}
+```
 
 ## Finish and Execute
 
-* In the command window, enter the following sequence of commands:
-  * javac GettingStarted.java
-    * If successful, this should finish with no output
-  * Java -cp . GettingStarted
-    * If successful, you should see the following text:
-      * Congratulations, you made your first successful API call!
+* Open a new command window in the {NewProjectFolder} folder
+  * ![Java Image](images/Java/CmdExe.png)
+* In the command window, enter the following command:
+  * mvn verify exec:java
+    * You will see a bunch of logs, including PlayFab test results, and finally near the end:
+    * Congratulations, you made your first successful API call!
+    * If everything succeeds, and you see the indicated success line, you've succeeded
 * At this point, you can start making other api calls, and building your game
 * For a list of all available client API calls, see our documentation:
   * https://api.playfab.com/
