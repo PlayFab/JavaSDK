@@ -78,7 +78,15 @@ Our Developer Success Team can assist with answering any questions as well as pr
 [Forums, Support and Knowledge Base](https://community.playfab.com/index.html)
 
 
-8. Copyright and Licensing Information:
+8. Acknowlegements
+----
+
+The PlayFab Java SDK was initially created and submitted to PlayFab by [nicosio2](https://github.com/nicosio2)
+
+The PlayFab Java SDK has been restructured for Maven support by Will Iverson at [Game Studio One](https://gamestudioone.com/)
+
+
+9. Copyright and Licensing Information:
 ----
   Apache License --
   Version 2.0, January 2004
