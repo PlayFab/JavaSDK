@@ -18,6 +18,8 @@ public class PlayFabMatchmakerAPI {
 
     /**
      * Validates a user with the PlayFab service
+     * @param request AuthUserRequest
+     * @return Async Task will return AuthUserResponse
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<AuthUserResponse>> AuthUserAsync(final AuthUserRequest request) {
@@ -30,6 +32,8 @@ public class PlayFabMatchmakerAPI {
 
     /**
      * Validates a user with the PlayFab service
+     * @param request AuthUserRequest
+     * @return AuthUserResponse
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<AuthUserResponse> AuthUser(final AuthUserRequest request) {
@@ -76,6 +80,8 @@ public class PlayFabMatchmakerAPI {
 
     /**
      * Informs the PlayFab game server hosting service that the indicated user has joined the Game Server Instance specified
+     * @param request PlayerJoinedRequest
+     * @return Async Task will return PlayerJoinedResponse
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<PlayerJoinedResponse>> PlayerJoinedAsync(final PlayerJoinedRequest request) {
@@ -88,6 +94,8 @@ public class PlayFabMatchmakerAPI {
 
     /**
      * Informs the PlayFab game server hosting service that the indicated user has joined the Game Server Instance specified
+     * @param request PlayerJoinedRequest
+     * @return PlayerJoinedResponse
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<PlayerJoinedResponse> PlayerJoined(final PlayerJoinedRequest request) {
@@ -134,6 +142,8 @@ public class PlayFabMatchmakerAPI {
 
     /**
      * Informs the PlayFab game server hosting service that the indicated user has left the Game Server Instance specified
+     * @param request PlayerLeftRequest
+     * @return Async Task will return PlayerLeftResponse
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<PlayerLeftResponse>> PlayerLeftAsync(final PlayerLeftRequest request) {
@@ -146,6 +156,8 @@ public class PlayFabMatchmakerAPI {
 
     /**
      * Informs the PlayFab game server hosting service that the indicated user has left the Game Server Instance specified
+     * @param request PlayerLeftRequest
+     * @return PlayerLeftResponse
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<PlayerLeftResponse> PlayerLeft(final PlayerLeftRequest request) {
@@ -192,6 +204,8 @@ public class PlayFabMatchmakerAPI {
 
     /**
      * Instructs the PlayFab game server hosting service to instantiate a new Game Server Instance
+     * @param request StartGameRequest
+     * @return Async Task will return StartGameResponse
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<StartGameResponse>> StartGameAsync(final StartGameRequest request) {
@@ -204,6 +218,8 @@ public class PlayFabMatchmakerAPI {
 
     /**
      * Instructs the PlayFab game server hosting service to instantiate a new Game Server Instance
+     * @param request StartGameRequest
+     * @return StartGameResponse
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<StartGameResponse> StartGame(final StartGameRequest request) {
@@ -250,6 +266,8 @@ public class PlayFabMatchmakerAPI {
 
     /**
      * Retrieves the relevant details for a specified user, which the external match-making service can then use to compute effective matches
+     * @param request UserInfoRequest
+     * @return Async Task will return UserInfoResponse
      */
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UserInfoResponse>> UserInfoAsync(final UserInfoRequest request) {
@@ -262,6 +280,8 @@ public class PlayFabMatchmakerAPI {
 
     /**
      * Retrieves the relevant details for a specified user, which the external match-making service can then use to compute effective matches
+     * @param request UserInfoRequest
+     * @return UserInfoResponse
      */
     @SuppressWarnings("unchecked")
     public static PlayFabResult<UserInfoResponse> UserInfo(final UserInfoRequest request) {

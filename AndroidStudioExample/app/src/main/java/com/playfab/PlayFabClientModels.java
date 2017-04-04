@@ -436,7 +436,7 @@ public class PlayFabClientModels {
     }
 
     /**
-     * Collection filter to include and/or exclude collections with certain key-value pairs. The filter generates a collection set defined by Includes rules and then remove collections that matches the Excludes rules. A collection is considered matching a rule if the rule describes a subset of the collection. 
+     * Collection filter to include and/or exclude collections with certain key-value pairs. The filter generates a collection set defined by Includes rules and then remove collections that matches the Excludes rules. A collection is considered matching a rule if the rule describes a subset of the collection.
      */
     public static class CollectionFilter {
         /**
@@ -1193,7 +1193,7 @@ public class PlayFabClientModels {
          */
         public String BuildVersion;
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         
@@ -1435,6 +1435,14 @@ public class PlayFabClientModels {
          */
         public Boolean IncludeFacebookFriends;
         /**
+         * The version of the leaderboard to get, when UseSpecificVersion is true.
+         */
+        public Integer Version;
+        /**
+         * If true, uses the specified version. If false, gets the most recent version.
+         */
+        public Boolean UseSpecificVersion;
+        /**
          * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
          */
         public PlayerProfileViewConstraints ProfileConstraints;
@@ -1478,6 +1486,14 @@ public class PlayFabClientModels {
          * Indicates whether Facebook friends should be included in the response. Default is true.
          */
         public Boolean IncludeFacebookFriends;
+        /**
+         * The version of the leaderboard to get, when UseSpecificVersion is true.
+         */
+        public Integer Version;
+        /**
+         * If true, uses the specified version. If false, gets the most recent version.
+         */
+        public Boolean UseSpecificVersion;
         /**
          * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
          */
@@ -1547,6 +1563,14 @@ public class PlayFabClientModels {
          */
         public Integer MaxResultsCount;
         /**
+         * The version of the leaderboard to get, when UseSpecificVersion is true.
+         */
+        public Integer Version;
+        /**
+         * If true, uses the specified version. If false, gets the most recent version.
+         */
+        public Boolean UseSpecificVersion;
+        /**
          * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
          */
         public PlayerProfileViewConstraints ProfileConstraints;
@@ -1603,6 +1627,14 @@ public class PlayFabClientModels {
          */
         public Integer MaxResultsCount;
         /**
+         * The version of the leaderboard to get, when UseSpecificVersion is true.
+         */
+        public Integer Version;
+        /**
+         * If true, uses the specified version. If false, gets the most recent version.
+         */
+        public Boolean UseSpecificVersion;
+        /**
          * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
          */
         public PlayerProfileViewConstraints ProfileConstraints;
@@ -1643,7 +1675,7 @@ public class PlayFabClientModels {
 
     public static class GetPlayerCombinedInfoRequest {
         /**
-         * PlayFabId of the user whose data will be returned. If not filled included, we return the data for the calling player. 
+         * PlayFabId of the user whose data will be returned. If not filled included, we return the data for the calling player.
          */
         public String PlayFabId;
         /**
@@ -1980,7 +2012,7 @@ public class PlayFabClientModels {
 
     public static class GetPublisherDataRequest {
         /**
-         *  array of keys to get back data from the Publisher data blob, set by the admin tools
+         * array of keys to get back data from the Publisher data blob, set by the admin tools
          */
         public ArrayList<String> Keys;
         
@@ -2024,7 +2056,7 @@ public class PlayFabClientModels {
          */
         public Date PurchaseDate;
         /**
-         * @deprecated Please use  instead. 
+         * @deprecated Please use  instead.
          */
         @Deprecated
         public ArrayList<ItemInstance> Items;
@@ -2227,7 +2259,7 @@ public class PlayFabClientModels {
 
     public static class GetWindowsHelloChallengeRequest {
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2688,7 +2720,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithAndroidDeviceIDRequest {
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2716,7 +2748,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithCustomIDRequest {
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2728,6 +2760,14 @@ public class PlayFabClientModels {
          */
         public Boolean CreateAccount;
         /**
+         * Player secret that is used to verify API request signatures
+         */
+        public String PlayerSecret;
+        /**
+         * Base64 encoded body that is encrypted with the Title's public RSA key
+         */
+        public String EncryptedRequest;
+        /**
          * Flags for which pieces of info to return for the user.
          */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
@@ -2736,7 +2776,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithEmailAddressRequest {
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2756,7 +2796,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithFacebookRequest {
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2776,7 +2816,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithGameCenterRequest {
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2796,7 +2836,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithGoogleAccountRequest {
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2816,7 +2856,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithIOSDeviceIDRequest {
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2844,7 +2884,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithKongregateRequest {
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2868,7 +2908,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithPlayFabRequest {
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2888,7 +2928,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithSteamRequest {
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2908,7 +2948,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithTwitchRequest {
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2928,7 +2968,7 @@ public class PlayFabClientModels {
 
     public static class LoginWithWindowsHelloRequest {
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -3489,7 +3529,7 @@ public class PlayFabClientModels {
 
     public static class RegisterPlayFabUserRequest {
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -3537,7 +3577,7 @@ public class PlayFabClientModels {
 
     public static class RegisterWithWindowsHelloRequest {
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -3657,7 +3697,7 @@ public class PlayFabClientModels {
          */
         public String Email;
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         

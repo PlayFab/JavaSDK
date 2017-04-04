@@ -1030,7 +1030,7 @@ public class PlayFabServerModels {
          */
         public ArrayList<String> PlayFabIds;
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         
@@ -1439,6 +1439,14 @@ public class PlayFabServerModels {
          */
         public Boolean IncludeFacebookFriends;
         /**
+         * The version of the leaderboard to get, when UseSpecificVersion is true.
+         */
+        public Integer Version;
+        /**
+         * If true, uses the specified version. If false, gets the most recent version.
+         */
+        public Boolean UseSpecificVersion;
+        /**
          * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
          */
         public PlayerProfileViewConstraints ProfileConstraints;
@@ -1518,6 +1526,14 @@ public class PlayFabServerModels {
          * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
          */
         public PlayerProfileViewConstraints ProfileConstraints;
+        /**
+         * The version of the leaderboard to get, when UseSpecificVersion is true.
+         */
+        public Integer Version;
+        /**
+         * If true, uses the specified version. If false, gets the most recent version.
+         */
+        public Boolean UseSpecificVersion;
         
     }
 
@@ -1578,6 +1594,14 @@ public class PlayFabServerModels {
          * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
          */
         public PlayerProfileViewConstraints ProfileConstraints;
+        /**
+         * The version of the leaderboard to get, when UseSpecificVersion is true.
+         */
+        public Integer Version;
+        /**
+         * If true, uses the specified version. If false, gets the most recent version.
+         */
+        public Boolean UseSpecificVersion;
         
     }
 
@@ -1884,7 +1908,7 @@ public class PlayFabServerModels {
 
     public static class GetPublisherDataRequest {
         /**
-         *  array of keys to get back data from the Publisher data blob, set by the admin tools
+         * array of keys to get back data from the Publisher data blob, set by the admin tools
          */
         public ArrayList<String> Keys;
         

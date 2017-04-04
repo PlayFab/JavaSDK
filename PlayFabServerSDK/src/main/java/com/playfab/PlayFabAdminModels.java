@@ -199,7 +199,7 @@ public class PlayFabAdminModels {
          */
         public Date Timestamp;
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -1104,7 +1104,7 @@ public class PlayFabAdminModels {
          */
         public ArrayList<String> PlayFabIds;
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         
@@ -1396,7 +1396,7 @@ public class PlayFabAdminModels {
 
     public static class GetMatchmakerGameInfoResult {
         /**
-         * unique identifier of the lobby 
+         * unique identifier of the lobby
          */
         public String LobbyId;
         /**
@@ -1581,7 +1581,7 @@ public class PlayFabAdminModels {
 
     public static class GetPublisherDataRequest {
         /**
-         *  array of keys to get back data from the Publisher data blob, set by the admin tools
+         * array of keys to get back data from the Publisher data blob, set by the admin tools
          */
         public ArrayList<String> Keys;
         
@@ -1665,7 +1665,7 @@ public class PlayFabAdminModels {
          */
         public Date Timestamp;
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2273,7 +2273,7 @@ public class PlayFabAdminModels {
          */
         public Date Timestamp;
         /**
-         * Unique identifier for the title, found in the Settings &GT; Game Properties section of the PlayFab developer site when a title has been selected.
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
          */
         public String TitleId;
         /**
@@ -2526,7 +2526,7 @@ public class PlayFabAdminModels {
          */
         public Date DeactivationTime;
         /**
-         * @deprecated Please use Status instead. 
+         * @deprecated Please use Status instead.
          */
         @Deprecated
         public StatisticVersionArchivalStatus ArchivalStatus;

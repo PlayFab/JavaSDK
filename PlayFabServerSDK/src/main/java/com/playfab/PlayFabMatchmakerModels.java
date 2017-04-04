@@ -205,7 +205,7 @@ public class PlayFabMatchmakerModels {
          */
         public String CustomCommandLineData;
         /**
-         * HTTP endpoint URL for receiving game status events, if using an external matchmaker. When the game ends, PlayFab will make a POST request to this URL with the X-SecretKey header set to the value of the game's secret and an application/json body of { "EventName": "game_ended", "GameID": "<gameid&GT;" }.
+         * HTTP endpoint URL for receiving game status events, if using an external matchmaker. When the game ends, PlayFab will make a POST request to this URL with the X-SecretKey header set to the value of the game's secret and an application/json body of { "EventName": "game_ended", "GameID": "&lt;gameid&gt;" }.
          */
         public String ExternalMatchmakerEventEndpoint;
         
