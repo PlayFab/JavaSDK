@@ -166,8 +166,8 @@ In your favorite text-editor, update the contents of {NewProjectFolder}/testTitl
 
 ```Json
 {
-	"titleId": "6195",
-	"userEmail": "test@playfab.com"
+    "titleId": "6195",
+    "userEmail": "test@playfab.com"
 }
 ```
 
