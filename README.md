@@ -1,12 +1,12 @@
-Java SDK for PlayFab README
-========
-1. Overview:
-----
+# Java SDK for PlayFab README
+
+## 1. Overview:
+
 This document describes the process of configuring and building the PlayFab Java SDK.
 
 
-2. Prerequisites:
-----
+## 2. Prerequisites:
+
 * Users should be very familiar with the topics covered in our [getting started guide](https://playfab.com/docs/getting-started-with-playfab/).
 
 To connect to the PlayFab service, your machine must be running TLS v1.2 or better.
@@ -15,8 +15,8 @@ To connect to the PlayFab service, your machine must be running TLS v1.2 or bett
 * [Support for SSL/TLS protocols on Windows](http://blogs.msdn.com/b/kaushal/archive/2011/10/02/support-for-ssl-tls-protocols-on-windows.aspx)
 
 
-3. Source Code & Key Repository Components:
-----
+## 3. Source Code & Key Repository Components:
+
 This package contains three different versions of the PlayFab SDK.
 * PlayFabClientSDK - This version contains only client libraries and is designed for integration with your game client
 * PlayFabServerSDK - Contains server and admin APIs designed to be called from your custom logic server or build process
@@ -24,49 +24,45 @@ This package contains three different versions of the PlayFab SDK.
 * AndroidStudioExample - Client-only integration of PlayFabSDK into an AndroidStudio example project
 
 
-4. Installation & Configuration Instructions:
-----
+## 4. Installation & Configuration Instructions:
 
-The playfab API source code is located within:
+The playfab API source code is located within one of the following:
 
-    {JavaSDK-Location}/PlayFabSDK/src/playfab
+* Client: https://github.com/PlayFab/JavaSDK/tree/master/PlayFabClientSDK/src/main/java/com/playfab
+* Server: https://github.com/PlayFab/JavaSDK/tree/master/PlayFabServerSDK/src/main/java/com/playfab
+* Combo: https://github.com/PlayFab/JavaSDK/tree/master/PlayFabSDK/src/main/java/com/playfab
 
-The playfab API relies on the Google gson library, located within:
+The playfab API relies on the Google gson library.  The dependency is described in each pom.xml file, Example:
 
-    {JavaSDK-Location}/PlayFabSDK/src/com
+* Client: https://github.com/PlayFab/JavaSDK/blob/master/PlayFabClientSDK/pom.xml#L48
+* Server: https://github.com/PlayFab/JavaSDK/blob/master/PlayFabServerSDK/pom.xml#L48
+* Combo: https://github.com/PlayFab/JavaSDK/blob/master/PlayFabSDK/pom.xml#L48
 
-To create a new project using PlayFab, copy the indicated playfab and com directories into the source directory for your project.
-
-
-5. Using the example project:
-----
-
-The PlayFabApiTest example project can be run from the console.  These instructions assume Windows operating system.
-
-* Extract the JavaSDK Sdk to your computer (referenced as {JavaSDK-Location} within this document)
-* Navigate to: {JavaSDK-Location}/PlayFabSDK/src
-* Open {JavaSDK-Location}/PlayFabSDK/src/RunPfTests.bat in a text editor such as Notepad++ or FlashDevelop (Regular notepad may not load unix line endings properly)
-* Update the titleData path in your RunPfTests.bat file:
- * java -DtestTitleData=C:\depot\pf-main\tools\SDKBuildScripts\testTitleData.json ... etc
- * You will need to create a new testTitleData.json file, and change the above path to match your new file (see next section for details)
-* Executing RunPfTests.bat should compile the example project, execute the project, make a handful of API calls, and exit
- * This uses the standard JUnit testing suite
- * The exit code for the example will be 0 for success, or non-zero for failure
- * Detailed info about test failures will be in the console output (stdout)
+PlayFab does not submit this SDK to the Maven Central repository. For now, you must copy/paste the appropriate /src/main/java/com/playfab/ subfolder from one of the root folders (PlayFabClientSDK, PlayFabSDK, PlayFabSDK), and paste it into your project. We hope to improve this later, but there is no ETA for completion.
 
 
-6. testTitleData.json file required for example test files.
-----
+## 5. testTitleData.json file required for example test files:
 
 This sdk includes an optional example project that is used by PlayFab to verify sdk features are fully functional.
 
 Please read about the testTitleData.json format, and purpose here:
 * https://github.com/PlayFab/SDKGenerator/blob/master/JenkinsConsoleUtility/testTitleData.md
-See the previous section for how to use this file in the example test project.
+You must create a testTitleData.json file according to these instructions, and create an environment variable PF_TEST_TITLE_DATA_JSON which contains the absolute path to this file.
 
 
-7. Troubleshooting:
-----
+### Building and testing with Maven:
+
+The Example PlayFabApiTests can be run from the console.  These instructions assume Windows operating system.
+
+* Install [Apache Maven](https://maven.apache.org/download.cgi)
+* Extract the JavaSDK Sdk to your computer (referenced as {JavaSDK-Location} within this document)
+* Navigate to: {JavaSDK-Location}/PlayFabSDK
+* Open a command prompt, and enter "mvn site verify"
+  * This will build the project, execute tests, build documentation, and verify the package
+
+
+## 7. Troubleshooting:
+
 For a complete list of available APIs, check out the [online documentation](http://api.playfab.com/Documentation/).
 
 #### Contact Us
@@ -78,20 +74,17 @@ Our Developer Success Team can assist with answering any questions as well as pr
 [Forums, Support and Knowledge Base](https://community.playfab.com/index.html)
 
 
-8. Acknowlegements
-----
+## 8. Acknowlegements
 
 The PlayFab Java SDK was initially created and submitted to PlayFab by [nicosio2](https://github.com/nicosio2)
 
 The PlayFab Java SDK has been restructured for Maven support by Will Iverson at [Game Studio One](https://gamestudioone.com/)
 
 
-9. Copyright and Licensing Information:
-----
-  Apache License --
-  Version 2.0, January 2004
-  http://www.apache.org/licenses/
+## 9. Copyright and Licensing Information:
 
-  Full details available within the LICENSE file.
+Apache License --
+Version 2.0, January 2004
+http://www.apache.org/licenses/
 
-  Initial code Submitted to PlayFab by nicosio2 (https://github.com/nicosio2)
+Full details available within the LICENSE file.

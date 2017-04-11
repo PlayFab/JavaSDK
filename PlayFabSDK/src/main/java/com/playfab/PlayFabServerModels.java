@@ -2908,7 +2908,7 @@ public class PlayFabServerModels {
          */
         public Boolean ShowBannedUntil;
         /**
-         * Whether to show statistics, the most recent version of each stat. Defaults to false
+         * Reserved for future development
          */
         public Boolean ShowStatistics;
         /**
