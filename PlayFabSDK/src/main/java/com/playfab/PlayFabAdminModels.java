@@ -233,6 +233,14 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class ApiCondition {
+        /**
+         * Require that API calls contain an RSA encrypted payload or signed headers.
+         */
+        public Conditionals HasSignatureOrEncryption;
+        
+    }
+
     /**
      * Contains information for a ban.
      */
@@ -541,6 +549,12 @@ public class PlayFabAdminModels {
          */
         public Integer LatestRevision;
         
+    }
+
+    public static enum Conditionals {
+        Any,
+        True,
+        False
     }
 
     public static class ContentInfo {
@@ -2333,6 +2347,10 @@ public class PlayFabAdminModels {
          * A comment about the statement. Intended solely for bookeeping and debugging.
          */
         public String Comment;
+        /**
+         * Additional conditions to be applied for API Resources.
+         */
+        public ApiCondition ApiConditions;
         
     }
 
