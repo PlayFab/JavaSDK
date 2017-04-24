@@ -2740,11 +2740,11 @@ public class PlayFabClientModels {
          */
         public String TitleId;
         /**
-         * Base64 encoded body that is encrypted with the Title's public RSA key
+         * Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only).
          */
         public String EncryptedRequest;
         /**
-         * Player secret that is used to verify API request signatures
+         * Player secret that is used to verify API request signatures (Enterprise Only).
          */
         public String PlayerSecret;
         /**
@@ -2768,11 +2768,11 @@ public class PlayFabClientModels {
          */
         public String TitleId;
         /**
-         * Base64 encoded body that is encrypted with the Title's public RSA key
+         * Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only).
          */
         public String EncryptedRequest;
         /**
-         * Player secret that is used to verify API request signatures
+         * Player secret that is used to verify API request signatures (Enterprise Only).
          */
         public String PlayerSecret;
         /**
@@ -2816,11 +2816,11 @@ public class PlayFabClientModels {
          */
         public String TitleId;
         /**
-         * Base64 encoded body that is encrypted with the Title's public RSA key
+         * Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only).
          */
         public String EncryptedRequest;
         /**
-         * Player secret that is used to verify API request signatures
+         * Player secret that is used to verify API request signatures (Enterprise Only).
          */
         public String PlayerSecret;
         /**
@@ -2844,11 +2844,11 @@ public class PlayFabClientModels {
          */
         public String TitleId;
         /**
-         * Base64 encoded body that is encrypted with the Title's public RSA key
+         * Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only).
          */
         public String EncryptedRequest;
         /**
-         * Player secret that is used to verify API request signatures
+         * Player secret that is used to verify API request signatures (Enterprise Only).
          */
         public String PlayerSecret;
         /**
@@ -2872,11 +2872,11 @@ public class PlayFabClientModels {
          */
         public String TitleId;
         /**
-         * Base64 encoded body that is encrypted with the Title's public RSA key
+         * Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only).
          */
         public String EncryptedRequest;
         /**
-         * Player secret that is used to verify API request signatures
+         * Player secret that is used to verify API request signatures (Enterprise Only).
          */
         public String PlayerSecret;
         /**
@@ -2908,11 +2908,11 @@ public class PlayFabClientModels {
          */
         public String TitleId;
         /**
-         * Base64 encoded body that is encrypted with the Title's public RSA key
+         * Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only).
          */
         public String EncryptedRequest;
         /**
-         * Player secret that is used to verify API request signatures
+         * Player secret that is used to verify API request signatures (Enterprise Only).
          */
         public String PlayerSecret;
         /**
@@ -2944,11 +2944,11 @@ public class PlayFabClientModels {
          */
         public String TitleId;
         /**
-         * Base64 encoded body that is encrypted with the Title's public RSA key
+         * Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only).
          */
         public String EncryptedRequest;
         /**
-         * Player secret that is used to verify API request signatures
+         * Player secret that is used to verify API request signatures (Enterprise Only).
          */
         public String PlayerSecret;
         
@@ -2988,11 +2988,11 @@ public class PlayFabClientModels {
          */
         public String TitleId;
         /**
-         * Base64 encoded body that is encrypted with the Title's public RSA key
+         * Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only).
          */
         public String EncryptedRequest;
         /**
-         * Player secret that is used to verify API request signatures
+         * Player secret that is used to verify API request signatures (Enterprise Only).
          */
         public String PlayerSecret;
         /**
@@ -3016,11 +3016,11 @@ public class PlayFabClientModels {
          */
         public String TitleId;
         /**
-         * Base64 encoded body that is encrypted with the Title's public RSA key
+         * Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only).
          */
         public String EncryptedRequest;
         /**
-         * Player secret that is used to verify API request signatures
+         * Player secret that is used to verify API request signatures (Enterprise Only).
          */
         public String PlayerSecret;
         /**
@@ -3617,11 +3617,11 @@ public class PlayFabClientModels {
          */
         public String TitleId;
         /**
-         * Base64 encoded body that is encrypted with the Title's public RSA key
+         * Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only).
          */
         public String EncryptedRequest;
         /**
-         * Player secret that is used to verify API request signatures
+         * Player secret that is used to verify API request signatures (Enterprise Only).
          */
         public String PlayerSecret;
         /**
@@ -3669,11 +3669,11 @@ public class PlayFabClientModels {
          */
         public String TitleId;
         /**
-         * Base64 encoded body that is encrypted with the Title's public RSA key
+         * Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only).
          */
         public String EncryptedRequest;
         /**
-         * Player secret that is used to verify API request signatures
+         * Player secret that is used to verify API request signatures (Enterprise Only).
          */
         public String PlayerSecret;
         /**
@@ -4365,7 +4365,7 @@ public class PlayFabClientModels {
          */
         public String CharacterId;
         /**
-         * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character.
+         * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character or be null.
          */
         public Map<String,String> Data;
         /**
@@ -4421,7 +4421,7 @@ public class PlayFabClientModels {
          */
         public String SharedGroupId;
         /**
-         * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character.
+         * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character or be null.
          */
         public Map<String,String> Data;
         /**
@@ -4441,7 +4441,7 @@ public class PlayFabClientModels {
 
     public static class UpdateUserDataRequest {
         /**
-         * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character.
+         * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character or be null.
          */
         public Map<String,String> Data;
         /**

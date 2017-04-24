@@ -2035,7 +2035,7 @@ public class PlayFabAdminModels {
          */
         public String CharacterId;
         /**
-         * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character.
+         * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character or be null.
          */
         public Map<String,String> Data;
         /**
@@ -2543,11 +2543,6 @@ public class PlayFabAdminModels {
          * time when the statistic version became inactive due to statistic version incrementing
          */
         public Date DeactivationTime;
-        /**
-         * @deprecated Please use Status instead.
-         */
-        @Deprecated
-        public StatisticVersionArchivalStatus ArchivalStatus;
         /**
          * status of the statistic version
          */
@@ -3378,7 +3373,7 @@ public class PlayFabAdminModels {
          */
         public String PlayFabId;
         /**
-         * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character.
+         * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character or be null.
          */
         public Map<String,String> Data;
         /**
@@ -3406,7 +3401,7 @@ public class PlayFabAdminModels {
          */
         public String PlayFabId;
         /**
-         * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character.
+         * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character or be null.
          */
         public Map<String,String> Data;
         /**
