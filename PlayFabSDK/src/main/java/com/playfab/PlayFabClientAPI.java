@@ -2328,8 +2328,9 @@ public class PlayFabClientAPI {
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LinkWindowsHelloAccountResponse> privateLinkWindowsHelloAsync(final LinkWindowsHelloAccountRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LinkWindowsHello", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LinkWindowsHello", request, "X-Authorization", _authKey);
         task.run();
         Object httpResult = task.get();
         if(httpResult instanceof PlayFabError) {
@@ -3132,8 +3133,9 @@ public class PlayFabClientAPI {
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UnlinkWindowsHelloAccountResponse> privateUnlinkWindowsHelloAsync(final UnlinkWindowsHelloAccountRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UnlinkWindowsHello", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UnlinkWindowsHello", request, "X-Authorization", _authKey);
         task.run();
         Object httpResult = task.get();
         if(httpResult instanceof PlayFabError) {
@@ -4705,7 +4707,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a purchase along with its current PlayFab status.
+     * Retrieves a purchase along with its current PlayFab status. Returns inventory items from the purchase that are still active.
      * @param request GetPurchaseRequest
      * @return Async Task will return GetPurchaseResult
      */
@@ -4719,7 +4721,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a purchase along with its current PlayFab status.
+     * Retrieves a purchase along with its current PlayFab status. Returns inventory items from the purchase that are still active.
      * @param request GetPurchaseRequest
      * @return GetPurchaseResult
      */
@@ -4739,7 +4741,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a purchase along with its current PlayFab status.
+     * Retrieves a purchase along with its current PlayFab status. Returns inventory items from the purchase that are still active.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPurchaseResult> privateGetPurchaseAsync(final GetPurchaseRequest request) throws Exception {
@@ -7907,8 +7909,9 @@ public class PlayFabClientAPI {
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ValidateWindowsReceiptResult> privateValidateWindowsStoreReceiptAsync(final ValidateWindowsReceiptRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ValidateWindowsStoreReceipt", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ValidateWindowsStoreReceipt", request, "X-Authorization", _authKey);
         task.run();
         Object httpResult = task.get();
         if(httpResult instanceof PlayFabError) {

@@ -4419,7 +4419,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Delete a content file from the title
+     * Delete a content file from the title. When deleting a file that does not exist, it returns success.
      * @param request DeleteContentRequest
      * @return Async Task will return BlankResult
      */
@@ -4433,7 +4433,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Delete a content file from the title
+     * Delete a content file from the title. When deleting a file that does not exist, it returns success.
      * @param request DeleteContentRequest
      * @return BlankResult
      */
@@ -4453,7 +4453,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Delete a content file from the title
+     * Delete a content file from the title. When deleting a file that does not exist, it returns success.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<BlankResult> privateDeleteContentAsync(final DeleteContentRequest request) throws Exception {

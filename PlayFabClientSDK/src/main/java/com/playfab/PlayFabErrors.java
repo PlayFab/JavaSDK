@@ -300,7 +300,10 @@ public class PlayFabErrors {
         PrizeTableHasNoRanks(1297),
         ProfileDoesNotExist(1298),
         ContentS3OriginBucketNotConfigured(1299),
-        InvalidEnvironmentForReceipt(1300);
+        InvalidEnvironmentForReceipt(1300),
+        EncryptedRequestNotAllowed(1301),
+        SignedRequestNotAllowed(1302),
+        RequestViewConstraintParamsNotAllowed(1303);
 
         public int id;
 
