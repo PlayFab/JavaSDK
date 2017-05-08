@@ -1090,9 +1090,17 @@ public class PlayFabServerModels {
          */
         public Object FunctionResult;
         /**
+         * Flag indicating if the FunctionResult was too large and was subsequently dropped from this event
+         */
+        public Boolean FunctionResultTooLarge;
+        /**
          * Entries logged during the function execution. These include both entries logged in the function code using log.info() and log.error() and error entries for API and HTTP request failures.
          */
         public ArrayList<LogStatement> Logs;
+        /**
+         * Flag indicating if the logs were too large and were subsequently dropped from this event
+         */
+        public Boolean LogsTooLarge;
         public Double ExecutionTimeSeconds;
         /**
          * Processor time consumed while executing the function. This does not include time spent waiting on API calls or HTTP requests.
@@ -1108,7 +1116,7 @@ public class PlayFabServerModels {
          */
         public Integer HttpRequestsIssued;
         /**
-         * Information about the error, if any, that occured during execution
+         * Information about the error, if any, that occurred during execution
          */
         public ScriptExecutionError Error;
         
