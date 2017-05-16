@@ -1,31 +1,41 @@
 # Java Getting Started Guide
 
-This guide will help you make your first API call in Java.
+This tutorial aims to help you get up and running with PlayFab JavaSDK and simple Java program. The goals we persue in this tutorial:  
+* Acquire necessary JAR files
+* Add JAR files to the classpath
+* Create minimal Java console application that executes Custom ID Login API Call
 
-## Java Project Setup
+## Acquire necessary JAR files
 
-* OS: This guide is written for Windows 10, however it should also work fine with a Mac
-* Installation
-  * Download and install [Apache Maven](https://maven.apache.org/download.cgi)
-    * You must add the {apache-maven-dir}/bin directory to your Windows Environment PATH variable
-  * Download and install the [latest Java Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-  * Download the [PlayFab JavaSDK](https://api.playfab.com/sdks/download/java)
-    * Download the zip file, and extract it to a location of your choice {PlayFabJavaLocation}
-* New Project Setup
-  * Create a new empty folder for your JavaGettingStarted project {NewProjectFolder}
-    * Import the PlayFab JavaSDK into this project
-      * In Windows-Explorer, navigate to [{PlayFabJavaLocation}/PlayFabClientSDK/](https://github.com/PlayFab/JavaSDK/tree/master/PlayFabClientSDK/)
-      * Select the src folder, and copy it to {NewProjectFolder}
-    * Create a new empty text file called pom.xml in {NewProjectFolder}
-      * We will modify this file in the next section
-    * Create a new empty text file called testTitleData.json in {NewProjectFolder}
-      * We will modify this file in the next section
-    * Create a new Windows Environment variable called: PF_TEST_TITLE_DATA_JSON
-      * The value is the full path of your new {NewProjectFolder}/testTitleData.json file
-    * Navigate to: {NewProjectFolder}/src/main/java
-      * Create a new empty text file called GettingStarted.java (Full path: {NewProjectFolder}/src/main/java/GettingStarted.java )
-      * We will modify this file in the next section
-* PlayFab Installation Complete!
+In order to utilize PlayFab JavaSDK we will need PlayFab Client JavaSDK and it's dependency Google GSON.
+You may download PlayFab Client JavaSDK JAR library [here](https://github.com/PlayFab/JavaSDK/tree/versioned/builds). Look for client-sdk-*.jar and the corresponding Java Doc [Optional but useful].
+You may download latest Google GSON [here](http://repo1.maven.org/maven2/com/google/code/gson/gson/2.8.0/). Look for gson-*.jar. 
+
+## Project Setup with Intellij Idea
+
+Once you have initialized simple Intellij Idea Java Project, make sure to place necessary JAR files as shown on the picture:
+
+![Java Image](images/Java/Java-Getting-Started-1.png)
+
+The next step is adding JAR files to the classpath. Navigate to File -> Project Structure... as shown on the picture:
+
+![Java Image](images/Java/Java-Getting-Started-2.png)
+
+Navigate to Libraries and add new Java library as shown on the picture:
+
+![Java Image](images/Java/Java-Getting-Started-3.png)
+
+Select the JAR files you have added to the libs folder, then click OK as shown on the picture:
+
+![Java Image](images/Java/Java-Getting-Started-4.png)
+
+If asked for the Module, select the first one in the list. Ensure that all the JAR files were added to the libraries list: 
+
+![Java Image](images/Java/Java-Getting-Started-6.png)
+
+## Project Setup with any IDE
+
+The main requirement is to have JAR files added to the classpath. Please, consult with the guide for your IDE on how to add jar files to classpath.
 
 ## Set up your first API call
 
@@ -106,84 +116,11 @@ public class GettingStarted
 }
 ```
 
-In your favorite text-editor, update the contents of {NewProjectFolder}/pom.xml as follows:
-
-```XML
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.example</groupId>
-    <artifactId>PlayFabExample</artifactId>
-    <version>1.0.0</version>
-    <prerequisites>
-        <maven>3.1.9</maven>
-    </prerequisites>
-    <properties>
-        <!-- Eliminates the file encoding warning. Of course, all of your files should probably be UTF-8 nowadays. -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- Added to show how the dependency/property report will look at properties -->
-        <javaLanguage.version>1.7</javaLanguage.version>
-        <exec.mainClass>GettingStarted</exec.mainClass>
-    </properties>
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.8.0</version>
-        </dependency>
-        <!-- Excellent assertion library.  Replaces FEST, which is no longer maintained. -->
-        <!-- http://joel-costigliola.github.io/assertj/ -->
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>3.6.2</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
-                <configuration>
-                    <source>${javaLanguage.version}</source>
-                    <target>${javaLanguage.version}</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-</project>
-```
-
-In your favorite text-editor, update the contents of {NewProjectFolder}/testTitleData.json as follows:
-
-```Json
-{
-    "titleId": "6195",
-    "userEmail": "test@playfab.com"
-}
-```
-
 ## Finish and Execute
 
-* Open a new command window in the {NewProjectFolder} folder
-  * ![Java Image](images/Java/CmdExe.png)
-* In the command window, enter the following command:
-  * mvn verify exec:java
-    * You will see a bunch of logs, including PlayFab test results, and finally near the end:
-    * Congratulations, you made your first successful API call!
-    * If everything succeeds, and you see the indicated success line, you've succeeded
-* At this point, you can start making other api calls, and building your game
-* For a list of all available client API calls, see our documentation:
-  * https://api.playfab.com/
-* Happy coding!
+![Java Image](images/Java/Java-Getting-Started-7.png)
+
+To run the application, hit the play button in the top right corner **(1)**. This will start program execution, and output panel will pop up. Locate the debug message **(2)**. This indicates that API call was succesful. At this point, you can start making other api calls, and building your game. For a list of all available client API calls, see our documentation: [https://api.playfab.com/](https://api.playfab.com/)
 
 ## Deconstruct the code
 
@@ -224,16 +161,3 @@ This optional last section describes every line in GettingStarted.java in detail
       * PlayFab server issue.   As with all software, there can be issues.  See our [release notes](https://api.playfab.com/releaseNotes/) for updates.
       * The internet is not 100% reliable.  Sometimes the message is corrupted or fails to reach the PlayFab server.
     * If you are having difficulty debugging an issue, and the information within the error callback is not sufficient, please visit us on our [forums](https://community.playfab.com/index.html)
-
-pom.xml is a complicated beast
-
-* There are a few lines relevant to our example
-  * &lt;exec.mainClass>GettingStarted&lt;/exec.mainClass>
-    * This tells Maven to run our GettingStarted example when we call "mvn exec:java"
-  * &lt;dependency>...&lt;groupId>com.google.code.gson&lt;/groupId>
-    * PlayFab requires Google gson to operate
-  * &lt;dependency>...&lt;groupId>junit&lt;/groupId>...&lt;scope>test&lt;/scope>
-    * The PlayFab tests included with the project require JUnit to run [Optional, but included for simpler steps]
-* Everything else is standard stuff in a Maven pom.xml, and you should [dive into the documentation](https://maven.apache.org/guides/introduction/introduction-to-the-pom.html) for details.
-
-Finally, see our separate [testTitleData.json documentation](https://github.com/PlayFab/SDKGenerator/blob/master/JenkinsConsoleUtility/testTitleData.md)
