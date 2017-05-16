@@ -8,8 +8,8 @@ This tutorial aims to help you get up and running with PlayFab JavaSDK and simpl
 ## Acquire necessary JAR files
 
 In order to utilize PlayFab JavaSDK we will need PlayFab Client JavaSDK and it's dependency Google GSON.
-You may download PlayFab Client JavaSDK JAR library [here](https://github.com/PlayFab/JavaSDK/tree/versioned/builds). Look for client-sdk-*.jar and the corresponding Java Doc [Optional but useful].
-You may download latest Google GSON [here](http://repo1.maven.org/maven2/com/google/code/gson/gson/2.8.0/). Look for gson-*.jar. 
+You may download PlayFab Client JavaSDK JAR library [here](https://github.com/PlayFab/JavaSDK/tree/versioned/builds). Look for client-sdk-\*.jar and the corresponding Java Doc [Optional but useful].
+You may download latest Google GSON [here](http://repo1.maven.org/maven2/com/google/code/gson/gson/2.8.0/). Look for gson-\*.jar. 
 
 ## Project Setup with Intellij Idea
 
