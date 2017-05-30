@@ -1151,7 +1151,7 @@ public class PlayFabAdminModels {
          */
         public Object FunctionResult;
         /**
-         * Flag indicating if the FunctionResult was too large and was subsequently dropped from this event
+         * Flag indicating if the FunctionResult was too large and was subsequently dropped from this event. This only occurs if the total event size is larger than 350KB.
          */
         public Boolean FunctionResultTooLarge;
         /**
@@ -1159,7 +1159,7 @@ public class PlayFabAdminModels {
          */
         public ArrayList<LogStatement> Logs;
         /**
-         * Flag indicating if the logs were too large and were subsequently dropped from this event
+         * Flag indicating if the logs were too large and were subsequently dropped from this event. This only occurs if the total event size is larger than 350KB after the FunctionResult was removed.
          */
         public Boolean LogsTooLarge;
         public Double ExecutionTimeSeconds;
