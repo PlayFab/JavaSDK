@@ -1299,6 +1299,68 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Retrieves the player's profile
+     * @param request GetPlayerProfileRequest
+     * @return Async Task will return GetPlayerProfileResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayerProfileResult>> GetPlayerProfileAsync(final GetPlayerProfileRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayerProfileResult>>() {
+            public PlayFabResult<GetPlayerProfileResult> call() throws Exception {
+                return privateGetPlayerProfileAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the player's profile
+     * @param request GetPlayerProfileRequest
+     * @return GetPlayerProfileResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayerProfileResult> GetPlayerProfile(final GetPlayerProfileRequest request) {
+        FutureTask<PlayFabResult<GetPlayerProfileResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayerProfileResult>>() {
+            public PlayFabResult<GetPlayerProfileResult> call() throws Exception {
+                return privateGetPlayerProfileAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves the player's profile
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayerProfileResult> privateGetPlayerProfileAsync(final GetPlayerProfileRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayerProfile", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayerProfileResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayerProfileResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayerProfileResult>>(){}.getType());
+        GetPlayerProfileResult result = resultData.data;
+
+        PlayFabResult<GetPlayerProfileResult> pfResult = new PlayFabResult<GetPlayerProfileResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the unique PlayFab identifiers for the given set of Facebook identifiers.
      * @param request GetPlayFabIDsFromFacebookIDsRequest
      * @return Async Task will return GetPlayFabIDsFromFacebookIDsResult
