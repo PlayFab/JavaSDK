@@ -36,7 +36,6 @@ public class PlayFabGoogleCloudMessaging {
                 InstanceID instanceID = InstanceID.getInstance(ctx);
                 String token = instanceID.getToken(senderId, GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
 
-                //Send back to unity, with the token.
                 sendRegistrationToServer(token);
 
                 //Subscribe to any GCM topics of interest, as defined by the TOPICS constant.

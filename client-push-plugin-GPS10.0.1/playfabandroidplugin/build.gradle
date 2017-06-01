@@ -31,8 +31,8 @@ apply plugin: 'com.google.gms.google-services'
 
 //task to delete the old jar
 task deleteOldJar(type: Delete) {
-    delete 'release/PlayFabUnityAndroid.jar'
-    delete 'release/PlayFabUnityAndroid.aar'
+    delete 'release/client-push-plugin-GPS10.0.1.jar'
+    delete 'release/client-push-plugin-GPS10.0.1.aar'
 }
 
 //task to export contents as jar
@@ -41,11 +41,11 @@ task exportJar(type: Copy) {
     into('release/')
     include('classes.jar')
     ///Rename the jar
-    rename('classes.jar', 'PlayFabUnityAndroid.jar')
+    rename('classes.jar', 'client-push-plugin-GPS10.0.1.jar')
 
     from('build/outputs/aar')
     into('release/')
-    include('playfabunityplugin-release.aar')
-    rename('playfabunityplugin-release.aar','PlayFabUnityAndroid.aar')
+    include('client-push-plugin-GPS10.0.1.aar')
+    rename('client-push-plugin-GPS10.0.1.aar','client-push-plugin-GPS10.0.1.jar')
 }
 exportJar.dependsOn(deleteOldJar, build)

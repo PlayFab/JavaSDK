@@ -26,7 +26,6 @@ import com.playfab.androidplugin.GCM.PlayServicesUtils;
 
 public class PlayFabAndroidPlugin extends Service {
     public static final String TAG = "PlayFabAP"; //PlayFabAndroidPlugin
-    public static final String UNITY_EVENT_OBJECT = "_PlayFabGO";
     public static final String PROPERTY_GAME_TITLE = "_PlayFab_GameTitle";
     public static final String PROPERTY_APP_ICON = "_PlayFab_AppIcon";
     public static final String PROPERTY_SENDER_ID = "_PlayFab_SenderID";
