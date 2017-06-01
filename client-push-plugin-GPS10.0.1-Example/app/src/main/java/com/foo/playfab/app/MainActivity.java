@@ -1,11 +1,6 @@
 package com.foo.playfab.app;
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.AsyncTask;
-import android.os.IBinder;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,24 +8,18 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.playfab.PlayFabClientAPI;
 import com.playfab.PlayFabClientModels;
 import com.playfab.PlayFabErrors;
 import com.playfab.PlayFabSettings;
-import com.playfab.androidplugin.GCM.PlayFabConst;
-import com.playfab.androidplugin.GCM.PlayFabGoogleCloudMessaging;
 import com.playfab.androidplugin.GCM.PlayFabNotificationPackage;
 import com.playfab.androidplugin.GCM.PlayFabNotificationSender;
 import com.playfab.androidplugin.IPlayFabAndroidListener;
 import com.playfab.androidplugin.PlayFabAndroidPlugin;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
-import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity implements IPlayFabAndroidListener {
 

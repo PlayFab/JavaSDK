@@ -30,10 +30,6 @@ dependencies {
     compile 'com.google.firebase:firebase-messaging:10.0.1'
     compile 'com.google.android.gms:play-services-gcm:10.0.1'
     testCompile 'junit:junit:4.12'
-    compile files('libs/client-sdk-0.48.170411.jar')
-    compile files('libs/client-sdk-0.48.170411-javadoc.jar')
-    compile files('libs/gson-2.8.0.jar')
-    compile files('libs/PlayFabUnityAndroid.jar')
 }
 
 
