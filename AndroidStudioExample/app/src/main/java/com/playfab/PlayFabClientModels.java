@@ -1451,7 +1451,7 @@ public class PlayFabClientModels {
          */
         public Boolean UseSpecificVersion;
         /**
-         * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
+         * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. For API calls from the client, only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
         public PlayerProfileViewConstraints ProfileConstraints;
         
@@ -1503,7 +1503,7 @@ public class PlayFabClientModels {
          */
         public Boolean UseSpecificVersion;
         /**
-         * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
+         * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. For API calls from the client, only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
         public PlayerProfileViewConstraints ProfileConstraints;
         
@@ -1579,7 +1579,7 @@ public class PlayFabClientModels {
          */
         public Boolean UseSpecificVersion;
         /**
-         * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
+         * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. For API calls from the client, only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
         public PlayerProfileViewConstraints ProfileConstraints;
         
@@ -1643,7 +1643,7 @@ public class PlayFabClientModels {
          */
         public Boolean UseSpecificVersion;
         /**
-         * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
+         * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. For API calls from the client, only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
         public PlayerProfileViewConstraints ProfileConstraints;
         
@@ -1832,7 +1832,7 @@ public class PlayFabClientModels {
          */
         public String PlayFabId;
         /**
-         * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. On client, only ShowDisplayName, ShowStatistics, ShowAvatarUrl are allowed.
+         * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. For API calls from the client, only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
         public PlayerProfileViewConstraints ProfileConstraints;
         
@@ -2334,7 +2334,7 @@ public class PlayFabClientModels {
          */
         public String ItemId;
         /**
-         * Non-unique display name of the character being granted.
+         * Non-unique display name of the character being granted (1-20 characters in length).
          */
         public String CharacterName;
         
@@ -3341,11 +3341,11 @@ public class PlayFabClientModels {
          */
         public String PublisherId;
         /**
-         * Title ID this profile applies to
+         * Title ID this player profile applies to
          */
         public String TitleId;
         /**
-         * PlayFab Player ID
+         * PlayFab player account unique identifier
          */
         public String PlayerId;
         /**
@@ -3357,7 +3357,7 @@ public class PlayFabClientModels {
          */
         public LoginIdentityProvider Origination;
         /**
-         * Last login
+         * UTC time when the player most recently logged in to the title
          */
         public Date LastLogin;
         /**
@@ -3365,15 +3365,15 @@ public class PlayFabClientModels {
          */
         public Date BannedUntil;
         /**
-         * List of geographic locations where the player has logged-in
+         * List of geographic locations from which the player has logged in to the title
          */
         public ArrayList<LocationModel> Locations;
         /**
-         * Player Display Name
+         * Player display name
          */
         public String DisplayName;
         /**
-         * Image URL of the player's avatar
+         * URL of the player's avatar image
          */
         public String AvatarUrl;
         /**
@@ -3385,7 +3385,7 @@ public class PlayFabClientModels {
          */
         public ArrayList<PushNotificationRegistrationModel> PushNotificationRegistrations;
         /**
-         * List of third party accounts linked to this player
+         * List of all authentication systems linked to this player account
          */
         public ArrayList<LinkedPlatformAccountModel> LinkedAccounts;
         /**
@@ -3393,15 +3393,15 @@ public class PlayFabClientModels {
          */
         public ArrayList<AdCampaignAttributionModel> AdCampaignAttributions;
         /**
-         * A sum of player's total purchases across all real-money currencies, converted to US Dollars equivalent
+         * Sum of the player's purchases made with real-money currencies, converted to US dollars equivalent and represented as a whole number of cents (1/100 USD).              For example, 999 indicates nine dollars and ninety-nine cents.
          */
         public Long TotalValueToDateInUSD;
         /**
-         * List of player's total lifetime real-money purchases by currency
+         * List of the player's lifetime purchase totals, summed by real-money currency
          */
         public ArrayList<ValueToDateModel> ValuesToDate;
         /**
-         * List of player's virtual currency balances
+         * List of the player's virtual currency balances
          */
         public ArrayList<VirtualCurrencyBalanceModel> VirtualCurrencyBalances;
         /**
@@ -3644,7 +3644,7 @@ public class PlayFabClientModels {
          */
         public Boolean RequireBothUsernameAndEmail;
         /**
-         * An optional parameter for setting the display name for this title.
+         * An optional parameter for setting the display name for this title (3-25 characters).
          */
         public String DisplayName;
         /**
@@ -4906,11 +4906,11 @@ public class PlayFabClientModels {
          */
         public String Currency;
         /**
-         * Total value of the purchases in a whole number of 1/100 monetary units. For example 999 indicates nine dollars and ninety-nine cents when Currency is 'USD')
+         * Total value of the purchases in a whole number of 1/100 monetary units. For example, 999 indicates nine dollars and ninety-nine cents when Currency is 'USD')
          */
         public Long TotalValue;
         /**
-         * Total value of the purchases in a string representation of decimal monetary units (e.g. '9.99' indicates nine dollars and ninety-nine cents when Currency is 'USD'))
+         * Total value of the purchases in a string representation of decimal monetary units. For example, '9.99' indicates nine dollars and ninety-nine cents when Currency is 'USD'.
          */
         public String TotalValueAsDecimal;
         

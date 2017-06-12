@@ -5576,192 +5576,6 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Registers the iOS device to receive push notifications
-     * @param request RegisterForIOSPushNotificationRequest
-     * @return Async Task will return RegisterForIOSPushNotificationResult
-     */
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<RegisterForIOSPushNotificationResult>> RegisterForIOSPushNotificationAsync(final RegisterForIOSPushNotificationRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<RegisterForIOSPushNotificationResult>>() {
-            public PlayFabResult<RegisterForIOSPushNotificationResult> call() throws Exception {
-                return privateRegisterForIOSPushNotificationAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Registers the iOS device to receive push notifications
-     * @param request RegisterForIOSPushNotificationRequest
-     * @return RegisterForIOSPushNotificationResult
-     */
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<RegisterForIOSPushNotificationResult> RegisterForIOSPushNotification(final RegisterForIOSPushNotificationRequest request) {
-        FutureTask<PlayFabResult<RegisterForIOSPushNotificationResult>> task = new FutureTask(new Callable<PlayFabResult<RegisterForIOSPushNotificationResult>>() {
-            public PlayFabResult<RegisterForIOSPushNotificationResult> call() throws Exception {
-                return privateRegisterForIOSPushNotificationAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * Registers the iOS device to receive push notifications
-     */
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<RegisterForIOSPushNotificationResult> privateRegisterForIOSPushNotificationAsync(final RegisterForIOSPushNotificationRequest request) throws Exception {
-        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/RegisterForIOSPushNotification", request, "X-Authorization", _authKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<RegisterForIOSPushNotificationResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<RegisterForIOSPushNotificationResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RegisterForIOSPushNotificationResult>>(){}.getType());
-        RegisterForIOSPushNotificationResult result = resultData.data;
-
-        PlayFabResult<RegisterForIOSPushNotificationResult> pfResult = new PlayFabResult<RegisterForIOSPushNotificationResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
-     * Restores all in-app purchases based on the given restore receipt
-     * @param request RestoreIOSPurchasesRequest
-     * @return Async Task will return RestoreIOSPurchasesResult
-     */
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<RestoreIOSPurchasesResult>> RestoreIOSPurchasesAsync(final RestoreIOSPurchasesRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<RestoreIOSPurchasesResult>>() {
-            public PlayFabResult<RestoreIOSPurchasesResult> call() throws Exception {
-                return privateRestoreIOSPurchasesAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Restores all in-app purchases based on the given restore receipt
-     * @param request RestoreIOSPurchasesRequest
-     * @return RestoreIOSPurchasesResult
-     */
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<RestoreIOSPurchasesResult> RestoreIOSPurchases(final RestoreIOSPurchasesRequest request) {
-        FutureTask<PlayFabResult<RestoreIOSPurchasesResult>> task = new FutureTask(new Callable<PlayFabResult<RestoreIOSPurchasesResult>>() {
-            public PlayFabResult<RestoreIOSPurchasesResult> call() throws Exception {
-                return privateRestoreIOSPurchasesAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * Restores all in-app purchases based on the given restore receipt
-     */
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<RestoreIOSPurchasesResult> privateRestoreIOSPurchasesAsync(final RestoreIOSPurchasesRequest request) throws Exception {
-        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/RestoreIOSPurchases", request, "X-Authorization", _authKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<RestoreIOSPurchasesResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<RestoreIOSPurchasesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RestoreIOSPurchasesResult>>(){}.getType());
-        RestoreIOSPurchasesResult result = resultData.data;
-
-        PlayFabResult<RestoreIOSPurchasesResult> pfResult = new PlayFabResult<RestoreIOSPurchasesResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
-     * Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the purchased catalog item
-     * @param request ValidateIOSReceiptRequest
-     * @return Async Task will return ValidateIOSReceiptResult
-     */
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<ValidateIOSReceiptResult>> ValidateIOSReceiptAsync(final ValidateIOSReceiptRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<ValidateIOSReceiptResult>>() {
-            public PlayFabResult<ValidateIOSReceiptResult> call() throws Exception {
-                return privateValidateIOSReceiptAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the purchased catalog item
-     * @param request ValidateIOSReceiptRequest
-     * @return ValidateIOSReceiptResult
-     */
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<ValidateIOSReceiptResult> ValidateIOSReceipt(final ValidateIOSReceiptRequest request) {
-        FutureTask<PlayFabResult<ValidateIOSReceiptResult>> task = new FutureTask(new Callable<PlayFabResult<ValidateIOSReceiptResult>>() {
-            public PlayFabResult<ValidateIOSReceiptResult> call() throws Exception {
-                return privateValidateIOSReceiptAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the purchased catalog item
-     */
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<ValidateIOSReceiptResult> privateValidateIOSReceiptAsync(final ValidateIOSReceiptRequest request) throws Exception {
-        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ValidateIOSReceipt", request, "X-Authorization", _authKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<ValidateIOSReceiptResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<ValidateIOSReceiptResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ValidateIOSReceiptResult>>(){}.getType());
-        ValidateIOSReceiptResult result = resultData.data;
-
-        PlayFabResult<ValidateIOSReceiptResult> pfResult = new PlayFabResult<ValidateIOSReceiptResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
      * Get details about all current running game servers matching the given parameters.
      * @param request CurrentGamesRequest
      * @return Async Task will return CurrentGamesResult
@@ -6005,130 +5819,6 @@ public class PlayFabClientAPI {
         StartGameResult result = resultData.data;
 
         PlayFabResult<StartGameResult> pfResult = new PlayFabResult<StartGameResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
-     * Registers the Android device to receive push notifications
-     * @param request AndroidDevicePushNotificationRegistrationRequest
-     * @return Async Task will return AndroidDevicePushNotificationRegistrationResult
-     */
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<AndroidDevicePushNotificationRegistrationResult>> AndroidDevicePushNotificationRegistrationAsync(final AndroidDevicePushNotificationRegistrationRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<AndroidDevicePushNotificationRegistrationResult>>() {
-            public PlayFabResult<AndroidDevicePushNotificationRegistrationResult> call() throws Exception {
-                return privateAndroidDevicePushNotificationRegistrationAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Registers the Android device to receive push notifications
-     * @param request AndroidDevicePushNotificationRegistrationRequest
-     * @return AndroidDevicePushNotificationRegistrationResult
-     */
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<AndroidDevicePushNotificationRegistrationResult> AndroidDevicePushNotificationRegistration(final AndroidDevicePushNotificationRegistrationRequest request) {
-        FutureTask<PlayFabResult<AndroidDevicePushNotificationRegistrationResult>> task = new FutureTask(new Callable<PlayFabResult<AndroidDevicePushNotificationRegistrationResult>>() {
-            public PlayFabResult<AndroidDevicePushNotificationRegistrationResult> call() throws Exception {
-                return privateAndroidDevicePushNotificationRegistrationAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * Registers the Android device to receive push notifications
-     */
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<AndroidDevicePushNotificationRegistrationResult> privateAndroidDevicePushNotificationRegistrationAsync(final AndroidDevicePushNotificationRegistrationRequest request) throws Exception {
-        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/AndroidDevicePushNotificationRegistration", request, "X-Authorization", _authKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<AndroidDevicePushNotificationRegistrationResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<AndroidDevicePushNotificationRegistrationResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AndroidDevicePushNotificationRegistrationResult>>(){}.getType());
-        AndroidDevicePushNotificationRegistrationResult result = resultData.data;
-
-        PlayFabResult<AndroidDevicePushNotificationRegistrationResult> pfResult = new PlayFabResult<AndroidDevicePushNotificationRegistrationResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
-     * Validates a Google Play purchase and gives the corresponding item to the player.
-     * @param request ValidateGooglePlayPurchaseRequest
-     * @return Async Task will return ValidateGooglePlayPurchaseResult
-     */
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<ValidateGooglePlayPurchaseResult>> ValidateGooglePlayPurchaseAsync(final ValidateGooglePlayPurchaseRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<ValidateGooglePlayPurchaseResult>>() {
-            public PlayFabResult<ValidateGooglePlayPurchaseResult> call() throws Exception {
-                return privateValidateGooglePlayPurchaseAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Validates a Google Play purchase and gives the corresponding item to the player.
-     * @param request ValidateGooglePlayPurchaseRequest
-     * @return ValidateGooglePlayPurchaseResult
-     */
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<ValidateGooglePlayPurchaseResult> ValidateGooglePlayPurchase(final ValidateGooglePlayPurchaseRequest request) {
-        FutureTask<PlayFabResult<ValidateGooglePlayPurchaseResult>> task = new FutureTask(new Callable<PlayFabResult<ValidateGooglePlayPurchaseResult>>() {
-            public PlayFabResult<ValidateGooglePlayPurchaseResult> call() throws Exception {
-                return privateValidateGooglePlayPurchaseAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * Validates a Google Play purchase and gives the corresponding item to the player.
-     */
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<ValidateGooglePlayPurchaseResult> privateValidateGooglePlayPurchaseAsync(final ValidateGooglePlayPurchaseRequest request) throws Exception {
-        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ValidateGooglePlayPurchase", request, "X-Authorization", _authKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<ValidateGooglePlayPurchaseResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<ValidateGooglePlayPurchaseResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ValidateGooglePlayPurchaseResult>>(){}.getType());
-        ValidateGooglePlayPurchaseResult result = resultData.data;
-
-        PlayFabResult<ValidateGooglePlayPurchaseResult> pfResult = new PlayFabResult<ValidateGooglePlayPurchaseResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -7374,68 +7064,6 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches the purchased catalog item
-     * @param request ValidateAmazonReceiptRequest
-     * @return Async Task will return ValidateAmazonReceiptResult
-     */
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<ValidateAmazonReceiptResult>> ValidateAmazonIAPReceiptAsync(final ValidateAmazonReceiptRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<ValidateAmazonReceiptResult>>() {
-            public PlayFabResult<ValidateAmazonReceiptResult> call() throws Exception {
-                return privateValidateAmazonIAPReceiptAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches the purchased catalog item
-     * @param request ValidateAmazonReceiptRequest
-     * @return ValidateAmazonReceiptResult
-     */
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<ValidateAmazonReceiptResult> ValidateAmazonIAPReceipt(final ValidateAmazonReceiptRequest request) {
-        FutureTask<PlayFabResult<ValidateAmazonReceiptResult>> task = new FutureTask(new Callable<PlayFabResult<ValidateAmazonReceiptResult>>() {
-            public PlayFabResult<ValidateAmazonReceiptResult> call() throws Exception {
-                return privateValidateAmazonIAPReceiptAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches the purchased catalog item
-     */
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<ValidateAmazonReceiptResult> privateValidateAmazonIAPReceiptAsync(final ValidateAmazonReceiptRequest request) throws Exception {
-        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ValidateAmazonIAPReceipt", request, "X-Authorization", _authKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<ValidateAmazonReceiptResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<ValidateAmazonReceiptResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ValidateAmazonReceiptResult>>(){}.getType());
-        ValidateAmazonReceiptResult result = resultData.data;
-
-        PlayFabResult<ValidateAmazonReceiptResult> pfResult = new PlayFabResult<ValidateAmazonReceiptResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
      * Accepts an open trade (one that has not yet been accepted or cancelled), if the locally signed-in player is in the  allowed player list for the trade, or it is open to all players. If the call is successful, the offered and accepted items will be swapped  between the two players' inventories.
      * @param request AcceptTradeRequest
      * @return Async Task will return AcceptTradeResponse
@@ -7929,6 +7557,378 @@ public class PlayFabClientAPI {
         GetPlayerTagsResult result = resultData.data;
 
         PlayFabResult<GetPlayerTagsResult> pfResult = new PlayFabResult<GetPlayerTagsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Registers the Android device to receive push notifications
+     * @param request AndroidDevicePushNotificationRegistrationRequest
+     * @return Async Task will return AndroidDevicePushNotificationRegistrationResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<AndroidDevicePushNotificationRegistrationResult>> AndroidDevicePushNotificationRegistrationAsync(final AndroidDevicePushNotificationRegistrationRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<AndroidDevicePushNotificationRegistrationResult>>() {
+            public PlayFabResult<AndroidDevicePushNotificationRegistrationResult> call() throws Exception {
+                return privateAndroidDevicePushNotificationRegistrationAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Registers the Android device to receive push notifications
+     * @param request AndroidDevicePushNotificationRegistrationRequest
+     * @return AndroidDevicePushNotificationRegistrationResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<AndroidDevicePushNotificationRegistrationResult> AndroidDevicePushNotificationRegistration(final AndroidDevicePushNotificationRegistrationRequest request) {
+        FutureTask<PlayFabResult<AndroidDevicePushNotificationRegistrationResult>> task = new FutureTask(new Callable<PlayFabResult<AndroidDevicePushNotificationRegistrationResult>>() {
+            public PlayFabResult<AndroidDevicePushNotificationRegistrationResult> call() throws Exception {
+                return privateAndroidDevicePushNotificationRegistrationAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Registers the Android device to receive push notifications
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<AndroidDevicePushNotificationRegistrationResult> privateAndroidDevicePushNotificationRegistrationAsync(final AndroidDevicePushNotificationRegistrationRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/AndroidDevicePushNotificationRegistration", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<AndroidDevicePushNotificationRegistrationResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<AndroidDevicePushNotificationRegistrationResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AndroidDevicePushNotificationRegistrationResult>>(){}.getType());
+        AndroidDevicePushNotificationRegistrationResult result = resultData.data;
+
+        PlayFabResult<AndroidDevicePushNotificationRegistrationResult> pfResult = new PlayFabResult<AndroidDevicePushNotificationRegistrationResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Registers the iOS device to receive push notifications
+     * @param request RegisterForIOSPushNotificationRequest
+     * @return Async Task will return RegisterForIOSPushNotificationResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RegisterForIOSPushNotificationResult>> RegisterForIOSPushNotificationAsync(final RegisterForIOSPushNotificationRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RegisterForIOSPushNotificationResult>>() {
+            public PlayFabResult<RegisterForIOSPushNotificationResult> call() throws Exception {
+                return privateRegisterForIOSPushNotificationAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Registers the iOS device to receive push notifications
+     * @param request RegisterForIOSPushNotificationRequest
+     * @return RegisterForIOSPushNotificationResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RegisterForIOSPushNotificationResult> RegisterForIOSPushNotification(final RegisterForIOSPushNotificationRequest request) {
+        FutureTask<PlayFabResult<RegisterForIOSPushNotificationResult>> task = new FutureTask(new Callable<PlayFabResult<RegisterForIOSPushNotificationResult>>() {
+            public PlayFabResult<RegisterForIOSPushNotificationResult> call() throws Exception {
+                return privateRegisterForIOSPushNotificationAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Registers the iOS device to receive push notifications
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RegisterForIOSPushNotificationResult> privateRegisterForIOSPushNotificationAsync(final RegisterForIOSPushNotificationRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/RegisterForIOSPushNotification", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RegisterForIOSPushNotificationResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RegisterForIOSPushNotificationResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RegisterForIOSPushNotificationResult>>(){}.getType());
+        RegisterForIOSPushNotificationResult result = resultData.data;
+
+        PlayFabResult<RegisterForIOSPushNotificationResult> pfResult = new PlayFabResult<RegisterForIOSPushNotificationResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Restores all in-app purchases based on the given restore receipt
+     * @param request RestoreIOSPurchasesRequest
+     * @return Async Task will return RestoreIOSPurchasesResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RestoreIOSPurchasesResult>> RestoreIOSPurchasesAsync(final RestoreIOSPurchasesRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RestoreIOSPurchasesResult>>() {
+            public PlayFabResult<RestoreIOSPurchasesResult> call() throws Exception {
+                return privateRestoreIOSPurchasesAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Restores all in-app purchases based on the given restore receipt
+     * @param request RestoreIOSPurchasesRequest
+     * @return RestoreIOSPurchasesResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RestoreIOSPurchasesResult> RestoreIOSPurchases(final RestoreIOSPurchasesRequest request) {
+        FutureTask<PlayFabResult<RestoreIOSPurchasesResult>> task = new FutureTask(new Callable<PlayFabResult<RestoreIOSPurchasesResult>>() {
+            public PlayFabResult<RestoreIOSPurchasesResult> call() throws Exception {
+                return privateRestoreIOSPurchasesAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Restores all in-app purchases based on the given restore receipt
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RestoreIOSPurchasesResult> privateRestoreIOSPurchasesAsync(final RestoreIOSPurchasesRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/RestoreIOSPurchases", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RestoreIOSPurchasesResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RestoreIOSPurchasesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RestoreIOSPurchasesResult>>(){}.getType());
+        RestoreIOSPurchasesResult result = resultData.data;
+
+        PlayFabResult<RestoreIOSPurchasesResult> pfResult = new PlayFabResult<RestoreIOSPurchasesResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches the purchased catalog item
+     * @param request ValidateAmazonReceiptRequest
+     * @return Async Task will return ValidateAmazonReceiptResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ValidateAmazonReceiptResult>> ValidateAmazonIAPReceiptAsync(final ValidateAmazonReceiptRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ValidateAmazonReceiptResult>>() {
+            public PlayFabResult<ValidateAmazonReceiptResult> call() throws Exception {
+                return privateValidateAmazonIAPReceiptAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches the purchased catalog item
+     * @param request ValidateAmazonReceiptRequest
+     * @return ValidateAmazonReceiptResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ValidateAmazonReceiptResult> ValidateAmazonIAPReceipt(final ValidateAmazonReceiptRequest request) {
+        FutureTask<PlayFabResult<ValidateAmazonReceiptResult>> task = new FutureTask(new Callable<PlayFabResult<ValidateAmazonReceiptResult>>() {
+            public PlayFabResult<ValidateAmazonReceiptResult> call() throws Exception {
+                return privateValidateAmazonIAPReceiptAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches the purchased catalog item
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ValidateAmazonReceiptResult> privateValidateAmazonIAPReceiptAsync(final ValidateAmazonReceiptRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ValidateAmazonIAPReceipt", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ValidateAmazonReceiptResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ValidateAmazonReceiptResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ValidateAmazonReceiptResult>>(){}.getType());
+        ValidateAmazonReceiptResult result = resultData.data;
+
+        PlayFabResult<ValidateAmazonReceiptResult> pfResult = new PlayFabResult<ValidateAmazonReceiptResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Validates a Google Play purchase and gives the corresponding item to the player.
+     * @param request ValidateGooglePlayPurchaseRequest
+     * @return Async Task will return ValidateGooglePlayPurchaseResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ValidateGooglePlayPurchaseResult>> ValidateGooglePlayPurchaseAsync(final ValidateGooglePlayPurchaseRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ValidateGooglePlayPurchaseResult>>() {
+            public PlayFabResult<ValidateGooglePlayPurchaseResult> call() throws Exception {
+                return privateValidateGooglePlayPurchaseAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Validates a Google Play purchase and gives the corresponding item to the player.
+     * @param request ValidateGooglePlayPurchaseRequest
+     * @return ValidateGooglePlayPurchaseResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ValidateGooglePlayPurchaseResult> ValidateGooglePlayPurchase(final ValidateGooglePlayPurchaseRequest request) {
+        FutureTask<PlayFabResult<ValidateGooglePlayPurchaseResult>> task = new FutureTask(new Callable<PlayFabResult<ValidateGooglePlayPurchaseResult>>() {
+            public PlayFabResult<ValidateGooglePlayPurchaseResult> call() throws Exception {
+                return privateValidateGooglePlayPurchaseAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Validates a Google Play purchase and gives the corresponding item to the player.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ValidateGooglePlayPurchaseResult> privateValidateGooglePlayPurchaseAsync(final ValidateGooglePlayPurchaseRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ValidateGooglePlayPurchase", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ValidateGooglePlayPurchaseResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ValidateGooglePlayPurchaseResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ValidateGooglePlayPurchaseResult>>(){}.getType());
+        ValidateGooglePlayPurchaseResult result = resultData.data;
+
+        PlayFabResult<ValidateGooglePlayPurchaseResult> pfResult = new PlayFabResult<ValidateGooglePlayPurchaseResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the purchased catalog item
+     * @param request ValidateIOSReceiptRequest
+     * @return Async Task will return ValidateIOSReceiptResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ValidateIOSReceiptResult>> ValidateIOSReceiptAsync(final ValidateIOSReceiptRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ValidateIOSReceiptResult>>() {
+            public PlayFabResult<ValidateIOSReceiptResult> call() throws Exception {
+                return privateValidateIOSReceiptAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the purchased catalog item
+     * @param request ValidateIOSReceiptRequest
+     * @return ValidateIOSReceiptResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ValidateIOSReceiptResult> ValidateIOSReceipt(final ValidateIOSReceiptRequest request) {
+        FutureTask<PlayFabResult<ValidateIOSReceiptResult>> task = new FutureTask(new Callable<PlayFabResult<ValidateIOSReceiptResult>>() {
+            public PlayFabResult<ValidateIOSReceiptResult> call() throws Exception {
+                return privateValidateIOSReceiptAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the purchased catalog item
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ValidateIOSReceiptResult> privateValidateIOSReceiptAsync(final ValidateIOSReceiptRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ValidateIOSReceipt", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ValidateIOSReceiptResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ValidateIOSReceiptResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ValidateIOSReceiptResult>>(){}.getType());
+        ValidateIOSReceiptResult result = resultData.data;
+
+        PlayFabResult<ValidateIOSReceiptResult> pfResult = new PlayFabResult<ValidateIOSReceiptResult>();
         pfResult.Result = result;
         return pfResult;
     }

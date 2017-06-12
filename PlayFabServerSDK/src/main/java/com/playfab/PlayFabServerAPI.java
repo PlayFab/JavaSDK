@@ -4667,68 +4667,6 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Awards the specified users the specified Steam achievements
-     * @param request AwardSteamAchievementRequest
-     * @return Async Task will return AwardSteamAchievementResult
-     */
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<AwardSteamAchievementResult>> AwardSteamAchievementAsync(final AwardSteamAchievementRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<AwardSteamAchievementResult>>() {
-            public PlayFabResult<AwardSteamAchievementResult> call() throws Exception {
-                return privateAwardSteamAchievementAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Awards the specified users the specified Steam achievements
-     * @param request AwardSteamAchievementRequest
-     * @return AwardSteamAchievementResult
-     */
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<AwardSteamAchievementResult> AwardSteamAchievement(final AwardSteamAchievementRequest request) {
-        FutureTask<PlayFabResult<AwardSteamAchievementResult>> task = new FutureTask(new Callable<PlayFabResult<AwardSteamAchievementResult>>() {
-            public PlayFabResult<AwardSteamAchievementResult> call() throws Exception {
-                return privateAwardSteamAchievementAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * Awards the specified users the specified Steam achievements
-     */
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<AwardSteamAchievementResult> privateAwardSteamAchievementAsync(final AwardSteamAchievementRequest request) throws Exception {
-        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/AwardSteamAchievement", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<AwardSteamAchievementResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<AwardSteamAchievementResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AwardSteamAchievementResult>>(){}.getType());
-        AwardSteamAchievementResult result = resultData.data;
-
-        PlayFabResult<AwardSteamAchievementResult> pfResult = new PlayFabResult<AwardSteamAchievementResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
      * Writes a character-based event into PlayStream.
      * @param request WriteServerCharacterEventRequest
      * @return Async Task will return WriteEventResponse
@@ -6708,6 +6646,68 @@ public class PlayFabServerAPI {
         RemovePlayerTagResult result = resultData.data;
 
         PlayFabResult<RemovePlayerTagResult> pfResult = new PlayFabResult<RemovePlayerTagResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Awards the specified users the specified Steam achievements
+     * @param request AwardSteamAchievementRequest
+     * @return Async Task will return AwardSteamAchievementResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<AwardSteamAchievementResult>> AwardSteamAchievementAsync(final AwardSteamAchievementRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<AwardSteamAchievementResult>>() {
+            public PlayFabResult<AwardSteamAchievementResult> call() throws Exception {
+                return privateAwardSteamAchievementAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Awards the specified users the specified Steam achievements
+     * @param request AwardSteamAchievementRequest
+     * @return AwardSteamAchievementResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<AwardSteamAchievementResult> AwardSteamAchievement(final AwardSteamAchievementRequest request) {
+        FutureTask<PlayFabResult<AwardSteamAchievementResult>> task = new FutureTask(new Callable<PlayFabResult<AwardSteamAchievementResult>>() {
+            public PlayFabResult<AwardSteamAchievementResult> call() throws Exception {
+                return privateAwardSteamAchievementAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Awards the specified users the specified Steam achievements
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<AwardSteamAchievementResult> privateAwardSteamAchievementAsync(final AwardSteamAchievementRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/AwardSteamAchievement", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<AwardSteamAchievementResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<AwardSteamAchievementResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AwardSteamAchievementResult>>(){}.getType());
+        AwardSteamAchievementResult result = resultData.data;
+
+        PlayFabResult<AwardSteamAchievementResult> pfResult = new PlayFabResult<AwardSteamAchievementResult>();
         pfResult.Result = result;
         return pfResult;
     }
