@@ -883,6 +883,22 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class CreatePlayerSharedSecretRequest {
+        /**
+         * Friendly name for this key
+         */
+        public String FriendlyName;
+        
+    }
+
+    public static class CreatePlayerSharedSecretResult {
+        /**
+         * The player shared secret to use when calling Client/GetTitlePublicKey
+         */
+        public String SecretKey;
+        
+    }
+
     public static class CreatePlayerStatisticDefinitionRequest {
         /**
          * unique name of the statistic
@@ -1085,6 +1101,18 @@ public class PlayFabAdminModels {
          * Key of the content item to be deleted
          */
         public String Key;
+        
+    }
+
+    public static class DeletePlayerSharedSecretRequest {
+        /**
+         * The shared secret key to delete
+         */
+        public String SecretKey;
+        
+    }
+
+    public static class DeletePlayerSharedSecretResult {
         
     }
 
@@ -1482,6 +1510,18 @@ public class PlayFabAdminModels {
          * Array of segments the requested player currently belongs to.
          */
         public ArrayList<GetSegmentResult> Segments;
+        
+    }
+
+    public static class GetPlayerSharedSecretsRequest {
+        
+    }
+
+    public static class GetPlayerSharedSecretsResult {
+        /**
+         * The player shared secret to use when calling Client/GetTitlePublicKey
+         */
+        public ArrayList<SharedSecret> SharedSecrets;
         
     }
 
@@ -2579,6 +2619,12 @@ public class PlayFabAdminModels {
         
     }
 
+    public static enum PushSetupPlatform {
+        GCM,
+        APNS,
+        APNS_SANDBOX
+    }
+
     public static class RandomResultTable {
         /**
          * Unique name for this drop table
@@ -2909,6 +2955,22 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class SetPlayerSecretRequest {
+        /**
+         * Player secret that is used to verify API request signatures (Enterprise Only).
+         */
+        public String PlayerSecret;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        
+    }
+
+    public static class SetPlayerSecretResult {
+        
+    }
+
     public static class SetPublishedRevisionRequest {
         /**
          * Version number
@@ -2965,7 +3027,7 @@ public class PlayFabAdminModels {
         /**
          * supported notification platforms are Apple Push Notification Service (APNS and APNS_SANDBOX) for iOS and Google Cloud Messaging (GCM) for Android
          */
-        public String Platform;
+        public PushSetupPlatform Platform;
         /**
          * for APNS, this is the PlatformPrincipal (SSL Certificate)
          */
@@ -2986,6 +3048,22 @@ public class PlayFabAdminModels {
          * Amazon Resource Name for the created notification topic.
          */
         public String ARN;
+        
+    }
+
+    public static class SharedSecret {
+        /**
+         * The player shared secret to use when calling Client/GetTitlePublicKey
+         */
+        public String SecretKey;
+        /**
+         * Friendly name for this key
+         */
+        public String FriendlyName;
+        /**
+         * Flag to indicate if this key is disabled
+         */
+        public Boolean Disabled;
         
     }
 
@@ -3248,6 +3326,26 @@ public class PlayFabAdminModels {
          * New revision number created
          */
         public Integer Revision;
+        
+    }
+
+    public static class UpdatePlayerSharedSecretRequest {
+        /**
+         * The shared secret key to update
+         */
+        public String SecretKey;
+        /**
+         * Friendly name for this key
+         */
+        public String FriendlyName;
+        /**
+         * Disable or Enable this key
+         */
+        public Boolean Disabled;
+        
+    }
+
+    public static class UpdatePlayerSharedSecretResult {
         
     }
 

@@ -153,6 +153,10 @@ public class PlayFabMatchmakerModels {
 
     public static class RegisterGameRequest {
         /**
+         * Previous lobby id if re-registering an existing game.
+         */
+        public String LobbyId;
+        /**
          * IP address of the Game Server Instance.
          */
         public String ServerHost;
@@ -181,7 +185,7 @@ public class PlayFabMatchmakerModels {
 
     public static class RegisterGameResponse {
         /**
-         * Unique identifier generated for the Game Server Instance that is registered.
+         * Unique identifier generated for the Game Server Instance that is registered. If LobbyId is specified in request and the game still exists in PlayFab, the LobbyId in request is returned. Otherwise a new lobby id will be returned.
          */
         public String LobbyId;
         

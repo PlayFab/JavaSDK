@@ -79,6 +79,68 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's secret use the Admin or Server API method SetPlayerSecret.
+     * @param request SetPlayerSecretRequest
+     * @return Async Task will return SetPlayerSecretResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<SetPlayerSecretResult>> SetPlayerSecretAsync(final SetPlayerSecretRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<SetPlayerSecretResult>>() {
+            public PlayFabResult<SetPlayerSecretResult> call() throws Exception {
+                return privateSetPlayerSecretAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's secret use the Admin or Server API method SetPlayerSecret.
+     * @param request SetPlayerSecretRequest
+     * @return SetPlayerSecretResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<SetPlayerSecretResult> SetPlayerSecret(final SetPlayerSecretRequest request) {
+        FutureTask<PlayFabResult<SetPlayerSecretResult>> task = new FutureTask(new Callable<PlayFabResult<SetPlayerSecretResult>>() {
+            public PlayFabResult<SetPlayerSecretResult> call() throws Exception {
+                return privateSetPlayerSecretAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's secret use the Admin or Server API method SetPlayerSecret.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<SetPlayerSecretResult> privateSetPlayerSecretAsync(final SetPlayerSecretRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SetPlayerSecret", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<SetPlayerSecretResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<SetPlayerSecretResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetPlayerSecretResult>>(){}.getType());
+        SetPlayerSecretResult result = resultData.data;
+
+        PlayFabResult<SetPlayerSecretResult> pfResult = new PlayFabResult<SetPlayerSecretResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Bans users by PlayFab ID with optional IP address, or MAC address for the provided game.
      * @param request BanUsersRequest
      * @return Async Task will return BanUsersResult
