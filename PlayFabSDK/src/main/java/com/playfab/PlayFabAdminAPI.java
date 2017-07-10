@@ -17,6 +17,192 @@ public class PlayFabAdminAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 
     /**
+     * Creates a new Player Shared Secret Key. It may take up to 5 minutes for this key to become generally available after this API returns.
+     * @param request CreatePlayerSharedSecretRequest
+     * @return Async Task will return CreatePlayerSharedSecretResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<CreatePlayerSharedSecretResult>> CreatePlayerSharedSecretAsync(final CreatePlayerSharedSecretRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<CreatePlayerSharedSecretResult>>() {
+            public PlayFabResult<CreatePlayerSharedSecretResult> call() throws Exception {
+                return privateCreatePlayerSharedSecretAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Creates a new Player Shared Secret Key. It may take up to 5 minutes for this key to become generally available after this API returns.
+     * @param request CreatePlayerSharedSecretRequest
+     * @return CreatePlayerSharedSecretResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<CreatePlayerSharedSecretResult> CreatePlayerSharedSecret(final CreatePlayerSharedSecretRequest request) {
+        FutureTask<PlayFabResult<CreatePlayerSharedSecretResult>> task = new FutureTask(new Callable<PlayFabResult<CreatePlayerSharedSecretResult>>() {
+            public PlayFabResult<CreatePlayerSharedSecretResult> call() throws Exception {
+                return privateCreatePlayerSharedSecretAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Creates a new Player Shared Secret Key. It may take up to 5 minutes for this key to become generally available after this API returns.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<CreatePlayerSharedSecretResult> privateCreatePlayerSharedSecretAsync(final CreatePlayerSharedSecretRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/CreatePlayerSharedSecret", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<CreatePlayerSharedSecretResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<CreatePlayerSharedSecretResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<CreatePlayerSharedSecretResult>>(){}.getType());
+        CreatePlayerSharedSecretResult result = resultData.data;
+
+        PlayFabResult<CreatePlayerSharedSecretResult> pfResult = new PlayFabResult<CreatePlayerSharedSecretResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Deletes an existing Player Shared Secret Key. It may take up to 5 minutes for this delete to be reflected after this API returns.
+     * @param request DeletePlayerSharedSecretRequest
+     * @return Async Task will return DeletePlayerSharedSecretResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<DeletePlayerSharedSecretResult>> DeletePlayerSharedSecretAsync(final DeletePlayerSharedSecretRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<DeletePlayerSharedSecretResult>>() {
+            public PlayFabResult<DeletePlayerSharedSecretResult> call() throws Exception {
+                return privateDeletePlayerSharedSecretAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Deletes an existing Player Shared Secret Key. It may take up to 5 minutes for this delete to be reflected after this API returns.
+     * @param request DeletePlayerSharedSecretRequest
+     * @return DeletePlayerSharedSecretResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<DeletePlayerSharedSecretResult> DeletePlayerSharedSecret(final DeletePlayerSharedSecretRequest request) {
+        FutureTask<PlayFabResult<DeletePlayerSharedSecretResult>> task = new FutureTask(new Callable<PlayFabResult<DeletePlayerSharedSecretResult>>() {
+            public PlayFabResult<DeletePlayerSharedSecretResult> call() throws Exception {
+                return privateDeletePlayerSharedSecretAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Deletes an existing Player Shared Secret Key. It may take up to 5 minutes for this delete to be reflected after this API returns.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<DeletePlayerSharedSecretResult> privateDeletePlayerSharedSecretAsync(final DeletePlayerSharedSecretRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/DeletePlayerSharedSecret", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<DeletePlayerSharedSecretResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<DeletePlayerSharedSecretResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<DeletePlayerSharedSecretResult>>(){}.getType());
+        DeletePlayerSharedSecretResult result = resultData.data;
+
+        PlayFabResult<DeletePlayerSharedSecretResult> pfResult = new PlayFabResult<DeletePlayerSharedSecretResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Returns all Player Shared Secret Keys including disabled and expired.
+     * @param request GetPlayerSharedSecretsRequest
+     * @return Async Task will return GetPlayerSharedSecretsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayerSharedSecretsResult>> GetPlayerSharedSecretsAsync(final GetPlayerSharedSecretsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayerSharedSecretsResult>>() {
+            public PlayFabResult<GetPlayerSharedSecretsResult> call() throws Exception {
+                return privateGetPlayerSharedSecretsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Returns all Player Shared Secret Keys including disabled and expired.
+     * @param request GetPlayerSharedSecretsRequest
+     * @return GetPlayerSharedSecretsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayerSharedSecretsResult> GetPlayerSharedSecrets(final GetPlayerSharedSecretsRequest request) {
+        FutureTask<PlayFabResult<GetPlayerSharedSecretsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayerSharedSecretsResult>>() {
+            public PlayFabResult<GetPlayerSharedSecretsResult> call() throws Exception {
+                return privateGetPlayerSharedSecretsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Returns all Player Shared Secret Keys including disabled and expired.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayerSharedSecretsResult> privateGetPlayerSharedSecretsAsync(final GetPlayerSharedSecretsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/GetPlayerSharedSecrets", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayerSharedSecretsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayerSharedSecretsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayerSharedSecretsResult>>(){}.getType());
+        GetPlayerSharedSecretsResult result = resultData.data;
+
+        PlayFabResult<GetPlayerSharedSecretsResult> pfResult = new PlayFabResult<GetPlayerSharedSecretsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Gets the requested policy.
      * @param request GetPolicyRequest
      * @return Async Task will return GetPolicyResponse
@@ -74,6 +260,130 @@ public class PlayFabAdminAPI {
         GetPolicyResponse result = resultData.data;
 
         PlayFabResult<GetPolicyResponse> pfResult = new PlayFabResult<GetPolicyResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Sets or resets the player's secret. Player secrets are used to sign API requests.
+     * @param request SetPlayerSecretRequest
+     * @return Async Task will return SetPlayerSecretResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<SetPlayerSecretResult>> SetPlayerSecretAsync(final SetPlayerSecretRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<SetPlayerSecretResult>>() {
+            public PlayFabResult<SetPlayerSecretResult> call() throws Exception {
+                return privateSetPlayerSecretAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Sets or resets the player's secret. Player secrets are used to sign API requests.
+     * @param request SetPlayerSecretRequest
+     * @return SetPlayerSecretResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<SetPlayerSecretResult> SetPlayerSecret(final SetPlayerSecretRequest request) {
+        FutureTask<PlayFabResult<SetPlayerSecretResult>> task = new FutureTask(new Callable<PlayFabResult<SetPlayerSecretResult>>() {
+            public PlayFabResult<SetPlayerSecretResult> call() throws Exception {
+                return privateSetPlayerSecretAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Sets or resets the player's secret. Player secrets are used to sign API requests.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<SetPlayerSecretResult> privateSetPlayerSecretAsync(final SetPlayerSecretRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/SetPlayerSecret", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<SetPlayerSecretResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<SetPlayerSecretResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetPlayerSecretResult>>(){}.getType());
+        SetPlayerSecretResult result = resultData.data;
+
+        PlayFabResult<SetPlayerSecretResult> pfResult = new PlayFabResult<SetPlayerSecretResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Updates a existing Player Shared Secret Key. It may take up to 5 minutes for this update to become generally available after this API returns.
+     * @param request UpdatePlayerSharedSecretRequest
+     * @return Async Task will return UpdatePlayerSharedSecretResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<UpdatePlayerSharedSecretResult>> UpdatePlayerSharedSecretAsync(final UpdatePlayerSharedSecretRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<UpdatePlayerSharedSecretResult>>() {
+            public PlayFabResult<UpdatePlayerSharedSecretResult> call() throws Exception {
+                return privateUpdatePlayerSharedSecretAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Updates a existing Player Shared Secret Key. It may take up to 5 minutes for this update to become generally available after this API returns.
+     * @param request UpdatePlayerSharedSecretRequest
+     * @return UpdatePlayerSharedSecretResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<UpdatePlayerSharedSecretResult> UpdatePlayerSharedSecret(final UpdatePlayerSharedSecretRequest request) {
+        FutureTask<PlayFabResult<UpdatePlayerSharedSecretResult>> task = new FutureTask(new Callable<PlayFabResult<UpdatePlayerSharedSecretResult>>() {
+            public PlayFabResult<UpdatePlayerSharedSecretResult> call() throws Exception {
+                return privateUpdatePlayerSharedSecretAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Updates a existing Player Shared Secret Key. It may take up to 5 minutes for this update to become generally available after this API returns.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<UpdatePlayerSharedSecretResult> privateUpdatePlayerSharedSecretAsync(final UpdatePlayerSharedSecretRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/UpdatePlayerSharedSecret", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<UpdatePlayerSharedSecretResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<UpdatePlayerSharedSecretResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdatePlayerSharedSecretResult>>(){}.getType());
+        UpdatePlayerSharedSecretResult result = resultData.data;
+
+        PlayFabResult<UpdatePlayerSharedSecretResult> pfResult = new PlayFabResult<UpdatePlayerSharedSecretResult>();
         pfResult.Result = result;
         return pfResult;
     }

@@ -1447,13 +1447,9 @@ public class PlayFabServerModels {
          */
         public Boolean IncludeFacebookFriends;
         /**
-         * The version of the leaderboard to get, when UseSpecificVersion is true.
+         * The version of the leaderboard to get.
          */
         public Integer Version;
-        /**
-         * If true, uses the specified version. If false, gets the most recent version.
-         */
-        public Boolean UseSpecificVersion;
         /**
          * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. For API calls from the client, only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
@@ -1535,13 +1531,9 @@ public class PlayFabServerModels {
          */
         public PlayerProfileViewConstraints ProfileConstraints;
         /**
-         * The version of the leaderboard to get, when UseSpecificVersion is true.
+         * The version of the leaderboard to get.
          */
         public Integer Version;
-        /**
-         * If true, uses the specified version. If false, gets the most recent version.
-         */
-        public Boolean UseSpecificVersion;
         
     }
 
@@ -1603,13 +1595,9 @@ public class PlayFabServerModels {
          */
         public PlayerProfileViewConstraints ProfileConstraints;
         /**
-         * The version of the leaderboard to get, when UseSpecificVersion is true.
+         * The version of the leaderboard to get.
          */
         public Integer Version;
-        /**
-         * If true, uses the specified version. If false, gets the most recent version.
-         */
-        public Boolean UseSpecificVersion;
         
     }
 
@@ -3034,6 +3022,34 @@ public class PlayFabServerModels {
         
     }
 
+    public static class PushNotificationPackage {
+        /**
+         * If set, represents a timestamp for when the device should display the message. Local format should be formatted as: yyyy-MM-dd HH:mm:ss or UTC timestamp formatted as yyyy-MM-ddTHH:mm:ssZ. Delivery is not delayed, scheduling is expected to be handled by the device.
+         */
+        public String ScheduleDate;
+        /**
+         * Title/Subject of the message
+         */
+        public String Title;
+        /**
+         * Content of the message
+         */
+        public String Message;
+        /**
+         * Icon file to display with the message
+         */
+        public String Icon;
+        /**
+         * Sound file to play with the message
+         */
+        public String Sound;
+        /**
+         * Arbitrary string that will be delivered with the message. Suggested use: JSON formatted object
+         */
+        public String CustomData;
+        
+    }
+
     public static enum PushNotificationPlatform {
         ApplePushNotificationService,
         GoogleCloudMessaging
@@ -3159,6 +3175,10 @@ public class PlayFabServerModels {
 
     public static class RegisterGameRequest {
         /**
+         * Previous lobby id if re-registering an existing game.
+         */
+        public String LobbyId;
+        /**
          * IP address of the Game Server Instance.
          */
         public String ServerHost;
@@ -3187,7 +3207,7 @@ public class PlayFabServerModels {
 
     public static class RegisterGameResponse {
         /**
-         * Unique identifier generated for the Game Server Instance that is registered.
+         * Unique identifier generated for the Game Server Instance that is registered. If LobbyId is specified in request and the game still exists in PlayFab, the LobbyId in request is returned. Otherwise a new lobby id will be returned.
          */
         public String LobbyId;
         
@@ -3361,9 +3381,14 @@ public class PlayFabServerModels {
          */
         public String Recipient;
         /**
-         * Text of message to send.
+         * @deprecated Please use Package instead.
          */
+        @Deprecated
         public String Message;
+        /**
+         * Defines all possible push attributes like message, title, icon, etc
+         */
+        public PushNotificationPackage Package;
         /**
          * Subject of message to send (may not be displayed in all platforms.
          */
@@ -3436,6 +3461,22 @@ public class PlayFabServerModels {
     }
 
     public static class SetGameServerInstanceTagsResult {
+        
+    }
+
+    public static class SetPlayerSecretRequest {
+        /**
+         * Player secret that is used to verify API request signatures (Enterprise Only).
+         */
+        public String PlayerSecret;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        
+    }
+
+    public static class SetPlayerSecretResult {
         
     }
 

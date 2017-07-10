@@ -1443,13 +1443,9 @@ public class PlayFabClientModels {
          */
         public Boolean IncludeFacebookFriends;
         /**
-         * The version of the leaderboard to get, when UseSpecificVersion is true.
+         * The version of the leaderboard to get.
          */
         public Integer Version;
-        /**
-         * If true, uses the specified version. If false, gets the most recent version.
-         */
-        public Boolean UseSpecificVersion;
         /**
          * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. For API calls from the client, only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
@@ -1495,13 +1491,9 @@ public class PlayFabClientModels {
          */
         public Boolean IncludeFacebookFriends;
         /**
-         * The version of the leaderboard to get, when UseSpecificVersion is true.
+         * The version of the leaderboard to get.
          */
         public Integer Version;
-        /**
-         * If true, uses the specified version. If false, gets the most recent version.
-         */
-        public Boolean UseSpecificVersion;
         /**
          * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. For API calls from the client, only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
@@ -1571,13 +1563,9 @@ public class PlayFabClientModels {
          */
         public Integer MaxResultsCount;
         /**
-         * The version of the leaderboard to get, when UseSpecificVersion is true.
+         * The version of the leaderboard to get.
          */
         public Integer Version;
-        /**
-         * If true, uses the specified version. If false, gets the most recent version.
-         */
-        public Boolean UseSpecificVersion;
         /**
          * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. For API calls from the client, only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
@@ -1635,13 +1623,9 @@ public class PlayFabClientModels {
          */
         public Integer MaxResultsCount;
         /**
-         * The version of the leaderboard to get, when UseSpecificVersion is true.
+         * The version of the leaderboard to get.
          */
         public Integer Version;
-        /**
-         * If true, uses the specified version. If false, gets the most recent version.
-         */
-        public Boolean UseSpecificVersion;
         /**
          * If non-null, this determines which properties of the profile to return. If null, playfab will only include display names. For API calls from the client, only ShowDisplayName, ShowAvatarUrl are allowed at this time.
          */
@@ -2220,6 +2204,26 @@ public class PlayFabClientModels {
          * Array of news items.
          */
         public ArrayList<TitleNewsItem> News;
+        
+    }
+
+    public static class GetTitlePublicKeyRequest {
+        /**
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a title has been selected.
+         */
+        public String TitleId;
+        /**
+         * The shared secret key for this title
+         */
+        public String TitleSharedSecret;
+        
+    }
+
+    public static class GetTitlePublicKeyResult {
+        /**
+         * Base64 encoded RSA CSP byte array blob containing the title's public RSA key
+         */
+        public String RSAPublicKey;
         
     }
 
@@ -3840,6 +3844,22 @@ public class PlayFabClientModels {
     }
 
     public static class SetFriendTagsResult {
+        
+    }
+
+    public static class SetPlayerSecretRequest {
+        /**
+         * Player secret that is used to verify API request signatures (Enterprise Only).
+         */
+        public String PlayerSecret;
+        /**
+         * Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only).
+         */
+        public String EncryptedRequest;
+        
+    }
+
+    public static class SetPlayerSecretResult {
         
     }
 

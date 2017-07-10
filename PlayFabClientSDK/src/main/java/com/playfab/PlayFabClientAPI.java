@@ -79,6 +79,67 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Returns the title's base 64 encoded RSA CSP blob.
+     * @param request GetTitlePublicKeyRequest
+     * @return Async Task will return GetTitlePublicKeyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetTitlePublicKeyResult>> GetTitlePublicKeyAsync(final GetTitlePublicKeyRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetTitlePublicKeyResult>>() {
+            public PlayFabResult<GetTitlePublicKeyResult> call() throws Exception {
+                return privateGetTitlePublicKeyAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Returns the title's base 64 encoded RSA CSP blob.
+     * @param request GetTitlePublicKeyRequest
+     * @return GetTitlePublicKeyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetTitlePublicKeyResult> GetTitlePublicKey(final GetTitlePublicKeyRequest request) {
+        FutureTask<PlayFabResult<GetTitlePublicKeyResult>> task = new FutureTask(new Callable<PlayFabResult<GetTitlePublicKeyResult>>() {
+            public PlayFabResult<GetTitlePublicKeyResult> call() throws Exception {
+                return privateGetTitlePublicKeyAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Returns the title's base 64 encoded RSA CSP blob.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetTitlePublicKeyResult> privateGetTitlePublicKeyAsync(final GetTitlePublicKeyRequest request) throws Exception {
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetTitlePublicKey", request, null, null);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetTitlePublicKeyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetTitlePublicKeyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetTitlePublicKeyResult>>(){}.getType());
+        GetTitlePublicKeyResult result = resultData.data;
+
+        PlayFabResult<GetTitlePublicKeyResult> pfResult = new PlayFabResult<GetTitlePublicKeyResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Requests a challenge from the server to be signed by Windows Hello Passport service to authenticate.
      * @param request GetWindowsHelloChallengeRequest
      * @return Async Task will return GetWindowsHelloChallengeResponse
@@ -1045,6 +1106,68 @@ public class PlayFabClientAPI {
         MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's secret use the Admin or Server API method SetPlayerSecret.
+     * @param request SetPlayerSecretRequest
+     * @return Async Task will return SetPlayerSecretResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<SetPlayerSecretResult>> SetPlayerSecretAsync(final SetPlayerSecretRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<SetPlayerSecretResult>>() {
+            public PlayFabResult<SetPlayerSecretResult> call() throws Exception {
+                return privateSetPlayerSecretAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's secret use the Admin or Server API method SetPlayerSecret.
+     * @param request SetPlayerSecretRequest
+     * @return SetPlayerSecretResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<SetPlayerSecretResult> SetPlayerSecret(final SetPlayerSecretRequest request) {
+        FutureTask<PlayFabResult<SetPlayerSecretResult>> task = new FutureTask(new Callable<PlayFabResult<SetPlayerSecretResult>>() {
+            public PlayFabResult<SetPlayerSecretResult> call() throws Exception {
+                return privateSetPlayerSecretAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's secret use the Admin or Server API method SetPlayerSecret.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<SetPlayerSecretResult> privateSetPlayerSecretAsync(final SetPlayerSecretRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/SetPlayerSecret", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<SetPlayerSecretResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<SetPlayerSecretResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetPlayerSecretResult>>(){}.getType());
+        SetPlayerSecretResult result = resultData.data;
+
+        PlayFabResult<SetPlayerSecretResult> pfResult = new PlayFabResult<SetPlayerSecretResult>();
         pfResult.Result = result;
         return pfResult;
     }
