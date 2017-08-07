@@ -553,6 +553,22 @@ public class PlayFabServerModels {
         
     }
 
+    public static class ContactEmailInfo {
+        /**
+         * The name of the email info data
+         */
+        public String Name;
+        /**
+         * The email address
+         */
+        public String EmailAddress;
+        /**
+         * The verification status of the email
+         */
+        public EmailVerificationStatus VerificationStatus;
+        
+    }
+
     public static enum ContinentCode {
         AF,
         AN,
@@ -1050,6 +1066,12 @@ public class PlayFabServerModels {
 
     public static class DeregisterGameResponse {
         
+    }
+
+    public static enum EmailVerificationStatus {
+        Unverified,
+        Pending,
+        Confirmed
     }
 
     public static class EmptyResult {
@@ -2835,6 +2857,10 @@ public class PlayFabServerModels {
          * Array of player statistics
          */
         public ArrayList<PlayerStatistic> PlayerStatistics;
+        /**
+         * Array of contact email addresses associated with the player
+         */
+        public ArrayList<ContactEmailInfo> ContactEmailAddresses;
         
     }
 
@@ -3381,9 +3407,8 @@ public class PlayFabServerModels {
          */
         public String Recipient;
         /**
-         * @deprecated Please use Package instead.
+         * Text of message to send.
          */
-        @Deprecated
         public String Message;
         /**
          * Defines all possible push attributes like message, title, icon, etc
