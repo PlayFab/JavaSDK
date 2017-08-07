@@ -557,6 +557,22 @@ public class PlayFabAdminModels {
         False
     }
 
+    public static class ContactEmailInfo {
+        /**
+         * The name of the email info data
+         */
+        public String Name;
+        /**
+         * The email address
+         */
+        public String EmailAddress;
+        /**
+         * The verification status of the email
+         */
+        public EmailVerificationStatus VerificationStatus;
+        
+    }
+
     public static class ContentInfo {
         /**
          * Key of the content
@@ -1104,6 +1120,18 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class DeletePlayerRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        
+    }
+
+    public static class DeletePlayerResult {
+        
+    }
+
     public static class DeletePlayerSharedSecretRequest {
         /**
          * The shared secret key to delete
@@ -1159,6 +1187,12 @@ public class PlayFabAdminModels {
     public static enum EffectType {
         Allow,
         Deny
+    }
+
+    public static enum EmailVerificationStatus {
+        Unverified,
+        Pending,
+        Confirmed
     }
 
     public static class EmptyResult {
@@ -2523,6 +2557,10 @@ public class PlayFabAdminModels {
          * Array of player statistics
          */
         public ArrayList<PlayerStatistic> PlayerStatistics;
+        /**
+         * Array of contact email addresses associated with the player
+         */
+        public ArrayList<ContactEmailInfo> ContactEmailAddresses;
         
     }
 
@@ -2739,6 +2777,10 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class ResetUsersRequest {
         /**
          * Array of users to reset
@@ -3613,6 +3655,10 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class UserCredentials {
         /**
          * Username of user to reset

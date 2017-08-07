@@ -111,11 +111,11 @@ public class PlayFabMatchmakerModels {
 
     public static class PlayerJoinedRequest {
         /**
-         * Unique identifier of the Game Server Instance the user is joining.
+         * Unique identifier of the Game Server Instance the user is joining. This must be a Game Server Instance started with the Matchmaker/StartGame API.
          */
         public String LobbyId;
         /**
-         * PlayFab unique identifier for the user joining.
+         * PlayFab unique identifier for the player joining.
          */
         public String PlayFabId;
         
@@ -127,11 +127,11 @@ public class PlayFabMatchmakerModels {
 
     public static class PlayerLeftRequest {
         /**
-         * Unique identifier of the Game Server Instance the user is leaving.
+         * Unique identifier of the Game Server Instance the user is leaving. This must be a Game Server Instance started with the Matchmaker/StartGame API.
          */
         public String LobbyId;
         /**
-         * PlayFab unique identifier for the user leaving.
+         * PlayFab unique identifier for the player leaving.
          */
         public String PlayFabId;
         

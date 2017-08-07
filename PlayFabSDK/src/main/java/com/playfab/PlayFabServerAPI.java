@@ -6093,7 +6093,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Updates the title-specific custom data for the user's chjaracter which is readable and writable by the client
+     * Updates the title-specific custom data for the user's character which is readable and writable by the client
      * @param request UpdateCharacterDataRequest
      * @return Async Task will return UpdateCharacterDataResult
      */
@@ -6107,7 +6107,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Updates the title-specific custom data for the user's chjaracter which is readable and writable by the client
+     * Updates the title-specific custom data for the user's character which is readable and writable by the client
      * @param request UpdateCharacterDataRequest
      * @return UpdateCharacterDataResult
      */
@@ -6127,7 +6127,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Updates the title-specific custom data for the user's chjaracter which is readable and writable by the client
+     * Updates the title-specific custom data for the user's character which is readable and writable by the client
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateCharacterDataResult> privateUpdateCharacterDataAsync(final UpdateCharacterDataRequest request) throws Exception {
