@@ -4,9 +4,9 @@ import android.content.Context;
 import com.playfab.PlayFabErrors.ErrorCallback;
 
 public class PlayFabSettings {
-    public static String SdkVersion = "0.53.170807";
-    public static String BuildIdentifier = "jbuild_javasdk_0";
-    public static String SdkVersionString = "JavaSDK-0.53.170807";
+    public static String SdkVersion = "0.54.170814";
+    public static String BuildIdentifier = "jbuild_javasdk_1";
+    public static String SdkVersionString = "JavaSDK-0.54.170814";
 
     public static String TitleId = null; // You must set this value for PlayFabSdk to work properly (Found in the Game Manager for your title, at the PlayFab Website)
     public static ErrorCallback GlobalErrorHandler;
