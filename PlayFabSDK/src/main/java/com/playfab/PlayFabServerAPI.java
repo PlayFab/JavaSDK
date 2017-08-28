@@ -4915,7 +4915,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds users to the set of those able to update both the shared data, as well as the set of users in the group. Only users in the group (and the server) can add new members.
+     * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only users in the group (and the server) can add new members. Shared Groups are designed for sharing data  between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request AddSharedGroupMembersRequest
      * @return Async Task will return AddSharedGroupMembersResult
      */
@@ -4929,7 +4929,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds users to the set of those able to update both the shared data, as well as the set of users in the group. Only users in the group (and the server) can add new members.
+     * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only users in the group (and the server) can add new members. Shared Groups are designed for sharing data  between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request AddSharedGroupMembersRequest
      * @return AddSharedGroupMembersResult
      */
@@ -4949,7 +4949,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds users to the set of those able to update both the shared data, as well as the set of users in the group. Only users in the group (and the server) can add new members.
+     * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only users in the group (and the server) can add new members. Shared Groups are designed for sharing data  between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AddSharedGroupMembersResult> privateAddSharedGroupMembersAsync(final AddSharedGroupMembersRequest request) throws Exception {
@@ -4977,7 +4977,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Requests the creation of a shared group object, containing key/value pairs which may be updated by all members of the group. When created by a server, the group will initially have no members.
+     * Requests the creation of a shared group object, containing key/value pairs which may  be updated by all members of the group. When created by a server, the group will initially have no members.  Shared Groups are designed for sharing data between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request CreateSharedGroupRequest
      * @return Async Task will return CreateSharedGroupResult
      */
@@ -4991,7 +4991,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Requests the creation of a shared group object, containing key/value pairs which may be updated by all members of the group. When created by a server, the group will initially have no members.
+     * Requests the creation of a shared group object, containing key/value pairs which may  be updated by all members of the group. When created by a server, the group will initially have no members.  Shared Groups are designed for sharing data between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request CreateSharedGroupRequest
      * @return CreateSharedGroupResult
      */
@@ -5011,7 +5011,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Requests the creation of a shared group object, containing key/value pairs which may be updated by all members of the group. When created by a server, the group will initially have no members.
+     * Requests the creation of a shared group object, containing key/value pairs which may  be updated by all members of the group. When created by a server, the group will initially have no members.  Shared Groups are designed for sharing data between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateSharedGroupResult> privateCreateSharedGroupAsync(final CreateSharedGroupRequest request) throws Exception {
@@ -5039,7 +5039,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Deletes a shared group, freeing up the shared group ID to be reused for a new group
+     * Deletes a shared group, freeing up the shared group ID to be reused for a new group.  Shared Groups are designed for sharing data between a very small number of players, please see our guide:  https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request DeleteSharedGroupRequest
      * @return Async Task will return EmptyResult
      */
@@ -5053,7 +5053,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Deletes a shared group, freeing up the shared group ID to be reused for a new group
+     * Deletes a shared group, freeing up the shared group ID to be reused for a new group.  Shared Groups are designed for sharing data between a very small number of players, please see our guide:  https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request DeleteSharedGroupRequest
      * @return EmptyResult
      */
@@ -5073,7 +5073,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Deletes a shared group, freeing up the shared group ID to be reused for a new group
+     * Deletes a shared group, freeing up the shared group ID to be reused for a new group.  Shared Groups are designed for sharing data between a very small number of players, please see our guide:  https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResult> privateDeleteSharedGroupAsync(final DeleteSharedGroupRequest request) throws Exception {
@@ -5101,7 +5101,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves data stored in a shared group object, as well as the list of members in the group. The server can access all public and private group data.
+     * Retrieves data stored in a shared group object, as well as the list of members in the group.  The server can access all public and private group data. Shared Groups are designed for sharing data between a very  small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request GetSharedGroupDataRequest
      * @return Async Task will return GetSharedGroupDataResult
      */
@@ -5115,7 +5115,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves data stored in a shared group object, as well as the list of members in the group. The server can access all public and private group data.
+     * Retrieves data stored in a shared group object, as well as the list of members in the group.  The server can access all public and private group data. Shared Groups are designed for sharing data between a very  small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request GetSharedGroupDataRequest
      * @return GetSharedGroupDataResult
      */
@@ -5135,7 +5135,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves data stored in a shared group object, as well as the list of members in the group. The server can access all public and private group data.
+     * Retrieves data stored in a shared group object, as well as the list of members in the group.  The server can access all public and private group data. Shared Groups are designed for sharing data between a very  small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetSharedGroupDataResult> privateGetSharedGroupDataAsync(final GetSharedGroupDataRequest request) throws Exception {
@@ -5163,7 +5163,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the group can remove members. If as a result of the call, zero users remain with access, the group and its associated data will be deleted.
+     * Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the group can remove members. If as a result of the call, zero users remain with access, the group and its associated data will be deleted. Shared Groups are designed for sharing data between a very small number of players,  please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request RemoveSharedGroupMembersRequest
      * @return Async Task will return RemoveSharedGroupMembersResult
      */
@@ -5177,7 +5177,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the group can remove members. If as a result of the call, zero users remain with access, the group and its associated data will be deleted.
+     * Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the group can remove members. If as a result of the call, zero users remain with access, the group and its associated data will be deleted. Shared Groups are designed for sharing data between a very small number of players,  please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request RemoveSharedGroupMembersRequest
      * @return RemoveSharedGroupMembersResult
      */
@@ -5197,7 +5197,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the group can remove members. If as a result of the call, zero users remain with access, the group and its associated data will be deleted.
+     * Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the group can remove members. If as a result of the call, zero users remain with access, the group and its associated data will be deleted. Shared Groups are designed for sharing data between a very small number of players,  please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RemoveSharedGroupMembersResult> privateRemoveSharedGroupMembersAsync(final RemoveSharedGroupMembersRequest request) throws Exception {
@@ -5225,7 +5225,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated or added in this call will be readable by users not in the group. By default, data permissions are set to Private. Regardless of the permission setting, only members of the group (and the server) can update the data.
+     * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated or added in this call will be readable by users not in the group. By default, data permissions are set to Private. Regardless of the permission setting, only members of the group (and the server) can update the data.  Shared Groups are designed for sharing data between a very small number of players, please see our guide:  https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request UpdateSharedGroupDataRequest
      * @return Async Task will return UpdateSharedGroupDataResult
      */
@@ -5239,7 +5239,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated or added in this call will be readable by users not in the group. By default, data permissions are set to Private. Regardless of the permission setting, only members of the group (and the server) can update the data.
+     * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated or added in this call will be readable by users not in the group. By default, data permissions are set to Private. Regardless of the permission setting, only members of the group (and the server) can update the data.  Shared Groups are designed for sharing data between a very small number of players, please see our guide:  https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request UpdateSharedGroupDataRequest
      * @return UpdateSharedGroupDataResult
      */
@@ -5259,7 +5259,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated or added in this call will be readable by users not in the group. By default, data permissions are set to Private. Regardless of the permission setting, only members of the group (and the server) can update the data.
+     * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated or added in this call will be readable by users not in the group. By default, data permissions are set to Private. Regardless of the permission setting, only members of the group (and the server) can update the data.  Shared Groups are designed for sharing data between a very small number of players, please see our guide:  https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateSharedGroupDataResult> privateUpdateSharedGroupDataAsync(final UpdateSharedGroupDataRequest request) throws Exception {
@@ -6341,10 +6341,11 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieve a list of all PlayStream actions groups.
+     * @deprecated Please use GetAllSegments instead.
      * @param request GetAllActionGroupsRequest
      * @return Async Task will return GetAllActionGroupsResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetAllActionGroupsResult>> GetAllActionGroupsAsync(final GetAllActionGroupsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetAllActionGroupsResult>>() {
@@ -6355,10 +6356,11 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieve a list of all PlayStream actions groups.
+     * @deprecated Please use GetAllSegments instead.
      * @param request GetAllActionGroupsRequest
      * @return GetAllActionGroupsResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetAllActionGroupsResult> GetAllActionGroups(final GetAllActionGroupsRequest request) {
         FutureTask<PlayFabResult<GetAllActionGroupsResult>> task = new FutureTask(new Callable<PlayFabResult<GetAllActionGroupsResult>>() {
@@ -6375,8 +6377,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieve a list of all PlayStream actions groups.
+     * @deprecated Please use GetAllSegments instead.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetAllActionGroupsResult> privateGetAllActionGroupsAsync(final GetAllActionGroupsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");

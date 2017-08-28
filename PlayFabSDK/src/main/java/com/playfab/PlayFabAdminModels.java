@@ -25,6 +25,10 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class ActionsOnPlayersInSegmentTaskSummary {
         /**
          * ID of the task instance.
@@ -78,6 +82,22 @@ public class PlayFabAdminModels {
     }
 
     public static class AdCampaignAttribution {
+        /**
+         * Attribution network name
+         */
+        public String Platform;
+        /**
+         * Attribution campaign identifier
+         */
+        public String CampaignId;
+        /**
+         * UTC time stamp of attribution
+         */
+        public Date AttributedAt;
+        
+    }
+
+    public static class AdCampaignAttributionModel {
         /**
          * Attribution network name
          */
@@ -570,6 +590,18 @@ public class PlayFabAdminModels {
          * The verification status of the email
          */
         public EmailVerificationStatus VerificationStatus;
+        
+    }
+
+    public static class ContactEmailInfoModel {
+        /**
+         * The name of the email info data
+         */
+        public String Name;
+        /**
+         * The email address
+         */
+        public String EmailAddress;
         
     }
 
@@ -1273,6 +1305,10 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class GetActionGroupResult {
         /**
          * Action Group name
@@ -1285,6 +1321,10 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {
         /**
          * Status summary of the actions-on-players-in-segment task instance
@@ -1297,10 +1337,18 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class GetAllActionGroupsRequest {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class GetAllActionGroupsResult {
         /**
          * List of Action Groups.
@@ -1536,6 +1584,26 @@ public class PlayFabAdminModels {
          * array of game modes available for the specified build
          */
         public ArrayList<GameModeInfo> GameModes;
+        
+    }
+
+    public static class GetPlayerProfileRequest {
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * If non-null, this determines which properties of the resulting player profiles to return. For API calls from the client, only the allowed client profile properties for the title may be requested. These allowed properties are configured in the Game Manager "Client Profile Options" tab in the "Settings" section.
+         */
+        public PlayerProfileViewConstraints ProfileConstraints;
+        
+    }
+
+    public static class GetPlayerProfileResult {
+        /**
+         * The profile of the player. This profile is not guaranteed to be up-to-date. For a new player, this profile will not exist.
+         */
+        public PlayerProfileModel PlayerProfile;
         
     }
 
@@ -2199,6 +2267,26 @@ public class PlayFabAdminModels {
         }
     }
 
+    public static class LinkedPlatformAccountModel {
+        /**
+         * Authentication platform
+         */
+        public LoginIdentityProvider Platform;
+        /**
+         * Unique account identifier of the user on the platform
+         */
+        public String PlatformUserId;
+        /**
+         * Linked account username of the user on the platform, if available
+         */
+        public String Username;
+        /**
+         * Linked account email of the user on the platform, if available
+         */
+        public String Email;
+        
+    }
+
     public static class ListBuildsRequest {
         
     }
@@ -2222,6 +2310,30 @@ public class PlayFabAdminModels {
          */
         @Unordered
         public ArrayList<VirtualCurrencyData> VirtualCurrencies;
+        
+    }
+
+    public static class LocationModel {
+        /**
+         * The two-character continent code for this location
+         */
+        public ContinentCode ContinentCode;
+        /**
+         * The two-character ISO 3166-1 country code for the country associated with the location
+         */
+        public CountryCode CountryCode;
+        /**
+         * City name.
+         */
+        public String City;
+        /**
+         * Latitude coordinate of the geographic location.
+         */
+        public Double Latitude;
+        /**
+         * Longitude coordinate of the geographic location.
+         */
+        public Double Longitude;
         
     }
 
@@ -2564,6 +2676,150 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class PlayerProfileModel {
+        /**
+         * Publisher this player belongs to
+         */
+        public String PublisherId;
+        /**
+         * Title ID this player profile applies to
+         */
+        public String TitleId;
+        /**
+         * PlayFab player account unique identifier
+         */
+        public String PlayerId;
+        /**
+         * Player record created
+         */
+        public Date Created;
+        /**
+         * Player account origination
+         */
+        public LoginIdentityProvider Origination;
+        /**
+         * UTC time when the player most recently logged in to the title
+         */
+        public Date LastLogin;
+        /**
+         * If the player is currently banned, the UTC Date when the ban expires
+         */
+        public Date BannedUntil;
+        /**
+         * List of geographic locations from which the player has logged in to the title
+         */
+        public ArrayList<LocationModel> Locations;
+        /**
+         * Player display name
+         */
+        public String DisplayName;
+        /**
+         * URL of the player's avatar image
+         */
+        public String AvatarUrl;
+        /**
+         * List of player's tags for segmentation
+         */
+        public ArrayList<TagModel> Tags;
+        /**
+         * List of configured end points registered for sending the player push notifications
+         */
+        public ArrayList<PushNotificationRegistrationModel> PushNotificationRegistrations;
+        /**
+         * List of all authentication systems linked to this player account
+         */
+        public ArrayList<LinkedPlatformAccountModel> LinkedAccounts;
+        /**
+         * List of all contact email info associated with the player account
+         */
+        public ArrayList<ContactEmailInfoModel> ContactEmailAddresses;
+        /**
+         * List of advertising campaigns the player has been attributed to
+         */
+        public ArrayList<AdCampaignAttributionModel> AdCampaignAttributions;
+        /**
+         * Sum of the player's purchases made with real-money currencies, converted to US dollars equivalent and represented as a whole number of cents (1/100 USD).              For example, 999 indicates nine dollars and ninety-nine cents.
+         */
+        public Long TotalValueToDateInUSD;
+        /**
+         * List of the player's lifetime purchase totals, summed by real-money currency
+         */
+        public ArrayList<ValueToDateModel> ValuesToDate;
+        /**
+         * List of the player's virtual currency balances
+         */
+        public ArrayList<VirtualCurrencyBalanceModel> VirtualCurrencyBalances;
+        /**
+         * List of leaderboard statistic values for the player
+         */
+        public ArrayList<StatisticModel> Statistics;
+        
+    }
+
+    public static class PlayerProfileViewConstraints {
+        /**
+         * Whether to show the display name. Defaults to false
+         */
+        public Boolean ShowDisplayName;
+        /**
+         * Whether to show the created date. Defaults to false
+         */
+        public Boolean ShowCreated;
+        /**
+         * Whether to show origination. Defaults to false
+         */
+        public Boolean ShowOrigination;
+        /**
+         * Whether to show the last login time. Defaults to false
+         */
+        public Boolean ShowLastLogin;
+        /**
+         * Whether to show the banned until time. Defaults to false
+         */
+        public Boolean ShowBannedUntil;
+        /**
+         * Reserved for future development
+         */
+        public Boolean ShowStatistics;
+        /**
+         * Whether to show campaign attributions. Defaults to false
+         */
+        public Boolean ShowCampaignAttributions;
+        /**
+         * Whether to show push notification registrations. Defaults to false
+         */
+        public Boolean ShowPushNotificationRegistrations;
+        /**
+         * Whether to show the linked accounts. Defaults to false
+         */
+        public Boolean ShowLinkedAccounts;
+        /**
+         * Whether to show contact email addresses. Defaults to false
+         */
+        public Boolean ShowContactEmailAddresses;
+        /**
+         * Whether to show the total value to date in usd. Defaults to false
+         */
+        public Boolean ShowTotalValueToDateInUsd;
+        /**
+         * Whether to show the values to date. Defaults to false
+         */
+        public Boolean ShowValuesToDate;
+        /**
+         * Whether to show tags. Defaults to false
+         */
+        public Boolean ShowTags;
+        /**
+         * Whether to show player's locations. Defaults to false
+         */
+        public Boolean ShowLocations;
+        /**
+         * Whether to show player's avatar URL. Defaults to false
+         */
+        public Boolean ShowAvatarUrl;
+        
+    }
+
     public static class PlayerStatistic {
         /**
          * Statistic ID
@@ -2646,6 +2902,18 @@ public class PlayFabAdminModels {
     }
 
     public static class PushNotificationRegistration {
+        /**
+         * Push notification platform
+         */
+        public PushNotificationPlatform Platform;
+        /**
+         * Notification configured endpoint
+         */
+        public String NotificationEndpointARN;
+        
+    }
+
+    public static class PushNotificationRegistrationModel {
         /**
          * Push notification platform
          */
@@ -3124,6 +3392,22 @@ public class PlayFabAdminModels {
         Sum
     }
 
+    public static class StatisticModel {
+        /**
+         * Statistic name
+         */
+        public String Name;
+        /**
+         * Statistic version (0 if not a versioned statistic)
+         */
+        public Integer Version;
+        /**
+         * Statistic value
+         */
+        public Integer Value;
+        
+    }
+
     public static enum StatisticResetIntervalOption {
         Never,
         Hour,
@@ -3212,6 +3496,14 @@ public class PlayFabAdminModels {
          * Amount to be subtracted from the user balance of the specified virtual currency.
          */
         public Integer Amount;
+        
+    }
+
+    public static class TagModel {
+        /**
+         * Full value of the tag, including namespace
+         */
+        public String TagValue;
         
     }
 
@@ -3869,6 +4161,34 @@ public class PlayFabAdminModels {
          * XBox user ID
          */
         public String XboxUserId;
+        
+    }
+
+    public static class ValueToDateModel {
+        /**
+         * ISO 4217 code of the currency used in the purchases
+         */
+        public String Currency;
+        /**
+         * Total value of the purchases in a whole number of 1/100 monetary units. For example, 999 indicates nine dollars and ninety-nine cents when Currency is 'USD')
+         */
+        public Long TotalValue;
+        /**
+         * Total value of the purchases in a string representation of decimal monetary units. For example, '9.99' indicates nine dollars and ninety-nine cents when Currency is 'USD'.
+         */
+        public String TotalValueAsDecimal;
+        
+    }
+
+    public static class VirtualCurrencyBalanceModel {
+        /**
+         * Name of the virtual currency
+         */
+        public String Currency;
+        /**
+         * Balance of the virtual currency
+         */
+        public Integer TotalValue;
         
     }
 

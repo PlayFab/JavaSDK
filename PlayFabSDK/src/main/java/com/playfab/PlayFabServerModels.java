@@ -5,6 +5,10 @@ import com.playfab.PlayFabUtil.*;
 
 public class PlayFabServerModels {
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class ActionsOnPlayersInSegmentTaskSummary {
         /**
          * ID of the task instance.
@@ -566,6 +570,18 @@ public class PlayFabServerModels {
          * The verification status of the email
          */
         public EmailVerificationStatus VerificationStatus;
+        
+    }
+
+    public static class ContactEmailInfoModel {
+        /**
+         * The name of the email info data
+         */
+        public String Name;
+        /**
+         * The email address
+         */
+        public String EmailAddress;
         
     }
 
@@ -1229,6 +1245,10 @@ public class PlayFabServerModels {
         Closed
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class GetActionGroupResult {
         /**
          * Action Group name
@@ -1241,10 +1261,18 @@ public class PlayFabServerModels {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class GetAllActionGroupsRequest {
         
     }
 
+    /**
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class GetAllActionGroupsResult {
         /**
          * List of Action Groups.
@@ -2926,6 +2954,10 @@ public class PlayFabServerModels {
          */
         public ArrayList<LinkedPlatformAccountModel> LinkedAccounts;
         /**
+         * List of all contact email info associated with the player account
+         */
+        public ArrayList<ContactEmailInfoModel> ContactEmailAddresses;
+        /**
          * List of advertising campaigns the player has been attributed to
          */
         public ArrayList<AdCampaignAttributionModel> AdCampaignAttributions;
@@ -2985,6 +3017,10 @@ public class PlayFabServerModels {
          * Whether to show the linked accounts. Defaults to false
          */
         public Boolean ShowLinkedAccounts;
+        /**
+         * Whether to show contact email addresses. Defaults to false
+         */
+        public Boolean ShowContactEmailAddresses;
         /**
          * Whether to show the total value to date in usd. Defaults to false
          */
@@ -3309,11 +3345,6 @@ public class PlayFabServerModels {
 
     public static class ReportPlayerServerResult {
         /**
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean Updated;
-        /**
          * The number of remaining reports which may be filed today by this reporting player.
          */
         public Integer SubmissionsRemaining;
@@ -3419,13 +3450,17 @@ public class PlayFabServerModels {
          */
         public String Message;
         /**
-         * Defines all possible push attributes like message, title, icon, etc
+         * Defines all possible push attributes like message, title, icon, etc. Not supported for iOS devices.
          */
         public PushNotificationPackage Package;
         /**
-         * Subject of message to send (may not be displayed in all platforms.
+         * Subject of message to send (may not be displayed in all platforms. Not supported for Android devices (use Package instead).
          */
         public String Subject;
+        /**
+         * Platforms that should receive the message. If omitted, we will send to all available platforms.
+         */
+        public ArrayList<PushNotificationPlatform> TargetPlatforms;
         
     }
 
