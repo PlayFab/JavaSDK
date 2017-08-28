@@ -502,6 +502,18 @@ public class PlayFabClientModels {
         
     }
 
+    public static class ContactEmailInfoModel {
+        /**
+         * The name of the email info data
+         */
+        public String Name;
+        /**
+         * The email address
+         */
+        public String EmailAddress;
+        
+    }
+
     /**
      * A data container
      */
@@ -1168,9 +1180,14 @@ public class PlayFabClientModels {
          */
         public Long RunTime;
         /**
+         * @deprecated Please use GameServerStateEnum instead.
+         */
+        @Deprecated
+        public Integer GameServerState;
+        /**
          * game specific string denoting server configuration
          */
-        public GameInstanceState GameServerState;
+        public GameInstanceState GameServerStateEnum;
         /**
          * game session custom data
          */
@@ -3401,6 +3418,10 @@ public class PlayFabClientModels {
          */
         public ArrayList<LinkedPlatformAccountModel> LinkedAccounts;
         /**
+         * List of all contact email info associated with the player account
+         */
+        public ArrayList<ContactEmailInfoModel> ContactEmailAddresses;
+        /**
          * List of advertising campaigns the player has been attributed to
          */
         public ArrayList<AdCampaignAttributionModel> AdCampaignAttributions;
@@ -3460,6 +3481,10 @@ public class PlayFabClientModels {
          * Whether to show the linked accounts. Defaults to false
          */
         public Boolean ShowLinkedAccounts;
+        /**
+         * Whether to show contact email addresses. Defaults to false
+         */
+        public Boolean ShowContactEmailAddresses;
         /**
          * Whether to show the total value to date in usd. Defaults to false
          */
@@ -3783,11 +3808,6 @@ public class PlayFabClientModels {
     }
 
     public static class ReportPlayerClientResult {
-        /**
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean Updated;
         /**
          * The number of remaining reports which may be filed today.
          */

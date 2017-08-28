@@ -5107,10 +5107,11 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Retrieve a list of all PlayStream actions groups.
+     * @deprecated Please use GetTasks instead.
      * @param request GetAllActionGroupsRequest
      * @return Async Task will return GetAllActionGroupsResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetAllActionGroupsResult>> GetAllActionGroupsAsync(final GetAllActionGroupsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetAllActionGroupsResult>>() {
@@ -5121,10 +5122,11 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Retrieve a list of all PlayStream actions groups.
+     * @deprecated Please use GetTasks instead.
      * @param request GetAllActionGroupsRequest
      * @return GetAllActionGroupsResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetAllActionGroupsResult> GetAllActionGroups(final GetAllActionGroupsRequest request) {
         FutureTask<PlayFabResult<GetAllActionGroupsResult>> task = new FutureTask(new Callable<PlayFabResult<GetAllActionGroupsResult>>() {
@@ -5141,8 +5143,9 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Retrieve a list of all PlayStream actions groups.
+     * @deprecated Please use GetTasks instead.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetAllActionGroupsResult> privateGetAllActionGroupsAsync(final GetAllActionGroupsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5727,10 +5730,11 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Get information about a ActionsOnPlayersInSegment task instance.
+     * @deprecated Please use GetTasks instead.
      * @param request GetTaskInstanceRequest
      * @return Async Task will return GetActionsOnPlayersInSegmentTaskInstanceResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetActionsOnPlayersInSegmentTaskInstanceResult>> GetActionsOnPlayersInSegmentTaskInstanceAsync(final GetTaskInstanceRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetActionsOnPlayersInSegmentTaskInstanceResult>>() {
@@ -5741,10 +5745,11 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Get information about a ActionsOnPlayersInSegment task instance.
+     * @deprecated Please use GetTasks instead.
      * @param request GetTaskInstanceRequest
      * @return GetActionsOnPlayersInSegmentTaskInstanceResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetActionsOnPlayersInSegmentTaskInstanceResult> GetActionsOnPlayersInSegmentTaskInstance(final GetTaskInstanceRequest request) {
         FutureTask<PlayFabResult<GetActionsOnPlayersInSegmentTaskInstanceResult>> task = new FutureTask(new Callable<PlayFabResult<GetActionsOnPlayersInSegmentTaskInstanceResult>>() {
@@ -5761,8 +5766,9 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Get information about a ActionsOnPlayersInSegment task instance.
+     * @deprecated Please use GetTasks instead.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetActionsOnPlayersInSegmentTaskInstanceResult> privateGetActionsOnPlayersInSegmentTaskInstanceAsync(final GetTaskInstanceRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
