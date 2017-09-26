@@ -337,7 +337,13 @@ public class PlayFabErrors {
         EntityTokenMissing(1334),
         EntityTokenInvalid(1335),
         EntityTokenExpired(1336),
-        EntityTokenRevoked(1337);
+        EntityTokenRevoked(1337),
+        InvalidProductForSubscription(1338),
+        XboxInaccessible(1339),
+        SubscriptionAlreadyTaken(1340),
+        SmtpAddonNotEnabled(1341),
+        APIConcurrentRequestLimitExceeded(1342),
+        XboxRejectedXSTSExchangeRequest(1343);
 
         public int id;
 
