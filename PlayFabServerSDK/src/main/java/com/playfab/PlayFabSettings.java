@@ -3,9 +3,9 @@ package com.playfab;
 import com.playfab.PlayFabErrors.ErrorCallback;
 
 public class PlayFabSettings {
-    public static String SdkVersion = "0.55.170828";
-    public static String BuildIdentifier = "jbuild_javasdk_2";
-    public static String SdkVersionString = "JavaSDK-0.55.170828";
+    public static String SdkVersion = "0.56.170925";
+    public static String BuildIdentifier = "jbuild_javasdk_1";
+    public static String SdkVersionString = "JavaSDK-0.56.170925";
 
     public static String TitleId = null; // You must set this value for PlayFabSdk to work properly (Found in the Game Manager for your title, at the PlayFab Website)
     public static ErrorCallback GlobalErrorHandler;

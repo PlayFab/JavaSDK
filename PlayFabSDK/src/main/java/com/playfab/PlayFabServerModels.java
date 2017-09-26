@@ -5,135 +5,79 @@ import com.playfab.PlayFabUtil.*;
 
 public class PlayFabServerModels {
 
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class ActionsOnPlayersInSegmentTaskSummary {
-        /**
-         * ID of the task instance.
-         */
-        public String TaskInstanceId;
-        /**
-         * Identifier of the task this instance belongs to.
-         */
-        public NameIdentifier TaskIdentifier;
-        /**
-         * UTC timestamp when the task started.
-         */
-        public Date StartedAt;
-        /**
-         * UTC timestamp when the task completed.
-         */
-        public Date CompletedAt;
-        /**
-         * Current status of the task instance.
-         */
-        public TaskInstanceStatus Status;
-        /**
-         * Progress represented as percentage.
-         */
-        public Double PercentComplete;
-        /**
-         * Estimated time remaining in seconds.
-         */
-        public Double EstimatedSecondsRemaining;
-        /**
-         * If manually scheduled, ID of user who scheduled the task.
-         */
-        public String ScheduledByUserId;
-        /**
-         * Error message for last processing attempt, if an error occured.
-         */
-        public String ErrorMessage;
-        /**
-         * Flag indicating if the error was fatal, if false job will be retried.
-         */
-        public Boolean ErrorWasFatal;
-        /**
-         * Total players in segment when task was started.
-         */
-        public Integer TotalPlayersInSegment;
-        /**
-         * Total number of players that have had the actions applied to.
-         */
-        public Integer TotalPlayersProcessed;
-        
-    }
-
     public static class AdCampaignAttribution {
         /**
-         * Attribution network name
+         * UTC time stamp of attribution
          */
-        public String Platform;
+        public Date AttributedAt;
         /**
          * Attribution campaign identifier
          */
         public String CampaignId;
         /**
-         * UTC time stamp of attribution
+         * Attribution network name
          */
-        public Date AttributedAt;
+        public String Platform;
         
     }
 
     public static class AdCampaignAttributionModel {
         /**
-         * Attribution network name
+         * UTC time stamp of attribution
          */
-        public String Platform;
+        public Date AttributedAt;
         /**
          * Attribution campaign identifier
          */
         public String CampaignId;
         /**
-         * UTC time stamp of attribution
+         * Attribution network name
          */
-        public Date AttributedAt;
+        public String Platform;
         
     }
 
     public static class AddCharacterVirtualCurrencyRequest {
         /**
-         * PlayFab unique identifier of the user whose virtual currency balance is to be incremented.
+         * Amount to be added to the character balance of the specified virtual currency. Maximum VC balance is Int32 (2,147,483,647). Any increase over this value will be discarded.
          */
-        public String PlayFabId;
+        public Integer Amount;
         /**
          * Unique PlayFab assigned ID for a specific character owned by a user
          */
         public String CharacterId;
         /**
+         * PlayFab unique identifier of the user whose virtual currency balance is to be incremented.
+         */
+        public String PlayFabId;
+        /**
          * Name of the virtual currency which is to be incremented.
          */
         public String VirtualCurrency;
-        /**
-         * Amount to be added to the character balance of the specified virtual currency. Maximum VC balance is Int32 (2,147,483,647). Any increase over this value will be discarded.
-         */
-        public Integer Amount;
         
     }
 
     public static class AddFriendRequest {
         /**
-         * PlayFab identifier of the player to add a new friend.
+         * Email address of the user being added.
          */
-        public String PlayFabId;
+        public String FriendEmail;
         /**
          * The PlayFab identifier of the user being added.
          */
         public String FriendPlayFabId;
         /**
+         * Title-specific display name of the user to being added.
+         */
+        public String FriendTitleDisplayName;
+        /**
          * The PlayFab username of the user being added
          */
         public String FriendUsername;
         /**
-         * Email address of the user being added.
+         * PlayFab identifier of the player to add a new friend.
          */
-        public String FriendEmail;
-        /**
-         * Title-specific display name of the user to being added.
-         */
-        public String FriendTitleDisplayName;
+        public String PlayFabId;
         
     }
 
@@ -155,13 +99,13 @@ public class PlayFabServerModels {
 
     public static class AddSharedGroupMembersRequest {
         /**
-         * Unique identifier for the shared group.
-         */
-        public String SharedGroupId;
-        /**
          * An array of unique PlayFab assigned ID of the user on whom the operation will be performed.
          */
         public ArrayList<String> PlayFabIds;
+        /**
+         * Unique identifier for the shared group.
+         */
+        public String SharedGroupId;
         
     }
 
@@ -171,6 +115,10 @@ public class PlayFabServerModels {
 
     public static class AddUserVirtualCurrencyRequest {
         /**
+         * Amount to be added to the user balance of the specified virtual currency. Maximum VC balance is Int32 (2,147,483,647). Any increase over this value will be discarded.
+         */
+        public Integer Amount;
+        /**
          * PlayFab unique identifier of the user whose virtual currency balance is to be increased.
          */
         public String PlayFabId;
@@ -178,10 +126,18 @@ public class PlayFabServerModels {
          * Name of the virtual currency which is to be incremented.
          */
         public String VirtualCurrency;
+        
+    }
+
+    public static class AdvancedPushPlatformMsg {
         /**
-         * Amount to be added to the user balance of the specified virtual currency. Maximum VC balance is Int32 (2,147,483,647). Any increase over this value will be discarded.
+         * The Json the platform should receive.
          */
-        public Integer Amount;
+        public String Json;
+        /**
+         * The platform that should receive the Json.
+         */
+        public PushNotificationPlatform Platform;
         
     }
 
@@ -203,13 +159,13 @@ public class PlayFabServerModels {
 
     public static class AwardSteamAchievementItem {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
          * Unique Steam achievement name.
          */
         public String AchievementName;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         /**
          * Result of the award attempt (only valid on response, not on request).
          */
@@ -238,21 +194,13 @@ public class PlayFabServerModels {
      */
     public static class BanInfo {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         * The active state of this ban. Expired bans may still have this value set to true but they will have no effect.
          */
-        public String PlayFabId;
+        public Boolean Active;
         /**
          * The unique Ban Id associated with this ban.
          */
         public String BanId;
-        /**
-         * The IP address on which the ban was applied. May affect multiple players.
-         */
-        public String IPAddress;
-        /**
-         * The MAC address on which the ban was applied. May affect multiple players.
-         */
-        public String MACAddress;
         /**
          * The time when this ban was applied.
          */
@@ -262,13 +210,21 @@ public class PlayFabServerModels {
          */
         public Date Expires;
         /**
+         * The IP address on which the ban was applied. May affect multiple players.
+         */
+        public String IPAddress;
+        /**
+         * The MAC address on which the ban was applied. May affect multiple players.
+         */
+        public String MACAddress;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
          * The reason why this ban was applied.
          */
         public String Reason;
-        /**
-         * The active state of this ban. Expired bans may still have this value set to true but they will have no effect.
-         */
-        public Boolean Active;
         
     }
 
@@ -277,9 +233,9 @@ public class PlayFabServerModels {
      */
     public static class BanRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         * The duration in hours for the ban. Leave this blank for a permanent ban.
          */
-        public String PlayFabId;
+        public Long DurationInHours;
         /**
          * IP address to be banned. May affect multiple players.
          */
@@ -289,13 +245,13 @@ public class PlayFabServerModels {
          */
         public String MACAddress;
         /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
          * The reason for this ban. Maximum 140 characters.
          */
         public String Reason;
-        /**
-         * The duration in hours for the ban. Leave this blank for a permanent ban.
-         */
-        public Long DurationInHours;
         
     }
 
@@ -320,29 +276,65 @@ public class PlayFabServerModels {
      */
     public static class CatalogItem implements Comparable<CatalogItem> {
         /**
-         * unique identifier for this item
+         * defines the bundle properties for the item - bundles are items which contain other items, including random drop tables and virtual currencies
          */
-        public String ItemId;
+        public CatalogItemBundleInfo Bundle;
         /**
-         * class to which the item belongs
+         * if true, then an item instance of this type can be used to grant a character to a user.
          */
-        public String ItemClass;
+        public Boolean CanBecomeCharacter;
         /**
          * catalog version for this item
          */
         public String CatalogVersion;
         /**
-         * text name for the item, to show in-game
+         * defines the consumable properties (number of uses, timeout) for the item
          */
-        public String DisplayName;
+        public CatalogItemConsumableInfo Consumable;
+        /**
+         * defines the container properties for the item - what items it contains, including random drop tables and virtual currencies, and what item (if any) is required to open it via the UnlockContainerItem API
+         */
+        public CatalogItemContainerInfo Container;
+        /**
+         * game specific custom data
+         */
+        public String CustomData;
         /**
          * text description of item, to show in-game
          */
         public String Description;
         /**
-         * price of this item in virtual currencies and "RM" (the base Real Money purchase price, in USD pennies)
+         * text name for the item, to show in-game
          */
-        public Map<String,Long> VirtualCurrencyPrices;
+        public String DisplayName;
+        /**
+         * If the item has IsLImitedEdition set to true, and this is the first time this ItemId has been defined as a limited edition item, this value determines the total number of instances to allocate for the title. Once this limit has been reached, no more instances of this ItemId can be created, and attempts to purchase or grant it will return a Result of false for that ItemId. If the item has already been defined to have a limited edition count, or if this value is less than zero, it will be ignored.
+         */
+        public Integer InitialLimitedEditionCount;
+        /**
+         * BETA: If true, then only a fixed number can ever be granted.
+         */
+        public Boolean IsLimitedEdition;
+        /**
+         * if true, then only one item instance of this type will exist and its remaininguses will be incremented instead. RemainingUses will cap out at Int32.Max (2,147,483,647). All subsequent increases will be discarded
+         */
+        public Boolean IsStackable;
+        /**
+         * if true, then an item instance of this type can be traded between players using the trading APIs
+         */
+        public Boolean IsTradable;
+        /**
+         * class to which the item belongs
+         */
+        public String ItemClass;
+        /**
+         * unique identifier for this item
+         */
+        public String ItemId;
+        /**
+         * URL to the item image. For Facebook purchase to display the image on the item purchase page, this must be set to an HTTP URL.
+         */
+        public String ItemImageUrl;
         /**
          * override prices for this item for specific currencies
          */
@@ -353,45 +345,9 @@ public class PlayFabServerModels {
         @Unordered
         public ArrayList<String> Tags;
         /**
-         * game specific custom data
+         * price of this item in virtual currencies and "RM" (the base Real Money purchase price, in USD pennies)
          */
-        public String CustomData;
-        /**
-         * defines the consumable properties (number of uses, timeout) for the item
-         */
-        public CatalogItemConsumableInfo Consumable;
-        /**
-         * defines the container properties for the item - what items it contains, including random drop tables and virtual currencies, and what item (if any) is required to open it via the UnlockContainerItem API
-         */
-        public CatalogItemContainerInfo Container;
-        /**
-         * defines the bundle properties for the item - bundles are items which contain other items, including random drop tables and virtual currencies
-         */
-        public CatalogItemBundleInfo Bundle;
-        /**
-         * if true, then an item instance of this type can be used to grant a character to a user.
-         */
-        public Boolean CanBecomeCharacter;
-        /**
-         * if true, then only one item instance of this type will exist and its remaininguses will be incremented instead. RemainingUses will cap out at Int32.Max (2,147,483,647). All subsequent increases will be discarded
-         */
-        public Boolean IsStackable;
-        /**
-         * if true, then an item instance of this type can be traded between players using the trading APIs
-         */
-        public Boolean IsTradable;
-        /**
-         * URL to the item image. For Facebook purchase to display the image on the item purchase page, this must be set to an HTTP URL.
-         */
-        public String ItemImageUrl;
-        /**
-         * BETA: If true, then only a fixed number can ever be granted.
-         */
-        public Boolean IsLimitedEdition;
-        /**
-         * If the item has IsLImitedEdition set to true, and this is the first time this ItemId has been defined as a limited edition item, this value determines the total number of instances to allocate for the title. Once this limit has been reached, no more instances of this ItemId can be created, and attempts to purchase or grant it will return a Result of false for that ItemId. If the item has already been defined to have a limited edition count, or if this value is less than zero, it will be ignored.
-         */
-        public Integer InitialLimitedEditionCount;
+        public Map<String,Long> VirtualCurrencyPrices;
         
         public int compareTo(CatalogItem other) {
             if (other == null || other.ItemId == null) return 1;
@@ -439,14 +395,14 @@ public class PlayFabServerModels {
      */
     public static class CatalogItemContainerInfo {
         /**
-         * ItemId for the catalog item used to unlock the container, if any (if not specified, a call to UnlockContainerItem will open the container, adding the contents to the player inventory and currency balances)
-         */
-        public String KeyItemId;
-        /**
          * unique ItemId values for all items which will be added to the player inventory, once the container has been unlocked
          */
         @Unordered
         public ArrayList<String> ItemContents;
+        /**
+         * ItemId for the catalog item used to unlock the container, if any (if not specified, a call to UnlockContainerItem will open the container, adding the contents to the player inventory and currency balances)
+         */
+        public String KeyItemId;
         /**
          * unique TableId values for all RandomResultTable objects which are part of the container (once unlocked, random tables will be resolved and add the relevant items to the player inventory)
          */
@@ -473,10 +429,6 @@ public class PlayFabServerModels {
 
     public static class CharacterLeaderboardEntry {
         /**
-         * PlayFab unique identifier of the user for this leaderboard entry.
-         */
-        public String PlayFabId;
-        /**
          * PlayFab unique identifier of the character that belongs to the user for this leaderboard entry.
          */
         public String CharacterId;
@@ -485,21 +437,25 @@ public class PlayFabServerModels {
          */
         public String CharacterName;
         /**
-         * Title-specific display name of the user for this leaderboard entry.
-         */
-        public String DisplayName;
-        /**
          * Name of the character class for this entry.
          */
         public String CharacterType;
         /**
-         * Specific value of the user's statistic.
+         * Title-specific display name of the user for this leaderboard entry.
          */
-        public Integer StatValue;
+        public String DisplayName;
+        /**
+         * PlayFab unique identifier of the user for this leaderboard entry.
+         */
+        public String PlayFabId;
         /**
          * User's overall position in the leaderboard.
          */
         public Integer Position;
+        /**
+         * Specific value of the user's statistic.
+         */
+        public Integer StatValue;
         
     }
 
@@ -527,21 +483,21 @@ public class PlayFabServerModels {
 
     public static class ConsumeItemRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         * Unique PlayFab assigned ID for a specific character owned by a user
          */
-        public String PlayFabId;
-        /**
-         * Unique instance identifier of the item to be consumed.
-         */
-        public String ItemInstanceId;
+        public String CharacterId;
         /**
          * Number of uses to consume from the item.
          */
         public Integer ConsumeCount;
         /**
-         * Unique PlayFab assigned ID for a specific character owned by a user
+         * Unique instance identifier of the item to be consumed.
          */
-        public String CharacterId;
+        public String ItemInstanceId;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         
     }
 
@@ -559,13 +515,13 @@ public class PlayFabServerModels {
 
     public static class ContactEmailInfo {
         /**
-         * The name of the email info data
-         */
-        public String Name;
-        /**
          * The email address
          */
         public String EmailAddress;
+        /**
+         * The name of the email info data
+         */
+        public String Name;
         /**
          * The verification status of the email
          */
@@ -575,13 +531,13 @@ public class PlayFabServerModels {
 
     public static class ContactEmailInfoModel {
         /**
-         * The name of the email info data
-         */
-        public String Name;
-        /**
          * The email address
          */
         public String EmailAddress;
+        /**
+         * The name of the email info data
+         */
+        public String Name;
         
     }
 
@@ -1030,13 +986,13 @@ public class PlayFabServerModels {
 
     public static class DeleteCharacterFromUserRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
          * Unique PlayFab assigned ID for a specific character owned by a user
          */
         public String CharacterId;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         /**
          * If true, the character's inventory will be transferred up to the owning user; otherwise, this request will purge those items.
          */
@@ -1096,13 +1052,13 @@ public class PlayFabServerModels {
 
     public static class EvaluateRandomResultTableRequest {
         /**
-         * The unique identifier of the Random Result Table to use.
-         */
-        public String TableId;
-        /**
          * Specifies the catalog version that should be used to evaluate the Random Result Table.  If unspecified, uses default/primary catalog.
          */
         public String CatalogVersion;
+        /**
+         * The unique identifier of the Random Result Table to use.
+         */
+        public String TableId;
         
     }
 
@@ -1116,13 +1072,18 @@ public class PlayFabServerModels {
 
     public static class ExecuteCloudScriptResult {
         /**
+         * Number of PlayFab API requests issued by the CloudScript function
+         */
+        public Integer APIRequestsIssued;
+        /**
+         * Information about the error, if any, that occurred during execution
+         */
+        public ScriptExecutionError Error;
+        public Double ExecutionTimeSeconds;
+        /**
          * The name of the function that executed
          */
         public String FunctionName;
-        /**
-         * The revision of the CloudScript that executed
-         */
-        public Integer Revision;
         /**
          * The object returned from the CloudScript function, if any
          */
@@ -1132,6 +1093,10 @@ public class PlayFabServerModels {
          */
         public Boolean FunctionResultTooLarge;
         /**
+         * Number of external HTTP requests issued by the CloudScript function
+         */
+        public Integer HttpRequestsIssued;
+        /**
          * Entries logged during the function execution. These include both entries logged in the function code using log.info() and log.error() and error entries for API and HTTP request failures.
          */
         public ArrayList<LogStatement> Logs;
@@ -1139,32 +1104,19 @@ public class PlayFabServerModels {
          * Flag indicating if the logs were too large and were subsequently dropped from this event. This only occurs if the total event size is larger than 350KB after the FunctionResult was removed.
          */
         public Boolean LogsTooLarge;
-        public Double ExecutionTimeSeconds;
+        public Long MemoryConsumedBytes;
         /**
          * Processor time consumed while executing the function. This does not include time spent waiting on API calls or HTTP requests.
          */
         public Double ProcessorTimeSeconds;
-        public Long MemoryConsumedBytes;
         /**
-         * Number of PlayFab API requests issued by the CloudScript function
+         * The revision of the CloudScript that executed
          */
-        public Integer APIRequestsIssued;
-        /**
-         * Number of external HTTP requests issued by the CloudScript function
-         */
-        public Integer HttpRequestsIssued;
-        /**
-         * Information about the error, if any, that occurred during execution
-         */
-        public ScriptExecutionError Error;
+        public Integer Revision;
         
     }
 
     public static class ExecuteCloudScriptServerRequest {
-        /**
-         * The unique user identifier for the player on whose behalf the script is being run
-         */
-        public String PlayFabId;
         /**
          * The name of the CloudScript function to execute
          */
@@ -1174,6 +1126,14 @@ public class PlayFabServerModels {
          */
         public Object FunctionParameter;
         /**
+         * Generate a 'player_executed_cloudscript' PlayStream event containing the results of the function execution and other contextual information. This event will show up in the PlayStream debugger console for the player in Game Manager.
+         */
+        public Boolean GeneratePlayStreamEvent;
+        /**
+         * The unique user identifier for the player on whose behalf the script is being run
+         */
+        public String PlayFabId;
+        /**
          * Option for which revision of the CloudScript to execute. 'Latest' executes the most recently created revision, 'Live' executes the current live, published revision, and 'Specific' executes the specified revision. The default value is 'Specific', if the SpeificRevision parameter is specified, otherwise it is 'Live'.
          */
         public CloudScriptRevisionOption RevisionSelection;
@@ -1181,10 +1141,6 @@ public class PlayFabServerModels {
          * The specivic revision to execute, when RevisionSelection is set to 'Specific'
          */
         public Integer SpecificRevision;
-        /**
-         * Generate a 'player_executed_cloudscript' PlayStream event containing the results of the function execution and other contextual information. This event will show up in the PlayStream debugger console for the player in Game Manager.
-         */
-        public Boolean GeneratePlayStreamEvent;
         
     }
 
@@ -1202,22 +1158,6 @@ public class PlayFabServerModels {
 
     public static class FriendInfo {
         /**
-         * PlayFab unique identifier for this friend.
-         */
-        public String FriendPlayFabId;
-        /**
-         * PlayFab unique username for this friend.
-         */
-        public String Username;
-        /**
-         * Title-specific display name for this friend.
-         */
-        public String TitleDisplayName;
-        /**
-         * Tags which have been associated with this friend.
-         */
-        public ArrayList<String> Tags;
-        /**
          * Unique lobby identifier of the Game Server Instance to which this player is currently connected.
          */
         public String CurrentMatchmakerLobbyId;
@@ -1226,9 +1166,9 @@ public class PlayFabServerModels {
          */
         public UserFacebookInfo FacebookInfo;
         /**
-         * Available Steam information (if the user and PlayFab friend are also connected in Steam).
+         * PlayFab unique identifier for this friend.
          */
-        public UserSteamInfo SteamInfo;
+        public String FriendPlayFabId;
         /**
          * Available Game Center information (if the user and PlayFab friend are also connected in Game Center).
          */
@@ -1237,6 +1177,22 @@ public class PlayFabServerModels {
          * The profile of the user, if requested.
          */
         public PlayerProfileModel Profile;
+        /**
+         * Available Steam information (if the user and PlayFab friend are also connected in Steam).
+         */
+        public UserSteamInfo SteamInfo;
+        /**
+         * Tags which have been associated with this friend.
+         */
+        public ArrayList<String> Tags;
+        /**
+         * Title-specific display name for this friend.
+         */
+        public String TitleDisplayName;
+        /**
+         * PlayFab unique username for this friend.
+         */
+        public String Username;
         
     }
 
@@ -1251,13 +1207,13 @@ public class PlayFabServerModels {
     @Deprecated
     public static class GetActionGroupResult {
         /**
-         * Action Group name
-         */
-        public String Name;
-        /**
          * Action Group ID
          */
         public String Id;
+        /**
+         * Action Group name
+         */
+        public String Name;
         
     }
 
@@ -1312,65 +1268,61 @@ public class PlayFabServerModels {
 
     public static class GetCharacterDataRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
          * Unique PlayFab assigned ID for a specific character owned by a user
          */
         public String CharacterId;
+        /**
+         * The version that currently exists according to the caller. The call will return the data for all of the keys if the version in the system is greater than this.
+         */
+        public Long IfChangedFromDataVersion;
         /**
          * Specific keys to search for in the custom user data.
          */
         public ArrayList<String> Keys;
         /**
-         * The version that currently exists according to the caller. The call will return the data for all of the keys if the version in the system is greater than this.
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
          */
-        public Long IfChangedFromDataVersion;
+        public String PlayFabId;
         
     }
 
     public static class GetCharacterDataResult {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         * Unique PlayFab assigned ID for a specific character owned by a user
          */
-        public String PlayFabId;
-        /**
-         * Indicates the current version of the data that has been set. This is incremented with every set call for that type of data (read-only, internal, etc). This version can be provided in Get calls to find updated data.
-         */
-        public Long DataVersion;
+        public String CharacterId;
         /**
          * User specific data for this title.
          */
         public Map<String,UserDataRecord> Data;
         /**
-         * Unique PlayFab assigned ID for a specific character owned by a user
+         * Indicates the current version of the data that has been set. This is incremented with every set call for that type of data (read-only, internal, etc). This version can be provided in Get calls to find updated data.
          */
-        public String CharacterId;
+        public Long DataVersion;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         
     }
 
     public static class GetCharacterInventoryRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         * Used to limit results to only those from a specific catalog version.
          */
-        public String PlayFabId;
+        public String CatalogVersion;
         /**
          * Unique PlayFab assigned ID for a specific character owned by a user
          */
         public String CharacterId;
         /**
-         * Used to limit results to only those from a specific catalog version.
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
          */
-        public String CatalogVersion;
+        public String PlayFabId;
         
     }
 
     public static class GetCharacterInventoryResult {
-        /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
         /**
          * Unique identifier of the character for this inventory.
          */
@@ -1380,6 +1332,10 @@ public class PlayFabServerModels {
          */
         @Unordered("ItemInstanceId")
         public ArrayList<ItemInstance> Inventory;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         /**
          * Array of virtual currency balance(s) belonging to the character.
          */
@@ -1401,17 +1357,17 @@ public class PlayFabServerModels {
          */
         public String CharacterType;
         /**
-         * Unique identifier for the title-specific statistic for the leaderboard.
+         * Maximum number of entries to retrieve.
          */
-        public String StatisticName;
+        public Integer MaxResultsCount;
         /**
          * First entry in the leaderboard to be retrieved.
          */
         public Integer StartPosition;
         /**
-         * Maximum number of entries to retrieve.
+         * Unique identifier for the title-specific statistic for the leaderboard.
          */
-        public Integer MaxResultsCount;
+        public String StatisticName;
         
     }
 
@@ -1425,21 +1381,17 @@ public class PlayFabServerModels {
 
     public static class GetCharacterStatisticsRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
          * Unique PlayFab assigned ID for a specific character owned by a user
          */
         public String CharacterId;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         
     }
 
     public static class GetCharacterStatisticsResult {
-        /**
-         * PlayFab unique identifier of the user whose character statistics are being returned.
-         */
-        public String PlayFabId;
         /**
          * Unique identifier of the character for the statistics.
          */
@@ -1448,18 +1400,22 @@ public class PlayFabServerModels {
          * Character statistics for the requested user.
          */
         public Map<String,Integer> CharacterStatistics;
+        /**
+         * PlayFab unique identifier of the user whose character statistics are being returned.
+         */
+        public String PlayFabId;
         
     }
 
     public static class GetContentDownloadUrlRequest {
         /**
-         * Key of the content item to fetch, usually formatted as a path, e.g. images/a.png
-         */
-        public String Key;
-        /**
          * HTTP method to fetch item - GET or HEAD. Use HEAD when only fetching metadata. Default is GET.
          */
         public String HttpMethod;
+        /**
+         * Key of the content item to fetch, usually formatted as a path, e.g. images/a.png
+         */
+        public String Key;
         /**
          * True if download through CDN. CDN provides better download bandwidth and time. However, if you want latest, non-cached version of the content, set this to false. Default is true.
          */
@@ -1477,53 +1433,53 @@ public class PlayFabServerModels {
 
     public static class GetFriendLeaderboardRequest {
         /**
-         * The player whose friend leaderboard to get
+         * Indicates whether Facebook friends should be included in the response. Default is true.
          */
-        public String PlayFabId;
+        public Boolean IncludeFacebookFriends;
         /**
-         * Statistic used to rank friends for this leaderboard.
+         * Indicates whether Steam service friends should be included in the response. Default is true.
          */
-        public String StatisticName;
-        /**
-         * Position in the leaderboard to start this listing (defaults to the first entry).
-         */
-        public Integer StartPosition;
+        public Boolean IncludeSteamFriends;
         /**
          * Maximum number of entries to retrieve.
          */
         public Integer MaxResultsCount;
         /**
-         * Indicates whether Steam service friends should be included in the response. Default is true.
+         * The player whose friend leaderboard to get
          */
-        public Boolean IncludeSteamFriends;
-        /**
-         * Indicates whether Facebook friends should be included in the response. Default is true.
-         */
-        public Boolean IncludeFacebookFriends;
-        /**
-         * The version of the leaderboard to get.
-         */
-        public Integer Version;
+        public String PlayFabId;
         /**
          * If non-null, this determines which properties of the resulting player profiles to return. For API calls from the client, only the allowed client profile properties for the title may be requested. These allowed properties are configured in the Game Manager "Client Profile Options" tab in the "Settings" section.
          */
         public PlayerProfileViewConstraints ProfileConstraints;
+        /**
+         * Position in the leaderboard to start this listing (defaults to the first entry).
+         */
+        public Integer StartPosition;
+        /**
+         * Statistic used to rank friends for this leaderboard.
+         */
+        public String StatisticName;
+        /**
+         * The version of the leaderboard to get.
+         */
+        public Integer Version;
         
     }
 
     public static class GetFriendsListRequest {
         /**
-         * PlayFab identifier of the player whose friend list to get.
+         * Indicates whether Facebook friends should be included in the response. Default is true.
          */
-        public String PlayFabId;
+        public Boolean IncludeFacebookFriends;
         /**
          * Indicates whether Steam service friends should be included in the response. Default is true.
          */
         public Boolean IncludeSteamFriends;
         /**
-         * Indicates whether Facebook friends should be included in the response. Default is true.
+         * PlayFab identifier of the player whose friend list to get.
          */
-        public Boolean IncludeFacebookFriends;
+        public String PlayFabId;
         /**
          * If non-null, this determines which properties of the resulting player profiles to return. For API calls from the client, only the allowed client profile properties for the title may be requested. These allowed properties are configured in the Game Manager "Client Profile Options" tab in the "Settings" section.
          */
@@ -1541,14 +1497,6 @@ public class PlayFabServerModels {
 
     public static class GetLeaderboardAroundCharacterRequest {
         /**
-         * Unique identifier for the title-specific statistic for the leaderboard.
-         */
-        public String StatisticName;
-        /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
          * Unique PlayFab assigned ID for a specific character owned by a user
          */
         public String CharacterId;
@@ -1560,6 +1508,14 @@ public class PlayFabServerModels {
          * Maximum number of entries to retrieve.
          */
         public Integer MaxResultsCount;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Unique identifier for the title-specific statistic for the leaderboard.
+         */
+        public String StatisticName;
         
     }
 
@@ -1573,21 +1529,21 @@ public class PlayFabServerModels {
 
     public static class GetLeaderboardAroundUserRequest {
         /**
-         * Unique identifier for the title-specific statistic for the leaderboard.
+         * Maximum number of entries to retrieve.
          */
-        public String StatisticName;
+        public Integer MaxResultsCount;
         /**
          * Unique PlayFab assigned ID of the user on whom the operation will be performed.
          */
         public String PlayFabId;
         /**
-         * Maximum number of entries to retrieve.
-         */
-        public Integer MaxResultsCount;
-        /**
          * If non-null, this determines which properties of the resulting player profiles to return. For API calls from the client, only the allowed client profile properties for the title may be requested. These allowed properties are configured in the Game Manager "Client Profile Options" tab in the "Settings" section.
          */
         public PlayerProfileViewConstraints ProfileConstraints;
+        /**
+         * Unique identifier for the title-specific statistic for the leaderboard.
+         */
+        public String StatisticName;
         /**
          * The version of the leaderboard to get.
          */
@@ -1601,29 +1557,29 @@ public class PlayFabServerModels {
          */
         public ArrayList<PlayerLeaderboardEntry> Leaderboard;
         /**
-         * The version of the leaderboard returned.
-         */
-        public Integer Version;
-        /**
          * The time the next scheduled reset will occur. Null if the leaderboard does not reset on a schedule.
          */
         public Date NextReset;
+        /**
+         * The version of the leaderboard returned.
+         */
+        public Integer Version;
         
     }
 
     public static class GetLeaderboardForUsersCharactersRequest {
         /**
-         * Unique identifier for the title-specific statistic for the leaderboard.
+         * Maximum number of entries to retrieve.
          */
-        public String StatisticName;
+        public Integer MaxResultsCount;
         /**
          * Unique PlayFab assigned ID of the user on whom the operation will be performed.
          */
         public String PlayFabId;
         /**
-         * Maximum number of entries to retrieve.
+         * Unique identifier for the title-specific statistic for the leaderboard.
          */
-        public Integer MaxResultsCount;
+        public String StatisticName;
         
     }
 
@@ -1637,14 +1593,6 @@ public class PlayFabServerModels {
 
     public static class GetLeaderboardRequest {
         /**
-         * Unique identifier for the title-specific statistic for the leaderboard.
-         */
-        public String StatisticName;
-        /**
-         * First entry in the leaderboard to be retrieved.
-         */
-        public Integer StartPosition;
-        /**
          * Maximum number of entries to retrieve.
          */
         public Integer MaxResultsCount;
@@ -1652,6 +1600,14 @@ public class PlayFabServerModels {
          * If non-null, this determines which properties of the resulting player profiles to return. For API calls from the client, only the allowed client profile properties for the title may be requested. These allowed properties are configured in the Game Manager "Client Profile Options" tab in the "Settings" section.
          */
         public PlayerProfileViewConstraints ProfileConstraints;
+        /**
+         * First entry in the leaderboard to be retrieved.
+         */
+        public Integer StartPosition;
+        /**
+         * Unique identifier for the title-specific statistic for the leaderboard.
+         */
+        public String StatisticName;
         /**
          * The version of the leaderboard to get.
          */
@@ -1665,57 +1621,29 @@ public class PlayFabServerModels {
          */
         public ArrayList<PlayerLeaderboardEntry> Leaderboard;
         /**
-         * The version of the leaderboard returned.
-         */
-        public Integer Version;
-        /**
          * The time the next scheduled reset will occur. Null if the leaderboard does not reset on a schedule.
          */
         public Date NextReset;
+        /**
+         * The version of the leaderboard returned.
+         */
+        public Integer Version;
         
     }
 
     public static class GetPlayerCombinedInfoRequest {
         /**
-         * PlayFabId of the user whose data will be returned
-         */
-        public String PlayFabId;
-        /**
          * Flags for which pieces of info to return for the user.
          */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /**
+         * PlayFabId of the user whose data will be returned
+         */
+        public String PlayFabId;
         
     }
 
     public static class GetPlayerCombinedInfoRequestParams {
-        /**
-         * Whether to get the player's account Info. Defaults to false
-         */
-        public Boolean GetUserAccountInfo;
-        /**
-         * Whether to get the player's inventory. Defaults to false
-         */
-        public Boolean GetUserInventory;
-        /**
-         * Whether to get the player's virtual currency balances. Defaults to false
-         */
-        public Boolean GetUserVirtualCurrency;
-        /**
-         * Whether to get the player's custom data. Defaults to false
-         */
-        public Boolean GetUserData;
-        /**
-         * Specific keys to search for in the custom data. Leave null to get all keys. Has no effect if GetUserData is false
-         */
-        public ArrayList<String> UserDataKeys;
-        /**
-         * Whether to get the player's read only data. Defaults to false
-         */
-        public Boolean GetUserReadOnlyData;
-        /**
-         * Specific keys to search for in the custom data. Leave null to get all keys. Has no effect if GetUserReadOnlyData is false
-         */
-        public ArrayList<String> UserReadOnlyDataKeys;
         /**
          * Whether to get character inventories. Defaults to false.
          */
@@ -1725,41 +1653,69 @@ public class PlayFabServerModels {
          */
         public Boolean GetCharacterList;
         /**
-         * Whether to get title data. Defaults to false.
+         * Whether to get player profile. Defaults to false.
          */
-        public Boolean GetTitleData;
-        /**
-         * Specific keys to search for in the custom data. Leave null to get all keys. Has no effect if GetTitleData is false
-         */
-        public ArrayList<String> TitleDataKeys;
+        public Boolean GetPlayerProfile;
         /**
          * Whether to get player statistics. Defaults to false.
          */
         public Boolean GetPlayerStatistics;
         /**
+         * Whether to get title data. Defaults to false.
+         */
+        public Boolean GetTitleData;
+        /**
+         * Whether to get the player's account Info. Defaults to false
+         */
+        public Boolean GetUserAccountInfo;
+        /**
+         * Whether to get the player's custom data. Defaults to false
+         */
+        public Boolean GetUserData;
+        /**
+         * Whether to get the player's inventory. Defaults to false
+         */
+        public Boolean GetUserInventory;
+        /**
+         * Whether to get the player's read only data. Defaults to false
+         */
+        public Boolean GetUserReadOnlyData;
+        /**
+         * Whether to get the player's virtual currency balances. Defaults to false
+         */
+        public Boolean GetUserVirtualCurrency;
+        /**
          * Specific statistics to retrieve. Leave null to get all keys. Has no effect if GetPlayerStatistics is false
          */
         public ArrayList<String> PlayerStatisticNames;
         /**
-         * Whether to get player profile. Defaults to false.
-         */
-        public Boolean GetPlayerProfile;
-        /**
          * Specifies the properties to return from the player profile. Defaults to returning the player's display name.
          */
         public PlayerProfileViewConstraints ProfileConstraints;
+        /**
+         * Specific keys to search for in the custom data. Leave null to get all keys. Has no effect if GetTitleData is false
+         */
+        public ArrayList<String> TitleDataKeys;
+        /**
+         * Specific keys to search for in the custom data. Leave null to get all keys. Has no effect if GetUserData is false
+         */
+        public ArrayList<String> UserDataKeys;
+        /**
+         * Specific keys to search for in the custom data. Leave null to get all keys. Has no effect if GetUserReadOnlyData is false
+         */
+        public ArrayList<String> UserReadOnlyDataKeys;
         
     }
 
     public static class GetPlayerCombinedInfoResult {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
          * Results for requested info.
          */
         public GetPlayerCombinedInfoResultPayload InfoResultPayload;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         
     }
 
@@ -1769,18 +1725,25 @@ public class PlayFabServerModels {
          */
         public UserAccountInfo AccountInfo;
         /**
-         * Array of inventory items in the user's current inventory.
+         * Inventories for each character for the user.
          */
-        @Unordered("ItemInstanceId")
-        public ArrayList<ItemInstance> UserInventory;
+        public ArrayList<CharacterInventory> CharacterInventories;
         /**
-         * Dictionary of virtual currency balance(s) belonging to the user.
+         * List of characters for the user.
          */
-        public Map<String,Integer> UserVirtualCurrency;
+        public ArrayList<CharacterResult> CharacterList;
         /**
-         * Dictionary of remaining times and timestamps for virtual currencies.
+         * The profile of the players. This profile is not guaranteed to be up-to-date. For a new player, this profile will not exist.
          */
-        public Map<String,VirtualCurrencyRechargeTime> UserVirtualCurrencyRechargeTimes;
+        public PlayerProfileModel PlayerProfile;
+        /**
+         * List of statistics for this player.
+         */
+        public ArrayList<StatisticValue> PlayerStatistics;
+        /**
+         * Title data for this title.
+         */
+        public Map<String,String> TitleData;
         /**
          * User specific custom data.
          */
@@ -1790,6 +1753,11 @@ public class PlayFabServerModels {
          */
         public Long UserDataVersion;
         /**
+         * Array of inventory items in the user's current inventory.
+         */
+        @Unordered("ItemInstanceId")
+        public ArrayList<ItemInstance> UserInventory;
+        /**
          * User specific read-only data.
          */
         public Map<String,UserDataRecord> UserReadOnlyData;
@@ -1798,25 +1766,13 @@ public class PlayFabServerModels {
          */
         public Long UserReadOnlyDataVersion;
         /**
-         * List of characters for the user.
+         * Dictionary of virtual currency balance(s) belonging to the user.
          */
-        public ArrayList<CharacterResult> CharacterList;
+        public Map<String,Integer> UserVirtualCurrency;
         /**
-         * Inventories for each character for the user.
+         * Dictionary of remaining times and timestamps for virtual currencies.
          */
-        public ArrayList<CharacterInventory> CharacterInventories;
-        /**
-         * Title data for this title.
-         */
-        public Map<String,String> TitleData;
-        /**
-         * List of statistics for this player.
-         */
-        public ArrayList<StatisticValue> PlayerStatistics;
-        /**
-         * The profile of the players. This profile is not guaranteed to be up-to-date. For a new player, this profile will not exist.
-         */
-        public PlayerProfileModel PlayerProfile;
+        public Map<String,VirtualCurrencyRechargeTime> UserVirtualCurrencyRechargeTimes;
         
     }
 
@@ -1850,29 +1806,25 @@ public class PlayFabServerModels {
 
     public static class GetPlayersInSegmentRequest {
         /**
-         * Unique identifier for this segment.
+         * Continuation token if retrieving subsequent pages of results.
          */
-        public String SegmentId;
-        /**
-         * Number of seconds to keep the continuation token active. After token expiration it is not possible to continue paging results. Default is 300 (5 minutes). Maximum is 1,800 (30 minutes).
-         */
-        public Long SecondsToLive;
+        public String ContinuationToken;
         /**
          * Maximum number of profiles to load. Default is 1,000. Maximum is 10,000.
          */
         public Long MaxBatchSize;
         /**
-         * Continuation token if retrieving subsequent pages of results.
+         * Number of seconds to keep the continuation token active. After token expiration it is not possible to continue paging results. Default is 300 (5 minutes). Maximum is 1,800 (30 minutes).
          */
-        public String ContinuationToken;
+        public Long SecondsToLive;
+        /**
+         * Unique identifier for this segment.
+         */
+        public String SegmentId;
         
     }
 
     public static class GetPlayersInSegmentResult {
-        /**
-         * Count of profiles matching this segment.
-         */
-        public Integer ProfilesInSegment;
         /**
          * Continuation token to use to retrieve subsequent pages of results. If token returns null there are no more results.
          */
@@ -1881,6 +1833,10 @@ public class PlayFabServerModels {
          * Array of player profiles in this segment.
          */
         public ArrayList<PlayerProfile> PlayerProfiles;
+        /**
+         * Count of profiles matching this segment.
+         */
+        public Integer ProfilesInSegment;
         
     }
 
@@ -1938,13 +1894,13 @@ public class PlayFabServerModels {
 
     public static class GetPlayerTagsRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
          * Optional namespace to filter results by
          */
         public String Namespace;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         
     }
 
@@ -2030,6 +1986,10 @@ public class PlayFabServerModels {
 
     public static class GetSegmentResult {
         /**
+         * Identifier of the segments AB Test, if it is attached to one.
+         */
+        public String ABTestParent;
+        /**
          * Unique identifier for this segment.
          */
         public String Id;
@@ -2037,26 +1997,22 @@ public class PlayFabServerModels {
          * Segment name.
          */
         public String Name;
-        /**
-         * Identifier of the segments AB Test, if it is attached to one.
-         */
-        public String ABTestParent;
         
     }
 
     public static class GetSharedGroupDataRequest {
         /**
-         * Unique identifier for the shared group.
+         * If true, return the list of all members of the shared group.
          */
-        public String SharedGroupId;
+        public Boolean GetMembers;
         /**
          * Specific keys to retrieve from the shared group (if not specified, all keys will be returned, while an empty array indicates that no keys should be returned).
          */
         public ArrayList<String> Keys;
         /**
-         * If true, return the list of all members of the shared group.
+         * Unique identifier for the shared group.
          */
-        public Boolean GetMembers;
+        public String SharedGroupId;
         
     }
 
@@ -2150,33 +2106,33 @@ public class PlayFabServerModels {
 
     public static class GetUserDataRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         * The version that currently exists according to the caller. The call will return the data for all of the keys if the version in the system is greater than this.
          */
-        public String PlayFabId;
+        public Long IfChangedFromDataVersion;
         /**
          * Specific keys to search for in the custom user data.
          */
         public ArrayList<String> Keys;
         /**
-         * The version that currently exists according to the caller. The call will return the data for all of the keys if the version in the system is greater than this.
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
          */
-        public Long IfChangedFromDataVersion;
+        public String PlayFabId;
         
     }
 
     public static class GetUserDataResult {
         /**
-         * PlayFab unique identifier of the user whose custom data is being returned.
+         * User specific data for this title.
          */
-        public String PlayFabId;
+        public Map<String,UserDataRecord> Data;
         /**
          * Indicates the current version of the data that has been set. This is incremented with every set call for that type of data (read-only, internal, etc). This version can be provided in Get calls to find updated data.
          */
         public Long DataVersion;
         /**
-         * User specific data for this title.
+         * PlayFab unique identifier of the user whose custom data is being returned.
          */
-        public Map<String,UserDataRecord> Data;
+        public String PlayFabId;
         
     }
 
@@ -2190,14 +2146,14 @@ public class PlayFabServerModels {
 
     public static class GetUserInventoryResult {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
          * Array of inventory items belonging to the user.
          */
         @Unordered("ItemInstanceId")
         public ArrayList<ItemInstance> Inventory;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         /**
          * Array of virtual currency balance(s) belonging to the user.
          */
@@ -2211,10 +2167,6 @@ public class PlayFabServerModels {
 
     public static class GrantCharacterToUserRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
          * Non-unique display name of the character being granted (1-20 characters in length).
          */
         public String CharacterName;
@@ -2222,6 +2174,10 @@ public class PlayFabServerModels {
          * Type of the character being granted; statistics can be sliced based on this value.
          */
         public String CharacterType;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         
     }
 
@@ -2238,17 +2194,41 @@ public class PlayFabServerModels {
      */
     public static class GrantedItemInstance implements Comparable<GrantedItemInstance> {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         * Game specific comment associated with this instance when it was added to the user inventory.
          */
-        public String PlayFabId;
+        public String Annotation;
+        /**
+         * Array of unique items that were awarded when this catalog item was purchased.
+         */
+        public ArrayList<String> BundleContents;
+        /**
+         * Unique identifier for the parent inventory item, as defined in the catalog, for object which were added from a bundle or container.
+         */
+        public String BundleParent;
+        /**
+         * Catalog version for the inventory item, when this instance was created.
+         */
+        public String CatalogVersion;
         /**
          * Unique PlayFab assigned ID for a specific character owned by a user
          */
         public String CharacterId;
         /**
-         * Result of this operation.
+         * A set of custom key-value pairs on the inventory item.
          */
-        public Boolean Result;
+        public Map<String,String> CustomData;
+        /**
+         * CatalogItem.DisplayName at the time this item was purchased.
+         */
+        public String DisplayName;
+        /**
+         * Timestamp for when this instance will expire.
+         */
+        public Date Expiration;
+        /**
+         * Class name for the inventory item, as defined in the catalog.
+         */
+        public String ItemClass;
         /**
          * Unique identifier for the inventory item, as defined in the catalog.
          */
@@ -2258,41 +2238,21 @@ public class PlayFabServerModels {
          */
         public String ItemInstanceId;
         /**
-         * Class name for the inventory item, as defined in the catalog.
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
          */
-        public String ItemClass;
+        public String PlayFabId;
         /**
          * Timestamp for when this instance was purchased.
          */
         public Date PurchaseDate;
         /**
-         * Timestamp for when this instance will expire.
-         */
-        public Date Expiration;
-        /**
          * Total number of remaining uses, if this is a consumable item.
          */
         public Integer RemainingUses;
         /**
-         * The number of uses that were added or removed to this item in this call.
+         * Result of this operation.
          */
-        public Integer UsesIncrementedBy;
-        /**
-         * Game specific comment associated with this instance when it was added to the user inventory.
-         */
-        public String Annotation;
-        /**
-         * Catalog version for the inventory item, when this instance was created.
-         */
-        public String CatalogVersion;
-        /**
-         * Unique identifier for the parent inventory item, as defined in the catalog, for object which were added from a bundle or container.
-         */
-        public String BundleParent;
-        /**
-         * CatalogItem.DisplayName at the time this item was purchased.
-         */
-        public String DisplayName;
+        public Boolean Result;
         /**
          * Currency type for the cost of the catalog item.
          */
@@ -2302,13 +2262,9 @@ public class PlayFabServerModels {
          */
         public Long UnitPrice;
         /**
-         * Array of unique items that were awarded when this catalog item was purchased.
+         * The number of uses that were added or removed to this item in this call.
          */
-        public ArrayList<String> BundleContents;
-        /**
-         * A set of custom key-value pairs on the inventory item.
-         */
-        public Map<String,String> CustomData;
+        public Integer UsesIncrementedBy;
         
         public int compareTo(GrantedItemInstance other) {
             if (other == null || other.ItemInstanceId == null) return 1;
@@ -2319,6 +2275,10 @@ public class PlayFabServerModels {
 
     public static class GrantItemsToCharacterRequest {
         /**
+         * String detailing any additional information concerning this operation.
+         */
+        public String Annotation;
+        /**
          * Catalog version from which items are to be granted.
          */
         public String CatalogVersion;
@@ -2327,17 +2287,13 @@ public class PlayFabServerModels {
          */
         public String CharacterId;
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
-         * String detailing any additional information concerning this operation.
-         */
-        public String Annotation;
-        /**
          * Array of itemIds to grant to the user.
          */
         public ArrayList<String> ItemIds;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         
     }
 
@@ -2351,21 +2307,21 @@ public class PlayFabServerModels {
 
     public static class GrantItemsToUserRequest {
         /**
-         * Catalog version from which items are to be granted.
-         */
-        public String CatalogVersion;
-        /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
          * String detailing any additional information concerning this operation.
          */
         public String Annotation;
         /**
+         * Catalog version from which items are to be granted.
+         */
+        public String CatalogVersion;
+        /**
          * Array of itemIds to grant to the user.
          */
         public ArrayList<String> ItemIds;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         
     }
 
@@ -2400,14 +2356,6 @@ public class PlayFabServerModels {
 
     public static class ItemGrant {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
-         * Unique identifier of the catalog item to be granted to the user.
-         */
-        public String ItemId;
-        /**
          * String detailing any additional information concerning this operation.
          */
         public String Annotation;
@@ -2420,9 +2368,17 @@ public class PlayFabServerModels {
          */
         public Map<String,String> Data;
         /**
+         * Unique identifier of the catalog item to be granted to the user.
+         */
+        public String ItemId;
+        /**
          * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language constraints.  Use this to delete the keys directly.
          */
         public ArrayList<String> KeysToRemove;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         
     }
 
@@ -2430,6 +2386,38 @@ public class PlayFabServerModels {
      * A unique instance of an item in a user's inventory. Note, to retrieve additional information for an item instance (such as Tags, Description, or Custom Data that are set on the root catalog item), a call to GetCatalogItems is required. The Item ID of the instance can then be matched to a catalog entry, which contains the additional information. Also note that Custom Data is only set here from a call to UpdateUserInventoryItemCustomData.
      */
     public static class ItemInstance implements Comparable<ItemInstance> {
+        /**
+         * Game specific comment associated with this instance when it was added to the user inventory.
+         */
+        public String Annotation;
+        /**
+         * Array of unique items that were awarded when this catalog item was purchased.
+         */
+        public ArrayList<String> BundleContents;
+        /**
+         * Unique identifier for the parent inventory item, as defined in the catalog, for object which were added from a bundle or container.
+         */
+        public String BundleParent;
+        /**
+         * Catalog version for the inventory item, when this instance was created.
+         */
+        public String CatalogVersion;
+        /**
+         * A set of custom key-value pairs on the inventory item.
+         */
+        public Map<String,String> CustomData;
+        /**
+         * CatalogItem.DisplayName at the time this item was purchased.
+         */
+        public String DisplayName;
+        /**
+         * Timestamp for when this instance will expire.
+         */
+        public Date Expiration;
+        /**
+         * Class name for the inventory item, as defined in the catalog.
+         */
+        public String ItemClass;
         /**
          * Unique identifier for the inventory item, as defined in the catalog.
          */
@@ -2439,41 +2427,13 @@ public class PlayFabServerModels {
          */
         public String ItemInstanceId;
         /**
-         * Class name for the inventory item, as defined in the catalog.
-         */
-        public String ItemClass;
-        /**
          * Timestamp for when this instance was purchased.
          */
         public Date PurchaseDate;
         /**
-         * Timestamp for when this instance will expire.
-         */
-        public Date Expiration;
-        /**
          * Total number of remaining uses, if this is a consumable item.
          */
         public Integer RemainingUses;
-        /**
-         * The number of uses that were added or removed to this item in this call.
-         */
-        public Integer UsesIncrementedBy;
-        /**
-         * Game specific comment associated with this instance when it was added to the user inventory.
-         */
-        public String Annotation;
-        /**
-         * Catalog version for the inventory item, when this instance was created.
-         */
-        public String CatalogVersion;
-        /**
-         * Unique identifier for the parent inventory item, as defined in the catalog, for object which were added from a bundle or container.
-         */
-        public String BundleParent;
-        /**
-         * CatalogItem.DisplayName at the time this item was purchased.
-         */
-        public String DisplayName;
         /**
          * Currency type for the cost of the catalog item.
          */
@@ -2483,13 +2443,9 @@ public class PlayFabServerModels {
          */
         public Long UnitPrice;
         /**
-         * Array of unique items that were awarded when this catalog item was purchased.
+         * The number of uses that were added or removed to this item in this call.
          */
-        public ArrayList<String> BundleContents;
-        /**
-         * A set of custom key-value pairs on the inventory item.
-         */
-        public Map<String,String> CustomData;
+        public Integer UsesIncrementedBy;
         
         public int compareTo(ItemInstance other) {
             if (other == null || other.ItemInstanceId == null) return 1;
@@ -2499,6 +2455,10 @@ public class PlayFabServerModels {
     }
 
     public static class LinkedPlatformAccountModel {
+        /**
+         * Linked account email of the user on the platform, if available
+         */
+        public String Email;
         /**
          * Authentication platform
          */
@@ -2511,10 +2471,6 @@ public class PlayFabServerModels {
          * Linked account username of the user on the platform, if available
          */
         public String Username;
-        /**
-         * Linked account email of the user on the platform, if available
-         */
-        public String Email;
         
     }
 
@@ -2536,6 +2492,10 @@ public class PlayFabServerModels {
 
     public static class LocationModel {
         /**
+         * City name.
+         */
+        public String City;
+        /**
          * The two-character continent code for this location
          */
         public ContinentCode ContinentCode;
@@ -2543,10 +2503,6 @@ public class PlayFabServerModels {
          * The two-character ISO 3166-1 country code for the country associated with the location
          */
         public CountryCode CountryCode;
-        /**
-         * City name.
-         */
-        public String City;
         /**
          * Latitude coordinate of the geographic location.
          */
@@ -2577,38 +2533,62 @@ public class PlayFabServerModels {
 
     public static class LogStatement {
         /**
+         * Optional object accompanying the message as contextual information
+         */
+        public Object Data;
+        /**
          * 'Debug', 'Info', or 'Error'
          */
         public String Level;
         public String Message;
+        
+    }
+
+    public static class MembershipModel {
         /**
-         * Optional object accompanying the message as contextual information
+         * Whether this membership is active. That is, whether the MembershipExpiration time has been reached.
          */
-        public Object Data;
+        public Boolean IsActive;
+        /**
+         * The time this membership expires
+         */
+        public Date MembershipExpiration;
+        /**
+         * The id of the membership
+         */
+        public String MembershipId;
+        /**
+         * Membership expirations can be explicitly overridden (via game manager or the admin api). If this membership has been overridden, this will be the new expiration time.
+         */
+        public Date OverrideExpiration;
+        /**
+         * The list of subscriptions that this player has for this membership
+         */
+        public ArrayList<SubscriptionModel> Subscriptions;
         
     }
 
     public static class ModifyCharacterVirtualCurrencyResult {
         /**
-         * Name of the virtual currency which was modified.
-         */
-        public String VirtualCurrency;
-        /**
          * Balance of the virtual currency after modification.
          */
         public Integer Balance;
+        /**
+         * Name of the virtual currency which was modified.
+         */
+        public String VirtualCurrency;
         
     }
 
     public static class ModifyItemUsesRequest {
         /**
-         * PlayFab unique identifier of the user whose item is being modified.
-         */
-        public String PlayFabId;
-        /**
          * Unique instance identifier of the item to be modified.
          */
         public String ItemInstanceId;
+        /**
+         * PlayFab unique identifier of the user whose item is being modified.
+         */
+        public String PlayFabId;
         /**
          * Number of uses to add to the item. Can be negative to remove uses.
          */
@@ -2630,6 +2610,14 @@ public class PlayFabServerModels {
 
     public static class ModifyUserVirtualCurrencyResult {
         /**
+         * Balance of the virtual currency after modification.
+         */
+        public Integer Balance;
+        /**
+         * Amount added or subtracted from the user's virtual currency. Maximum VC balance is Int32 (2,147,483,647). Any increase over this value will be discarded.
+         */
+        public Integer BalanceChange;
+        /**
          * User currency was subtracted from.
          */
         public String PlayFabId;
@@ -2637,34 +2625,26 @@ public class PlayFabServerModels {
          * Name of the virtual currency which was modified.
          */
         public String VirtualCurrency;
-        /**
-         * Amount added or subtracted from the user's virtual currency. Maximum VC balance is Int32 (2,147,483,647). Any increase over this value will be discarded.
-         */
-        public Integer BalanceChange;
-        /**
-         * Balance of the virtual currency after modification.
-         */
-        public Integer Balance;
         
     }
 
     public static class MoveItemToCharacterFromCharacterRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
          * Unique identifier of the character that currently has the item.
          */
         public String GivingCharacterId;
         /**
-         * Unique identifier of the character that will be receiving the item.
-         */
-        public String ReceivingCharacterId;
-        /**
          * Unique PlayFab assigned instance identifier of the item
          */
         public String ItemInstanceId;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
+         * Unique identifier of the character that will be receiving the item.
+         */
+        public String ReceivingCharacterId;
         
     }
 
@@ -2674,10 +2654,6 @@ public class PlayFabServerModels {
 
     public static class MoveItemToCharacterFromUserRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
          * Unique PlayFab assigned ID for a specific character owned by a user
          */
         public String CharacterId;
@@ -2685,6 +2661,10 @@ public class PlayFabServerModels {
          * Unique PlayFab assigned instance identifier of the item
          */
         public String ItemInstanceId;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         
     }
 
@@ -2694,10 +2674,6 @@ public class PlayFabServerModels {
 
     public static class MoveItemToUserFromCharacterRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
          * Unique PlayFab assigned ID for a specific character owned by a user
          */
         public String CharacterId;
@@ -2705,19 +2681,14 @@ public class PlayFabServerModels {
          * Unique PlayFab assigned instance identifier of the item
          */
         public String ItemInstanceId;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         
     }
 
     public static class MoveItemToUserFromCharacterResult {
-        
-    }
-
-    /**
-     * Identifier by either name or ID. Note that a name may change due to renaming, or reused after being deleted. ID is immutable and unique.
-     */
-    public static class NameIdentifier {
-        public String Name;
-        public String Id;
         
     }
 
@@ -2750,17 +2721,13 @@ public class PlayFabServerModels {
 
     public static class PlayerLeaderboardEntry {
         /**
-         * PlayFab unique identifier of the user for this leaderboard entry.
-         */
-        public String PlayFabId;
-        /**
          * Title-specific display name of the user for this leaderboard entry.
          */
         public String DisplayName;
         /**
-         * Specific value of the user's statistic.
+         * PlayFab unique identifier of the user for this leaderboard entry.
          */
-        public Integer StatValue;
+        public String PlayFabId;
         /**
          * User's overall position in the leaderboard.
          */
@@ -2769,10 +2736,18 @@ public class PlayFabServerModels {
          * The profile of the user, if requested.
          */
         public PlayerProfileModel Profile;
+        /**
+         * Specific value of the user's statistic.
+         */
+        public Integer StatValue;
         
     }
 
     public static class PlayerLinkedAccount {
+        /**
+         * Linked account's email
+         */
+        public String Email;
         /**
          * Authentication platform
          */
@@ -2785,14 +2760,14 @@ public class PlayFabServerModels {
          * Linked account's username
          */
         public String Username;
-        /**
-         * Linked account's email
-         */
-        public String Email;
         
     }
 
     public static class PlayerLocation {
+        /**
+         * City of the player's geographic location.
+         */
+        public String City;
         /**
          * The two-character continent code for this location
          */
@@ -2801,10 +2776,6 @@ public class PlayFabServerModels {
          * The two-character ISO 3166-1 country code for the country associated with the location
          */
         public CountryCode CountryCode;
-        /**
-         * City of the player's geographic location.
-         */
-        public String City;
         /**
          * Latitude coordinate of the player's geographic location.
          */
@@ -2818,45 +2789,73 @@ public class PlayFabServerModels {
 
     public static class PlayerProfile {
         /**
-         * PlayFab Player ID
+         * Array of ad campaigns player has been attributed to
          */
-        public String PlayerId;
-        /**
-         * Title ID this profile applies to
-         */
-        public String TitleId;
-        /**
-         * Player Display Name
-         */
-        public String DisplayName;
-        /**
-         * Publisher this player belongs to
-         */
-        public String PublisherId;
-        /**
-         * Player account origination
-         */
-        public LoginIdentityProvider Origination;
-        /**
-         * Player record created
-         */
-        public Date Created;
-        /**
-         * Last login
-         */
-        public Date LastLogin;
-        /**
-         * Banned until UTC Date. If permanent ban this is set for 20 years after the original ban date.
-         */
-        public Date BannedUntil;
+        public ArrayList<AdCampaignAttribution> AdCampaignAttributions;
         /**
          * Image URL of the player's avatar.
          */
         public String AvatarUrl;
         /**
+         * Banned until UTC Date. If permanent ban this is set for 20 years after the original ban date.
+         */
+        public Date BannedUntil;
+        /**
+         * Array of contact email addresses associated with the player
+         */
+        public ArrayList<ContactEmailInfo> ContactEmailAddresses;
+        /**
+         * Player record created
+         */
+        public Date Created;
+        /**
+         * Player Display Name
+         */
+        public String DisplayName;
+        /**
+         * Last login
+         */
+        public Date LastLogin;
+        /**
+         * Array of third party accounts linked to this player
+         */
+        public ArrayList<PlayerLinkedAccount> LinkedAccounts;
+        /**
+         * Dictionary of player's locations by type.
+         */
+        public Map<String,PlayerLocation> Locations;
+        /**
+         * Player account origination
+         */
+        public LoginIdentityProvider Origination;
+        /**
+         * PlayFab Player ID
+         */
+        public String PlayerId;
+        /**
+         * Array of player statistics
+         */
+        public ArrayList<PlayerStatistic> PlayerStatistics;
+        /**
+         * Publisher this player belongs to
+         */
+        public String PublisherId;
+        /**
+         * Array of configured push notification end points
+         */
+        public ArrayList<PushNotificationRegistration> PushNotificationRegistrations;
+        /**
          * Dictionary of player's statistics using only the latest version's value
          */
         public Map<String,Integer> Statistics;
+        /**
+         * List of player's tags for segmentation.
+         */
+        public ArrayList<String> Tags;
+        /**
+         * Title ID this profile applies to
+         */
+        public String TitleId;
         /**
          * A sum of player's total purchases in USD across all currencies.
          */
@@ -2866,101 +2865,81 @@ public class PlayFabServerModels {
          */
         public Map<String,Long> ValuesToDate;
         /**
-         * List of player's tags for segmentation.
-         */
-        public ArrayList<String> Tags;
-        /**
-         * Dictionary of player's locations by type.
-         */
-        public Map<String,PlayerLocation> Locations;
-        /**
          * Dictionary of player's virtual currency balances
          */
         public Map<String,Integer> VirtualCurrencyBalances;
-        /**
-         * Array of ad campaigns player has been attributed to
-         */
-        public ArrayList<AdCampaignAttribution> AdCampaignAttributions;
-        /**
-         * Array of configured push notification end points
-         */
-        public ArrayList<PushNotificationRegistration> PushNotificationRegistrations;
-        /**
-         * Array of third party accounts linked to this player
-         */
-        public ArrayList<PlayerLinkedAccount> LinkedAccounts;
-        /**
-         * Array of player statistics
-         */
-        public ArrayList<PlayerStatistic> PlayerStatistics;
-        /**
-         * Array of contact email addresses associated with the player
-         */
-        public ArrayList<ContactEmailInfo> ContactEmailAddresses;
         
     }
 
     public static class PlayerProfileModel {
         /**
-         * Publisher this player belongs to
+         * List of advertising campaigns the player has been attributed to
          */
-        public String PublisherId;
-        /**
-         * Title ID this player profile applies to
-         */
-        public String TitleId;
-        /**
-         * PlayFab player account unique identifier
-         */
-        public String PlayerId;
-        /**
-         * Player record created
-         */
-        public Date Created;
-        /**
-         * Player account origination
-         */
-        public LoginIdentityProvider Origination;
-        /**
-         * UTC time when the player most recently logged in to the title
-         */
-        public Date LastLogin;
-        /**
-         * If the player is currently banned, the UTC Date when the ban expires
-         */
-        public Date BannedUntil;
-        /**
-         * List of geographic locations from which the player has logged in to the title
-         */
-        public ArrayList<LocationModel> Locations;
-        /**
-         * Player display name
-         */
-        public String DisplayName;
+        public ArrayList<AdCampaignAttributionModel> AdCampaignAttributions;
         /**
          * URL of the player's avatar image
          */
         public String AvatarUrl;
         /**
-         * List of player's tags for segmentation
+         * If the player is currently banned, the UTC Date when the ban expires
          */
-        public ArrayList<TagModel> Tags;
-        /**
-         * List of configured end points registered for sending the player push notifications
-         */
-        public ArrayList<PushNotificationRegistrationModel> PushNotificationRegistrations;
-        /**
-         * List of all authentication systems linked to this player account
-         */
-        public ArrayList<LinkedPlatformAccountModel> LinkedAccounts;
+        public Date BannedUntil;
         /**
          * List of all contact email info associated with the player account
          */
         public ArrayList<ContactEmailInfoModel> ContactEmailAddresses;
         /**
-         * List of advertising campaigns the player has been attributed to
+         * Player record created
          */
-        public ArrayList<AdCampaignAttributionModel> AdCampaignAttributions;
+        public Date Created;
+        /**
+         * Player display name
+         */
+        public String DisplayName;
+        /**
+         * UTC time when the player most recently logged in to the title
+         */
+        public Date LastLogin;
+        /**
+         * List of all authentication systems linked to this player account
+         */
+        public ArrayList<LinkedPlatformAccountModel> LinkedAccounts;
+        /**
+         * List of geographic locations from which the player has logged in to the title
+         */
+        public ArrayList<LocationModel> Locations;
+        /**
+         * List of memberships for the player, along with whether are expired.
+         */
+        public ArrayList<MembershipModel> Memberships;
+        /**
+         * Player account origination
+         */
+        public LoginIdentityProvider Origination;
+        /**
+         * PlayFab player account unique identifier
+         */
+        public String PlayerId;
+        /**
+         * Publisher this player belongs to
+         */
+        public String PublisherId;
+        /**
+         * List of configured end points registered for sending the player push notifications
+         */
+        public ArrayList<PushNotificationRegistrationModel> PushNotificationRegistrations;
+        /**
+         * List of leaderboard statistic values for the player
+         */
+        public ArrayList<StatisticModel> Statistics;
+        /**
+         * List of player's tags for segmentation
+         */
+        public ArrayList<TagModel> Tags;
+        /**
+         * Title ID this player profile applies to
+         */
+        public String TitleId;
         /**
          * Sum of the player's purchases made with real-money currencies, converted to US dollars equivalent and represented as a whole number of cents (1/100 USD).              For example, 999 indicates nine dollars and ninety-nine cents.
          */
@@ -2973,54 +2952,66 @@ public class PlayFabServerModels {
          * List of the player's virtual currency balances
          */
         public ArrayList<VirtualCurrencyBalanceModel> VirtualCurrencyBalances;
-        /**
-         * List of leaderboard statistic values for the player
-         */
-        public ArrayList<StatisticModel> Statistics;
         
     }
 
     public static class PlayerProfileViewConstraints {
         /**
-         * Whether to show the display name. Defaults to false
+         * Whether to show player's avatar URL. Defaults to false
          */
-        public Boolean ShowDisplayName;
-        /**
-         * Whether to show the created date. Defaults to false
-         */
-        public Boolean ShowCreated;
-        /**
-         * Whether to show origination. Defaults to false
-         */
-        public Boolean ShowOrigination;
-        /**
-         * Whether to show the last login time. Defaults to false
-         */
-        public Boolean ShowLastLogin;
+        public Boolean ShowAvatarUrl;
         /**
          * Whether to show the banned until time. Defaults to false
          */
         public Boolean ShowBannedUntil;
         /**
-         * Reserved for future development
-         */
-        public Boolean ShowStatistics;
-        /**
          * Whether to show campaign attributions. Defaults to false
          */
         public Boolean ShowCampaignAttributions;
         /**
-         * Whether to show push notification registrations. Defaults to false
+         * Whether to show contact email addresses. Defaults to false
          */
-        public Boolean ShowPushNotificationRegistrations;
+        public Boolean ShowContactEmailAddresses;
+        /**
+         * Whether to show the created date. Defaults to false
+         */
+        public Boolean ShowCreated;
+        /**
+         * Whether to show the display name. Defaults to false
+         */
+        public Boolean ShowDisplayName;
+        /**
+         * Whether to show the last login time. Defaults to false
+         */
+        public Boolean ShowLastLogin;
         /**
          * Whether to show the linked accounts. Defaults to false
          */
         public Boolean ShowLinkedAccounts;
         /**
-         * Whether to show contact email addresses. Defaults to false
+         * Whether to show player's locations. Defaults to false
          */
-        public Boolean ShowContactEmailAddresses;
+        public Boolean ShowLocations;
+        /**
+         * Whether to show player's membership information. Defaults to false
+         */
+        public Boolean ShowMemberships;
+        /**
+         * Whether to show origination. Defaults to false
+         */
+        public Boolean ShowOrigination;
+        /**
+         * Whether to show push notification registrations. Defaults to false
+         */
+        public Boolean ShowPushNotificationRegistrations;
+        /**
+         * Reserved for future development
+         */
+        public Boolean ShowStatistics;
+        /**
+         * Whether to show tags. Defaults to false
+         */
+        public Boolean ShowTags;
         /**
          * Whether to show the total value to date in usd. Defaults to false
          */
@@ -3029,18 +3020,6 @@ public class PlayFabServerModels {
          * Whether to show the values to date. Defaults to false
          */
         public Boolean ShowValuesToDate;
-        /**
-         * Whether to show tags. Defaults to false
-         */
-        public Boolean ShowTags;
-        /**
-         * Whether to show player's locations. Defaults to false
-         */
-        public Boolean ShowLocations;
-        /**
-         * Whether to show player's avatar URL. Defaults to false
-         */
-        public Boolean ShowAvatarUrl;
         
     }
 
@@ -3050,21 +3029,37 @@ public class PlayFabServerModels {
          */
         public String Id;
         /**
-         * Statistic version (0 if not a versioned statistic)
+         * Statistic name
          */
-        public Integer StatisticVersion;
+        public String Name;
         /**
          * Current statistic value
          */
         public Integer StatisticValue;
         /**
-         * Statistic name
+         * Statistic version (0 if not a versioned statistic)
          */
-        public String Name;
+        public Integer StatisticVersion;
         
     }
 
     public static class PlayerStatisticVersion {
+        /**
+         * time when the statistic version became active
+         */
+        public Date ActivationTime;
+        /**
+         * time when the statistic version became inactive due to statistic version incrementing
+         */
+        public Date DeactivationTime;
+        /**
+         * time at which the statistic version was scheduled to become active, based on the configured ResetInterval
+         */
+        public Date ScheduledActivationTime;
+        /**
+         * time at which the statistic version was scheduled to become inactive, based on the configured ResetInterval
+         */
+        public Date ScheduledDeactivationTime;
         /**
          * name of the statistic when the version became active
          */
@@ -3073,50 +3068,34 @@ public class PlayFabServerModels {
          * version of the statistic
          */
         public Long Version;
-        /**
-         * time at which the statistic version was scheduled to become active, based on the configured ResetInterval
-         */
-        public Date ScheduledActivationTime;
-        /**
-         * time when the statistic version became active
-         */
-        public Date ActivationTime;
-        /**
-         * time at which the statistic version was scheduled to become inactive, based on the configured ResetInterval
-         */
-        public Date ScheduledDeactivationTime;
-        /**
-         * time when the statistic version became inactive due to statistic version incrementing
-         */
-        public Date DeactivationTime;
         
     }
 
     public static class PushNotificationPackage {
         /**
-         * If set, represents a timestamp for when the device should display the message. Local format should be formatted as: yyyy-MM-dd HH:mm:ss or UTC timestamp formatted as yyyy-MM-ddTHH:mm:ssZ. Delivery is not delayed, scheduling is expected to be handled by the device.
+         * Arbitrary string that will be delivered with the message. Suggested use: JSON formatted object
          */
-        public String ScheduleDate;
-        /**
-         * Title/Subject of the message
-         */
-        public String Title;
-        /**
-         * Content of the message
-         */
-        public String Message;
+        public String CustomData;
         /**
          * Icon file to display with the message
          */
         public String Icon;
         /**
+         * Content of the message
+         */
+        public String Message;
+        /**
+         * If set, represents a timestamp for when the device should display the message. Local format should be formatted as: yyyy-MM-dd HH:mm:ss or UTC timestamp formatted as yyyy-MM-ddTHH:mm:ssZ. Delivery is not delayed, scheduling is expected to be handled by the device.
+         */
+        public String ScheduleDate;
+        /**
          * Sound file to play with the message
          */
         public String Sound;
         /**
-         * Arbitrary string that will be delivered with the message. Suggested use: JSON formatted object
+         * Title/Subject of the message
          */
-        public String CustomData;
+        public String Title;
         
     }
 
@@ -3127,25 +3106,25 @@ public class PlayFabServerModels {
 
     public static class PushNotificationRegistration {
         /**
-         * Push notification platform
-         */
-        public PushNotificationPlatform Platform;
-        /**
          * Notification configured endpoint
          */
         public String NotificationEndpointARN;
+        /**
+         * Push notification platform
+         */
+        public PushNotificationPlatform Platform;
         
     }
 
     public static class PushNotificationRegistrationModel {
         /**
-         * Push notification platform
-         */
-        public PushNotificationPlatform Platform;
-        /**
          * Notification configured endpoint
          */
         public String NotificationEndpointARN;
+        /**
+         * Push notification platform
+         */
+        public PushNotificationPlatform Platform;
         
     }
 
@@ -3155,25 +3134,17 @@ public class PlayFabServerModels {
          */
         public String CatalogVersion;
         /**
-         * Unique name for this drop table
-         */
-        public String TableId;
-        /**
          * Child nodes that indicate what kind of drop table item this actually is.
          */
         public ArrayList<ResultTableNode> Nodes;
+        /**
+         * Unique name for this drop table
+         */
+        public String TableId;
         
     }
 
     public static class RedeemCouponRequest {
-        /**
-         * Generated coupon code to redeem.
-         */
-        public String CouponCode;
-        /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
         /**
          * Catalog version of the coupon.
          */
@@ -3182,6 +3153,14 @@ public class PlayFabServerModels {
          * Optional identifier for the Character that should receive the item. If null, item is added to the player
          */
         public String CharacterId;
+        /**
+         * Generated coupon code to redeem.
+         */
+        public String CouponCode;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         
     }
 
@@ -3195,25 +3174,25 @@ public class PlayFabServerModels {
 
     public static class RedeemMatchmakerTicketRequest {
         /**
-         * Server authorization ticket passed back from a call to Matchmake or StartGame.
-         */
-        public String Ticket;
-        /**
          * Unique identifier of the Game Server Instance that is asking for validation of the authorization ticket.
          */
         public String LobbyId;
+        /**
+         * Server authorization ticket passed back from a call to Matchmake or StartGame.
+         */
+        public String Ticket;
         
     }
 
     public static class RedeemMatchmakerTicketResult {
         /**
-         * Boolean indicating whether the ticket was validated by the PlayFab service.
-         */
-        public Boolean TicketIsValid;
-        /**
          * Error value if the ticket was not validated.
          */
         public String Error;
+        /**
+         * Boolean indicating whether the ticket was validated by the PlayFab service.
+         */
+        public Boolean TicketIsValid;
         /**
          * User account information for the user validated.
          */
@@ -3245,9 +3224,21 @@ public class PlayFabServerModels {
 
     public static class RegisterGameRequest {
         /**
+         * Unique identifier of the build running on the Game Server Instance.
+         */
+        public String Build;
+        /**
+         * Game Mode the Game Server instance is running. Note that this must be defined in the Game Modes tab in the PlayFab Game Manager, along with the Build ID (the same Game Mode can be defined for multiple Build IDs).
+         */
+        public String GameMode;
+        /**
          * Previous lobby id if re-registering an existing game.
          */
         public String LobbyId;
+        /**
+         * Region in which the Game Server Instance is running. For matchmaking using non-AWS region names, set this to any AWS region and use Tags (below) to specify your custom region.
+         */
+        public Region Region;
         /**
          * IP address of the Game Server Instance.
          */
@@ -3256,18 +3247,6 @@ public class PlayFabServerModels {
          * Port number for communication with the Game Server Instance.
          */
         public String ServerPort;
-        /**
-         * Unique identifier of the build running on the Game Server Instance.
-         */
-        public String Build;
-        /**
-         * Region in which the Game Server Instance is running. For matchmaking using non-AWS region names, set this to any AWS region and use Tags (below) to specify your custom region.
-         */
-        public Region Region;
-        /**
-         * Game Mode the Game Server instance is running. Note that this must be defined in the Game Modes tab in the PlayFab Game Manager, along with the Build ID (the same Game Mode can be defined for multiple Build IDs).
-         */
-        public String GameMode;
         /**
          * Tags for the Game Server Instance
          */
@@ -3313,13 +3292,13 @@ public class PlayFabServerModels {
 
     public static class RemoveSharedGroupMembersRequest {
         /**
-         * Unique identifier for the shared group.
-         */
-        public String SharedGroupId;
-        /**
          * An array of unique PlayFab assigned ID of the user on whom the operation will be performed.
          */
         public ArrayList<String> PlayFabIds;
+        /**
+         * Unique identifier for the shared group.
+         */
+        public String SharedGroupId;
         
     }
 
@@ -3329,17 +3308,17 @@ public class PlayFabServerModels {
 
     public static class ReportPlayerServerRequest {
         /**
-         * PlayFabId of the reporting player.
+         * Optional additional comment by reporting player.
          */
-        public String ReporterId;
+        public String Comment;
         /**
          * Unique PlayFab identifier of the reported player.
          */
         public String ReporteeId;
         /**
-         * Optional additional comment by reporting player.
+         * PlayFabId of the reporting player.
          */
-        public String Comment;
+        public String ReporterId;
         
     }
 
@@ -3353,13 +3332,13 @@ public class PlayFabServerModels {
 
     public static class ResultTableNode {
         /**
-         * Whether this entry in the table is an item or a link to another table
-         */
-        public ResultTableNodeType ResultItemType;
-        /**
          * Either an ItemId, or the TableId of another random result table
          */
         public String ResultItem;
+        /**
+         * Whether this entry in the table is an item or a link to another table
+         */
+        public ResultTableNodeType ResultItemType;
         /**
          * How likely this is to be rolled - larger numbers add more weight
          */
@@ -3406,10 +3385,6 @@ public class PlayFabServerModels {
 
     public static class RevokeInventoryItemRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
          * Unique PlayFab assigned ID for a specific character owned by a user
          */
         public String CharacterId;
@@ -3417,6 +3392,10 @@ public class PlayFabServerModels {
          * Unique PlayFab assigned instance identifier of the item
          */
         public String ItemInstanceId;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         
     }
 
@@ -3442,23 +3421,27 @@ public class PlayFabServerModels {
 
     public static class SendPushNotificationRequest {
         /**
-         * PlayFabId of the recipient of the push notification.
+         * Allows you to provide precisely formatted json to target devices. This is an advanced feature, allowing you to deliver to custom plugin logic, fields, or functionality not natively supported by PlayFab.
          */
-        public String Recipient;
+        public ArrayList<AdvancedPushPlatformMsg> AdvancedPlatformDelivery;
         /**
          * Text of message to send.
          */
         public String Message;
         /**
-         * Defines all possible push attributes like message, title, icon, etc. Not supported for iOS devices.
+         * Defines all possible push attributes like message, title, icon, etc. Not fully supported for iOS devices.
          */
         public PushNotificationPackage Package;
         /**
-         * Subject of message to send (may not be displayed in all platforms. Not supported for Android devices (use Package instead).
+         * PlayFabId of the recipient of the push notification.
+         */
+        public String Recipient;
+        /**
+         * Subject of message to send (may not be displayed in all platforms.
          */
         public String Subject;
         /**
-         * Platforms that should receive the message. If omitted, we will send to all available platforms.
+         * Target Platforms that should receive the Message or Package. If omitted, we will send to all available platforms.
          */
         public ArrayList<PushNotificationPlatform> TargetPlatforms;
         
@@ -3470,13 +3453,13 @@ public class PlayFabServerModels {
 
     public static class SetFriendTagsRequest {
         /**
-         * PlayFab identifier of the player whose friend is to be updated.
-         */
-        public String PlayFabId;
-        /**
          * PlayFab identifier of the friend account to which the tag(s) should be applied.
          */
         public String FriendPlayFabId;
+        /**
+         * PlayFab identifier of the player whose friend is to be updated.
+         */
+        public String PlayFabId;
         /**
          * Array of tags to set on the friend account.
          */
@@ -3486,13 +3469,13 @@ public class PlayFabServerModels {
 
     public static class SetGameServerInstanceDataRequest {
         /**
-         * Unique identifier of the Game Instance to be updated, in decimal format.
-         */
-        public String LobbyId;
-        /**
          * Custom data to set for the specified game server instance.
          */
         public String GameServerData;
+        /**
+         * Unique identifier of the Game Instance to be updated, in decimal format.
+         */
+        public String LobbyId;
         
     }
 
@@ -3582,21 +3565,21 @@ public class PlayFabServerModels {
 
     public static class SharedGroupDataRecord {
         /**
-         * Data stored for the specified group data key.
+         * Timestamp for when this data was last updated.
          */
-        public String Value;
+        public Date LastUpdated;
         /**
          * PlayFabId of the user to last update this value.
          */
         public String LastUpdatedBy;
         /**
-         * Timestamp for when this data was last updated.
-         */
-        public Date LastUpdated;
-        /**
          * Indicates whether this data can be read by all users (public) or only members of the group (private).
          */
         public UserDataPermission Permission;
+        /**
+         * Data stored for the specified group data key.
+         */
+        public String Value;
         
     }
 
@@ -3606,13 +3589,13 @@ public class PlayFabServerModels {
          */
         public String Name;
         /**
-         * Statistic version (0 if not a versioned statistic)
-         */
-        public Integer Version;
-        /**
          * Statistic value
          */
         public Integer Value;
+        /**
+         * Statistic version (0 if not a versioned statistic)
+         */
+        public Integer Version;
         
     }
 
@@ -3634,13 +3617,13 @@ public class PlayFabServerModels {
          */
         public String StatisticName;
         /**
-         * for updates to an existing statistic value for a player, the version of the statistic when it was loaded. Null when setting the statistic value for the first time.
-         */
-        public Long Version;
-        /**
          * statistic value for the player
          */
         public Integer Value;
+        /**
+         * for updates to an existing statistic value for a player, the version of the statistic when it was loaded. Null when setting the statistic value for the first time.
+         */
+        public Long Version;
         
     }
 
@@ -3662,37 +3645,84 @@ public class PlayFabServerModels {
 
     public static class SteamPlayFabIdPair {
         /**
-         * Unique Steam identifier for a user.
-         */
-        public String SteamStringId;
-        /**
          * Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Steam identifier.
          */
         public String PlayFabId;
+        /**
+         * Unique Steam identifier for a user.
+         */
+        public String SteamStringId;
         
+    }
+
+    public static class SubscriptionModel {
+        /**
+         * When this subscription expires.
+         */
+        public Date Expiration;
+        /**
+         * The time the subscription was orignially purchased
+         */
+        public Date InitialSubscriptionTime;
+        /**
+         * Whether this subscription is currently active. That is, if Expiration &gt; now.
+         */
+        public Boolean IsActive;
+        /**
+         * The status of this subscription, according to the subscription provider.
+         */
+        public SubscriptionProviderStatus Status;
+        /**
+         * The id for this subscription
+         */
+        public String SubscriptionId;
+        /**
+         * The item id for this subscription from the primary catalog
+         */
+        public String SubscriptionItemId;
+        /**
+         * The provider for this subscription. Apple or Google Play are supported today.
+         */
+        public String SubscriptionProvider;
+        
+    }
+
+    public static enum SubscriptionProviderStatus {
+        NoError,
+        Cancelled,
+        UnknownError,
+        BillingError,
+        ProductUnavailable,
+        CustomerDidNotAcceptPriceChange,
+        FreeTrial,
+        PaymentPending
     }
 
     public static class SubtractCharacterVirtualCurrencyRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         * Amount to be subtracted from the user balance of the specified virtual currency.
          */
-        public String PlayFabId;
+        public Integer Amount;
         /**
          * Unique PlayFab assigned ID for a specific character owned by a user
          */
         public String CharacterId;
         /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
          * Name of the virtual currency which is to be decremented.
          */
         public String VirtualCurrency;
-        /**
-         * Amount to be subtracted from the user balance of the specified virtual currency.
-         */
-        public Integer Amount;
         
     }
 
     public static class SubtractUserVirtualCurrencyRequest {
+        /**
+         * Amount to be subtracted from the user balance of the specified virtual currency.
+         */
+        public Integer Amount;
         /**
          * PlayFab unique identifier of the user whose virtual currency balance is to be decreased.
          */
@@ -3701,10 +3731,6 @@ public class PlayFabServerModels {
          * Name of the virtual currency which is to be decremented.
          */
         public String VirtualCurrency;
-        /**
-         * Amount to be subtracted from the user balance of the specified virtual currency.
-         */
-        public Integer Amount;
         
     }
 
@@ -3714,15 +3740,6 @@ public class PlayFabServerModels {
          */
         public String TagValue;
         
-    }
-
-    public static enum TaskInstanceStatus {
-        Succeeded,
-        Starting,
-        InProgress,
-        Failed,
-        Aborted,
-        Pending
     }
 
     public static enum TitleActivationStatus {
@@ -3735,29 +3752,29 @@ public class PlayFabServerModels {
 
     public static class TitleNewsItem {
         /**
-         * Date and time when the news items was posted.
+         * News item text.
          */
-        public Date Timestamp;
+        public String Body;
         /**
          * Unique identifier of news item.
          */
         public String NewsId;
         /**
+         * Date and time when the news items was posted.
+         */
+        public Date Timestamp;
+        /**
          * Title of the news item.
          */
         public String Title;
-        /**
-         * News item text.
-         */
-        public String Body;
         
     }
 
     public static class UnlockContainerInstanceRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         * Specifies the catalog version that should be used to determine container contents.  If unspecified, uses catalog associated with the item instance.
          */
-        public String PlayFabId;
+        public String CatalogVersion;
         /**
          * Unique PlayFab assigned ID for a specific character owned by a user
          */
@@ -3771,17 +3788,17 @@ public class PlayFabServerModels {
          */
         public String KeyItemInstanceId;
         /**
-         * Specifies the catalog version that should be used to determine container contents.  If unspecified, uses catalog associated with the item instance.
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
          */
-        public String CatalogVersion;
+        public String PlayFabId;
         
     }
 
     public static class UnlockContainerItemRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         * Specifies the catalog version that should be used to determine container contents.  If unspecified, uses default/primary catalog.
          */
-        public String PlayFabId;
+        public String CatalogVersion;
         /**
          * Unique PlayFab assigned ID for a specific character owned by a user
          */
@@ -3791,13 +3808,17 @@ public class PlayFabServerModels {
          */
         public String ContainerItemId;
         /**
-         * Specifies the catalog version that should be used to determine container contents.  If unspecified, uses default/primary catalog.
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
          */
-        public String CatalogVersion;
+        public String PlayFabId;
         
     }
 
     public static class UnlockContainerItemResult {
+        /**
+         * Items granted to the player as a result of unlocking the container.
+         */
+        public ArrayList<ItemInstance> GrantedItems;
         /**
          * Unique instance identifier of the container unlocked.
          */
@@ -3807,10 +3828,6 @@ public class PlayFabServerModels {
          */
         public String UnlockedWithItemInstanceId;
         /**
-         * Items granted to the player as a result of unlocking the container.
-         */
-        public ArrayList<ItemInstance> GrantedItems;
-        /**
          * Virtual currency granted to the player as a result of unlocking the container.
          */
         public Map<String,Long> VirtualCurrency;
@@ -3819,13 +3836,13 @@ public class PlayFabServerModels {
 
     public static class UpdateAvatarUrlRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
          * URL of the avatar image. If empty, it removes the existing avatar URL.
          */
         public String ImageUrl;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         
     }
 
@@ -3834,13 +3851,13 @@ public class PlayFabServerModels {
      */
     public static class UpdateBanRequest {
         /**
+         * The updated active state for the ban. Null for no change.
+         */
+        public Boolean Active;
+        /**
          * The id of the ban to be updated.
          */
         public String BanId;
-        /**
-         * The updated reason for the ban to be updated. Maximum 140 characters. Null for no change.
-         */
-        public String Reason;
         /**
          * The updated expiration date for the ban. Null for no change.
          */
@@ -3858,9 +3875,9 @@ public class PlayFabServerModels {
          */
         public Boolean Permanent;
         /**
-         * The updated active state for the ban. Null for no change.
+         * The updated reason for the ban to be updated. Maximum 140 characters. Null for no change.
          */
-        public Boolean Active;
+        public String Reason;
         
     }
 
@@ -3882,10 +3899,6 @@ public class PlayFabServerModels {
 
     public static class UpdateCharacterDataRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
          * Unique PlayFab assigned ID for a specific character owned by a user
          */
         public String CharacterId;
@@ -3901,6 +3914,10 @@ public class PlayFabServerModels {
          * Permission to be applied to all user data keys written in this request. Defaults to "private" if not set.
          */
         public UserDataPermission Permission;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         
     }
 
@@ -3914,10 +3931,6 @@ public class PlayFabServerModels {
 
     public static class UpdateCharacterStatisticsRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
          * Unique PlayFab assigned ID for a specific character owned by a user
          */
         public String CharacterId;
@@ -3925,6 +3938,10 @@ public class PlayFabServerModels {
          * Statistics to be updated with the provided values.
          */
         public Map<String,Integer> CharacterStatistics;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         
     }
 
@@ -3934,6 +3951,10 @@ public class PlayFabServerModels {
 
     public static class UpdatePlayerStatisticsRequest {
         /**
+         * Indicates whether the statistics provided should be set, regardless of the aggregation method set on the statistic. Default is false.
+         */
+        public Boolean ForceUpdate;
+        /**
          * Unique PlayFab assigned ID of the user on whom the operation will be performed.
          */
         public String PlayFabId;
@@ -3941,10 +3962,6 @@ public class PlayFabServerModels {
          * Statistics to be updated with the provided values
          */
         public ArrayList<StatisticUpdate> Statistics;
-        /**
-         * Indicates whether the statistics provided should be set, regardless of the aggregation method set on the statistic. Default is false.
-         */
-        public Boolean ForceUpdate;
         
     }
 
@@ -3953,10 +3970,6 @@ public class PlayFabServerModels {
     }
 
     public static class UpdateSharedGroupDataRequest {
-        /**
-         * Unique identifier for the shared group.
-         */
-        public String SharedGroupId;
         /**
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character or be null.
          */
@@ -3969,6 +3982,10 @@ public class PlayFabServerModels {
          * Permission to be applied to all user data keys in this request.
          */
         public UserDataPermission Permission;
+        /**
+         * Unique identifier for the shared group.
+         */
+        public String SharedGroupId;
         
     }
 
@@ -3977,10 +3994,6 @@ public class PlayFabServerModels {
     }
 
     public static class UpdateUserDataRequest {
-        /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
         /**
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character or be null.
          */
@@ -3993,6 +4006,10 @@ public class PlayFabServerModels {
          * Permission to be applied to all user data keys written in this request. Defaults to "private" if not set.
          */
         public UserDataPermission Permission;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         
     }
 
@@ -4006,10 +4023,6 @@ public class PlayFabServerModels {
 
     public static class UpdateUserInternalDataRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character or be null.
          */
         public Map<String,String> Data;
@@ -4017,98 +4030,102 @@ public class PlayFabServerModels {
          * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language constraints.  Use this to delete the keys directly.
          */
         public ArrayList<String> KeysToRemove;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         
     }
 
     public static class UpdateUserInventoryItemDataRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
-         */
-        public String PlayFabId;
-        /**
          * Unique PlayFab assigned ID for a specific character owned by a user
          */
         public String CharacterId;
-        /**
-         * Unique PlayFab assigned instance identifier of the item
-         */
-        public String ItemInstanceId;
         /**
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may not begin with a '!' character or be null.
          */
         public Map<String,String> Data;
         /**
+         * Unique PlayFab assigned instance identifier of the item
+         */
+        public String ItemInstanceId;
+        /**
          * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language constraints.  Use this to delete the keys directly.
          */
         public ArrayList<String> KeysToRemove;
+        /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
         
     }
 
     public static class UserAccountInfo {
         /**
-         * Unique identifier for the user account
+         * User Android device information, if an Android device has been linked
          */
-        public String PlayFabId;
+        public UserAndroidDeviceInfo AndroidDeviceInfo;
         /**
          * Timestamp indicating when the user account was created
          */
         public Date Created;
         /**
-         * User account name in the PlayFab service
+         * Custom ID information, if a custom ID has been assigned
          */
-        public String Username;
-        /**
-         * Title-specific information for the user account
-         */
-        public UserTitleInfo TitleInfo;
-        /**
-         * Personal information for the user which is considered more sensitive
-         */
-        public UserPrivateAccountInfo PrivateInfo;
+        public UserCustomIdInfo CustomIdInfo;
         /**
          * User Facebook information, if a Facebook account has been linked
          */
         public UserFacebookInfo FacebookInfo;
         /**
-         * User Steam information, if a Steam account has been linked
-         */
-        public UserSteamInfo SteamInfo;
-        /**
          * User Gamecenter information, if a Gamecenter account has been linked
          */
         public UserGameCenterInfo GameCenterInfo;
-        /**
-         * User iOS device information, if an iOS device has been linked
-         */
-        public UserIosDeviceInfo IosDeviceInfo;
-        /**
-         * User Android device information, if an Android device has been linked
-         */
-        public UserAndroidDeviceInfo AndroidDeviceInfo;
-        /**
-         * User Kongregate account information, if a Kongregate account has been linked
-         */
-        public UserKongregateInfo KongregateInfo;
-        /**
-         * User Twitch account information, if a Twitch account has been linked
-         */
-        public UserTwitchInfo TwitchInfo;
-        /**
-         * User PSN account information, if a PSN account has been linked
-         */
-        public UserPsnInfo PsnInfo;
         /**
          * User Google account information, if a Google account has been linked
          */
         public UserGoogleInfo GoogleInfo;
         /**
+         * User iOS device information, if an iOS device has been linked
+         */
+        public UserIosDeviceInfo IosDeviceInfo;
+        /**
+         * User Kongregate account information, if a Kongregate account has been linked
+         */
+        public UserKongregateInfo KongregateInfo;
+        /**
+         * Unique identifier for the user account
+         */
+        public String PlayFabId;
+        /**
+         * Personal information for the user which is considered more sensitive
+         */
+        public UserPrivateAccountInfo PrivateInfo;
+        /**
+         * User PSN account information, if a PSN account has been linked
+         */
+        public UserPsnInfo PsnInfo;
+        /**
+         * User Steam information, if a Steam account has been linked
+         */
+        public UserSteamInfo SteamInfo;
+        /**
+         * Title-specific information for the user account
+         */
+        public UserTitleInfo TitleInfo;
+        /**
+         * User Twitch account information, if a Twitch account has been linked
+         */
+        public UserTwitchInfo TwitchInfo;
+        /**
+         * User account name in the PlayFab service
+         */
+        public String Username;
+        /**
          * User XBox account information, if a XBox account has been linked
          */
         public UserXboxInfo XboxInfo;
-        /**
-         * Custom ID information, if a custom ID has been assigned
-         */
-        public UserCustomIdInfo CustomIdInfo;
         
     }
 
@@ -4138,10 +4155,6 @@ public class PlayFabServerModels {
 
     public static class UserDataRecord {
         /**
-         * Data stored for the specified user data key.
-         */
-        public String Value;
-        /**
          * Timestamp for when this data was last updated.
          */
         public Date LastUpdated;
@@ -4149,6 +4162,10 @@ public class PlayFabServerModels {
          * Indicates whether this data can be read by all users (public) or only the user (private). This is used for GetUserData requests being made by one player about another player.
          */
         public UserDataPermission Permission;
+        /**
+         * Data stored for the specified user data key.
+         */
+        public String Value;
         
     }
 
@@ -4174,21 +4191,21 @@ public class PlayFabServerModels {
 
     public static class UserGoogleInfo {
         /**
-         * Google ID
-         */
-        public String GoogleId;
-        /**
          * Email address of the Google account
          */
         public String GoogleEmail;
         /**
-         * Locale of the Google account
-         */
-        public String GoogleLocale;
-        /**
          * Gender information of the Google account
          */
         public String GoogleGender;
+        /**
+         * Google ID
+         */
+        public String GoogleId;
+        /**
+         * Locale of the Google account
+         */
+        public String GoogleLocale;
         
     }
 
@@ -4255,9 +4272,9 @@ public class PlayFabServerModels {
 
     public static class UserSteamInfo {
         /**
-         * Steam identifier
+         * what stage of game ownership the user is listed as being in, from Steam
          */
-        public String SteamId;
+        public TitleActivationStatus SteamActivationStatus;
         /**
          * the country in which the player resides, from Steam data
          */
@@ -4267,29 +4284,25 @@ public class PlayFabServerModels {
          */
         public Currency SteamCurrency;
         /**
-         * what stage of game ownership the user is listed as being in, from Steam
+         * Steam identifier
          */
-        public TitleActivationStatus SteamActivationStatus;
+        public String SteamId;
         
     }
 
     public static class UserTitleInfo {
         /**
-         * name of the user, as it is displayed in-game
+         * URL to the player's avatar.
          */
-        public String DisplayName;
-        /**
-         * source by which the user first joined the game, if known
-         */
-        public UserOrigination Origination;
+        public String AvatarUrl;
         /**
          * timestamp indicating when the user was first associated with this game (this can differ significantly from when the user first registered with PlayFab)
          */
         public Date Created;
         /**
-         * timestamp for the last user login for this title
+         * name of the user, as it is displayed in-game
          */
-        public Date LastLogin;
+        public String DisplayName;
         /**
          * timestamp indicating when the user first signed into this game (this can differ from the Created timestamp, as other events, such as issuing a beta key to the user, can associate the title to the user)
          */
@@ -4299,9 +4312,13 @@ public class PlayFabServerModels {
          */
         public Boolean isBanned;
         /**
-         * URL to the player's avatar.
+         * timestamp for the last user login for this title
          */
-        public String AvatarUrl;
+        public Date LastLogin;
+        /**
+         * source by which the user first joined the game, if known
+         */
+        public UserOrigination Origination;
         
     }
 
@@ -4355,17 +4372,17 @@ public class PlayFabServerModels {
 
     public static class VirtualCurrencyRechargeTime {
         /**
-         * Time remaining (in seconds) before the next recharge increment of the virtual currency.
+         * Maximum value to which the regenerating currency will automatically increment. Note that it can exceed this value through use of the AddUserVirtualCurrency API call. However, it will not regenerate automatically until it has fallen below this value.
          */
-        public Integer SecondsToRecharge;
+        public Integer RechargeMax;
         /**
          * Server timestamp in UTC indicating the next time the virtual currency will be incremented.
          */
         public Date RechargeTime;
         /**
-         * Maximum value to which the regenerating currency will automatically increment. Note that it can exceed this value through use of the AddUserVirtualCurrency API call. However, it will not regenerate automatically until it has fallen below this value.
+         * Time remaining (in seconds) before the next recharge increment of the virtual currency.
          */
-        public Integer RechargeMax;
+        public Integer SecondsToRecharge;
         
     }
 
@@ -4379,9 +4396,9 @@ public class PlayFabServerModels {
 
     public static class WriteServerCharacterEventRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         * Custom event properties. Each property consists of a name (string) and a value (JSON object).
          */
-        public String PlayFabId;
+        public Map<String,Object> Body;
         /**
          * Unique PlayFab assigned ID for a specific character owned by a user
          */
@@ -4391,38 +4408,42 @@ public class PlayFabServerModels {
          */
         public String EventName;
         /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
          * The time (in UTC) associated with this event. The value dafaults to the current time.
          */
         public Date Timestamp;
-        /**
-         * Custom event properties. Each property consists of a name (string) and a value (JSON object).
-         */
-        public Map<String,Object> Body;
         
     }
 
     public static class WriteServerPlayerEventRequest {
         /**
-         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         * Custom data properties associated with the event. Each property consists of a name (string) and a value (JSON object).
          */
-        public String PlayFabId;
+        public Map<String,Object> Body;
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it commonly follows the subject_verb_object pattern (e.g. player_logged_in).
          */
         public String EventName;
         /**
+         * Unique PlayFab assigned ID of the user on whom the operation will be performed.
+         */
+        public String PlayFabId;
+        /**
          * The time (in UTC) associated with this event. The value dafaults to the current time.
          */
         public Date Timestamp;
-        /**
-         * Custom data properties associated with the event. Each property consists of a name (string) and a value (JSON object).
-         */
-        public Map<String,Object> Body;
         
     }
 
     public static class WriteTitleEventRequest {
         /**
+         * Custom event properties. Each property consists of a name (string) and a value (JSON object).
+         */
+        public Map<String,Object> Body;
+        /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it commonly follows the subject_verb_object pattern (e.g. player_logged_in).
          */
         public String EventName;
@@ -4430,10 +4451,6 @@ public class PlayFabServerModels {
          * The time (in UTC) associated with this event. The value dafaults to the current time.
          */
         public Date Timestamp;
-        /**
-         * Custom event properties. Each property consists of a name (string) and a value (JSON object).
-         */
-        public Map<String,Object> Body;
         
     }
 

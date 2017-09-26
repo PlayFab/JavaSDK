@@ -42,6 +42,38 @@ public class PlayFabMatchmakerModels {
      */
     public static class ItemInstance implements Comparable<ItemInstance> {
         /**
+         * Game specific comment associated with this instance when it was added to the user inventory.
+         */
+        public String Annotation;
+        /**
+         * Array of unique items that were awarded when this catalog item was purchased.
+         */
+        public ArrayList<String> BundleContents;
+        /**
+         * Unique identifier for the parent inventory item, as defined in the catalog, for object which were added from a bundle or container.
+         */
+        public String BundleParent;
+        /**
+         * Catalog version for the inventory item, when this instance was created.
+         */
+        public String CatalogVersion;
+        /**
+         * A set of custom key-value pairs on the inventory item.
+         */
+        public Map<String,String> CustomData;
+        /**
+         * CatalogItem.DisplayName at the time this item was purchased.
+         */
+        public String DisplayName;
+        /**
+         * Timestamp for when this instance will expire.
+         */
+        public Date Expiration;
+        /**
+         * Class name for the inventory item, as defined in the catalog.
+         */
+        public String ItemClass;
+        /**
          * Unique identifier for the inventory item, as defined in the catalog.
          */
         public String ItemId;
@@ -50,41 +82,13 @@ public class PlayFabMatchmakerModels {
          */
         public String ItemInstanceId;
         /**
-         * Class name for the inventory item, as defined in the catalog.
-         */
-        public String ItemClass;
-        /**
          * Timestamp for when this instance was purchased.
          */
         public Date PurchaseDate;
         /**
-         * Timestamp for when this instance will expire.
-         */
-        public Date Expiration;
-        /**
          * Total number of remaining uses, if this is a consumable item.
          */
         public Integer RemainingUses;
-        /**
-         * The number of uses that were added or removed to this item in this call.
-         */
-        public Integer UsesIncrementedBy;
-        /**
-         * Game specific comment associated with this instance when it was added to the user inventory.
-         */
-        public String Annotation;
-        /**
-         * Catalog version for the inventory item, when this instance was created.
-         */
-        public String CatalogVersion;
-        /**
-         * Unique identifier for the parent inventory item, as defined in the catalog, for object which were added from a bundle or container.
-         */
-        public String BundleParent;
-        /**
-         * CatalogItem.DisplayName at the time this item was purchased.
-         */
-        public String DisplayName;
         /**
          * Currency type for the cost of the catalog item.
          */
@@ -94,13 +98,9 @@ public class PlayFabMatchmakerModels {
          */
         public Long UnitPrice;
         /**
-         * Array of unique items that were awarded when this catalog item was purchased.
+         * The number of uses that were added or removed to this item in this call.
          */
-        public ArrayList<String> BundleContents;
-        /**
-         * A set of custom key-value pairs on the inventory item.
-         */
-        public Map<String,String> CustomData;
+        public Integer UsesIncrementedBy;
         
         public int compareTo(ItemInstance other) {
             if (other == null || other.ItemInstanceId == null) return 1;
@@ -153,9 +153,21 @@ public class PlayFabMatchmakerModels {
 
     public static class RegisterGameRequest {
         /**
+         * Unique identifier of the build running on the Game Server Instance.
+         */
+        public String Build;
+        /**
+         * Game Mode the Game Server instance is running. Note that this must be defined in the Game Modes tab in the PlayFab Game Manager, along with the Build ID (the same Game Mode can be defined for multiple Build IDs).
+         */
+        public String GameMode;
+        /**
          * Previous lobby id if re-registering an existing game.
          */
         public String LobbyId;
+        /**
+         * Region in which the Game Server Instance is running. For matchmaking using non-AWS region names, set this to any AWS region and use Tags (below) to specify your custom region.
+         */
+        public Region Region;
         /**
          * IP address of the Game Server Instance.
          */
@@ -164,18 +176,6 @@ public class PlayFabMatchmakerModels {
          * Port number for communication with the Game Server Instance.
          */
         public String ServerPort;
-        /**
-         * Unique identifier of the build running on the Game Server Instance.
-         */
-        public String Build;
-        /**
-         * Region in which the Game Server Instance is running. For matchmaking using non-AWS region names, set this to any AWS region and use Tags (below) to specify your custom region.
-         */
-        public Region Region;
-        /**
-         * Game Mode the Game Server instance is running. Note that this must be defined in the Game Modes tab in the PlayFab Game Manager, along with the Build ID (the same Game Mode can be defined for multiple Build IDs).
-         */
-        public String GameMode;
         /**
          * Tags for the Game Server Instance
          */
@@ -197,14 +197,6 @@ public class PlayFabMatchmakerModels {
          */
         public String Build;
         /**
-         * Region with which to associate the server, for filtering.
-         */
-        public Region Region;
-        /**
-         * Game mode for this Game Server Instance.
-         */
-        public String GameMode;
-        /**
          * Custom command line argument when starting game server process.
          */
         public String CustomCommandLineData;
@@ -212,6 +204,14 @@ public class PlayFabMatchmakerModels {
          * HTTP endpoint URL for receiving game status events, if using an external matchmaker. When the game ends, PlayFab will make a POST request to this URL with the X-SecretKey header set to the value of the game's secret and an application/json body of { "EventName": "game_ended", "GameID": "&lt;gameid&gt;" }.
          */
         public String ExternalMatchmakerEventEndpoint;
+        /**
+         * Game mode for this Game Server Instance.
+         */
+        public String GameMode;
+        /**
+         * Region with which to associate the server, for filtering.
+         */
+        public Region Region;
         
     }
 
@@ -233,34 +233,42 @@ public class PlayFabMatchmakerModels {
 
     public static class UserInfoRequest {
         /**
-         * PlayFab unique identifier of the user whose information is being requested.
-         */
-        public String PlayFabId;
-        /**
          * Minimum catalog version for which data is requested (filters the results to only contain inventory items which have a catalog version of this or higher).
          */
         public Integer MinCatalogVersion;
+        /**
+         * PlayFab unique identifier of the user whose information is being requested.
+         */
+        public String PlayFabId;
         
     }
 
     public static class UserInfoResponse {
         /**
+         * Array of inventory items in the user's current inventory.
+         */
+        @Unordered("ItemInstanceId")
+        public ArrayList<ItemInstance> Inventory;
+        /**
+         * Boolean indicating whether the user is a developer.
+         */
+        public Boolean IsDeveloper;
+        /**
          * PlayFab unique identifier of the user whose information was requested.
          */
         public String PlayFabId;
         /**
-         * PlayFab unique user name.
+         * Steam unique identifier, if the user has an associated Steam account.
          */
-        public String Username;
+        public String SteamId;
         /**
          * Title specific display name, if set.
          */
         public String TitleDisplayName;
         /**
-         * Array of inventory items in the user's current inventory.
+         * PlayFab unique user name.
          */
-        @Unordered("ItemInstanceId")
-        public ArrayList<ItemInstance> Inventory;
+        public String Username;
         /**
          * Array of virtual currency balance(s) belonging to the user.
          */
@@ -269,30 +277,22 @@ public class PlayFabMatchmakerModels {
          * Array of remaining times and timestamps for virtual currencies.
          */
         public Map<String,VirtualCurrencyRechargeTime> VirtualCurrencyRechargeTimes;
-        /**
-         * Boolean indicating whether the user is a developer.
-         */
-        public Boolean IsDeveloper;
-        /**
-         * Steam unique identifier, if the user has an associated Steam account.
-         */
-        public String SteamId;
         
     }
 
     public static class VirtualCurrencyRechargeTime {
         /**
-         * Time remaining (in seconds) before the next recharge increment of the virtual currency.
+         * Maximum value to which the regenerating currency will automatically increment. Note that it can exceed this value through use of the AddUserVirtualCurrency API call. However, it will not regenerate automatically until it has fallen below this value.
          */
-        public Integer SecondsToRecharge;
+        public Integer RechargeMax;
         /**
          * Server timestamp in UTC indicating the next time the virtual currency will be incremented.
          */
         public Date RechargeTime;
         /**
-         * Maximum value to which the regenerating currency will automatically increment. Note that it can exceed this value through use of the AddUserVirtualCurrency API call. However, it will not regenerate automatically until it has fallen below this value.
+         * Time remaining (in seconds) before the next recharge increment of the virtual currency.
          */
-        public Integer RechargeMax;
+        public Integer SecondsToRecharge;
         
     }
 
