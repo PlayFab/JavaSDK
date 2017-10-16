@@ -1301,22 +1301,6 @@ public class PlayFabAdminModels {
         
     }
 
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class GetActionGroupResult {
-        /**
-         * Action Group ID
-         */
-        public String Id;
-        /**
-         * Action Group name
-         */
-        public String Name;
-        
-    }
-
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {
         /**
          * Parameter of this task instance
@@ -1326,26 +1310,6 @@ public class PlayFabAdminModels {
          * Status summary of the actions-on-players-in-segment task instance
          */
         public ActionsOnPlayersInSegmentTaskSummary Summary;
-        
-    }
-
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class GetAllActionGroupsRequest {
-        
-    }
-
-    /**
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class GetAllActionGroupsResult {
-        /**
-         * List of Action Groups.
-         */
-        public ArrayList<GetActionGroupResult> ActionGroups;
         
     }
 

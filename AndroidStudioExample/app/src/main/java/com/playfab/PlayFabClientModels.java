@@ -1160,11 +1160,6 @@ public class PlayFabClientModels {
          */
         public String GameServerData;
         /**
-         * @deprecated Please use GameServerStateEnum instead.
-         */
-        @Deprecated
-        public Integer GameServerState;
-        /**
          * game specific string denoting server configuration
          */
         public GameInstanceState GameServerStateEnum;
