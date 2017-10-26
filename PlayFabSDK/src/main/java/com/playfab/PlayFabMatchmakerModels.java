@@ -6,29 +6,21 @@ import com.playfab.PlayFabUtil.*;
 public class PlayFabMatchmakerModels {
 
     public static class AuthUserRequest {
-        /**
-         * Session Ticket provided by the client.
-         */
+        /** Session Ticket provided by the client. */
         public String AuthorizationTicket;
         
     }
 
     public static class AuthUserResponse {
-        /**
-         * Boolean indicating if the user has been authorized to use the external match-making service.
-         */
+        /** Boolean indicating if the user has been authorized to use the external match-making service. */
         public Boolean Authorized;
-        /**
-         * PlayFab unique identifier of the account that has been authorized.
-         */
+        /** PlayFab unique identifier of the account that has been authorized. */
         public String PlayFabId;
         
     }
 
     public static class DeregisterGameRequest {
-        /**
-         * Unique identifier for the Game Server Instance that is being deregistered.
-         */
+        /** Unique identifier for the Game Server Instance that is being deregistered. */
         public String LobbyId;
         
     }
@@ -38,68 +30,44 @@ public class PlayFabMatchmakerModels {
     }
 
     /**
-     * A unique instance of an item in a user's inventory. Note, to retrieve additional information for an item instance (such as Tags, Description, or Custom Data that are set on the root catalog item), a call to GetCatalogItems is required. The Item ID of the instance can then be matched to a catalog entry, which contains the additional information. Also note that Custom Data is only set here from a call to UpdateUserInventoryItemCustomData.
+     * A unique instance of an item in a user's inventory. Note, to retrieve additional information for an item instance (such
+     * as Tags, Description, or Custom Data that are set on the root catalog item), a call to GetCatalogItems is required. The
+     * Item ID of the instance can then be matched to a catalog entry, which contains the additional information. Also note
+     * that Custom Data is only set here from a call to UpdateUserInventoryItemCustomData.
      */
     public static class ItemInstance implements Comparable<ItemInstance> {
-        /**
-         * Game specific comment associated with this instance when it was added to the user inventory.
-         */
+        /** Game specific comment associated with this instance when it was added to the user inventory. */
         public String Annotation;
-        /**
-         * Array of unique items that were awarded when this catalog item was purchased.
-         */
+        /** Array of unique items that were awarded when this catalog item was purchased. */
         public ArrayList<String> BundleContents;
         /**
-         * Unique identifier for the parent inventory item, as defined in the catalog, for object which were added from a bundle or container.
+         * Unique identifier for the parent inventory item, as defined in the catalog, for object which were added from a bundle or
+         * container.
          */
         public String BundleParent;
-        /**
-         * Catalog version for the inventory item, when this instance was created.
-         */
+        /** Catalog version for the inventory item, when this instance was created. */
         public String CatalogVersion;
-        /**
-         * A set of custom key-value pairs on the inventory item.
-         */
+        /** A set of custom key-value pairs on the inventory item. */
         public Map<String,String> CustomData;
-        /**
-         * CatalogItem.DisplayName at the time this item was purchased.
-         */
+        /** CatalogItem.DisplayName at the time this item was purchased. */
         public String DisplayName;
-        /**
-         * Timestamp for when this instance will expire.
-         */
+        /** Timestamp for when this instance will expire. */
         public Date Expiration;
-        /**
-         * Class name for the inventory item, as defined in the catalog.
-         */
+        /** Class name for the inventory item, as defined in the catalog. */
         public String ItemClass;
-        /**
-         * Unique identifier for the inventory item, as defined in the catalog.
-         */
+        /** Unique identifier for the inventory item, as defined in the catalog. */
         public String ItemId;
-        /**
-         * Unique item identifier for this specific instance of the item.
-         */
+        /** Unique item identifier for this specific instance of the item. */
         public String ItemInstanceId;
-        /**
-         * Timestamp for when this instance was purchased.
-         */
+        /** Timestamp for when this instance was purchased. */
         public Date PurchaseDate;
-        /**
-         * Total number of remaining uses, if this is a consumable item.
-         */
+        /** Total number of remaining uses, if this is a consumable item. */
         public Integer RemainingUses;
-        /**
-         * Currency type for the cost of the catalog item.
-         */
+        /** Currency type for the cost of the catalog item. */
         public String UnitCurrency;
-        /**
-         * Cost of the catalog item in the given currency.
-         */
+        /** Cost of the catalog item in the given currency. */
         public Long UnitPrice;
-        /**
-         * The number of uses that were added or removed to this item in this call.
-         */
+        /** The number of uses that were added or removed to this item in this call. */
         public Integer UsesIncrementedBy;
         
         public int compareTo(ItemInstance other) {
@@ -111,12 +79,11 @@ public class PlayFabMatchmakerModels {
 
     public static class PlayerJoinedRequest {
         /**
-         * Unique identifier of the Game Server Instance the user is joining. This must be a Game Server Instance started with the Matchmaker/StartGame API.
+         * Unique identifier of the Game Server Instance the user is joining. This must be a Game Server Instance started with the
+         * Matchmaker/StartGame API.
          */
         public String LobbyId;
-        /**
-         * PlayFab unique identifier for the player joining.
-         */
+        /** PlayFab unique identifier for the player joining. */
         public String PlayFabId;
         
     }
@@ -127,12 +94,11 @@ public class PlayFabMatchmakerModels {
 
     public static class PlayerLeftRequest {
         /**
-         * Unique identifier of the Game Server Instance the user is leaving. This must be a Game Server Instance started with the Matchmaker/StartGame API.
+         * Unique identifier of the Game Server Instance the user is leaving. This must be a Game Server Instance started with the
+         * Matchmaker/StartGame API.
          */
         public String LobbyId;
-        /**
-         * PlayFab unique identifier for the player leaving.
-         */
+        /** PlayFab unique identifier for the player leaving. */
         public String PlayFabId;
         
     }
@@ -152,146 +118,112 @@ public class PlayFabMatchmakerModels {
     }
 
     public static class RegisterGameRequest {
-        /**
-         * Unique identifier of the build running on the Game Server Instance.
-         */
+        /** Unique identifier of the build running on the Game Server Instance. */
         public String Build;
         /**
-         * Game Mode the Game Server instance is running. Note that this must be defined in the Game Modes tab in the PlayFab Game Manager, along with the Build ID (the same Game Mode can be defined for multiple Build IDs).
+         * Game Mode the Game Server instance is running. Note that this must be defined in the Game Modes tab in the PlayFab Game
+         * Manager, along with the Build ID (the same Game Mode can be defined for multiple Build IDs).
          */
         public String GameMode;
-        /**
-         * Previous lobby id if re-registering an existing game.
-         */
+        /** Previous lobby id if re-registering an existing game. */
         public String LobbyId;
         /**
-         * Region in which the Game Server Instance is running. For matchmaking using non-AWS region names, set this to any AWS region and use Tags (below) to specify your custom region.
+         * Region in which the Game Server Instance is running. For matchmaking using non-AWS region names, set this to any AWS
+         * region and use Tags (below) to specify your custom region.
          */
         public Region Region;
-        /**
-         * IP address of the Game Server Instance.
-         */
+        /** IPV4 address of the Game Server Instance. */
         public String ServerHost;
-        /**
-         * Port number for communication with the Game Server Instance.
-         */
+        /** IPV6 address of the Game Server Instance. */
+        public String ServerIPV6Address;
+        /** Port number for communication with the Game Server Instance. */
         public String ServerPort;
-        /**
-         * Tags for the Game Server Instance
-         */
+        /** Tags for the Game Server Instance */
         public Map<String,String> Tags;
         
     }
 
     public static class RegisterGameResponse {
         /**
-         * Unique identifier generated for the Game Server Instance that is registered. If LobbyId is specified in request and the game still exists in PlayFab, the LobbyId in request is returned. Otherwise a new lobby id will be returned.
+         * Unique identifier generated for the Game Server Instance that is registered. If LobbyId is specified in request and the
+         * game still exists in PlayFab, the LobbyId in request is returned. Otherwise a new lobby id will be returned.
          */
         public String LobbyId;
         
     }
 
     public static class StartGameRequest {
-        /**
-         * Unique identifier of the previously uploaded build executable which is to be started.
-         */
+        /** Unique identifier of the previously uploaded build executable which is to be started. */
         public String Build;
-        /**
-         * Custom command line argument when starting game server process.
-         */
+        /** Custom command line argument when starting game server process. */
         public String CustomCommandLineData;
         /**
-         * HTTP endpoint URL for receiving game status events, if using an external matchmaker. When the game ends, PlayFab will make a POST request to this URL with the X-SecretKey header set to the value of the game's secret and an application/json body of { "EventName": "game_ended", "GameID": "&lt;gameid&gt;" }.
+         * HTTP endpoint URL for receiving game status events, if using an external matchmaker. When the game ends, PlayFab will
+         * make a POST request to this URL with the X-SecretKey header set to the value of the game's secret and an
+         * application/json body of { "EventName": "game_ended", "GameID": "&lt;gameid&gt;" }.
          */
         public String ExternalMatchmakerEventEndpoint;
-        /**
-         * Game mode for this Game Server Instance.
-         */
+        /** Game mode for this Game Server Instance. */
         public String GameMode;
-        /**
-         * Region with which to associate the server, for filtering.
-         */
+        /** Region with which to associate the server, for filtering. */
         public Region Region;
         
     }
 
     public static class StartGameResponse {
-        /**
-         * Unique identifier for the game/lobby in the new Game Server Instance.
-         */
+        /** Unique identifier for the game/lobby in the new Game Server Instance. */
         public String GameID;
-        /**
-         * IP address of the new Game Server Instance.
-         */
+        /** IPV4 address of the new Game Server Instance. */
         public String ServerHostname;
-        /**
-         * Port number for communication with the Game Server Instance.
-         */
+        /** IPV6 address of the new Game Server Instance. */
+        public String ServerIPV6Address;
+        /** Port number for communication with the Game Server Instance. */
         public Long ServerPort;
         
     }
 
     public static class UserInfoRequest {
         /**
-         * Minimum catalog version for which data is requested (filters the results to only contain inventory items which have a catalog version of this or higher).
+         * Minimum catalog version for which data is requested (filters the results to only contain inventory items which have a
+         * catalog version of this or higher).
          */
         public Integer MinCatalogVersion;
-        /**
-         * PlayFab unique identifier of the user whose information is being requested.
-         */
+        /** PlayFab unique identifier of the user whose information is being requested. */
         public String PlayFabId;
         
     }
 
     public static class UserInfoResponse {
-        /**
-         * Array of inventory items in the user's current inventory.
-         */
+        /** Array of inventory items in the user's current inventory. */
         @Unordered("ItemInstanceId")
         public ArrayList<ItemInstance> Inventory;
-        /**
-         * Boolean indicating whether the user is a developer.
-         */
+        /** Boolean indicating whether the user is a developer. */
         public Boolean IsDeveloper;
-        /**
-         * PlayFab unique identifier of the user whose information was requested.
-         */
+        /** PlayFab unique identifier of the user whose information was requested. */
         public String PlayFabId;
-        /**
-         * Steam unique identifier, if the user has an associated Steam account.
-         */
+        /** Steam unique identifier, if the user has an associated Steam account. */
         public String SteamId;
-        /**
-         * Title specific display name, if set.
-         */
+        /** Title specific display name, if set. */
         public String TitleDisplayName;
-        /**
-         * PlayFab unique user name.
-         */
+        /** PlayFab unique user name. */
         public String Username;
-        /**
-         * Array of virtual currency balance(s) belonging to the user.
-         */
+        /** Array of virtual currency balance(s) belonging to the user. */
         public Map<String,Integer> VirtualCurrency;
-        /**
-         * Array of remaining times and timestamps for virtual currencies.
-         */
+        /** Array of remaining times and timestamps for virtual currencies. */
         public Map<String,VirtualCurrencyRechargeTime> VirtualCurrencyRechargeTimes;
         
     }
 
     public static class VirtualCurrencyRechargeTime {
         /**
-         * Maximum value to which the regenerating currency will automatically increment. Note that it can exceed this value through use of the AddUserVirtualCurrency API call. However, it will not regenerate automatically until it has fallen below this value.
+         * Maximum value to which the regenerating currency will automatically increment. Note that it can exceed this value
+         * through use of the AddUserVirtualCurrency API call. However, it will not regenerate automatically until it has fallen
+         * below this value.
          */
         public Integer RechargeMax;
-        /**
-         * Server timestamp in UTC indicating the next time the virtual currency will be incremented.
-         */
+        /** Server timestamp in UTC indicating the next time the virtual currency will be incremented. */
         public Date RechargeTime;
-        /**
-         * Time remaining (in seconds) before the next recharge increment of the virtual currency.
-         */
+        /** Time remaining (in seconds) before the next recharge increment of the virtual currency. */
         public Integer SecondsToRecharge;
         
     }

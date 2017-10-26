@@ -343,7 +343,13 @@ public class PlayFabErrors {
         SubscriptionAlreadyTaken(1340),
         SmtpAddonNotEnabled(1341),
         APIConcurrentRequestLimitExceeded(1342),
-        XboxRejectedXSTSExchangeRequest(1343);
+        XboxRejectedXSTSExchangeRequest(1343),
+        VariableNotDefined(1344),
+        TemplateVersionNotDefined(1345),
+        FileTooLarge(1346),
+        TitleDeleted(1347),
+        TitleContainsUserAccounts(1348),
+        TitleDeletionPlayerCleanupFailure(1349);
 
         public int id;
 

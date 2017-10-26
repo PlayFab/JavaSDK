@@ -9,10 +9,7 @@ import java.util.*;
 import com.google.gson.*;
 import com.google.gson.reflect.*;
 
-
-/**
- * Enables the use of an external match-making service in conjunction with PlayFab hosted Game Server instances
- */
+    /** Enables the use of an external match-making service in conjunction with PlayFab hosted Game Server instances */
 public class PlayFabMatchmakerAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 
@@ -50,9 +47,7 @@ public class PlayFabMatchmakerAPI {
         }
     }
 
-    /**
-     * Validates a user with the PlayFab service
-     */
+    /** Validates a user with the PlayFab service */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AuthUserResponse> privateAuthUserAsync(final AuthUserRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -112,9 +107,7 @@ public class PlayFabMatchmakerAPI {
         }
     }
 
-    /**
-     * Informs the PlayFab game server hosting service that the indicated user has joined the Game Server Instance specified
-     */
+    /** Informs the PlayFab game server hosting service that the indicated user has joined the Game Server Instance specified */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<PlayerJoinedResponse> privatePlayerJoinedAsync(final PlayerJoinedRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -174,9 +167,7 @@ public class PlayFabMatchmakerAPI {
         }
     }
 
-    /**
-     * Informs the PlayFab game server hosting service that the indicated user has left the Game Server Instance specified
-     */
+    /** Informs the PlayFab game server hosting service that the indicated user has left the Game Server Instance specified */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<PlayerLeftResponse> privatePlayerLeftAsync(final PlayerLeftRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -236,9 +227,7 @@ public class PlayFabMatchmakerAPI {
         }
     }
 
-    /**
-     * Instructs the PlayFab game server hosting service to instantiate a new Game Server Instance
-     */
+    /** Instructs the PlayFab game server hosting service to instantiate a new Game Server Instance */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<StartGameResponse> privateStartGameAsync(final StartGameRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -265,7 +254,8 @@ public class PlayFabMatchmakerAPI {
     }
 
     /**
-     * Retrieves the relevant details for a specified user, which the external match-making service can then use to compute effective matches
+     * Retrieves the relevant details for a specified user, which the external match-making service can then use to compute
+     * effective matches
      * @param request UserInfoRequest
      * @return Async Task will return UserInfoResponse
      */
@@ -279,7 +269,8 @@ public class PlayFabMatchmakerAPI {
     }
 
     /**
-     * Retrieves the relevant details for a specified user, which the external match-making service can then use to compute effective matches
+     * Retrieves the relevant details for a specified user, which the external match-making service can then use to compute
+     * effective matches
      * @param request UserInfoRequest
      * @return UserInfoResponse
      */
@@ -299,7 +290,8 @@ public class PlayFabMatchmakerAPI {
     }
 
     /**
-     * Retrieves the relevant details for a specified user, which the external match-making service can then use to compute effective matches
+     * Retrieves the relevant details for a specified user, which the external match-making service can then use to compute
+     * effective matches
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UserInfoResponse> privateUserInfoAsync(final UserInfoRequest request) throws Exception {

@@ -9,10 +9,10 @@ import java.util.*;
 import com.google.gson.*;
 import com.google.gson.reflect.*;
 
-
-/**
- * Provides functionality to allow external (developer-controlled) servers to interact with user inventories and data in a trusted manner, and to handle matchmaking and client connection orchestration
- */
+    /**
+     * Provides functionality to allow external (developer-controlled) servers to interact with user inventories and data in a
+     * trusted manner, and to handle matchmaking and client connection orchestration
+     */
 public class PlayFabServerAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 
@@ -50,9 +50,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Increments  the character's balance of the specified virtual currency by the stated amount
-     */
+    /** Increments  the character's balance of the specified virtual currency by the stated amount */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyCharacterVirtualCurrencyResult> privateAddCharacterVirtualCurrencyAsync(final AddCharacterVirtualCurrencyRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -79,7 +77,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds the Friend user to the friendlist of the user with PlayFabId. At least one of FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
+     * Adds the Friend user to the friendlist of the user with PlayFabId. At least one of
+     * FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
      * @param request AddFriendRequest
      * @return Async Task will return EmptyResult
      */
@@ -93,7 +92,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds the Friend user to the friendlist of the user with PlayFabId. At least one of FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
+     * Adds the Friend user to the friendlist of the user with PlayFabId. At least one of
+     * FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
      * @param request AddFriendRequest
      * @return EmptyResult
      */
@@ -113,7 +113,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds the Friend user to the friendlist of the user with PlayFabId. At least one of FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
+     * Adds the Friend user to the friendlist of the user with PlayFabId. At least one of
+     * FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResult> privateAddFriendAsync(final AddFriendRequest request) throws Exception {
@@ -174,9 +175,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Adds a given tag to a player profile. The tag's namespace is automatically generated based on the source of the tag.
-     */
+    /** Adds a given tag to a player profile. The tag's namespace is automatically generated based on the source of the tag. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AddPlayerTagResult> privateAddPlayerTagAsync(final AddPlayerTagRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -203,7 +202,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only users in the group (and the server) can add new members. Shared Groups are designed for sharing data  between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only
+     * users in the group (and the server) can add new members. Shared Groups are designed for sharing data  between a very
+     * small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request AddSharedGroupMembersRequest
      * @return Async Task will return AddSharedGroupMembersResult
      */
@@ -217,7 +218,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only users in the group (and the server) can add new members. Shared Groups are designed for sharing data  between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only
+     * users in the group (and the server) can add new members. Shared Groups are designed for sharing data  between a very
+     * small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request AddSharedGroupMembersRequest
      * @return AddSharedGroupMembersResult
      */
@@ -237,7 +240,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only users in the group (and the server) can add new members. Shared Groups are designed for sharing data  between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only
+     * users in the group (and the server) can add new members. Shared Groups are designed for sharing data  between a very
+     * small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AddSharedGroupMembersResult> privateAddSharedGroupMembersAsync(final AddSharedGroupMembersRequest request) throws Exception {
@@ -298,9 +303,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Increments  the user's balance of the specified virtual currency by the stated amount
-     */
+    /** Increments  the user's balance of the specified virtual currency by the stated amount */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyUserVirtualCurrencyResult> privateAddUserVirtualCurrencyAsync(final AddUserVirtualCurrencyRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -360,9 +363,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Validated a client's session ticket, and if successful, returns details for that user
-     */
+    /** Validated a client's session ticket, and if successful, returns details for that user */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AuthenticateSessionTicketResult> privateAuthenticateSessionTicketAsync(final AuthenticateSessionTicketRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -422,9 +423,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Awards the specified users the specified Steam achievements
-     */
+    /** Awards the specified users the specified Steam achievements */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AwardSteamAchievementResult> privateAwardSteamAchievementAsync(final AwardSteamAchievementRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -484,9 +483,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Bans users by PlayFab ID with optional IP address, or MAC address for the provided game.
-     */
+    /** Bans users by PlayFab ID with optional IP address, or MAC address for the provided game. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<BanUsersResult> privateBanUsersAsync(final BanUsersRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -546,9 +543,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's inventory.
-     */
+    /** Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's inventory. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ConsumeItemResult> privateConsumeItemAsync(final ConsumeItemRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -575,7 +570,10 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Requests the creation of a shared group object, containing key/value pairs which may  be updated by all members of the group. When created by a server, the group will initially have no members.  Shared Groups are designed for sharing data between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Requests the creation of a shared group object, containing key/value pairs which may  be updated by all members of the
+     * group. When created by a server, the group will initially have no members.  Shared Groups are designed for sharing data
+     * between a very small number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request CreateSharedGroupRequest
      * @return Async Task will return CreateSharedGroupResult
      */
@@ -589,7 +587,10 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Requests the creation of a shared group object, containing key/value pairs which may  be updated by all members of the group. When created by a server, the group will initially have no members.  Shared Groups are designed for sharing data between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Requests the creation of a shared group object, containing key/value pairs which may  be updated by all members of the
+     * group. When created by a server, the group will initially have no members.  Shared Groups are designed for sharing data
+     * between a very small number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request CreateSharedGroupRequest
      * @return CreateSharedGroupResult
      */
@@ -609,7 +610,10 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Requests the creation of a shared group object, containing key/value pairs which may  be updated by all members of the group. When created by a server, the group will initially have no members.  Shared Groups are designed for sharing data between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Requests the creation of a shared group object, containing key/value pairs which may  be updated by all members of the
+     * group. When created by a server, the group will initially have no members.  Shared Groups are designed for sharing data
+     * between a very small number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateSharedGroupResult> privateCreateSharedGroupAsync(final CreateSharedGroupRequest request) throws Exception {
@@ -670,9 +674,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Deletes the specific character ID from the specified user.
-     */
+    /** Deletes the specific character ID from the specified user. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteCharacterFromUserResult> privateDeleteCharacterFromUserAsync(final DeleteCharacterFromUserRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -699,7 +701,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Deletes a shared group, freeing up the shared group ID to be reused for a new group.  Shared Groups are designed for sharing data between a very small number of players, please see our guide:  https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Deletes a shared group, freeing up the shared group ID to be reused for a new group.  Shared Groups are designed for
+     * sharing data between a very small number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request DeleteSharedGroupRequest
      * @return Async Task will return EmptyResult
      */
@@ -713,7 +717,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Deletes a shared group, freeing up the shared group ID to be reused for a new group.  Shared Groups are designed for sharing data between a very small number of players, please see our guide:  https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Deletes a shared group, freeing up the shared group ID to be reused for a new group.  Shared Groups are designed for
+     * sharing data between a very small number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request DeleteSharedGroupRequest
      * @return EmptyResult
      */
@@ -733,7 +739,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Deletes a shared group, freeing up the shared group ID to be reused for a new group.  Shared Groups are designed for sharing data between a very small number of players, please see our guide:  https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Deletes a shared group, freeing up the shared group ID to be reused for a new group.  Shared Groups are designed for
+     * sharing data between a very small number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResult> privateDeleteSharedGroupAsync(final DeleteSharedGroupRequest request) throws Exception {
@@ -794,9 +802,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
-     */
+    /** Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteUsersResult> privateDeleteUsersAsync(final DeleteUsersRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -856,9 +862,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Inform the matchmaker that a Game Server Instance is removed.
-     */
+    /** Inform the matchmaker that a Game Server Instance is removed. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeregisterGameResponse> privateDeregisterGameAsync(final DeregisterGameRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -885,7 +889,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would have been added to the player inventory, if the Random Result Table were added via a Bundle or a call to UnlockContainer.
+     * Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would have been
+     * added to the player inventory, if the Random Result Table were added via a Bundle or a call to UnlockContainer.
      * @param request EvaluateRandomResultTableRequest
      * @return Async Task will return EvaluateRandomResultTableResult
      */
@@ -899,7 +904,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would have been added to the player inventory, if the Random Result Table were added via a Bundle or a call to UnlockContainer.
+     * Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would have been
+     * added to the player inventory, if the Random Result Table were added via a Bundle or a call to UnlockContainer.
      * @param request EvaluateRandomResultTableRequest
      * @return EvaluateRandomResultTableResult
      */
@@ -919,7 +925,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would have been added to the player inventory, if the Random Result Table were added via a Bundle or a call to UnlockContainer.
+     * Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would have been
+     * added to the player inventory, if the Random Result Table were added via a Bundle or a call to UnlockContainer.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EvaluateRandomResultTableResult> privateEvaluateRandomResultTableAsync(final EvaluateRandomResultTableRequest request) throws Exception {
@@ -980,9 +987,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Executes a CloudScript function, with the 'currentPlayerId' variable set to the specified PlayFabId parameter value.
-     */
+    /** Executes a CloudScript function, with the 'currentPlayerId' variable set to the specified PlayFabId parameter value. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ExecuteCloudScriptResult> privateExecuteCloudScriptAsync(final ExecuteCloudScriptServerRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1009,7 +1014,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
+     * Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as
+     * GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
      * @param request GetAllSegmentsRequest
      * @return Async Task will return GetAllSegmentsResult
      */
@@ -1023,7 +1029,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
+     * Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as
+     * GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
      * @param request GetAllSegmentsRequest
      * @return GetAllSegmentsResult
      */
@@ -1043,7 +1050,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
+     * Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as
+     * GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetAllSegmentsResult> privateGetAllSegmentsAsync(final GetAllSegmentsRequest request) throws Exception {
@@ -1071,7 +1079,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
+     * Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be
+     * evaluated with the parent PlayFabId to guarantee uniqueness.
      * @param request ListUsersCharactersRequest
      * @return Async Task will return ListUsersCharactersResult
      */
@@ -1085,7 +1094,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
+     * Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be
+     * evaluated with the parent PlayFabId to guarantee uniqueness.
      * @param request ListUsersCharactersRequest
      * @return ListUsersCharactersResult
      */
@@ -1105,7 +1115,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
+     * Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be
+     * evaluated with the parent PlayFabId to guarantee uniqueness.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListUsersCharactersResult> privateGetAllUsersCharactersAsync(final ListUsersCharactersRequest request) throws Exception {
@@ -1166,9 +1177,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
-     */
+    /** Retrieves the specified version of the title's catalog of virtual goods, including all defined properties */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCatalogItemsResult> privateGetCatalogItemsAsync(final GetCatalogItemsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1228,9 +1237,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the title-specific custom data for the user which is readable and writable by the client
-     */
+    /** Retrieves the title-specific custom data for the user which is readable and writable by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCharacterDataResult> privateGetCharacterDataAsync(final GetCharacterDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1290,9 +1297,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the title-specific custom data for the user's character which cannot be accessed by the client
-     */
+    /** Retrieves the title-specific custom data for the user's character which cannot be accessed by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCharacterDataResult> privateGetCharacterInternalDataAsync(final GetCharacterDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1352,9 +1357,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the specified character's current inventory of virtual goods
-     */
+    /** Retrieves the specified character's current inventory of virtual goods */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCharacterInventoryResult> privateGetCharacterInventoryAsync(final GetCharacterInventoryRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1414,9 +1417,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves a list of ranked characters for the given statistic, starting from the indicated point in the leaderboard
-     */
+    /** Retrieves a list of ranked characters for the given statistic, starting from the indicated point in the leaderboard */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCharacterLeaderboardResult> privateGetCharacterLeaderboardAsync(final GetCharacterLeaderboardRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1476,9 +1477,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the title-specific custom data for the user's character which can only be read by the client
-     */
+    /** Retrieves the title-specific custom data for the user's character which can only be read by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCharacterDataResult> privateGetCharacterReadOnlyDataAsync(final GetCharacterDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1538,9 +1537,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the details of all title-specific statistics for the specific character
-     */
+    /** Retrieves the details of all title-specific statistics for the specific character */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCharacterStatisticsResult> privateGetCharacterStatisticsAsync(final GetCharacterStatisticsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1567,7 +1564,13 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded, the query to retrieve the data will fail. See this post for more information:  https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.  Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
+     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned
+     * URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the
+     * content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded,
+     * the query to retrieve the data will fail. See this post for more information:
+     * https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.
+     * Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates
+     * apply.
      * @param request GetContentDownloadUrlRequest
      * @return Async Task will return GetContentDownloadUrlResult
      */
@@ -1581,7 +1584,13 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded, the query to retrieve the data will fail. See this post for more information:  https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.  Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
+     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned
+     * URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the
+     * content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded,
+     * the query to retrieve the data will fail. See this post for more information:
+     * https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.
+     * Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates
+     * apply.
      * @param request GetContentDownloadUrlRequest
      * @return GetContentDownloadUrlResult
      */
@@ -1601,7 +1610,13 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded, the query to retrieve the data will fail. See this post for more information:  https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.  Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
+     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned
+     * URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the
+     * content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded,
+     * the query to retrieve the data will fail. See this post for more information:
+     * https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.
+     * Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates
+     * apply.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetContentDownloadUrlResult> privateGetContentDownloadUrlAsync(final GetContentDownloadUrlRequest request) throws Exception {
@@ -1629,7 +1644,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves a list of ranked friends of the given player for the given statistic, starting from the indicated point in the leaderboard
+     * Retrieves a list of ranked friends of the given player for the given statistic, starting from the indicated point in the
+     * leaderboard
      * @param request GetFriendLeaderboardRequest
      * @return Async Task will return GetLeaderboardResult
      */
@@ -1643,7 +1659,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves a list of ranked friends of the given player for the given statistic, starting from the indicated point in the leaderboard
+     * Retrieves a list of ranked friends of the given player for the given statistic, starting from the indicated point in the
+     * leaderboard
      * @param request GetFriendLeaderboardRequest
      * @return GetLeaderboardResult
      */
@@ -1663,7 +1680,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves a list of ranked friends of the given player for the given statistic, starting from the indicated point in the leaderboard
+     * Retrieves a list of ranked friends of the given player for the given statistic, starting from the indicated point in the
+     * leaderboard
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetLeaderboardResult> privateGetFriendLeaderboardAsync(final GetFriendLeaderboardRequest request) throws Exception {
@@ -1691,7 +1709,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the current friends for the user with PlayFabId, constrained to users who have PlayFab accounts. Friends from linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
+     * Retrieves the current friends for the user with PlayFabId, constrained to users who have PlayFab accounts. Friends from
+     * linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
      * @param request GetFriendsListRequest
      * @return Async Task will return GetFriendsListResult
      */
@@ -1705,7 +1724,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the current friends for the user with PlayFabId, constrained to users who have PlayFab accounts. Friends from linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
+     * Retrieves the current friends for the user with PlayFabId, constrained to users who have PlayFab accounts. Friends from
+     * linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
      * @param request GetFriendsListRequest
      * @return GetFriendsListResult
      */
@@ -1725,7 +1745,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the current friends for the user with PlayFabId, constrained to users who have PlayFab accounts. Friends from linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
+     * Retrieves the current friends for the user with PlayFabId, constrained to users who have PlayFab accounts. Friends from
+     * linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetFriendsListResult> privateGetFriendsListAsync(final GetFriendsListRequest request) throws Exception {
@@ -1786,9 +1807,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves a list of ranked users for the given statistic, starting from the indicated point in the leaderboard
-     */
+    /** Retrieves a list of ranked users for the given statistic, starting from the indicated point in the leaderboard */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetLeaderboardResult> privateGetLeaderboardAsync(final GetLeaderboardRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1848,9 +1867,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves a list of ranked characters for the given statistic, centered on the requested user
-     */
+    /** Retrieves a list of ranked characters for the given statistic, centered on the requested user */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetLeaderboardAroundCharacterResult> privateGetLeaderboardAroundCharacterAsync(final GetLeaderboardAroundCharacterRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1910,9 +1927,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves a list of ranked users for the given statistic, centered on the currently signed-in user
-     */
+    /** Retrieves a list of ranked users for the given statistic, centered on the currently signed-in user */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetLeaderboardAroundUserResult> privateGetLeaderboardAroundUserAsync(final GetLeaderboardAroundUserRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1972,9 +1987,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves a list of all of the user's characters for the given statistic.
-     */
+    /** Retrieves a list of all of the user's characters for the given statistic. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetLeaderboardForUsersCharactersResult> privateGetLeaderboardForUserCharactersAsync(final GetLeaderboardForUsersCharactersRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2001,7 +2014,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Returns whatever info is requested in the response for the user. Note that PII (like email address, facebook id)             may be returned. All parameters default to false.
+     * Returns whatever info is requested in the response for the user. Note that PII (like email address, facebook id)
+     * may be returned. All parameters default to false.
      * @param request GetPlayerCombinedInfoRequest
      * @return Async Task will return GetPlayerCombinedInfoResult
      */
@@ -2015,7 +2029,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Returns whatever info is requested in the response for the user. Note that PII (like email address, facebook id)             may be returned. All parameters default to false.
+     * Returns whatever info is requested in the response for the user. Note that PII (like email address, facebook id)
+     * may be returned. All parameters default to false.
      * @param request GetPlayerCombinedInfoRequest
      * @return GetPlayerCombinedInfoResult
      */
@@ -2035,7 +2050,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Returns whatever info is requested in the response for the user. Note that PII (like email address, facebook id)             may be returned. All parameters default to false.
+     * Returns whatever info is requested in the response for the user. Note that PII (like email address, facebook id)
+     * may be returned. All parameters default to false.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayerCombinedInfoResult> privateGetPlayerCombinedInfoAsync(final GetPlayerCombinedInfoRequest request) throws Exception {
@@ -2096,9 +2112,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the player's profile
-     */
+    /** Retrieves the player's profile */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayerProfileResult> privateGetPlayerProfileAsync(final GetPlayerProfileRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2158,9 +2172,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * List all segments that a player currently belongs to at this moment in time.
-     */
+    /** List all segments that a player currently belongs to at this moment in time. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayerSegmentsResult> privateGetPlayerSegmentsAsync(final GetPlayersSegmentsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2187,7 +2199,10 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected in the results. AB Test segments are currently not supported by this operation.
+     * Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match
+     * the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span
+     * on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected
+     * in the results. AB Test segments are currently not supported by this operation.
      * @param request GetPlayersInSegmentRequest
      * @return Async Task will return GetPlayersInSegmentResult
      */
@@ -2201,7 +2216,10 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected in the results. AB Test segments are currently not supported by this operation.
+     * Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match
+     * the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span
+     * on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected
+     * in the results. AB Test segments are currently not supported by this operation.
      * @param request GetPlayersInSegmentRequest
      * @return GetPlayersInSegmentResult
      */
@@ -2221,7 +2239,10 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected in the results. AB Test segments are currently not supported by this operation.
+     * Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match
+     * the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span
+     * on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected
+     * in the results. AB Test segments are currently not supported by this operation.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayersInSegmentResult> privateGetPlayersInSegmentAsync(final GetPlayersInSegmentRequest request) throws Exception {
@@ -2282,9 +2303,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the current version and values for the indicated statistics, for the local player.
-     */
+    /** Retrieves the current version and values for the indicated statistics, for the local player. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayerStatisticsResult> privateGetPlayerStatisticsAsync(final GetPlayerStatisticsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2344,9 +2363,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the information on the available versions of the specified statistic.
-     */
+    /** Retrieves the information on the available versions of the specified statistic. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayerStatisticVersionsResult> privateGetPlayerStatisticVersionsAsync(final GetPlayerStatisticVersionsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2406,9 +2423,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Get all tags with a given Namespace (optional) from a player profile.
-     */
+    /** Get all tags with a given Namespace (optional) from a player profile. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayerTagsResult> privateGetPlayerTagsAsync(final GetPlayerTagsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2468,9 +2483,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the unique PlayFab identifiers for the given set of Facebook identifiers.
-     */
+    /** Retrieves the unique PlayFab identifiers for the given set of Facebook identifiers. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayFabIDsFromFacebookIDsResult> privateGetPlayFabIDsFromFacebookIDsAsync(final GetPlayFabIDsFromFacebookIDsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2497,7 +2510,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
+     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile
+     * IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
      * @param request GetPlayFabIDsFromSteamIDsRequest
      * @return Async Task will return GetPlayFabIDsFromSteamIDsResult
      */
@@ -2511,7 +2525,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
+     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile
+     * IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
      * @param request GetPlayFabIDsFromSteamIDsRequest
      * @return GetPlayFabIDsFromSteamIDsResult
      */
@@ -2531,7 +2546,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
+     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile
+     * IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayFabIDsFromSteamIDsResult> privateGetPlayFabIDsFromSteamIDsAsync(final GetPlayFabIDsFromSteamIDsRequest request) throws Exception {
@@ -2592,9 +2608,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the key-value store of custom publisher settings
-     */
+    /** Retrieves the key-value store of custom publisher settings */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPublisherDataResult> privateGetPublisherDataAsync(final GetPublisherDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2621,7 +2635,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the configuration information for the specified random results tables for the title, including all ItemId values and weights
+     * Retrieves the configuration information for the specified random results tables for the title, including all ItemId
+     * values and weights
      * @param request GetRandomResultTablesRequest
      * @return Async Task will return GetRandomResultTablesResult
      */
@@ -2635,7 +2650,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the configuration information for the specified random results tables for the title, including all ItemId values and weights
+     * Retrieves the configuration information for the specified random results tables for the title, including all ItemId
+     * values and weights
      * @param request GetRandomResultTablesRequest
      * @return GetRandomResultTablesResult
      */
@@ -2655,7 +2671,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the configuration information for the specified random results tables for the title, including all ItemId values and weights
+     * Retrieves the configuration information for the specified random results tables for the title, including all ItemId
+     * values and weights
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetRandomResultTablesResult> privateGetRandomResultTablesAsync(final GetRandomResultTablesRequest request) throws Exception {
@@ -2683,7 +2700,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves data stored in a shared group object, as well as the list of members in the group.  The server can access all public and private group data. Shared Groups are designed for sharing data between a very  small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Retrieves data stored in a shared group object, as well as the list of members in the group.  The server can access all
+     * public and private group data. Shared Groups are designed for sharing data between a very  small number of players,
+     * please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request GetSharedGroupDataRequest
      * @return Async Task will return GetSharedGroupDataResult
      */
@@ -2697,7 +2716,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves data stored in a shared group object, as well as the list of members in the group.  The server can access all public and private group data. Shared Groups are designed for sharing data between a very  small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Retrieves data stored in a shared group object, as well as the list of members in the group.  The server can access all
+     * public and private group data. Shared Groups are designed for sharing data between a very  small number of players,
+     * please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request GetSharedGroupDataRequest
      * @return GetSharedGroupDataResult
      */
@@ -2717,7 +2738,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves data stored in a shared group object, as well as the list of members in the group.  The server can access all public and private group data. Shared Groups are designed for sharing data between a very  small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Retrieves data stored in a shared group object, as well as the list of members in the group.  The server can access all
+     * public and private group data. Shared Groups are designed for sharing data between a very  small number of players,
+     * please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetSharedGroupDataResult> privateGetSharedGroupDataAsync(final GetSharedGroupDataRequest request) throws Exception {
@@ -2778,9 +2801,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the current server time
-     */
+    /** Retrieves the current server time */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTimeResult> privateGetTimeAsync(final GetTimeRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2840,9 +2861,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the key-value store of custom title settings
-     */
+    /** Retrieves the key-value store of custom title settings */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTitleDataResult> privateGetTitleDataAsync(final GetTitleDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2902,9 +2921,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the key-value store of custom internal title settings
-     */
+    /** Retrieves the key-value store of custom internal title settings */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTitleDataResult> privateGetTitleInternalDataAsync(final GetTitleDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2964,9 +2981,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the title news feed, as configured in the developer portal
-     */
+    /** Retrieves the title news feed, as configured in the developer portal */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTitleNewsResult> privateGetTitleNewsAsync(final GetTitleNewsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3026,9 +3041,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the relevant details for a specified user
-     */
+    /** Retrieves the relevant details for a specified user */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserAccountInfoResult> privateGetUserAccountInfoAsync(final GetUserAccountInfoRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3088,9 +3101,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Gets all bans for a user.
-     */
+    /** Gets all bans for a user. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserBansResult> privateGetUserBansAsync(final GetUserBansRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3150,9 +3161,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the title-specific custom data for the user which is readable and writable by the client
-     */
+    /** Retrieves the title-specific custom data for the user which is readable and writable by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3212,9 +3221,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the title-specific custom data for the user which cannot be accessed by the client
-     */
+    /** Retrieves the title-specific custom data for the user which cannot be accessed by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserInternalDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3274,9 +3281,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the specified user's current inventory of virtual goods
-     */
+    /** Retrieves the specified user's current inventory of virtual goods */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserInventoryResult> privateGetUserInventoryAsync(final GetUserInventoryRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3336,9 +3341,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the publisher-specific custom data for the user which is readable and writable by the client
-     */
+    /** Retrieves the publisher-specific custom data for the user which is readable and writable by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserPublisherDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3398,9 +3401,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the publisher-specific custom data for the user which cannot be accessed by the client
-     */
+    /** Retrieves the publisher-specific custom data for the user which cannot be accessed by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserPublisherInternalDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3460,9 +3461,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the publisher-specific custom data for the user which can only be read by the client
-     */
+    /** Retrieves the publisher-specific custom data for the user which can only be read by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserPublisherReadOnlyDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3522,9 +3521,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Retrieves the title-specific custom data for the user which can only be read by the client
-     */
+    /** Retrieves the title-specific custom data for the user which can only be read by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserReadOnlyDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3551,7 +3548,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
+     * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated
+     * with the parent PlayFabId to guarantee uniqueness.
      * @param request GrantCharacterToUserRequest
      * @return Async Task will return GrantCharacterToUserResult
      */
@@ -3565,7 +3563,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
+     * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated
+     * with the parent PlayFabId to guarantee uniqueness.
      * @param request GrantCharacterToUserRequest
      * @return GrantCharacterToUserResult
      */
@@ -3585,7 +3584,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
+     * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated
+     * with the parent PlayFabId to guarantee uniqueness.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GrantCharacterToUserResult> privateGrantCharacterToUserAsync(final GrantCharacterToUserRequest request) throws Exception {
@@ -3646,9 +3646,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Adds the specified items to the specified character's inventory
-     */
+    /** Adds the specified items to the specified character's inventory */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GrantItemsToCharacterResult> privateGrantItemsToCharacterAsync(final GrantItemsToCharacterRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3708,9 +3706,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Adds the specified items to the specified user's inventory
-     */
+    /** Adds the specified items to the specified user's inventory */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GrantItemsToUserResult> privateGrantItemsToUserAsync(final GrantItemsToUserRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3770,9 +3766,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Adds the specified items to the specified user inventories
-     */
+    /** Adds the specified items to the specified user inventories */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GrantItemsToUsersResult> privateGrantItemsToUsersAsync(final GrantItemsToUsersRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3832,9 +3826,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Modifies the number of remaining uses of a player's inventory item
-     */
+    /** Modifies the number of remaining uses of a player's inventory item */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyItemUsesResult> privateModifyItemUsesAsync(final ModifyItemUsesRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3894,9 +3886,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Moves an item from a character's inventory into another of the users's character's inventory.
-     */
+    /** Moves an item from a character's inventory into another of the users's character's inventory. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<MoveItemToCharacterFromCharacterResult> privateMoveItemToCharacterFromCharacterAsync(final MoveItemToCharacterFromCharacterRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3956,9 +3946,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Moves an item from a user's inventory into their character's inventory.
-     */
+    /** Moves an item from a user's inventory into their character's inventory. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<MoveItemToCharacterFromUserResult> privateMoveItemToCharacterFromUserAsync(final MoveItemToCharacterFromUserRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4018,9 +4006,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Moves an item from a character's inventory into the owning user's inventory.
-     */
+    /** Moves an item from a character's inventory into the owning user's inventory. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<MoveItemToUserFromCharacterResult> privateMoveItemToUserFromCharacterAsync(final MoveItemToUserFromCharacterRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4080,9 +4066,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Informs the PlayFab match-making service that the user specified has left the Game Server Instance
-     */
+    /** Informs the PlayFab match-making service that the user specified has left the Game Server Instance */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<NotifyMatchmakerPlayerLeftResult> privateNotifyMatchmakerPlayerLeftAsync(final NotifyMatchmakerPlayerLeftRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4109,7 +4093,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the Economy-&gt;Catalogs tab in the PlayFab Game Manager.
+     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the
+     * Economy-&gt;Catalogs tab in the PlayFab Game Manager.
      * @param request RedeemCouponRequest
      * @return Async Task will return RedeemCouponResult
      */
@@ -4123,7 +4108,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the Economy-&gt;Catalogs tab in the PlayFab Game Manager.
+     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the
+     * Economy-&gt;Catalogs tab in the PlayFab Game Manager.
      * @param request RedeemCouponRequest
      * @return RedeemCouponResult
      */
@@ -4143,7 +4129,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the Economy-&gt;Catalogs tab in the PlayFab Game Manager.
+     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the
+     * Economy-&gt;Catalogs tab in the PlayFab Game Manager.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RedeemCouponResult> privateRedeemCouponAsync(final RedeemCouponRequest request) throws Exception {
@@ -4204,9 +4191,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Validates a Game Server session ticket and returns details about the user
-     */
+    /** Validates a Game Server session ticket and returns details about the user */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RedeemMatchmakerTicketResult> privateRedeemMatchmakerTicketAsync(final RedeemMatchmakerTicketRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4266,9 +4251,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Set the state of the indicated Game Server Instance. Also update the heartbeat for the instance.
-     */
+    /** Set the state of the indicated Game Server Instance. Also update the heartbeat for the instance. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RefreshGameServerInstanceHeartbeatResult> privateRefreshGameServerInstanceHeartbeatAsync(final RefreshGameServerInstanceHeartbeatRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4328,9 +4311,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Inform the matchmaker that a new Game Server Instance is added.
-     */
+    /** Inform the matchmaker that a new Game Server Instance is added. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RegisterGameResponse> privateRegisterGameAsync(final RegisterGameRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4390,9 +4371,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Removes the specified friend from the the user's friend list
-     */
+    /** Removes the specified friend from the the user's friend list */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResult> privateRemoveFriendAsync(final RemoveFriendRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4452,9 +4431,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Remove a given tag from a player profile. The tag's namespace is automatically generated based on the source of the tag.
-     */
+    /** Remove a given tag from a player profile. The tag's namespace is automatically generated based on the source of the tag. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RemovePlayerTagResult> privateRemovePlayerTagAsync(final RemovePlayerTagRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4481,7 +4458,10 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the group can remove members. If as a result of the call, zero users remain with access, the group and its associated data will be deleted. Shared Groups are designed for sharing data between a very small number of players,  please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the
+     * group can remove members. If as a result of the call, zero users remain with access, the group and its associated data
+     * will be deleted. Shared Groups are designed for sharing data between a very small number of players,  please see our
+     * guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request RemoveSharedGroupMembersRequest
      * @return Async Task will return RemoveSharedGroupMembersResult
      */
@@ -4495,7 +4475,10 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the group can remove members. If as a result of the call, zero users remain with access, the group and its associated data will be deleted. Shared Groups are designed for sharing data between a very small number of players,  please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the
+     * group can remove members. If as a result of the call, zero users remain with access, the group and its associated data
+     * will be deleted. Shared Groups are designed for sharing data between a very small number of players,  please see our
+     * guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request RemoveSharedGroupMembersRequest
      * @return RemoveSharedGroupMembersResult
      */
@@ -4515,7 +4498,10 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the group can remove members. If as a result of the call, zero users remain with access, the group and its associated data will be deleted. Shared Groups are designed for sharing data between a very small number of players,  please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the
+     * group can remove members. If as a result of the call, zero users remain with access, the group and its associated data
+     * will be deleted. Shared Groups are designed for sharing data between a very small number of players,  please see our
+     * guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RemoveSharedGroupMembersResult> privateRemoveSharedGroupMembersAsync(final RemoveSharedGroupMembersRequest request) throws Exception {
@@ -4543,7 +4529,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Submit a report about a player (due to bad bahavior, etc.) on behalf of another player, so that customer service representatives for the title can take action concerning potentially toxic players.
+     * Submit a report about a player (due to bad bahavior, etc.) on behalf of another player, so that customer service
+     * representatives for the title can take action concerning potentially toxic players.
      * @param request ReportPlayerServerRequest
      * @return Async Task will return ReportPlayerServerResult
      */
@@ -4557,7 +4544,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Submit a report about a player (due to bad bahavior, etc.) on behalf of another player, so that customer service representatives for the title can take action concerning potentially toxic players.
+     * Submit a report about a player (due to bad bahavior, etc.) on behalf of another player, so that customer service
+     * representatives for the title can take action concerning potentially toxic players.
      * @param request ReportPlayerServerRequest
      * @return ReportPlayerServerResult
      */
@@ -4577,7 +4565,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Submit a report about a player (due to bad bahavior, etc.) on behalf of another player, so that customer service representatives for the title can take action concerning potentially toxic players.
+     * Submit a report about a player (due to bad bahavior, etc.) on behalf of another player, so that customer service
+     * representatives for the title can take action concerning potentially toxic players.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ReportPlayerServerResult> privateReportPlayerAsync(final ReportPlayerServerRequest request) throws Exception {
@@ -4638,9 +4627,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Revoke all active bans for a user.
-     */
+    /** Revoke all active bans for a user. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RevokeAllBansForUserResult> privateRevokeAllBansForUserAsync(final RevokeAllBansForUserRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4700,9 +4687,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Revoke all active bans specified with BanId.
-     */
+    /** Revoke all active bans specified with BanId. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RevokeBansResult> privateRevokeBansAsync(final RevokeBansRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4762,9 +4747,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Revokes access to an item in a user's inventory
-     */
+    /** Revokes access to an item in a user's inventory */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RevokeInventoryResult> privateRevokeInventoryItemAsync(final RevokeInventoryItemRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4791,7 +4774,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Sends an iOS/Android Push Notification to a specific user, if that user's device has been configured for Push Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
+     * Sends an iOS/Android Push Notification to a specific user, if that user's device has been configured for Push
+     * Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
      * @param request SendPushNotificationRequest
      * @return Async Task will return SendPushNotificationResult
      */
@@ -4805,7 +4789,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Sends an iOS/Android Push Notification to a specific user, if that user's device has been configured for Push Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
+     * Sends an iOS/Android Push Notification to a specific user, if that user's device has been configured for Push
+     * Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
      * @param request SendPushNotificationRequest
      * @return SendPushNotificationResult
      */
@@ -4825,7 +4810,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Sends an iOS/Android Push Notification to a specific user, if that user's device has been configured for Push Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
+     * Sends an iOS/Android Push Notification to a specific user, if that user's device has been configured for Push
+     * Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SendPushNotificationResult> privateSendPushNotificationAsync(final SendPushNotificationRequest request) throws Exception {
@@ -4886,9 +4872,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Updates the tag list for a specified user in the friend list of another user
-     */
+    /** Updates the tag list for a specified user in the friend list of another user */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResult> privateSetFriendTagsAsync(final SetFriendTagsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4948,9 +4932,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Sets the custom data of the indicated Game Server Instance
-     */
+    /** Sets the custom data of the indicated Game Server Instance */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetGameServerInstanceDataResult> privateSetGameServerInstanceDataAsync(final SetGameServerInstanceDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5010,9 +4992,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Set the state of the indicated Game Server Instance.
-     */
+    /** Set the state of the indicated Game Server Instance. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetGameServerInstanceStateResult> privateSetGameServerInstanceStateAsync(final SetGameServerInstanceStateRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5072,9 +5052,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Set custom tags for the specified Game Server Instance
-     */
+    /** Set custom tags for the specified Game Server Instance */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetGameServerInstanceTagsResult> privateSetGameServerInstanceTagsAsync(final SetGameServerInstanceTagsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5101,7 +5079,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's secret use the Admin or Server API method SetPlayerSecret.
+     * Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's
+     * secret use the Admin or Server API method SetPlayerSecret.
      * @param request SetPlayerSecretRequest
      * @return Async Task will return SetPlayerSecretResult
      */
@@ -5115,7 +5094,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's secret use the Admin or Server API method SetPlayerSecret.
+     * Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's
+     * secret use the Admin or Server API method SetPlayerSecret.
      * @param request SetPlayerSecretRequest
      * @return SetPlayerSecretResult
      */
@@ -5135,7 +5115,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's secret use the Admin or Server API method SetPlayerSecret.
+     * Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's
+     * secret use the Admin or Server API method SetPlayerSecret.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetPlayerSecretResult> privateSetPlayerSecretAsync(final SetPlayerSecretRequest request) throws Exception {
@@ -5196,9 +5177,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Updates the key-value store of custom publisher settings
-     */
+    /** Updates the key-value store of custom publisher settings */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetPublisherDataResult> privateSetPublisherDataAsync(final SetPublisherDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5258,9 +5237,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Updates the key-value store of custom title settings
-     */
+    /** Updates the key-value store of custom title settings */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetTitleDataResult> privateSetTitleDataAsync(final SetTitleDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5320,9 +5297,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Updates the key-value store of custom title settings
-     */
+    /** Updates the key-value store of custom title settings */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetTitleDataResult> privateSetTitleInternalDataAsync(final SetTitleDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5349,7 +5324,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Decrements the character's balance of the specified virtual currency by the stated amount
+     * Decrements the character's balance of the specified virtual currency by the stated amount. It is possible to make a VC
+     * balance negative with this API.
      * @param request SubtractCharacterVirtualCurrencyRequest
      * @return Async Task will return ModifyCharacterVirtualCurrencyResult
      */
@@ -5363,7 +5339,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Decrements the character's balance of the specified virtual currency by the stated amount
+     * Decrements the character's balance of the specified virtual currency by the stated amount. It is possible to make a VC
+     * balance negative with this API.
      * @param request SubtractCharacterVirtualCurrencyRequest
      * @return ModifyCharacterVirtualCurrencyResult
      */
@@ -5383,7 +5360,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Decrements the character's balance of the specified virtual currency by the stated amount
+     * Decrements the character's balance of the specified virtual currency by the stated amount. It is possible to make a VC
+     * balance negative with this API.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyCharacterVirtualCurrencyResult> privateSubtractCharacterVirtualCurrencyAsync(final SubtractCharacterVirtualCurrencyRequest request) throws Exception {
@@ -5411,7 +5389,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Decrements the user's balance of the specified virtual currency by the stated amount
+     * Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make a VC
+     * balance negative with this API.
      * @param request SubtractUserVirtualCurrencyRequest
      * @return Async Task will return ModifyUserVirtualCurrencyResult
      */
@@ -5425,7 +5404,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Decrements the user's balance of the specified virtual currency by the stated amount
+     * Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make a VC
+     * balance negative with this API.
      * @param request SubtractUserVirtualCurrencyRequest
      * @return ModifyUserVirtualCurrencyResult
      */
@@ -5445,7 +5425,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Decrements the user's balance of the specified virtual currency by the stated amount
+     * Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make a VC
+     * balance negative with this API.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyUserVirtualCurrencyResult> privateSubtractUserVirtualCurrencyAsync(final SubtractUserVirtualCurrencyRequest request) throws Exception {
@@ -5473,7 +5454,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Opens a specific container (ContainerItemInstanceId), with a specific key (KeyItemInstanceId, when required), and returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
+     * Opens a specific container (ContainerItemInstanceId), with a specific key (KeyItemInstanceId, when required), and
+     * returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses &gt;
+     * 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
      * @param request UnlockContainerInstanceRequest
      * @return Async Task will return UnlockContainerItemResult
      */
@@ -5487,7 +5470,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Opens a specific container (ContainerItemInstanceId), with a specific key (KeyItemInstanceId, when required), and returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
+     * Opens a specific container (ContainerItemInstanceId), with a specific key (KeyItemInstanceId, when required), and
+     * returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses &gt;
+     * 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
      * @param request UnlockContainerInstanceRequest
      * @return UnlockContainerItemResult
      */
@@ -5507,7 +5492,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Opens a specific container (ContainerItemInstanceId), with a specific key (KeyItemInstanceId, when required), and returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
+     * Opens a specific container (ContainerItemInstanceId), with a specific key (KeyItemInstanceId, when required), and
+     * returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses &gt;
+     * 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UnlockContainerItemResult> privateUnlockContainerInstanceAsync(final UnlockContainerInstanceRequest request) throws Exception {
@@ -5535,7 +5522,10 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Searches Player or Character inventory for any ItemInstance matching the given CatalogItemId, if necessary unlocks it using any appropriate key, and returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
+     * Searches Player or Character inventory for any ItemInstance matching the given CatalogItemId, if necessary unlocks it
+     * using any appropriate key, and returns the contents of the opened container. If the container (and key when relevant)
+     * are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of
+     * ConsumeItem.
      * @param request UnlockContainerItemRequest
      * @return Async Task will return UnlockContainerItemResult
      */
@@ -5549,7 +5539,10 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Searches Player or Character inventory for any ItemInstance matching the given CatalogItemId, if necessary unlocks it using any appropriate key, and returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
+     * Searches Player or Character inventory for any ItemInstance matching the given CatalogItemId, if necessary unlocks it
+     * using any appropriate key, and returns the contents of the opened container. If the container (and key when relevant)
+     * are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of
+     * ConsumeItem.
      * @param request UnlockContainerItemRequest
      * @return UnlockContainerItemResult
      */
@@ -5569,7 +5562,10 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Searches Player or Character inventory for any ItemInstance matching the given CatalogItemId, if necessary unlocks it using any appropriate key, and returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
+     * Searches Player or Character inventory for any ItemInstance matching the given CatalogItemId, if necessary unlocks it
+     * using any appropriate key, and returns the contents of the opened container. If the container (and key when relevant)
+     * are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of
+     * ConsumeItem.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UnlockContainerItemResult> privateUnlockContainerItemAsync(final UnlockContainerItemRequest request) throws Exception {
@@ -5630,9 +5626,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Update the avatar URL of the specified player
-     */
+    /** Update the avatar URL of the specified player */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResult> privateUpdateAvatarUrlAsync(final UpdateAvatarUrlRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5692,9 +5686,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Updates information of a list of existing bans specified with Ban Ids.
-     */
+    /** Updates information of a list of existing bans specified with Ban Ids. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateBansResult> privateUpdateBansAsync(final UpdateBansRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5754,9 +5746,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Updates the title-specific custom data for the user's character which is readable and writable by the client
-     */
+    /** Updates the title-specific custom data for the user's character which is readable and writable by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateCharacterDataResult> privateUpdateCharacterDataAsync(final UpdateCharacterDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5816,9 +5806,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Updates the title-specific custom data for the user's character which cannot  be accessed by the client
-     */
+    /** Updates the title-specific custom data for the user's character which cannot  be accessed by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateCharacterDataResult> privateUpdateCharacterInternalDataAsync(final UpdateCharacterDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5878,9 +5866,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Updates the title-specific custom data for the user's character which can only be read by the client
-     */
+    /** Updates the title-specific custom data for the user's character which can only be read by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateCharacterDataResult> privateUpdateCharacterReadOnlyDataAsync(final UpdateCharacterDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5940,9 +5926,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Updates the values of the specified title-specific statistics for the specific character
-     */
+    /** Updates the values of the specified title-specific statistics for the specific character */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateCharacterStatisticsResult> privateUpdateCharacterStatisticsAsync(final UpdateCharacterStatisticsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -6002,9 +5986,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Updates the values of the specified title-specific statistics for the user
-     */
+    /** Updates the values of the specified title-specific statistics for the user */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdatePlayerStatisticsResult> privateUpdatePlayerStatisticsAsync(final UpdatePlayerStatisticsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -6031,7 +6013,11 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated or added in this call will be readable by users not in the group. By default, data permissions are set to Private. Regardless of the permission setting, only members of the group (and the server) can update the data.  Shared Groups are designed for sharing data between a very small number of players, please see our guide:  https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated
+     * or added in this call will be readable by users not in the group. By default, data permissions are set to Private.
+     * Regardless of the permission setting, only members of the group (and the server) can update the data.  Shared Groups are
+     * designed for sharing data between a very small number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request UpdateSharedGroupDataRequest
      * @return Async Task will return UpdateSharedGroupDataResult
      */
@@ -6045,7 +6031,11 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated or added in this call will be readable by users not in the group. By default, data permissions are set to Private. Regardless of the permission setting, only members of the group (and the server) can update the data.  Shared Groups are designed for sharing data between a very small number of players, please see our guide:  https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated
+     * or added in this call will be readable by users not in the group. By default, data permissions are set to Private.
+     * Regardless of the permission setting, only members of the group (and the server) can update the data.  Shared Groups are
+     * designed for sharing data between a very small number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request UpdateSharedGroupDataRequest
      * @return UpdateSharedGroupDataResult
      */
@@ -6065,7 +6055,11 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated or added in this call will be readable by users not in the group. By default, data permissions are set to Private. Regardless of the permission setting, only members of the group (and the server) can update the data.  Shared Groups are designed for sharing data between a very small number of players, please see our guide:  https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated
+     * or added in this call will be readable by users not in the group. By default, data permissions are set to Private.
+     * Regardless of the permission setting, only members of the group (and the server) can update the data.  Shared Groups are
+     * designed for sharing data between a very small number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateSharedGroupDataResult> privateUpdateSharedGroupDataAsync(final UpdateSharedGroupDataRequest request) throws Exception {
@@ -6126,9 +6120,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Updates the title-specific custom data for the user which is readable and writable by the client
-     */
+    /** Updates the title-specific custom data for the user which is readable and writable by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserDataAsync(final UpdateUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -6188,9 +6180,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Updates the title-specific custom data for the user which cannot be accessed by the client
-     */
+    /** Updates the title-specific custom data for the user which cannot be accessed by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserInternalDataAsync(final UpdateUserInternalDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -6250,9 +6240,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Updates the key-value pair data tagged to the specified item, which is read-only from the client.
-     */
+    /** Updates the key-value pair data tagged to the specified item, which is read-only from the client. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResult> privateUpdateUserInventoryItemCustomDataAsync(final UpdateUserInventoryItemDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -6312,9 +6300,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Updates the publisher-specific custom data for the user which is readable and writable by the client
-     */
+    /** Updates the publisher-specific custom data for the user which is readable and writable by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserPublisherDataAsync(final UpdateUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -6374,9 +6360,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Updates the publisher-specific custom data for the user which cannot be accessed by the client
-     */
+    /** Updates the publisher-specific custom data for the user which cannot be accessed by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserPublisherInternalDataAsync(final UpdateUserInternalDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -6436,9 +6420,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Updates the publisher-specific custom data for the user which can only be read by the client
-     */
+    /** Updates the publisher-specific custom data for the user which can only be read by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserPublisherReadOnlyDataAsync(final UpdateUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -6498,9 +6480,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Updates the title-specific custom data for the user which can only be read by the client
-     */
+    /** Updates the title-specific custom data for the user which can only be read by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserReadOnlyDataAsync(final UpdateUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -6560,9 +6540,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Writes a character-based event into PlayStream.
-     */
+    /** Writes a character-based event into PlayStream. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<WriteEventResponse> privateWriteCharacterEventAsync(final WriteServerCharacterEventRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -6622,9 +6600,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Writes a player-based event into PlayStream.
-     */
+    /** Writes a player-based event into PlayStream. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<WriteEventResponse> privateWritePlayerEventAsync(final WriteServerPlayerEventRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -6684,9 +6660,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /**
-     * Writes a title-based event into PlayStream.
-     */
+    /** Writes a title-based event into PlayStream. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<WriteEventResponse> privateWriteTitleEventAsync(final WriteTitleEventRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
