@@ -9,10 +9,7 @@ import java.util.*;
 import com.google.gson.*;
 import com.google.gson.reflect.*;
 
-
-/**
- * APIs for managing title configurations, uploaded Game Server code executables, and user data
- */
+    /** APIs for managing title configurations, uploaded Game Server code executables, and user data */
 public class PlayFabAdminAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 
@@ -50,9 +47,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Abort an ongoing task instance.
-     */
+    /** Abort an ongoing task instance. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResult> privateAbortTaskInstanceAsync(final AbortTaskInstanceRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -112,9 +107,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Adds a new news item to the title's news feed
-     */
+    /** Adds a new news item to the title's news feed */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AddNewsResult> privateAddNewsAsync(final AddNewsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -174,9 +167,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Adds a given tag to a player profile. The tag's namespace is automatically generated based on the source of the tag.
-     */
+    /** Adds a given tag to a player profile. The tag's namespace is automatically generated based on the source of the tag. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AddPlayerTagResult> privateAddPlayerTagAsync(final AddPlayerTagRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -203,7 +194,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Adds the game server executable specified (previously uploaded - see GetServerBuildUploadUrl) to the set of those a client is permitted to request in a call to StartGame
+     * Adds the game server executable specified (previously uploaded - see GetServerBuildUploadUrl) to the set of those a
+     * client is permitted to request in a call to StartGame
      * @param request AddServerBuildRequest
      * @return Async Task will return AddServerBuildResult
      */
@@ -217,7 +209,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Adds the game server executable specified (previously uploaded - see GetServerBuildUploadUrl) to the set of those a client is permitted to request in a call to StartGame
+     * Adds the game server executable specified (previously uploaded - see GetServerBuildUploadUrl) to the set of those a
+     * client is permitted to request in a call to StartGame
      * @param request AddServerBuildRequest
      * @return AddServerBuildResult
      */
@@ -237,7 +230,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Adds the game server executable specified (previously uploaded - see GetServerBuildUploadUrl) to the set of those a client is permitted to request in a call to StartGame
+     * Adds the game server executable specified (previously uploaded - see GetServerBuildUploadUrl) to the set of those a
+     * client is permitted to request in a call to StartGame
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AddServerBuildResult> privateAddServerBuildAsync(final AddServerBuildRequest request) throws Exception {
@@ -298,9 +292,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Increments the specified virtual currency by the stated amount
-     */
+    /** Increments the specified virtual currency by the stated amount */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyUserVirtualCurrencyResult> privateAddUserVirtualCurrencyAsync(final AddUserVirtualCurrencyRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -327,7 +319,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Adds one or more virtual currencies to the set defined for the title. Virtual Currencies have a maximum value of 2,147,483,647 when granted to a player. Any value over that will be discarded.
+     * Adds one or more virtual currencies to the set defined for the title. Virtual Currencies have a maximum value of
+     * 2,147,483,647 when granted to a player. Any value over that will be discarded.
      * @param request AddVirtualCurrencyTypesRequest
      * @return Async Task will return BlankResult
      */
@@ -341,7 +334,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Adds one or more virtual currencies to the set defined for the title. Virtual Currencies have a maximum value of 2,147,483,647 when granted to a player. Any value over that will be discarded.
+     * Adds one or more virtual currencies to the set defined for the title. Virtual Currencies have a maximum value of
+     * 2,147,483,647 when granted to a player. Any value over that will be discarded.
      * @param request AddVirtualCurrencyTypesRequest
      * @return BlankResult
      */
@@ -361,7 +355,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Adds one or more virtual currencies to the set defined for the title. Virtual Currencies have a maximum value of 2,147,483,647 when granted to a player. Any value over that will be discarded.
+     * Adds one or more virtual currencies to the set defined for the title. Virtual Currencies have a maximum value of
+     * 2,147,483,647 when granted to a player. Any value over that will be discarded.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<BlankResult> privateAddVirtualCurrencyTypesAsync(final AddVirtualCurrencyTypesRequest request) throws Exception {
@@ -422,9 +417,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Bans users by PlayFab ID with optional IP address, or MAC address for the provided game.
-     */
+    /** Bans users by PlayFab ID with optional IP address, or MAC address for the provided game. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<BanUsersResult> privateBanUsersAsync(final BanUsersRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -484,9 +477,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Create an ActionsOnPlayersInSegment task, which iterates through all players in a segment to execute action.
-     */
+    /** Create an ActionsOnPlayersInSegment task, which iterates through all players in a segment to execute action. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateTaskResult> privateCreateActionsOnPlayersInSegmentTaskAsync(final CreateActionsOnPlayerSegmentTaskRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -546,9 +537,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Create a CloudScript task, which can run a CloudScript on a schedule.
-     */
+    /** Create a CloudScript task, which can run a CloudScript on a schedule. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateTaskResult> privateCreateCloudScriptTaskAsync(final CreateCloudScriptTaskRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -575,7 +564,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Creates a new Player Shared Secret Key. It may take up to 5 minutes for this key to become generally available after this API returns.
+     * Creates a new Player Shared Secret Key. It may take up to 5 minutes for this key to become generally available after
+     * this API returns.
      * @param request CreatePlayerSharedSecretRequest
      * @return Async Task will return CreatePlayerSharedSecretResult
      */
@@ -589,7 +579,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Creates a new Player Shared Secret Key. It may take up to 5 minutes for this key to become generally available after this API returns.
+     * Creates a new Player Shared Secret Key. It may take up to 5 minutes for this key to become generally available after
+     * this API returns.
      * @param request CreatePlayerSharedSecretRequest
      * @return CreatePlayerSharedSecretResult
      */
@@ -609,7 +600,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Creates a new Player Shared Secret Key. It may take up to 5 minutes for this key to become generally available after this API returns.
+     * Creates a new Player Shared Secret Key. It may take up to 5 minutes for this key to become generally available after
+     * this API returns.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreatePlayerSharedSecretResult> privateCreatePlayerSharedSecretAsync(final CreatePlayerSharedSecretRequest request) throws Exception {
@@ -637,7 +629,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Adds a new player statistic configuration to the title, optionally allowing the developer to specify a reset interval and an aggregation method.
+     * Adds a new player statistic configuration to the title, optionally allowing the developer to specify a reset interval
+     * and an aggregation method.
      * @param request CreatePlayerStatisticDefinitionRequest
      * @return Async Task will return CreatePlayerStatisticDefinitionResult
      */
@@ -651,7 +644,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Adds a new player statistic configuration to the title, optionally allowing the developer to specify a reset interval and an aggregation method.
+     * Adds a new player statistic configuration to the title, optionally allowing the developer to specify a reset interval
+     * and an aggregation method.
      * @param request CreatePlayerStatisticDefinitionRequest
      * @return CreatePlayerStatisticDefinitionResult
      */
@@ -671,7 +665,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Adds a new player statistic configuration to the title, optionally allowing the developer to specify a reset interval and an aggregation method.
+     * Adds a new player statistic configuration to the title, optionally allowing the developer to specify a reset interval
+     * and an aggregation method.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreatePlayerStatisticDefinitionResult> privateCreatePlayerStatisticDefinitionAsync(final CreatePlayerStatisticDefinitionRequest request) throws Exception {
@@ -732,9 +727,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Delete a content file from the title. When deleting a file that does not exist, it returns success.
-     */
+    /** Delete a content file from the title. When deleting a file that does not exist, it returns success. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<BlankResult> privateDeleteContentAsync(final DeleteContentRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -794,9 +787,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Removes a user's player account from a title and deletes all associated data
-     */
+    /** Removes a user's player account from a title and deletes all associated data */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeletePlayerResult> privateDeletePlayerAsync(final DeletePlayerRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -823,7 +814,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Deletes an existing Player Shared Secret Key. It may take up to 5 minutes for this delete to be reflected after this API returns.
+     * Deletes an existing Player Shared Secret Key. It may take up to 5 minutes for this delete to be reflected after this API
+     * returns.
      * @param request DeletePlayerSharedSecretRequest
      * @return Async Task will return DeletePlayerSharedSecretResult
      */
@@ -837,7 +829,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Deletes an existing Player Shared Secret Key. It may take up to 5 minutes for this delete to be reflected after this API returns.
+     * Deletes an existing Player Shared Secret Key. It may take up to 5 minutes for this delete to be reflected after this API
+     * returns.
      * @param request DeletePlayerSharedSecretRequest
      * @return DeletePlayerSharedSecretResult
      */
@@ -857,7 +850,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Deletes an existing Player Shared Secret Key. It may take up to 5 minutes for this delete to be reflected after this API returns.
+     * Deletes an existing Player Shared Secret Key. It may take up to 5 minutes for this delete to be reflected after this API
+     * returns.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeletePlayerSharedSecretResult> privateDeletePlayerSharedSecretAsync(final DeletePlayerSharedSecretRequest request) throws Exception {
@@ -918,9 +912,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Deletes an existing virtual item store
-     */
+    /** Deletes an existing virtual item store */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteStoreResult> privateDeleteStoreAsync(final DeleteStoreRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -980,9 +972,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Delete a task.
-     */
+    /** Delete a task. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResult> privateDeleteTaskAsync(final DeleteTaskRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1009,31 +999,29 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * @deprecated Please use DeleteUser instead.
-     * @param request DeleteUsersRequest
-     * @return Async Task will return DeleteUsersResult
+     * Permanently deletes a title and all associated configuration
+     * @param request DeleteTitleRequest
+     * @return Async Task will return DeleteTitleResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<DeleteUsersResult>> DeleteUsersAsync(final DeleteUsersRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<DeleteUsersResult>>() {
-            public PlayFabResult<DeleteUsersResult> call() throws Exception {
-                return privateDeleteUsersAsync(request);
+    public static FutureTask<PlayFabResult<DeleteTitleResult>> DeleteTitleAsync(final DeleteTitleRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<DeleteTitleResult>>() {
+            public PlayFabResult<DeleteTitleResult> call() throws Exception {
+                return privateDeleteTitleAsync(request);
             }
         });
     }
 
     /**
-     * @deprecated Please use DeleteUser instead.
-     * @param request DeleteUsersRequest
-     * @return DeleteUsersResult
+     * Permanently deletes a title and all associated configuration
+     * @param request DeleteTitleRequest
+     * @return DeleteTitleResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
-    public static PlayFabResult<DeleteUsersResult> DeleteUsers(final DeleteUsersRequest request) {
-        FutureTask<PlayFabResult<DeleteUsersResult>> task = new FutureTask(new Callable<PlayFabResult<DeleteUsersResult>>() {
-            public PlayFabResult<DeleteUsersResult> call() throws Exception {
-                return privateDeleteUsersAsync(request);
+    public static PlayFabResult<DeleteTitleResult> DeleteTitle(final DeleteTitleRequest request) {
+        FutureTask<PlayFabResult<DeleteTitleResult>> task = new FutureTask(new Callable<PlayFabResult<DeleteTitleResult>>() {
+            public PlayFabResult<DeleteTitleResult> call() throws Exception {
+                return privateDeleteTitleAsync(request);
             }
         });
         try {
@@ -1044,31 +1032,28 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * @deprecated Please use DeleteUser instead.
-     */
-    @Deprecated
+    /** Permanently deletes a title and all associated configuration */
     @SuppressWarnings("unchecked")
-    private static PlayFabResult<DeleteUsersResult> privateDeleteUsersAsync(final DeleteUsersRequest request) throws Exception {
+    private static PlayFabResult<DeleteTitleResult> privateDeleteTitleAsync(final DeleteTitleRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/DeleteUsers", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/DeleteTitle", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
         if(httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<DeleteUsersResult>();
+            PlayFabResult result = new PlayFabResult<DeleteTitleResult>();
             result.Error = error;
             return result;
         }
         String resultRawJson = (String) httpResult;
 
-        PlayFabJsonSuccess<DeleteUsersResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<DeleteUsersResult>>(){}.getType());
-        DeleteUsersResult result = resultData.data;
+        PlayFabJsonSuccess<DeleteTitleResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<DeleteTitleResult>>(){}.getType());
+        DeleteTitleResult result = resultData.data;
 
-        PlayFabResult<DeleteUsersResult> pfResult = new PlayFabResult<DeleteUsersResult>();
+        PlayFabResult<DeleteTitleResult> pfResult = new PlayFabResult<DeleteTitleResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -1107,9 +1092,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Get information about a ActionsOnPlayersInSegment task instance.
-     */
+    /** Get information about a ActionsOnPlayersInSegment task instance. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetActionsOnPlayersInSegmentTaskInstanceResult> privateGetActionsOnPlayersInSegmentTaskInstanceAsync(final GetTaskInstanceRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1136,7 +1119,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
+     * Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as
+     * GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
      * @param request GetAllSegmentsRequest
      * @return Async Task will return GetAllSegmentsResult
      */
@@ -1150,7 +1134,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
+     * Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as
+     * GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
      * @param request GetAllSegmentsRequest
      * @return GetAllSegmentsResult
      */
@@ -1170,7 +1155,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
+     * Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as
+     * GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetAllSegmentsResult> privateGetAllSegmentsAsync(final GetAllSegmentsRequest request) throws Exception {
@@ -1231,9 +1217,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
-     */
+    /** Retrieves the specified version of the title's catalog of virtual goods, including all defined properties */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCatalogItemsResult> privateGetCatalogItemsAsync(final GetCatalogItemsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1293,9 +1277,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Gets the contents and information of a specific Cloud Script revision.
-     */
+    /** Gets the contents and information of a specific Cloud Script revision. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCloudScriptRevisionResult> privateGetCloudScriptRevisionAsync(final GetCloudScriptRevisionRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1355,9 +1337,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Get detail information about a CloudScript task instance.
-     */
+    /** Get detail information about a CloudScript task instance. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCloudScriptTaskInstanceResult> privateGetCloudScriptTaskInstanceAsync(final GetTaskInstanceRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1384,7 +1364,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Lists all the current cloud script versions. For each version, information about the current published and latest revisions is also listed.
+     * Lists all the current cloud script versions. For each version, information about the current published and latest
+     * revisions is also listed.
      * @param request GetCloudScriptVersionsRequest
      * @return Async Task will return GetCloudScriptVersionsResult
      */
@@ -1398,7 +1379,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Lists all the current cloud script versions. For each version, information about the current published and latest revisions is also listed.
+     * Lists all the current cloud script versions. For each version, information about the current published and latest
+     * revisions is also listed.
      * @param request GetCloudScriptVersionsRequest
      * @return GetCloudScriptVersionsResult
      */
@@ -1418,7 +1400,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Lists all the current cloud script versions. For each version, information about the current published and latest revisions is also listed.
+     * Lists all the current cloud script versions. For each version, information about the current published and latest
+     * revisions is also listed.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCloudScriptVersionsResult> privateGetCloudScriptVersionsAsync(final GetCloudScriptVersionsRequest request) throws Exception {
@@ -1479,9 +1462,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * List all contents of the title and get statistics such as size
-     */
+    /** List all contents of the title and get statistics such as size */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetContentListResult> privateGetContentListAsync(final GetContentListRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1508,7 +1489,9 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Retrieves the pre-signed URL for uploading a content file. A subsequent HTTP PUT to the returned URL uploads the  content. Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
+     * Retrieves the pre-signed URL for uploading a content file. A subsequent HTTP PUT to the returned URL uploads the
+     * content. Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN
+     * rates apply.
      * @param request GetContentUploadUrlRequest
      * @return Async Task will return GetContentUploadUrlResult
      */
@@ -1522,7 +1505,9 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Retrieves the pre-signed URL for uploading a content file. A subsequent HTTP PUT to the returned URL uploads the  content. Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
+     * Retrieves the pre-signed URL for uploading a content file. A subsequent HTTP PUT to the returned URL uploads the
+     * content. Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN
+     * rates apply.
      * @param request GetContentUploadUrlRequest
      * @return GetContentUploadUrlResult
      */
@@ -1542,7 +1527,9 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Retrieves the pre-signed URL for uploading a content file. A subsequent HTTP PUT to the returned URL uploads the  content. Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
+     * Retrieves the pre-signed URL for uploading a content file. A subsequent HTTP PUT to the returned URL uploads the
+     * content. Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN
+     * rates apply.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetContentUploadUrlResult> privateGetContentUploadUrlAsync(final GetContentUploadUrlRequest request) throws Exception {
@@ -1603,9 +1590,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Retrieves a download URL for the requested report
-     */
+    /** Retrieves a download URL for the requested report */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetDataReportResult> privateGetDataReportAsync(final GetDataReportRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1665,9 +1650,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Retrieves the details for a specific completed session, including links to standard out and standard error logs
-     */
+    /** Retrieves the details for a specific completed session, including links to standard out and standard error logs */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetMatchmakerGameInfoResult> privateGetMatchmakerGameInfoAsync(final GetMatchmakerGameInfoRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1727,9 +1710,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Retrieves the details of defined game modes for the specified game server executable
-     */
+    /** Retrieves the details of defined game modes for the specified game server executable */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetMatchmakerGameModesResult> privateGetMatchmakerGameModesAsync(final GetMatchmakerGameModesRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1789,9 +1770,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * List all segments that a player currently belongs to at this moment in time.
-     */
+    /** List all segments that a player currently belongs to at this moment in time. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayerSegmentsResult> privateGetPlayerSegmentsAsync(final GetPlayersSegmentsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1851,9 +1830,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Returns all Player Shared Secret Keys including disabled and expired.
-     */
+    /** Returns all Player Shared Secret Keys including disabled and expired. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayerSharedSecretsResult> privateGetPlayerSharedSecretsAsync(final GetPlayerSharedSecretsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1880,7 +1857,10 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected in the results. AB Test segments are currently not supported by this operation.
+     * Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match
+     * the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span
+     * on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected
+     * in the results. AB Test segments are currently not supported by this operation.
      * @param request GetPlayersInSegmentRequest
      * @return Async Task will return GetPlayersInSegmentResult
      */
@@ -1894,7 +1874,10 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected in the results. AB Test segments are currently not supported by this operation.
+     * Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match
+     * the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span
+     * on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected
+     * in the results. AB Test segments are currently not supported by this operation.
      * @param request GetPlayersInSegmentRequest
      * @return GetPlayersInSegmentResult
      */
@@ -1914,7 +1897,10 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected in the results. AB Test segments are currently not supported by this operation.
+     * Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match
+     * the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span
+     * on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected
+     * in the results. AB Test segments are currently not supported by this operation.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayersInSegmentResult> privateGetPlayersInSegmentAsync(final GetPlayersInSegmentRequest request) throws Exception {
@@ -1942,7 +1928,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Retrieves the configuration information for all player statistics defined in the title, regardless of whether they have a reset interval.
+     * Retrieves the configuration information for all player statistics defined in the title, regardless of whether they have
+     * a reset interval.
      * @param request GetPlayerStatisticDefinitionsRequest
      * @return Async Task will return GetPlayerStatisticDefinitionsResult
      */
@@ -1956,7 +1943,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Retrieves the configuration information for all player statistics defined in the title, regardless of whether they have a reset interval.
+     * Retrieves the configuration information for all player statistics defined in the title, regardless of whether they have
+     * a reset interval.
      * @param request GetPlayerStatisticDefinitionsRequest
      * @return GetPlayerStatisticDefinitionsResult
      */
@@ -1976,7 +1964,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Retrieves the configuration information for all player statistics defined in the title, regardless of whether they have a reset interval.
+     * Retrieves the configuration information for all player statistics defined in the title, regardless of whether they have
+     * a reset interval.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayerStatisticDefinitionsResult> privateGetPlayerStatisticDefinitionsAsync(final GetPlayerStatisticDefinitionsRequest request) throws Exception {
@@ -2037,9 +2026,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Retrieves the information on the available versions of the specified statistic.
-     */
+    /** Retrieves the information on the available versions of the specified statistic. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayerStatisticVersionsResult> privateGetPlayerStatisticVersionsAsync(final GetPlayerStatisticVersionsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2099,9 +2086,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Get all tags with a given Namespace (optional) from a player profile.
-     */
+    /** Get all tags with a given Namespace (optional) from a player profile. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayerTagsResult> privateGetPlayerTagsAsync(final GetPlayerTagsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2161,9 +2146,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Gets the requested policy.
-     */
+    /** Gets the requested policy. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPolicyResponse> privateGetPolicyAsync(final GetPolicyRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2223,9 +2206,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Retrieves the key-value store of custom publisher settings
-     */
+    /** Retrieves the key-value store of custom publisher settings */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPublisherDataResult> privateGetPublisherDataAsync(final GetPublisherDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2285,9 +2266,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Retrieves the random drop table configuration for the title
-     */
+    /** Retrieves the random drop table configuration for the title */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetRandomResultTablesResult> privateGetRandomResultTablesAsync(final GetRandomResultTablesRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2347,9 +2326,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Retrieves the build details for the specified game server executable
-     */
+    /** Retrieves the build details for the specified game server executable */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetServerBuildInfoResult> privateGetServerBuildInfoAsync(final GetServerBuildInfoRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2376,7 +2353,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Retrieves the pre-authorized URL for uploading a game server package containing a build (does not enable the build for use - see AddServerBuild)
+     * Retrieves the pre-authorized URL for uploading a game server package containing a build (does not enable the build for
+     * use - see AddServerBuild)
      * @param request GetServerBuildUploadURLRequest
      * @return Async Task will return GetServerBuildUploadURLResult
      */
@@ -2390,7 +2368,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Retrieves the pre-authorized URL for uploading a game server package containing a build (does not enable the build for use - see AddServerBuild)
+     * Retrieves the pre-authorized URL for uploading a game server package containing a build (does not enable the build for
+     * use - see AddServerBuild)
      * @param request GetServerBuildUploadURLRequest
      * @return GetServerBuildUploadURLResult
      */
@@ -2410,7 +2389,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Retrieves the pre-authorized URL for uploading a game server package containing a build (does not enable the build for use - see AddServerBuild)
+     * Retrieves the pre-authorized URL for uploading a game server package containing a build (does not enable the build for
+     * use - see AddServerBuild)
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetServerBuildUploadURLResult> privateGetServerBuildUploadUrlAsync(final GetServerBuildUploadURLRequest request) throws Exception {
@@ -2471,9 +2451,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Retrieves the set of items defined for the specified store, including all prices defined
-     */
+    /** Retrieves the set of items defined for the specified store, including all prices defined */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetStoreItemsResult> privateGetStoreItemsAsync(final GetStoreItemsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2533,9 +2511,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Query for task instances by task, status, or time range.
-     */
+    /** Query for task instances by task, status, or time range. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTaskInstancesResult> privateGetTaskInstancesAsync(final GetTaskInstancesRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2595,9 +2571,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Get definition information on a specified task or all tasks within a title.
-     */
+    /** Get definition information on a specified task or all tasks within a title. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTasksResult> privateGetTasksAsync(final GetTasksRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2657,9 +2631,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Retrieves the key-value store of custom title settings which can be read by the client
-     */
+    /** Retrieves the key-value store of custom title settings which can be read by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTitleDataResult> privateGetTitleDataAsync(final GetTitleDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2719,9 +2691,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Retrieves the key-value store of custom title settings which cannot be read by the client
-     */
+    /** Retrieves the key-value store of custom title settings which cannot be read by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTitleDataResult> privateGetTitleInternalDataAsync(final GetTitleDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2781,9 +2751,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Retrieves the relevant details for a specified user, based upon a match against a supplied unique identifier
-     */
+    /** Retrieves the relevant details for a specified user, based upon a match against a supplied unique identifier */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LookupUserAccountInfoResult> privateGetUserAccountInfoAsync(final LookupUserAccountInfoRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2843,9 +2811,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Gets all bans for a user.
-     */
+    /** Gets all bans for a user. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserBansResult> privateGetUserBansAsync(final GetUserBansRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2905,9 +2871,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Retrieves the title-specific custom data for the user which is readable and writable by the client
-     */
+    /** Retrieves the title-specific custom data for the user which is readable and writable by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2967,9 +2931,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Retrieves the title-specific custom data for the user which cannot be accessed by the client
-     */
+    /** Retrieves the title-specific custom data for the user which cannot be accessed by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserInternalDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3029,9 +2991,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Retrieves the specified user's current inventory of virtual goods
-     */
+    /** Retrieves the specified user's current inventory of virtual goods */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserInventoryResult> privateGetUserInventoryAsync(final GetUserInventoryRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3091,9 +3051,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Retrieves the publisher-specific custom data for the user which is readable and writable by the client
-     */
+    /** Retrieves the publisher-specific custom data for the user which is readable and writable by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserPublisherDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3153,9 +3111,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Retrieves the publisher-specific custom data for the user which cannot be accessed by the client
-     */
+    /** Retrieves the publisher-specific custom data for the user which cannot be accessed by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserPublisherInternalDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3215,9 +3171,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Retrieves the publisher-specific custom data for the user which can only be read by the client
-     */
+    /** Retrieves the publisher-specific custom data for the user which can only be read by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserPublisherReadOnlyDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3277,9 +3231,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Retrieves the title-specific custom data for the user which can only be read by the client
-     */
+    /** Retrieves the title-specific custom data for the user which can only be read by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserReadOnlyDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3339,9 +3291,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Adds the specified items to the specified user inventories
-     */
+    /** Adds the specified items to the specified user inventories */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GrantItemsToUsersResult> privateGrantItemsToUsersAsync(final GrantItemsToUsersRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3401,9 +3351,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Resets the indicated statistic, removing all player entries for it and backing up the old values.
-     */
+    /** Resets the indicated statistic, removing all player entries for it and backing up the old values. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<IncrementPlayerStatisticVersionResult> privateIncrementPlayerStatisticVersionAsync(final IncrementPlayerStatisticVersionRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3463,9 +3411,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Retrieves the build details for all game server executables which are currently defined for the title
-     */
+    /** Retrieves the build details for all game server executables which are currently defined for the title */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListBuildsResult> privateListServerBuildsAsync(final ListBuildsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3525,9 +3471,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Retuns the list of all defined virtual currencies for the title
-     */
+    /** Retuns the list of all defined virtual currencies for the title */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListVirtualCurrencyTypesResult> privateListVirtualCurrencyTypesAsync(final ListVirtualCurrencyTypesRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3587,9 +3531,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Updates the game server mode details for the specified game server executable
-     */
+    /** Updates the game server mode details for the specified game server executable */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyMatchmakerGameModesResult> privateModifyMatchmakerGameModesAsync(final ModifyMatchmakerGameModesRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3649,9 +3591,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Updates the build details for the specified game server executable
-     */
+    /** Updates the build details for the specified game server executable */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyServerBuildResult> privateModifyServerBuildAsync(final ModifyServerBuildRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3711,9 +3651,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Attempts to process an order refund through the original real money payment provider.
-     */
+    /** Attempts to process an order refund through the original real money payment provider. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RefundPurchaseResponse> privateRefundPurchaseAsync(final RefundPurchaseRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3773,9 +3711,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Remove a given tag from a player profile. The tag's namespace is automatically generated based on the source of the tag.
-     */
+    /** Remove a given tag from a player profile. The tag's namespace is automatically generated based on the source of the tag. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RemovePlayerTagResult> privateRemovePlayerTagAsync(final RemovePlayerTagRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3802,7 +3738,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Removes the game server executable specified from the set of those a client is permitted to request in a call to StartGame
+     * Removes the game server executable specified from the set of those a client is permitted to request in a call to
+     * StartGame
      * @param request RemoveServerBuildRequest
      * @return Async Task will return RemoveServerBuildResult
      */
@@ -3816,7 +3753,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Removes the game server executable specified from the set of those a client is permitted to request in a call to StartGame
+     * Removes the game server executable specified from the set of those a client is permitted to request in a call to
+     * StartGame
      * @param request RemoveServerBuildRequest
      * @return RemoveServerBuildResult
      */
@@ -3836,7 +3774,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Removes the game server executable specified from the set of those a client is permitted to request in a call to StartGame
+     * Removes the game server executable specified from the set of those a client is permitted to request in a call to
+     * StartGame
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RemoveServerBuildResult> privateRemoveServerBuildAsync(final RemoveServerBuildRequest request) throws Exception {
@@ -3897,9 +3836,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Removes one or more virtual currencies from the set defined for the title.
-     */
+    /** Removes one or more virtual currencies from the set defined for the title. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<BlankResult> privateRemoveVirtualCurrencyTypesAsync(final RemoveVirtualCurrencyTypesRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3959,9 +3896,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Completely removes all statistics for the specified character, for the current game
-     */
+    /** Completely removes all statistics for the specified character, for the current game */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ResetCharacterStatisticsResult> privateResetCharacterStatisticsAsync(final ResetCharacterStatisticsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3983,71 +3918,6 @@ public class PlayFabAdminAPI {
         ResetCharacterStatisticsResult result = resultData.data;
 
         PlayFabResult<ResetCharacterStatisticsResult> pfResult = new PlayFabResult<ResetCharacterStatisticsResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
-     * @deprecated Please use DeletePlayer instead.
-     * @param request ResetUsersRequest
-     * @return Async Task will return BlankResult
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<BlankResult>> ResetUsersAsync(final ResetUsersRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<BlankResult>>() {
-            public PlayFabResult<BlankResult> call() throws Exception {
-                return privateResetUsersAsync(request);
-            }
-        });
-    }
-
-    /**
-     * @deprecated Please use DeletePlayer instead.
-     * @param request ResetUsersRequest
-     * @return BlankResult
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<BlankResult> ResetUsers(final ResetUsersRequest request) {
-        FutureTask<PlayFabResult<BlankResult>> task = new FutureTask(new Callable<PlayFabResult<BlankResult>>() {
-            public PlayFabResult<BlankResult> call() throws Exception {
-                return privateResetUsersAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * @deprecated Please use DeletePlayer instead.
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<BlankResult> privateResetUsersAsync(final ResetUsersRequest request) throws Exception {
-        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/ResetUsers", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
-        task.run();
-        Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<BlankResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<BlankResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<BlankResult>>(){}.getType());
-        BlankResult result = resultData.data;
-
-        PlayFabResult<BlankResult> pfResult = new PlayFabResult<BlankResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -4086,9 +3956,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Completely removes all statistics for the specified user, for the current game
-     */
+    /** Completely removes all statistics for the specified user, for the current game */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ResetUserStatisticsResult> privateResetUserStatisticsAsync(final ResetUserStatisticsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4148,9 +4016,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Attempts to resolve a dispute with the original order's payment provider.
-     */
+    /** Attempts to resolve a dispute with the original order's payment provider. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ResolvePurchaseDisputeResponse> privateResolvePurchaseDisputeAsync(final ResolvePurchaseDisputeRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4210,9 +4076,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Revoke all active bans for a user.
-     */
+    /** Revoke all active bans for a user. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RevokeAllBansForUserResult> privateRevokeAllBansForUserAsync(final RevokeAllBansForUserRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4272,9 +4136,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Revoke all active bans specified with BanId.
-     */
+    /** Revoke all active bans specified with BanId. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RevokeBansResult> privateRevokeBansAsync(final RevokeBansRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4334,9 +4196,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Revokes access to an item in a user's inventory
-     */
+    /** Revokes access to an item in a user's inventory */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RevokeInventoryResult> privateRevokeInventoryItemAsync(final RevokeInventoryItemRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4396,9 +4256,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Run a task immediately regardless of its schedule.
-     */
+    /** Run a task immediately regardless of its schedule. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RunTaskResult> privateRunTaskAsync(final RunTaskRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4425,7 +4283,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Forces an email to be sent to the registered email address for the specified account, with a link allowing the user to change the password
+     * Forces an email to be sent to the registered email address for the specified account, with a link allowing the user to
+     * change the password
      * @param request SendAccountRecoveryEmailRequest
      * @return Async Task will return SendAccountRecoveryEmailResult
      */
@@ -4439,7 +4298,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Forces an email to be sent to the registered email address for the specified account, with a link allowing the user to change the password
+     * Forces an email to be sent to the registered email address for the specified account, with a link allowing the user to
+     * change the password
      * @param request SendAccountRecoveryEmailRequest
      * @return SendAccountRecoveryEmailResult
      */
@@ -4459,7 +4319,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Forces an email to be sent to the registered email address for the specified account, with a link allowing the user to change the password
+     * Forces an email to be sent to the registered email address for the specified account, with a link allowing the user to
+     * change the password
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SendAccountRecoveryEmailResult> privateSendAccountRecoveryEmailAsync(final SendAccountRecoveryEmailRequest request) throws Exception {
@@ -4520,9 +4381,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Creates the catalog configuration of all virtual goods for the specified catalog version
-     */
+    /** Creates the catalog configuration of all virtual goods for the specified catalog version */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateCatalogItemsResult> privateSetCatalogItemsAsync(final UpdateCatalogItemsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4582,9 +4441,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Sets or resets the player's secret. Player secrets are used to sign API requests.
-     */
+    /** Sets or resets the player's secret. Player secrets are used to sign API requests. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetPlayerSecretResult> privateSetPlayerSecretAsync(final SetPlayerSecretRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4644,9 +4501,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Sets the currently published revision of a title Cloud Script
-     */
+    /** Sets the currently published revision of a title Cloud Script */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetPublishedRevisionResult> privateSetPublishedRevisionAsync(final SetPublishedRevisionRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4706,9 +4561,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Updates the key-value store of custom publisher settings
-     */
+    /** Updates the key-value store of custom publisher settings */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetPublisherDataResult> privateSetPublisherDataAsync(final SetPublisherDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4768,9 +4621,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Sets all the items in one virtual store
-     */
+    /** Sets all the items in one virtual store */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateStoreItemsResult> privateSetStoreItemsAsync(final UpdateStoreItemsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4830,9 +4681,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Creates and updates the key-value store of custom title settings which can be read by the client
-     */
+    /** Creates and updates the key-value store of custom title settings which can be read by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetTitleDataResult> privateSetTitleDataAsync(final SetTitleDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4892,9 +4741,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Updates the key-value store of custom title settings which cannot be read by the client
-     */
+    /** Updates the key-value store of custom title settings which cannot be read by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetTitleDataResult> privateSetTitleInternalDataAsync(final SetTitleDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4921,7 +4768,9 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Sets the Amazon Resource Name (ARN) for iOS and Android push notifications. Documentation on the exact restrictions can be found at: http://docs.aws.amazon.com/sns/latest/api/API_CreatePlatformApplication.html. Currently, Amazon device Messaging is not supported.
+     * Sets the Amazon Resource Name (ARN) for iOS and Android push notifications. Documentation on the exact restrictions can
+     * be found at: http://docs.aws.amazon.com/sns/latest/api/API_CreatePlatformApplication.html. Currently, Amazon device
+     * Messaging is not supported.
      * @param request SetupPushNotificationRequest
      * @return Async Task will return SetupPushNotificationResult
      */
@@ -4935,7 +4784,9 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Sets the Amazon Resource Name (ARN) for iOS and Android push notifications. Documentation on the exact restrictions can be found at: http://docs.aws.amazon.com/sns/latest/api/API_CreatePlatformApplication.html. Currently, Amazon device Messaging is not supported.
+     * Sets the Amazon Resource Name (ARN) for iOS and Android push notifications. Documentation on the exact restrictions can
+     * be found at: http://docs.aws.amazon.com/sns/latest/api/API_CreatePlatformApplication.html. Currently, Amazon device
+     * Messaging is not supported.
      * @param request SetupPushNotificationRequest
      * @return SetupPushNotificationResult
      */
@@ -4955,7 +4806,9 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Sets the Amazon Resource Name (ARN) for iOS and Android push notifications. Documentation on the exact restrictions can be found at: http://docs.aws.amazon.com/sns/latest/api/API_CreatePlatformApplication.html. Currently, Amazon device Messaging is not supported.
+     * Sets the Amazon Resource Name (ARN) for iOS and Android push notifications. Documentation on the exact restrictions can
+     * be found at: http://docs.aws.amazon.com/sns/latest/api/API_CreatePlatformApplication.html. Currently, Amazon device
+     * Messaging is not supported.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetupPushNotificationResult> privateSetupPushNotificationAsync(final SetupPushNotificationRequest request) throws Exception {
@@ -5016,9 +4869,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Decrements the specified virtual currency by the stated amount
-     */
+    /** Decrements the specified virtual currency by the stated amount */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyUserVirtualCurrencyResult> privateSubtractUserVirtualCurrencyAsync(final SubtractUserVirtualCurrencyRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5078,9 +4929,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Updates information of a list of existing bans specified with Ban Ids.
-     */
+    /** Updates information of a list of existing bans specified with Ban Ids. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateBansResult> privateUpdateBansAsync(final UpdateBansRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5140,9 +4989,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Updates the catalog configuration for virtual goods in the specified catalog version
-     */
+    /** Updates the catalog configuration for virtual goods in the specified catalog version */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateCatalogItemsResult> privateUpdateCatalogItemsAsync(final UpdateCatalogItemsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5169,7 +5016,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Creates a new Cloud Script revision and uploads source code to it. Note that at this time, only one file should be submitted in the revision.
+     * Creates a new Cloud Script revision and uploads source code to it. Note that at this time, only one file should be
+     * submitted in the revision.
      * @param request UpdateCloudScriptRequest
      * @return Async Task will return UpdateCloudScriptResult
      */
@@ -5183,7 +5031,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Creates a new Cloud Script revision and uploads source code to it. Note that at this time, only one file should be submitted in the revision.
+     * Creates a new Cloud Script revision and uploads source code to it. Note that at this time, only one file should be
+     * submitted in the revision.
      * @param request UpdateCloudScriptRequest
      * @return UpdateCloudScriptResult
      */
@@ -5203,7 +5052,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Creates a new Cloud Script revision and uploads source code to it. Note that at this time, only one file should be submitted in the revision.
+     * Creates a new Cloud Script revision and uploads source code to it. Note that at this time, only one file should be
+     * submitted in the revision.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateCloudScriptResult> privateUpdateCloudScriptAsync(final UpdateCloudScriptRequest request) throws Exception {
@@ -5231,7 +5081,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Updates a existing Player Shared Secret Key. It may take up to 5 minutes for this update to become generally available after this API returns.
+     * Updates a existing Player Shared Secret Key. It may take up to 5 minutes for this update to become generally available
+     * after this API returns.
      * @param request UpdatePlayerSharedSecretRequest
      * @return Async Task will return UpdatePlayerSharedSecretResult
      */
@@ -5245,7 +5096,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Updates a existing Player Shared Secret Key. It may take up to 5 minutes for this update to become generally available after this API returns.
+     * Updates a existing Player Shared Secret Key. It may take up to 5 minutes for this update to become generally available
+     * after this API returns.
      * @param request UpdatePlayerSharedSecretRequest
      * @return UpdatePlayerSharedSecretResult
      */
@@ -5265,7 +5117,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Updates a existing Player Shared Secret Key. It may take up to 5 minutes for this update to become generally available after this API returns.
+     * Updates a existing Player Shared Secret Key. It may take up to 5 minutes for this update to become generally available
+     * after this API returns.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdatePlayerSharedSecretResult> privateUpdatePlayerSharedSecretAsync(final UpdatePlayerSharedSecretRequest request) throws Exception {
@@ -5326,9 +5179,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Updates a player statistic configuration for the title, optionally allowing the developer to specify a reset interval.
-     */
+    /** Updates a player statistic configuration for the title, optionally allowing the developer to specify a reset interval. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdatePlayerStatisticDefinitionResult> privateUpdatePlayerStatisticDefinitionAsync(final UpdatePlayerStatisticDefinitionRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5388,9 +5239,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Changes a policy for a title
-     */
+    /** Changes a policy for a title */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdatePolicyResponse> privateUpdatePolicyAsync(final UpdatePolicyRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5450,9 +5299,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Updates the random drop table configuration for the title
-     */
+    /** Updates the random drop table configuration for the title */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateRandomResultTablesResult> privateUpdateRandomResultTablesAsync(final UpdateRandomResultTablesRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5512,9 +5359,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Updates an existing virtual item store with new or modified items
-     */
+    /** Updates an existing virtual item store with new or modified items */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateStoreItemsResult> privateUpdateStoreItemsAsync(final UpdateStoreItemsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5574,9 +5419,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Update an existing task.
-     */
+    /** Update an existing task. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResult> privateUpdateTaskAsync(final UpdateTaskRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5636,9 +5479,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Updates the title-specific custom data for the user which is readable and writable by the client
-     */
+    /** Updates the title-specific custom data for the user which is readable and writable by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserDataAsync(final UpdateUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5698,9 +5539,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Updates the title-specific custom data for the user which cannot be accessed by the client
-     */
+    /** Updates the title-specific custom data for the user which cannot be accessed by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserInternalDataAsync(final UpdateUserInternalDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5760,9 +5599,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Updates the publisher-specific custom data for the user which is readable and writable by the client
-     */
+    /** Updates the publisher-specific custom data for the user which is readable and writable by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserPublisherDataAsync(final UpdateUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5822,9 +5659,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Updates the publisher-specific custom data for the user which cannot be accessed by the client
-     */
+    /** Updates the publisher-specific custom data for the user which cannot be accessed by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserPublisherInternalDataAsync(final UpdateUserInternalDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5884,9 +5719,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Updates the publisher-specific custom data for the user which can only be read by the client
-     */
+    /** Updates the publisher-specific custom data for the user which can only be read by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserPublisherReadOnlyDataAsync(final UpdateUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5946,9 +5779,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Updates the title-specific custom data for the user which can only be read by the client
-     */
+    /** Updates the title-specific custom data for the user which can only be read by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserReadOnlyDataAsync(final UpdateUserDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -6008,9 +5839,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /**
-     * Updates the title specific display name for a user
-     */
+    /** Updates the title specific display name for a user */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserTitleDisplayNameResult> privateUpdateUserTitleDisplayNameAsync(final UpdateUserTitleDisplayNameRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");

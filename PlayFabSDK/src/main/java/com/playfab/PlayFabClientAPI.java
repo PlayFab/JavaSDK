@@ -9,15 +9,17 @@ import java.util.*;
 import com.google.gson.*;
 import com.google.gson.reflect.*;
 
-
-/**
- * APIs which provide the full range of PlayFab features available to the client - authentication, account and data management, inventory, friends, matchmaking, reporting, and platform-specific functionality
- */
+    /**
+     * APIs which provide the full range of PlayFab features available to the client - authentication, account and data
+     * management, inventory, friends, matchmaking, reporting, and platform-specific functionality
+     */
 public class PlayFabClientAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 
     /**
-     * Accepts an open trade (one that has not yet been accepted or cancelled), if the locally signed-in player is in the  allowed player list for the trade, or it is open to all players. If the call is successful, the offered and accepted items will be swapped  between the two players' inventories.
+     * Accepts an open trade (one that has not yet been accepted or cancelled), if the locally signed-in player is in the
+     * allowed player list for the trade, or it is open to all players. If the call is successful, the offered and accepted
+     * items will be swapped  between the two players' inventories.
      * @param request AcceptTradeRequest
      * @return Async Task will return AcceptTradeResponse
      */
@@ -31,7 +33,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Accepts an open trade (one that has not yet been accepted or cancelled), if the locally signed-in player is in the  allowed player list for the trade, or it is open to all players. If the call is successful, the offered and accepted items will be swapped  between the two players' inventories.
+     * Accepts an open trade (one that has not yet been accepted or cancelled), if the locally signed-in player is in the
+     * allowed player list for the trade, or it is open to all players. If the call is successful, the offered and accepted
+     * items will be swapped  between the two players' inventories.
      * @param request AcceptTradeRequest
      * @return AcceptTradeResponse
      */
@@ -51,7 +55,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Accepts an open trade (one that has not yet been accepted or cancelled), if the locally signed-in player is in the  allowed player list for the trade, or it is open to all players. If the call is successful, the offered and accepted items will be swapped  between the two players' inventories.
+     * Accepts an open trade (one that has not yet been accepted or cancelled), if the locally signed-in player is in the
+     * allowed player list for the trade, or it is open to all players. If the call is successful, the offered and accepted
+     * items will be swapped  between the two players' inventories.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AcceptTradeResponse> privateAcceptTradeAsync(final AcceptTradeRequest request) throws Exception {
@@ -79,7 +85,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds the PlayFab user, based upon a match against a supplied unique identifier, to the friend list of the local user. At least one of FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
+     * Adds the PlayFab user, based upon a match against a supplied unique identifier, to the friend list of the local user. At
+     * least one of FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
      * @param request AddFriendRequest
      * @return Async Task will return AddFriendResult
      */
@@ -93,7 +100,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds the PlayFab user, based upon a match against a supplied unique identifier, to the friend list of the local user. At least one of FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
+     * Adds the PlayFab user, based upon a match against a supplied unique identifier, to the friend list of the local user. At
+     * least one of FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
      * @param request AddFriendRequest
      * @return AddFriendResult
      */
@@ -113,7 +121,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds the PlayFab user, based upon a match against a supplied unique identifier, to the friend list of the local user. At least one of FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
+     * Adds the PlayFab user, based upon a match against a supplied unique identifier, to the friend list of the local user. At
+     * least one of FriendPlayFabId,FriendUsername,FriendEmail, or FriendTitleDisplayName should be initialized.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AddFriendResult> privateAddFriendAsync(final AddFriendRequest request) throws Exception {
@@ -141,7 +150,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as authentication credentials, as the intent is that it is easily accessible by other players.
+     * Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab
+     * ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as
+     * authentication credentials, as the intent is that it is easily accessible by other players.
      * @param request AddGenericIDRequest
      * @return Async Task will return AddGenericIDResult
      */
@@ -155,7 +166,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as authentication credentials, as the intent is that it is easily accessible by other players.
+     * Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab
+     * ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as
+     * authentication credentials, as the intent is that it is easily accessible by other players.
      * @param request AddGenericIDRequest
      * @return AddGenericIDResult
      */
@@ -175,7 +188,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as authentication credentials, as the intent is that it is easily accessible by other players.
+     * Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab
+     * ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as
+     * authentication credentials, as the intent is that it is easily accessible by other players.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AddGenericIDResult> privateAddGenericIDAsync(final AddGenericIDRequest request) throws Exception {
@@ -203,7 +218,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only users in the group can add new members. Shared Groups are designed for sharing data between a very  small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only
+     * users in the group can add new members. Shared Groups are designed for sharing data between a very  small number of
+     * players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request AddSharedGroupMembersRequest
      * @return Async Task will return AddSharedGroupMembersResult
      */
@@ -217,7 +234,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only users in the group can add new members. Shared Groups are designed for sharing data between a very  small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only
+     * users in the group can add new members. Shared Groups are designed for sharing data between a very  small number of
+     * players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request AddSharedGroupMembersRequest
      * @return AddSharedGroupMembersResult
      */
@@ -237,7 +256,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only users in the group can add new members. Shared Groups are designed for sharing data between a very  small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only
+     * users in the group can add new members. Shared Groups are designed for sharing data between a very  small number of
+     * players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AddSharedGroupMembersResult> privateAddSharedGroupMembersAsync(final AddSharedGroupMembersRequest request) throws Exception {
@@ -265,7 +286,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds playfab username/password auth to an existing account created via an anonymous auth method, e.g. automatic device ID login.
+     * Adds playfab username/password auth to an existing account created via an anonymous auth method, e.g. automatic device
+     * ID login.
      * @param request AddUsernamePasswordRequest
      * @return Async Task will return AddUsernamePasswordResult
      */
@@ -279,7 +301,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds playfab username/password auth to an existing account created via an anonymous auth method, e.g. automatic device ID login.
+     * Adds playfab username/password auth to an existing account created via an anonymous auth method, e.g. automatic device
+     * ID login.
      * @param request AddUsernamePasswordRequest
      * @return AddUsernamePasswordResult
      */
@@ -299,7 +322,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds playfab username/password auth to an existing account created via an anonymous auth method, e.g. automatic device ID login.
+     * Adds playfab username/password auth to an existing account created via an anonymous auth method, e.g. automatic device
+     * ID login.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AddUsernamePasswordResult> privateAddUsernamePasswordAsync(final AddUsernamePasswordRequest request) throws Exception {
@@ -360,9 +384,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Increments the user's balance of the specified virtual currency by the stated amount
-     */
+    /** Increments the user's balance of the specified virtual currency by the stated amount */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyUserVirtualCurrencyResult> privateAddUserVirtualCurrencyAsync(final AddUserVirtualCurrencyRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -422,9 +444,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Registers the Android device to receive push notifications
-     */
+    /** Registers the Android device to receive push notifications */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AndroidDevicePushNotificationRegistrationResult> privateAndroidDevicePushNotificationRegistrationAsync(final AndroidDevicePushNotificationRegistrationRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -484,9 +504,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Attributes an install for advertisment.
-     */
+    /** Attributes an install for advertisment. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AttributeInstallResult> privateAttributeInstallAsync(final AttributeInstallRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -515,7 +533,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Cancels an open trade (one that has not yet been accepted or cancelled). Note that only the player who created the trade  can cancel it via this API call, to prevent griefing of the trade system (cancelling trades in order to prevent other players from accepting  them, for trades that can be claimed by more than one player).
+     * Cancels an open trade (one that has not yet been accepted or cancelled). Note that only the player who created the trade
+     * can cancel it via this API call, to prevent griefing of the trade system (cancelling trades in order to prevent other
+     * players from accepting  them, for trades that can be claimed by more than one player).
      * @param request CancelTradeRequest
      * @return Async Task will return CancelTradeResponse
      */
@@ -529,7 +549,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Cancels an open trade (one that has not yet been accepted or cancelled). Note that only the player who created the trade  can cancel it via this API call, to prevent griefing of the trade system (cancelling trades in order to prevent other players from accepting  them, for trades that can be claimed by more than one player).
+     * Cancels an open trade (one that has not yet been accepted or cancelled). Note that only the player who created the trade
+     * can cancel it via this API call, to prevent griefing of the trade system (cancelling trades in order to prevent other
+     * players from accepting  them, for trades that can be claimed by more than one player).
      * @param request CancelTradeRequest
      * @return CancelTradeResponse
      */
@@ -549,7 +571,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Cancels an open trade (one that has not yet been accepted or cancelled). Note that only the player who created the trade  can cancel it via this API call, to prevent griefing of the trade system (cancelling trades in order to prevent other players from accepting  them, for trades that can be claimed by more than one player).
+     * Cancels an open trade (one that has not yet been accepted or cancelled). Note that only the player who created the trade
+     * can cancel it via this API call, to prevent griefing of the trade system (cancelling trades in order to prevent other
+     * players from accepting  them, for trades that can be claimed by more than one player).
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CancelTradeResponse> privateCancelTradeAsync(final CancelTradeRequest request) throws Exception {
@@ -577,7 +601,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and  virtual currency balances as appropriate
+     * Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and  virtual
+     * currency balances as appropriate
      * @param request ConfirmPurchaseRequest
      * @return Async Task will return ConfirmPurchaseResult
      */
@@ -591,7 +616,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and  virtual currency balances as appropriate
+     * Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and  virtual
+     * currency balances as appropriate
      * @param request ConfirmPurchaseRequest
      * @return ConfirmPurchaseResult
      */
@@ -611,7 +637,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and  virtual currency balances as appropriate
+     * Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and  virtual
+     * currency balances as appropriate
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ConfirmPurchaseResult> privateConfirmPurchaseAsync(final ConfirmPurchaseRequest request) throws Exception {
@@ -672,9 +699,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's inventory.
-     */
+    /** Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's inventory. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ConsumeItemResult> privateConsumeItemAsync(final ConsumeItemRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -701,7 +726,10 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Requests the creation of a shared group object, containing key/value pairs which may be updated by  all members of the group. Upon creation, the current user will be the only member of the group. Shared Groups are designed  for sharing data between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Requests the creation of a shared group object, containing key/value pairs which may be updated by  all members of the
+     * group. Upon creation, the current user will be the only member of the group. Shared Groups are designed  for sharing
+     * data between a very small number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request CreateSharedGroupRequest
      * @return Async Task will return CreateSharedGroupResult
      */
@@ -715,7 +743,10 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Requests the creation of a shared group object, containing key/value pairs which may be updated by  all members of the group. Upon creation, the current user will be the only member of the group. Shared Groups are designed  for sharing data between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Requests the creation of a shared group object, containing key/value pairs which may be updated by  all members of the
+     * group. Upon creation, the current user will be the only member of the group. Shared Groups are designed  for sharing
+     * data between a very small number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request CreateSharedGroupRequest
      * @return CreateSharedGroupResult
      */
@@ -735,7 +766,10 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Requests the creation of a shared group object, containing key/value pairs which may be updated by  all members of the group. Upon creation, the current user will be the only member of the group. Shared Groups are designed  for sharing data between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Requests the creation of a shared group object, containing key/value pairs which may be updated by  all members of the
+     * group. Upon creation, the current user will be the only member of the group. Shared Groups are designed  for sharing
+     * data between a very small number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateSharedGroupResult> privateCreateSharedGroupAsync(final CreateSharedGroupRequest request) throws Exception {
@@ -796,9 +830,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Executes a CloudScript function, with the 'currentPlayerId' set to the PlayFab ID of the authenticated player.
-     */
+    /** Executes a CloudScript function, with the 'currentPlayerId' set to the PlayFab ID of the authenticated player. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ExecuteCloudScriptResult> privateExecuteCloudScriptAsync(final ExecuteCloudScriptRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -858,9 +890,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves the user's PlayFab account details
-     */
+    /** Retrieves the user's PlayFab account details */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetAccountInfoResult> privateGetAccountInfoAsync(final GetAccountInfoRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -887,7 +917,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
+     * Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be
+     * evaluated with the parent PlayFabId to guarantee uniqueness.
      * @param request ListUsersCharactersRequest
      * @return Async Task will return ListUsersCharactersResult
      */
@@ -901,7 +932,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
+     * Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be
+     * evaluated with the parent PlayFabId to guarantee uniqueness.
      * @param request ListUsersCharactersRequest
      * @return ListUsersCharactersResult
      */
@@ -921,7 +953,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
+     * Lists all of the characters that belong to a specific user. CharacterIds are not globally unique; characterId must be
+     * evaluated with the parent PlayFabId to guarantee uniqueness.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListUsersCharactersResult> privateGetAllUsersCharactersAsync(final ListUsersCharactersRequest request) throws Exception {
@@ -982,9 +1015,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
-     */
+    /** Retrieves the specified version of the title's catalog of virtual goods, including all defined properties */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCatalogItemsResult> privateGetCatalogItemsAsync(final GetCatalogItemsRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -1044,9 +1075,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves the title-specific custom data for the character which is readable and writable by the client
-     */
+    /** Retrieves the title-specific custom data for the character which is readable and writable by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCharacterDataResult> privateGetCharacterDataAsync(final GetCharacterDataRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -1106,9 +1135,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves the specified character's current inventory of virtual goods
-     */
+    /** Retrieves the specified character's current inventory of virtual goods */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCharacterInventoryResult> privateGetCharacterInventoryAsync(final GetCharacterInventoryRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -1168,9 +1195,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves a list of ranked characters for the given statistic, starting from the indicated point in the leaderboard
-     */
+    /** Retrieves a list of ranked characters for the given statistic, starting from the indicated point in the leaderboard */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCharacterLeaderboardResult> privateGetCharacterLeaderboardAsync(final GetCharacterLeaderboardRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -1230,9 +1255,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves the title-specific custom data for the character which can only be read by the client
-     */
+    /** Retrieves the title-specific custom data for the character which can only be read by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCharacterDataResult> privateGetCharacterReadOnlyDataAsync(final GetCharacterDataRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -1292,9 +1315,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves the details of all title-specific statistics for the user
-     */
+    /** Retrieves the details of all title-specific statistics for the user */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCharacterStatisticsResult> privateGetCharacterStatisticsAsync(final GetCharacterStatisticsRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -1321,7 +1342,13 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded, the query to retrieve the data will fail. See this post for more information:  https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.  Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
+     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned
+     * URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the
+     * content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded,
+     * the query to retrieve the data will fail. See this post for more information:
+     * https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.
+     * Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates
+     * apply.
      * @param request GetContentDownloadUrlRequest
      * @return Async Task will return GetContentDownloadUrlResult
      */
@@ -1335,7 +1362,13 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded, the query to retrieve the data will fail. See this post for more information:  https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.  Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
+     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned
+     * URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the
+     * content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded,
+     * the query to retrieve the data will fail. See this post for more information:
+     * https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.
+     * Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates
+     * apply.
      * @param request GetContentDownloadUrlRequest
      * @return GetContentDownloadUrlResult
      */
@@ -1355,7 +1388,13 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded, the query to retrieve the data will fail. See this post for more information:  https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.  Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
+     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned
+     * URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the
+     * content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded,
+     * the query to retrieve the data will fail. See this post for more information:
+     * https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.
+     * Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates
+     * apply.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetContentDownloadUrlResult> privateGetContentDownloadUrlAsync(final GetContentDownloadUrlRequest request) throws Exception {
@@ -1416,9 +1455,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Get details about all current running game servers matching the given parameters.
-     */
+    /** Get details about all current running game servers matching the given parameters. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CurrentGamesResult> privateGetCurrentGamesAsync(final CurrentGamesRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -1445,7 +1482,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a list of ranked friends of the current player for the given statistic, starting from the indicated point in the leaderboard
+     * Retrieves a list of ranked friends of the current player for the given statistic, starting from the indicated point in
+     * the leaderboard
      * @param request GetFriendLeaderboardRequest
      * @return Async Task will return GetLeaderboardResult
      */
@@ -1459,7 +1497,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a list of ranked friends of the current player for the given statistic, starting from the indicated point in the leaderboard
+     * Retrieves a list of ranked friends of the current player for the given statistic, starting from the indicated point in
+     * the leaderboard
      * @param request GetFriendLeaderboardRequest
      * @return GetLeaderboardResult
      */
@@ -1479,7 +1518,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a list of ranked friends of the current player for the given statistic, starting from the indicated point in the leaderboard
+     * Retrieves a list of ranked friends of the current player for the given statistic, starting from the indicated point in
+     * the leaderboard
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetLeaderboardResult> privateGetFriendLeaderboardAsync(final GetFriendLeaderboardRequest request) throws Exception {
@@ -1507,7 +1547,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a list of ranked friends of the current player for the given statistic, centered on the requested PlayFab user. If PlayFabId is empty or null will return currently logged in user.
+     * Retrieves a list of ranked friends of the current player for the given statistic, centered on the requested PlayFab
+     * user. If PlayFabId is empty or null will return currently logged in user.
      * @param request GetFriendLeaderboardAroundPlayerRequest
      * @return Async Task will return GetFriendLeaderboardAroundPlayerResult
      */
@@ -1521,7 +1562,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a list of ranked friends of the current player for the given statistic, centered on the requested PlayFab user. If PlayFabId is empty or null will return currently logged in user.
+     * Retrieves a list of ranked friends of the current player for the given statistic, centered on the requested PlayFab
+     * user. If PlayFabId is empty or null will return currently logged in user.
      * @param request GetFriendLeaderboardAroundPlayerRequest
      * @return GetFriendLeaderboardAroundPlayerResult
      */
@@ -1541,7 +1583,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a list of ranked friends of the current player for the given statistic, centered on the requested PlayFab user. If PlayFabId is empty or null will return currently logged in user.
+     * Retrieves a list of ranked friends of the current player for the given statistic, centered on the requested PlayFab
+     * user. If PlayFabId is empty or null will return currently logged in user.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetFriendLeaderboardAroundPlayerResult> privateGetFriendLeaderboardAroundPlayerAsync(final GetFriendLeaderboardAroundPlayerRequest request) throws Exception {
@@ -1569,7 +1612,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the current friend list for the local user, constrained to users who have PlayFab accounts. Friends from linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
+     * Retrieves the current friend list for the local user, constrained to users who have PlayFab accounts. Friends from
+     * linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
      * @param request GetFriendsListRequest
      * @return Async Task will return GetFriendsListResult
      */
@@ -1583,7 +1627,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the current friend list for the local user, constrained to users who have PlayFab accounts. Friends from linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
+     * Retrieves the current friend list for the local user, constrained to users who have PlayFab accounts. Friends from
+     * linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
      * @param request GetFriendsListRequest
      * @return GetFriendsListResult
      */
@@ -1603,7 +1648,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the current friend list for the local user, constrained to users who have PlayFab accounts. Friends from linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
+     * Retrieves the current friend list for the local user, constrained to users who have PlayFab accounts. Friends from
+     * linked accounts (Facebook, Steam) are also included. You may optionally exclude some linked services' friends.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetFriendsListResult> privateGetFriendsListAsync(final GetFriendsListRequest request) throws Exception {
@@ -1664,9 +1710,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Get details about the regions hosting game servers matching the given parameters.
-     */
+    /** Get details about the regions hosting game servers matching the given parameters. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GameServerRegionsResult> privateGetGameServerRegionsAsync(final GameServerRegionsRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -1726,9 +1770,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves a list of ranked users for the given statistic, starting from the indicated point in the leaderboard
-     */
+    /** Retrieves a list of ranked users for the given statistic, starting from the indicated point in the leaderboard */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetLeaderboardResult> privateGetLeaderboardAsync(final GetLeaderboardRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -1788,9 +1830,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves a list of ranked characters for the given statistic, centered on the requested Character ID
-     */
+    /** Retrieves a list of ranked characters for the given statistic, centered on the requested Character ID */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetLeaderboardAroundCharacterResult> privateGetLeaderboardAroundCharacterAsync(final GetLeaderboardAroundCharacterRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -1817,7 +1857,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a list of ranked users for the given statistic, centered on the requested player. If PlayFabId is empty or null will return currently logged in user.
+     * Retrieves a list of ranked users for the given statistic, centered on the requested player. If PlayFabId is empty or
+     * null will return currently logged in user.
      * @param request GetLeaderboardAroundPlayerRequest
      * @return Async Task will return GetLeaderboardAroundPlayerResult
      */
@@ -1831,7 +1872,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a list of ranked users for the given statistic, centered on the requested player. If PlayFabId is empty or null will return currently logged in user.
+     * Retrieves a list of ranked users for the given statistic, centered on the requested player. If PlayFabId is empty or
+     * null will return currently logged in user.
      * @param request GetLeaderboardAroundPlayerRequest
      * @return GetLeaderboardAroundPlayerResult
      */
@@ -1851,7 +1893,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a list of ranked users for the given statistic, centered on the requested player. If PlayFabId is empty or null will return currently logged in user.
+     * Retrieves a list of ranked users for the given statistic, centered on the requested player. If PlayFabId is empty or
+     * null will return currently logged in user.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetLeaderboardAroundPlayerResult> privateGetLeaderboardAroundPlayerAsync(final GetLeaderboardAroundPlayerRequest request) throws Exception {
@@ -1912,9 +1955,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves a list of all of the user's characters for the given statistic.
-     */
+    /** Retrieves a list of all of the user's characters for the given statistic. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetLeaderboardForUsersCharactersResult> privateGetLeaderboardForUserCharactersAsync(final GetLeaderboardForUsersCharactersRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -1941,7 +1982,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See https://api.playfab.com/docs/using-photon-with-playfab/ for more details.
+     * Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See
+     * https://api.playfab.com/docs/using-photon-with-playfab/ for more details.
      * @param request GetPhotonAuthenticationTokenRequest
      * @return Async Task will return GetPhotonAuthenticationTokenResult
      */
@@ -1955,7 +1997,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See https://api.playfab.com/docs/using-photon-with-playfab/ for more details.
+     * Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See
+     * https://api.playfab.com/docs/using-photon-with-playfab/ for more details.
      * @param request GetPhotonAuthenticationTokenRequest
      * @return GetPhotonAuthenticationTokenResult
      */
@@ -1975,7 +2018,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See https://api.playfab.com/docs/using-photon-with-playfab/ for more details.
+     * Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See
+     * https://api.playfab.com/docs/using-photon-with-playfab/ for more details.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPhotonAuthenticationTokenResult> privateGetPhotonAuthenticationTokenAsync(final GetPhotonAuthenticationTokenRequest request) throws Exception {
@@ -2036,9 +2080,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves all of the user's different kinds of info.
-     */
+    /** Retrieves all of the user's different kinds of info. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayerCombinedInfoResult> privateGetPlayerCombinedInfoAsync(final GetPlayerCombinedInfoRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -2098,9 +2140,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves the player's profile
-     */
+    /** Retrieves the player's profile */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayerProfileResult> privateGetPlayerProfileAsync(final GetPlayerProfileRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -2160,9 +2200,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * List all segments that a player currently belongs to at this moment in time.
-     */
+    /** List all segments that a player currently belongs to at this moment in time. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayerSegmentsResult> privateGetPlayerSegmentsAsync(final GetPlayerSegmentsRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -2189,7 +2227,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the indicated statistics (current version and values for all statistics, if none are specified), for the local player.
+     * Retrieves the indicated statistics (current version and values for all statistics, if none are specified), for the local
+     * player.
      * @param request GetPlayerStatisticsRequest
      * @return Async Task will return GetPlayerStatisticsResult
      */
@@ -2203,7 +2242,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the indicated statistics (current version and values for all statistics, if none are specified), for the local player.
+     * Retrieves the indicated statistics (current version and values for all statistics, if none are specified), for the local
+     * player.
      * @param request GetPlayerStatisticsRequest
      * @return GetPlayerStatisticsResult
      */
@@ -2223,7 +2263,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the indicated statistics (current version and values for all statistics, if none are specified), for the local player.
+     * Retrieves the indicated statistics (current version and values for all statistics, if none are specified), for the local
+     * player.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayerStatisticsResult> privateGetPlayerStatisticsAsync(final GetPlayerStatisticsRequest request) throws Exception {
@@ -2284,9 +2325,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves the information on the available versions of the specified statistic.
-     */
+    /** Retrieves the information on the available versions of the specified statistic. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayerStatisticVersionsResult> privateGetPlayerStatisticVersionsAsync(final GetPlayerStatisticVersionsRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -2346,9 +2385,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Get all tags with a given Namespace (optional) from a player profile.
-     */
+    /** Get all tags with a given Namespace (optional) from a player profile. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayerTagsResult> privateGetPlayerTagsAsync(final GetPlayerTagsRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -2408,9 +2445,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Gets all trades the player has either opened or accepted, optionally filtered by trade status.
-     */
+    /** Gets all trades the player has either opened or accepted, optionally filtered by trade status. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayerTradesResponse> privateGetPlayerTradesAsync(final GetPlayerTradesRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -2470,9 +2505,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves the unique PlayFab identifiers for the given set of Facebook identifiers.
-     */
+    /** Retrieves the unique PlayFab identifiers for the given set of Facebook identifiers. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayFabIDsFromFacebookIDsResult> privateGetPlayFabIDsFromFacebookIDsAsync(final GetPlayFabIDsFromFacebookIDsRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -2499,7 +2532,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Game Center identifiers (referenced in the Game Center Programming Guide as the Player Identifier).
+     * Retrieves the unique PlayFab identifiers for the given set of Game Center identifiers (referenced in the Game Center
+     * Programming Guide as the Player Identifier).
      * @param request GetPlayFabIDsFromGameCenterIDsRequest
      * @return Async Task will return GetPlayFabIDsFromGameCenterIDsResult
      */
@@ -2513,7 +2547,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Game Center identifiers (referenced in the Game Center Programming Guide as the Player Identifier).
+     * Retrieves the unique PlayFab identifiers for the given set of Game Center identifiers (referenced in the Game Center
+     * Programming Guide as the Player Identifier).
      * @param request GetPlayFabIDsFromGameCenterIDsRequest
      * @return GetPlayFabIDsFromGameCenterIDsResult
      */
@@ -2533,7 +2568,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Game Center identifiers (referenced in the Game Center Programming Guide as the Player Identifier).
+     * Retrieves the unique PlayFab identifiers for the given set of Game Center identifiers (referenced in the Game Center
+     * Programming Guide as the Player Identifier).
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayFabIDsFromGameCenterIDsResult> privateGetPlayFabIDsFromGameCenterIDsAsync(final GetPlayFabIDsFromGameCenterIDsRequest request) throws Exception {
@@ -2561,7 +2597,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of generic service identifiers. A generic identifier is the service name plus the service-specific ID for the player, as specified by the title when the generic identifier was added to the player account.
+     * Retrieves the unique PlayFab identifiers for the given set of generic service identifiers. A generic identifier is the
+     * service name plus the service-specific ID for the player, as specified by the title when the generic identifier was
+     * added to the player account.
      * @param request GetPlayFabIDsFromGenericIDsRequest
      * @return Async Task will return GetPlayFabIDsFromGenericIDsResult
      */
@@ -2575,7 +2613,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of generic service identifiers. A generic identifier is the service name plus the service-specific ID for the player, as specified by the title when the generic identifier was added to the player account.
+     * Retrieves the unique PlayFab identifiers for the given set of generic service identifiers. A generic identifier is the
+     * service name plus the service-specific ID for the player, as specified by the title when the generic identifier was
+     * added to the player account.
      * @param request GetPlayFabIDsFromGenericIDsRequest
      * @return GetPlayFabIDsFromGenericIDsResult
      */
@@ -2595,7 +2635,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of generic service identifiers. A generic identifier is the service name plus the service-specific ID for the player, as specified by the title when the generic identifier was added to the player account.
+     * Retrieves the unique PlayFab identifiers for the given set of generic service identifiers. A generic identifier is the
+     * service name plus the service-specific ID for the player, as specified by the title when the generic identifier was
+     * added to the player account.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayFabIDsFromGenericIDsResult> privateGetPlayFabIDsFromGenericIDsAsync(final GetPlayFabIDsFromGenericIDsRequest request) throws Exception {
@@ -2623,7 +2665,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Google identifiers. The Google identifiers are the IDs for the user accounts, available as "id" in the Google+ People API calls.
+     * Retrieves the unique PlayFab identifiers for the given set of Google identifiers. The Google identifiers are the IDs for
+     * the user accounts, available as "id" in the Google+ People API calls.
      * @param request GetPlayFabIDsFromGoogleIDsRequest
      * @return Async Task will return GetPlayFabIDsFromGoogleIDsResult
      */
@@ -2637,7 +2680,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Google identifiers. The Google identifiers are the IDs for the user accounts, available as "id" in the Google+ People API calls.
+     * Retrieves the unique PlayFab identifiers for the given set of Google identifiers. The Google identifiers are the IDs for
+     * the user accounts, available as "id" in the Google+ People API calls.
      * @param request GetPlayFabIDsFromGoogleIDsRequest
      * @return GetPlayFabIDsFromGoogleIDsResult
      */
@@ -2657,7 +2701,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Google identifiers. The Google identifiers are the IDs for the user accounts, available as "id" in the Google+ People API calls.
+     * Retrieves the unique PlayFab identifiers for the given set of Google identifiers. The Google identifiers are the IDs for
+     * the user accounts, available as "id" in the Google+ People API calls.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayFabIDsFromGoogleIDsResult> privateGetPlayFabIDsFromGoogleIDsAsync(final GetPlayFabIDsFromGoogleIDsRequest request) throws Exception {
@@ -2685,7 +2730,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Kongregate identifiers. The Kongregate identifiers are the IDs for the user accounts, available as "user_id" from the Kongregate API methods(ex: http://developers.kongregate.com/docs/client/getUserId).
+     * Retrieves the unique PlayFab identifiers for the given set of Kongregate identifiers. The Kongregate identifiers are the
+     * IDs for the user accounts, available as "user_id" from the Kongregate API methods(ex:
+     * http://developers.kongregate.com/docs/client/getUserId).
      * @param request GetPlayFabIDsFromKongregateIDsRequest
      * @return Async Task will return GetPlayFabIDsFromKongregateIDsResult
      */
@@ -2699,7 +2746,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Kongregate identifiers. The Kongregate identifiers are the IDs for the user accounts, available as "user_id" from the Kongregate API methods(ex: http://developers.kongregate.com/docs/client/getUserId).
+     * Retrieves the unique PlayFab identifiers for the given set of Kongregate identifiers. The Kongregate identifiers are the
+     * IDs for the user accounts, available as "user_id" from the Kongregate API methods(ex:
+     * http://developers.kongregate.com/docs/client/getUserId).
      * @param request GetPlayFabIDsFromKongregateIDsRequest
      * @return GetPlayFabIDsFromKongregateIDsResult
      */
@@ -2719,7 +2768,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Kongregate identifiers. The Kongregate identifiers are the IDs for the user accounts, available as "user_id" from the Kongregate API methods(ex: http://developers.kongregate.com/docs/client/getUserId).
+     * Retrieves the unique PlayFab identifiers for the given set of Kongregate identifiers. The Kongregate identifiers are the
+     * IDs for the user accounts, available as "user_id" from the Kongregate API methods(ex:
+     * http://developers.kongregate.com/docs/client/getUserId).
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayFabIDsFromKongregateIDsResult> privateGetPlayFabIDsFromKongregateIDsAsync(final GetPlayFabIDsFromKongregateIDsRequest request) throws Exception {
@@ -2747,7 +2798,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
+     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile
+     * IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
      * @param request GetPlayFabIDsFromSteamIDsRequest
      * @return Async Task will return GetPlayFabIDsFromSteamIDsResult
      */
@@ -2761,7 +2813,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
+     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile
+     * IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
      * @param request GetPlayFabIDsFromSteamIDsRequest
      * @return GetPlayFabIDsFromSteamIDsResult
      */
@@ -2781,7 +2834,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
+     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile
+     * IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayFabIDsFromSteamIDsResult> privateGetPlayFabIDsFromSteamIDsAsync(final GetPlayFabIDsFromSteamIDsRequest request) throws Exception {
@@ -2809,7 +2863,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Twitch identifiers. The Twitch identifiers are the IDs for the user accounts, available as "_id" from the Twitch API methods (ex: https://github.com/justintv/Twitch-API/blob/master/v3_resources/users.md#get-usersuser).
+     * Retrieves the unique PlayFab identifiers for the given set of Twitch identifiers. The Twitch identifiers are the IDs for
+     * the user accounts, available as "_id" from the Twitch API methods (ex:
+     * https://github.com/justintv/Twitch-API/blob/master/v3_resources/users.md#get-usersuser).
      * @param request GetPlayFabIDsFromTwitchIDsRequest
      * @return Async Task will return GetPlayFabIDsFromTwitchIDsResult
      */
@@ -2823,7 +2879,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Twitch identifiers. The Twitch identifiers are the IDs for the user accounts, available as "_id" from the Twitch API methods (ex: https://github.com/justintv/Twitch-API/blob/master/v3_resources/users.md#get-usersuser).
+     * Retrieves the unique PlayFab identifiers for the given set of Twitch identifiers. The Twitch identifiers are the IDs for
+     * the user accounts, available as "_id" from the Twitch API methods (ex:
+     * https://github.com/justintv/Twitch-API/blob/master/v3_resources/users.md#get-usersuser).
      * @param request GetPlayFabIDsFromTwitchIDsRequest
      * @return GetPlayFabIDsFromTwitchIDsResult
      */
@@ -2843,7 +2901,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Twitch identifiers. The Twitch identifiers are the IDs for the user accounts, available as "_id" from the Twitch API methods (ex: https://github.com/justintv/Twitch-API/blob/master/v3_resources/users.md#get-usersuser).
+     * Retrieves the unique PlayFab identifiers for the given set of Twitch identifiers. The Twitch identifiers are the IDs for
+     * the user accounts, available as "_id" from the Twitch API methods (ex:
+     * https://github.com/justintv/Twitch-API/blob/master/v3_resources/users.md#get-usersuser).
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayFabIDsFromTwitchIDsResult> privateGetPlayFabIDsFromTwitchIDsAsync(final GetPlayFabIDsFromTwitchIDsRequest request) throws Exception {
@@ -2904,9 +2964,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves the key-value store of custom publisher settings
-     */
+    /** Retrieves the key-value store of custom publisher settings */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPublisherDataResult> privateGetPublisherDataAsync(final GetPublisherDataRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -2933,7 +2991,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a purchase along with its current PlayFab status. Returns inventory items from the purchase that are still active.
+     * Retrieves a purchase along with its current PlayFab status. Returns inventory items from the purchase that are still
+     * active.
      * @param request GetPurchaseRequest
      * @return Async Task will return GetPurchaseResult
      */
@@ -2947,7 +3006,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a purchase along with its current PlayFab status. Returns inventory items from the purchase that are still active.
+     * Retrieves a purchase along with its current PlayFab status. Returns inventory items from the purchase that are still
+     * active.
      * @param request GetPurchaseRequest
      * @return GetPurchaseResult
      */
@@ -2967,7 +3027,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves a purchase along with its current PlayFab status. Returns inventory items from the purchase that are still active.
+     * Retrieves a purchase along with its current PlayFab status. Returns inventory items from the purchase that are still
+     * active.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPurchaseResult> privateGetPurchaseAsync(final GetPurchaseRequest request) throws Exception {
@@ -2995,7 +3056,10 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves data stored in a shared group object, as well as the list of members in  the group. Non-members of the group may use this to retrieve group data, including membership, but they  will not receive data for keys marked as private. Shared Groups are designed for sharing data between a  very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Retrieves data stored in a shared group object, as well as the list of members in  the group. Non-members of the group
+     * may use this to retrieve group data, including membership, but they  will not receive data for keys marked as private.
+     * Shared Groups are designed for sharing data between a  very small number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request GetSharedGroupDataRequest
      * @return Async Task will return GetSharedGroupDataResult
      */
@@ -3009,7 +3073,10 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves data stored in a shared group object, as well as the list of members in  the group. Non-members of the group may use this to retrieve group data, including membership, but they  will not receive data for keys marked as private. Shared Groups are designed for sharing data between a  very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Retrieves data stored in a shared group object, as well as the list of members in  the group. Non-members of the group
+     * may use this to retrieve group data, including membership, but they  will not receive data for keys marked as private.
+     * Shared Groups are designed for sharing data between a  very small number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request GetSharedGroupDataRequest
      * @return GetSharedGroupDataResult
      */
@@ -3029,7 +3096,10 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves data stored in a shared group object, as well as the list of members in  the group. Non-members of the group may use this to retrieve group data, including membership, but they  will not receive data for keys marked as private. Shared Groups are designed for sharing data between a  very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Retrieves data stored in a shared group object, as well as the list of members in  the group. Non-members of the group
+     * may use this to retrieve group data, including membership, but they  will not receive data for keys marked as private.
+     * Shared Groups are designed for sharing data between a  very small number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetSharedGroupDataResult> privateGetSharedGroupDataAsync(final GetSharedGroupDataRequest request) throws Exception {
@@ -3090,9 +3160,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves the set of items defined for the specified store, including all prices defined
-     */
+    /** Retrieves the set of items defined for the specified store, including all prices defined */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetStoreItemsResult> privateGetStoreItemsAsync(final GetStoreItemsRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -3152,9 +3220,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves the current server time
-     */
+    /** Retrieves the current server time */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTimeResult> privateGetTimeAsync(final GetTimeRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -3214,9 +3280,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves the key-value store of custom title settings
-     */
+    /** Retrieves the key-value store of custom title settings */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTitleDataResult> privateGetTitleDataAsync(final GetTitleDataRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -3276,9 +3340,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves the title news feed, as configured in the developer portal
-     */
+    /** Retrieves the title news feed, as configured in the developer portal */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTitleNewsResult> privateGetTitleNewsAsync(final GetTitleNewsRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -3338,9 +3400,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Returns the title's base 64 encoded RSA CSP blob.
-     */
+    /** Returns the title's base 64 encoded RSA CSP blob. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTitlePublicKeyResult> privateGetTitlePublicKeyAsync(final GetTitlePublicKeyRequest request) throws Exception {
 
@@ -3399,9 +3459,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Gets the current status of an existing trade.
-     */
+    /** Gets the current status of an existing trade. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTradeStatusResponse> privateGetTradeStatusAsync(final GetTradeStatusRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -3461,9 +3519,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves the title-specific custom data for the user which is readable and writable by the client
-     */
+    /** Retrieves the title-specific custom data for the user which is readable and writable by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserDataAsync(final GetUserDataRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -3523,9 +3579,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves the user's current inventory of virtual goods
-     */
+    /** Retrieves the user's current inventory of virtual goods */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserInventoryResult> privateGetUserInventoryAsync(final GetUserInventoryRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -3585,9 +3639,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves the publisher-specific custom data for the user which is readable and writable by the client
-     */
+    /** Retrieves the publisher-specific custom data for the user which is readable and writable by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserPublisherDataAsync(final GetUserDataRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -3647,9 +3699,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves the publisher-specific custom data for the user which can only be read by the client
-     */
+    /** Retrieves the publisher-specific custom data for the user which can only be read by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserPublisherReadOnlyDataAsync(final GetUserDataRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -3709,9 +3759,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Retrieves the title-specific custom data for the user which can only be read by the client
-     */
+    /** Retrieves the title-specific custom data for the user which can only be read by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserDataResult> privateGetUserReadOnlyDataAsync(final GetUserDataRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -3771,9 +3819,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Requests a challenge from the server to be signed by Windows Hello Passport service to authenticate.
-     */
+    /** Requests a challenge from the server to be signed by Windows Hello Passport service to authenticate. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetWindowsHelloChallengeResponse> privateGetWindowsHelloChallengeAsync(final GetWindowsHelloChallengeRequest request) throws Exception {
 
@@ -3799,7 +3845,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
+     * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated
+     * with the parent PlayFabId to guarantee uniqueness.
      * @param request GrantCharacterToUserRequest
      * @return Async Task will return GrantCharacterToUserResult
      */
@@ -3813,7 +3860,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
+     * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated
+     * with the parent PlayFabId to guarantee uniqueness.
      * @param request GrantCharacterToUserRequest
      * @return GrantCharacterToUserResult
      */
@@ -3833,7 +3881,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated with the parent PlayFabId to guarantee uniqueness.
+     * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated
+     * with the parent PlayFabId to guarantee uniqueness.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GrantCharacterToUserResult> privateGrantCharacterToUserAsync(final GrantCharacterToUserRequest request) throws Exception {
@@ -3894,9 +3943,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Links the Android device identifier to the user's PlayFab account
-     */
+    /** Links the Android device identifier to the user's PlayFab account */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LinkAndroidDeviceIDResult> privateLinkAndroidDeviceIDAsync(final LinkAndroidDeviceIDRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -3956,9 +4003,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Links the custom identifier, generated by the title, to the user's PlayFab account
-     */
+    /** Links the custom identifier, generated by the title, to the user's PlayFab account */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LinkCustomIDResult> privateLinkCustomIDAsync(final LinkCustomIDRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -4018,9 +4063,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Links the Facebook account associated with the provided Facebook access token to the user's PlayFab account
-     */
+    /** Links the Facebook account associated with the provided Facebook access token to the user's PlayFab account */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LinkFacebookAccountResult> privateLinkFacebookAccountAsync(final LinkFacebookAccountRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -4080,9 +4123,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Links the Game Center account associated with the provided Game Center ID to the user's PlayFab account
-     */
+    /** Links the Game Center account associated with the provided Game Center ID to the user's PlayFab account */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LinkGameCenterAccountResult> privateLinkGameCenterAccountAsync(final LinkGameCenterAccountRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -4142,9 +4183,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Links the currently signed-in user account to their Google account, using their Google account credentials
-     */
+    /** Links the currently signed-in user account to their Google account, using their Google account credentials */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LinkGoogleAccountResult> privateLinkGoogleAccountAsync(final LinkGoogleAccountRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -4204,9 +4243,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Links the vendor-specific iOS device identifier to the user's PlayFab account
-     */
+    /** Links the vendor-specific iOS device identifier to the user's PlayFab account */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LinkIOSDeviceIDResult> privateLinkIOSDeviceIDAsync(final LinkIOSDeviceIDRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -4266,9 +4303,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Links the Kongregate identifier to the user's PlayFab account
-     */
+    /** Links the Kongregate identifier to the user's PlayFab account */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LinkKongregateAccountResult> privateLinkKongregateAsync(final LinkKongregateAccountRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -4328,9 +4363,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Links the Steam account associated with the provided Steam authentication ticket to the user's PlayFab account
-     */
+    /** Links the Steam account associated with the provided Steam authentication ticket to the user's PlayFab account */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LinkSteamAccountResult> privateLinkSteamAccountAsync(final LinkSteamAccountRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -4390,9 +4423,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Links the Twitch account associated with the token to the user's PlayFab account.
-     */
+    /** Links the Twitch account associated with the token to the user's PlayFab account. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LinkTwitchAccountResult> privateLinkTwitchAsync(final LinkTwitchAccountRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -4452,9 +4483,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Link Windows Hello authentication to the current PlayFab Account
-     */
+    /** Link Windows Hello authentication to the current PlayFab Account */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LinkWindowsHelloAccountResponse> privateLinkWindowsHelloAsync(final LinkWindowsHelloAccountRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -4481,7 +4510,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user in using the Android device identifier, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user in using the Android device identifier, returning a session identifier that can subsequently be used for
+     * API calls which require an authenticated user
      * @param request LoginWithAndroidDeviceIDRequest
      * @return Async Task will return LoginResult
      */
@@ -4495,7 +4525,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user in using the Android device identifier, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user in using the Android device identifier, returning a session identifier that can subsequently be used for
+     * API calls which require an authenticated user
      * @param request LoginWithAndroidDeviceIDRequest
      * @return LoginResult
      */
@@ -4515,7 +4546,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user in using the Android device identifier, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user in using the Android device identifier, returning a session identifier that can subsequently be used for
+     * API calls which require an authenticated user
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LoginResult> privateLoginWithAndroidDeviceIDAsync(final LoginWithAndroidDeviceIDRequest request) throws Exception {
@@ -4546,7 +4578,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user in using a custom unique identifier generated by the title, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user in using a custom unique identifier generated by the title, returning a session identifier that can
+     * subsequently be used for API calls which require an authenticated user
      * @param request LoginWithCustomIDRequest
      * @return Async Task will return LoginResult
      */
@@ -4560,7 +4593,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user in using a custom unique identifier generated by the title, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user in using a custom unique identifier generated by the title, returning a session identifier that can
+     * subsequently be used for API calls which require an authenticated user
      * @param request LoginWithCustomIDRequest
      * @return LoginResult
      */
@@ -4580,7 +4614,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user in using a custom unique identifier generated by the title, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user in using a custom unique identifier generated by the title, returning a session identifier that can
+     * subsequently be used for API calls which require an authenticated user
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LoginResult> privateLoginWithCustomIDAsync(final LoginWithCustomIDRequest request) throws Exception {
@@ -4611,7 +4646,10 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls which require an authenticated user. Unlike most other login API calls, LoginWithEmailAddress does not permit the  creation of new accounts via the CreateAccountFlag. Email addresses may be used to create accounts via RegisterPlayFabUser.
+     * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls
+     * which require an authenticated user. Unlike most other login API calls, LoginWithEmailAddress does not permit the
+     * creation of new accounts via the CreateAccountFlag. Email addresses may be used to create accounts via
+     * RegisterPlayFabUser.
      * @param request LoginWithEmailAddressRequest
      * @return Async Task will return LoginResult
      */
@@ -4625,7 +4663,10 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls which require an authenticated user. Unlike most other login API calls, LoginWithEmailAddress does not permit the  creation of new accounts via the CreateAccountFlag. Email addresses may be used to create accounts via RegisterPlayFabUser.
+     * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls
+     * which require an authenticated user. Unlike most other login API calls, LoginWithEmailAddress does not permit the
+     * creation of new accounts via the CreateAccountFlag. Email addresses may be used to create accounts via
+     * RegisterPlayFabUser.
      * @param request LoginWithEmailAddressRequest
      * @return LoginResult
      */
@@ -4645,7 +4686,10 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls which require an authenticated user. Unlike most other login API calls, LoginWithEmailAddress does not permit the  creation of new accounts via the CreateAccountFlag. Email addresses may be used to create accounts via RegisterPlayFabUser.
+     * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls
+     * which require an authenticated user. Unlike most other login API calls, LoginWithEmailAddress does not permit the
+     * creation of new accounts via the CreateAccountFlag. Email addresses may be used to create accounts via
+     * RegisterPlayFabUser.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LoginResult> privateLoginWithEmailAddressAsync(final LoginWithEmailAddressRequest request) throws Exception {
@@ -4676,7 +4720,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user in using a Facebook access token, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user in using a Facebook access token, returning a session identifier that can subsequently be used for API
+     * calls which require an authenticated user
      * @param request LoginWithFacebookRequest
      * @return Async Task will return LoginResult
      */
@@ -4690,7 +4735,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user in using a Facebook access token, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user in using a Facebook access token, returning a session identifier that can subsequently be used for API
+     * calls which require an authenticated user
      * @param request LoginWithFacebookRequest
      * @return LoginResult
      */
@@ -4710,7 +4756,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user in using a Facebook access token, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user in using a Facebook access token, returning a session identifier that can subsequently be used for API
+     * calls which require an authenticated user
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LoginResult> privateLoginWithFacebookAsync(final LoginWithFacebookRequest request) throws Exception {
@@ -4741,7 +4788,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user in using an iOS Game Center player identifier, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user in using an iOS Game Center player identifier, returning a session identifier that can subsequently be
+     * used for API calls which require an authenticated user
      * @param request LoginWithGameCenterRequest
      * @return Async Task will return LoginResult
      */
@@ -4755,7 +4803,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user in using an iOS Game Center player identifier, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user in using an iOS Game Center player identifier, returning a session identifier that can subsequently be
+     * used for API calls which require an authenticated user
      * @param request LoginWithGameCenterRequest
      * @return LoginResult
      */
@@ -4775,7 +4824,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user in using an iOS Game Center player identifier, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user in using an iOS Game Center player identifier, returning a session identifier that can subsequently be
+     * used for API calls which require an authenticated user
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LoginResult> privateLoginWithGameCenterAsync(final LoginWithGameCenterRequest request) throws Exception {
@@ -4839,9 +4889,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Signs the user in using their Google account credentials
-     */
+    /** Signs the user in using their Google account credentials */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LoginResult> privateLoginWithGoogleAccountAsync(final LoginWithGoogleAccountRequest request) throws Exception {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
@@ -4871,7 +4919,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user in using the vendor-specific iOS device identifier, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user in using the vendor-specific iOS device identifier, returning a session identifier that can subsequently
+     * be used for API calls which require an authenticated user
      * @param request LoginWithIOSDeviceIDRequest
      * @return Async Task will return LoginResult
      */
@@ -4885,7 +4934,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user in using the vendor-specific iOS device identifier, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user in using the vendor-specific iOS device identifier, returning a session identifier that can subsequently
+     * be used for API calls which require an authenticated user
      * @param request LoginWithIOSDeviceIDRequest
      * @return LoginResult
      */
@@ -4905,7 +4955,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user in using the vendor-specific iOS device identifier, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user in using the vendor-specific iOS device identifier, returning a session identifier that can subsequently
+     * be used for API calls which require an authenticated user
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LoginResult> privateLoginWithIOSDeviceIDAsync(final LoginWithIOSDeviceIDRequest request) throws Exception {
@@ -4969,9 +5020,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Signs the user in using a Kongregate player account.
-     */
+    /** Signs the user in using a Kongregate player account. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LoginResult> privateLoginWithKongregateAsync(final LoginWithKongregateRequest request) throws Exception {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
@@ -5001,7 +5050,10 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls which require an authenticated user. Unlike most other login API calls, LoginWithPlayFab does not permit the  creation of new accounts via the CreateAccountFlag. Username/Password credentials may be used to create accounts via  RegisterPlayFabUser, or added to existing accounts using AddUsernamePassword.
+     * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls
+     * which require an authenticated user. Unlike most other login API calls, LoginWithPlayFab does not permit the  creation
+     * of new accounts via the CreateAccountFlag. Username/Password credentials may be used to create accounts via
+     * RegisterPlayFabUser, or added to existing accounts using AddUsernamePassword.
      * @param request LoginWithPlayFabRequest
      * @return Async Task will return LoginResult
      */
@@ -5015,7 +5067,10 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls which require an authenticated user. Unlike most other login API calls, LoginWithPlayFab does not permit the  creation of new accounts via the CreateAccountFlag. Username/Password credentials may be used to create accounts via  RegisterPlayFabUser, or added to existing accounts using AddUsernamePassword.
+     * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls
+     * which require an authenticated user. Unlike most other login API calls, LoginWithPlayFab does not permit the  creation
+     * of new accounts via the CreateAccountFlag. Username/Password credentials may be used to create accounts via
+     * RegisterPlayFabUser, or added to existing accounts using AddUsernamePassword.
      * @param request LoginWithPlayFabRequest
      * @return LoginResult
      */
@@ -5035,7 +5090,10 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls which require an authenticated user. Unlike most other login API calls, LoginWithPlayFab does not permit the  creation of new accounts via the CreateAccountFlag. Username/Password credentials may be used to create accounts via  RegisterPlayFabUser, or added to existing accounts using AddUsernamePassword.
+     * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls
+     * which require an authenticated user. Unlike most other login API calls, LoginWithPlayFab does not permit the  creation
+     * of new accounts via the CreateAccountFlag. Username/Password credentials may be used to create accounts via
+     * RegisterPlayFabUser, or added to existing accounts using AddUsernamePassword.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LoginResult> privateLoginWithPlayFabAsync(final LoginWithPlayFabRequest request) throws Exception {
@@ -5066,7 +5124,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user in using a Steam authentication ticket, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user in using a Steam authentication ticket, returning a session identifier that can subsequently be used for
+     * API calls which require an authenticated user
      * @param request LoginWithSteamRequest
      * @return Async Task will return LoginResult
      */
@@ -5080,7 +5139,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user in using a Steam authentication ticket, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user in using a Steam authentication ticket, returning a session identifier that can subsequently be used for
+     * API calls which require an authenticated user
      * @param request LoginWithSteamRequest
      * @return LoginResult
      */
@@ -5100,7 +5160,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs the user in using a Steam authentication ticket, returning a session identifier that can subsequently be used for API calls which require an authenticated user
+     * Signs the user in using a Steam authentication ticket, returning a session identifier that can subsequently be used for
+     * API calls which require an authenticated user
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LoginResult> privateLoginWithSteamAsync(final LoginWithSteamRequest request) throws Exception {
@@ -5164,9 +5225,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Signs the user in using a Twitch access token.
-     */
+    /** Signs the user in using a Twitch access token. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LoginResult> privateLoginWithTwitchAsync(final LoginWithTwitchRequest request) throws Exception {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
@@ -5196,7 +5255,10 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Completes the Windows Hello login flow by returning the signed value of the challange from GetWindowsHelloChallenge. Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the server.
+     * Completes the Windows Hello login flow by returning the signed value of the challange from GetWindowsHelloChallenge.
+     * Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge
+     * string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the
+     * server.
      * @param request LoginWithWindowsHelloRequest
      * @return Async Task will return LoginResult
      */
@@ -5210,7 +5272,10 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Completes the Windows Hello login flow by returning the signed value of the challange from GetWindowsHelloChallenge. Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the server.
+     * Completes the Windows Hello login flow by returning the signed value of the challange from GetWindowsHelloChallenge.
+     * Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge
+     * string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the
+     * server.
      * @param request LoginWithWindowsHelloRequest
      * @return LoginResult
      */
@@ -5230,7 +5295,10 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Completes the Windows Hello login flow by returning the signed value of the challange from GetWindowsHelloChallenge. Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the server.
+     * Completes the Windows Hello login flow by returning the signed value of the challange from GetWindowsHelloChallenge.
+     * Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge
+     * string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the
+     * server.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LoginResult> privateLoginWithWindowsHelloAsync(final LoginWithWindowsHelloRequest request) throws Exception {
@@ -5261,7 +5329,12 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Attempts to locate a game session matching the given parameters. If the goal is to match the player into a specific active session, only the LobbyId is required. Otherwise, the BuildVersion, GameMode, and Region are all required parameters. Note that parameters specified in the search are required (they are not weighting factors). If a slot is found in a server instance matching the parameters, the slot will be assigned to that player, removing it from the availabe set. In that case, the information on the game session will be returned, otherwise the Status returned will be GameNotFound.
+     * Attempts to locate a game session matching the given parameters. If the goal is to match the player into a specific
+     * active session, only the LobbyId is required. Otherwise, the BuildVersion, GameMode, and Region are all required
+     * parameters. Note that parameters specified in the search are required (they are not weighting factors). If a slot is
+     * found in a server instance matching the parameters, the slot will be assigned to that player, removing it from the
+     * availabe set. In that case, the information on the game session will be returned, otherwise the Status returned will be
+     * GameNotFound.
      * @param request MatchmakeRequest
      * @return Async Task will return MatchmakeResult
      */
@@ -5275,7 +5348,12 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Attempts to locate a game session matching the given parameters. If the goal is to match the player into a specific active session, only the LobbyId is required. Otherwise, the BuildVersion, GameMode, and Region are all required parameters. Note that parameters specified in the search are required (they are not weighting factors). If a slot is found in a server instance matching the parameters, the slot will be assigned to that player, removing it from the availabe set. In that case, the information on the game session will be returned, otherwise the Status returned will be GameNotFound.
+     * Attempts to locate a game session matching the given parameters. If the goal is to match the player into a specific
+     * active session, only the LobbyId is required. Otherwise, the BuildVersion, GameMode, and Region are all required
+     * parameters. Note that parameters specified in the search are required (they are not weighting factors). If a slot is
+     * found in a server instance matching the parameters, the slot will be assigned to that player, removing it from the
+     * availabe set. In that case, the information on the game session will be returned, otherwise the Status returned will be
+     * GameNotFound.
      * @param request MatchmakeRequest
      * @return MatchmakeResult
      */
@@ -5295,7 +5373,12 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Attempts to locate a game session matching the given parameters. If the goal is to match the player into a specific active session, only the LobbyId is required. Otherwise, the BuildVersion, GameMode, and Region are all required parameters. Note that parameters specified in the search are required (they are not weighting factors). If a slot is found in a server instance matching the parameters, the slot will be assigned to that player, removing it from the availabe set. In that case, the information on the game session will be returned, otherwise the Status returned will be GameNotFound.
+     * Attempts to locate a game session matching the given parameters. If the goal is to match the player into a specific
+     * active session, only the LobbyId is required. Otherwise, the BuildVersion, GameMode, and Region are all required
+     * parameters. Note that parameters specified in the search are required (they are not weighting factors). If a slot is
+     * found in a server instance matching the parameters, the slot will be assigned to that player, removing it from the
+     * availabe set. In that case, the information on the game session will be returned, otherwise the Status returned will be
+     * GameNotFound.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<MatchmakeResult> privateMatchmakeAsync(final MatchmakeRequest request) throws Exception {
@@ -5356,9 +5439,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Opens a new outstanding trade. Note that a given item instance may only be in one open trade at a time.
-     */
+    /** Opens a new outstanding trade. Note that a given item instance may only be in one open trade at a time. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<OpenTradeResponse> privateOpenTradeAsync(final OpenTradeRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -5418,9 +5499,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Selects a payment option for purchase order created via StartPurchase
-     */
+    /** Selects a payment option for purchase order created via StartPurchase */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<PayForPurchaseResult> privatePayForPurchaseAsync(final PayForPurchaseRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -5447,7 +5526,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase,  as well as what the client believes the price to be. This lets the server fail the purchase if the price has changed.
+     * Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase,  as well as
+     * what the client believes the price to be. This lets the server fail the purchase if the price has changed.
      * @param request PurchaseItemRequest
      * @return Async Task will return PurchaseItemResult
      */
@@ -5461,7 +5541,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase,  as well as what the client believes the price to be. This lets the server fail the purchase if the price has changed.
+     * Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase,  as well as
+     * what the client believes the price to be. This lets the server fail the purchase if the price has changed.
      * @param request PurchaseItemRequest
      * @return PurchaseItemResult
      */
@@ -5481,7 +5562,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase,  as well as what the client believes the price to be. This lets the server fail the purchase if the price has changed.
+     * Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase,  as well as
+     * what the client believes the price to be. This lets the server fail the purchase if the price has changed.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<PurchaseItemResult> privatePurchaseItemAsync(final PurchaseItemRequest request) throws Exception {
@@ -5509,7 +5591,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the Economy-&gt;Catalogs tab in the PlayFab Game Manager.
+     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the
+     * Economy-&gt;Catalogs tab in the PlayFab Game Manager.
      * @param request RedeemCouponRequest
      * @return Async Task will return RedeemCouponResult
      */
@@ -5523,7 +5606,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the Economy-&gt;Catalogs tab in the PlayFab Game Manager.
+     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the
+     * Economy-&gt;Catalogs tab in the PlayFab Game Manager.
      * @param request RedeemCouponRequest
      * @return RedeemCouponResult
      */
@@ -5543,7 +5627,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the Economy-&gt;Catalogs tab in the PlayFab Game Manager.
+     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the
+     * Economy-&gt;Catalogs tab in the PlayFab Game Manager.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RedeemCouponResult> privateRedeemCouponAsync(final RedeemCouponRequest request) throws Exception {
@@ -5604,9 +5689,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Registers the iOS device to receive push notifications
-     */
+    /** Registers the iOS device to receive push notifications */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RegisterForIOSPushNotificationResult> privateRegisterForIOSPushNotificationAsync(final RegisterForIOSPushNotificationRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -5633,7 +5716,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Registers a new Playfab user account, returning a session identifier that can subsequently be used for API calls which require an authenticated user. You must supply either a username or an email address.
+     * Registers a new Playfab user account, returning a session identifier that can subsequently be used for API calls which
+     * require an authenticated user. You must supply either a username or an email address.
      * @param request RegisterPlayFabUserRequest
      * @return Async Task will return RegisterPlayFabUserResult
      */
@@ -5647,7 +5731,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Registers a new Playfab user account, returning a session identifier that can subsequently be used for API calls which require an authenticated user. You must supply either a username or an email address.
+     * Registers a new Playfab user account, returning a session identifier that can subsequently be used for API calls which
+     * require an authenticated user. You must supply either a username or an email address.
      * @param request RegisterPlayFabUserRequest
      * @return RegisterPlayFabUserResult
      */
@@ -5667,7 +5752,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Registers a new Playfab user account, returning a session identifier that can subsequently be used for API calls which require an authenticated user. You must supply either a username or an email address.
+     * Registers a new Playfab user account, returning a session identifier that can subsequently be used for API calls which
+     * require an authenticated user. You must supply either a username or an email address.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RegisterPlayFabUserResult> privateRegisterPlayFabUserAsync(final RegisterPlayFabUserRequest request) throws Exception {
@@ -5698,7 +5784,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket  that can subsequently be used for API calls which require an authenticated user
+     * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket  that can
+     * subsequently be used for API calls which require an authenticated user
      * @param request RegisterWithWindowsHelloRequest
      * @return Async Task will return LoginResult
      */
@@ -5712,7 +5799,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket  that can subsequently be used for API calls which require an authenticated user
+     * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket  that can
+     * subsequently be used for API calls which require an authenticated user
      * @param request RegisterWithWindowsHelloRequest
      * @return LoginResult
      */
@@ -5732,7 +5820,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket  that can subsequently be used for API calls which require an authenticated user
+     * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket  that can
+     * subsequently be used for API calls which require an authenticated user
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LoginResult> privateRegisterWithWindowsHelloAsync(final RegisterWithWindowsHelloRequest request) throws Exception {
@@ -5796,9 +5885,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Removes a specified user from the friend list of the local user
-     */
+    /** Removes a specified user from the friend list of the local user */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RemoveFriendResult> privateRemoveFriendAsync(final RemoveFriendRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -5858,9 +5945,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Removes the specified generic service identifier from the player's PlayFab account.
-     */
+    /** Removes the specified generic service identifier from the player's PlayFab account. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RemoveGenericIDResult> privateRemoveGenericIDAsync(final RemoveGenericIDRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -5887,7 +5972,10 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Removes users from the set of those able to update the shared data and the set of users  in the group. Only users in the group can remove members. If as a result of the call, zero users remain with  access, the group and its associated data will be deleted. Shared Groups are designed for sharing data between  a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Removes users from the set of those able to update the shared data and the set of users  in the group. Only users in the
+     * group can remove members. If as a result of the call, zero users remain with  access, the group and its associated data
+     * will be deleted. Shared Groups are designed for sharing data between  a very small number of players, please see our
+     * guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request RemoveSharedGroupMembersRequest
      * @return Async Task will return RemoveSharedGroupMembersResult
      */
@@ -5901,7 +5989,10 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Removes users from the set of those able to update the shared data and the set of users  in the group. Only users in the group can remove members. If as a result of the call, zero users remain with  access, the group and its associated data will be deleted. Shared Groups are designed for sharing data between  a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Removes users from the set of those able to update the shared data and the set of users  in the group. Only users in the
+     * group can remove members. If as a result of the call, zero users remain with  access, the group and its associated data
+     * will be deleted. Shared Groups are designed for sharing data between  a very small number of players, please see our
+     * guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request RemoveSharedGroupMembersRequest
      * @return RemoveSharedGroupMembersResult
      */
@@ -5921,7 +6012,10 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Removes users from the set of those able to update the shared data and the set of users  in the group. Only users in the group can remove members. If as a result of the call, zero users remain with  access, the group and its associated data will be deleted. Shared Groups are designed for sharing data between  a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Removes users from the set of those able to update the shared data and the set of users  in the group. Only users in the
+     * group can remove members. If as a result of the call, zero users remain with  access, the group and its associated data
+     * will be deleted. Shared Groups are designed for sharing data between  a very small number of players, please see our
+     * guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RemoveSharedGroupMembersResult> privateRemoveSharedGroupMembersAsync(final RemoveSharedGroupMembersRequest request) throws Exception {
@@ -5949,7 +6043,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Submit a report for another player (due to bad bahavior, etc.), so that customer service representatives for the title can take action concerning potentially toxic players.
+     * Submit a report for another player (due to bad bahavior, etc.), so that customer service representatives for the title
+     * can take action concerning potentially toxic players.
      * @param request ReportPlayerClientRequest
      * @return Async Task will return ReportPlayerClientResult
      */
@@ -5963,7 +6058,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Submit a report for another player (due to bad bahavior, etc.), so that customer service representatives for the title can take action concerning potentially toxic players.
+     * Submit a report for another player (due to bad bahavior, etc.), so that customer service representatives for the title
+     * can take action concerning potentially toxic players.
      * @param request ReportPlayerClientRequest
      * @return ReportPlayerClientResult
      */
@@ -5983,7 +6079,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Submit a report for another player (due to bad bahavior, etc.), so that customer service representatives for the title can take action concerning potentially toxic players.
+     * Submit a report for another player (due to bad bahavior, etc.), so that customer service representatives for the title
+     * can take action concerning potentially toxic players.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ReportPlayerClientResult> privateReportPlayerAsync(final ReportPlayerClientRequest request) throws Exception {
@@ -6044,9 +6141,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Restores all in-app purchases based on the given restore receipt
-     */
+    /** Restores all in-app purchases based on the given restore receipt */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RestoreIOSPurchasesResult> privateRestoreIOSPurchasesAsync(final RestoreIOSPurchasesRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -6073,7 +6168,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Forces an email to be sent to the registered email address for the user's account, with a link allowing the user to change the password
+     * Forces an email to be sent to the registered email address for the user's account, with a link allowing the user to
+     * change the password
      * @param request SendAccountRecoveryEmailRequest
      * @return Async Task will return SendAccountRecoveryEmailResult
      */
@@ -6087,7 +6183,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Forces an email to be sent to the registered email address for the user's account, with a link allowing the user to change the password
+     * Forces an email to be sent to the registered email address for the user's account, with a link allowing the user to
+     * change the password
      * @param request SendAccountRecoveryEmailRequest
      * @return SendAccountRecoveryEmailResult
      */
@@ -6107,7 +6204,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Forces an email to be sent to the registered email address for the user's account, with a link allowing the user to change the password
+     * Forces an email to be sent to the registered email address for the user's account, with a link allowing the user to
+     * change the password
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SendAccountRecoveryEmailResult> privateSendAccountRecoveryEmailAsync(final SendAccountRecoveryEmailRequest request) throws Exception {
@@ -6167,9 +6265,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Updates the tag list for a specified user in the friend list of the local user
-     */
+    /** Updates the tag list for a specified user in the friend list of the local user */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetFriendTagsResult> privateSetFriendTagsAsync(final SetFriendTagsRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -6196,7 +6292,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's secret use the Admin or Server API method SetPlayerSecret.
+     * Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's
+     * secret use the Admin or Server API method SetPlayerSecret.
      * @param request SetPlayerSecretRequest
      * @return Async Task will return SetPlayerSecretResult
      */
@@ -6210,7 +6307,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's secret use the Admin or Server API method SetPlayerSecret.
+     * Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's
+     * secret use the Admin or Server API method SetPlayerSecret.
      * @param request SetPlayerSecretRequest
      * @return SetPlayerSecretResult
      */
@@ -6230,7 +6328,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's secret use the Admin or Server API method SetPlayerSecret.
+     * Sets the player's secret if it is not already set. Player secrets are used to sign API requests. To reset a player's
+     * secret use the Admin or Server API method SetPlayerSecret.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetPlayerSecretResult> privateSetPlayerSecretAsync(final SetPlayerSecretRequest request) throws Exception {
@@ -6291,9 +6390,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Start a new game server with a given configuration, add the current player and return the connection information.
-     */
+    /** Start a new game server with a given configuration, add the current player and return the connection information. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<StartGameResult> privateStartGameAsync(final StartGameRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -6353,9 +6450,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Creates an order for a list of items from the title catalog
-     */
+    /** Creates an order for a list of items from the title catalog */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<StartPurchaseResult> privateStartPurchaseAsync(final StartPurchaseRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -6382,7 +6477,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Decrements the user's balance of the specified virtual currency by the stated amount
+     * Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make a VC
+     * balance negative with this API.
      * @param request SubtractUserVirtualCurrencyRequest
      * @return Async Task will return ModifyUserVirtualCurrencyResult
      */
@@ -6396,7 +6492,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Decrements the user's balance of the specified virtual currency by the stated amount
+     * Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make a VC
+     * balance negative with this API.
      * @param request SubtractUserVirtualCurrencyRequest
      * @return ModifyUserVirtualCurrencyResult
      */
@@ -6416,7 +6513,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Decrements the user's balance of the specified virtual currency by the stated amount
+     * Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make a VC
+     * balance negative with this API.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyUserVirtualCurrencyResult> privateSubtractUserVirtualCurrencyAsync(final SubtractUserVirtualCurrencyRequest request) throws Exception {
@@ -6477,9 +6575,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Unlinks the related Android device identifier from the user's PlayFab account
-     */
+    /** Unlinks the related Android device identifier from the user's PlayFab account */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UnlinkAndroidDeviceIDResult> privateUnlinkAndroidDeviceIDAsync(final UnlinkAndroidDeviceIDRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -6539,9 +6635,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Unlinks the related custom identifier from the user's PlayFab account
-     */
+    /** Unlinks the related custom identifier from the user's PlayFab account */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UnlinkCustomIDResult> privateUnlinkCustomIDAsync(final UnlinkCustomIDRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -6601,9 +6695,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Unlinks the related Facebook account from the user's PlayFab account
-     */
+    /** Unlinks the related Facebook account from the user's PlayFab account */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UnlinkFacebookAccountResult> privateUnlinkFacebookAccountAsync(final UnlinkFacebookAccountRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -6663,9 +6755,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Unlinks the related Game Center account from the user's PlayFab account
-     */
+    /** Unlinks the related Game Center account from the user's PlayFab account */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UnlinkGameCenterAccountResult> privateUnlinkGameCenterAccountAsync(final UnlinkGameCenterAccountRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -6692,7 +6782,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Unlinks the related Google account from the user's PlayFab account (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods).
+     * Unlinks the related Google account from the user's PlayFab account
+     * (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods).
      * @param request UnlinkGoogleAccountRequest
      * @return Async Task will return UnlinkGoogleAccountResult
      */
@@ -6706,7 +6797,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Unlinks the related Google account from the user's PlayFab account (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods).
+     * Unlinks the related Google account from the user's PlayFab account
+     * (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods).
      * @param request UnlinkGoogleAccountRequest
      * @return UnlinkGoogleAccountResult
      */
@@ -6726,7 +6818,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Unlinks the related Google account from the user's PlayFab account (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods).
+     * Unlinks the related Google account from the user's PlayFab account
+     * (https://developers.google.com/android/reference/com/google/android/gms/auth/GoogleAuthUtil#public-methods).
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UnlinkGoogleAccountResult> privateUnlinkGoogleAccountAsync(final UnlinkGoogleAccountRequest request) throws Exception {
@@ -6787,9 +6880,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Unlinks the related iOS device identifier from the user's PlayFab account
-     */
+    /** Unlinks the related iOS device identifier from the user's PlayFab account */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UnlinkIOSDeviceIDResult> privateUnlinkIOSDeviceIDAsync(final UnlinkIOSDeviceIDRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -6849,9 +6940,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Unlinks the related Kongregate identifier from the user's PlayFab account
-     */
+    /** Unlinks the related Kongregate identifier from the user's PlayFab account */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UnlinkKongregateAccountResult> privateUnlinkKongregateAsync(final UnlinkKongregateAccountRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -6911,9 +7000,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Unlinks the related Steam account from the user's PlayFab account
-     */
+    /** Unlinks the related Steam account from the user's PlayFab account */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UnlinkSteamAccountResult> privateUnlinkSteamAccountAsync(final UnlinkSteamAccountRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -6973,9 +7060,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Unlinks the related Twitch account from the user's PlayFab account.
-     */
+    /** Unlinks the related Twitch account from the user's PlayFab account. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UnlinkTwitchAccountResult> privateUnlinkTwitchAsync(final UnlinkTwitchAccountRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -7035,9 +7120,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Unlink Windows Hello authentication from the current PlayFab Account
-     */
+    /** Unlink Windows Hello authentication from the current PlayFab Account */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UnlinkWindowsHelloAccountResponse> privateUnlinkWindowsHelloAsync(final UnlinkWindowsHelloAccountRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -7064,7 +7147,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Opens the specified container, with the specified key (when required), and returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
+     * Opens the specified container, with the specified key (when required), and returns the contents of the opened container.
+     * If the container (and key when relevant) are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented,
+     * consistent with the operation of ConsumeItem.
      * @param request UnlockContainerInstanceRequest
      * @return Async Task will return UnlockContainerItemResult
      */
@@ -7078,7 +7163,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Opens the specified container, with the specified key (when required), and returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
+     * Opens the specified container, with the specified key (when required), and returns the contents of the opened container.
+     * If the container (and key when relevant) are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented,
+     * consistent with the operation of ConsumeItem.
      * @param request UnlockContainerInstanceRequest
      * @return UnlockContainerItemResult
      */
@@ -7098,7 +7185,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Opens the specified container, with the specified key (when required), and returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
+     * Opens the specified container, with the specified key (when required), and returns the contents of the opened container.
+     * If the container (and key when relevant) are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented,
+     * consistent with the operation of ConsumeItem.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UnlockContainerItemResult> privateUnlockContainerInstanceAsync(final UnlockContainerInstanceRequest request) throws Exception {
@@ -7126,7 +7215,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Searches target inventory for an ItemInstance matching the given CatalogItemId, if necessary unlocks it using an appropriate key, and returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
+     * Searches target inventory for an ItemInstance matching the given CatalogItemId, if necessary unlocks it using an
+     * appropriate key, and returns the contents of the opened container. If the container (and key when relevant) are
+     * consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
      * @param request UnlockContainerItemRequest
      * @return Async Task will return UnlockContainerItemResult
      */
@@ -7140,7 +7231,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Searches target inventory for an ItemInstance matching the given CatalogItemId, if necessary unlocks it using an appropriate key, and returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
+     * Searches target inventory for an ItemInstance matching the given CatalogItemId, if necessary unlocks it using an
+     * appropriate key, and returns the contents of the opened container. If the container (and key when relevant) are
+     * consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
      * @param request UnlockContainerItemRequest
      * @return UnlockContainerItemResult
      */
@@ -7160,7 +7253,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Searches target inventory for an ItemInstance matching the given CatalogItemId, if necessary unlocks it using an appropriate key, and returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
+     * Searches target inventory for an ItemInstance matching the given CatalogItemId, if necessary unlocks it using an
+     * appropriate key, and returns the contents of the opened container. If the container (and key when relevant) are
+     * consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UnlockContainerItemResult> privateUnlockContainerItemAsync(final UnlockContainerItemRequest request) throws Exception {
@@ -7221,9 +7316,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Update the avatar URL of the player
-     */
+    /** Update the avatar URL of the player */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResult> privateUpdateAvatarUrlAsync(final UpdateAvatarUrlRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -7250,7 +7343,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Creates and updates the title-specific custom data for the user's character which is readable  and writable by the client
+     * Creates and updates the title-specific custom data for the user's character which is readable  and writable by the
+     * client
      * @param request UpdateCharacterDataRequest
      * @return Async Task will return UpdateCharacterDataResult
      */
@@ -7264,7 +7358,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Creates and updates the title-specific custom data for the user's character which is readable  and writable by the client
+     * Creates and updates the title-specific custom data for the user's character which is readable  and writable by the
+     * client
      * @param request UpdateCharacterDataRequest
      * @return UpdateCharacterDataResult
      */
@@ -7284,7 +7379,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Creates and updates the title-specific custom data for the user's character which is readable  and writable by the client
+     * Creates and updates the title-specific custom data for the user's character which is readable  and writable by the
+     * client
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateCharacterDataResult> privateUpdateCharacterDataAsync(final UpdateCharacterDataRequest request) throws Exception {
@@ -7312,7 +7408,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the specific character. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager &gt; Settings &gt; API Features.
+     * Updates the values of the specified title-specific statistics for the specific character. By default, clients are not
+     * permitted to update statistics. Developers may override this setting in the Game Manager &gt; Settings &gt; API Features.
      * @param request UpdateCharacterStatisticsRequest
      * @return Async Task will return UpdateCharacterStatisticsResult
      */
@@ -7326,7 +7423,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the specific character. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager &gt; Settings &gt; API Features.
+     * Updates the values of the specified title-specific statistics for the specific character. By default, clients are not
+     * permitted to update statistics. Developers may override this setting in the Game Manager &gt; Settings &gt; API Features.
      * @param request UpdateCharacterStatisticsRequest
      * @return UpdateCharacterStatisticsResult
      */
@@ -7346,7 +7444,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the specific character. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager &gt; Settings &gt; API Features.
+     * Updates the values of the specified title-specific statistics for the specific character. By default, clients are not
+     * permitted to update statistics. Developers may override this setting in the Game Manager &gt; Settings &gt; API Features.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateCharacterStatisticsResult> privateUpdateCharacterStatisticsAsync(final UpdateCharacterStatisticsRequest request) throws Exception {
@@ -7374,7 +7473,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager &gt; Settings &gt; API Features.
+     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to
+     * update statistics. Developers may override this setting in the Game Manager &gt; Settings &gt; API Features.
      * @param request UpdatePlayerStatisticsRequest
      * @return Async Task will return UpdatePlayerStatisticsResult
      */
@@ -7388,7 +7488,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager &gt; Settings &gt; API Features.
+     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to
+     * update statistics. Developers may override this setting in the Game Manager &gt; Settings &gt; API Features.
      * @param request UpdatePlayerStatisticsRequest
      * @return UpdatePlayerStatisticsResult
      */
@@ -7408,7 +7509,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to update statistics. Developers may override this setting in the Game Manager &gt; Settings &gt; API Features.
+     * Updates the values of the specified title-specific statistics for the user. By default, clients are not permitted to
+     * update statistics. Developers may override this setting in the Game Manager &gt; Settings &gt; API Features.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdatePlayerStatisticsResult> privateUpdatePlayerStatisticsAsync(final UpdatePlayerStatisticsRequest request) throws Exception {
@@ -7436,7 +7538,11 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated or added in this call will be readable by users not in the group. By default, data permissions are set to Private. Regardless of the permission setting, only members of the group can update the data. Shared Groups are designed  for sharing data between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated
+     * or added in this call will be readable by users not in the group. By default, data permissions are set to Private.
+     * Regardless of the permission setting, only members of the group can update the data. Shared Groups are designed  for
+     * sharing data between a very small number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request UpdateSharedGroupDataRequest
      * @return Async Task will return UpdateSharedGroupDataResult
      */
@@ -7450,7 +7556,11 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated or added in this call will be readable by users not in the group. By default, data permissions are set to Private. Regardless of the permission setting, only members of the group can update the data. Shared Groups are designed  for sharing data between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated
+     * or added in this call will be readable by users not in the group. By default, data permissions are set to Private.
+     * Regardless of the permission setting, only members of the group can update the data. Shared Groups are designed  for
+     * sharing data between a very small number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request UpdateSharedGroupDataRequest
      * @return UpdateSharedGroupDataResult
      */
@@ -7470,7 +7580,11 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated or added in this call will be readable by users not in the group. By default, data permissions are set to Private. Regardless of the permission setting, only members of the group can update the data. Shared Groups are designed  for sharing data between a very small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated
+     * or added in this call will be readable by users not in the group. By default, data permissions are set to Private.
+     * Regardless of the permission setting, only members of the group can update the data. Shared Groups are designed  for
+     * sharing data between a very small number of players, please see our guide:
+     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateSharedGroupDataResult> privateUpdateSharedGroupDataAsync(final UpdateSharedGroupDataRequest request) throws Exception {
@@ -7531,9 +7645,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Creates and updates the title-specific custom data for the user which is readable and writable by the client
-     */
+    /** Creates and updates the title-specific custom data for the user which is readable and writable by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserDataAsync(final UpdateUserDataRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -7593,9 +7705,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Creates and updates the publisher-specific custom data for the user which is readable and writable by the client
-     */
+    /** Creates and updates the publisher-specific custom data for the user which is readable and writable by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserPublisherDataAsync(final UpdateUserDataRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -7655,9 +7765,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Updates the title specific display name for the user
-     */
+    /** Updates the title specific display name for the user */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateUserTitleDisplayNameResult> privateUpdateUserTitleDisplayNameAsync(final UpdateUserTitleDisplayNameRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -7684,7 +7792,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches the purchased catalog item
+     * Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches the
+     * purchased catalog item
      * @param request ValidateAmazonReceiptRequest
      * @return Async Task will return ValidateAmazonReceiptResult
      */
@@ -7698,7 +7807,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches the purchased catalog item
+     * Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches the
+     * purchased catalog item
      * @param request ValidateAmazonReceiptRequest
      * @return ValidateAmazonReceiptResult
      */
@@ -7718,7 +7828,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches the purchased catalog item
+     * Validates with Amazon that the receipt for an Amazon App Store in-app purchase is valid and that it matches the
+     * purchased catalog item
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ValidateAmazonReceiptResult> privateValidateAmazonIAPReceiptAsync(final ValidateAmazonReceiptRequest request) throws Exception {
@@ -7779,9 +7890,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Validates a Google Play purchase and gives the corresponding item to the player.
-     */
+    /** Validates a Google Play purchase and gives the corresponding item to the player. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ValidateGooglePlayPurchaseResult> privateValidateGooglePlayPurchaseAsync(final ValidateGooglePlayPurchaseRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -7808,7 +7917,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the purchased catalog item
+     * Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the purchased
+     * catalog item
      * @param request ValidateIOSReceiptRequest
      * @return Async Task will return ValidateIOSReceiptResult
      */
@@ -7822,7 +7932,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the purchased catalog item
+     * Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the purchased
+     * catalog item
      * @param request ValidateIOSReceiptRequest
      * @return ValidateIOSReceiptResult
      */
@@ -7842,7 +7953,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the purchased catalog item
+     * Validates with the Apple store that the receipt for an iOS in-app purchase is valid and that it matches the purchased
+     * catalog item
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ValidateIOSReceiptResult> privateValidateIOSReceiptAsync(final ValidateIOSReceiptRequest request) throws Exception {
@@ -7870,7 +7982,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Validates with Windows that the receipt for an Windows App Store in-app purchase is valid and that it matches the purchased catalog item
+     * Validates with Windows that the receipt for an Windows App Store in-app purchase is valid and that it matches the
+     * purchased catalog item
      * @param request ValidateWindowsReceiptRequest
      * @return Async Task will return ValidateWindowsReceiptResult
      */
@@ -7884,7 +7997,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Validates with Windows that the receipt for an Windows App Store in-app purchase is valid and that it matches the purchased catalog item
+     * Validates with Windows that the receipt for an Windows App Store in-app purchase is valid and that it matches the
+     * purchased catalog item
      * @param request ValidateWindowsReceiptRequest
      * @return ValidateWindowsReceiptResult
      */
@@ -7904,7 +8018,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Validates with Windows that the receipt for an Windows App Store in-app purchase is valid and that it matches the purchased catalog item
+     * Validates with Windows that the receipt for an Windows App Store in-app purchase is valid and that it matches the
+     * purchased catalog item
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ValidateWindowsReceiptResult> privateValidateWindowsStoreReceiptAsync(final ValidateWindowsReceiptRequest request) throws Exception {
@@ -7965,9 +8080,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Writes a character-based event into PlayStream.
-     */
+    /** Writes a character-based event into PlayStream. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<WriteEventResponse> privateWriteCharacterEventAsync(final WriteClientCharacterEventRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -8027,9 +8140,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Writes a player-based event into PlayStream.
-     */
+    /** Writes a player-based event into PlayStream. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<WriteEventResponse> privateWritePlayerEventAsync(final WriteClientPlayerEventRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -8089,9 +8200,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Writes a title-based event into PlayStream.
-     */
+    /** Writes a title-based event into PlayStream. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<WriteEventResponse> privateWriteTitleEventAsync(final WriteTitleEventRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
