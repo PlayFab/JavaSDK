@@ -62,6 +62,16 @@ public class PlayFabClientModels {
         
     }
 
+    public static class AddOrUpdateContactEmailRequest {
+        /** The new contact email to associate with the player. */
+        public String EmailAddress;
+        
+    }
+
+    public static class AddOrUpdateContactEmailResult {
+        
+    }
+
     public static class AddSharedGroupMembersRequest {
         /** An array of unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public ArrayList<String> PlayFabIds;
@@ -2784,6 +2794,14 @@ public class PlayFabClientModels {
         public String TitleId;
         /** Player's user name used by Windows Hello. */
         public String UserName;
+        
+    }
+
+    public static class RemoveContactEmailRequest {
+        
+    }
+
+    public static class RemoveContactEmailResult {
         
     }
 

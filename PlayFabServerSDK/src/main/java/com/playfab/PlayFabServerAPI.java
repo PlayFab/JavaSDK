@@ -4774,6 +4774,71 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Forces an email to be sent to the registered contact email address for the user's account based on an account recovery
+     * email template
+     * @param request SendCustomAccountRecoveryEmailRequest
+     * @return Async Task will return SendCustomAccountRecoveryEmailResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<SendCustomAccountRecoveryEmailResult>> SendCustomAccountRecoveryEmailAsync(final SendCustomAccountRecoveryEmailRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<SendCustomAccountRecoveryEmailResult>>() {
+            public PlayFabResult<SendCustomAccountRecoveryEmailResult> call() throws Exception {
+                return privateSendCustomAccountRecoveryEmailAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Forces an email to be sent to the registered contact email address for the user's account based on an account recovery
+     * email template
+     * @param request SendCustomAccountRecoveryEmailRequest
+     * @return SendCustomAccountRecoveryEmailResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<SendCustomAccountRecoveryEmailResult> SendCustomAccountRecoveryEmail(final SendCustomAccountRecoveryEmailRequest request) {
+        FutureTask<PlayFabResult<SendCustomAccountRecoveryEmailResult>> task = new FutureTask(new Callable<PlayFabResult<SendCustomAccountRecoveryEmailResult>>() {
+            public PlayFabResult<SendCustomAccountRecoveryEmailResult> call() throws Exception {
+                return privateSendCustomAccountRecoveryEmailAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Forces an email to be sent to the registered contact email address for the user's account based on an account recovery
+     * email template
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<SendCustomAccountRecoveryEmailResult> privateSendCustomAccountRecoveryEmailAsync(final SendCustomAccountRecoveryEmailRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SendCustomAccountRecoveryEmail", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<SendCustomAccountRecoveryEmailResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<SendCustomAccountRecoveryEmailResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SendCustomAccountRecoveryEmailResult>>(){}.getType());
+        SendCustomAccountRecoveryEmailResult result = resultData.data;
+
+        PlayFabResult<SendCustomAccountRecoveryEmailResult> pfResult = new PlayFabResult<SendCustomAccountRecoveryEmailResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Sends an iOS/Android Push Notification to a specific user, if that user's device has been configured for Push
      * Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
      * @param request SendPushNotificationRequest

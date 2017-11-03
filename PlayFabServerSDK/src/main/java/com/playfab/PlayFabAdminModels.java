@@ -174,6 +174,10 @@ public class PlayFabAdminModels {
         
     }
 
+    public static enum AuthTokenType {
+        Email
+    }
+
     /** Contains information for a ban. */
     public static class BanInfo {
         /** The active state of this ban. Expired bans may still have this value set to true but they will have no effect. */
@@ -1234,6 +1238,20 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class GetPlayerIdFromAuthTokenRequest {
+        /** The auth token of the player requesting the password reset. */
+        public String Token;
+        /** The type of auth token of the player requesting the password reset. */
+        public AuthTokenType TokenType;
+        
+    }
+
+    public static class GetPlayerIdFromAuthTokenResult {
+        /** The player ID from the token passed in */
+        public String PlayFabId;
+        
+    }
+
     public static class GetPlayerProfileRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
@@ -2248,6 +2266,18 @@ public class PlayFabAdminModels {
     }
 
     public static class ResetCharacterStatisticsResult {
+        
+    }
+
+    public static class ResetPasswordRequest {
+        /** The new password for the player. */
+        public String Password;
+        /** The token of the player requesting the password reset. */
+        public String Token;
+        
+    }
+
+    public static class ResetPasswordResult {
         
     }
 
