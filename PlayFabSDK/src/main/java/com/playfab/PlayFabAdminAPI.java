@@ -1737,6 +1737,66 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Gets a player's ID from an auth token.
+     * @param request GetPlayerIdFromAuthTokenRequest
+     * @return Async Task will return GetPlayerIdFromAuthTokenResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayerIdFromAuthTokenResult>> GetPlayerIdFromAuthTokenAsync(final GetPlayerIdFromAuthTokenRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayerIdFromAuthTokenResult>>() {
+            public PlayFabResult<GetPlayerIdFromAuthTokenResult> call() throws Exception {
+                return privateGetPlayerIdFromAuthTokenAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Gets a player's ID from an auth token.
+     * @param request GetPlayerIdFromAuthTokenRequest
+     * @return GetPlayerIdFromAuthTokenResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayerIdFromAuthTokenResult> GetPlayerIdFromAuthToken(final GetPlayerIdFromAuthTokenRequest request) {
+        FutureTask<PlayFabResult<GetPlayerIdFromAuthTokenResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayerIdFromAuthTokenResult>>() {
+            public PlayFabResult<GetPlayerIdFromAuthTokenResult> call() throws Exception {
+                return privateGetPlayerIdFromAuthTokenAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Gets a player's ID from an auth token. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayerIdFromAuthTokenResult> privateGetPlayerIdFromAuthTokenAsync(final GetPlayerIdFromAuthTokenRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/GetPlayerIdFromAuthToken", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayerIdFromAuthTokenResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayerIdFromAuthTokenResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayerIdFromAuthTokenResult>>(){}.getType());
+        GetPlayerIdFromAuthTokenResult result = resultData.data;
+
+        PlayFabResult<GetPlayerIdFromAuthTokenResult> pfResult = new PlayFabResult<GetPlayerIdFromAuthTokenResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * List all segments that a player currently belongs to at this moment in time.
      * @param request GetPlayersSegmentsRequest
      * @return Async Task will return GetPlayerSegmentsResult
@@ -3918,6 +3978,66 @@ public class PlayFabAdminAPI {
         ResetCharacterStatisticsResult result = resultData.data;
 
         PlayFabResult<ResetCharacterStatisticsResult> pfResult = new PlayFabResult<ResetCharacterStatisticsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Reset a player's password for a given title.
+     * @param request ResetPasswordRequest
+     * @return Async Task will return ResetPasswordResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ResetPasswordResult>> ResetPasswordAsync(final ResetPasswordRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ResetPasswordResult>>() {
+            public PlayFabResult<ResetPasswordResult> call() throws Exception {
+                return privateResetPasswordAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Reset a player's password for a given title.
+     * @param request ResetPasswordRequest
+     * @return ResetPasswordResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ResetPasswordResult> ResetPassword(final ResetPasswordRequest request) {
+        FutureTask<PlayFabResult<ResetPasswordResult>> task = new FutureTask(new Callable<PlayFabResult<ResetPasswordResult>>() {
+            public PlayFabResult<ResetPasswordResult> call() throws Exception {
+                return privateResetPasswordAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Reset a player's password for a given title. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ResetPasswordResult> privateResetPasswordAsync(final ResetPasswordRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/ResetPassword", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ResetPasswordResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ResetPasswordResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ResetPasswordResult>>(){}.getType());
+        ResetPasswordResult result = resultData.data;
+
+        PlayFabResult<ResetPasswordResult> pfResult = new PlayFabResult<ResetPasswordResult>();
         pfResult.Result = result;
         return pfResult;
     }

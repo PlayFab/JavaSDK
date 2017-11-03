@@ -218,6 +218,66 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Adds or updates a contact email to the player's profile
+     * @param request AddOrUpdateContactEmailRequest
+     * @return Async Task will return AddOrUpdateContactEmailResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<AddOrUpdateContactEmailResult>> AddOrUpdateContactEmailAsync(final AddOrUpdateContactEmailRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<AddOrUpdateContactEmailResult>>() {
+            public PlayFabResult<AddOrUpdateContactEmailResult> call() throws Exception {
+                return privateAddOrUpdateContactEmailAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Adds or updates a contact email to the player's profile
+     * @param request AddOrUpdateContactEmailRequest
+     * @return AddOrUpdateContactEmailResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<AddOrUpdateContactEmailResult> AddOrUpdateContactEmail(final AddOrUpdateContactEmailRequest request) {
+        FutureTask<PlayFabResult<AddOrUpdateContactEmailResult>> task = new FutureTask(new Callable<PlayFabResult<AddOrUpdateContactEmailResult>>() {
+            public PlayFabResult<AddOrUpdateContactEmailResult> call() throws Exception {
+                return privateAddOrUpdateContactEmailAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Adds or updates a contact email to the player's profile */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<AddOrUpdateContactEmailResult> privateAddOrUpdateContactEmailAsync(final AddOrUpdateContactEmailRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/AddOrUpdateContactEmail", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<AddOrUpdateContactEmailResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<AddOrUpdateContactEmailResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AddOrUpdateContactEmailResult>>(){}.getType());
+        AddOrUpdateContactEmailResult result = resultData.data;
+
+        PlayFabResult<AddOrUpdateContactEmailResult> pfResult = new PlayFabResult<AddOrUpdateContactEmailResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only
      * users in the group can add new members. Shared Groups are designed for sharing data between a very  small number of
      * players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
@@ -5847,6 +5907,66 @@ public class PlayFabClientAPI {
         MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Removes a contact email from the player's profile
+     * @param request RemoveContactEmailRequest
+     * @return Async Task will return RemoveContactEmailResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RemoveContactEmailResult>> RemoveContactEmailAsync(final RemoveContactEmailRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RemoveContactEmailResult>>() {
+            public PlayFabResult<RemoveContactEmailResult> call() throws Exception {
+                return privateRemoveContactEmailAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Removes a contact email from the player's profile
+     * @param request RemoveContactEmailRequest
+     * @return RemoveContactEmailResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RemoveContactEmailResult> RemoveContactEmail(final RemoveContactEmailRequest request) {
+        FutureTask<PlayFabResult<RemoveContactEmailResult>> task = new FutureTask(new Callable<PlayFabResult<RemoveContactEmailResult>>() {
+            public PlayFabResult<RemoveContactEmailResult> call() throws Exception {
+                return privateRemoveContactEmailAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Removes a contact email from the player's profile */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RemoveContactEmailResult> privateRemoveContactEmailAsync(final RemoveContactEmailRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/RemoveContactEmail", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RemoveContactEmailResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RemoveContactEmailResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RemoveContactEmailResult>>(){}.getType());
+        RemoveContactEmailResult result = resultData.data;
+
+        PlayFabResult<RemoveContactEmailResult> pfResult = new PlayFabResult<RemoveContactEmailResult>();
         pfResult.Result = result;
         return pfResult;
     }
