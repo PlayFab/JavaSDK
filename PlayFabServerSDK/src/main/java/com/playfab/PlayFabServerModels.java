@@ -2494,6 +2494,18 @@ public class PlayFabServerModels {
         
     }
 
+    public static class SendEmailFromTemplateRequest {
+        /** The email template id of the email template to send. */
+        public String EmailTemplateId;
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        public String PlayFabId;
+        
+    }
+
+    public static class SendEmailFromTemplateResult {
+        
+    }
+
     public static class SendPushNotificationRequest {
         /**
          * Allows you to provide precisely formatted json to target devices. This is an advanced feature, allowing you to deliver

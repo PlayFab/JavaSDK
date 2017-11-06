@@ -4839,6 +4839,66 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Sends an email based on an email template to a player's contact email
+     * @param request SendEmailFromTemplateRequest
+     * @return Async Task will return SendEmailFromTemplateResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<SendEmailFromTemplateResult>> SendEmailFromTemplateAsync(final SendEmailFromTemplateRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<SendEmailFromTemplateResult>>() {
+            public PlayFabResult<SendEmailFromTemplateResult> call() throws Exception {
+                return privateSendEmailFromTemplateAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Sends an email based on an email template to a player's contact email
+     * @param request SendEmailFromTemplateRequest
+     * @return SendEmailFromTemplateResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<SendEmailFromTemplateResult> SendEmailFromTemplate(final SendEmailFromTemplateRequest request) {
+        FutureTask<PlayFabResult<SendEmailFromTemplateResult>> task = new FutureTask(new Callable<PlayFabResult<SendEmailFromTemplateResult>>() {
+            public PlayFabResult<SendEmailFromTemplateResult> call() throws Exception {
+                return privateSendEmailFromTemplateAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Sends an email based on an email template to a player's contact email */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<SendEmailFromTemplateResult> privateSendEmailFromTemplateAsync(final SendEmailFromTemplateRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SendEmailFromTemplate", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<SendEmailFromTemplateResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<SendEmailFromTemplateResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SendEmailFromTemplateResult>>(){}.getType());
+        SendEmailFromTemplateResult result = resultData.data;
+
+        PlayFabResult<SendEmailFromTemplateResult> pfResult = new PlayFabResult<SendEmailFromTemplateResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Sends an iOS/Android Push Notification to a specific user, if that user's device has been configured for Push
      * Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
      * @param request SendPushNotificationRequest
