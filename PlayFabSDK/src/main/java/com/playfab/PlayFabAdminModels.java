@@ -354,6 +354,20 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class CheckLimitedEditionItemAvailabilityRequest {
+        /** Which catalog is being updated. If null, uses the default catalog. */
+        public String CatalogVersion;
+        /** The item to check for. */
+        public String ItemId;
+        
+    }
+
+    public static class CheckLimitedEditionItemAvailabilityResult {
+        /** The amount of the specified resource remaining. */
+        public Integer Amount;
+        
+    }
+
     public static class CloudScriptFile {
         /** Contents of the Cloud Script javascript. Must be string-escaped javascript. */
         public String FileContents;
@@ -1658,6 +1672,20 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class IncrementLimitedEditionItemAvailabilityRequest {
+        /** Amount to increase availability by. */
+        public Integer Amount;
+        /** Which catalog is being updated. If null, uses the default catalog. */
+        public String CatalogVersion;
+        /** The item which needs more availability. */
+        public String ItemId;
+        
+    }
+
+    public static class IncrementLimitedEditionItemAvailabilityResult {
+        
+    }
+
     public static class IncrementPlayerStatisticVersionRequest {
         /** unique name of the statistic */
         public String StatisticName;
@@ -2070,8 +2098,6 @@ public class PlayFabAdminModels {
         public Long TotalValueToDateInUSD;
         /** List of the player's lifetime purchase totals, summed by real-money currency */
         public ArrayList<ValueToDateModel> ValuesToDate;
-        /** List of the player's virtual currency balances */
-        public ArrayList<VirtualCurrencyBalanceModel> VirtualCurrencyBalances;
         
     }
 
@@ -3136,14 +3162,6 @@ public class PlayFabAdminModels {
          * dollars and ninety-nine cents when Currency is 'USD'.
          */
         public String TotalValueAsDecimal;
-        
-    }
-
-    public static class VirtualCurrencyBalanceModel {
-        /** Name of the virtual currency */
-        public String Currency;
-        /** Balance of the virtual currency */
-        public Integer TotalValue;
         
     }
 

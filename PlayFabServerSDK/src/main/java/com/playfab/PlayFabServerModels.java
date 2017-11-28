@@ -2152,8 +2152,6 @@ public class PlayFabServerModels {
         public Long TotalValueToDateInUSD;
         /** List of the player's lifetime purchase totals, summed by real-money currency */
         public ArrayList<ValueToDateModel> ValuesToDate;
-        /** List of the player's virtual currency balances */
-        public ArrayList<VirtualCurrencyBalanceModel> VirtualCurrencyBalances;
         
     }
 
@@ -2230,13 +2228,6 @@ public class PlayFabServerModels {
         public String Icon;
         /** Content of the message (all platforms) */
         public String Message;
-        /**
-         * This field was solely for use with the PlayFab custom Push Plugin, which has been deprecated in favor of the supported
-         * platform-specific fields
-         * @deprecated Please use CustomData instead.
-         */
-        @Deprecated
-        public String ScheduleDate;
         /** Sound file to play with the message (all platforms) */
         public String Sound;
         /** Title/Subject of the message. Not supported for iOS */
@@ -3200,14 +3191,6 @@ public class PlayFabServerModels {
          * dollars and ninety-nine cents when Currency is 'USD'.
          */
         public String TotalValueAsDecimal;
-        
-    }
-
-    public static class VirtualCurrencyBalanceModel {
-        /** Name of the virtual currency */
-        public String Currency;
-        /** Balance of the virtual currency */
-        public Integer TotalValue;
         
     }
 
