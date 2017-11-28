@@ -218,7 +218,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds or updates a contact email to the player's profile
+     * Adds or updates a contact email to the player's profile.
      * @param request AddOrUpdateContactEmailRequest
      * @return Async Task will return AddOrUpdateContactEmailResult
      */
@@ -232,7 +232,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds or updates a contact email to the player's profile
+     * Adds or updates a contact email to the player's profile.
      * @param request AddOrUpdateContactEmailRequest
      * @return AddOrUpdateContactEmailResult
      */
@@ -251,7 +251,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /** Adds or updates a contact email to the player's profile */
+    /** Adds or updates a contact email to the player's profile. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AddOrUpdateContactEmailResult> privateAddOrUpdateContactEmailAsync(final AddOrUpdateContactEmailRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -2037,6 +2037,74 @@ public class PlayFabClientAPI {
         GetLeaderboardForUsersCharactersResult result = resultData.data;
 
         PlayFabResult<GetLeaderboardForUsersCharactersResult> pfResult = new PlayFabResult<GetLeaderboardForUsersCharactersResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * For payments flows where the provider requires playfab (the fulfiller) to initiate the transaction, but the client
+     * completes the rest of the flow. In the Xsolla case, the token returned here will be passed to Xsolla by the client to
+     * create a cart. Poll GetPurchase using the returned OrderId once you've completed the payment.
+     * @param request GetPaymentTokenRequest
+     * @return Async Task will return GetPaymentTokenResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPaymentTokenResult>> GetPaymentTokenAsync(final GetPaymentTokenRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPaymentTokenResult>>() {
+            public PlayFabResult<GetPaymentTokenResult> call() throws Exception {
+                return privateGetPaymentTokenAsync(request);
+            }
+        });
+    }
+
+    /**
+     * For payments flows where the provider requires playfab (the fulfiller) to initiate the transaction, but the client
+     * completes the rest of the flow. In the Xsolla case, the token returned here will be passed to Xsolla by the client to
+     * create a cart. Poll GetPurchase using the returned OrderId once you've completed the payment.
+     * @param request GetPaymentTokenRequest
+     * @return GetPaymentTokenResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPaymentTokenResult> GetPaymentToken(final GetPaymentTokenRequest request) {
+        FutureTask<PlayFabResult<GetPaymentTokenResult>> task = new FutureTask(new Callable<PlayFabResult<GetPaymentTokenResult>>() {
+            public PlayFabResult<GetPaymentTokenResult> call() throws Exception {
+                return privateGetPaymentTokenAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * For payments flows where the provider requires playfab (the fulfiller) to initiate the transaction, but the client
+     * completes the rest of the flow. In the Xsolla case, the token returned here will be passed to Xsolla by the client to
+     * create a cart. Poll GetPurchase using the returned OrderId once you've completed the payment.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPaymentTokenResult> privateGetPaymentTokenAsync(final GetPaymentTokenRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPaymentToken", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPaymentTokenResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPaymentTokenResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPaymentTokenResult>>(){}.getType());
+        GetPaymentTokenResult result = resultData.data;
+
+        PlayFabResult<GetPaymentTokenResult> pfResult = new PlayFabResult<GetPaymentTokenResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -5912,7 +5980,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Removes a contact email from the player's profile
+     * Removes a contact email from the player's profile.
      * @param request RemoveContactEmailRequest
      * @return Async Task will return RemoveContactEmailResult
      */
@@ -5926,7 +5994,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Removes a contact email from the player's profile
+     * Removes a contact email from the player's profile.
      * @param request RemoveContactEmailRequest
      * @return RemoveContactEmailResult
      */
@@ -5945,7 +6013,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /** Removes a contact email from the player's profile */
+    /** Removes a contact email from the player's profile. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RemoveContactEmailResult> privateRemoveContactEmailAsync(final RemoveContactEmailRequest request) throws Exception {
         if (_authKey == null) throw new Exception ("Must be logged in to call this method");
@@ -6158,6 +6226,71 @@ public class PlayFabClientAPI {
         RemoveSharedGroupMembersResult result = resultData.data;
 
         PlayFabResult<RemoveSharedGroupMembersResult> pfResult = new PlayFabResult<RemoveSharedGroupMembersResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Write a PlayStream event to describe the provided player device information. This API method is not designed to be
+     * called directly by developers. Each PlayFab client SDK will eventually report this information automatically.
+     * @param request DeviceInfoRequest
+     * @return Async Task will return EmptyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResult>> ReportDeviceInfoAsync(final DeviceInfoRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateReportDeviceInfoAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Write a PlayStream event to describe the provided player device information. This API method is not designed to be
+     * called directly by developers. Each PlayFab client SDK will eventually report this information automatically.
+     * @param request DeviceInfoRequest
+     * @return EmptyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResult> ReportDeviceInfo(final DeviceInfoRequest request) {
+        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateReportDeviceInfoAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Write a PlayStream event to describe the provided player device information. This API method is not designed to be
+     * called directly by developers. Each PlayFab client SDK will eventually report this information automatically.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResult> privateReportDeviceInfoAsync(final DeviceInfoRequest request) throws Exception {
+        if (_authKey == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ReportDeviceInfo", request, "X-Authorization", _authKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
+        EmptyResult result = resultData.data;
+
+        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
         pfResult.Result = result;
         return pfResult;
     }

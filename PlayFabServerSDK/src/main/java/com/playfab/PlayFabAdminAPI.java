@@ -444,6 +444,66 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Checks the global count for the limited edition item.
+     * @param request CheckLimitedEditionItemAvailabilityRequest
+     * @return Async Task will return CheckLimitedEditionItemAvailabilityResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<CheckLimitedEditionItemAvailabilityResult>> CheckLimitedEditionItemAvailabilityAsync(final CheckLimitedEditionItemAvailabilityRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<CheckLimitedEditionItemAvailabilityResult>>() {
+            public PlayFabResult<CheckLimitedEditionItemAvailabilityResult> call() throws Exception {
+                return privateCheckLimitedEditionItemAvailabilityAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Checks the global count for the limited edition item.
+     * @param request CheckLimitedEditionItemAvailabilityRequest
+     * @return CheckLimitedEditionItemAvailabilityResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<CheckLimitedEditionItemAvailabilityResult> CheckLimitedEditionItemAvailability(final CheckLimitedEditionItemAvailabilityRequest request) {
+        FutureTask<PlayFabResult<CheckLimitedEditionItemAvailabilityResult>> task = new FutureTask(new Callable<PlayFabResult<CheckLimitedEditionItemAvailabilityResult>>() {
+            public PlayFabResult<CheckLimitedEditionItemAvailabilityResult> call() throws Exception {
+                return privateCheckLimitedEditionItemAvailabilityAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Checks the global count for the limited edition item. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<CheckLimitedEditionItemAvailabilityResult> privateCheckLimitedEditionItemAvailabilityAsync(final CheckLimitedEditionItemAvailabilityRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/CheckLimitedEditionItemAvailability", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<CheckLimitedEditionItemAvailabilityResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<CheckLimitedEditionItemAvailabilityResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<CheckLimitedEditionItemAvailabilityResult>>(){}.getType());
+        CheckLimitedEditionItemAvailabilityResult result = resultData.data;
+
+        PlayFabResult<CheckLimitedEditionItemAvailabilityResult> pfResult = new PlayFabResult<CheckLimitedEditionItemAvailabilityResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Create an ActionsOnPlayersInSegment task, which iterates through all players in a segment to execute action.
      * @param request CreateActionsOnPlayerSegmentTaskRequest
      * @return Async Task will return CreateTaskResult
@@ -3433,6 +3493,66 @@ public class PlayFabAdminAPI {
         GrantItemsToUsersResult result = resultData.data;
 
         PlayFabResult<GrantItemsToUsersResult> pfResult = new PlayFabResult<GrantItemsToUsersResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Increases the global count for the given scarce resource.
+     * @param request IncrementLimitedEditionItemAvailabilityRequest
+     * @return Async Task will return IncrementLimitedEditionItemAvailabilityResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<IncrementLimitedEditionItemAvailabilityResult>> IncrementLimitedEditionItemAvailabilityAsync(final IncrementLimitedEditionItemAvailabilityRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<IncrementLimitedEditionItemAvailabilityResult>>() {
+            public PlayFabResult<IncrementLimitedEditionItemAvailabilityResult> call() throws Exception {
+                return privateIncrementLimitedEditionItemAvailabilityAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Increases the global count for the given scarce resource.
+     * @param request IncrementLimitedEditionItemAvailabilityRequest
+     * @return IncrementLimitedEditionItemAvailabilityResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<IncrementLimitedEditionItemAvailabilityResult> IncrementLimitedEditionItemAvailability(final IncrementLimitedEditionItemAvailabilityRequest request) {
+        FutureTask<PlayFabResult<IncrementLimitedEditionItemAvailabilityResult>> task = new FutureTask(new Callable<PlayFabResult<IncrementLimitedEditionItemAvailabilityResult>>() {
+            public PlayFabResult<IncrementLimitedEditionItemAvailabilityResult> call() throws Exception {
+                return privateIncrementLimitedEditionItemAvailabilityAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Increases the global count for the given scarce resource. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<IncrementLimitedEditionItemAvailabilityResult> privateIncrementLimitedEditionItemAvailabilityAsync(final IncrementLimitedEditionItemAvailabilityRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/IncrementLimitedEditionItemAvailability", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if(httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<IncrementLimitedEditionItemAvailabilityResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<IncrementLimitedEditionItemAvailabilityResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<IncrementLimitedEditionItemAvailabilityResult>>(){}.getType());
+        IncrementLimitedEditionItemAvailabilityResult result = resultData.data;
+
+        PlayFabResult<IncrementLimitedEditionItemAvailabilityResult> pfResult = new PlayFabResult<IncrementLimitedEditionItemAvailabilityResult>();
         pfResult.Result = result;
         return pfResult;
     }

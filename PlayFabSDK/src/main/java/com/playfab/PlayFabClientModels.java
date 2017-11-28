@@ -865,6 +865,12 @@ public class PlayFabClientModels {
         
     }
 
+    public static class DeviceInfoRequest {
+        /** Information posted to the PlayStream Event. Currently arbitrary, and specific to the environment sending it. */
+        public Map<String,Object> Info;
+        
+    }
+
     public static enum EmailVerificationStatus {
         Unverified,
         Pending,
@@ -1338,6 +1344,20 @@ public class PlayFabClientModels {
         public Date NextReset;
         /** The version of the leaderboard returned. */
         public Integer Version;
+        
+    }
+
+    public static class GetPaymentTokenRequest {
+        /** The name of service to provide the payment token. Allowed Values are: xsolla */
+        public String TokenProvider;
+        
+    }
+
+    public static class GetPaymentTokenResult {
+        /** PlayFab's purchase order identifier. */
+        public String OrderId;
+        /** The token from provider. */
+        public String ProviderToken;
         
     }
 
@@ -2591,8 +2611,6 @@ public class PlayFabClientModels {
         public Long TotalValueToDateInUSD;
         /** List of the player's lifetime purchase totals, summed by real-money currency */
         public ArrayList<ValueToDateModel> ValuesToDate;
-        /** List of the player's virtual currency balances */
-        public ArrayList<VirtualCurrencyBalanceModel> VirtualCurrencyBalances;
         
     }
 
@@ -3743,14 +3761,6 @@ public class PlayFabClientModels {
          * dollars and ninety-nine cents when Currency is 'USD'.
          */
         public String TotalValueAsDecimal;
-        
-    }
-
-    public static class VirtualCurrencyBalanceModel {
-        /** Name of the virtual currency */
-        public String Currency;
-        /** Balance of the virtual currency */
-        public Integer TotalValue;
         
     }
 
