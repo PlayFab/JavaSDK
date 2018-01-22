@@ -354,7 +354,9 @@ public class PlayFabErrors {
         NoEntityFileOperationPending(1351),
         EntityProfileVersionMismatch(1352),
         TemplateVersionTooOld(1353),
-        MembershipDefinitionInUse(1354);
+        MembershipDefinitionInUse(1354),
+        PaymentPageNotConfigured(1355),
+        FailedLoginAttemptRateLimitExceeded(1356);
 
         public int id;
 
