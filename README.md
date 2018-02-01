@@ -1,5 +1,36 @@
 # Java SDK for PlayFab README
 
+## 0. Install via Maven or Gradle:
+
+Check the [Maven Central Repository](https://search.maven.org/#search%7Cga%7C1%7Ccom.playfab) for latest versions of our SDKs.  
+When using **Maven**, use the following snippet as part of your dependencies set:  
+(Use `client-sdk` or `server-sdk` or `combo-sdk` as ARTIFACT)  
+
+```
+<dependency>
+    <groupId>com.playfab</groupId>
+    <artifactId>ARTIFACT</artifactId>
+    <version>VERSION</version>
+</dependency>
+```
+
+When using **Gradle**, make sure Maven Central Repository is linked:  
+
+```
+repositories {
+    mavenCentral()
+}
+```
+
+Use the following snippet to add `client-sdk` or `server-sdk` or `combo-sdk` to your dependencies set:  
+
+```
+dependencies {
+    compile('com.playfab.client-sdk:VERSION')
+    compile('com.playfab.server-sdk:VERSION')
+    compile('com.playfab.combo-sdk:VERSION')
+}
+```
 
 ## 1. Overview:
 
