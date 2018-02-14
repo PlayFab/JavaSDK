@@ -2461,6 +2461,8 @@ public class PlayFabAdminModels {
     public static class SendAccountRecoveryEmailRequest {
         /** User email address attached to their account */
         public String Email;
+        /** The email template id of the account recovery email template to send. */
+        public String EmailTemplateId;
         
     }
 

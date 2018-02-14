@@ -5,28 +5,32 @@ import org.junit.*;
 
 import java.util.*;
 import java.io.*;
+import java.util.Properties;
 
 import com.google.gson.*;
 import com.google.gson.reflect.*;
 
 import com.playfab.PlayFabErrors.*;
 import com.playfab.PlayFabSettings;
+
 import com.playfab.PlayFabClientModels;
 import com.playfab.PlayFabClientAPI;
+
+//import com.playfab.PlayFabEntityModels;
+//import com.playfab.PlayFabEntityAPI;
 
 public class PlayFabApiTest
 {
     // Constants
     private static final String TEST_DATA_KEY = "testCounter";
     private static final String TEST_STAT_NAME = "str";
-    private static final String CHAR_TEST_TYPE = "Test";
 
     // Fixed values provided from testInputs
     private static String USER_EMAIL;
-    private static String CHAR_NAME;
 
     // Cached values
     private static String playFabId = null;
+    private static String entityId = null;
 
     // Helpers
     private <RT> void VerifyResult(PlayFabResult<RT> result, boolean expectSuccess)
@@ -63,6 +67,7 @@ public class PlayFabApiTest
     private class TitleData
     {
         public String titleId;
+        public String developerSecretKey;
         public String userEmail;
     }
 
@@ -81,6 +86,7 @@ public class PlayFabApiTest
         } catch (IOException e) {
             // NOTE: Un-Comment and put your title-specific information here to test your title, or use PF_TEST_TITLE_DATA_JSON above
             //PlayFabSettings.TitleId = "TODO: TitleID";
+            //PlayFabSettings.DeveloperSecretKey = "TODO: A big long secret key that you should NEVER publish with your client";
             //USER_EMAIL = "TODO: an email associated with an existing account on your title";
             return;
         }
@@ -88,6 +94,7 @@ public class PlayFabApiTest
         TitleData resultData = gson.fromJson(testTitleJson, new TypeToken<TitleData>(){}.getType());
         PlayFabSettings.TitleId = resultData.titleId;
         USER_EMAIL = resultData.userEmail;
+
     }
 
     /**
@@ -189,7 +196,7 @@ public class PlayFabApiTest
         testCounterValueExpected = (testCounterValueExpected + 1) % 100; // This test is about the expected value changing - but not testing more complicated issues like bounds
 
         PlayFabClientModels.UpdateUserDataRequest updateRequest = new PlayFabClientModels.UpdateUserDataRequest();
-        updateRequest.Data = new HashMap<String,String>();
+        updateRequest.Data = new HashMap<String, String>();
         updateRequest.Data.put(TEST_DATA_KEY, Integer.toString(testCounterValueExpected));
         PlayFabResult<PlayFabClientModels.UpdateUserDataResult> updateDataResult = PlayFabClientAPI.UpdateUserData(updateRequest);
         VerifyResult(updateDataResult, true);
@@ -262,7 +269,7 @@ public class PlayFabApiTest
      *  Parameter types tested: Contained-Classes, string
      */
     @Test
-    public void UserCharacter()
+    public void UserCharacterClient()
     {
         LoginOrRegister();
 
@@ -278,7 +285,7 @@ public class PlayFabApiTest
      *  Parameter types tested: List of contained-classes
      */
     @Test
-    public void LeaderBoard()
+    public void LeaderBoardClient()
     {
         LoginOrRegister();
         PlayerStatisticsApi();
@@ -324,7 +331,7 @@ public class PlayFabApiTest
      *  Test that CloudScript can be properly set up and invoked
      */
     @Test
-    public void CloudScript()
+    public void CloudScriptClient()
     {
         LoginOrRegister();
 
@@ -342,7 +349,7 @@ public class PlayFabApiTest
      *  Test that CloudScript errors can be deciphered
      */
     @Test
-    public void CloudScriptError()
+    public void CloudScriptErrorClient()
     {
         LoginOrRegister();
 
@@ -373,5 +380,64 @@ public class PlayFabApiTest
         PlayFabResult<PlayFabClientModels.WriteEventResponse> result = PlayFabClientAPI.WritePlayerEvent(request);
         VerifyResult(result, true);
     }
-}
 
+    /**
+     *  ENTITY API
+     *  Log in or create a user, track their PlayFabId
+     */
+//    @Test
+//    public void GetEntityToken()
+//    {
+//        LoginOrRegister();
+//
+//        PlayFabEntityModels.GetEntityTokenRequest request = new PlayFabEntityModels.GetEntityTokenRequest();
+//        PlayFabResult<PlayFabEntityModels.GetEntityTokenResponse> result = PlayFabEntityAPI.GetEntityToken(request);
+//        VerifyResult(result, true);
+//
+//        entityId = result.Result.EntityId;
+//    }
+
+    /**
+     *  ENTITY API
+     *  Test a sequence of calls that modifies entity objects,
+     *    and verifies that the next sequential API call contains updated information.
+     *  Verify that the object is correctly modified on the next call.
+     */
+//    @Test
+//    public void ObjectApi()
+//    {
+//        GetEntityToken();
+
+//        PlayFabEntityModels.GetObjectsRequest getRequest = new PlayFabEntityModels.GetObjectsRequest();
+//        getRequest.EntityId = entityId;
+//        getRequest.EntityType = "title_player_account";
+//        getRequest.EscapeObject = true;
+//        PlayFabResult<PlayFabEntityModels.GetObjectsResponse> getObjResult = PlayFabEntityAPI.GetObjects(getRequest);
+//        VerifyResult(getObjResult, true);
+//
+//        int testCounterValueExpected = 0;
+//        if (getObjResult.Result.Objects.size() == 1 && TEST_DATA_KEY.equals(getObjResult.Result.Objects.get(0).ObjectName))
+//            testCounterValueExpected = Integer.parseInt(getObjResult.Result.Objects.get(0).EscapedDataObject);
+//        testCounterValueExpected = (testCounterValueExpected + 1) % 100; // This test is about the expected value changing - but not testing more complicated issues like bounds
+//
+//        PlayFabEntityModels.SetObjectsRequest setObjRequest = new PlayFabEntityModels.SetObjectsRequest();
+//        setObjRequest.EntityId = entityId;
+//        setObjRequest.EntityType = "title_player_account";
+//        setObjRequest.Objects = new ArrayList<PlayFabEntityModels.SetObject>();
+//        PlayFabEntityModels.SetObject setObj = new PlayFabEntityModels.SetObject();
+//        setObj.ObjectName = TEST_DATA_KEY;
+//        setObj.Unstructured = true;
+//        setObj.DataObject = testCounterValueExpected;
+//        setObjRequest.Objects.add(setObj);
+//        PlayFabResult<PlayFabEntityModels.SetObjectsResponse> setObjResult = PlayFabEntityAPI.SetObjects(setObjRequest);
+//        VerifyResult(setObjResult, true);
+//
+//        getObjResult = PlayFabEntityAPI.GetObjects(getRequest);
+//        VerifyResult(getObjResult, true);
+//
+//        int testCounterValueActual = -1000;
+//        if (getObjResult.Result.Objects.size() == 1 && TEST_DATA_KEY.equals(getObjResult.Result.Objects.get(0).ObjectName))
+//            testCounterValueActual = Integer.parseInt(getObjResult.Result.Objects.get(0).EscapedDataObject);
+//        assertEquals(testCounterValueExpected, testCounterValueActual);
+//    }
+}

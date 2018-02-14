@@ -1,3 +1,5 @@
+package com.playfab.test;
+
 import static org.junit.Assert.*;
 import org.junit.*;
 
@@ -10,11 +12,22 @@ import com.google.gson.reflect.*;
 
 import com.playfab.PlayFabErrors.*;
 import com.playfab.PlayFabSettings;
+
 import com.playfab.PlayFabServerModels;
 import com.playfab.PlayFabServerAPI;
 
+//import com.playfab.PlayFabEntityModels;
+//import com.playfab.PlayFabEntityAPI;
+
 public class PlayFabApiTest
 {
+    // Constants
+    private static final String TEST_DATA_KEY = "testCounter";
+    private static final String TEST_STAT_NAME = "str";
+
+    // Fixed values provided from testInputs
+    private static String USER_EMAIL;
+
     // Cached values
     private static String playFabId = "1337D00D"; // This is not a valid player id, but Cloud Script doesn't care unless that id is used by the Cloud Script handler.
 
@@ -54,6 +67,7 @@ public class PlayFabApiTest
     {
         public String titleId;
         public String developerSecretKey;
+        public String userEmail;
     }
 
     @BeforeClass
@@ -71,21 +85,61 @@ public class PlayFabApiTest
         } catch (IOException e) {
             // NOTE: Un-Comment and put your title-specific information here to test your title, or use PF_TEST_TITLE_DATA_JSON above
             //PlayFabSettings.TitleId = "TODO: TitleID";
-            //PlayFabSettings.DeveloperSecretKey = "TODO: A big long secret key that you should NEVER publish with your server";
+            //PlayFabSettings.DeveloperSecretKey = "TODO: A big long secret key that you should NEVER publish with your client";
+            //USER_EMAIL = "TODO: an email associated with an existing account on your title";
             return;
         }
         Gson gson = new GsonBuilder().create();
         TitleData resultData = gson.fromJson(testTitleJson, new TypeToken<TitleData>(){}.getType());
         PlayFabSettings.TitleId = resultData.titleId;
+        USER_EMAIL = resultData.userEmail;
         PlayFabSettings.DeveloperSecretKey = resultData.developerSecretKey;
+
     }
 
-    /// <summary>
-    /// SERVER API
-    /// Test that CloudScript can be properly set up and invoked
-    /// </summary>
+    /**
+     *  SERVER API
+     *  Get or create the given test character for the given user
+     *  Parameter types tested: Contained-Classes, string
+     */
     @Test
-    public void CloudScript()
+    public void UserCharacterServer()
+    {
+        PlayFabServerModels.ListUsersCharactersRequest getRequest = new PlayFabServerModels.ListUsersCharactersRequest();
+        getRequest.PlayFabId = playFabId;
+        PlayFabResult<PlayFabServerModels.ListUsersCharactersResult> getCharsResult = PlayFabServerAPI.GetAllUsersCharacters(getRequest);
+        VerifyResult(getCharsResult, true);
+    }
+
+    /**
+     *  SERVER API
+     *  Test that leaderboard results can be requested
+     *  Parameter types tested: List of contained-classes
+     */
+    @Test
+    public void LeaderBoardServer()
+    {
+        PlayFabServerModels.GetLeaderboardRequest serverRequest = new PlayFabServerModels.GetLeaderboardRequest();
+        serverRequest.MaxResultsCount = 3;
+        serverRequest.StatisticName = TEST_STAT_NAME;
+        PlayFabResult<PlayFabServerModels.GetLeaderboardResult> serverResult = PlayFabServerAPI.GetLeaderboard(serverRequest);
+        VerifyResult(serverResult, true);
+        assertTrue(GetSvLbCount(serverResult.Result.Leaderboard) > 0);
+    }
+    private int GetSvLbCount(List<PlayFabServerModels.PlayerLeaderboardEntry> lb)
+    {
+        int count = 0;
+        if (lb != null)
+            count = lb.size();
+        return count;
+    }
+
+    /*
+     *  SERVER API
+     *  Test that CloudScript can be properly set up and invoked
+     */
+    @Test
+    public void CloudScriptServer()
     {
         PlayFabServerModels.ExecuteCloudScriptServerRequest hwRequest = new PlayFabServerModels.ExecuteCloudScriptServerRequest();
         hwRequest.FunctionName = "helloWorld";
@@ -97,12 +151,12 @@ public class PlayFabApiTest
         assertEquals(arbitraryResults.get("messageValue"), "Hello " + playFabId + "!");
     }
 
-    /// <summary>
-    /// SERVER API
-    /// Test that CloudScript errors can be deciphered
-    /// </summary>
+    /*
+     *  SERVER API
+     *  Test that CloudScript errors can be deciphered
+     */
     @Test
-    public void CloudScriptError()
+    public void CloudScriptErrorServer()
     {
         PlayFabServerModels.ExecuteCloudScriptServerRequest errRequest = new PlayFabServerModels.ExecuteCloudScriptServerRequest();
         errRequest.FunctionName = "throwError";
@@ -114,4 +168,3 @@ public class PlayFabApiTest
         assertEquals(errResult.Result.Error.Error, "JavascriptException");
     }
 }
-

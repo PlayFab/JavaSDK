@@ -7,8 +7,8 @@ public class PlayFabClientModels {
 
     public static class AcceptTradeRequest {
         /**
-         * Items from the accepting player's or guild's inventory in exchange for the offered items in the trade. In the case of a
-         * gift, this will be null.
+         * Items from the accepting player's inventory in exchange for the offered items in the trade. In the case of a gift, this
+         * will be null.
          */
         public ArrayList<String> AcceptedInventoryInstanceIds;
         /** Player who opened the trade. */
@@ -878,6 +878,18 @@ public class PlayFabClientModels {
     }
 
     public static class EmptyResult {
+        
+    }
+
+    public static class EntityTokenResponse {
+        /** The identifier of the entity the token was issued for. */
+        public String EntityId;
+        /** The token used to set X-EntityToken for all entity based API calls. */
+        public String EntityToken;
+        /** The type of entity the token was issued for. */
+        public String EntityType;
+        /** The time the token will expire, if it is an expiring token, in UTC. */
+        public Date TokenExpiration;
         
     }
 
@@ -2142,6 +2154,11 @@ public class PlayFabClientModels {
     }
 
     public static class LoginResult {
+        /**
+         * If LoginTitlePlayerAccountEntity flag is set on the login request the title_player_account will also be logged in and
+         * returned.
+         */
+        public EntityTokenResponse EntityToken;
         /** Results for requested info. */
         public GetPlayerCombinedInfoResultPayload InfoResultPayload;
         /** The time of this user's previous login. If there was no previous login, then it's DateTime.MinValue */
@@ -2168,6 +2185,8 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        public Boolean LoginTitlePlayerAccountEntity;
         /** Specific Operating System version for the user's device. */
         public String OS;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
@@ -2189,6 +2208,8 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
         /**
@@ -2204,6 +2225,8 @@ public class PlayFabClientModels {
         public String Email;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        public Boolean LoginTitlePlayerAccountEntity;
         /** Password for the PlayFab account (6-100 characters) */
         public String Password;
         /**
@@ -2223,6 +2246,8 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
         /**
@@ -2240,6 +2265,8 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        public Boolean LoginTitlePlayerAccountEntity;
         /** Unique Game Center player id. */
         public String PlayerId;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
@@ -2259,6 +2286,8 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
         /**
@@ -2285,6 +2314,8 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        public Boolean LoginTitlePlayerAccountEntity;
         /** Specific Operating System version for the user's device. */
         public String OS;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
@@ -2308,6 +2339,8 @@ public class PlayFabClientModels {
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         /** Numeric user ID assigned by Kongregate */
         public String KongregateId;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
         /**
@@ -2321,6 +2354,8 @@ public class PlayFabClientModels {
     public static class LoginWithPlayFabRequest {
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        public Boolean LoginTitlePlayerAccountEntity;
         /** Password for the PlayFab account (6-100 characters) */
         public String Password;
         /**
@@ -2340,6 +2375,8 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
         /**
@@ -2364,6 +2401,8 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
         /**
@@ -2379,6 +2418,8 @@ public class PlayFabClientModels {
         public String ChallengeSignature;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        public Boolean LoginTitlePlayerAccountEntity;
         /** SHA256 hash of the PublicKey generated by Windows Hello. */
         public String PublicKeyHint;
         /**
@@ -2762,6 +2803,8 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        public Boolean LoginTitlePlayerAccountEntity;
         /** Password for the PlayFab account (6-100 characters) */
         public String Password;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
@@ -2801,6 +2844,8 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
         /** PublicKey generated by Windows Hello. */
@@ -2895,6 +2940,8 @@ public class PlayFabClientModels {
     public static class SendAccountRecoveryEmailRequest {
         /** User email address attached to their account */
         public String Email;
+        /** The email template id of the account recovery email template to send. */
+        public String EmailTemplateId;
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
          * title has been selected.
