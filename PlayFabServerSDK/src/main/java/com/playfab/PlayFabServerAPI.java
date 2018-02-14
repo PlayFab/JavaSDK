@@ -58,7 +58,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/AddCharacterVirtualCurrency", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -123,7 +123,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/AddFriend", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -183,7 +183,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/AddPlayerTag", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -251,7 +251,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/AddSharedGroupMembers", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -311,7 +311,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/AddUserVirtualCurrency", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -371,7 +371,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/AuthenticateSessionTicket", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -431,7 +431,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/AwardSteamAchievement", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -491,7 +491,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/BanUsers", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -551,7 +551,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/ConsumeItem", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -622,7 +622,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/CreateSharedGroup", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -682,7 +682,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/DeleteCharacterFromUser", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -750,7 +750,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/DeleteSharedGroup", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -810,7 +810,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/DeleteUsers", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -870,7 +870,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/DeregisterGame", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -935,7 +935,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/EvaluateRandomResultTable", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -995,7 +995,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/ExecuteCloudScript", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -1060,7 +1060,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetAllSegments", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -1125,7 +1125,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetAllUsersCharacters", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -1185,7 +1185,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetCatalogItems", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -1245,7 +1245,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetCharacterData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -1305,7 +1305,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetCharacterInternalData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -1365,7 +1365,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetCharacterInventory", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -1425,7 +1425,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetCharacterLeaderboard", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -1485,7 +1485,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetCharacterReadOnlyData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -1545,7 +1545,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetCharacterStatistics", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -1625,7 +1625,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetContentDownloadUrl", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -1690,7 +1690,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetFriendLeaderboard", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -1755,7 +1755,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetFriendsList", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -1815,7 +1815,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetLeaderboard", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -1875,7 +1875,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetLeaderboardAroundCharacter", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -1935,7 +1935,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetLeaderboardAroundUser", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -1995,7 +1995,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetLeaderboardForUserCharacters", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -2060,7 +2060,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetPlayerCombinedInfo", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -2120,7 +2120,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetPlayerProfile", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -2180,7 +2180,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetPlayerSegments", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -2251,7 +2251,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetPlayersInSegment", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -2311,7 +2311,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetPlayerStatistics", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -2371,7 +2371,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetPlayerStatisticVersions", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -2431,7 +2431,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetPlayerTags", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -2491,7 +2491,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetPlayFabIDsFromFacebookIDs", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -2556,7 +2556,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetPlayFabIDsFromSteamIDs", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -2616,7 +2616,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetPublisherData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -2681,7 +2681,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetRandomResultTables", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -2749,7 +2749,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetSharedGroupData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -2809,7 +2809,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetTime", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -2869,7 +2869,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetTitleData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -2929,7 +2929,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetTitleInternalData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -2989,7 +2989,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetTitleNews", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -3049,7 +3049,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetUserAccountInfo", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -3109,7 +3109,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetUserBans", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -3169,7 +3169,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetUserData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -3229,7 +3229,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetUserInternalData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -3289,7 +3289,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetUserInventory", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -3349,7 +3349,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetUserPublisherData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -3409,7 +3409,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetUserPublisherInternalData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -3469,7 +3469,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetUserPublisherReadOnlyData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -3529,7 +3529,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetUserReadOnlyData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -3594,7 +3594,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GrantCharacterToUser", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -3654,7 +3654,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GrantItemsToCharacter", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -3714,7 +3714,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GrantItemsToUser", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -3774,7 +3774,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GrantItemsToUsers", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -3834,7 +3834,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/ModifyItemUses", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -3894,7 +3894,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/MoveItemToCharacterFromCharacter", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -3954,7 +3954,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/MoveItemToCharacterFromUser", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -4014,7 +4014,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/MoveItemToUserFromCharacter", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -4074,7 +4074,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/NotifyMatchmakerPlayerLeft", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -4139,7 +4139,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/RedeemCoupon", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -4199,7 +4199,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/RedeemMatchmakerTicket", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -4259,7 +4259,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/RefreshGameServerInstanceHeartbeat", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -4319,7 +4319,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/RegisterGame", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -4379,7 +4379,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/RemoveFriend", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -4439,7 +4439,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/RemovePlayerTag", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -4510,7 +4510,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/RemoveSharedGroupMembers", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -4575,7 +4575,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/ReportPlayer", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -4635,7 +4635,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/RevokeAllBansForUser", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -4695,7 +4695,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/RevokeBans", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -4755,7 +4755,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/RevokeInventoryItem", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -4820,7 +4820,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SendCustomAccountRecoveryEmail", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -4880,7 +4880,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SendEmailFromTemplate", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -4945,7 +4945,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SendPushNotification", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -5005,7 +5005,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SetFriendTags", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -5065,7 +5065,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SetGameServerInstanceData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -5125,7 +5125,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SetGameServerInstanceState", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -5185,7 +5185,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SetGameServerInstanceTags", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -5250,7 +5250,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SetPlayerSecret", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -5310,7 +5310,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SetPublisherData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -5370,7 +5370,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SetTitleData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -5430,7 +5430,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SetTitleInternalData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -5495,7 +5495,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SubtractCharacterVirtualCurrency", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -5560,7 +5560,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/SubtractUserVirtualCurrency", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -5628,7 +5628,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UnlockContainerInstance", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -5699,7 +5699,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UnlockContainerItem", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -5759,7 +5759,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UpdateAvatarUrl", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -5819,7 +5819,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UpdateBans", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -5879,7 +5879,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UpdateCharacterData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -5939,7 +5939,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UpdateCharacterInternalData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -5999,7 +5999,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UpdateCharacterReadOnlyData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -6059,7 +6059,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UpdateCharacterStatistics", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -6119,7 +6119,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UpdatePlayerStatistics", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -6193,7 +6193,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UpdateSharedGroupData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -6253,7 +6253,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UpdateUserData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -6313,7 +6313,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UpdateUserInternalData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -6373,7 +6373,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UpdateUserInventoryItemCustomData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -6433,7 +6433,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UpdateUserPublisherData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -6493,7 +6493,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UpdateUserPublisherInternalData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -6553,7 +6553,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UpdateUserPublisherReadOnlyData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -6613,7 +6613,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/UpdateUserReadOnlyData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -6673,7 +6673,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/WriteCharacterEvent", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -6733,7 +6733,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/WritePlayerEvent", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
@@ -6793,7 +6793,7 @@ public class PlayFabServerAPI {
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/WriteTitleEvent", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
-        if(httpResult instanceof PlayFabError) {
+        if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
