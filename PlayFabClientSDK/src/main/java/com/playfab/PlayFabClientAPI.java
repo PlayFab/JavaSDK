@@ -19,7 +19,7 @@ public class PlayFabClientAPI {
     /**
      * Accepts an open trade (one that has not yet been accepted or cancelled), if the locally signed-in player is in the
      * allowed player list for the trade, or it is open to all players. If the call is successful, the offered and accepted
-     * items will be swapped  between the two players' inventories.
+     * items will be swapped between the two players' inventories.
      * @param request AcceptTradeRequest
      * @return Async Task will return AcceptTradeResponse
      */
@@ -35,7 +35,7 @@ public class PlayFabClientAPI {
     /**
      * Accepts an open trade (one that has not yet been accepted or cancelled), if the locally signed-in player is in the
      * allowed player list for the trade, or it is open to all players. If the call is successful, the offered and accepted
-     * items will be swapped  between the two players' inventories.
+     * items will be swapped between the two players' inventories.
      * @param request AcceptTradeRequest
      * @return AcceptTradeResponse
      */
@@ -57,7 +57,7 @@ public class PlayFabClientAPI {
     /**
      * Accepts an open trade (one that has not yet been accepted or cancelled), if the locally signed-in player is in the
      * allowed player list for the trade, or it is open to all players. If the call is successful, the offered and accepted
-     * items will be swapped  between the two players' inventories.
+     * items will be swapped between the two players' inventories.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AcceptTradeResponse> privateAcceptTradeAsync(final AcceptTradeRequest request) throws Exception {
@@ -278,9 +278,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only
-     * users in the group can add new members. Shared Groups are designed for sharing data between a very  small number of
-     * players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Adds users to the set of those able to update both the shared data, as well as the set of users in the group. Only users
+     * in the group can add new members. Shared Groups are designed for sharing data between a very small number of players,
+     * please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request AddSharedGroupMembersRequest
      * @return Async Task will return AddSharedGroupMembersResult
      */
@@ -294,9 +294,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only
-     * users in the group can add new members. Shared Groups are designed for sharing data between a very  small number of
-     * players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Adds users to the set of those able to update both the shared data, as well as the set of users in the group. Only users
+     * in the group can add new members. Shared Groups are designed for sharing data between a very small number of players,
+     * please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request AddSharedGroupMembersRequest
      * @return AddSharedGroupMembersResult
      */
@@ -316,9 +316,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only
-     * users in the group can add new members. Shared Groups are designed for sharing data between a very  small number of
-     * players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Adds users to the set of those able to update both the shared data, as well as the set of users in the group. Only users
+     * in the group can add new members. Shared Groups are designed for sharing data between a very small number of players,
+     * please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AddSharedGroupMembersResult> privateAddSharedGroupMembersAsync(final AddSharedGroupMembersRequest request) throws Exception {
@@ -595,7 +595,7 @@ public class PlayFabClientAPI {
     /**
      * Cancels an open trade (one that has not yet been accepted or cancelled). Note that only the player who created the trade
      * can cancel it via this API call, to prevent griefing of the trade system (cancelling trades in order to prevent other
-     * players from accepting  them, for trades that can be claimed by more than one player).
+     * players from accepting them, for trades that can be claimed by more than one player).
      * @param request CancelTradeRequest
      * @return Async Task will return CancelTradeResponse
      */
@@ -611,7 +611,7 @@ public class PlayFabClientAPI {
     /**
      * Cancels an open trade (one that has not yet been accepted or cancelled). Note that only the player who created the trade
      * can cancel it via this API call, to prevent griefing of the trade system (cancelling trades in order to prevent other
-     * players from accepting  them, for trades that can be claimed by more than one player).
+     * players from accepting them, for trades that can be claimed by more than one player).
      * @param request CancelTradeRequest
      * @return CancelTradeResponse
      */
@@ -633,7 +633,7 @@ public class PlayFabClientAPI {
     /**
      * Cancels an open trade (one that has not yet been accepted or cancelled). Note that only the player who created the trade
      * can cancel it via this API call, to prevent griefing of the trade system (cancelling trades in order to prevent other
-     * players from accepting  them, for trades that can be claimed by more than one player).
+     * players from accepting them, for trades that can be claimed by more than one player).
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CancelTradeResponse> privateCancelTradeAsync(final CancelTradeRequest request) throws Exception {
@@ -661,7 +661,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and  virtual
+     * Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and virtual
      * currency balances as appropriate
      * @param request ConfirmPurchaseRequest
      * @return Async Task will return ConfirmPurchaseResult
@@ -676,7 +676,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and  virtual
+     * Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and virtual
      * currency balances as appropriate
      * @param request ConfirmPurchaseRequest
      * @return ConfirmPurchaseResult
@@ -697,7 +697,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and  virtual
+     * Confirms with the payment provider that the purchase was approved (if applicable) and adjusts inventory and virtual
      * currency balances as appropriate
      */
     @SuppressWarnings("unchecked")
@@ -786,9 +786,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Requests the creation of a shared group object, containing key/value pairs which may be updated by  all members of the
-     * group. Upon creation, the current user will be the only member of the group. Shared Groups are designed  for sharing
-     * data between a very small number of players, please see our guide:
+     * Requests the creation of a shared group object, containing key/value pairs which may be updated by all members of the
+     * group. Upon creation, the current user will be the only member of the group. Shared Groups are designed for sharing data
+     * between a very small number of players, please see our guide:
      * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request CreateSharedGroupRequest
      * @return Async Task will return CreateSharedGroupResult
@@ -803,9 +803,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Requests the creation of a shared group object, containing key/value pairs which may be updated by  all members of the
-     * group. Upon creation, the current user will be the only member of the group. Shared Groups are designed  for sharing
-     * data between a very small number of players, please see our guide:
+     * Requests the creation of a shared group object, containing key/value pairs which may be updated by all members of the
+     * group. Upon creation, the current user will be the only member of the group. Shared Groups are designed for sharing data
+     * between a very small number of players, please see our guide:
      * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request CreateSharedGroupRequest
      * @return CreateSharedGroupResult
@@ -826,9 +826,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Requests the creation of a shared group object, containing key/value pairs which may be updated by  all members of the
-     * group. Upon creation, the current user will be the only member of the group. Shared Groups are designed  for sharing
-     * data between a very small number of players, please see our guide:
+     * Requests the creation of a shared group object, containing key/value pairs which may be updated by all members of the
+     * group. Upon creation, the current user will be the only member of the group. Shared Groups are designed for sharing data
+     * between a very small number of players, please see our guide:
      * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
@@ -1402,13 +1402,12 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned
-     * URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the
-     * content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded,
+     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent HTTP GET to the returned
+     * URL will attempt to download the content. A HEAD query to the returned URL will attempt to retrieve the metadata of the
+     * content. Note that a successful result does not guarantee the existence of this content - if it has not been uploaded,
      * the query to retrieve the data will fail. See this post for more information:
-     * https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.
-     * Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates
-     * apply.
+     * https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service. Also,
+     * please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
      * @param request GetContentDownloadUrlRequest
      * @return Async Task will return GetContentDownloadUrlResult
      */
@@ -1422,13 +1421,12 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned
-     * URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the
-     * content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded,
+     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent HTTP GET to the returned
+     * URL will attempt to download the content. A HEAD query to the returned URL will attempt to retrieve the metadata of the
+     * content. Note that a successful result does not guarantee the existence of this content - if it has not been uploaded,
      * the query to retrieve the data will fail. See this post for more information:
-     * https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.
-     * Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates
-     * apply.
+     * https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service. Also,
+     * please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
      * @param request GetContentDownloadUrlRequest
      * @return GetContentDownloadUrlResult
      */
@@ -1448,13 +1446,12 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned
-     * URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the
-     * content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded,
+     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent HTTP GET to the returned
+     * URL will attempt to download the content. A HEAD query to the returned URL will attempt to retrieve the metadata of the
+     * content. Note that a successful result does not guarantee the existence of this content - if it has not been uploaded,
      * the query to retrieve the data will fail. See this post for more information:
-     * https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.
-     * Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates
-     * apply.
+     * https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service. Also,
+     * please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetContentDownloadUrlResult> privateGetContentDownloadUrlAsync(final GetContentDownloadUrlRequest request) throws Exception {
@@ -2926,7 +2923,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile
+     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
      * IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
      * @param request GetPlayFabIDsFromSteamIDsRequest
      * @return Async Task will return GetPlayFabIDsFromSteamIDsResult
@@ -2941,7 +2938,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile
+     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
      * IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
      * @param request GetPlayFabIDsFromSteamIDsRequest
      * @return GetPlayFabIDsFromSteamIDsResult
@@ -2962,7 +2959,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile
+     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
      * IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
      */
     @SuppressWarnings("unchecked")
@@ -3184,9 +3181,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves data stored in a shared group object, as well as the list of members in  the group. Non-members of the group
-     * may use this to retrieve group data, including membership, but they  will not receive data for keys marked as private.
-     * Shared Groups are designed for sharing data between a  very small number of players, please see our guide:
+     * Retrieves data stored in a shared group object, as well as the list of members in the group. Non-members of the group
+     * may use this to retrieve group data, including membership, but they will not receive data for keys marked as private.
+     * Shared Groups are designed for sharing data between a very small number of players, please see our guide:
      * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request GetSharedGroupDataRequest
      * @return Async Task will return GetSharedGroupDataResult
@@ -3201,9 +3198,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves data stored in a shared group object, as well as the list of members in  the group. Non-members of the group
-     * may use this to retrieve group data, including membership, but they  will not receive data for keys marked as private.
-     * Shared Groups are designed for sharing data between a  very small number of players, please see our guide:
+     * Retrieves data stored in a shared group object, as well as the list of members in the group. Non-members of the group
+     * may use this to retrieve group data, including membership, but they will not receive data for keys marked as private.
+     * Shared Groups are designed for sharing data between a very small number of players, please see our guide:
      * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request GetSharedGroupDataRequest
      * @return GetSharedGroupDataResult
@@ -3224,9 +3221,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves data stored in a shared group object, as well as the list of members in  the group. Non-members of the group
-     * may use this to retrieve group data, including membership, but they  will not receive data for keys marked as private.
-     * Shared Groups are designed for sharing data between a  very small number of players, please see our guide:
+     * Retrieves data stored in a shared group object, as well as the list of members in the group. Non-members of the group
+     * may use this to retrieve group data, including membership, but they will not receive data for keys marked as private.
+     * Shared Groups are designed for sharing data between a very small number of players, please see our guide:
      * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
@@ -4698,6 +4695,7 @@ public class PlayFabClientAPI {
         PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
+        if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
         MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
@@ -4766,6 +4764,7 @@ public class PlayFabClientAPI {
         PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
+        if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
         MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
@@ -4840,6 +4839,7 @@ public class PlayFabClientAPI {
         PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
+        if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
         MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
@@ -4908,6 +4908,7 @@ public class PlayFabClientAPI {
         PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
+        if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
         MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
@@ -4976,6 +4977,7 @@ public class PlayFabClientAPI {
         PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
+        if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
         MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
@@ -5039,6 +5041,7 @@ public class PlayFabClientAPI {
         PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
+        if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
         MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
@@ -5107,6 +5110,7 @@ public class PlayFabClientAPI {
         PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
+        if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
         MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
@@ -5170,6 +5174,7 @@ public class PlayFabClientAPI {
         PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
+        if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
         MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
@@ -5179,8 +5184,8 @@ public class PlayFabClientAPI {
 
     /**
      * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls
-     * which require an authenticated user. Unlike most other login API calls, LoginWithPlayFab does not permit the  creation
-     * of new accounts via the CreateAccountFlag. Username/Password credentials may be used to create accounts via
+     * which require an authenticated user. Unlike most other login API calls, LoginWithPlayFab does not permit the creation of
+     * new accounts via the CreateAccountFlag. Username/Password credentials may be used to create accounts via
      * RegisterPlayFabUser, or added to existing accounts using AddUsernamePassword.
      * @param request LoginWithPlayFabRequest
      * @return Async Task will return LoginResult
@@ -5196,8 +5201,8 @@ public class PlayFabClientAPI {
 
     /**
      * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls
-     * which require an authenticated user. Unlike most other login API calls, LoginWithPlayFab does not permit the  creation
-     * of new accounts via the CreateAccountFlag. Username/Password credentials may be used to create accounts via
+     * which require an authenticated user. Unlike most other login API calls, LoginWithPlayFab does not permit the creation of
+     * new accounts via the CreateAccountFlag. Username/Password credentials may be used to create accounts via
      * RegisterPlayFabUser, or added to existing accounts using AddUsernamePassword.
      * @param request LoginWithPlayFabRequest
      * @return LoginResult
@@ -5219,8 +5224,8 @@ public class PlayFabClientAPI {
 
     /**
      * Signs the user into the PlayFab account, returning a session identifier that can subsequently be used for API calls
-     * which require an authenticated user. Unlike most other login API calls, LoginWithPlayFab does not permit the  creation
-     * of new accounts via the CreateAccountFlag. Username/Password credentials may be used to create accounts via
+     * which require an authenticated user. Unlike most other login API calls, LoginWithPlayFab does not permit the creation of
+     * new accounts via the CreateAccountFlag. Username/Password credentials may be used to create accounts via
      * RegisterPlayFabUser, or added to existing accounts using AddUsernamePassword.
      */
     @SuppressWarnings("unchecked")
@@ -5244,6 +5249,7 @@ public class PlayFabClientAPI {
         PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
+        if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
         MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
@@ -5312,6 +5318,7 @@ public class PlayFabClientAPI {
         PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
+        if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
         MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
@@ -5375,6 +5382,7 @@ public class PlayFabClientAPI {
         PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
+        if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
         MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
@@ -5449,6 +5457,7 @@ public class PlayFabClientAPI {
         PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
+        if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
         MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
@@ -5654,8 +5663,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase,  as well as
-     * what the client believes the price to be. This lets the server fail the purchase if the price has changed.
+     * Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase, as well as what
+     * the client believes the price to be. This lets the server fail the purchase if the price has changed.
      * @param request PurchaseItemRequest
      * @return Async Task will return PurchaseItemResult
      */
@@ -5669,8 +5678,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase,  as well as
-     * what the client believes the price to be. This lets the server fail the purchase if the price has changed.
+     * Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase, as well as what
+     * the client believes the price to be. This lets the server fail the purchase if the price has changed.
      * @param request PurchaseItemRequest
      * @return PurchaseItemResult
      */
@@ -5690,8 +5699,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase,  as well as
-     * what the client believes the price to be. This lets the server fail the purchase if the price has changed.
+     * Buys a single item with virtual currency. You must specify both the virtual currency to use to purchase, as well as what
+     * the client believes the price to be. This lets the server fail the purchase if the price has changed.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<PurchaseItemResult> privatePurchaseItemAsync(final PurchaseItemRequest request) throws Exception {
@@ -5719,7 +5728,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the
+     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
      * Economy-&gt;Catalogs tab in the PlayFab Game Manager.
      * @param request RedeemCouponRequest
      * @return Async Task will return RedeemCouponResult
@@ -5734,7 +5743,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the
+     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
      * Economy-&gt;Catalogs tab in the PlayFab Game Manager.
      * @param request RedeemCouponRequest
      * @return RedeemCouponResult
@@ -5755,7 +5764,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the
+     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
      * Economy-&gt;Catalogs tab in the PlayFab Game Manager.
      */
     @SuppressWarnings("unchecked")
@@ -5912,7 +5921,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket  that can
+     * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket that can
      * subsequently be used for API calls which require an authenticated user
      * @param request RegisterWithWindowsHelloRequest
      * @return Async Task will return LoginResult
@@ -5927,7 +5936,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket  that can
+     * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket that can
      * subsequently be used for API calls which require an authenticated user
      * @param request RegisterWithWindowsHelloRequest
      * @return LoginResult
@@ -5948,7 +5957,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket  that can
+     * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket that can
      * subsequently be used for API calls which require an authenticated user
      */
     @SuppressWarnings("unchecked")
@@ -5972,6 +5981,7 @@ public class PlayFabClientAPI {
         PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
+        if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
         MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
@@ -6160,9 +6170,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Removes users from the set of those able to update the shared data and the set of users  in the group. Only users in the
-     * group can remove members. If as a result of the call, zero users remain with  access, the group and its associated data
-     * will be deleted. Shared Groups are designed for sharing data between  a very small number of players, please see our
+     * Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the
+     * group can remove members. If as a result of the call, zero users remain with access, the group and its associated data
+     * will be deleted. Shared Groups are designed for sharing data between a very small number of players, please see our
      * guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request RemoveSharedGroupMembersRequest
      * @return Async Task will return RemoveSharedGroupMembersResult
@@ -6177,9 +6187,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Removes users from the set of those able to update the shared data and the set of users  in the group. Only users in the
-     * group can remove members. If as a result of the call, zero users remain with  access, the group and its associated data
-     * will be deleted. Shared Groups are designed for sharing data between  a very small number of players, please see our
+     * Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the
+     * group can remove members. If as a result of the call, zero users remain with access, the group and its associated data
+     * will be deleted. Shared Groups are designed for sharing data between a very small number of players, please see our
      * guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request RemoveSharedGroupMembersRequest
      * @return RemoveSharedGroupMembersResult
@@ -6200,9 +6210,9 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Removes users from the set of those able to update the shared data and the set of users  in the group. Only users in the
-     * group can remove members. If as a result of the call, zero users remain with  access, the group and its associated data
-     * will be deleted. Shared Groups are designed for sharing data between  a very small number of players, please see our
+     * Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the
+     * group can remove members. If as a result of the call, zero users remain with access, the group and its associated data
+     * will be deleted. Shared Groups are designed for sharing data between a very small number of players, please see our
      * guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
@@ -7599,8 +7609,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Creates and updates the title-specific custom data for the user's character which is readable  and writable by the
-     * client
+     * Creates and updates the title-specific custom data for the user's character which is readable and writable by the client
      * @param request UpdateCharacterDataRequest
      * @return Async Task will return UpdateCharacterDataResult
      */
@@ -7614,8 +7623,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Creates and updates the title-specific custom data for the user's character which is readable  and writable by the
-     * client
+     * Creates and updates the title-specific custom data for the user's character which is readable and writable by the client
      * @param request UpdateCharacterDataRequest
      * @return UpdateCharacterDataResult
      */
@@ -7634,10 +7642,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /**
-     * Creates and updates the title-specific custom data for the user's character which is readable  and writable by the
-     * client
-     */
+    /** Creates and updates the title-specific custom data for the user's character which is readable and writable by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateCharacterDataResult> privateUpdateCharacterDataAsync(final UpdateCharacterDataRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
@@ -7796,7 +7801,7 @@ public class PlayFabClientAPI {
     /**
      * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated
      * or added in this call will be readable by users not in the group. By default, data permissions are set to Private.
-     * Regardless of the permission setting, only members of the group can update the data. Shared Groups are designed  for
+     * Regardless of the permission setting, only members of the group can update the data. Shared Groups are designed for
      * sharing data between a very small number of players, please see our guide:
      * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request UpdateSharedGroupDataRequest
@@ -7814,7 +7819,7 @@ public class PlayFabClientAPI {
     /**
      * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated
      * or added in this call will be readable by users not in the group. By default, data permissions are set to Private.
-     * Regardless of the permission setting, only members of the group can update the data. Shared Groups are designed  for
+     * Regardless of the permission setting, only members of the group can update the data. Shared Groups are designed for
      * sharing data between a very small number of players, please see our guide:
      * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request UpdateSharedGroupDataRequest
@@ -7838,7 +7843,7 @@ public class PlayFabClientAPI {
     /**
      * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated
      * or added in this call will be readable by users not in the group. By default, data permissions are set to Private.
-     * Regardless of the permission setting, only members of the group can update the data. Shared Groups are designed  for
+     * Regardless of the permission setting, only members of the group can update the data. Shared Groups are designed for
      * sharing data between a very small number of players, please see our guide:
      * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */

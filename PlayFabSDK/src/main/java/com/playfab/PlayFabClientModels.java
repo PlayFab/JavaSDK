@@ -881,16 +881,33 @@ public class PlayFabClientModels {
         
     }
 
+    /** Entity identifier class that contains both the ID and type. */
+    public static class EntityKey {
+        /** Entity profile ID. */
+        public String Id;
+        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
+        public EntityTypes Type;
+        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
+        public String TypeString;
+        
+    }
+
     public static class EntityTokenResponse {
-        /** The identifier of the entity the token was issued for. */
-        public String EntityId;
+        /** The entity id and type. */
+        public EntityKey Entity;
         /** The token used to set X-EntityToken for all entity based API calls. */
         public String EntityToken;
-        /** The type of entity the token was issued for. */
-        public String EntityType;
         /** The time the token will expire, if it is an expiring token, in UTC. */
         public Date TokenExpiration;
         
+    }
+
+    public static enum EntityTypes {
+        title,
+        master_player_account,
+        title_player_account,
+        character,
+        group
     }
 
     public static class ExecuteCloudScriptRequest {
@@ -1806,7 +1823,7 @@ public class PlayFabClientModels {
          * version in the system is greater than this.
          */
         public Long IfChangedFromDataVersion;
-        /** Specific keys to search for in the custom data. Leave null to get all keys. */
+        /** List of unique keys to load from. */
         public ArrayList<String> Keys;
         /**
          * Unique PlayFab identifier of the user to load data for. Optional, defaults to yourself if not set. When specified to a
@@ -2647,7 +2664,7 @@ public class PlayFabClientModels {
         public String TitleId;
         /**
          * Sum of the player's purchases made with real-money currencies, converted to US dollars equivalent and represented as a
-         * whole number of cents (1/100 USD).              For example, 999 indicates nine dollars and ninety-nine cents.
+         * whole number of cents (1/100 USD).       For example, 999 indicates nine dollars and ninety-nine cents.
          */
         public Long TotalValueToDateInUSD;
         /** List of the player's lifetime purchase totals, summed by real-money currency */
@@ -3205,7 +3222,7 @@ public class PlayFabClientModels {
         public ArrayList<String> AcceptedInventoryInstanceIds;
         /** The PlayFab ID of the player who accepted the trade. If null, no one has accepted the trade. */
         public String AcceptedPlayerId;
-        /** An optional list of players allowed to complete this trade.  If null, anybody can complete the trade. */
+        /** An optional list of players allowed to complete this trade. If null, anybody can complete the trade. */
         public ArrayList<String> AllowedPlayerIds;
         /** If set, The UTC time when this trade was canceled. */
         public Date CancelledAt;
@@ -3370,7 +3387,7 @@ public class PlayFabClientModels {
 
     public static class UnlockContainerInstanceRequest {
         /**
-         * Specifies the catalog version that should be used to determine container contents.  If unspecified, uses catalog
+         * Specifies the catalog version that should be used to determine container contents. If unspecified, uses catalog
          * associated with the item instance.
          */
         public String CatalogVersion;
@@ -3379,7 +3396,7 @@ public class PlayFabClientModels {
         /** ItemInstanceId of the container to unlock. */
         public String ContainerItemInstanceId;
         /**
-         * ItemInstanceId of the key that will be consumed by unlocking this container.  If the container requires a key, this
+         * ItemInstanceId of the key that will be consumed by unlocking this container. If the container requires a key, this
          * parameter is required.
          */
         public String KeyItemInstanceId;
@@ -3388,7 +3405,7 @@ public class PlayFabClientModels {
 
     public static class UnlockContainerItemRequest {
         /**
-         * Specifies the catalog version that should be used to determine container contents.  If unspecified, uses default/primary
+         * Specifies the catalog version that should be used to determine container contents. If unspecified, uses default/primary
          * catalog.
          */
         public String CatalogVersion;
@@ -3426,8 +3443,8 @@ public class PlayFabClientModels {
          */
         public Map<String,String> Data;
         /**
-         * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
-         * constraints.  Use this to delete the keys directly.
+         * Optional list of Data-keys to remove from UserData. Some SDKs cannot insert null-values into Data due to language
+         * constraints. Use this to delete the keys directly.
          */
         public ArrayList<String> KeysToRemove;
         /** Permission to be applied to all user data keys written in this request. Defaults to "private" if not set. */
@@ -3473,8 +3490,8 @@ public class PlayFabClientModels {
          */
         public Map<String,String> Data;
         /**
-         * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
-         * constraints.  Use this to delete the keys directly.
+         * Optional list of Data-keys to remove from UserData. Some SDKs cannot insert null-values into Data due to language
+         * constraints. Use this to delete the keys directly.
          */
         public ArrayList<String> KeysToRemove;
         /** Permission to be applied to all user data keys in this request. */
@@ -3495,8 +3512,8 @@ public class PlayFabClientModels {
          */
         public Map<String,String> Data;
         /**
-         * Optional list of Data-keys to remove from UserData.  Some SDKs cannot insert null-values into Data due to language
-         * constraints.  Use this to delete the keys directly.
+         * Optional list of Data-keys to remove from UserData. Some SDKs cannot insert null-values into Data due to language
+         * constraints. Use this to delete the keys directly.
          */
         public ArrayList<String> KeysToRemove;
         /**

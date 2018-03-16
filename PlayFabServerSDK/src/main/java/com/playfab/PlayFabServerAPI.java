@@ -17,7 +17,7 @@ public class PlayFabServerAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 
     /**
-     * Increments  the character's balance of the specified virtual currency by the stated amount
+     * Increments the character's balance of the specified virtual currency by the stated amount
      * @param request AddCharacterVirtualCurrencyRequest
      * @return Async Task will return ModifyCharacterVirtualCurrencyResult
      */
@@ -31,7 +31,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Increments  the character's balance of the specified virtual currency by the stated amount
+     * Increments the character's balance of the specified virtual currency by the stated amount
      * @param request AddCharacterVirtualCurrencyRequest
      * @return ModifyCharacterVirtualCurrencyResult
      */
@@ -50,7 +50,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Increments  the character's balance of the specified virtual currency by the stated amount */
+    /** Increments the character's balance of the specified virtual currency by the stated amount */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyCharacterVirtualCurrencyResult> privateAddCharacterVirtualCurrencyAsync(final AddCharacterVirtualCurrencyRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -202,9 +202,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only
-     * users in the group (and the server) can add new members. Shared Groups are designed for sharing data  between a very
-     * small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Adds users to the set of those able to update both the shared data, as well as the set of users in the group. Only users
+     * in the group (and the server) can add new members. Shared Groups are designed for sharing data between a very small
+     * number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request AddSharedGroupMembersRequest
      * @return Async Task will return AddSharedGroupMembersResult
      */
@@ -218,9 +218,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only
-     * users in the group (and the server) can add new members. Shared Groups are designed for sharing data  between a very
-     * small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Adds users to the set of those able to update both the shared data, as well as the set of users in the group. Only users
+     * in the group (and the server) can add new members. Shared Groups are designed for sharing data between a very small
+     * number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request AddSharedGroupMembersRequest
      * @return AddSharedGroupMembersResult
      */
@@ -240,9 +240,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds users to the set of those able to update both the shared data, as well as the set of users  in the group. Only
-     * users in the group (and the server) can add new members. Shared Groups are designed for sharing data  between a very
-     * small number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * Adds users to the set of those able to update both the shared data, as well as the set of users in the group. Only users
+     * in the group (and the server) can add new members. Shared Groups are designed for sharing data between a very small
+     * number of players, please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AddSharedGroupMembersResult> privateAddSharedGroupMembersAsync(final AddSharedGroupMembersRequest request) throws Exception {
@@ -270,7 +270,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Increments  the user's balance of the specified virtual currency by the stated amount
+     * Increments the user's balance of the specified virtual currency by the stated amount
      * @param request AddUserVirtualCurrencyRequest
      * @return Async Task will return ModifyUserVirtualCurrencyResult
      */
@@ -284,7 +284,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Increments  the user's balance of the specified virtual currency by the stated amount
+     * Increments the user's balance of the specified virtual currency by the stated amount
      * @param request AddUserVirtualCurrencyRequest
      * @return ModifyUserVirtualCurrencyResult
      */
@@ -303,7 +303,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Increments  the user's balance of the specified virtual currency by the stated amount */
+    /** Increments the user's balance of the specified virtual currency by the stated amount */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyUserVirtualCurrencyResult> privateAddUserVirtualCurrencyAsync(final AddUserVirtualCurrencyRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -570,8 +570,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Requests the creation of a shared group object, containing key/value pairs which may  be updated by all members of the
-     * group. When created by a server, the group will initially have no members.  Shared Groups are designed for sharing data
+     * Requests the creation of a shared group object, containing key/value pairs which may be updated by all members of the
+     * group. When created by a server, the group will initially have no members. Shared Groups are designed for sharing data
      * between a very small number of players, please see our guide:
      * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request CreateSharedGroupRequest
@@ -587,8 +587,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Requests the creation of a shared group object, containing key/value pairs which may  be updated by all members of the
-     * group. When created by a server, the group will initially have no members.  Shared Groups are designed for sharing data
+     * Requests the creation of a shared group object, containing key/value pairs which may be updated by all members of the
+     * group. When created by a server, the group will initially have no members. Shared Groups are designed for sharing data
      * between a very small number of players, please see our guide:
      * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request CreateSharedGroupRequest
@@ -610,8 +610,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Requests the creation of a shared group object, containing key/value pairs which may  be updated by all members of the
-     * group. When created by a server, the group will initially have no members.  Shared Groups are designed for sharing data
+     * Requests the creation of a shared group object, containing key/value pairs which may be updated by all members of the
+     * group. When created by a server, the group will initially have no members. Shared Groups are designed for sharing data
      * between a very small number of players, please see our guide:
      * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
@@ -701,7 +701,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Deletes a shared group, freeing up the shared group ID to be reused for a new group.  Shared Groups are designed for
+     * Deletes a shared group, freeing up the shared group ID to be reused for a new group. Shared Groups are designed for
      * sharing data between a very small number of players, please see our guide:
      * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request DeleteSharedGroupRequest
@@ -717,7 +717,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Deletes a shared group, freeing up the shared group ID to be reused for a new group.  Shared Groups are designed for
+     * Deletes a shared group, freeing up the shared group ID to be reused for a new group. Shared Groups are designed for
      * sharing data between a very small number of players, please see our guide:
      * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request DeleteSharedGroupRequest
@@ -739,7 +739,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Deletes a shared group, freeing up the shared group ID to be reused for a new group.  Shared Groups are designed for
+     * Deletes a shared group, freeing up the shared group ID to be reused for a new group. Shared Groups are designed for
      * sharing data between a very small number of players, please see our guide:
      * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
@@ -1564,13 +1564,12 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned
-     * URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the
-     * content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded,
+     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent HTTP GET to the returned
+     * URL will attempt to download the content. A HEAD query to the returned URL will attempt to retrieve the metadata of the
+     * content. Note that a successful result does not guarantee the existence of this content - if it has not been uploaded,
      * the query to retrieve the data will fail. See this post for more information:
-     * https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.
-     * Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates
-     * apply.
+     * https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service. Also,
+     * please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
      * @param request GetContentDownloadUrlRequest
      * @return Async Task will return GetContentDownloadUrlResult
      */
@@ -1584,13 +1583,12 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned
-     * URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the
-     * content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded,
+     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent HTTP GET to the returned
+     * URL will attempt to download the content. A HEAD query to the returned URL will attempt to retrieve the metadata of the
+     * content. Note that a successful result does not guarantee the existence of this content - if it has not been uploaded,
      * the query to retrieve the data will fail. See this post for more information:
-     * https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.
-     * Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates
-     * apply.
+     * https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service. Also,
+     * please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
      * @param request GetContentDownloadUrlRequest
      * @return GetContentDownloadUrlResult
      */
@@ -1610,13 +1608,12 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent  HTTP GET to the returned
-     * URL will attempt to download the content. A HEAD query to the returned URL will attempt to  retrieve the metadata of the
-     * content. Note that a successful result does not guarantee the existence of this content -  if it has not been uploaded,
+     * This API retrieves a pre-signed URL for accessing a content file for the title. A subsequent HTTP GET to the returned
+     * URL will attempt to download the content. A HEAD query to the returned URL will attempt to retrieve the metadata of the
+     * content. Note that a successful result does not guarantee the existence of this content - if it has not been uploaded,
      * the query to retrieve the data will fail. See this post for more information:
-     * https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service.
-     * Also, please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates
-     * apply.
+     * https://community.playfab.com/hc/en-us/community/posts/205469488-How-to-upload-files-to-PlayFab-s-Content-Service. Also,
+     * please be aware that the Content service is specifically PlayFab's CDN offering, for which standard CDN rates apply.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetContentDownloadUrlResult> privateGetContentDownloadUrlAsync(final GetContentDownloadUrlRequest request) throws Exception {
@@ -2510,7 +2507,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile
+     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
      * IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
      * @param request GetPlayFabIDsFromSteamIDsRequest
      * @return Async Task will return GetPlayFabIDsFromSteamIDsResult
@@ -2525,7 +2522,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile
+     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
      * IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
      * @param request GetPlayFabIDsFromSteamIDsRequest
      * @return GetPlayFabIDsFromSteamIDsResult
@@ -2546,7 +2543,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers  are the profile
+     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
      * IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
      */
     @SuppressWarnings("unchecked")
@@ -2700,8 +2697,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves data stored in a shared group object, as well as the list of members in the group.  The server can access all
-     * public and private group data. Shared Groups are designed for sharing data between a very  small number of players,
+     * Retrieves data stored in a shared group object, as well as the list of members in the group. The server can access all
+     * public and private group data. Shared Groups are designed for sharing data between a very small number of players,
      * please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request GetSharedGroupDataRequest
      * @return Async Task will return GetSharedGroupDataResult
@@ -2716,8 +2713,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves data stored in a shared group object, as well as the list of members in the group.  The server can access all
-     * public and private group data. Shared Groups are designed for sharing data between a very  small number of players,
+     * Retrieves data stored in a shared group object, as well as the list of members in the group. The server can access all
+     * public and private group data. Shared Groups are designed for sharing data between a very small number of players,
      * please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request GetSharedGroupDataRequest
      * @return GetSharedGroupDataResult
@@ -2738,8 +2735,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves data stored in a shared group object, as well as the list of members in the group.  The server can access all
-     * public and private group data. Shared Groups are designed for sharing data between a very  small number of players,
+     * Retrieves data stored in a shared group object, as well as the list of members in the group. The server can access all
+     * public and private group data. Shared Groups are designed for sharing data between a very small number of players,
      * please see our guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
@@ -4093,7 +4090,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the
+     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
      * Economy-&gt;Catalogs tab in the PlayFab Game Manager.
      * @param request RedeemCouponRequest
      * @return Async Task will return RedeemCouponResult
@@ -4108,7 +4105,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the
+     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
      * Economy-&gt;Catalogs tab in the PlayFab Game Manager.
      * @param request RedeemCouponRequest
      * @return RedeemCouponResult
@@ -4129,7 +4126,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated  via the
+     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
      * Economy-&gt;Catalogs tab in the PlayFab Game Manager.
      */
     @SuppressWarnings("unchecked")
@@ -4460,7 +4457,7 @@ public class PlayFabServerAPI {
     /**
      * Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the
      * group can remove members. If as a result of the call, zero users remain with access, the group and its associated data
-     * will be deleted. Shared Groups are designed for sharing data between a very small number of players,  please see our
+     * will be deleted. Shared Groups are designed for sharing data between a very small number of players, please see our
      * guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request RemoveSharedGroupMembersRequest
      * @return Async Task will return RemoveSharedGroupMembersResult
@@ -4477,7 +4474,7 @@ public class PlayFabServerAPI {
     /**
      * Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the
      * group can remove members. If as a result of the call, zero users remain with access, the group and its associated data
-     * will be deleted. Shared Groups are designed for sharing data between a very small number of players,  please see our
+     * will be deleted. Shared Groups are designed for sharing data between a very small number of players, please see our
      * guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request RemoveSharedGroupMembersRequest
      * @return RemoveSharedGroupMembersResult
@@ -4500,7 +4497,7 @@ public class PlayFabServerAPI {
     /**
      * Removes users from the set of those able to update the shared data and the set of users in the group. Only users in the
      * group can remove members. If as a result of the call, zero users remain with access, the group and its associated data
-     * will be deleted. Shared Groups are designed for sharing data between a very small number of players,  please see our
+     * will be deleted. Shared Groups are designed for sharing data between a very small number of players, please see our
      * guide: https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
     @SuppressWarnings("unchecked")
@@ -4769,6 +4766,66 @@ public class PlayFabServerAPI {
         RevokeInventoryResult result = resultData.data;
 
         PlayFabResult<RevokeInventoryResult> pfResult = new PlayFabResult<RevokeInventoryResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Revokes access for up to 25 items across multiple users and characters.
+     * @param request RevokeInventoryItemsRequest
+     * @return Async Task will return RevokeInventoryItemsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RevokeInventoryItemsResult>> RevokeInventoryItemsAsync(final RevokeInventoryItemsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RevokeInventoryItemsResult>>() {
+            public PlayFabResult<RevokeInventoryItemsResult> call() throws Exception {
+                return privateRevokeInventoryItemsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Revokes access for up to 25 items across multiple users and characters.
+     * @param request RevokeInventoryItemsRequest
+     * @return RevokeInventoryItemsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RevokeInventoryItemsResult> RevokeInventoryItems(final RevokeInventoryItemsRequest request) {
+        FutureTask<PlayFabResult<RevokeInventoryItemsResult>> task = new FutureTask(new Callable<PlayFabResult<RevokeInventoryItemsResult>>() {
+            public PlayFabResult<RevokeInventoryItemsResult> call() throws Exception {
+                return privateRevokeInventoryItemsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Revokes access for up to 25 items across multiple users and characters. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RevokeInventoryItemsResult> privateRevokeInventoryItemsAsync(final RevokeInventoryItemsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/RevokeInventoryItems", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RevokeInventoryItemsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RevokeInventoryItemsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RevokeInventoryItemsResult>>(){}.getType());
+        RevokeInventoryItemsResult result = resultData.data;
+
+        PlayFabResult<RevokeInventoryItemsResult> pfResult = new PlayFabResult<RevokeInventoryItemsResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -5898,7 +5955,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Updates the title-specific custom data for the user's character which cannot  be accessed by the client
+     * Updates the title-specific custom data for the user's character which cannot be accessed by the client
      * @param request UpdateCharacterDataRequest
      * @return Async Task will return UpdateCharacterDataResult
      */
@@ -5912,7 +5969,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Updates the title-specific custom data for the user's character which cannot  be accessed by the client
+     * Updates the title-specific custom data for the user's character which cannot be accessed by the client
      * @param request UpdateCharacterDataRequest
      * @return UpdateCharacterDataResult
      */
@@ -5931,7 +5988,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Updates the title-specific custom data for the user's character which cannot  be accessed by the client */
+    /** Updates the title-specific custom data for the user's character which cannot be accessed by the client */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateCharacterDataResult> privateUpdateCharacterInternalDataAsync(final UpdateCharacterDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -6140,7 +6197,7 @@ public class PlayFabServerAPI {
     /**
      * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated
      * or added in this call will be readable by users not in the group. By default, data permissions are set to Private.
-     * Regardless of the permission setting, only members of the group (and the server) can update the data.  Shared Groups are
+     * Regardless of the permission setting, only members of the group (and the server) can update the data. Shared Groups are
      * designed for sharing data between a very small number of players, please see our guide:
      * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request UpdateSharedGroupDataRequest
@@ -6158,7 +6215,7 @@ public class PlayFabServerAPI {
     /**
      * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated
      * or added in this call will be readable by users not in the group. By default, data permissions are set to Private.
-     * Regardless of the permission setting, only members of the group (and the server) can update the data.  Shared Groups are
+     * Regardless of the permission setting, only members of the group (and the server) can update the data. Shared Groups are
      * designed for sharing data between a very small number of players, please see our guide:
      * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      * @param request UpdateSharedGroupDataRequest
@@ -6182,7 +6239,7 @@ public class PlayFabServerAPI {
     /**
      * Adds, updates, and removes data keys for a shared group object. If the permission is set to Public, all fields updated
      * or added in this call will be readable by users not in the group. By default, data permissions are set to Private.
-     * Regardless of the permission setting, only members of the group (and the server) can update the data.  Shared Groups are
+     * Regardless of the permission setting, only members of the group (and the server) can update the data. Shared Groups are
      * designed for sharing data between a very small number of players, please see our guide:
      * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
      */
