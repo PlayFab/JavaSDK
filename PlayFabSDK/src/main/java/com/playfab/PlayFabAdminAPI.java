@@ -4523,6 +4523,66 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Revokes access for up to 25 items across multiple users and characters.
+     * @param request RevokeInventoryItemsRequest
+     * @return Async Task will return RevokeInventoryItemsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RevokeInventoryItemsResult>> RevokeInventoryItemsAsync(final RevokeInventoryItemsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RevokeInventoryItemsResult>>() {
+            public PlayFabResult<RevokeInventoryItemsResult> call() throws Exception {
+                return privateRevokeInventoryItemsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Revokes access for up to 25 items across multiple users and characters.
+     * @param request RevokeInventoryItemsRequest
+     * @return RevokeInventoryItemsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RevokeInventoryItemsResult> RevokeInventoryItems(final RevokeInventoryItemsRequest request) {
+        FutureTask<PlayFabResult<RevokeInventoryItemsResult>> task = new FutureTask(new Callable<PlayFabResult<RevokeInventoryItemsResult>>() {
+            public PlayFabResult<RevokeInventoryItemsResult> call() throws Exception {
+                return privateRevokeInventoryItemsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Revokes access for up to 25 items across multiple users and characters. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RevokeInventoryItemsResult> privateRevokeInventoryItemsAsync(final RevokeInventoryItemsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/RevokeInventoryItems", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RevokeInventoryItemsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RevokeInventoryItemsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RevokeInventoryItemsResult>>(){}.getType());
+        RevokeInventoryItemsResult result = resultData.data;
+
+        PlayFabResult<RevokeInventoryItemsResult> pfResult = new PlayFabResult<RevokeInventoryItemsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Run a task immediately regardless of its schedule.
      * @param request RunTaskRequest
      * @return Async Task will return RunTaskResult

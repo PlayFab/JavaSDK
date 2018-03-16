@@ -16,8 +16,8 @@ import com.playfab.PlayFabSettings;
 import com.playfab.PlayFabServerModels;
 import com.playfab.PlayFabServerAPI;
 
-//import com.playfab.PlayFabEntityModels;
-//import com.playfab.PlayFabEntityAPI;
+import com.playfab.PlayFabEntityModels;
+import com.playfab.PlayFabEntityAPI;
 
 public class PlayFabApiTest
 {
