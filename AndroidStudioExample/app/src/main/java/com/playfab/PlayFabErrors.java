@@ -370,7 +370,9 @@ public class PlayFabErrors {
         RoleNameNotAvailable(1367),
         GroupNameNotAvailable(1368),
         EmailReportAlreadySent(1369),
-        EmailReportRecipientBlacklisted(1370);
+        EmailReportRecipientBlacklisted(1370),
+        EventNamespaceNotAllowed(1371),
+        EventEntityNotAllowed(1372);
 
         public int id;
 

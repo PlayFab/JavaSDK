@@ -1026,6 +1026,25 @@ public class PlayFabAdminModels {
         
     }
 
+    /** Entity identifier class that contains both the ID and type. */
+    public static class EntityKey {
+        /** Entity profile ID. */
+        public String Id;
+        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
+        public EntityTypes Type;
+        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
+        public String TypeString;
+        
+    }
+
+    public static enum EntityTypes {
+        title,
+        master_player_account,
+        title_player_account,
+        character,
+        group
+    }
+
     public static class ExecuteCloudScriptResult {
         /** Number of PlayFab API requests issued by the CloudScript function */
         public Integer APIRequestsIssued;
@@ -1444,7 +1463,9 @@ public class PlayFabAdminModels {
         RoleNameNotAvailable,
         GroupNameNotAvailable,
         EmailReportAlreadySent,
-        EmailReportRecipientBlacklisted
+        EmailReportRecipientBlacklisted,
+        EventNamespaceNotAllowed,
+        EventEntityNotAllowed
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {
@@ -3527,6 +3548,8 @@ public class PlayFabAdminModels {
         public Date LastLogin;
         /** source by which the user first joined the game, if known */
         public UserOrigination Origination;
+        /** Title player account entity for this user */
+        public EntityKey TitlePlayerAccount;
         
     }
 

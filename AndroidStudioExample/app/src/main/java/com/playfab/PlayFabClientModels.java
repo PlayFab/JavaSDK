@@ -3731,6 +3731,8 @@ public class PlayFabClientModels {
         public Date LastLogin;
         /** source by which the user first joined the game, if known */
         public UserOrigination Origination;
+        /** Title player account entity for this user */
+        public EntityKey TitlePlayerAccount;
         
     }
 

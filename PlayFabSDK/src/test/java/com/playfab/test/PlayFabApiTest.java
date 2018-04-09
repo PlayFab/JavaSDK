@@ -98,7 +98,6 @@ public class PlayFabApiTest
         PlayFabSettings.TitleId = resultData.titleId;
         USER_EMAIL = resultData.userEmail;
         PlayFabSettings.DeveloperSecretKey = resultData.developerSecretKey;
-
     }
 
     /**
