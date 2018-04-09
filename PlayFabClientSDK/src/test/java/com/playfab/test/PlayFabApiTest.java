@@ -94,7 +94,7 @@ public class PlayFabApiTest
         TitleData resultData = gson.fromJson(testTitleJson, new TypeToken<TitleData>(){}.getType());
         PlayFabSettings.TitleId = resultData.titleId;
         USER_EMAIL = resultData.userEmail;
-
+        PlayFabSettings.DeveloperSecretKey = resultData.developerSecretKey;
     }
 
     /**
