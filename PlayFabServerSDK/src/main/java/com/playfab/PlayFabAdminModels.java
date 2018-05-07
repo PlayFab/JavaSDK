@@ -1105,6 +1105,7 @@ public class PlayFabAdminModels {
 
     public static enum GenericErrorCodes {
         Success,
+        UnkownError,
         InvalidParams,
         AccountNotFound,
         AccountBanned,
@@ -1465,7 +1466,13 @@ public class PlayFabAdminModels {
         EmailReportAlreadySent,
         EmailReportRecipientBlacklisted,
         EventNamespaceNotAllowed,
-        EventEntityNotAllowed
+        EventEntityNotAllowed,
+        InvalidEntityType,
+        NullTokenResultFromAad,
+        InvalidTokenResultFromAad,
+        NoValidCertificateForAad,
+        InvalidCertificateForAad,
+        DuplicateDropTableId
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {

@@ -14,7 +14,7 @@
     <!-- GAV & Meta -->
     <groupId>com.playfab</groupId>
     <artifactId>server-sdk</artifactId>
-    <version>0.65.180409</version>
+    <version>0.66.180507</version>
     <name>PlayFab Server API</name>
     <description>PlayFab is the unified backend platform for games — everything you need to build and operate your game, all in one place, so you can focus on creating and delivering a great player experience. </description>
     <url>http://api.playfab.com/</url>

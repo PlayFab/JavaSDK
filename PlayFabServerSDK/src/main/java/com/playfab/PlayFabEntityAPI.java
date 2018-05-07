@@ -1166,6 +1166,66 @@ public class PlayFabEntityAPI {
     }
 
     /**
+     * Retrieves the entity's profile.
+     * @param request GetEntityProfilesRequest
+     * @return Async Task will return GetEntityProfilesResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetEntityProfilesResponse>> GetProfilesAsync(final GetEntityProfilesRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetEntityProfilesResponse>>() {
+            public PlayFabResult<GetEntityProfilesResponse> call() throws Exception {
+                return privateGetProfilesAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the entity's profile.
+     * @param request GetEntityProfilesRequest
+     * @return GetEntityProfilesResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetEntityProfilesResponse> GetProfiles(final GetEntityProfilesRequest request) {
+        FutureTask<PlayFabResult<GetEntityProfilesResponse>> task = new FutureTask(new Callable<PlayFabResult<GetEntityProfilesResponse>>() {
+            public PlayFabResult<GetEntityProfilesResponse> call() throws Exception {
+                return privateGetProfilesAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Retrieves the entity's profile. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetEntityProfilesResponse> privateGetProfilesAsync(final GetEntityProfilesRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Profile/GetProfiles", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetEntityProfilesResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetEntityProfilesResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetEntityProfilesResponse>>(){}.getType());
+        GetEntityProfilesResponse result = resultData.data;
+
+        PlayFabResult<GetEntityProfilesResponse> pfResult = new PlayFabResult<GetEntityProfilesResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Initiates file uploads to an entity's profile.
      * @param request InitiateFileUploadsRequest
      * @return Async Task will return InitiateFileUploadsResponse
