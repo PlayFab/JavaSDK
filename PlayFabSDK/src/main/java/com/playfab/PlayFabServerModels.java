@@ -1018,6 +1018,7 @@ public class PlayFabServerModels {
 
     public static enum GenericErrorCodes {
         Success,
+        UnkownError,
         InvalidParams,
         AccountNotFound,
         AccountBanned,
@@ -1378,7 +1379,13 @@ public class PlayFabServerModels {
         EmailReportAlreadySent,
         EmailReportRecipientBlacklisted,
         EventNamespaceNotAllowed,
-        EventEntityNotAllowed
+        EventEntityNotAllowed,
+        InvalidEntityType,
+        NullTokenResultFromAad,
+        InvalidTokenResultFromAad,
+        NoValidCertificateForAad,
+        InvalidCertificateForAad,
+        DuplicateDropTableId
     }
 
     public static class GetAllSegmentsRequest {

@@ -343,6 +343,23 @@ public class PlayFabEntityModels {
         
     }
 
+    public static class GetEntityProfilesRequest {
+        /**
+         * Determines whether the objects will be returned as an escaped JSON string or as a un-escaped JSON object. Default is
+         * JSON string.
+         */
+        public Boolean DataAsObject;
+        /** Entity keys of the profiles to load. Must be between 1 and 25 */
+        public ArrayList<EntityKey> Entities;
+        
+    }
+
+    public static class GetEntityProfilesResponse {
+        /** Entity profiles */
+        public ArrayList<EntityProfileBody> Profiles;
+        
+    }
+
     public static class GetEntityTokenRequest {
         /** The entity to perform this action on. */
         public EntityKey Entity;

@@ -2843,6 +2843,11 @@ public class PlayFabClientModels {
     }
 
     public static class RegisterPlayFabUserResult {
+        /**
+         * If LoginTitlePlayerAccountEntity flag is set on the login request the title_player_account will also be logged in and
+         * returned.
+         */
+        public EntityTokenResponse EntityToken;
         /** PlayFab unique identifier for this newly created account. */
         public String PlayFabId;
         /** Unique token identifying the user and game at the server level, for the current session. */
