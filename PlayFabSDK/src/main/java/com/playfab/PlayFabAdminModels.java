@@ -950,6 +950,23 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class DeleteMasterPlayerAccountRequest {
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        public String PlayFabId;
+        
+    }
+
+    public static class DeleteMasterPlayerAccountResult {
+        /**
+         * A notification email with this job receipt Id will be sent to the title notification email address when deletion is
+         * complete.
+         */
+        public String JobReceiptId;
+        /** List of titles from which the player's data will be deleted. */
+        public ArrayList<String> TitleIds;
+        
+    }
+
     public static class DeletePlayerRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
@@ -1042,7 +1059,8 @@ public class PlayFabAdminModels {
         master_player_account,
         title_player_account,
         character,
-        group
+        group,
+        service
     }
 
     public static class ExecuteCloudScriptResult {
@@ -1080,6 +1098,21 @@ public class PlayFabAdminModels {
         public Double ProcessorTimeSeconds;
         /** The revision of the CloudScript that executed */
         public Integer Revision;
+        
+    }
+
+    public static class ExportMasterPlayerDataRequest {
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        public String PlayFabId;
+        
+    }
+
+    public static class ExportMasterPlayerDataResult {
+        /**
+         * An email with this job receipt Id containing the export download link will be sent to the title notification email
+         * address when the export is complete.
+         */
+        public String JobReceiptId;
         
     }
 
@@ -1472,7 +1505,17 @@ public class PlayFabAdminModels {
         InvalidTokenResultFromAad,
         NoValidCertificateForAad,
         InvalidCertificateForAad,
-        DuplicateDropTableId
+        DuplicateDropTableId,
+        ComputeOK,
+        ComputeAccepted,
+        ComputeNoContent,
+        ComputeBadRequest,
+        ComputeUnauthorized,
+        ComputeForbidden,
+        ComputeNotFound,
+        ComputeConflict,
+        ComputeInternalServerError,
+        ComputeServiceUnavailable
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {
@@ -1640,6 +1683,18 @@ public class PlayFabAdminModels {
     public static class GetMatchmakerGameModesResult {
         /** array of game modes available for the specified build */
         public ArrayList<GameModeInfo> GameModes;
+        
+    }
+
+    public static class GetPlayedTitleListRequest {
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        public String PlayFabId;
+        
+    }
+
+    public static class GetPlayedTitleListResult {
+        /** List of titles the player has played */
+        public ArrayList<String> TitleIds;
         
     }
 

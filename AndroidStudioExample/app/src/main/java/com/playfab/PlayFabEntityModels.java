@@ -296,7 +296,8 @@ public class PlayFabEntityModels {
         master_player_account,
         title_player_account,
         character,
-        group
+        group,
+        service
     }
 
     /** Entity wrapper class that contains the entity key and the entities that make up the lineage of the entity. */
