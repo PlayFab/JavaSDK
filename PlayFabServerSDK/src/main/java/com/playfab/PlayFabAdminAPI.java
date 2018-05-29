@@ -814,6 +814,66 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Removes a master player account entirely from all titles and deletes all associated data
+     * @param request DeleteMasterPlayerAccountRequest
+     * @return Async Task will return DeleteMasterPlayerAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<DeleteMasterPlayerAccountResult>> DeleteMasterPlayerAccountAsync(final DeleteMasterPlayerAccountRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<DeleteMasterPlayerAccountResult>>() {
+            public PlayFabResult<DeleteMasterPlayerAccountResult> call() throws Exception {
+                return privateDeleteMasterPlayerAccountAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Removes a master player account entirely from all titles and deletes all associated data
+     * @param request DeleteMasterPlayerAccountRequest
+     * @return DeleteMasterPlayerAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<DeleteMasterPlayerAccountResult> DeleteMasterPlayerAccount(final DeleteMasterPlayerAccountRequest request) {
+        FutureTask<PlayFabResult<DeleteMasterPlayerAccountResult>> task = new FutureTask(new Callable<PlayFabResult<DeleteMasterPlayerAccountResult>>() {
+            public PlayFabResult<DeleteMasterPlayerAccountResult> call() throws Exception {
+                return privateDeleteMasterPlayerAccountAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Removes a master player account entirely from all titles and deletes all associated data */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<DeleteMasterPlayerAccountResult> privateDeleteMasterPlayerAccountAsync(final DeleteMasterPlayerAccountRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/DeleteMasterPlayerAccount", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<DeleteMasterPlayerAccountResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<DeleteMasterPlayerAccountResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<DeleteMasterPlayerAccountResult>>(){}.getType());
+        DeleteMasterPlayerAccountResult result = resultData.data;
+
+        PlayFabResult<DeleteMasterPlayerAccountResult> pfResult = new PlayFabResult<DeleteMasterPlayerAccountResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Removes a user's player account from a title and deletes all associated data
      * @param request DeletePlayerRequest
      * @return Async Task will return DeletePlayerResult
@@ -1114,6 +1174,66 @@ public class PlayFabAdminAPI {
         DeleteTitleResult result = resultData.data;
 
         PlayFabResult<DeleteTitleResult> pfResult = new PlayFabResult<DeleteTitleResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Exports all associated data of a master player account
+     * @param request ExportMasterPlayerDataRequest
+     * @return Async Task will return ExportMasterPlayerDataResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ExportMasterPlayerDataResult>> ExportMasterPlayerDataAsync(final ExportMasterPlayerDataRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ExportMasterPlayerDataResult>>() {
+            public PlayFabResult<ExportMasterPlayerDataResult> call() throws Exception {
+                return privateExportMasterPlayerDataAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Exports all associated data of a master player account
+     * @param request ExportMasterPlayerDataRequest
+     * @return ExportMasterPlayerDataResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ExportMasterPlayerDataResult> ExportMasterPlayerData(final ExportMasterPlayerDataRequest request) {
+        FutureTask<PlayFabResult<ExportMasterPlayerDataResult>> task = new FutureTask(new Callable<PlayFabResult<ExportMasterPlayerDataResult>>() {
+            public PlayFabResult<ExportMasterPlayerDataResult> call() throws Exception {
+                return privateExportMasterPlayerDataAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Exports all associated data of a master player account */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ExportMasterPlayerDataResult> privateExportMasterPlayerDataAsync(final ExportMasterPlayerDataRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/ExportMasterPlayerData", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ExportMasterPlayerDataResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ExportMasterPlayerDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ExportMasterPlayerDataResult>>(){}.getType());
+        ExportMasterPlayerDataResult result = resultData.data;
+
+        PlayFabResult<ExportMasterPlayerDataResult> pfResult = new PlayFabResult<ExportMasterPlayerDataResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -1792,6 +1912,66 @@ public class PlayFabAdminAPI {
         GetMatchmakerGameModesResult result = resultData.data;
 
         PlayFabResult<GetMatchmakerGameModesResult> pfResult = new PlayFabResult<GetMatchmakerGameModesResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Get the list of titles that the player has played
+     * @param request GetPlayedTitleListRequest
+     * @return Async Task will return GetPlayedTitleListResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayedTitleListResult>> GetPlayedTitleListAsync(final GetPlayedTitleListRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayedTitleListResult>>() {
+            public PlayFabResult<GetPlayedTitleListResult> call() throws Exception {
+                return privateGetPlayedTitleListAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Get the list of titles that the player has played
+     * @param request GetPlayedTitleListRequest
+     * @return GetPlayedTitleListResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayedTitleListResult> GetPlayedTitleList(final GetPlayedTitleListRequest request) {
+        FutureTask<PlayFabResult<GetPlayedTitleListResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayedTitleListResult>>() {
+            public PlayFabResult<GetPlayedTitleListResult> call() throws Exception {
+                return privateGetPlayedTitleListAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Get the list of titles that the player has played */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayedTitleListResult> privateGetPlayedTitleListAsync(final GetPlayedTitleListRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Admin/GetPlayedTitleList", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayedTitleListResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayedTitleListResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayedTitleListResult>>(){}.getType());
+        GetPlayedTitleListResult result = resultData.data;
+
+        PlayFabResult<GetPlayedTitleListResult> pfResult = new PlayFabResult<GetPlayedTitleListResult>();
         pfResult.Result = result;
         return pfResult;
     }

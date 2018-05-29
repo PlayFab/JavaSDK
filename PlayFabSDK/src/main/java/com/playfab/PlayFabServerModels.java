@@ -900,7 +900,8 @@ public class PlayFabServerModels {
         master_player_account,
         title_player_account,
         character,
-        group
+        group,
+        service
     }
 
     public static class EvaluateRandomResultTableRequest {
@@ -1000,6 +1001,8 @@ public class PlayFabServerModels {
         public UserGameCenterInfo GameCenterInfo;
         /** The profile of the user, if requested. */
         public PlayerProfileModel Profile;
+        /** Available PSN information, if the user and PlayFab friend are both connected to PSN. */
+        public UserPsnInfo PSNInfo;
         /** Available Steam information (if the user and PlayFab friend are also connected in Steam). */
         public UserSteamInfo SteamInfo;
         /** Tags which have been associated with this friend. */
@@ -1008,6 +1011,8 @@ public class PlayFabServerModels {
         public String TitleDisplayName;
         /** PlayFab unique username for this friend. */
         public String Username;
+        /** Available Xbox information, if the user and PlayFab friend are both connected to Xbox Live. */
+        public UserXboxInfo XboxInfo;
         
     }
 
@@ -1385,7 +1390,17 @@ public class PlayFabServerModels {
         InvalidTokenResultFromAad,
         NoValidCertificateForAad,
         InvalidCertificateForAad,
-        DuplicateDropTableId
+        DuplicateDropTableId,
+        ComputeOK,
+        ComputeAccepted,
+        ComputeNoContent,
+        ComputeBadRequest,
+        ComputeUnauthorized,
+        ComputeForbidden,
+        ComputeNotFound,
+        ComputeConflict,
+        ComputeInternalServerError,
+        ComputeServiceUnavailable
     }
 
     public static class GetAllSegmentsRequest {
@@ -1544,6 +1559,8 @@ public class PlayFabServerModels {
         public String StatisticName;
         /** The version of the leaderboard to get. */
         public Integer Version;
+        /** Xbox token if Xbox friends should be included. Requires Xbox be configured on PlayFab. */
+        public String XboxToken;
         
     }
 
@@ -1560,6 +1577,8 @@ public class PlayFabServerModels {
          * the Game Manager "Client Profile Options" tab in the "Settings" section.
          */
         public PlayerProfileViewConstraints ProfileConstraints;
+        /** Xbox token if Xbox friends should be included. Requires Xbox be configured on PlayFab. */
+        public String XboxToken;
         
     }
 
