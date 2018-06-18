@@ -2547,16 +2547,6 @@ public class PlayFabClientModels {
         
     }
 
-    /**
-     * Identifier by either name or ID. Note that a name may change due to renaming, or reused after being deleted. ID is
-     * immutable and unique.
-     */
-    public static class NameIdentifier {
-        public String Id;
-        public String Name;
-        
-    }
-
     public static class OpenTradeRequest {
         /**
          * Players who are allowed to accept the trade. If null, the trade may be accepted by any player. If empty, the trade may

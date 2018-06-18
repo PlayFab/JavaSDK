@@ -1013,21 +1013,6 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class DeleteUsersRequest {
-        /** An array of unique PlayFab assigned ID of the user on whom the operation will be performed. */
-        public ArrayList<String> PlayFabIds;
-        /**
-         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
-         * title has been selected.
-         */
-        public String TitleId;
-        
-    }
-
-    public static class DeleteUsersResult {
-        
-    }
-
     public static enum EffectType {
         Allow,
         Deny
@@ -1138,6 +1123,7 @@ public class PlayFabAdminModels {
 
     public static enum GenericErrorCodes {
         Success,
+        MatchmakingHopperIdInvalid,
         UnkownError,
         InvalidParams,
         AccountNotFound,
@@ -1506,16 +1492,47 @@ public class PlayFabAdminModels {
         NoValidCertificateForAad,
         InvalidCertificateForAad,
         DuplicateDropTableId,
-        ComputeOK,
-        ComputeAccepted,
-        ComputeNoContent,
-        ComputeBadRequest,
-        ComputeUnauthorized,
-        ComputeForbidden,
-        ComputeNotFound,
-        ComputeConflict,
-        ComputeInternalServerError,
-        ComputeServiceUnavailable
+        GameServerOk,
+        GameServerAccepted,
+        GameServerNoContent,
+        GameServerBadRequest,
+        GameServerUnauthorized,
+        GameServerForbidden,
+        GameServerNotFound,
+        GameServerConflict,
+        GameServerInternalServerError,
+        GameServerServiceUnavailable,
+        MatchmakingInvalidEntityKeyList,
+        MatchmakingInvalidTicketCreatorProfile,
+        MatchmakingInvalidUserAttributes,
+        MatchmakingCreateRequestMissing,
+        MatchmakingCreateRequestCreatorMissing,
+        MatchmakingCreateRequestCreatorIdMissing,
+        MatchmakingCreateRequestUserListMissing,
+        MatchmakingCreateRequestGiveUpAfterInvalid,
+        MatchmakingTicketIdMissing,
+        MatchmakingMatchIdMissing,
+        MatchmakingMatchIdIdMissing,
+        MatchmakingHopperIdMissing,
+        MatchmakingTitleIdMissing,
+        MatchmakingTicketIdIdMissing,
+        MatchmakingUserIdMissing,
+        MatchmakingJoinRequestUserMissing,
+        MatchmakingHopperConfigNotFound,
+        MatchmakingMatchNotFound,
+        MatchmakingTicketNotFound,
+        MatchmakingCreateTicketServerIdentityInvalid,
+        MatchmakingCreateTicketClientIdentityInvalid,
+        MatchmakingGetTicketUserMismatch,
+        MatchmakingJoinTicketServerIdentityInvalid,
+        MatchmakingJoinTicketUserIdentityMismatch,
+        MatchmakingCancelTicketServerIdentityInvalid,
+        MatchmakingCancelTicketUserIdentityMismatch,
+        MatchmakingGetMatchIdentityMismatch,
+        MatchmakingUserIdentityMismatch,
+        MatchmakingAlreadyJoinedTicket,
+        MatchmakingTicketAlreadyCompleted,
+        MatchmakingHopperConfigInvalid
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {
@@ -2408,7 +2425,9 @@ public class PlayFabAdminModels {
      * immutable and unique.
      */
     public static class NameIdentifier {
+        /** Id Identifier, if present */
         public String Id;
+        /** Name Identifier, if present */
         public String Name;
         
     }
@@ -2678,7 +2697,8 @@ public class PlayFabAdminModels {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
         /**
-         * Reason for refund. In the case of Facebook this must match one of their refund or dispute resolution enums (See:
+         * The Reason parameter should correspond with the payment providers reason field, if they require one such as Facebook. In
+         * the case of Facebook this must match one of their refund or dispute resolution enums (See:
          * https://developers.facebook.com/docs/payments/implementation-guide/handling-disputes-refunds)
          */
         public String Reason;
@@ -2780,7 +2800,8 @@ public class PlayFabAdminModels {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
         /**
-         * Reason for refund. In the case of Facebook this must match one of their refund or dispute resolution enums (See:
+         * The Reason parameter should correspond with the payment providers reason field, if they require one such as Facebook. In
+         * the case of Facebook this must match one of their refund or dispute resolution enums (See:
          * https://developers.facebook.com/docs/payments/implementation-guide/handling-disputes-refunds)
          */
         public String Reason;
