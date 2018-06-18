@@ -19,16 +19,6 @@ public class PlayFabMatchmakerModels {
         
     }
 
-    public static class DeregisterGameRequest {
-        /** Unique identifier for the Game Server Instance that is being deregistered. */
-        public String LobbyId;
-        
-    }
-
-    public static class DeregisterGameResponse {
-        
-    }
-
     /**
      * A unique instance of an item in a user's inventory. Note, to retrieve additional information for an item instance (such
      * as Tags, Description, or Custom Data that are set on the root catalog item), a call to GetCatalogItems is required. The
@@ -115,41 +105,6 @@ public class PlayFabMatchmakerModels {
         Japan,
         Brazil,
         Australia
-    }
-
-    public static class RegisterGameRequest {
-        /** Unique identifier of the build running on the Game Server Instance. */
-        public String Build;
-        /**
-         * Game Mode the Game Server instance is running. Note that this must be defined in the Game Modes tab in the PlayFab Game
-         * Manager, along with the Build ID (the same Game Mode can be defined for multiple Build IDs).
-         */
-        public String GameMode;
-        /** Previous lobby id if re-registering an existing game. */
-        public String LobbyId;
-        /**
-         * Region in which the Game Server Instance is running. For matchmaking using non-AWS region names, set this to any AWS
-         * region and use Tags (below) to specify your custom region.
-         */
-        public Region Region;
-        /** IPV4 address of the Game Server Instance. */
-        public String ServerHost;
-        /** IPV6 address of the Game Server Instance. */
-        public String ServerIPV6Address;
-        /** Port number for communication with the Game Server Instance. */
-        public String ServerPort;
-        /** Tags for the Game Server Instance */
-        public Map<String,String> Tags;
-        
-    }
-
-    public static class RegisterGameResponse {
-        /**
-         * Unique identifier generated for the Game Server Instance that is registered. If LobbyId is specified in request and the
-         * game still exists in PlayFab, the LobbyId in request is returned. Otherwise a new lobby id will be returned.
-         */
-        public String LobbyId;
-        
     }
 
     public static class StartGameRequest {
