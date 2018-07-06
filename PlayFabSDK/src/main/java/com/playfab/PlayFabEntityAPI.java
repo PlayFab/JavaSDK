@@ -11,7 +11,7 @@ import com.google.gson.reflect.*;
 
     /**
      * PlayFab Entity APIs provide a variety of core PlayFab features and work consistently across a broad set of entities,
-     * such as titles, players, characters, and more.
+     * such as titles, players, characters, and more. API methods for executing CloudScript with an Entity Profile
      */
 public class PlayFabEntityAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
@@ -732,6 +732,66 @@ public class PlayFabEntityAPI {
         EmptyResult result = resultData.data;
 
         PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Executes CloudScript using the Entity Profile
+     * @param request ExecuteEntityCloudScriptRequest
+     * @return Async Task will return ExecuteCloudScriptResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ExecuteCloudScriptResult>> ExecuteEntityCloudScriptAsync(final ExecuteEntityCloudScriptRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ExecuteCloudScriptResult>>() {
+            public PlayFabResult<ExecuteCloudScriptResult> call() throws Exception {
+                return privateExecuteEntityCloudScriptAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Executes CloudScript using the Entity Profile
+     * @param request ExecuteEntityCloudScriptRequest
+     * @return ExecuteCloudScriptResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ExecuteCloudScriptResult> ExecuteEntityCloudScript(final ExecuteEntityCloudScriptRequest request) {
+        FutureTask<PlayFabResult<ExecuteCloudScriptResult>> task = new FutureTask(new Callable<PlayFabResult<ExecuteCloudScriptResult>>() {
+            public PlayFabResult<ExecuteCloudScriptResult> call() throws Exception {
+                return privateExecuteEntityCloudScriptAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Executes CloudScript using the Entity Profile */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ExecuteCloudScriptResult> privateExecuteEntityCloudScriptAsync(final ExecuteEntityCloudScriptRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/CloudScript/ExecuteEntityCloudScript", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ExecuteCloudScriptResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ExecuteCloudScriptResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ExecuteCloudScriptResult>>(){}.getType());
+        ExecuteCloudScriptResult result = resultData.data;
+
+        PlayFabResult<ExecuteCloudScriptResult> pfResult = new PlayFabResult<ExecuteCloudScriptResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -2301,6 +2361,66 @@ public class PlayFabEntityAPI {
         UpdateGroupRoleResponse result = resultData.data;
 
         PlayFabResult<UpdateGroupRoleResponse> pfResult = new PlayFabResult<UpdateGroupRoleResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Write batches of entity based events to PlayStream.
+     * @param request WriteEventsRequest
+     * @return Async Task will return WriteEventsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<WriteEventsResponse>> WriteEventsAsync(final WriteEventsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<WriteEventsResponse>>() {
+            public PlayFabResult<WriteEventsResponse> call() throws Exception {
+                return privateWriteEventsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Write batches of entity based events to PlayStream.
+     * @param request WriteEventsRequest
+     * @return WriteEventsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<WriteEventsResponse> WriteEvents(final WriteEventsRequest request) {
+        FutureTask<PlayFabResult<WriteEventsResponse>> task = new FutureTask(new Callable<PlayFabResult<WriteEventsResponse>>() {
+            public PlayFabResult<WriteEventsResponse> call() throws Exception {
+                return privateWriteEventsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Write batches of entity based events to PlayStream. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<WriteEventsResponse> privateWriteEventsAsync(final WriteEventsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Event/WriteEvents", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<WriteEventsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<WriteEventsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<WriteEventsResponse>>(){}.getType());
+        WriteEventsResponse result = resultData.data;
+
+        PlayFabResult<WriteEventsResponse> pfResult = new PlayFabResult<WriteEventsResponse>();
         pfResult.Result = result;
         return pfResult;
     }

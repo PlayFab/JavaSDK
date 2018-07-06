@@ -1123,7 +1123,6 @@ public class PlayFabAdminModels {
 
     public static enum GenericErrorCodes {
         Success,
-        MatchmakingHopperIdInvalid,
         UnkownError,
         InvalidParams,
         AccountNotFound,
@@ -1502,9 +1501,11 @@ public class PlayFabAdminModels {
         GameServerConflict,
         GameServerInternalServerError,
         GameServerServiceUnavailable,
-        MatchmakingInvalidEntityKeyList,
-        MatchmakingInvalidTicketCreatorProfile,
-        MatchmakingInvalidUserAttributes,
+        ExplicitContentDetected,
+        PIIContentDetected,
+        InvalidScheduledTaskParameter,
+        MatchmakingEntityInvalid,
+        MatchmakingPlayerAttributesInvalid,
         MatchmakingCreateRequestMissing,
         MatchmakingCreateRequestCreatorMissing,
         MatchmakingCreateRequestCreatorIdMissing,
@@ -1516,7 +1517,7 @@ public class PlayFabAdminModels {
         MatchmakingHopperIdMissing,
         MatchmakingTitleIdMissing,
         MatchmakingTicketIdIdMissing,
-        MatchmakingUserIdMissing,
+        MatchmakingPlayerIdMissing,
         MatchmakingJoinRequestUserMissing,
         MatchmakingHopperConfigNotFound,
         MatchmakingMatchNotFound,
@@ -1529,10 +1530,12 @@ public class PlayFabAdminModels {
         MatchmakingCancelTicketServerIdentityInvalid,
         MatchmakingCancelTicketUserIdentityMismatch,
         MatchmakingGetMatchIdentityMismatch,
-        MatchmakingUserIdentityMismatch,
+        MatchmakingPlayerIdentityMismatch,
         MatchmakingAlreadyJoinedTicket,
         MatchmakingTicketAlreadyCompleted,
-        MatchmakingHopperConfigInvalid
+        MatchmakingHopperIdInvalid,
+        MatchmakingHopperConfigInvalid,
+        MatchmakingMemberProfileInvalid
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {
@@ -3065,7 +3068,9 @@ public class PlayFabAdminModels {
         BackEnd,
         GameClient,
         GameServer,
-        Partner
+        Partner,
+        Custom,
+        API
     }
 
     public static enum StatisticAggregationMethod {

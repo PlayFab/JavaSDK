@@ -3018,7 +3018,9 @@ public class PlayFabClientModels {
         BackEnd,
         GameClient,
         GameServer,
-        Partner
+        Partner,
+        Custom,
+        API
     }
 
     public static class StartGameRequest {
