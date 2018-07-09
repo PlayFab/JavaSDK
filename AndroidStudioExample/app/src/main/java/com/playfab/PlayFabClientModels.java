@@ -3701,6 +3701,8 @@ public class PlayFabClientModels {
     public static class UserSettings {
         /** Boolean for whether this player is eligible for gathering device info. */
         public Boolean GatherDeviceInfo;
+        /** Boolean for whether this player should report OnFocus play-time tracking. */
+        public Boolean GatherFocusInfo;
         /** Boolean for whether this player is eligible for ad tracking. */
         public Boolean NeedsAttribution;
         
