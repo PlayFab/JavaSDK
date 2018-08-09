@@ -970,6 +970,14 @@ public class PlayFabClientModels {
         
     }
 
+    public static class FacebookInstantGamesPlayFabIdPair {
+        /** Unique Facebook Instant Games identifier for a user. */
+        public String FacebookInstantGamesId;
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Facebook Instant Games identifier. */
+        public String PlayFabId;
+        
+    }
+
     public static class FacebookPlayFabIdPair {
         /** Unique Facebook identifier for a user. */
         public String FacebookId;
@@ -1033,12 +1041,20 @@ public class PlayFabClientModels {
         public Region Region;
         /** duration in seconds this server has been running */
         public Long RunTime;
-        /** IPV4 address of the server */
+        /**
+         * IPV4 address of the server
+         * @deprecated Please use ServerIPV4Address instead.
+         */
+        @Deprecated
         public String ServerHostname;
+        /** IPV4 address of the server */
+        public String ServerIPV4Address;
         /** IPV6 address of the server */
         public String ServerIPV6Address;
         /** port number to use for non-http communications with the server */
         public Integer ServerPort;
+        /** Public DNS name (if any) of the server */
+        public String ServerPublicDNSName;
         /** stastic used to match this game in player statistic matchmaking */
         public String StatisticName;
         /** game session tags */
@@ -1602,6 +1618,18 @@ public class PlayFabClientModels {
         
     }
 
+    public static class GetPlayFabIDsFromFacebookInstantGamesIdsRequest {
+        /** Array of unique Facebook Instant Games identifiers for which the title needs to get PlayFab identifiers. */
+        public ArrayList<String> FacebookInstantGamesIds;
+        
+    }
+
+    public static class GetPlayFabIDsFromFacebookInstantGamesIdsResult {
+        /** Mapping of Facebook Instant Games identifiers to PlayFab identifiers. */
+        public ArrayList<FacebookInstantGamesPlayFabIdPair> Data;
+        
+    }
+
     public static class GetPlayFabIDsFromGameCenterIDsRequest {
         /** Array of unique Game Center identifiers (the Player Identifier) for which the title needs to get PlayFab identifiers. */
         public ArrayList<String> GameCenterIDs;
@@ -1650,6 +1678,18 @@ public class PlayFabClientModels {
     public static class GetPlayFabIDsFromKongregateIDsResult {
         /** Mapping of Kongregate identifiers to PlayFab identifiers. */
         public ArrayList<KongregatePlayFabIdPair> Data;
+        
+    }
+
+    public static class GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest {
+        /** Array of unique Nintendo Switch Device identifiers for which the title needs to get PlayFab identifiers. */
+        public ArrayList<String> NintendoSwitchDeviceIds;
+        
+    }
+
+    public static class GetPlayFabIDsFromNintendoSwitchDeviceIdsResult {
+        /** Mapping of Nintendo Switch Device identifiers to PlayFab identifiers. */
+        public ArrayList<NintendoSwitchPlayFabIdPair> Data;
         
     }
 
@@ -2038,6 +2078,18 @@ public class PlayFabClientModels {
         
     }
 
+    public static class LinkFacebookInstantGamesIdRequest {
+        /** Facebook Instant Games signature for the user. */
+        public String FacebookInstantGamesSignature;
+        /** If another user is already linked to the Facebook Instant Games ID, unlink the other user and re-link. */
+        public Boolean ForceLink;
+        
+    }
+
+    public static class LinkFacebookInstantGamesIdResult {
+        
+    }
+
     public static class LinkGameCenterAccountRequest {
         /** If another user is already linked to the account, unlink the other user and re-link. */
         public Boolean ForceLink;
@@ -2092,6 +2144,18 @@ public class PlayFabClientModels {
     }
 
     public static class LinkKongregateAccountResult {
+        
+    }
+
+    public static class LinkNintendoSwitchDeviceIdRequest {
+        /** If another user is already linked to the Nintendo Switch Device ID, unlink the other user and re-link. */
+        public Boolean ForceLink;
+        /** Nintendo Switch unique identifier for the user's device. */
+        public String NintendoSwitchDeviceId;
+        
+    }
+
+    public static class LinkNintendoSwitchDeviceIdResult {
         
     }
 
@@ -2178,7 +2242,11 @@ public class PlayFabClientModels {
         IOSDevice,
         AndroidDevice,
         Twitch,
-        WindowsHello
+        WindowsHello,
+        GameServer,
+        CustomServer,
+        NintendoSwitch,
+        FacebookInstantGames
     }
 
     public static class LoginResult {
@@ -2257,6 +2325,27 @@ public class PlayFabClientModels {
         public Boolean LoginTitlePlayerAccountEntity;
         /** Password for the PlayFab account (6-100 characters) */
         public String Password;
+        /**
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
+         * title has been selected.
+         */
+        public String TitleId;
+        
+    }
+
+    public static class LoginWithFacebookInstantGamesIdRequest {
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        public Boolean CreateAccount;
+        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        public String EncryptedRequest;
+        /** Facebook Instant Games signature for the user. */
+        public String FacebookInstantGamesSignature;
+        /** Flags for which pieces of info to return for the user. */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        public Boolean LoginTitlePlayerAccountEntity;
+        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        public String PlayerSecret;
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
          * title has been selected.
@@ -2369,6 +2458,27 @@ public class PlayFabClientModels {
         public String KongregateId;
         /** Flag to automatically login the player's title_player_account and return the associated entity token. */
         public Boolean LoginTitlePlayerAccountEntity;
+        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        public String PlayerSecret;
+        /**
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
+         * title has been selected.
+         */
+        public String TitleId;
+        
+    }
+
+    public static class LoginWithNintendoSwitchDeviceIdRequest {
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        public Boolean CreateAccount;
+        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        public String EncryptedRequest;
+        /** Flags for which pieces of info to return for the user. */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        public Boolean LoginTitlePlayerAccountEntity;
+        /** Nintendo Switch unique identifier for the user's device. */
+        public String NintendoSwitchDeviceId;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
         /**
@@ -2494,12 +2604,20 @@ public class PlayFabClientModels {
         public String LobbyID;
         /** time in milliseconds the application is configured to wait on matchmaking results */
         public Integer PollWaitTimeMS;
-        /** IPV4 address of the server */
+        /**
+         * IPV4 address of the server
+         * @deprecated Please use ServerIPV4Address instead.
+         */
+        @Deprecated
         public String ServerHostname;
+        /** IPV4 address of the server */
+        public String ServerIPV4Address;
         /** IPV6 address of the server */
         public String ServerIPV6Address;
         /** port number to use for non-http communications with the server */
         public Integer ServerPort;
+        /** Public DNS name (if any) of the server */
+        public String ServerPublicDNSName;
         /** result of match making process */
         public MatchmakeStatus Status;
         /** server authorization ticket (used by RedeemMatchmakerTicket to validate user insertion into the game) */
@@ -2544,6 +2662,14 @@ public class PlayFabClientModels {
         public String PlayFabId;
         /** Name of the virtual currency which was modified. */
         public String VirtualCurrency;
+        
+    }
+
+    public static class NintendoSwitchPlayFabIdPair {
+        /** Unique Nintendo Switch Device identifier for a user. */
+        public String NintendoSwitchDeviceId;
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Nintendo Switch Device identifier. */
+        public String PlayFabId;
         
     }
 
@@ -2665,7 +2791,7 @@ public class PlayFabClientModels {
         public String TitleId;
         /**
          * Sum of the player's purchases made with real-money currencies, converted to US dollars equivalent and represented as a
-         * whole number of cents (1/100 USD).       For example, 999 indicates nine dollars and ninety-nine cents.
+         * whole number of cents (1/100 USD). For example, 999 indicates nine dollars and ninety-nine cents.
          */
         public Long TotalValueToDateInUSD;
         /** List of the player's lifetime purchase totals, summed by real-money currency */
@@ -3046,12 +3172,20 @@ public class PlayFabClientModels {
         public String LobbyID;
         /** password required to log into the server */
         public String Password;
-        /** server IPV4 address */
+        /**
+         * server IPV4 address
+         * @deprecated Please use ServerIPV4Address instead.
+         */
+        @Deprecated
         public String ServerHostname;
+        /** server IPV4 address */
+        public String ServerIPV4Address;
         /** server IPV6 address */
         public String ServerIPV6Address;
         /** port on the server to be used for communication */
         public Integer ServerPort;
+        /** server public DNS name */
+        public String ServerPublicDNSName;
         /** unique identifier for the server */
         public String Ticket;
         
@@ -3330,6 +3464,16 @@ public class PlayFabClientModels {
         
     }
 
+    public static class UnlinkFacebookInstantGamesIdRequest {
+        /** Facebook Instant Games identifier for the user. If not specified, the most recently signed in ID will be used. */
+        public String FacebookInstantGamesId;
+        
+    }
+
+    public static class UnlinkFacebookInstantGamesIdResult {
+        
+    }
+
     public static class UnlinkGameCenterAccountRequest {
         
     }
@@ -3364,6 +3508,16 @@ public class PlayFabClientModels {
     }
 
     public static class UnlinkKongregateAccountResult {
+        
+    }
+
+    public static class UnlinkNintendoSwitchDeviceIdRequest {
+        /** Nintendo Switch Device identifier for the user. If not specified, the most recently signed in device ID will be used. */
+        public String NintendoSwitchDeviceId;
+        
+    }
+
+    public static class UnlinkNintendoSwitchDeviceIdResult {
         
     }
 
@@ -3681,7 +3835,10 @@ public class PlayFabClientModels {
         XboxLive,
         Parse,
         Twitch,
-        WindowsHello
+        WindowsHello,
+        ServerCustomId,
+        NintendoSwitchDeviceId,
+        FacebookInstantGamesId
     }
 
     public static class UserPrivateAccountInfo {
