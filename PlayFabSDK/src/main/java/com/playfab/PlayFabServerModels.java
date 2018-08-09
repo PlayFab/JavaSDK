@@ -982,6 +982,14 @@ public class PlayFabServerModels {
         
     }
 
+    public static class FacebookInstantGamesPlayFabIdPair {
+        /** Unique Facebook Instant Games identifier for a user. */
+        public String FacebookInstantGamesId;
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Facebook Instant Games identifier. */
+        public String PlayFabId;
+        
+    }
+
     public static class FacebookPlayFabIdPair {
         /** Unique Facebook identifier for a user. */
         public String FacebookId;
@@ -1404,6 +1412,12 @@ public class PlayFabServerModels {
         ExplicitContentDetected,
         PIIContentDetected,
         InvalidScheduledTaskParameter,
+        PerEntityEventRateLimitExceeded,
+        TitleDefaultLanguageNotSet,
+        EmailTemplateMissingDefaultVersion,
+        FacebookInstantGamesIdNotLinked,
+        InvalidFacebookInstantGamesSignature,
+        FacebookInstantGamesAuthNotConfiguredForTitle,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingCreateRequestMissing,
@@ -1414,12 +1428,12 @@ public class PlayFabServerModels {
         MatchmakingTicketIdMissing,
         MatchmakingMatchIdMissing,
         MatchmakingMatchIdIdMissing,
-        MatchmakingHopperIdMissing,
+        MatchmakingQueueNameMissing,
         MatchmakingTitleIdMissing,
         MatchmakingTicketIdIdMissing,
         MatchmakingPlayerIdMissing,
         MatchmakingJoinRequestUserMissing,
-        MatchmakingHopperConfigNotFound,
+        MatchmakingQueueConfigNotFound,
         MatchmakingMatchNotFound,
         MatchmakingTicketNotFound,
         MatchmakingCreateTicketServerIdentityInvalid,
@@ -1433,9 +1447,12 @@ public class PlayFabServerModels {
         MatchmakingPlayerIdentityMismatch,
         MatchmakingAlreadyJoinedTicket,
         MatchmakingTicketAlreadyCompleted,
-        MatchmakingHopperIdInvalid,
-        MatchmakingHopperConfigInvalid,
-        MatchmakingMemberProfileInvalid
+        MatchmakingQueueNameInvalid,
+        MatchmakingQueueConfigInvalid,
+        MatchmakingMemberProfileInvalid,
+        WriteAttemptedDuringExport,
+        NintendoSwitchDeviceIdNotLinked,
+        MatchmakingNotEnabled
     }
 
     public static class GetAllSegmentsRequest {
@@ -1921,6 +1938,30 @@ public class PlayFabServerModels {
         
     }
 
+    public static class GetPlayFabIDsFromFacebookInstantGamesIdsRequest {
+        /** Array of unique Facebook Instant Games identifiers for which the title needs to get PlayFab identifiers. */
+        public ArrayList<String> FacebookInstantGamesIds;
+        
+    }
+
+    public static class GetPlayFabIDsFromFacebookInstantGamesIdsResult {
+        /** Mapping of Facebook Instant Games identifiers to PlayFab identifiers. */
+        public ArrayList<FacebookInstantGamesPlayFabIdPair> Data;
+        
+    }
+
+    public static class GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest {
+        /** Array of unique Nintendo Switch Device identifiers for which the title needs to get PlayFab identifiers. */
+        public ArrayList<String> NintendoSwitchDeviceIds;
+        
+    }
+
+    public static class GetPlayFabIDsFromNintendoSwitchDeviceIdsResult {
+        /** Mapping of Nintendo Switch Device identifiers to PlayFab identifiers. */
+        public ArrayList<NintendoSwitchPlayFabIdPair> Data;
+        
+    }
+
     public static class GetPlayFabIDsFromSteamIDsRequest {
         /** Array of unique Steam identifiers (Steam profile IDs) for which the title needs to get PlayFab identifiers. */
         public ArrayList<String> SteamStringIDs;
@@ -2336,7 +2377,11 @@ public class PlayFabServerModels {
         IOSDevice,
         AndroidDevice,
         Twitch,
-        WindowsHello
+        WindowsHello,
+        GameServer,
+        CustomServer,
+        NintendoSwitch,
+        FacebookInstantGames
     }
 
     public static class LogStatement {
@@ -2447,6 +2492,14 @@ public class PlayFabServerModels {
     }
 
     public static class MoveItemToUserFromCharacterResult {
+        
+    }
+
+    public static class NintendoSwitchPlayFabIdPair {
+        /** Unique Nintendo Switch Device identifier for a user. */
+        public String NintendoSwitchDeviceId;
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Nintendo Switch Device identifier. */
+        public String PlayFabId;
         
     }
 
@@ -2592,7 +2645,7 @@ public class PlayFabServerModels {
         public String TitleId;
         /**
          * Sum of the player's purchases made with real-money currencies, converted to US dollars equivalent and represented as a
-         * whole number of cents (1/100 USD).       For example, 999 indicates nine dollars and ninety-nine cents.
+         * whole number of cents (1/100 USD). For example, 999 indicates nine dollars and ninety-nine cents.
          */
         public Long TotalValueToDateInUSD;
         /** List of the player's lifetime purchase totals, summed by real-money currency */
@@ -2782,12 +2835,20 @@ public class PlayFabServerModels {
          * region and use Tags (below) to specify your custom region.
          */
         public Region Region;
-        /** IPV4 address of the Game Server Instance. */
+        /**
+         * IPV4 address of the Game Server Instance.
+         * @deprecated Please use ServerIPV4Address instead.
+         */
+        @Deprecated
         public String ServerHost;
-        /** IPV6 address of the Game Server Instance. */
+        /** IPV4 address of the game server instance. */
+        public String ServerIPV4Address;
+        /** IPV6 address (if any) of the game server instance. */
         public String ServerIPV6Address;
         /** Port number for communication with the Game Server Instance. */
         public String ServerPort;
+        /** Public DNS name (if any) of the server */
+        public String ServerPublicDNSName;
         /** Tags for the Game Server Instance */
         public Map<String,String> Tags;
         
@@ -3586,7 +3647,10 @@ public class PlayFabServerModels {
         XboxLive,
         Parse,
         Twitch,
-        WindowsHello
+        WindowsHello,
+        ServerCustomId,
+        NintendoSwitchDeviceId,
+        FacebookInstantGamesId
     }
 
     public static class UserPrivateAccountInfo {

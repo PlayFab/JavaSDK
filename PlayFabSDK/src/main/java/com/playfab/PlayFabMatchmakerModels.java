@@ -128,12 +128,20 @@ public class PlayFabMatchmakerModels {
     public static class StartGameResponse {
         /** Unique identifier for the game/lobby in the new Game Server Instance. */
         public String GameID;
-        /** IPV4 address of the new Game Server Instance. */
+        /**
+         * IPV4 address of the new Game Server Instance.
+         * @deprecated Please use ServerIPV4Address instead.
+         */
+        @Deprecated
         public String ServerHostname;
+        /** IPV4 address of the server */
+        public String ServerIPV4Address;
         /** IPV6 address of the new Game Server Instance. */
         public String ServerIPV6Address;
         /** Port number for communication with the Game Server Instance. */
         public Long ServerPort;
+        /** Public DNS name (if any) of the server */
+        public String ServerPublicDNSName;
         
     }
 

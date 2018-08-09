@@ -2011,8 +2011,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Returns whatever info is requested in the response for the user. Note that PII (like email address, facebook id)
-     * may be returned. All parameters default to false.
+     * Returns whatever info is requested in the response for the user. Note that PII (like email address, facebook id) may be
+     * returned. All parameters default to false.
      * @param request GetPlayerCombinedInfoRequest
      * @return Async Task will return GetPlayerCombinedInfoResult
      */
@@ -2026,8 +2026,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Returns whatever info is requested in the response for the user. Note that PII (like email address, facebook id)
-     * may be returned. All parameters default to false.
+     * Returns whatever info is requested in the response for the user. Note that PII (like email address, facebook id) may be
+     * returned. All parameters default to false.
      * @param request GetPlayerCombinedInfoRequest
      * @return GetPlayerCombinedInfoResult
      */
@@ -2047,8 +2047,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Returns whatever info is requested in the response for the user. Note that PII (like email address, facebook id)
-     * may be returned. All parameters default to false.
+     * Returns whatever info is requested in the response for the user. Note that PII (like email address, facebook id) may be
+     * returned. All parameters default to false.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayerCombinedInfoResult> privateGetPlayerCombinedInfoAsync(final GetPlayerCombinedInfoRequest request) throws Exception {
@@ -2502,6 +2502,126 @@ public class PlayFabServerAPI {
         GetPlayFabIDsFromFacebookIDsResult result = resultData.data;
 
         PlayFabResult<GetPlayFabIDsFromFacebookIDsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromFacebookIDsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of Facebook Instant Games identifiers.
+     * @param request GetPlayFabIDsFromFacebookInstantGamesIdsRequest
+     * @return Async Task will return GetPlayFabIDsFromFacebookInstantGamesIdsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayFabIDsFromFacebookInstantGamesIdsResult>> GetPlayFabIDsFromFacebookInstantGamesIdsAsync(final GetPlayFabIDsFromFacebookInstantGamesIdsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromFacebookInstantGamesIdsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromFacebookInstantGamesIdsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromFacebookInstantGamesIdsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of Facebook Instant Games identifiers.
+     * @param request GetPlayFabIDsFromFacebookInstantGamesIdsRequest
+     * @return GetPlayFabIDsFromFacebookInstantGamesIdsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayFabIDsFromFacebookInstantGamesIdsResult> GetPlayFabIDsFromFacebookInstantGamesIds(final GetPlayFabIDsFromFacebookInstantGamesIdsRequest request) {
+        FutureTask<PlayFabResult<GetPlayFabIDsFromFacebookInstantGamesIdsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromFacebookInstantGamesIdsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromFacebookInstantGamesIdsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromFacebookInstantGamesIdsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Retrieves the unique PlayFab identifiers for the given set of Facebook Instant Games identifiers. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayFabIDsFromFacebookInstantGamesIdsResult> privateGetPlayFabIDsFromFacebookInstantGamesIdsAsync(final GetPlayFabIDsFromFacebookInstantGamesIdsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetPlayFabIDsFromFacebookInstantGamesIds", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayFabIDsFromFacebookInstantGamesIdsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayFabIDsFromFacebookInstantGamesIdsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayFabIDsFromFacebookInstantGamesIdsResult>>(){}.getType());
+        GetPlayFabIDsFromFacebookInstantGamesIdsResult result = resultData.data;
+
+        PlayFabResult<GetPlayFabIDsFromFacebookInstantGamesIdsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromFacebookInstantGamesIdsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of Nintendo Switch Device identifiers.
+     * @param request GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest
+     * @return Async Task will return GetPlayFabIDsFromNintendoSwitchDeviceIdsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayFabIDsFromNintendoSwitchDeviceIdsResult>> GetPlayFabIDsFromNintendoSwitchDeviceIdsAsync(final GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromNintendoSwitchDeviceIdsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromNintendoSwitchDeviceIdsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromNintendoSwitchDeviceIdsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of Nintendo Switch Device identifiers.
+     * @param request GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest
+     * @return GetPlayFabIDsFromNintendoSwitchDeviceIdsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayFabIDsFromNintendoSwitchDeviceIdsResult> GetPlayFabIDsFromNintendoSwitchDeviceIds(final GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest request) {
+        FutureTask<PlayFabResult<GetPlayFabIDsFromNintendoSwitchDeviceIdsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromNintendoSwitchDeviceIdsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromNintendoSwitchDeviceIdsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromNintendoSwitchDeviceIdsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Retrieves the unique PlayFab identifiers for the given set of Nintendo Switch Device identifiers. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayFabIDsFromNintendoSwitchDeviceIdsResult> privateGetPlayFabIDsFromNintendoSwitchDeviceIdsAsync(final GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Server/GetPlayFabIDsFromNintendoSwitchDeviceIds", request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayFabIDsFromNintendoSwitchDeviceIdsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayFabIDsFromNintendoSwitchDeviceIdsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayFabIDsFromNintendoSwitchDeviceIdsResult>>(){}.getType());
+        GetPlayFabIDsFromNintendoSwitchDeviceIdsResult result = resultData.data;
+
+        PlayFabResult<GetPlayFabIDsFromNintendoSwitchDeviceIdsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromNintendoSwitchDeviceIdsResult>();
         pfResult.Result = result;
         return pfResult;
     }
