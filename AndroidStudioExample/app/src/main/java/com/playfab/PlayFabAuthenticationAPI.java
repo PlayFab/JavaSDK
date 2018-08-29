@@ -10,9 +10,8 @@ import com.google.gson.*;
 import com.google.gson.reflect.*;
 
     /**
-     * The Authentication API group is currently in-progress. The current GetEntityToken method is a stop-gap to convert
-     * another authentication into an Entity Authentication. See https://api.playfab.com/documentation/client#Authentication
-     * for the other authentication methods.
+     * The Authentication APIs provide a convenient way to convert classic authentication responses into entity authentication
+     * models. These APIs will provide you with the entity authentication token needed for subsequent Entity API calls.
      */
 public class PlayFabAuthenticationAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
@@ -64,7 +63,7 @@ public class PlayFabAuthenticationAPI {
         else if (PlayFabSettings.ClientSessionTicket != null) { authKey = "X-Authorization"; authValue = PlayFabSettings.ClientSessionTicket; }
         else if (PlayFabSettings.DeveloperSecretKey != null) { authKey = "X-SecretKey"; authValue = PlayFabSettings.DeveloperSecretKey; }
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Authentication/GetEntityToken", request, authKey, authValue);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Authentication/GetEntityToken"), request, authKey, authValue);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {

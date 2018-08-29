@@ -63,7 +63,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<AcceptTradeResponse> privateAcceptTradeAsync(final AcceptTradeRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/AcceptTrade", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/AcceptTrade"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -128,7 +128,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<AddFriendResult> privateAddFriendAsync(final AddFriendRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/AddFriend", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/AddFriend"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -196,7 +196,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<AddGenericIDResult> privateAddGenericIDAsync(final AddGenericIDRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/AddGenericID", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/AddGenericID"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -256,7 +256,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<AddOrUpdateContactEmailResult> privateAddOrUpdateContactEmailAsync(final AddOrUpdateContactEmailRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/AddOrUpdateContactEmail", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/AddOrUpdateContactEmail"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -324,7 +324,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<AddSharedGroupMembersResult> privateAddSharedGroupMembersAsync(final AddSharedGroupMembersRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/AddSharedGroupMembers", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/AddSharedGroupMembers"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -389,7 +389,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<AddUsernamePasswordResult> privateAddUsernamePasswordAsync(final AddUsernamePasswordRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/AddUsernamePassword", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/AddUsernamePassword"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -449,7 +449,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<ModifyUserVirtualCurrencyResult> privateAddUserVirtualCurrencyAsync(final AddUserVirtualCurrencyRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/AddUserVirtualCurrency", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/AddUserVirtualCurrency"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -509,7 +509,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<AndroidDevicePushNotificationRegistrationResult> privateAndroidDevicePushNotificationRegistrationAsync(final AndroidDevicePushNotificationRegistrationRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/AndroidDevicePushNotificationRegistration", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/AndroidDevicePushNotificationRegistration"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -569,7 +569,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<AttributeInstallResult> privateAttributeInstallAsync(final AttributeInstallRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/AttributeInstall", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/AttributeInstall"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -639,7 +639,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<CancelTradeResponse> privateCancelTradeAsync(final CancelTradeRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/CancelTrade", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/CancelTrade"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -704,7 +704,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<ConfirmPurchaseResult> privateConfirmPurchaseAsync(final ConfirmPurchaseRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ConfirmPurchase", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/ConfirmPurchase"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -764,7 +764,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<ConsumeItemResult> privateConsumeItemAsync(final ConsumeItemRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ConsumeItem", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/ConsumeItem"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -781,6 +781,71 @@ public class PlayFabClientAPI {
         ConsumeItemResult result = resultData.data;
 
         PlayFabResult<ConsumeItemResult> pfResult = new PlayFabResult<ConsumeItemResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Grants the player's current entitlements from Xbox Live, consuming all availble items in Xbox and granting them to the
+     * player's PlayFab inventory. This call is idempotent and will not grant previously granted items to the player.
+     * @param request ConsumeXboxEntitlementsRequest
+     * @return Async Task will return ConsumeXboxEntitlementsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ConsumeXboxEntitlementsResult>> ConsumeXboxEntitlementsAsync(final ConsumeXboxEntitlementsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ConsumeXboxEntitlementsResult>>() {
+            public PlayFabResult<ConsumeXboxEntitlementsResult> call() throws Exception {
+                return privateConsumeXboxEntitlementsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Grants the player's current entitlements from Xbox Live, consuming all availble items in Xbox and granting them to the
+     * player's PlayFab inventory. This call is idempotent and will not grant previously granted items to the player.
+     * @param request ConsumeXboxEntitlementsRequest
+     * @return ConsumeXboxEntitlementsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ConsumeXboxEntitlementsResult> ConsumeXboxEntitlements(final ConsumeXboxEntitlementsRequest request) {
+        FutureTask<PlayFabResult<ConsumeXboxEntitlementsResult>> task = new FutureTask(new Callable<PlayFabResult<ConsumeXboxEntitlementsResult>>() {
+            public PlayFabResult<ConsumeXboxEntitlementsResult> call() throws Exception {
+                return privateConsumeXboxEntitlementsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Grants the player's current entitlements from Xbox Live, consuming all availble items in Xbox and granting them to the
+     * player's PlayFab inventory. This call is idempotent and will not grant previously granted items to the player.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ConsumeXboxEntitlementsResult> privateConsumeXboxEntitlementsAsync(final ConsumeXboxEntitlementsRequest request) throws Exception {
+        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/ConsumeXboxEntitlements"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ConsumeXboxEntitlementsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ConsumeXboxEntitlementsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ConsumeXboxEntitlementsResult>>(){}.getType());
+        ConsumeXboxEntitlementsResult result = resultData.data;
+
+        PlayFabResult<ConsumeXboxEntitlementsResult> pfResult = new PlayFabResult<ConsumeXboxEntitlementsResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -835,7 +900,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<CreateSharedGroupResult> privateCreateSharedGroupAsync(final CreateSharedGroupRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/CreateSharedGroup", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/CreateSharedGroup"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -895,7 +960,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<ExecuteCloudScriptResult> privateExecuteCloudScriptAsync(final ExecuteCloudScriptRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ExecuteCloudScript", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/ExecuteCloudScript"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -955,7 +1020,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetAccountInfoResult> privateGetAccountInfoAsync(final GetAccountInfoRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetAccountInfo", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetAccountInfo"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1020,7 +1085,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<ListUsersCharactersResult> privateGetAllUsersCharactersAsync(final ListUsersCharactersRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetAllUsersCharacters", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetAllUsersCharacters"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1080,7 +1145,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetCatalogItemsResult> privateGetCatalogItemsAsync(final GetCatalogItemsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetCatalogItems", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetCatalogItems"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1140,7 +1205,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetCharacterDataResult> privateGetCharacterDataAsync(final GetCharacterDataRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetCharacterData", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetCharacterData"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1200,7 +1265,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetCharacterInventoryResult> privateGetCharacterInventoryAsync(final GetCharacterInventoryRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetCharacterInventory", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetCharacterInventory"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1260,7 +1325,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetCharacterLeaderboardResult> privateGetCharacterLeaderboardAsync(final GetCharacterLeaderboardRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetCharacterLeaderboard", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetCharacterLeaderboard"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1320,7 +1385,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetCharacterDataResult> privateGetCharacterReadOnlyDataAsync(final GetCharacterDataRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetCharacterReadOnlyData", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetCharacterReadOnlyData"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1380,7 +1445,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetCharacterStatisticsResult> privateGetCharacterStatisticsAsync(final GetCharacterStatisticsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetCharacterStatistics", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetCharacterStatistics"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1457,7 +1522,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetContentDownloadUrlResult> privateGetContentDownloadUrlAsync(final GetContentDownloadUrlRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetContentDownloadUrl", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetContentDownloadUrl"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1517,7 +1582,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<CurrentGamesResult> privateGetCurrentGamesAsync(final CurrentGamesRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetCurrentGames", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetCurrentGames"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1582,7 +1647,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetLeaderboardResult> privateGetFriendLeaderboardAsync(final GetFriendLeaderboardRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetFriendLeaderboard", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetFriendLeaderboard"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1647,7 +1712,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetFriendLeaderboardAroundPlayerResult> privateGetFriendLeaderboardAroundPlayerAsync(final GetFriendLeaderboardAroundPlayerRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetFriendLeaderboardAroundPlayer", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetFriendLeaderboardAroundPlayer"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1712,7 +1777,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetFriendsListResult> privateGetFriendsListAsync(final GetFriendsListRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetFriendsList", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetFriendsList"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1772,7 +1837,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GameServerRegionsResult> privateGetGameServerRegionsAsync(final GameServerRegionsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetGameServerRegions", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetGameServerRegions"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1832,7 +1897,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetLeaderboardResult> privateGetLeaderboardAsync(final GetLeaderboardRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetLeaderboard", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetLeaderboard"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1892,7 +1957,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetLeaderboardAroundCharacterResult> privateGetLeaderboardAroundCharacterAsync(final GetLeaderboardAroundCharacterRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetLeaderboardAroundCharacter", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetLeaderboardAroundCharacter"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1957,7 +2022,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetLeaderboardAroundPlayerResult> privateGetLeaderboardAroundPlayerAsync(final GetLeaderboardAroundPlayerRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetLeaderboardAroundPlayer", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetLeaderboardAroundPlayer"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2017,7 +2082,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetLeaderboardForUsersCharactersResult> privateGetLeaderboardForUserCharactersAsync(final GetLeaderboardForUsersCharactersRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetLeaderboardForUserCharacters", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetLeaderboardForUserCharacters"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2085,7 +2150,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetPaymentTokenResult> privateGetPaymentTokenAsync(final GetPaymentTokenRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPaymentToken", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPaymentToken"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2150,7 +2215,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetPhotonAuthenticationTokenResult> privateGetPhotonAuthenticationTokenAsync(final GetPhotonAuthenticationTokenRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPhotonAuthenticationToken", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPhotonAuthenticationToken"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2210,7 +2275,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetPlayerCombinedInfoResult> privateGetPlayerCombinedInfoAsync(final GetPlayerCombinedInfoRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayerCombinedInfo", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayerCombinedInfo"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2270,7 +2335,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetPlayerProfileResult> privateGetPlayerProfileAsync(final GetPlayerProfileRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayerProfile", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayerProfile"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2330,7 +2395,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetPlayerSegmentsResult> privateGetPlayerSegmentsAsync(final GetPlayerSegmentsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayerSegments", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayerSegments"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2395,7 +2460,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetPlayerStatisticsResult> privateGetPlayerStatisticsAsync(final GetPlayerStatisticsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayerStatistics", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayerStatistics"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2455,7 +2520,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetPlayerStatisticVersionsResult> privateGetPlayerStatisticVersionsAsync(final GetPlayerStatisticVersionsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayerStatisticVersions", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayerStatisticVersions"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2515,7 +2580,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetPlayerTagsResult> privateGetPlayerTagsAsync(final GetPlayerTagsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayerTags", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayerTags"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2575,7 +2640,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetPlayerTradesResponse> privateGetPlayerTradesAsync(final GetPlayerTradesRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayerTrades", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayerTrades"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2635,7 +2700,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetPlayFabIDsFromFacebookIDsResult> privateGetPlayFabIDsFromFacebookIDsAsync(final GetPlayFabIDsFromFacebookIDsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayFabIDsFromFacebookIDs", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayFabIDsFromFacebookIDs"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2695,7 +2760,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetPlayFabIDsFromFacebookInstantGamesIdsResult> privateGetPlayFabIDsFromFacebookInstantGamesIdsAsync(final GetPlayFabIDsFromFacebookInstantGamesIdsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayFabIDsFromFacebookInstantGamesIds", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayFabIDsFromFacebookInstantGamesIds"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2760,7 +2825,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetPlayFabIDsFromGameCenterIDsResult> privateGetPlayFabIDsFromGameCenterIDsAsync(final GetPlayFabIDsFromGameCenterIDsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayFabIDsFromGameCenterIDs", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayFabIDsFromGameCenterIDs"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2828,7 +2893,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetPlayFabIDsFromGenericIDsResult> privateGetPlayFabIDsFromGenericIDsAsync(final GetPlayFabIDsFromGenericIDsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayFabIDsFromGenericIDs", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayFabIDsFromGenericIDs"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2893,7 +2958,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetPlayFabIDsFromGoogleIDsResult> privateGetPlayFabIDsFromGoogleIDsAsync(final GetPlayFabIDsFromGoogleIDsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayFabIDsFromGoogleIDs", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayFabIDsFromGoogleIDs"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2961,7 +3026,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetPlayFabIDsFromKongregateIDsResult> privateGetPlayFabIDsFromKongregateIDsAsync(final GetPlayFabIDsFromKongregateIDsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayFabIDsFromKongregateIDs", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayFabIDsFromKongregateIDs"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3021,7 +3086,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetPlayFabIDsFromNintendoSwitchDeviceIdsResult> privateGetPlayFabIDsFromNintendoSwitchDeviceIdsAsync(final GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayFabIDsFromNintendoSwitchDeviceIds", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayFabIDsFromNintendoSwitchDeviceIds"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3086,7 +3151,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetPlayFabIDsFromSteamIDsResult> privateGetPlayFabIDsFromSteamIDsAsync(final GetPlayFabIDsFromSteamIDsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayFabIDsFromSteamIDs", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayFabIDsFromSteamIDs"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3154,7 +3219,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetPlayFabIDsFromTwitchIDsResult> privateGetPlayFabIDsFromTwitchIDsAsync(final GetPlayFabIDsFromTwitchIDsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPlayFabIDsFromTwitchIDs", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayFabIDsFromTwitchIDs"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3214,7 +3279,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetPublisherDataResult> privateGetPublisherDataAsync(final GetPublisherDataRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPublisherData", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPublisherData"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3279,7 +3344,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetPurchaseResult> privateGetPurchaseAsync(final GetPurchaseRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetPurchase", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPurchase"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3350,7 +3415,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetSharedGroupDataResult> privateGetSharedGroupDataAsync(final GetSharedGroupDataRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetSharedGroupData", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetSharedGroupData"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3410,7 +3475,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetStoreItemsResult> privateGetStoreItemsAsync(final GetStoreItemsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetStoreItems", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetStoreItems"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3470,7 +3535,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetTimeResult> privateGetTimeAsync(final GetTimeRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetTime", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetTime"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3530,7 +3595,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetTitleDataResult> privateGetTitleDataAsync(final GetTitleDataRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetTitleData", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetTitleData"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3590,7 +3655,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetTitleNewsResult> privateGetTitleNewsAsync(final GetTitleNewsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetTitleNews", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetTitleNews"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3649,7 +3714,7 @@ public class PlayFabClientAPI {
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTitlePublicKeyResult> privateGetTitlePublicKeyAsync(final GetTitlePublicKeyRequest request) throws Exception {
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetTitlePublicKey", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetTitlePublicKey"), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3709,7 +3774,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetTradeStatusResponse> privateGetTradeStatusAsync(final GetTradeStatusRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetTradeStatus", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetTradeStatus"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3769,7 +3834,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetUserDataResult> privateGetUserDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetUserData", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetUserData"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3829,7 +3894,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetUserInventoryResult> privateGetUserInventoryAsync(final GetUserInventoryRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetUserInventory", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetUserInventory"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3889,7 +3954,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetUserDataResult> privateGetUserPublisherDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetUserPublisherData", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetUserPublisherData"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3949,7 +4014,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetUserDataResult> privateGetUserPublisherReadOnlyDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetUserPublisherReadOnlyData", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetUserPublisherReadOnlyData"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -4009,7 +4074,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GetUserDataResult> privateGetUserReadOnlyDataAsync(final GetUserDataRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetUserReadOnlyData", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetUserReadOnlyData"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -4068,7 +4133,7 @@ public class PlayFabClientAPI {
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetWindowsHelloChallengeResponse> privateGetWindowsHelloChallengeAsync(final GetWindowsHelloChallengeRequest request) throws Exception {
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GetWindowsHelloChallenge", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetWindowsHelloChallenge"), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -4133,7 +4198,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<GrantCharacterToUserResult> privateGrantCharacterToUserAsync(final GrantCharacterToUserRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/GrantCharacterToUser", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GrantCharacterToUser"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -4193,7 +4258,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<LinkAndroidDeviceIDResult> privateLinkAndroidDeviceIDAsync(final LinkAndroidDeviceIDRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LinkAndroidDeviceID", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LinkAndroidDeviceID"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -4253,7 +4318,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<LinkCustomIDResult> privateLinkCustomIDAsync(final LinkCustomIDRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LinkCustomID", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LinkCustomID"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -4313,7 +4378,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<LinkFacebookAccountResult> privateLinkFacebookAccountAsync(final LinkFacebookAccountRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LinkFacebookAccount", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LinkFacebookAccount"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -4373,7 +4438,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<LinkFacebookInstantGamesIdResult> privateLinkFacebookInstantGamesIdAsync(final LinkFacebookInstantGamesIdRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LinkFacebookInstantGamesId", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LinkFacebookInstantGamesId"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -4433,7 +4498,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<LinkGameCenterAccountResult> privateLinkGameCenterAccountAsync(final LinkGameCenterAccountRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LinkGameCenterAccount", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LinkGameCenterAccount"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -4493,7 +4558,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<LinkGoogleAccountResult> privateLinkGoogleAccountAsync(final LinkGoogleAccountRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LinkGoogleAccount", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LinkGoogleAccount"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -4553,7 +4618,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<LinkIOSDeviceIDResult> privateLinkIOSDeviceIDAsync(final LinkIOSDeviceIDRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LinkIOSDeviceID", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LinkIOSDeviceID"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -4613,7 +4678,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<LinkKongregateAccountResult> privateLinkKongregateAsync(final LinkKongregateAccountRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LinkKongregate", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LinkKongregate"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -4673,7 +4738,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<LinkNintendoSwitchDeviceIdResult> privateLinkNintendoSwitchDeviceIdAsync(final LinkNintendoSwitchDeviceIdRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LinkNintendoSwitchDeviceId", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LinkNintendoSwitchDeviceId"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -4733,7 +4798,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<LinkSteamAccountResult> privateLinkSteamAccountAsync(final LinkSteamAccountRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LinkSteamAccount", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LinkSteamAccount"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -4793,7 +4858,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<LinkTwitchAccountResult> privateLinkTwitchAsync(final LinkTwitchAccountRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LinkTwitch", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LinkTwitch"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -4853,7 +4918,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<LinkWindowsHelloAccountResponse> privateLinkWindowsHelloAsync(final LinkWindowsHelloAccountRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LinkWindowsHello", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LinkWindowsHello"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -4870,6 +4935,66 @@ public class PlayFabClientAPI {
         LinkWindowsHelloAccountResponse result = resultData.data;
 
         PlayFabResult<LinkWindowsHelloAccountResponse> pfResult = new PlayFabResult<LinkWindowsHelloAccountResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Links the Xbox Live account associated with the provided access code to the user's PlayFab account
+     * @param request LinkXboxAccountRequest
+     * @return Async Task will return LinkXboxAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<LinkXboxAccountResult>> LinkXboxAccountAsync(final LinkXboxAccountRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<LinkXboxAccountResult>>() {
+            public PlayFabResult<LinkXboxAccountResult> call() throws Exception {
+                return privateLinkXboxAccountAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Links the Xbox Live account associated with the provided access code to the user's PlayFab account
+     * @param request LinkXboxAccountRequest
+     * @return LinkXboxAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<LinkXboxAccountResult> LinkXboxAccount(final LinkXboxAccountRequest request) {
+        FutureTask<PlayFabResult<LinkXboxAccountResult>> task = new FutureTask(new Callable<PlayFabResult<LinkXboxAccountResult>>() {
+            public PlayFabResult<LinkXboxAccountResult> call() throws Exception {
+                return privateLinkXboxAccountAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Links the Xbox Live account associated with the provided access code to the user's PlayFab account */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<LinkXboxAccountResult> privateLinkXboxAccountAsync(final LinkXboxAccountRequest request) throws Exception {
+        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LinkXboxAccount"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<LinkXboxAccountResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<LinkXboxAccountResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LinkXboxAccountResult>>(){}.getType());
+        LinkXboxAccountResult result = resultData.data;
+
+        PlayFabResult<LinkXboxAccountResult> pfResult = new PlayFabResult<LinkXboxAccountResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -4919,7 +5044,7 @@ public class PlayFabClientAPI {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
         if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LoginWithAndroidDeviceID", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithAndroidDeviceID"), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -4988,7 +5113,7 @@ public class PlayFabClientAPI {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
         if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LoginWithCustomID", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithCustomID"), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -5063,7 +5188,7 @@ public class PlayFabClientAPI {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
         if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LoginWithEmailAddress", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithEmailAddress"), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -5132,7 +5257,7 @@ public class PlayFabClientAPI {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
         if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LoginWithFacebook", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithFacebook"), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -5201,7 +5326,7 @@ public class PlayFabClientAPI {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
         if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LoginWithFacebookInstantGamesId", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithFacebookInstantGamesId"), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -5270,7 +5395,7 @@ public class PlayFabClientAPI {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
         if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LoginWithGameCenter", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithGameCenter"), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -5334,7 +5459,7 @@ public class PlayFabClientAPI {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
         if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LoginWithGoogleAccount", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithGoogleAccount"), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -5403,7 +5528,7 @@ public class PlayFabClientAPI {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
         if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LoginWithIOSDeviceID", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithIOSDeviceID"), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -5467,7 +5592,7 @@ public class PlayFabClientAPI {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
         if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LoginWithKongregate", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithKongregate"), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -5536,7 +5661,7 @@ public class PlayFabClientAPI {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
         if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LoginWithNintendoSwitchDeviceId", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithNintendoSwitchDeviceId"), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -5611,7 +5736,7 @@ public class PlayFabClientAPI {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
         if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LoginWithPlayFab", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithPlayFab"), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -5680,7 +5805,7 @@ public class PlayFabClientAPI {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
         if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LoginWithSteam", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithSteam"), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -5744,7 +5869,7 @@ public class PlayFabClientAPI {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
         if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LoginWithTwitch", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithTwitch"), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -5819,7 +5944,76 @@ public class PlayFabClientAPI {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
         if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/LoginWithWindowsHello", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithWindowsHello"), request, null, null);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<LoginResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
+        LoginResult result = resultData.data;
+        PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
+        if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
+        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
+
+        PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Signs the user in using a Xbox Live Token, returning a session identifier that can subsequently be used for API calls
+     * which require an authenticated user
+     * @param request LoginWithXboxRequest
+     * @return Async Task will return LoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<LoginResult>> LoginWithXboxAsync(final LoginWithXboxRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
+            public PlayFabResult<LoginResult> call() throws Exception {
+                return privateLoginWithXboxAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Signs the user in using a Xbox Live Token, returning a session identifier that can subsequently be used for API calls
+     * which require an authenticated user
+     * @param request LoginWithXboxRequest
+     * @return LoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<LoginResult> LoginWithXbox(final LoginWithXboxRequest request) {
+        FutureTask<PlayFabResult<LoginResult>> task = new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
+            public PlayFabResult<LoginResult> call() throws Exception {
+                return privateLoginWithXboxAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Signs the user in using a Xbox Live Token, returning a session identifier that can subsequently be used for API calls
+     * which require an authenticated user
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<LoginResult> privateLoginWithXboxAsync(final LoginWithXboxRequest request) throws Exception {
+        request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
+        if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithXbox"), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -5899,7 +6093,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<MatchmakeResult> privateMatchmakeAsync(final MatchmakeRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/Matchmake", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/Matchmake"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -5959,7 +6153,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<OpenTradeResponse> privateOpenTradeAsync(final OpenTradeRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/OpenTrade", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/OpenTrade"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -6019,7 +6213,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<PayForPurchaseResult> privatePayForPurchaseAsync(final PayForPurchaseRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/PayForPurchase", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/PayForPurchase"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -6084,7 +6278,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<PurchaseItemResult> privatePurchaseItemAsync(final PurchaseItemRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/PurchaseItem", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/PurchaseItem"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -6149,7 +6343,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<RedeemCouponResult> privateRedeemCouponAsync(final RedeemCouponRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/RedeemCoupon", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/RedeemCoupon"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -6209,7 +6403,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<RegisterForIOSPushNotificationResult> privateRegisterForIOSPushNotificationAsync(final RegisterForIOSPushNotificationRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/RegisterForIOSPushNotification", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/RegisterForIOSPushNotification"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -6275,7 +6469,7 @@ public class PlayFabClientAPI {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
         if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/RegisterPlayFabUser", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/RegisterPlayFabUser"), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -6343,7 +6537,7 @@ public class PlayFabClientAPI {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
         if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/RegisterWithWindowsHello", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/RegisterWithWindowsHello"), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -6406,7 +6600,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<RemoveContactEmailResult> privateRemoveContactEmailAsync(final RemoveContactEmailRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/RemoveContactEmail", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/RemoveContactEmail"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -6466,7 +6660,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<RemoveFriendResult> privateRemoveFriendAsync(final RemoveFriendRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/RemoveFriend", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/RemoveFriend"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -6526,7 +6720,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<RemoveGenericIDResult> privateRemoveGenericIDAsync(final RemoveGenericIDRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/RemoveGenericID", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/RemoveGenericID"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -6597,7 +6791,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<RemoveSharedGroupMembersResult> privateRemoveSharedGroupMembersAsync(final RemoveSharedGroupMembersRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/RemoveSharedGroupMembers", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/RemoveSharedGroupMembers"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -6622,12 +6816,12 @@ public class PlayFabClientAPI {
      * Write a PlayStream event to describe the provided player device information. This API method is not designed to be
      * called directly by developers. Each PlayFab client SDK will eventually report this information automatically.
      * @param request DeviceInfoRequest
-     * @return Async Task will return EmptyResult
+     * @return Async Task will return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<EmptyResult>> ReportDeviceInfoAsync(final DeviceInfoRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static FutureTask<PlayFabResult<EmptyResponse>> ReportDeviceInfoAsync(final DeviceInfoRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateReportDeviceInfoAsync(request);
             }
         });
@@ -6637,12 +6831,12 @@ public class PlayFabClientAPI {
      * Write a PlayStream event to describe the provided player device information. This API method is not designed to be
      * called directly by developers. Each PlayFab client SDK will eventually report this information automatically.
      * @param request DeviceInfoRequest
-     * @return EmptyResult
+     * @return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static PlayFabResult<EmptyResult> ReportDeviceInfo(final DeviceInfoRequest request) {
-        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static PlayFabResult<EmptyResponse> ReportDeviceInfo(final DeviceInfoRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateReportDeviceInfoAsync(request);
             }
         });
@@ -6659,26 +6853,26 @@ public class PlayFabClientAPI {
      * called directly by developers. Each PlayFab client SDK will eventually report this information automatically.
      */
     @SuppressWarnings("unchecked")
-    private static PlayFabResult<EmptyResult> privateReportDeviceInfoAsync(final DeviceInfoRequest request) throws Exception {
+    private static PlayFabResult<EmptyResponse> privateReportDeviceInfoAsync(final DeviceInfoRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ReportDeviceInfo", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/ReportDeviceInfo"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
             result.Error = error;
             return result;
         }
         String resultRawJson = (String) httpResult;
 
-        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
-        EmptyResult result = resultData.data;
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
 
-        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -6727,7 +6921,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<ReportPlayerClientResult> privateReportPlayerAsync(final ReportPlayerClientRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ReportPlayer", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/ReportPlayer"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -6787,7 +6981,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<RestoreIOSPurchasesResult> privateRestoreIOSPurchasesAsync(final RestoreIOSPurchasesRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/RestoreIOSPurchases", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/RestoreIOSPurchases"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -6854,7 +7048,7 @@ public class PlayFabClientAPI {
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SendAccountRecoveryEmailResult> privateSendAccountRecoveryEmailAsync(final SendAccountRecoveryEmailRequest request) throws Exception {
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/SendAccountRecoveryEmail", request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/SendAccountRecoveryEmail"), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -6914,7 +7108,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<SetFriendTagsResult> privateSetFriendTagsAsync(final SetFriendTagsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/SetFriendTags", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/SetFriendTags"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -6979,7 +7173,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<SetPlayerSecretResult> privateSetPlayerSecretAsync(final SetPlayerSecretRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/SetPlayerSecret", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/SetPlayerSecret"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -7039,7 +7233,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<StartGameResult> privateStartGameAsync(final StartGameRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/StartGame", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/StartGame"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -7099,7 +7293,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<StartPurchaseResult> privateStartPurchaseAsync(final StartPurchaseRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/StartPurchase", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/StartPurchase"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -7164,7 +7358,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<ModifyUserVirtualCurrencyResult> privateSubtractUserVirtualCurrencyAsync(final SubtractUserVirtualCurrencyRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/SubtractUserVirtualCurrency", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/SubtractUserVirtualCurrency"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -7224,7 +7418,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<UnlinkAndroidDeviceIDResult> privateUnlinkAndroidDeviceIDAsync(final UnlinkAndroidDeviceIDRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UnlinkAndroidDeviceID", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UnlinkAndroidDeviceID"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -7284,7 +7478,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<UnlinkCustomIDResult> privateUnlinkCustomIDAsync(final UnlinkCustomIDRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UnlinkCustomID", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UnlinkCustomID"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -7344,7 +7538,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<UnlinkFacebookAccountResult> privateUnlinkFacebookAccountAsync(final UnlinkFacebookAccountRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UnlinkFacebookAccount", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UnlinkFacebookAccount"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -7404,7 +7598,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<UnlinkFacebookInstantGamesIdResult> privateUnlinkFacebookInstantGamesIdAsync(final UnlinkFacebookInstantGamesIdRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UnlinkFacebookInstantGamesId", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UnlinkFacebookInstantGamesId"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -7464,7 +7658,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<UnlinkGameCenterAccountResult> privateUnlinkGameCenterAccountAsync(final UnlinkGameCenterAccountRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UnlinkGameCenterAccount", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UnlinkGameCenterAccount"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -7529,7 +7723,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<UnlinkGoogleAccountResult> privateUnlinkGoogleAccountAsync(final UnlinkGoogleAccountRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UnlinkGoogleAccount", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UnlinkGoogleAccount"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -7589,7 +7783,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<UnlinkIOSDeviceIDResult> privateUnlinkIOSDeviceIDAsync(final UnlinkIOSDeviceIDRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UnlinkIOSDeviceID", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UnlinkIOSDeviceID"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -7649,7 +7843,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<UnlinkKongregateAccountResult> privateUnlinkKongregateAsync(final UnlinkKongregateAccountRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UnlinkKongregate", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UnlinkKongregate"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -7709,7 +7903,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<UnlinkNintendoSwitchDeviceIdResult> privateUnlinkNintendoSwitchDeviceIdAsync(final UnlinkNintendoSwitchDeviceIdRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UnlinkNintendoSwitchDeviceId", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UnlinkNintendoSwitchDeviceId"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -7769,7 +7963,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<UnlinkSteamAccountResult> privateUnlinkSteamAccountAsync(final UnlinkSteamAccountRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UnlinkSteamAccount", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UnlinkSteamAccount"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -7829,7 +8023,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<UnlinkTwitchAccountResult> privateUnlinkTwitchAsync(final UnlinkTwitchAccountRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UnlinkTwitch", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UnlinkTwitch"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -7889,7 +8083,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<UnlinkWindowsHelloAccountResponse> privateUnlinkWindowsHelloAsync(final UnlinkWindowsHelloAccountRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UnlinkWindowsHello", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UnlinkWindowsHello"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -7906,6 +8100,66 @@ public class PlayFabClientAPI {
         UnlinkWindowsHelloAccountResponse result = resultData.data;
 
         PlayFabResult<UnlinkWindowsHelloAccountResponse> pfResult = new PlayFabResult<UnlinkWindowsHelloAccountResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Unlinks the related Xbox Live account from the user's PlayFab account
+     * @param request UnlinkXboxAccountRequest
+     * @return Async Task will return UnlinkXboxAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<UnlinkXboxAccountResult>> UnlinkXboxAccountAsync(final UnlinkXboxAccountRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<UnlinkXboxAccountResult>>() {
+            public PlayFabResult<UnlinkXboxAccountResult> call() throws Exception {
+                return privateUnlinkXboxAccountAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Unlinks the related Xbox Live account from the user's PlayFab account
+     * @param request UnlinkXboxAccountRequest
+     * @return UnlinkXboxAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<UnlinkXboxAccountResult> UnlinkXboxAccount(final UnlinkXboxAccountRequest request) {
+        FutureTask<PlayFabResult<UnlinkXboxAccountResult>> task = new FutureTask(new Callable<PlayFabResult<UnlinkXboxAccountResult>>() {
+            public PlayFabResult<UnlinkXboxAccountResult> call() throws Exception {
+                return privateUnlinkXboxAccountAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Unlinks the related Xbox Live account from the user's PlayFab account */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<UnlinkXboxAccountResult> privateUnlinkXboxAccountAsync(final UnlinkXboxAccountRequest request) throws Exception {
+        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UnlinkXboxAccount"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<UnlinkXboxAccountResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<UnlinkXboxAccountResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UnlinkXboxAccountResult>>(){}.getType());
+        UnlinkXboxAccountResult result = resultData.data;
+
+        PlayFabResult<UnlinkXboxAccountResult> pfResult = new PlayFabResult<UnlinkXboxAccountResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -7957,7 +8211,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<UnlockContainerItemResult> privateUnlockContainerInstanceAsync(final UnlockContainerInstanceRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UnlockContainerInstance", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UnlockContainerInstance"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -8025,7 +8279,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<UnlockContainerItemResult> privateUnlockContainerItemAsync(final UnlockContainerItemRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UnlockContainerItem", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UnlockContainerItem"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -8049,12 +8303,12 @@ public class PlayFabClientAPI {
     /**
      * Update the avatar URL of the player
      * @param request UpdateAvatarUrlRequest
-     * @return Async Task will return EmptyResult
+     * @return Async Task will return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<EmptyResult>> UpdateAvatarUrlAsync(final UpdateAvatarUrlRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static FutureTask<PlayFabResult<EmptyResponse>> UpdateAvatarUrlAsync(final UpdateAvatarUrlRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateUpdateAvatarUrlAsync(request);
             }
         });
@@ -8063,12 +8317,12 @@ public class PlayFabClientAPI {
     /**
      * Update the avatar URL of the player
      * @param request UpdateAvatarUrlRequest
-     * @return EmptyResult
+     * @return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static PlayFabResult<EmptyResult> UpdateAvatarUrl(final UpdateAvatarUrlRequest request) {
-        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static PlayFabResult<EmptyResponse> UpdateAvatarUrl(final UpdateAvatarUrlRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateUpdateAvatarUrlAsync(request);
             }
         });
@@ -8082,26 +8336,26 @@ public class PlayFabClientAPI {
 
     /** Update the avatar URL of the player */
     @SuppressWarnings("unchecked")
-    private static PlayFabResult<EmptyResult> privateUpdateAvatarUrlAsync(final UpdateAvatarUrlRequest request) throws Exception {
+    private static PlayFabResult<EmptyResponse> privateUpdateAvatarUrlAsync(final UpdateAvatarUrlRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UpdateAvatarUrl", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UpdateAvatarUrl"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
             result.Error = error;
             return result;
         }
         String resultRawJson = (String) httpResult;
 
-        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
-        EmptyResult result = resultData.data;
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
 
-        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -8145,7 +8399,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<UpdateCharacterDataResult> privateUpdateCharacterDataAsync(final UpdateCharacterDataRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UpdateCharacterData", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UpdateCharacterData"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -8210,7 +8464,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<UpdateCharacterStatisticsResult> privateUpdateCharacterStatisticsAsync(final UpdateCharacterStatisticsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UpdateCharacterStatistics", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UpdateCharacterStatistics"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -8275,7 +8529,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<UpdatePlayerStatisticsResult> privateUpdatePlayerStatisticsAsync(final UpdatePlayerStatisticsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UpdatePlayerStatistics", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UpdatePlayerStatistics"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -8349,7 +8603,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<UpdateSharedGroupDataResult> privateUpdateSharedGroupDataAsync(final UpdateSharedGroupDataRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UpdateSharedGroupData", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UpdateSharedGroupData"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -8409,7 +8663,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserDataAsync(final UpdateUserDataRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UpdateUserData", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UpdateUserData"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -8469,7 +8723,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<UpdateUserDataResult> privateUpdateUserPublisherDataAsync(final UpdateUserDataRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UpdateUserPublisherData", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UpdateUserPublisherData"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -8529,7 +8783,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<UpdateUserTitleDisplayNameResult> privateUpdateUserTitleDisplayNameAsync(final UpdateUserTitleDisplayNameRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/UpdateUserTitleDisplayName", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UpdateUserTitleDisplayName"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -8594,7 +8848,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<ValidateAmazonReceiptResult> privateValidateAmazonIAPReceiptAsync(final ValidateAmazonReceiptRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ValidateAmazonIAPReceipt", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/ValidateAmazonIAPReceipt"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -8654,7 +8908,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<ValidateGooglePlayPurchaseResult> privateValidateGooglePlayPurchaseAsync(final ValidateGooglePlayPurchaseRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ValidateGooglePlayPurchase", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/ValidateGooglePlayPurchase"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -8719,7 +8973,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<ValidateIOSReceiptResult> privateValidateIOSReceiptAsync(final ValidateIOSReceiptRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ValidateIOSReceipt", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/ValidateIOSReceipt"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -8784,7 +9038,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<ValidateWindowsReceiptResult> privateValidateWindowsStoreReceiptAsync(final ValidateWindowsReceiptRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/ValidateWindowsStoreReceipt", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/ValidateWindowsStoreReceipt"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -8844,7 +9098,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<WriteEventResponse> privateWriteCharacterEventAsync(final WriteClientCharacterEventRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/WriteCharacterEvent", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/WriteCharacterEvent"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -8904,7 +9158,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<WriteEventResponse> privateWritePlayerEventAsync(final WriteClientPlayerEventRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/WritePlayerEvent", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/WritePlayerEvent"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -8964,7 +9218,7 @@ public class PlayFabClientAPI {
     private static PlayFabResult<WriteEventResponse> privateWriteTitleEventAsync(final WriteTitleEventRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Client/WriteTitleEvent", request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/WriteTitleEvent"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {

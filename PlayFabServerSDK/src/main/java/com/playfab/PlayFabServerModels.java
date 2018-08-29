@@ -880,28 +880,17 @@ public class PlayFabServerModels {
         Confirmed
     }
 
-    public static class EmptyResult {
+    public static class EmptyResponse {
         
     }
 
-    /** Entity identifier class that contains both the ID and type. */
+    /** Combined entity type and ID structure which uniquely identifies a single entity. */
     public static class EntityKey {
-        /** Entity profile ID. */
+        /** Unique ID of the entity. */
         public String Id;
-        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
-        public EntityTypes Type;
-        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
-        public String TypeString;
+        /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
+        public String Type;
         
-    }
-
-    public static enum EntityTypes {
-        title,
-        master_player_account,
-        title_player_account,
-        character,
-        group,
-        service
     }
 
     public static class EvaluateRandomResultTableRequest {
@@ -1399,16 +1388,16 @@ public class PlayFabServerModels {
         NoValidCertificateForAad,
         InvalidCertificateForAad,
         DuplicateDropTableId,
-        GameServerOk,
-        GameServerAccepted,
-        GameServerNoContent,
-        GameServerBadRequest,
-        GameServerUnauthorized,
-        GameServerForbidden,
-        GameServerNotFound,
-        GameServerConflict,
-        GameServerInternalServerError,
-        GameServerServiceUnavailable,
+        MultiplayerServerError,
+        MultiplayerServerTooManyRequests,
+        MultiplayerServerNoContent,
+        MultiplayerServerBadRequest,
+        MultiplayerServerUnauthorized,
+        MultiplayerServerForbidden,
+        MultiplayerServerNotFound,
+        MultiplayerServerConflict,
+        MultiplayerServerInternalServerError,
+        MultiplayerServerUnavailable,
         ExplicitContentDetected,
         PIIContentDetected,
         InvalidScheduledTaskParameter,
@@ -1534,8 +1523,6 @@ public class PlayFabServerModels {
     }
 
     public static class GetCharacterLeaderboardRequest {
-        /** Unique PlayFab assigned ID for a specific character owned by a user */
-        public String CharacterId;
         /** Optional character type on which to filter the leaderboard entries. */
         public String CharacterType;
         /** Maximum number of entries to retrieve. */
@@ -2381,7 +2368,8 @@ public class PlayFabServerModels {
         GameServer,
         CustomServer,
         NintendoSwitch,
-        FacebookInstantGames
+        FacebookInstantGames,
+        OpenIdConnect
     }
 
     public static class LogStatement {
@@ -3528,6 +3516,8 @@ public class PlayFabServerModels {
         public UserCustomIdInfo CustomIdInfo;
         /** User Facebook information, if a Facebook account has been linked */
         public UserFacebookInfo FacebookInfo;
+        /** Facebook Instant Games account information, if a Facebook Instant Games account has been linked */
+        public UserFacebookInstantGamesIdInfo FacebookInstantGamesIdInfo;
         /** User Gamecenter information, if a Gamecenter account has been linked */
         public UserGameCenterInfo GameCenterInfo;
         /** User Google account information, if a Google account has been linked */
@@ -3536,6 +3526,10 @@ public class PlayFabServerModels {
         public UserIosDeviceInfo IosDeviceInfo;
         /** User Kongregate account information, if a Kongregate account has been linked */
         public UserKongregateInfo KongregateInfo;
+        /** Nintendo Switch account information, if a Nintendo Switch account has been linked */
+        public UserNintendoSwitchDeviceIdInfo NintendoSwitchDeviceIdInfo;
+        /** OpenID Connect information, if any OpenID Connect accounts have been linked */
+        public ArrayList<UserOpenIdInfo> OpenIdInfo;
         /** Unique identifier for the user account */
         public String PlayFabId;
         /** Personal information for the user which is considered more sensitive */
@@ -3550,6 +3544,8 @@ public class PlayFabServerModels {
         public UserTwitchInfo TwitchInfo;
         /** User account name in the PlayFab service */
         public String Username;
+        /** Windows Hello account information, if a Windows Hello account has been linked */
+        public UserWindowsHelloInfo WindowsHelloInfo;
         /** User XBox account information, if a XBox account has been linked */
         public UserXboxInfo XboxInfo;
         
@@ -3597,6 +3593,12 @@ public class PlayFabServerModels {
         
     }
 
+    public static class UserFacebookInstantGamesIdInfo {
+        /** Facebook Instant Games ID */
+        public String FacebookInstantGamesId;
+        
+    }
+
     public static class UserGameCenterInfo {
         /** Gamecenter identifier */
         public String GameCenterId;
@@ -3629,6 +3631,22 @@ public class PlayFabServerModels {
         
     }
 
+    public static class UserNintendoSwitchDeviceIdInfo {
+        /** Nintendo Switch Device ID */
+        public String NintendoSwitchDeviceId;
+        
+    }
+
+    public static class UserOpenIdInfo {
+        /** OpenID Connection ID */
+        public String ConnectionId;
+        /** OpenID Issuer */
+        public String Issuer;
+        /** OpenID Subject */
+        public String Subject;
+        
+    }
+
     public static enum UserOrigination {
         Organic,
         Steam,
@@ -3650,7 +3668,8 @@ public class PlayFabServerModels {
         WindowsHello,
         ServerCustomId,
         NintendoSwitchDeviceId,
-        FacebookInstantGamesId
+        FacebookInstantGamesId,
+        OpenIdConnect
     }
 
     public static class UserPrivateAccountInfo {
@@ -3710,6 +3729,14 @@ public class PlayFabServerModels {
         public String TwitchId;
         /** Twitch Username */
         public String TwitchUserName;
+        
+    }
+
+    public static class UserWindowsHelloInfo {
+        /** Windows Hello Device Name */
+        public String WindowsHelloDeviceName;
+        /** Windows Hello Public Key Hash */
+        public String WindowsHelloPublicKeyHash;
         
     }
 

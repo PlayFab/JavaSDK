@@ -385,6 +385,20 @@ public class PlayFabClientModels {
         
     }
 
+    public static class ConsumeXboxEntitlementsRequest {
+        /** Catalog version to use */
+        public String CatalogVersion;
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        public String XboxToken;
+        
+    }
+
+    public static class ConsumeXboxEntitlementsResult {
+        /** Details for the items purchased. */
+        public ArrayList<ItemInstance> Items;
+        
+    }
+
     public static class ContactEmailInfoModel {
         /** The email address */
         public String EmailAddress;
@@ -877,18 +891,16 @@ public class PlayFabClientModels {
         Confirmed
     }
 
-    public static class EmptyResult {
+    public static class EmptyResponse {
         
     }
 
-    /** Entity identifier class that contains both the ID and type. */
+    /** Combined entity type and ID structure which uniquely identifies a single entity. */
     public static class EntityKey {
-        /** Entity profile ID. */
+        /** Unique ID of the entity. */
         public String Id;
-        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
-        public EntityTypes Type;
-        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
-        public String TypeString;
+        /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
+        public String Type;
         
     }
 
@@ -900,15 +912,6 @@ public class PlayFabClientModels {
         /** The time the token will expire, if it is an expiring token, in UTC. */
         public Date TokenExpiration;
         
-    }
-
-    public static enum EntityTypes {
-        title,
-        master_player_account,
-        title_player_account,
-        character,
-        group,
-        service
     }
 
     public static class ExecuteCloudScriptRequest {
@@ -2011,7 +2014,7 @@ public class PlayFabClientModels {
         public String Annotation;
         /** Unique ItemId of the item to purchase. */
         public String ItemId;
-        /** How many of this item to purchase. */
+        /** How many of this item to purchase. Min 1, maximum 25. */
         public Long Quantity;
         /** Items to be upgraded as a result of this purchase (upgraded items are hidden, as they are "replaced" by the new items). */
         public ArrayList<String> UpgradeFromItems;
@@ -2202,6 +2205,18 @@ public class PlayFabClientModels {
         
     }
 
+    public static class LinkXboxAccountRequest {
+        /** If another user is already linked to the account, unlink the other user and re-link. */
+        public Boolean ForceLink;
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        public String XboxToken;
+        
+    }
+
+    public static class LinkXboxAccountResult {
+        
+    }
+
     public static class ListUsersCharactersRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
@@ -2246,7 +2261,8 @@ public class PlayFabClientModels {
         GameServer,
         CustomServer,
         NintendoSwitch,
-        FacebookInstantGames
+        FacebookInstantGames,
+        OpenIdConnect
     }
 
     public static class LoginResult {
@@ -2281,7 +2297,11 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /**
+         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public Boolean LoginTitlePlayerAccountEntity;
         /** Specific Operating System version for the user's device. */
         public String OS;
@@ -2304,7 +2324,11 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /**
+         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
@@ -2321,7 +2345,11 @@ public class PlayFabClientModels {
         public String Email;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /**
+         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public Boolean LoginTitlePlayerAccountEntity;
         /** Password for the PlayFab account (6-100 characters) */
         public String Password;
@@ -2342,7 +2370,11 @@ public class PlayFabClientModels {
         public String FacebookInstantGamesSignature;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /**
+         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
@@ -2363,7 +2395,11 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /**
+         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
@@ -2382,7 +2418,11 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /**
+         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public Boolean LoginTitlePlayerAccountEntity;
         /** Unique Game Center player id. */
         public String PlayerId;
@@ -2403,7 +2443,11 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /**
+         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
@@ -2431,7 +2475,11 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /**
+         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public Boolean LoginTitlePlayerAccountEntity;
         /** Specific Operating System version for the user's device. */
         public String OS;
@@ -2456,7 +2504,11 @@ public class PlayFabClientModels {
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         /** Numeric user ID assigned by Kongregate */
         public String KongregateId;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /**
+         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
@@ -2475,7 +2527,11 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /**
+         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public Boolean LoginTitlePlayerAccountEntity;
         /** Nintendo Switch unique identifier for the user's device. */
         public String NintendoSwitchDeviceId;
@@ -2492,7 +2548,11 @@ public class PlayFabClientModels {
     public static class LoginWithPlayFabRequest {
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /**
+         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public Boolean LoginTitlePlayerAccountEntity;
         /** Password for the PlayFab account (6-100 characters) */
         public String Password;
@@ -2513,7 +2573,11 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /**
+         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
@@ -2539,7 +2603,11 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /**
+         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
@@ -2556,7 +2624,11 @@ public class PlayFabClientModels {
         public String ChallengeSignature;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /**
+         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public Boolean LoginTitlePlayerAccountEntity;
         /** SHA256 hash of the PublicKey generated by Windows Hello. */
         public String PublicKeyHint;
@@ -2565,6 +2637,31 @@ public class PlayFabClientModels {
          * title has been selected.
          */
         public String TitleId;
+        
+    }
+
+    public static class LoginWithXboxRequest {
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        public Boolean CreateAccount;
+        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        public String EncryptedRequest;
+        /** Flags for which pieces of info to return for the user. */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /**
+         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
+         * @deprecated Do not use
+         */
+        @Deprecated
+        public Boolean LoginTitlePlayerAccountEntity;
+        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        public String PlayerSecret;
+        /**
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
+         * title has been selected.
+         */
+        public String TitleId;
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        public String XboxToken;
         
     }
 
@@ -2947,7 +3044,11 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /**
+         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public Boolean LoginTitlePlayerAccountEntity;
         /** Password for the PlayFab account (6-100 characters) */
         public String Password;
@@ -2993,7 +3094,11 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Flag to automatically login the player's title_player_account and return the associated entity token. */
+        /**
+         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
@@ -3547,6 +3652,16 @@ public class PlayFabClientModels {
         
     }
 
+    public static class UnlinkXboxAccountRequest {
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        public String XboxToken;
+        
+    }
+
+    public static class UnlinkXboxAccountResult {
+        
+    }
+
     public static class UnlockContainerInstanceRequest {
         /**
          * Specifies the catalog version that should be used to determine container contents. If unspecified, uses catalog
@@ -3716,6 +3831,8 @@ public class PlayFabClientModels {
         public UserCustomIdInfo CustomIdInfo;
         /** User Facebook information, if a Facebook account has been linked */
         public UserFacebookInfo FacebookInfo;
+        /** Facebook Instant Games account information, if a Facebook Instant Games account has been linked */
+        public UserFacebookInstantGamesIdInfo FacebookInstantGamesIdInfo;
         /** User Gamecenter information, if a Gamecenter account has been linked */
         public UserGameCenterInfo GameCenterInfo;
         /** User Google account information, if a Google account has been linked */
@@ -3724,6 +3841,10 @@ public class PlayFabClientModels {
         public UserIosDeviceInfo IosDeviceInfo;
         /** User Kongregate account information, if a Kongregate account has been linked */
         public UserKongregateInfo KongregateInfo;
+        /** Nintendo Switch account information, if a Nintendo Switch account has been linked */
+        public UserNintendoSwitchDeviceIdInfo NintendoSwitchDeviceIdInfo;
+        /** OpenID Connect information, if any OpenID Connect accounts have been linked */
+        public ArrayList<UserOpenIdInfo> OpenIdInfo;
         /** Unique identifier for the user account */
         public String PlayFabId;
         /** Personal information for the user which is considered more sensitive */
@@ -3738,6 +3859,8 @@ public class PlayFabClientModels {
         public UserTwitchInfo TwitchInfo;
         /** User account name in the PlayFab service */
         public String Username;
+        /** Windows Hello account information, if a Windows Hello account has been linked */
+        public UserWindowsHelloInfo WindowsHelloInfo;
         /** User XBox account information, if a XBox account has been linked */
         public UserXboxInfo XboxInfo;
         
@@ -3785,6 +3908,12 @@ public class PlayFabClientModels {
         
     }
 
+    public static class UserFacebookInstantGamesIdInfo {
+        /** Facebook Instant Games ID */
+        public String FacebookInstantGamesId;
+        
+    }
+
     public static class UserGameCenterInfo {
         /** Gamecenter identifier */
         public String GameCenterId;
@@ -3817,6 +3946,22 @@ public class PlayFabClientModels {
         
     }
 
+    public static class UserNintendoSwitchDeviceIdInfo {
+        /** Nintendo Switch Device ID */
+        public String NintendoSwitchDeviceId;
+        
+    }
+
+    public static class UserOpenIdInfo {
+        /** OpenID Connection ID */
+        public String ConnectionId;
+        /** OpenID Issuer */
+        public String Issuer;
+        /** OpenID Subject */
+        public String Subject;
+        
+    }
+
     public static enum UserOrigination {
         Organic,
         Steam,
@@ -3838,7 +3983,8 @@ public class PlayFabClientModels {
         WindowsHello,
         ServerCustomId,
         NintendoSwitchDeviceId,
-        FacebookInstantGamesId
+        FacebookInstantGamesId,
+        OpenIdConnect
     }
 
     public static class UserPrivateAccountInfo {
@@ -3908,6 +4054,14 @@ public class PlayFabClientModels {
         public String TwitchId;
         /** Twitch Username */
         public String TwitchUserName;
+        
+    }
+
+    public static class UserWindowsHelloInfo {
+        /** Windows Hello Device Name */
+        public String WindowsHelloDeviceName;
+        /** Windows Hello Public Key Hash */
+        public String WindowsHelloPublicKeyHash;
         
     }
 

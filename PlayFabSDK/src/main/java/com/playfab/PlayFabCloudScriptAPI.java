@@ -14,7 +14,8 @@ public class PlayFabCloudScriptAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 
     /**
-     * Executes CloudScript using the Entity Profile
+     * Cloud Script is one of PlayFab's most versatile features. It allows client code to request execution of any kind of
+     * custom server-side functionality you can implement, and it can be used in conjunction with virtually anything.
      * @param request ExecuteEntityCloudScriptRequest
      * @return Async Task will return ExecuteCloudScriptResult
      */
@@ -28,7 +29,8 @@ public class PlayFabCloudScriptAPI {
     }
 
     /**
-     * Executes CloudScript using the Entity Profile
+     * Cloud Script is one of PlayFab's most versatile features. It allows client code to request execution of any kind of
+     * custom server-side functionality you can implement, and it can be used in conjunction with virtually anything.
      * @param request ExecuteEntityCloudScriptRequest
      * @return ExecuteCloudScriptResult
      */
@@ -47,12 +49,15 @@ public class PlayFabCloudScriptAPI {
         }
     }
 
-    /** Executes CloudScript using the Entity Profile */
+    /**
+     * Cloud Script is one of PlayFab's most versatile features. It allows client code to request execution of any kind of
+     * custom server-side functionality you can implement, and it can be used in conjunction with virtually anything.
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ExecuteCloudScriptResult> privateExecuteEntityCloudScriptAsync(final ExecuteEntityCloudScriptRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/CloudScript/ExecuteEntityCloudScript", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/ExecuteEntityCloudScript"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
