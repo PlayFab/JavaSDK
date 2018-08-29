@@ -1,11 +1,23 @@
 package com.playfab;
 
+import java.lang.StringBuilder;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.playfab.PlayFabErrors.ErrorCallback;
 
 public class PlayFabSettings {
-    public static String SdkVersion = "0.73.180809";
-    public static String BuildIdentifier = "jbuild_javasdk_2";
-    public static String SdkVersionString = "JavaSDK-0.73.180809";
+    public static String SdkVersion = "0.74.180829";
+    public static String BuildIdentifier = "jbuild_javasdk_0";
+    public static String SdkVersionString = "JavaSDK-0.74.180829";
+
+    public static Map<String, String> RequestGetParams;
+    static {
+        Map<String, String> getParams = new HashMap<String, String>();
+        getParams.put("sdk", SdkVersionString);
+        RequestGetParams = Collections.unmodifiableMap(getParams);
+    }
 
     public static String TitleId = null; // You must set this value for PlayFabSdk to work properly (Found in the Game Manager for your title, at the PlayFab Website)
     public static ErrorCallback GlobalErrorHandler;
@@ -21,7 +33,21 @@ public class PlayFabSettings {
     public static final String AD_TYPE_IDFA = "Idfa";
     public static final String AD_TYPE_ANDROID_ID = "Adid";
 
-    public static String GetURL() {
-        return "https://" + TitleId + ".playfabapi.com";
+    public static String GetURL(String apiCall) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("https://").append(TitleId).append(".playfabapi.com").append(apiCall);
+
+        boolean firstParam = true;
+        for (Map.Entry paramPair : RequestGetParams.entrySet()) {
+            if (firstParam) {
+                sb.append("?");
+                firstParam = false;
+            } else {
+                sb.append("&");
+            }
+            sb.append(paramPair.getKey()).append("=").append(paramPair.getValue());
+        }
+
+        return sb.toString();
     }
 }

@@ -9,7 +9,10 @@ import java.util.*;
 import com.google.gson.*;
 import com.google.gson.reflect.*;
 
-    /** Entity profiles are the top level containers for essentially all information about an entity. */
+    /**
+     * Write custom PlayStream events for any PlayFab entity. PlayStream events can be used for analytics, reporting,
+     * debugging, or to trigger custom actions in near real-time.
+     */
 public class PlayFabEventsAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 
@@ -52,7 +55,7 @@ public class PlayFabEventsAPI {
     private static PlayFabResult<WriteEventsResponse> privateWriteEventsAsync(final WriteEventsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Event/WriteEvents", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Event/WriteEvents"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {

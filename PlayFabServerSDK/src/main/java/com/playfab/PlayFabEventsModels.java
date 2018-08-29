@@ -5,24 +5,13 @@ import com.playfab.PlayFabUtil.*;
 
 public class PlayFabEventsModels {
 
-    /** Entity identifier class that contains both the ID and type. */
+    /** Combined entity type and ID structure which uniquely identifies a single entity. */
     public static class EntityKey {
-        /** Entity profile ID. */
+        /** Unique ID of the entity. */
         public String Id;
-        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
-        public EntityTypes Type;
-        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
-        public String TypeString;
+        /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
+        public String Type;
         
-    }
-
-    public static enum EntityTypes {
-        title,
-        master_player_account,
-        title_player_account,
-        character,
-        group,
-        service
     }
 
     public static class EventContents {

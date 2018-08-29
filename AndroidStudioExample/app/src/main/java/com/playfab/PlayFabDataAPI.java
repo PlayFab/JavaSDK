@@ -10,8 +10,10 @@ import com.google.gson.*;
 import com.google.gson.reflect.*;
 
     /**
-     * Various kinds of data-storage for an entity. Objects: Small (1kb) json-compatible objects that live directly within the
-     * profile. Files (usage billed separately) for larger storage needs.
+     * Store arbitrary data associated with an entity. Objects are small (~1KB) JSON-compatible objects which are stored
+     * directly on the entity profile. Objects are made available for use in other PlayFab contexts, such as PlayStream events
+     * and CloudScript functions. Files can efficiently store data of any size or format. Both objects and files support a
+     * flexible permissions system to control read and write access by other entities.
      */
 public class PlayFabDataAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
@@ -55,7 +57,7 @@ public class PlayFabDataAPI {
     private static PlayFabResult<AbortFileUploadsResponse> privateAbortFileUploadsAsync(final AbortFileUploadsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/File/AbortFileUploads", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/File/AbortFileUploads"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -115,7 +117,7 @@ public class PlayFabDataAPI {
     private static PlayFabResult<DeleteFilesResponse> privateDeleteFilesAsync(final DeleteFilesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/File/DeleteFiles", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/File/DeleteFiles"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -175,7 +177,7 @@ public class PlayFabDataAPI {
     private static PlayFabResult<FinalizeFileUploadsResponse> privateFinalizeFileUploadsAsync(final FinalizeFileUploadsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/File/FinalizeFileUploads", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/File/FinalizeFileUploads"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -235,7 +237,7 @@ public class PlayFabDataAPI {
     private static PlayFabResult<GetFilesResponse> privateGetFilesAsync(final GetFilesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/File/GetFiles", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/File/GetFiles"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -295,7 +297,7 @@ public class PlayFabDataAPI {
     private static PlayFabResult<GetObjectsResponse> privateGetObjectsAsync(final GetObjectsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Object/GetObjects", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Object/GetObjects"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -355,7 +357,7 @@ public class PlayFabDataAPI {
     private static PlayFabResult<InitiateFileUploadsResponse> privateInitiateFileUploadsAsync(final InitiateFileUploadsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/File/InitiateFileUploads", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/File/InitiateFileUploads"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -415,7 +417,7 @@ public class PlayFabDataAPI {
     private static PlayFabResult<SetObjectsResponse> privateSetObjectsAsync(final SetObjectsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Object/SetObjects", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Object/SetObjects"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {

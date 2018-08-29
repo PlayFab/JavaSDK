@@ -36,7 +36,7 @@ public class PlayFabApiTest
     // Cached values
     private static String playFabId = null;
     private static String entityId = null;
-    private static String entityTypeString = null;
+    private static String entityType = null;
 
     // Helpers
     private <RT> void VerifyResult(PlayFabResult<RT> result, boolean expectSuccess)
@@ -471,9 +471,9 @@ public class PlayFabApiTest
         PlayFabResult<PlayFabAuthenticationModels.GetEntityTokenResponse> result = PlayFabAuthenticationAPI.GetEntityToken(request);
         VerifyResult(result, true);
 
-        assertEquals(result.Result.Entity.TypeString, "title_player_account");
+        assertEquals(result.Result.Entity.Type, "title_player_account");
         entityId = result.Result.Entity.Id;
-        entityTypeString = result.Result.Entity.TypeString;
+        entityType = result.Result.Entity.Type;
     }
 
     /**
@@ -492,7 +492,7 @@ public class PlayFabApiTest
         PlayFabDataModels.GetObjectsRequest getRequest = new PlayFabDataModels.GetObjectsRequest();
         getRequest.Entity = new PlayFabDataModels.EntityKey();
         getRequest.Entity.Id = entityId;
-        getRequest.Entity.TypeString = entityTypeString;
+        getRequest.Entity.Type = entityType;
         getRequest.EscapeObject = true;
         PlayFabResult<PlayFabDataModels.GetObjectsResponse> getObjResult = PlayFabDataAPI.GetObjects(getRequest);
         VerifyResult(getObjResult, true);
@@ -507,7 +507,7 @@ public class PlayFabApiTest
         PlayFabDataModels.SetObjectsRequest setObjRequest = new PlayFabDataModels.SetObjectsRequest();
         setObjRequest.Entity = new PlayFabDataModels.EntityKey();
         setObjRequest.Entity.Id = entityId;
-        setObjRequest.Entity.TypeString = entityTypeString;
+        setObjRequest.Entity.Type = entityType;
         setObjRequest.Objects = new ArrayList<PlayFabDataModels.SetObject>();
         PlayFabDataModels.SetObject setObj = new PlayFabDataModels.SetObject();
         setObj.ObjectName = TEST_DATA_KEY;

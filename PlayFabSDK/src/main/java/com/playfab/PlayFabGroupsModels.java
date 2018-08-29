@@ -150,18 +150,16 @@ public class PlayFabGroupsModels {
         
     }
 
-    public static class EmptyResult {
+    public static class EmptyResponse {
         
     }
 
-    /** Entity identifier class that contains both the ID and type. */
+    /** Combined entity type and ID structure which uniquely identifies a single entity. */
     public static class EntityKey {
-        /** Entity profile ID. */
+        /** Unique ID of the entity. */
         public String Id;
-        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
-        public EntityTypes Type;
-        /** Entity type. Optional to be used but one of EntityType or EntityTypeString must be set. */
-        public String TypeString;
+        /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
+        public String Type;
         
     }
 
@@ -173,15 +171,6 @@ public class PlayFabGroupsModels {
         /** The name of the role */
         public String RoleName;
         
-    }
-
-    public static enum EntityTypes {
-        title,
-        master_player_account,
-        title_player_account,
-        character,
-        group,
-        service
     }
 
     /** Entity wrapper class that contains the entity key and the entities that make up the lineage of the entity. */

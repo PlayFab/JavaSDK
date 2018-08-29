@@ -10,9 +10,9 @@ import com.google.gson.*;
 import com.google.gson.reflect.*;
 
     /**
-     * The Groups API is designed for any permanent or semi-permanent collections of Entities (Players, or non-players). If you
-     * want to make Guilds/Clans/Corporations/etc, then you should use Groups. Groups can also be used to make chatrooms,
-     * parties, or any other excuse you need to lump some Entites together in a persistent way.
+     * The Groups API is designed for any permanent or semi-permanent collections of Entities (players, or non-players). If you
+     * want to make Guilds/Clans/Corporations/etc., then you should use groups. Groups can also be used to make chatrooms,
+     * parties, or any other persistent collection of entities.
      */
 public class PlayFabGroupsAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
@@ -20,12 +20,12 @@ public class PlayFabGroupsAPI {
     /**
      * Accepts an outstanding invitation to to join a group
      * @param request AcceptGroupApplicationRequest
-     * @return Async Task will return EmptyResult
+     * @return Async Task will return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<EmptyResult>> AcceptGroupApplicationAsync(final AcceptGroupApplicationRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static FutureTask<PlayFabResult<EmptyResponse>> AcceptGroupApplicationAsync(final AcceptGroupApplicationRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateAcceptGroupApplicationAsync(request);
             }
         });
@@ -34,12 +34,12 @@ public class PlayFabGroupsAPI {
     /**
      * Accepts an outstanding invitation to to join a group
      * @param request AcceptGroupApplicationRequest
-     * @return EmptyResult
+     * @return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static PlayFabResult<EmptyResult> AcceptGroupApplication(final AcceptGroupApplicationRequest request) {
-        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static PlayFabResult<EmptyResponse> AcceptGroupApplication(final AcceptGroupApplicationRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateAcceptGroupApplicationAsync(request);
             }
         });
@@ -53,26 +53,26 @@ public class PlayFabGroupsAPI {
 
     /** Accepts an outstanding invitation to to join a group */
     @SuppressWarnings("unchecked")
-    private static PlayFabResult<EmptyResult> privateAcceptGroupApplicationAsync(final AcceptGroupApplicationRequest request) throws Exception {
+    private static PlayFabResult<EmptyResponse> privateAcceptGroupApplicationAsync(final AcceptGroupApplicationRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/AcceptGroupApplication", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/AcceptGroupApplication"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
             result.Error = error;
             return result;
         }
         String resultRawJson = (String) httpResult;
 
-        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
-        EmptyResult result = resultData.data;
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
 
-        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -80,12 +80,12 @@ public class PlayFabGroupsAPI {
     /**
      * Accepts an invitation to join a group
      * @param request AcceptGroupInvitationRequest
-     * @return Async Task will return EmptyResult
+     * @return Async Task will return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<EmptyResult>> AcceptGroupInvitationAsync(final AcceptGroupInvitationRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static FutureTask<PlayFabResult<EmptyResponse>> AcceptGroupInvitationAsync(final AcceptGroupInvitationRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateAcceptGroupInvitationAsync(request);
             }
         });
@@ -94,12 +94,12 @@ public class PlayFabGroupsAPI {
     /**
      * Accepts an invitation to join a group
      * @param request AcceptGroupInvitationRequest
-     * @return EmptyResult
+     * @return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static PlayFabResult<EmptyResult> AcceptGroupInvitation(final AcceptGroupInvitationRequest request) {
-        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static PlayFabResult<EmptyResponse> AcceptGroupInvitation(final AcceptGroupInvitationRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateAcceptGroupInvitationAsync(request);
             }
         });
@@ -113,26 +113,26 @@ public class PlayFabGroupsAPI {
 
     /** Accepts an invitation to join a group */
     @SuppressWarnings("unchecked")
-    private static PlayFabResult<EmptyResult> privateAcceptGroupInvitationAsync(final AcceptGroupInvitationRequest request) throws Exception {
+    private static PlayFabResult<EmptyResponse> privateAcceptGroupInvitationAsync(final AcceptGroupInvitationRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/AcceptGroupInvitation", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/AcceptGroupInvitation"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
             result.Error = error;
             return result;
         }
         String resultRawJson = (String) httpResult;
 
-        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
-        EmptyResult result = resultData.data;
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
 
-        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -140,12 +140,12 @@ public class PlayFabGroupsAPI {
     /**
      * Adds members to a group or role.
      * @param request AddMembersRequest
-     * @return Async Task will return EmptyResult
+     * @return Async Task will return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<EmptyResult>> AddMembersAsync(final AddMembersRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static FutureTask<PlayFabResult<EmptyResponse>> AddMembersAsync(final AddMembersRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateAddMembersAsync(request);
             }
         });
@@ -154,12 +154,12 @@ public class PlayFabGroupsAPI {
     /**
      * Adds members to a group or role.
      * @param request AddMembersRequest
-     * @return EmptyResult
+     * @return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static PlayFabResult<EmptyResult> AddMembers(final AddMembersRequest request) {
-        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static PlayFabResult<EmptyResponse> AddMembers(final AddMembersRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateAddMembersAsync(request);
             }
         });
@@ -173,26 +173,26 @@ public class PlayFabGroupsAPI {
 
     /** Adds members to a group or role. */
     @SuppressWarnings("unchecked")
-    private static PlayFabResult<EmptyResult> privateAddMembersAsync(final AddMembersRequest request) throws Exception {
+    private static PlayFabResult<EmptyResponse> privateAddMembersAsync(final AddMembersRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/AddMembers", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/AddMembers"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
             result.Error = error;
             return result;
         }
         String resultRawJson = (String) httpResult;
 
-        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
-        EmptyResult result = resultData.data;
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
 
-        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -236,7 +236,7 @@ public class PlayFabGroupsAPI {
     private static PlayFabResult<ApplyToGroupResponse> privateApplyToGroupAsync(final ApplyToGroupRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/ApplyToGroup", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/ApplyToGroup"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -260,12 +260,12 @@ public class PlayFabGroupsAPI {
     /**
      * Blocks a list of entities from joining a group.
      * @param request BlockEntityRequest
-     * @return Async Task will return EmptyResult
+     * @return Async Task will return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<EmptyResult>> BlockEntityAsync(final BlockEntityRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static FutureTask<PlayFabResult<EmptyResponse>> BlockEntityAsync(final BlockEntityRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateBlockEntityAsync(request);
             }
         });
@@ -274,12 +274,12 @@ public class PlayFabGroupsAPI {
     /**
      * Blocks a list of entities from joining a group.
      * @param request BlockEntityRequest
-     * @return EmptyResult
+     * @return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static PlayFabResult<EmptyResult> BlockEntity(final BlockEntityRequest request) {
-        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static PlayFabResult<EmptyResponse> BlockEntity(final BlockEntityRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateBlockEntityAsync(request);
             }
         });
@@ -293,26 +293,26 @@ public class PlayFabGroupsAPI {
 
     /** Blocks a list of entities from joining a group. */
     @SuppressWarnings("unchecked")
-    private static PlayFabResult<EmptyResult> privateBlockEntityAsync(final BlockEntityRequest request) throws Exception {
+    private static PlayFabResult<EmptyResponse> privateBlockEntityAsync(final BlockEntityRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/BlockEntity", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/BlockEntity"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
             result.Error = error;
             return result;
         }
         String resultRawJson = (String) httpResult;
 
-        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
-        EmptyResult result = resultData.data;
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
 
-        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -320,12 +320,12 @@ public class PlayFabGroupsAPI {
     /**
      * Changes the role membership of a list of entities from one role to another.
      * @param request ChangeMemberRoleRequest
-     * @return Async Task will return EmptyResult
+     * @return Async Task will return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<EmptyResult>> ChangeMemberRoleAsync(final ChangeMemberRoleRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static FutureTask<PlayFabResult<EmptyResponse>> ChangeMemberRoleAsync(final ChangeMemberRoleRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateChangeMemberRoleAsync(request);
             }
         });
@@ -334,12 +334,12 @@ public class PlayFabGroupsAPI {
     /**
      * Changes the role membership of a list of entities from one role to another.
      * @param request ChangeMemberRoleRequest
-     * @return EmptyResult
+     * @return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static PlayFabResult<EmptyResult> ChangeMemberRole(final ChangeMemberRoleRequest request) {
-        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static PlayFabResult<EmptyResponse> ChangeMemberRole(final ChangeMemberRoleRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateChangeMemberRoleAsync(request);
             }
         });
@@ -353,26 +353,26 @@ public class PlayFabGroupsAPI {
 
     /** Changes the role membership of a list of entities from one role to another. */
     @SuppressWarnings("unchecked")
-    private static PlayFabResult<EmptyResult> privateChangeMemberRoleAsync(final ChangeMemberRoleRequest request) throws Exception {
+    private static PlayFabResult<EmptyResponse> privateChangeMemberRoleAsync(final ChangeMemberRoleRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/ChangeMemberRole", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/ChangeMemberRole"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
             result.Error = error;
             return result;
         }
         String resultRawJson = (String) httpResult;
 
-        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
-        EmptyResult result = resultData.data;
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
 
-        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -416,7 +416,7 @@ public class PlayFabGroupsAPI {
     private static PlayFabResult<CreateGroupResponse> privateCreateGroupAsync(final CreateGroupRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/CreateGroup", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/CreateGroup"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -476,7 +476,7 @@ public class PlayFabGroupsAPI {
     private static PlayFabResult<CreateGroupRoleResponse> privateCreateRoleAsync(final CreateGroupRoleRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/CreateRole", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/CreateRole"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -500,12 +500,12 @@ public class PlayFabGroupsAPI {
     /**
      * Deletes a group and all roles, invitations, join requests, and blocks associated with it.
      * @param request DeleteGroupRequest
-     * @return Async Task will return EmptyResult
+     * @return Async Task will return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<EmptyResult>> DeleteGroupAsync(final DeleteGroupRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static FutureTask<PlayFabResult<EmptyResponse>> DeleteGroupAsync(final DeleteGroupRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateDeleteGroupAsync(request);
             }
         });
@@ -514,12 +514,12 @@ public class PlayFabGroupsAPI {
     /**
      * Deletes a group and all roles, invitations, join requests, and blocks associated with it.
      * @param request DeleteGroupRequest
-     * @return EmptyResult
+     * @return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static PlayFabResult<EmptyResult> DeleteGroup(final DeleteGroupRequest request) {
-        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static PlayFabResult<EmptyResponse> DeleteGroup(final DeleteGroupRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateDeleteGroupAsync(request);
             }
         });
@@ -533,26 +533,26 @@ public class PlayFabGroupsAPI {
 
     /** Deletes a group and all roles, invitations, join requests, and blocks associated with it. */
     @SuppressWarnings("unchecked")
-    private static PlayFabResult<EmptyResult> privateDeleteGroupAsync(final DeleteGroupRequest request) throws Exception {
+    private static PlayFabResult<EmptyResponse> privateDeleteGroupAsync(final DeleteGroupRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/DeleteGroup", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/DeleteGroup"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
             result.Error = error;
             return result;
         }
         String resultRawJson = (String) httpResult;
 
-        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
-        EmptyResult result = resultData.data;
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
 
-        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -560,12 +560,12 @@ public class PlayFabGroupsAPI {
     /**
      * Deletes an existing role in a group.
      * @param request DeleteRoleRequest
-     * @return Async Task will return EmptyResult
+     * @return Async Task will return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<EmptyResult>> DeleteRoleAsync(final DeleteRoleRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static FutureTask<PlayFabResult<EmptyResponse>> DeleteRoleAsync(final DeleteRoleRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateDeleteRoleAsync(request);
             }
         });
@@ -574,12 +574,12 @@ public class PlayFabGroupsAPI {
     /**
      * Deletes an existing role in a group.
      * @param request DeleteRoleRequest
-     * @return EmptyResult
+     * @return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static PlayFabResult<EmptyResult> DeleteRole(final DeleteRoleRequest request) {
-        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static PlayFabResult<EmptyResponse> DeleteRole(final DeleteRoleRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateDeleteRoleAsync(request);
             }
         });
@@ -593,26 +593,26 @@ public class PlayFabGroupsAPI {
 
     /** Deletes an existing role in a group. */
     @SuppressWarnings("unchecked")
-    private static PlayFabResult<EmptyResult> privateDeleteRoleAsync(final DeleteRoleRequest request) throws Exception {
+    private static PlayFabResult<EmptyResponse> privateDeleteRoleAsync(final DeleteRoleRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/DeleteRole", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/DeleteRole"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
             result.Error = error;
             return result;
         }
         String resultRawJson = (String) httpResult;
 
-        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
-        EmptyResult result = resultData.data;
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
 
-        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -656,7 +656,7 @@ public class PlayFabGroupsAPI {
     private static PlayFabResult<GetGroupResponse> privateGetGroupAsync(final GetGroupRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/GetGroup", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/GetGroup"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -716,7 +716,7 @@ public class PlayFabGroupsAPI {
     private static PlayFabResult<InviteToGroupResponse> privateInviteToGroupAsync(final InviteToGroupRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/InviteToGroup", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/InviteToGroup"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -776,7 +776,7 @@ public class PlayFabGroupsAPI {
     private static PlayFabResult<IsMemberResponse> privateIsMemberAsync(final IsMemberRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/IsMember", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/IsMember"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -836,7 +836,7 @@ public class PlayFabGroupsAPI {
     private static PlayFabResult<ListGroupApplicationsResponse> privateListGroupApplicationsAsync(final ListGroupApplicationsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/ListGroupApplications", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/ListGroupApplications"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -896,7 +896,7 @@ public class PlayFabGroupsAPI {
     private static PlayFabResult<ListGroupBlocksResponse> privateListGroupBlocksAsync(final ListGroupBlocksRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/ListGroupBlocks", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/ListGroupBlocks"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -956,7 +956,7 @@ public class PlayFabGroupsAPI {
     private static PlayFabResult<ListGroupInvitationsResponse> privateListGroupInvitationsAsync(final ListGroupInvitationsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/ListGroupInvitations", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/ListGroupInvitations"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1016,7 +1016,7 @@ public class PlayFabGroupsAPI {
     private static PlayFabResult<ListGroupMembersResponse> privateListGroupMembersAsync(final ListGroupMembersRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/ListGroupMembers", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/ListGroupMembers"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1076,7 +1076,7 @@ public class PlayFabGroupsAPI {
     private static PlayFabResult<ListMembershipResponse> privateListMembershipAsync(final ListMembershipRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/ListMembership", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/ListMembership"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1136,7 +1136,7 @@ public class PlayFabGroupsAPI {
     private static PlayFabResult<ListMembershipOpportunitiesResponse> privateListMembershipOpportunitiesAsync(final ListMembershipOpportunitiesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/ListMembershipOpportunities", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/ListMembershipOpportunities"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1160,12 +1160,12 @@ public class PlayFabGroupsAPI {
     /**
      * Removes an application to join a group
      * @param request RemoveGroupApplicationRequest
-     * @return Async Task will return EmptyResult
+     * @return Async Task will return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<EmptyResult>> RemoveGroupApplicationAsync(final RemoveGroupApplicationRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static FutureTask<PlayFabResult<EmptyResponse>> RemoveGroupApplicationAsync(final RemoveGroupApplicationRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateRemoveGroupApplicationAsync(request);
             }
         });
@@ -1174,12 +1174,12 @@ public class PlayFabGroupsAPI {
     /**
      * Removes an application to join a group
      * @param request RemoveGroupApplicationRequest
-     * @return EmptyResult
+     * @return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static PlayFabResult<EmptyResult> RemoveGroupApplication(final RemoveGroupApplicationRequest request) {
-        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static PlayFabResult<EmptyResponse> RemoveGroupApplication(final RemoveGroupApplicationRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateRemoveGroupApplicationAsync(request);
             }
         });
@@ -1193,26 +1193,26 @@ public class PlayFabGroupsAPI {
 
     /** Removes an application to join a group */
     @SuppressWarnings("unchecked")
-    private static PlayFabResult<EmptyResult> privateRemoveGroupApplicationAsync(final RemoveGroupApplicationRequest request) throws Exception {
+    private static PlayFabResult<EmptyResponse> privateRemoveGroupApplicationAsync(final RemoveGroupApplicationRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/RemoveGroupApplication", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/RemoveGroupApplication"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
             result.Error = error;
             return result;
         }
         String resultRawJson = (String) httpResult;
 
-        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
-        EmptyResult result = resultData.data;
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
 
-        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -1220,12 +1220,12 @@ public class PlayFabGroupsAPI {
     /**
      * Removes an invitation join a group
      * @param request RemoveGroupInvitationRequest
-     * @return Async Task will return EmptyResult
+     * @return Async Task will return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<EmptyResult>> RemoveGroupInvitationAsync(final RemoveGroupInvitationRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static FutureTask<PlayFabResult<EmptyResponse>> RemoveGroupInvitationAsync(final RemoveGroupInvitationRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateRemoveGroupInvitationAsync(request);
             }
         });
@@ -1234,12 +1234,12 @@ public class PlayFabGroupsAPI {
     /**
      * Removes an invitation join a group
      * @param request RemoveGroupInvitationRequest
-     * @return EmptyResult
+     * @return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static PlayFabResult<EmptyResult> RemoveGroupInvitation(final RemoveGroupInvitationRequest request) {
-        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static PlayFabResult<EmptyResponse> RemoveGroupInvitation(final RemoveGroupInvitationRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateRemoveGroupInvitationAsync(request);
             }
         });
@@ -1253,26 +1253,26 @@ public class PlayFabGroupsAPI {
 
     /** Removes an invitation join a group */
     @SuppressWarnings("unchecked")
-    private static PlayFabResult<EmptyResult> privateRemoveGroupInvitationAsync(final RemoveGroupInvitationRequest request) throws Exception {
+    private static PlayFabResult<EmptyResponse> privateRemoveGroupInvitationAsync(final RemoveGroupInvitationRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/RemoveGroupInvitation", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/RemoveGroupInvitation"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
             result.Error = error;
             return result;
         }
         String resultRawJson = (String) httpResult;
 
-        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
-        EmptyResult result = resultData.data;
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
 
-        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -1280,12 +1280,12 @@ public class PlayFabGroupsAPI {
     /**
      * Removes members from a group.
      * @param request RemoveMembersRequest
-     * @return Async Task will return EmptyResult
+     * @return Async Task will return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<EmptyResult>> RemoveMembersAsync(final RemoveMembersRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static FutureTask<PlayFabResult<EmptyResponse>> RemoveMembersAsync(final RemoveMembersRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateRemoveMembersAsync(request);
             }
         });
@@ -1294,12 +1294,12 @@ public class PlayFabGroupsAPI {
     /**
      * Removes members from a group.
      * @param request RemoveMembersRequest
-     * @return EmptyResult
+     * @return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static PlayFabResult<EmptyResult> RemoveMembers(final RemoveMembersRequest request) {
-        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static PlayFabResult<EmptyResponse> RemoveMembers(final RemoveMembersRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateRemoveMembersAsync(request);
             }
         });
@@ -1313,26 +1313,26 @@ public class PlayFabGroupsAPI {
 
     /** Removes members from a group. */
     @SuppressWarnings("unchecked")
-    private static PlayFabResult<EmptyResult> privateRemoveMembersAsync(final RemoveMembersRequest request) throws Exception {
+    private static PlayFabResult<EmptyResponse> privateRemoveMembersAsync(final RemoveMembersRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/RemoveMembers", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/RemoveMembers"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
             result.Error = error;
             return result;
         }
         String resultRawJson = (String) httpResult;
 
-        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
-        EmptyResult result = resultData.data;
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
 
-        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -1340,12 +1340,12 @@ public class PlayFabGroupsAPI {
     /**
      * Unblocks a list of entities from joining a group
      * @param request UnblockEntityRequest
-     * @return Async Task will return EmptyResult
+     * @return Async Task will return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<EmptyResult>> UnblockEntityAsync(final UnblockEntityRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static FutureTask<PlayFabResult<EmptyResponse>> UnblockEntityAsync(final UnblockEntityRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateUnblockEntityAsync(request);
             }
         });
@@ -1354,12 +1354,12 @@ public class PlayFabGroupsAPI {
     /**
      * Unblocks a list of entities from joining a group
      * @param request UnblockEntityRequest
-     * @return EmptyResult
+     * @return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static PlayFabResult<EmptyResult> UnblockEntity(final UnblockEntityRequest request) {
-        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
-            public PlayFabResult<EmptyResult> call() throws Exception {
+    public static PlayFabResult<EmptyResponse> UnblockEntity(final UnblockEntityRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
                 return privateUnblockEntityAsync(request);
             }
         });
@@ -1373,26 +1373,26 @@ public class PlayFabGroupsAPI {
 
     /** Unblocks a list of entities from joining a group */
     @SuppressWarnings("unchecked")
-    private static PlayFabResult<EmptyResult> privateUnblockEntityAsync(final UnblockEntityRequest request) throws Exception {
+    private static PlayFabResult<EmptyResponse> privateUnblockEntityAsync(final UnblockEntityRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/UnblockEntity", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/UnblockEntity"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
             result.Error = error;
             return result;
         }
         String resultRawJson = (String) httpResult;
 
-        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
-        EmptyResult result = resultData.data;
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
 
-        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -1436,7 +1436,7 @@ public class PlayFabGroupsAPI {
     private static PlayFabResult<UpdateGroupResponse> privateUpdateGroupAsync(final UpdateGroupRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/UpdateGroup", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/UpdateGroup"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1496,7 +1496,7 @@ public class PlayFabGroupsAPI {
     private static PlayFabResult<UpdateGroupRoleResponse> privateUpdateRoleAsync(final UpdateGroupRoleRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL() + "/Group/UpdateRole", request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Group/UpdateRole"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
