@@ -257,7 +257,8 @@ public class PlayFabProfilesAPI {
     }
 
     /**
-     * Updates the entity's language
+     * Updates the entity's language. The precedence hierarchy for communication to the player is Title Player Account
+     * language, Master Player Account language, and then title default language if the first two aren't set or supported.
      * @param request SetProfileLanguageRequest
      * @return Async Task will return SetProfileLanguageResponse
      */
@@ -271,7 +272,8 @@ public class PlayFabProfilesAPI {
     }
 
     /**
-     * Updates the entity's language
+     * Updates the entity's language. The precedence hierarchy for communication to the player is Title Player Account
+     * language, Master Player Account language, and then title default language if the first two aren't set or supported.
      * @param request SetProfileLanguageRequest
      * @return SetProfileLanguageResponse
      */
@@ -290,7 +292,10 @@ public class PlayFabProfilesAPI {
         }
     }
 
-    /** Updates the entity's language */
+    /**
+     * Updates the entity's language. The precedence hierarchy for communication to the player is Title Player Account
+     * language, Master Player Account language, and then title default language if the first two aren't set or supported.
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetProfileLanguageResponse> privateSetProfileLanguageAsync(final SetProfileLanguageRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
