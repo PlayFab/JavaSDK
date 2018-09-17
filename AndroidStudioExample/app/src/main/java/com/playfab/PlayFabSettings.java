@@ -9,9 +9,9 @@ import android.content.Context;
 import com.playfab.PlayFabErrors.ErrorCallback;
 
 public class PlayFabSettings {
-    public static String SdkVersion = "0.75.180906";
-    public static String BuildIdentifier = "jbuild_javasdk__sdk-slave2016-3_0";
-    public static String SdkVersionString = "JavaSDK-0.75.180906";
+    public static String SdkVersion = "0.76.180917";
+    public static String BuildIdentifier = "jbuild_javasdk__sdk-slave2016-1_1";
+    public static String SdkVersionString = "JavaSDK-0.76.180917";
 
     public static Map<String, String> RequestGetParams;
     static {
@@ -20,6 +20,8 @@ public class PlayFabSettings {
         RequestGetParams = Collections.unmodifiableMap(getParams);
     }
 
+    public static String ProductionEnvironmentUrl = ".playfabapi.com"; // This is only for customers running a private cluster.  Generally you shouldn't touch this
+    public static String VerticalName = null; // The name of a customer vertical. This is only for customers running a private cluster. Generally you shouldn't touch this
     public static String TitleId = null; // You must set this value for PlayFabSdk to work properly (Found in the Game Manager for your title, at the PlayFab Website)
     public static ErrorCallback GlobalErrorHandler;
     public static String EntityToken = null; // Set by GetEntityToken
@@ -36,8 +38,18 @@ public class PlayFabSettings {
     public static final String AD_TYPE_ANDROID_ID = "Adid";
 
     public static String GetURL(String apiCall) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("https://").append(TitleId).append(".playfabapi.com").append(apiCall);
+        StringBuilder sb = new StringBuilder(1000);
+
+        String baseUrl = ProductionEnvironmentUrl;
+        if (!baseUrl.startsWith("http")) {
+            if (VerticalName != null) {
+                sb.append("https://").append(VerticalName);
+            } else {
+                sb.append("https://").append(TitleId);
+            }
+        }
+
+        sb.append(baseUrl).append(apiCall);
 
         boolean firstParam = true;
         for (Map.Entry paramPair : RequestGetParams.entrySet()) {

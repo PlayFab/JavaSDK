@@ -843,12 +843,24 @@ public class PlayFabServerModels {
         
     }
 
+    public static class DeletePlayerRequest {
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        public String PlayFabId;
+        
+    }
+
+    public static class DeletePlayerResult {
+        
+    }
+
     public static class DeleteSharedGroupRequest {
         /** Unique identifier for the shared group. */
         public String SharedGroupId;
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class DeleteUsersRequest {
         /** An array of unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public ArrayList<String> PlayFabIds;
@@ -860,6 +872,8 @@ public class PlayFabServerModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class DeleteUsersResult {
         
     }

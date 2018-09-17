@@ -14,7 +14,7 @@
     <!-- GAV & Meta -->
     <groupId>com.playfab</groupId>
     <artifactId>combo-sdk</artifactId>
-    <version>0.75.180906</version>
+    <version>0.76.180917</version>
     <name>PlayFab Combo API</name>
     <description>PlayFab is the unified backend platform for games — everything you need to build and operate your game, all in one place, so you can focus on creating and delivering a great player experience. </description>
     <url>http://api.playfab.com/</url>
