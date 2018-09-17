@@ -1917,6 +1917,66 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Get a matchmaking queue configuration.
+     * @param request GetMatchmakingQueueRequest
+     * @return Async Task will return GetMatchmakingQueueResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetMatchmakingQueueResult>> GetMatchmakingQueueAsync(final GetMatchmakingQueueRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetMatchmakingQueueResult>>() {
+            public PlayFabResult<GetMatchmakingQueueResult> call() throws Exception {
+                return privateGetMatchmakingQueueAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Get a matchmaking queue configuration.
+     * @param request GetMatchmakingQueueRequest
+     * @return GetMatchmakingQueueResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetMatchmakingQueueResult> GetMatchmakingQueue(final GetMatchmakingQueueRequest request) {
+        FutureTask<PlayFabResult<GetMatchmakingQueueResult>> task = new FutureTask(new Callable<PlayFabResult<GetMatchmakingQueueResult>>() {
+            public PlayFabResult<GetMatchmakingQueueResult> call() throws Exception {
+                return privateGetMatchmakingQueueAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Get a matchmaking queue configuration. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetMatchmakingQueueResult> privateGetMatchmakingQueueAsync(final GetMatchmakingQueueRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/GetMatchmakingQueue"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetMatchmakingQueueResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetMatchmakingQueueResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetMatchmakingQueueResult>>(){}.getType());
+        GetMatchmakingQueueResult result = resultData.data;
+
+        PlayFabResult<GetMatchmakingQueueResult> pfResult = new PlayFabResult<GetMatchmakingQueueResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Get the list of titles that the player has played
      * @param request GetPlayedTitleListRequest
      * @return Async Task will return GetPlayedTitleListResult
@@ -3798,6 +3858,66 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * List all matchmaking queue configs.
+     * @param request ListMatchmakingQueuesRequest
+     * @return Async Task will return ListMatchmakingQueuesResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ListMatchmakingQueuesResult>> ListMatchmakingQueuesAsync(final ListMatchmakingQueuesRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ListMatchmakingQueuesResult>>() {
+            public PlayFabResult<ListMatchmakingQueuesResult> call() throws Exception {
+                return privateListMatchmakingQueuesAsync(request);
+            }
+        });
+    }
+
+    /**
+     * List all matchmaking queue configs.
+     * @param request ListMatchmakingQueuesRequest
+     * @return ListMatchmakingQueuesResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ListMatchmakingQueuesResult> ListMatchmakingQueues(final ListMatchmakingQueuesRequest request) {
+        FutureTask<PlayFabResult<ListMatchmakingQueuesResult>> task = new FutureTask(new Callable<PlayFabResult<ListMatchmakingQueuesResult>>() {
+            public PlayFabResult<ListMatchmakingQueuesResult> call() throws Exception {
+                return privateListMatchmakingQueuesAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** List all matchmaking queue configs. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ListMatchmakingQueuesResult> privateListMatchmakingQueuesAsync(final ListMatchmakingQueuesRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/ListMatchmakingQueues"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ListMatchmakingQueuesResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ListMatchmakingQueuesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListMatchmakingQueuesResult>>(){}.getType());
+        ListMatchmakingQueuesResult result = resultData.data;
+
+        PlayFabResult<ListMatchmakingQueuesResult> pfResult = new PlayFabResult<ListMatchmakingQueuesResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the build details for all game server executables which are currently defined for the title
      * @param request ListBuildsRequest
      * @return Async Task will return ListBuildsResult
@@ -4093,6 +4213,66 @@ public class PlayFabAdminAPI {
         RefundPurchaseResponse result = resultData.data;
 
         PlayFabResult<RefundPurchaseResponse> pfResult = new PlayFabResult<RefundPurchaseResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Remove a matchmaking queue config.
+     * @param request RemoveMatchmakingQueueRequest
+     * @return Async Task will return RemoveMatchmakingQueueResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RemoveMatchmakingQueueResult>> RemoveMatchmakingQueueAsync(final RemoveMatchmakingQueueRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RemoveMatchmakingQueueResult>>() {
+            public PlayFabResult<RemoveMatchmakingQueueResult> call() throws Exception {
+                return privateRemoveMatchmakingQueueAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Remove a matchmaking queue config.
+     * @param request RemoveMatchmakingQueueRequest
+     * @return RemoveMatchmakingQueueResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RemoveMatchmakingQueueResult> RemoveMatchmakingQueue(final RemoveMatchmakingQueueRequest request) {
+        FutureTask<PlayFabResult<RemoveMatchmakingQueueResult>> task = new FutureTask(new Callable<PlayFabResult<RemoveMatchmakingQueueResult>>() {
+            public PlayFabResult<RemoveMatchmakingQueueResult> call() throws Exception {
+                return privateRemoveMatchmakingQueueAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Remove a matchmaking queue config. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RemoveMatchmakingQueueResult> privateRemoveMatchmakingQueueAsync(final RemoveMatchmakingQueueRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/RemoveMatchmakingQueue"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RemoveMatchmakingQueueResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RemoveMatchmakingQueueResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RemoveMatchmakingQueueResult>>(){}.getType());
+        RemoveMatchmakingQueueResult result = resultData.data;
+
+        PlayFabResult<RemoveMatchmakingQueueResult> pfResult = new PlayFabResult<RemoveMatchmakingQueueResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -4946,6 +5126,66 @@ public class PlayFabAdminAPI {
         UpdateCatalogItemsResult result = resultData.data;
 
         PlayFabResult<UpdateCatalogItemsResult> pfResult = new PlayFabResult<UpdateCatalogItemsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Create or update a matchmaking queue configuration.
+     * @param request SetMatchmakingQueueRequest
+     * @return Async Task will return SetMatchmakingQueueResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<SetMatchmakingQueueResult>> SetMatchmakingQueueAsync(final SetMatchmakingQueueRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<SetMatchmakingQueueResult>>() {
+            public PlayFabResult<SetMatchmakingQueueResult> call() throws Exception {
+                return privateSetMatchmakingQueueAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Create or update a matchmaking queue configuration.
+     * @param request SetMatchmakingQueueRequest
+     * @return SetMatchmakingQueueResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<SetMatchmakingQueueResult> SetMatchmakingQueue(final SetMatchmakingQueueRequest request) {
+        FutureTask<PlayFabResult<SetMatchmakingQueueResult>> task = new FutureTask(new Callable<PlayFabResult<SetMatchmakingQueueResult>>() {
+            public PlayFabResult<SetMatchmakingQueueResult> call() throws Exception {
+                return privateSetMatchmakingQueueAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Create or update a matchmaking queue configuration. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<SetMatchmakingQueueResult> privateSetMatchmakingQueueAsync(final SetMatchmakingQueueRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/SetMatchmakingQueue"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<SetMatchmakingQueueResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<SetMatchmakingQueueResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetMatchmakingQueueResult>>(){}.getType());
+        SetMatchmakingQueueResult result = resultData.data;
+
+        PlayFabResult<SetMatchmakingQueueResult> pfResult = new PlayFabResult<SetMatchmakingQueueResult>();
         pfResult.Result = result;
         return pfResult;
     }

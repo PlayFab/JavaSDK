@@ -701,6 +701,66 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Removes a user's player account from a title and deletes all associated data
+     * @param request DeletePlayerRequest
+     * @return Async Task will return DeletePlayerResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<DeletePlayerResult>> DeletePlayerAsync(final DeletePlayerRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<DeletePlayerResult>>() {
+            public PlayFabResult<DeletePlayerResult> call() throws Exception {
+                return privateDeletePlayerAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Removes a user's player account from a title and deletes all associated data
+     * @param request DeletePlayerRequest
+     * @return DeletePlayerResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<DeletePlayerResult> DeletePlayer(final DeletePlayerRequest request) {
+        FutureTask<PlayFabResult<DeletePlayerResult>> task = new FutureTask(new Callable<PlayFabResult<DeletePlayerResult>>() {
+            public PlayFabResult<DeletePlayerResult> call() throws Exception {
+                return privateDeletePlayerAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Removes a user's player account from a title and deletes all associated data */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<DeletePlayerResult> privateDeletePlayerAsync(final DeletePlayerRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/DeletePlayer"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<DeletePlayerResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<DeletePlayerResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<DeletePlayerResult>>(){}.getType());
+        DeletePlayerResult result = resultData.data;
+
+        PlayFabResult<DeletePlayerResult> pfResult = new PlayFabResult<DeletePlayerResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Deletes a shared group, freeing up the shared group ID to be reused for a new group. Shared Groups are designed for
      * sharing data between a very small number of players, please see our guide:
      * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
@@ -769,10 +829,12 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
+     * Deletes custom data, all account linkages, and statistics.
+     * @deprecated Please use DeletePlayer instead.
      * @param request DeleteUsersRequest
      * @return Async Task will return DeleteUsersResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<DeleteUsersResult>> DeleteUsersAsync(final DeleteUsersRequest request) {
         return new FutureTask(new Callable<PlayFabResult<DeleteUsersResult>>() {
@@ -783,10 +845,12 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics.
+     * Deletes custom data, all account linkages, and statistics.
+     * @deprecated Please use DeletePlayer instead.
      * @param request DeleteUsersRequest
      * @return DeleteUsersResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<DeleteUsersResult> DeleteUsers(final DeleteUsersRequest request) {
         FutureTask<PlayFabResult<DeleteUsersResult>> task = new FutureTask(new Callable<PlayFabResult<DeleteUsersResult>>() {
@@ -802,7 +866,11 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Deletes the users for the provided game. Deletes custom data, all account linkages, and statistics. */
+    /**
+     * Deletes custom data, all account linkages, and statistics.
+     * @deprecated Please use DeletePlayer instead.
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteUsersResult> privateDeleteUsersAsync(final DeleteUsersRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
