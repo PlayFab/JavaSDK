@@ -961,6 +961,8 @@ public class PlayFabAdminModels {
     }
 
     public static class DeleteMasterPlayerAccountRequest {
+        /** Developer created string to identify a user without PlayFab ID */
+        public String MetaData;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
         
