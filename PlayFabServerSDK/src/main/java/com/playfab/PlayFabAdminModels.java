@@ -174,16 +174,6 @@ public class PlayFabAdminModels {
         
     }
 
-    public static enum AttributeNotSpecifiedBehavior {
-        UseDefault,
-        MatchAny
-    }
-
-    public static enum AttributeSource {
-        User,
-        PlayerEntity
-    }
-
     public static enum AuthTokenType {
         Email
     }
@@ -1726,18 +1716,6 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class GetMatchmakingQueueRequest {
-        /** The Id of the matchmaking queue to retrieve. */
-        public String QueueName;
-        
-    }
-
-    public static class GetMatchmakingQueueResult {
-        /** The matchmaking queue config. */
-        public MatchmakingQueueConfig MatchmakingQueue;
-        
-    }
-
     public static class GetPlayedTitleListRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
@@ -2289,16 +2267,6 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class ListMatchmakingQueuesRequest {
-        
-    }
-
-    public static class ListMatchmakingQueuesResult {
-        /** The list of matchmaking queue configs for this title. */
-        public ArrayList<MatchmakingQueueConfig> MatchMakingQueues;
-        
-    }
-
     public static class ListVirtualCurrencyTypesRequest {
         
     }
@@ -2370,40 +2338,6 @@ public class PlayFabAdminModels {
     public static class LookupUserAccountInfoResult {
         /** User info for the user matching the request */
         public UserAccountInfo UserInfo;
-        
-    }
-
-    public static class MatchmakingQueueConfig {
-        /** Maximum number of players in a match. */
-        public Long MaxMatchSize;
-        /** Minimum number of players in a match. */
-        public Long MinMatchSize;
-        /** Unique identifier for a Queue. Chosen by the developer. */
-        public String Name;
-        /** List of rules used to find an optimal match. */
-        public ArrayList<MatchmakingQueueRule> Rules;
-        
-    }
-
-    public static class MatchmakingQueueRule {
-        /** Description of the attribute used by this rule to match tickets. */
-        public QueueRuleAttribute Attribute;
-        /**
-         * Describes the behavior when an attribute is not specified in the ticket creation request or in the user's entity
-         * profile.
-         */
-        public AttributeNotSpecifiedBehavior AttributeNotSpecifiedBehavior;
-        /** Friendly name chosen by developer. */
-        public String Name;
-        /**
-         * How many seconds before this rule is no longer enforced (but tickets that comply with this rule will still be
-         * prioritized over those that don't). Leave blank if this rule is always enforced.
-         */
-        public Long SecondsUntilOptional;
-        /** Type of rule being described. */
-        public RuleType Type;
-        /** The relative weight of this rule compared to others. */
-        public Double Weight;
         
     }
 
@@ -2757,14 +2691,6 @@ public class PlayFabAdminModels {
         APNS_SANDBOX
     }
 
-    public static class QueueRuleAttribute {
-        /** Specifies which attribute in a ticket to use. */
-        public String Path;
-        /** Specifies which source the attribute comes from. */
-        public AttributeSource Source;
-        
-    }
-
     public static class RandomResultTable {
         /** Child nodes that indicate what kind of drop table item this actually is. */
         public ArrayList<ResultTableNode> Nodes;
@@ -2811,16 +2737,6 @@ public class PlayFabAdminModels {
         Japan,
         Brazil,
         Australia
-    }
-
-    public static class RemoveMatchmakingQueueRequest {
-        /** The Id of the matchmaking queue to remove. */
-        public String QueueName;
-        
-    }
-
-    public static class RemoveMatchmakingQueueResult {
-        
     }
 
     public static class RemovePlayerTagRequest {
@@ -2999,14 +2915,6 @@ public class PlayFabAdminModels {
         
     }
 
-    public static enum RuleType {
-        Unknown,
-        DifferenceRule,
-        StringEqualityRule,
-        MatchTotalRule,
-        SetIntersectionRule
-    }
-
     public static class RunTaskRequest {
         /** Provide either the task ID or the task name to run a task. */
         public NameIdentifier Identifier;
@@ -3074,16 +2982,6 @@ public class PlayFabAdminModels {
     }
 
     public static class SendAccountRecoveryEmailResult {
-        
-    }
-
-    public static class SetMatchmakingQueueRequest {
-        /** The matchmaking queue config. */
-        public MatchmakingQueueConfig MatchmakingQueue;
-        
-    }
-
-    public static class SetMatchmakingQueueResult {
         
     }
 
@@ -3338,7 +3236,7 @@ public class PlayFabAdminModels {
         InProgress,
         Failed,
         Aborted,
-        Pending
+        Stalled
     }
 
     public static enum TitleActivationStatus {
