@@ -30,6 +30,22 @@ public class PlayFabProfilesModels {
         
     }
 
+    public static class EntityLineage {
+        /** The Character Id of the associated entity. */
+        public String CharacterId;
+        /** The Group Id of the associated entity. */
+        public String GroupId;
+        /** The Master Player Account Id of the associated entity. */
+        public String MasterPlayerAccountId;
+        /** The Namespace Id of the associated entity. */
+        public String NamespaceId;
+        /** The Title Id of the associated entity. */
+        public String TitleId;
+        /** The Title Player Account Id of the associated entity. */
+        public String TitlePlayerAccountId;
+        
+    }
+
     public static class EntityPermissionStatement {
         /** The action this statement effects. May be 'Read', 'Write' or '*' for both read and write. */
         public String Action;
@@ -49,19 +65,19 @@ public class PlayFabProfilesModels {
     public static class EntityProfileBody {
         /** The entity id and type. */
         public EntityKey Entity;
-        /**
-         * The chain of responsibility for this entity. This is a representation of 'ownership'. It is constructed using the
-         * following formats (replace '[ID]' with the unique identifier for the given entity): Namespace: 'namespace![Namespace
-         * ID]' Title: 'title![Namespace ID]/[Title ID]' Master Player Account: 'master_player_account![Namespace
-         * ID]/[MasterPlayerAccount ID]' Title Player Account: 'title_player_account![Namespace ID]/[Title ID]/[MasterPlayerAccount
-         * ID]/[TitlePlayerAccount ID]' Character: 'character![Namespace ID]/[Title ID]/[MasterPlayerAccount
-         * ID]/[TitlePlayerAccount ID]/[Character ID]'
-         */
+        /** The chain of responsibility for this entity. Use Lineage. */
         public String EntityChain;
         /** The files on this profile. */
         public Map<String,EntityProfileFileMetadata> Files;
+        /**
+         * The friendly name of the entity. This field may serve different purposes for different entity types. i.e.: for a title
+         * player account it could represent the display name of the player, whereas on a character it could be character's name.
+         */
+        public String FriendlyName;
         /** The language on this profile. */
         public String Language;
+        /** The lineage of this profile. */
+        public EntityLineage Lineage;
         /** The objects on this profile. */
         public Map<String,EntityDataObject> Objects;
         /**

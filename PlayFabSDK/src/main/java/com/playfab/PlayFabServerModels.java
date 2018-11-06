@@ -859,25 +859,6 @@ public class PlayFabServerModels {
         
     }
 
-    /** @deprecated Do not use */
-    @Deprecated
-    public static class DeleteUsersRequest {
-        /** An array of unique PlayFab assigned ID of the user on whom the operation will be performed. */
-        public ArrayList<String> PlayFabIds;
-        /**
-         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
-         * title has been selected.
-         */
-        public String TitleId;
-        
-    }
-
-    /** @deprecated Do not use */
-    @Deprecated
-    public static class DeleteUsersResult {
-        
-    }
-
     public static class DeregisterGameRequest {
         /** Unique identifier for the Game Server Instance that is being deregistered. */
         public String LobbyId;
@@ -904,6 +885,16 @@ public class PlayFabServerModels {
         public String Id;
         /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
         public String Type;
+        
+    }
+
+    public static class EntityTokenResponse {
+        /** The entity id and type. */
+        public EntityKey Entity;
+        /** The token used to set X-EntityToken for all entity based API calls. */
+        public String EntityToken;
+        /** The time the token will expire, if it is an expiring token, in UTC. */
+        public Date TokenExpiration;
         
     }
 
@@ -1421,6 +1412,11 @@ public class PlayFabServerModels {
         FacebookInstantGamesIdNotLinked,
         InvalidFacebookInstantGamesSignature,
         FacebookInstantGamesAuthNotConfiguredForTitle,
+        EntityProfileConstraintValidationFailed,
+        PlayInsightsIngestionKeyPending,
+        PlayInsightsIngestionKeyNotFound,
+        StatisticTagRequired,
+        StatisticTagInvalid,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingCreateRequestMissing,
@@ -1455,7 +1451,9 @@ public class PlayFabServerModels {
         MatchmakingMemberProfileInvalid,
         WriteAttemptedDuringExport,
         NintendoSwitchDeviceIdNotLinked,
-        MatchmakingNotEnabled
+        MatchmakingNotEnabled,
+        MatchmakingGetStatisticsIdentityInvalid,
+        MatchmakingStatisticsIdMissing
     }
 
     public static class GetAllSegmentsRequest {
@@ -1975,6 +1973,20 @@ public class PlayFabServerModels {
         
     }
 
+    public static class GetPlayFabIDsFromXboxLiveIDsRequest {
+        /** The ID of Xbox Live sandbox. */
+        public String Sandbox;
+        /** Array of unique Xbox Live account identifiers for which the title needs to get PlayFab identifiers. */
+        public ArrayList<String> XboxLiveAccountIDs;
+        
+    }
+
+    public static class GetPlayFabIDsFromXboxLiveIDsResult {
+        /** Mapping of PlayStation Network identifiers to PlayFab identifiers. */
+        public ArrayList<XboxLiveAccountPlayFabIdPair> Data;
+        
+    }
+
     public static class GetPublisherDataRequest {
         /** array of keys to get back data from the Publisher data blob, set by the admin tools */
         public ArrayList<String> Keys;
@@ -2011,6 +2023,21 @@ public class PlayFabServerModels {
         public String Id;
         /** Segment name. */
         public String Name;
+        
+    }
+
+    public static class GetServerCustomIDsFromPlayFabIDsRequest {
+        /**
+         * Array of unique PlayFab player identifiers for which the title needs to get server custom identifiers. Cannot contain
+         * more than 25 identifiers.
+         */
+        public ArrayList<String> PlayFabIDs;
+        
+    }
+
+    public static class GetServerCustomIDsFromPlayFabIDsResult {
+        /** Mapping of server custom player identifiers to PlayFab identifiers. */
+        public ArrayList<ServerCustomIDPlayFabIDPair> Data;
         
     }
 
@@ -2338,6 +2365,20 @@ public class PlayFabServerModels {
         
     }
 
+    public static class LinkXboxAccountRequest {
+        /** If another user is already linked to the account, unlink the other user and re-link. */
+        public Boolean ForceLink;
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
+        public String PlayFabId;
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        public String XboxToken;
+        
+    }
+
+    public static class LinkXboxAccountResult {
+        
+    }
+
     public static class ListUsersCharactersRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
@@ -2384,6 +2425,40 @@ public class PlayFabServerModels {
         NintendoSwitch,
         FacebookInstantGames,
         OpenIdConnect
+    }
+
+    public static class LoginWithServerCustomIdRequest {
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        public Boolean CreateAccount;
+        /** Flags for which pieces of info to return for the user. */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /**
+         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
+         * @deprecated Do not use
+         */
+        @Deprecated
+        public Boolean LoginTitlePlayerAccountEntity;
+        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        public String PlayerSecret;
+        /** The backend server identifier for this player. */
+        public String ServerCustomId;
+        
+    }
+
+    public static class LoginWithXboxRequest {
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        public Boolean CreateAccount;
+        /** Flags for which pieces of info to return for the user. */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /**
+         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
+         * @deprecated Do not use
+         */
+        @Deprecated
+        public Boolean LoginTitlePlayerAccountEntity;
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        public String XboxToken;
+        
     }
 
     public static class LogStatement {
@@ -2837,12 +2912,6 @@ public class PlayFabServerModels {
          * region and use Tags (below) to specify your custom region.
          */
         public Region Region;
-        /**
-         * IPV4 address of the Game Server Instance.
-         * @deprecated Please use ServerIPV4Address instead.
-         */
-        @Deprecated
-        public String ServerHost;
         /** IPV4 address of the game server instance. */
         public String ServerIPV4Address;
         /** IPV6 address (if any) of the game server instance. */
@@ -3058,6 +3127,35 @@ public class PlayFabServerModels {
     }
 
     public static class SendPushNotificationResult {
+        
+    }
+
+    public static class ServerCustomIDPlayFabIDPair {
+        /** Unique PlayFab identifier. */
+        public String PlayFabId;
+        /** Unique server custom identifier for this player. */
+        public String ServerCustomId;
+        
+    }
+
+    public static class ServerLoginResult {
+        /**
+         * If LoginTitlePlayerAccountEntity flag is set on the login request the title_player_account will also be logged in and
+         * returned.
+         */
+        public EntityTokenResponse EntityToken;
+        /** Results for requested info. */
+        public GetPlayerCombinedInfoResultPayload InfoResultPayload;
+        /** The time of this user's previous login. If there was no previous login, then it's DateTime.MinValue */
+        public Date LastLoginTime;
+        /** True if the account was newly created on this login. */
+        public Boolean NewlyCreated;
+        /** Player's unique PlayFabId. */
+        public String PlayFabId;
+        /** Unique token authorizing the user and game at the server level, for the current session. */
+        public String SessionTicket;
+        /** Settings specific to this user. */
+        public UserSettings SettingsForUser;
         
     }
 
@@ -3287,6 +3385,18 @@ public class PlayFabServerModels {
         public Date Timestamp;
         /** Title of the news item. */
         public String Title;
+        
+    }
+
+    public static class UnlinkXboxAccountRequest {
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
+        public String PlayFabId;
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        public String XboxToken;
+        
+    }
+
+    public static class UnlinkXboxAccountResult {
         
     }
 
@@ -3700,6 +3810,16 @@ public class PlayFabServerModels {
         
     }
 
+    public static class UserSettings {
+        /** Boolean for whether this player is eligible for gathering device info. */
+        public Boolean GatherDeviceInfo;
+        /** Boolean for whether this player should report OnFocus play-time tracking. */
+        public Boolean GatherFocusInfo;
+        /** Boolean for whether this player is eligible for ad tracking. */
+        public Boolean NeedsAttribution;
+        
+    }
+
     public static class UserSteamInfo {
         /** what stage of game ownership the user is listed as being in, from Steam */
         public TitleActivationStatus SteamActivationStatus;
@@ -3841,6 +3961,14 @@ public class PlayFabServerModels {
         public String EventName;
         /** The time (in UTC) associated with this event. The value dafaults to the current time. */
         public Date Timestamp;
+        
+    }
+
+    public static class XboxLiveAccountPlayFabIdPair {
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
+        public String PlayFabId;
+        /** Unique Xbox Live identifier for a user. */
+        public String XboxLiveAccountId;
         
     }
 

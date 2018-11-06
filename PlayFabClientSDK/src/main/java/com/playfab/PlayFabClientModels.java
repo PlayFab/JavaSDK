@@ -895,6 +895,10 @@ public class PlayFabClientModels {
         
     }
 
+    public static class EmptyResult {
+        
+    }
+
     /** Combined entity type and ID structure which uniquely identifies a single entity. */
     public static class EntityKey {
         /** Unique ID of the entity. */
@@ -1044,12 +1048,6 @@ public class PlayFabClientModels {
         public Region Region;
         /** duration in seconds this server has been running */
         public Long RunTime;
-        /**
-         * IPV4 address of the server
-         * @deprecated Please use ServerIPV4Address instead.
-         */
-        @Deprecated
-        public String ServerHostname;
         /** IPV4 address of the server */
         public String ServerIPV4Address;
         /** IPV6 address of the server */
@@ -1720,6 +1718,20 @@ public class PlayFabClientModels {
         
     }
 
+    public static class GetPlayFabIDsFromXboxLiveIDsRequest {
+        /** The ID of Xbox Live sandbox. */
+        public String Sandbox;
+        /** Array of unique Xbox Live account identifiers for which the title needs to get PlayFab identifiers. */
+        public ArrayList<String> XboxLiveAccountIDs;
+        
+    }
+
+    public static class GetPlayFabIDsFromXboxLiveIDsResult {
+        /** Mapping of PlayStation Network identifiers to PlayFab identifiers. */
+        public ArrayList<XboxLiveAccountPlayFabIdPair> Data;
+        
+    }
+
     public static class GetPublisherDataRequest {
         /** array of keys to get back data from the Publisher data blob, set by the admin tools */
         public ArrayList<String> Keys;
@@ -2162,6 +2174,19 @@ public class PlayFabClientModels {
         
     }
 
+    public static class LinkOpenIdConnectRequest {
+        /** A name that identifies which configured OpenID Connect provider relationship to use. Maximum 100 characters. */
+        public String ConnectionId;
+        /** If another user is already linked to a specific OpenId Connect user, unlink the other user and re-link. */
+        public Boolean ForceLink;
+        /**
+         * The JSON Web token (JWT) returned by the identity provider after login. Represented as the id_token field in the
+         * identity provider's response. Used to validate the request and find the user ID (OpenID Connect subject) to link with.
+         */
+        public String IdToken;
+        
+    }
+
     public static class LinkSteamAccountRequest {
         /** If another user is already linked to the account, unlink the other user and re-link. */
         public Boolean ForceLink;
@@ -2545,6 +2570,36 @@ public class PlayFabClientModels {
         
     }
 
+    public static class LoginWithOpenIdConnectRequest {
+        /** A name that identifies which configured OpenID Connect provider relationship to use. Maximum 100 characters. */
+        public String ConnectionId;
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        public Boolean CreateAccount;
+        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        public String EncryptedRequest;
+        /**
+         * The JSON Web token (JWT) returned by the identity provider after login. Represented as the id_token field in the
+         * identity provider's response.
+         */
+        public String IdToken;
+        /** Flags for which pieces of info to return for the user. */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /**
+         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
+         * @deprecated Do not use
+         */
+        @Deprecated
+        public Boolean LoginTitlePlayerAccountEntity;
+        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        public String PlayerSecret;
+        /**
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
+         * title has been selected.
+         */
+        public String TitleId;
+        
+    }
+
     public static class LoginWithPlayFabRequest {
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
@@ -2701,12 +2756,6 @@ public class PlayFabClientModels {
         public String LobbyID;
         /** time in milliseconds the application is configured to wait on matchmaking results */
         public Integer PollWaitTimeMS;
-        /**
-         * IPV4 address of the server
-         * @deprecated Please use ServerIPV4Address instead.
-         */
-        @Deprecated
-        public String ServerHostname;
         /** IPV4 address of the server */
         public String ServerIPV4Address;
         /** IPV6 address of the server */
@@ -3277,12 +3326,6 @@ public class PlayFabClientModels {
         public String LobbyID;
         /** password required to log into the server */
         public String Password;
-        /**
-         * server IPV4 address
-         * @deprecated Please use ServerIPV4Address instead.
-         */
-        @Deprecated
-        public String ServerHostname;
         /** server IPV4 address */
         public String ServerIPV4Address;
         /** server IPV6 address */
@@ -3532,6 +3575,12 @@ public class PlayFabClientModels {
         public String PlayFabId;
         /** Unique Twitch identifier for a user. */
         public String TwitchId;
+        
+    }
+
+    public static class UninkOpenIdConnectRequest {
+        /** A name that identifies which configured OpenID Connect provider relationship to use. Maximum 100 characters. */
+        public String ConnectionId;
         
     }
 
@@ -4212,6 +4261,14 @@ public class PlayFabClientModels {
         public String EventName;
         /** The time (in UTC) associated with this event. The value dafaults to the current time. */
         public Date Timestamp;
+        
+    }
+
+    public static class XboxLiveAccountPlayFabIdPair {
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
+        public String PlayFabId;
+        /** Unique Xbox Live identifier for a user. */
+        public String XboxLiveAccountId;
         
     }
 

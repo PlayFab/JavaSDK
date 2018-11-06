@@ -829,74 +829,6 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Deletes custom data, all account linkages, and statistics.
-     * @deprecated Please use DeletePlayer instead.
-     * @param request DeleteUsersRequest
-     * @return Async Task will return DeleteUsersResult
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<DeleteUsersResult>> DeleteUsersAsync(final DeleteUsersRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<DeleteUsersResult>>() {
-            public PlayFabResult<DeleteUsersResult> call() throws Exception {
-                return privateDeleteUsersAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Deletes custom data, all account linkages, and statistics.
-     * @deprecated Please use DeletePlayer instead.
-     * @param request DeleteUsersRequest
-     * @return DeleteUsersResult
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<DeleteUsersResult> DeleteUsers(final DeleteUsersRequest request) {
-        FutureTask<PlayFabResult<DeleteUsersResult>> task = new FutureTask(new Callable<PlayFabResult<DeleteUsersResult>>() {
-            public PlayFabResult<DeleteUsersResult> call() throws Exception {
-                return privateDeleteUsersAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            return null;
-        }
-    }
-
-    /**
-     * Deletes custom data, all account linkages, and statistics.
-     * @deprecated Please use DeletePlayer instead.
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<DeleteUsersResult> privateDeleteUsersAsync(final DeleteUsersRequest request) throws Exception {
-        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/DeleteUsers"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
-        task.run();
-        Object httpResult = task.get();
-        if (httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<DeleteUsersResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<DeleteUsersResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<DeleteUsersResult>>(){}.getType());
-        DeleteUsersResult result = resultData.data;
-
-        PlayFabResult<DeleteUsersResult> pfResult = new PlayFabResult<DeleteUsersResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
      * Inform the matchmaker that a Game Server Instance is removed.
      * @param request DeregisterGameRequest
      * @return Async Task will return DeregisterGameResponse
@@ -2760,6 +2692,66 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Retrieves the unique PlayFab identifiers for the given set of XboxLive identifiers.
+     * @param request GetPlayFabIDsFromXboxLiveIDsRequest
+     * @return Async Task will return GetPlayFabIDsFromXboxLiveIDsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult>> GetPlayFabIDsFromXboxLiveIDsAsync(final GetPlayFabIDsFromXboxLiveIDsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromXboxLiveIDsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of XboxLive identifiers.
+     * @param request GetPlayFabIDsFromXboxLiveIDsRequest
+     * @return GetPlayFabIDsFromXboxLiveIDsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult> GetPlayFabIDsFromXboxLiveIDs(final GetPlayFabIDsFromXboxLiveIDsRequest request) {
+        FutureTask<PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromXboxLiveIDsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Retrieves the unique PlayFab identifiers for the given set of XboxLive identifiers. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult> privateGetPlayFabIDsFromXboxLiveIDsAsync(final GetPlayFabIDsFromXboxLiveIDsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/GetPlayFabIDsFromXboxLiveIDs"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayFabIDsFromXboxLiveIDsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayFabIDsFromXboxLiveIDsResult>>(){}.getType());
+        GetPlayFabIDsFromXboxLiveIDsResult result = resultData.data;
+
+        PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the key-value store of custom publisher settings
      * @param request GetPublisherDataRequest
      * @return Async Task will return GetPublisherDataResult
@@ -2880,6 +2872,66 @@ public class PlayFabServerAPI {
         GetRandomResultTablesResult result = resultData.data;
 
         PlayFabResult<GetRandomResultTablesResult> pfResult = new PlayFabResult<GetRandomResultTablesResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Retrieves the associated PlayFab account identifiers for the given set of server custom identifiers.
+     * @param request GetServerCustomIDsFromPlayFabIDsRequest
+     * @return Async Task will return GetServerCustomIDsFromPlayFabIDsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetServerCustomIDsFromPlayFabIDsResult>> GetServerCustomIDsFromPlayFabIDsAsync(final GetServerCustomIDsFromPlayFabIDsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetServerCustomIDsFromPlayFabIDsResult>>() {
+            public PlayFabResult<GetServerCustomIDsFromPlayFabIDsResult> call() throws Exception {
+                return privateGetServerCustomIDsFromPlayFabIDsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the associated PlayFab account identifiers for the given set of server custom identifiers.
+     * @param request GetServerCustomIDsFromPlayFabIDsRequest
+     * @return GetServerCustomIDsFromPlayFabIDsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetServerCustomIDsFromPlayFabIDsResult> GetServerCustomIDsFromPlayFabIDs(final GetServerCustomIDsFromPlayFabIDsRequest request) {
+        FutureTask<PlayFabResult<GetServerCustomIDsFromPlayFabIDsResult>> task = new FutureTask(new Callable<PlayFabResult<GetServerCustomIDsFromPlayFabIDsResult>>() {
+            public PlayFabResult<GetServerCustomIDsFromPlayFabIDsResult> call() throws Exception {
+                return privateGetServerCustomIDsFromPlayFabIDsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Retrieves the associated PlayFab account identifiers for the given set of server custom identifiers. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetServerCustomIDsFromPlayFabIDsResult> privateGetServerCustomIDsFromPlayFabIDsAsync(final GetServerCustomIDsFromPlayFabIDsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/GetServerCustomIDsFromPlayFabIDs"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetServerCustomIDsFromPlayFabIDsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetServerCustomIDsFromPlayFabIDsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetServerCustomIDsFromPlayFabIDsResult>>(){}.getType());
+        GetServerCustomIDsFromPlayFabIDsResult result = resultData.data;
+
+        PlayFabResult<GetServerCustomIDsFromPlayFabIDsResult> pfResult = new PlayFabResult<GetServerCustomIDsFromPlayFabIDsResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -3973,6 +4025,196 @@ public class PlayFabServerAPI {
         GrantItemsToUsersResult result = resultData.data;
 
         PlayFabResult<GrantItemsToUsersResult> pfResult = new PlayFabResult<GrantItemsToUsersResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Links the Xbox Live account associated with the provided access code to the user's PlayFab account
+     * @param request LinkXboxAccountRequest
+     * @return Async Task will return LinkXboxAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<LinkXboxAccountResult>> LinkXboxAccountAsync(final LinkXboxAccountRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<LinkXboxAccountResult>>() {
+            public PlayFabResult<LinkXboxAccountResult> call() throws Exception {
+                return privateLinkXboxAccountAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Links the Xbox Live account associated with the provided access code to the user's PlayFab account
+     * @param request LinkXboxAccountRequest
+     * @return LinkXboxAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<LinkXboxAccountResult> LinkXboxAccount(final LinkXboxAccountRequest request) {
+        FutureTask<PlayFabResult<LinkXboxAccountResult>> task = new FutureTask(new Callable<PlayFabResult<LinkXboxAccountResult>>() {
+            public PlayFabResult<LinkXboxAccountResult> call() throws Exception {
+                return privateLinkXboxAccountAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Links the Xbox Live account associated with the provided access code to the user's PlayFab account */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<LinkXboxAccountResult> privateLinkXboxAccountAsync(final LinkXboxAccountRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/LinkXboxAccount"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<LinkXboxAccountResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<LinkXboxAccountResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LinkXboxAccountResult>>(){}.getType());
+        LinkXboxAccountResult result = resultData.data;
+
+        PlayFabResult<LinkXboxAccountResult> pfResult = new PlayFabResult<LinkXboxAccountResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Securely login a game client from an external server backend using a custom identifier for that player. Server Custom ID
+     * and Client Custom ID are mutually exclusive and cannot be used to retrieve the same player account.
+     * @param request LoginWithServerCustomIdRequest
+     * @return Async Task will return ServerLoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ServerLoginResult>> LoginWithServerCustomIdAsync(final LoginWithServerCustomIdRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ServerLoginResult>>() {
+            public PlayFabResult<ServerLoginResult> call() throws Exception {
+                return privateLoginWithServerCustomIdAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Securely login a game client from an external server backend using a custom identifier for that player. Server Custom ID
+     * and Client Custom ID are mutually exclusive and cannot be used to retrieve the same player account.
+     * @param request LoginWithServerCustomIdRequest
+     * @return ServerLoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ServerLoginResult> LoginWithServerCustomId(final LoginWithServerCustomIdRequest request) {
+        FutureTask<PlayFabResult<ServerLoginResult>> task = new FutureTask(new Callable<PlayFabResult<ServerLoginResult>>() {
+            public PlayFabResult<ServerLoginResult> call() throws Exception {
+                return privateLoginWithServerCustomIdAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Securely login a game client from an external server backend using a custom identifier for that player. Server Custom ID
+     * and Client Custom ID are mutually exclusive and cannot be used to retrieve the same player account.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ServerLoginResult> privateLoginWithServerCustomIdAsync(final LoginWithServerCustomIdRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/LoginWithServerCustomId"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ServerLoginResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ServerLoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ServerLoginResult>>(){}.getType());
+        ServerLoginResult result = resultData.data;
+
+        PlayFabResult<ServerLoginResult> pfResult = new PlayFabResult<ServerLoginResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Signs the user in using a Xbox Live Token from an external server backend, returning a session identifier that can
+     * subsequently be used for API calls which require an authenticated user
+     * @param request LoginWithXboxRequest
+     * @return Async Task will return ServerLoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ServerLoginResult>> LoginWithXboxAsync(final LoginWithXboxRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ServerLoginResult>>() {
+            public PlayFabResult<ServerLoginResult> call() throws Exception {
+                return privateLoginWithXboxAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Signs the user in using a Xbox Live Token from an external server backend, returning a session identifier that can
+     * subsequently be used for API calls which require an authenticated user
+     * @param request LoginWithXboxRequest
+     * @return ServerLoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ServerLoginResult> LoginWithXbox(final LoginWithXboxRequest request) {
+        FutureTask<PlayFabResult<ServerLoginResult>> task = new FutureTask(new Callable<PlayFabResult<ServerLoginResult>>() {
+            public PlayFabResult<ServerLoginResult> call() throws Exception {
+                return privateLoginWithXboxAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Signs the user in using a Xbox Live Token from an external server backend, returning a session identifier that can
+     * subsequently be used for API calls which require an authenticated user
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ServerLoginResult> privateLoginWithXboxAsync(final LoginWithXboxRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/LoginWithXbox"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ServerLoginResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ServerLoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ServerLoginResult>>(){}.getType());
+        ServerLoginResult result = resultData.data;
+
+        PlayFabResult<ServerLoginResult> pfResult = new PlayFabResult<ServerLoginResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -5819,6 +6061,66 @@ public class PlayFabServerAPI {
         ModifyUserVirtualCurrencyResult result = resultData.data;
 
         PlayFabResult<ModifyUserVirtualCurrencyResult> pfResult = new PlayFabResult<ModifyUserVirtualCurrencyResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Unlinks the related Xbox Live account from the user's PlayFab account
+     * @param request UnlinkXboxAccountRequest
+     * @return Async Task will return UnlinkXboxAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<UnlinkXboxAccountResult>> UnlinkXboxAccountAsync(final UnlinkXboxAccountRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<UnlinkXboxAccountResult>>() {
+            public PlayFabResult<UnlinkXboxAccountResult> call() throws Exception {
+                return privateUnlinkXboxAccountAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Unlinks the related Xbox Live account from the user's PlayFab account
+     * @param request UnlinkXboxAccountRequest
+     * @return UnlinkXboxAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<UnlinkXboxAccountResult> UnlinkXboxAccount(final UnlinkXboxAccountRequest request) {
+        FutureTask<PlayFabResult<UnlinkXboxAccountResult>> task = new FutureTask(new Callable<PlayFabResult<UnlinkXboxAccountResult>>() {
+            public PlayFabResult<UnlinkXboxAccountResult> call() throws Exception {
+                return privateUnlinkXboxAccountAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Unlinks the related Xbox Live account from the user's PlayFab account */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<UnlinkXboxAccountResult> privateUnlinkXboxAccountAsync(final UnlinkXboxAccountRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/UnlinkXboxAccount"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<UnlinkXboxAccountResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<UnlinkXboxAccountResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UnlinkXboxAccountResult>>(){}.getType());
+        UnlinkXboxAccountResult result = resultData.data;
+
+        PlayFabResult<UnlinkXboxAccountResult> pfResult = new PlayFabResult<UnlinkXboxAccountResult>();
         pfResult.Result = result;
         return pfResult;
     }
