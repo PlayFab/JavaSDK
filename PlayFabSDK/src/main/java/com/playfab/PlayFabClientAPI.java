@@ -3241,6 +3241,66 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Retrieves the unique PlayFab identifiers for the given set of XboxLive identifiers.
+     * @param request GetPlayFabIDsFromXboxLiveIDsRequest
+     * @return Async Task will return GetPlayFabIDsFromXboxLiveIDsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult>> GetPlayFabIDsFromXboxLiveIDsAsync(final GetPlayFabIDsFromXboxLiveIDsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromXboxLiveIDsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of XboxLive identifiers.
+     * @param request GetPlayFabIDsFromXboxLiveIDsRequest
+     * @return GetPlayFabIDsFromXboxLiveIDsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult> GetPlayFabIDsFromXboxLiveIDs(final GetPlayFabIDsFromXboxLiveIDsRequest request) {
+        FutureTask<PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromXboxLiveIDsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Retrieves the unique PlayFab identifiers for the given set of XboxLive identifiers. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult> privateGetPlayFabIDsFromXboxLiveIDsAsync(final GetPlayFabIDsFromXboxLiveIDsRequest request) throws Exception {
+        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayFabIDsFromXboxLiveIDs"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayFabIDsFromXboxLiveIDsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayFabIDsFromXboxLiveIDsResult>>(){}.getType());
+        GetPlayFabIDsFromXboxLiveIDsResult result = resultData.data;
+
+        PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromXboxLiveIDsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the key-value store of custom publisher settings
      * @param request GetPublisherDataRequest
      * @return Async Task will return GetPublisherDataResult
@@ -4760,6 +4820,71 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Links an OpenID Connect account to a user's PlayFab account, based on an existing relationship between a title and an
+     * Open ID Connect provider and the OpenId Connect JWT from that provider.
+     * @param request LinkOpenIdConnectRequest
+     * @return Async Task will return EmptyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResult>> LinkOpenIdConnectAsync(final LinkOpenIdConnectRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateLinkOpenIdConnectAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Links an OpenID Connect account to a user's PlayFab account, based on an existing relationship between a title and an
+     * Open ID Connect provider and the OpenId Connect JWT from that provider.
+     * @param request LinkOpenIdConnectRequest
+     * @return EmptyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResult> LinkOpenIdConnect(final LinkOpenIdConnectRequest request) {
+        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateLinkOpenIdConnectAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Links an OpenID Connect account to a user's PlayFab account, based on an existing relationship between a title and an
+     * Open ID Connect provider and the OpenId Connect JWT from that provider.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResult> privateLinkOpenIdConnectAsync(final LinkOpenIdConnectRequest request) throws Exception {
+        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LinkOpenIdConnect"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
+        EmptyResult result = resultData.data;
+
+        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Links the Steam account associated with the provided Steam authentication ticket to the user's PlayFab account
      * @param request LinkSteamAccountRequest
      * @return Async Task will return LinkSteamAccountResult
@@ -5662,6 +5787,75 @@ public class PlayFabClientAPI {
         if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
 
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithNintendoSwitchDeviceId"), request, null, null);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<LoginResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
+        LoginResult result = resultData.data;
+        PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
+        if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
+        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
+
+        PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Logs in a user with an Open ID Connect JWT created by an existing relationship between a title and an Open ID Connect
+     * provider.
+     * @param request LoginWithOpenIdConnectRequest
+     * @return Async Task will return LoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<LoginResult>> LoginWithOpenIdConnectAsync(final LoginWithOpenIdConnectRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
+            public PlayFabResult<LoginResult> call() throws Exception {
+                return privateLoginWithOpenIdConnectAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Logs in a user with an Open ID Connect JWT created by an existing relationship between a title and an Open ID Connect
+     * provider.
+     * @param request LoginWithOpenIdConnectRequest
+     * @return LoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<LoginResult> LoginWithOpenIdConnect(final LoginWithOpenIdConnectRequest request) {
+        FutureTask<PlayFabResult<LoginResult>> task = new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
+            public PlayFabResult<LoginResult> call() throws Exception {
+                return privateLoginWithOpenIdConnectAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Logs in a user with an Open ID Connect JWT created by an existing relationship between a title and an Open ID Connect
+     * provider.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<LoginResult> privateLoginWithOpenIdConnectAsync(final LoginWithOpenIdConnectRequest request) throws Exception {
+        request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
+        if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithOpenIdConnect"), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -7920,6 +8114,71 @@ public class PlayFabClientAPI {
         UnlinkNintendoSwitchDeviceIdResult result = resultData.data;
 
         PlayFabResult<UnlinkNintendoSwitchDeviceIdResult> pfResult = new PlayFabResult<UnlinkNintendoSwitchDeviceIdResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Unlinks an OpenID Connect account from a user's PlayFab account, based on the connection ID of an existing relationship
+     * between a title and an Open ID Connect provider.
+     * @param request UninkOpenIdConnectRequest
+     * @return Async Task will return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResponse>> UnlinkOpenIdConnectAsync(final UninkOpenIdConnectRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateUnlinkOpenIdConnectAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Unlinks an OpenID Connect account from a user's PlayFab account, based on the connection ID of an existing relationship
+     * between a title and an Open ID Connect provider.
+     * @param request UninkOpenIdConnectRequest
+     * @return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResponse> UnlinkOpenIdConnect(final UninkOpenIdConnectRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateUnlinkOpenIdConnectAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Unlinks an OpenID Connect account from a user's PlayFab account, based on the connection ID of an existing relationship
+     * between a title and an Open ID Connect provider.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResponse> privateUnlinkOpenIdConnectAsync(final UninkOpenIdConnectRequest request) throws Exception {
+        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UnlinkOpenIdConnect"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
+
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
         pfResult.Result = result;
         return pfResult;
     }

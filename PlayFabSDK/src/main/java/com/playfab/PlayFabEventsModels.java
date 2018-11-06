@@ -15,7 +15,7 @@ public class PlayFabEventsModels {
     }
 
     public static class EventContents {
-        /** Entity associated with the event */
+        /** Entity associated with the event. If null, the event will apply to the calling entity. */
         public EntityKey Entity;
         /** The namespace in which the event is defined. It must be prepended with 'com.playfab.events.' */
         public String EventNamespace;

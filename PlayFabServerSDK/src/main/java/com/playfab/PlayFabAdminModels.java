@@ -1501,6 +1501,11 @@ public class PlayFabAdminModels {
         FacebookInstantGamesIdNotLinked,
         InvalidFacebookInstantGamesSignature,
         FacebookInstantGamesAuthNotConfiguredForTitle,
+        EntityProfileConstraintValidationFailed,
+        PlayInsightsIngestionKeyPending,
+        PlayInsightsIngestionKeyNotFound,
+        StatisticTagRequired,
+        StatisticTagInvalid,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingCreateRequestMissing,
@@ -1535,7 +1540,9 @@ public class PlayFabAdminModels {
         MatchmakingMemberProfileInvalid,
         WriteAttemptedDuringExport,
         NintendoSwitchDeviceIdNotLinked,
-        MatchmakingNotEnabled
+        MatchmakingNotEnabled,
+        MatchmakingGetStatisticsIdentityInvalid,
+        MatchmakingStatisticsIdMissing
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {
@@ -1683,12 +1690,6 @@ public class PlayFabAdminModels {
         public ArrayList<String> Players;
         /** region in which the Game Server Instance is running */
         public Region Region;
-        /**
-         * IPV4 address of the game server instance
-         * @deprecated Please use ServerIPV4Address instead.
-         */
-        @Deprecated
-        public String ServerAddress;
         /** IPV4 address of the server */
         public String ServerIPV4Address;
         /** IPV6 address of the server */
