@@ -854,6 +854,66 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * Lists archived multiplayer server sessions for a build.
+     * @param request ListMultiplayerServersRequest
+     * @return Async Task will return ListMultiplayerServersResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ListMultiplayerServersResponse>> ListArchivedMultiplayerServersAsync(final ListMultiplayerServersRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ListMultiplayerServersResponse>>() {
+            public PlayFabResult<ListMultiplayerServersResponse> call() throws Exception {
+                return privateListArchivedMultiplayerServersAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Lists archived multiplayer server sessions for a build.
+     * @param request ListMultiplayerServersRequest
+     * @return ListMultiplayerServersResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ListMultiplayerServersResponse> ListArchivedMultiplayerServers(final ListMultiplayerServersRequest request) {
+        FutureTask<PlayFabResult<ListMultiplayerServersResponse>> task = new FutureTask(new Callable<PlayFabResult<ListMultiplayerServersResponse>>() {
+            public PlayFabResult<ListMultiplayerServersResponse> call() throws Exception {
+                return privateListArchivedMultiplayerServersAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Lists archived multiplayer server sessions for a build. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ListMultiplayerServersResponse> privateListArchivedMultiplayerServersAsync(final ListMultiplayerServersRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListArchivedMultiplayerServers"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ListMultiplayerServersResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ListMultiplayerServersResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListMultiplayerServersResponse>>(){}.getType());
+        ListMultiplayerServersResponse result = resultData.data;
+
+        PlayFabResult<ListMultiplayerServersResponse> pfResult = new PlayFabResult<ListMultiplayerServersResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Lists multiplayer server game assets for a title.
      * @param request ListAssetSummariesRequest
      * @return Async Task will return ListAssetSummariesResponse

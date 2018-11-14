@@ -1413,10 +1413,11 @@ public class PlayFabServerModels {
         InvalidFacebookInstantGamesSignature,
         FacebookInstantGamesAuthNotConfiguredForTitle,
         EntityProfileConstraintValidationFailed,
-        PlayInsightsIngestionKeyPending,
-        PlayInsightsIngestionKeyNotFound,
+        TelemetryIngestionKeyPending,
+        TelemetryIngestionKeyNotFound,
         StatisticTagRequired,
         StatisticTagInvalid,
+        DataIntegrityError,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingCreateRequestMissing,
@@ -1453,7 +1454,8 @@ public class PlayFabServerModels {
         NintendoSwitchDeviceIdNotLinked,
         MatchmakingNotEnabled,
         MatchmakingGetStatisticsIdentityInvalid,
-        MatchmakingStatisticsIdMissing
+        MatchmakingStatisticsIdMissing,
+        CannotEnableMultiplayerServersForTitle
     }
 
     public static class GetAllSegmentsRequest {
