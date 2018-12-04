@@ -58,6 +58,7 @@ public class PlayFabCloudScriptModels {
         
     }
 
+    /** Executes CloudScript with the entity profile that is defined in the request. */
     public static class ExecuteEntityCloudScriptRequest {
         /** The entity to perform this action on. */
         public EntityKey Entity;

@@ -138,6 +138,7 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Creates a multiplayer server build with a custom container and returns information about the build creation request. */
     public static class CreateBuildWithCustomContainerRequest {
         /** The build name. */
         public String BuildName;
@@ -196,6 +197,7 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Creates a multiplayer server build with a managed container and returns information about the build creation request. */
     public static class CreateBuildWithManagedContainerRequest {
         /** The build name. */
         public String BuildName;
@@ -248,6 +250,10 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /**
+     * Creates a remote user to log on to a VM for a multiplayer server build in a specific region. Returns user credential
+     * information necessary to log on.
+     */
     public static class CreateRemoteUserRequest {
         /** The guid string build ID of to create the remote user for. */
         public String BuildId;
@@ -272,24 +278,31 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Deletes a multiplayer server game asset for a title. */
     public static class DeleteAssetRequest {
         /** The filename of the asset to delete. This must be a filename with the .zip, .tar, or .tar.gz extension. */
         public String FileName;
         
     }
 
+    /** Deletes a multiplayer server build. */
     public static class DeleteBuildRequest {
         /** The guid string build ID of the build to delete. */
         public String BuildId;
         
     }
 
+    /** Deletes a multiplayer server game certificate. */
     public static class DeleteCertificateRequest {
         /** The name of the certificate. */
         public String Name;
         
     }
 
+    /**
+     * Deletes a remote user to log on to a VM for a multiplayer server build in a specific region. Returns user credential
+     * information necessary to log on.
+     */
     public static class DeleteRemoteUserRequest {
         /** The guid string build ID of the multiplayer server where the remote user is to delete. */
         public String BuildId;
@@ -306,6 +319,11 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /**
+     * Enables the multiplayer server feature for a title and returns the enabled status. The enabled status can be
+     * Initializing, Enabled, and Disabled. It can up to 20 minutes or more for the title to be enabled for the feature. On
+     * average, it can take up to 20 minutes for the title to be enabled for the feature.
+     */
     public static class EnableMultiplayerServersForTitleRequest {
         
     }
@@ -346,6 +364,7 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Gets the URL to upload assets to. */
     public static class GetAssetUploadUrlRequest {
         /** The asset's file name to get the upload URL for. This must be a filename with the .zip, .tar, or .tar.gz extension. */
         public String FileName;
@@ -363,6 +382,7 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Returns the details about a multiplayer server build. */
     public static class GetBuildRequest {
         /** The guid string build ID of the build to get. */
         public String BuildId;
@@ -374,6 +394,8 @@ public class PlayFabMultiplayerModels {
         public String BuildId;
         /** The build name. */
         public String BuildName;
+        /** The current build status. */
+        public String BuildStatus;
         /** The flavor of container of he build. */
         public ContainerFlavor ContainerFlavor;
         /**
@@ -407,6 +429,10 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /**
+     * Gets credentials to the container registry where game developers can upload custom container images to before creating a
+     * new build.
+     */
     public static class GetContainerRegistryCredentialsRequest {
         
     }
@@ -421,6 +447,7 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Gets multiplayer server session details for a build in a specific region. */
     public static class GetMultiplayerServerDetailsRequest {
         /** The guid string build ID of the multiplayer server to get details for. */
         public String BuildId;
@@ -437,6 +464,8 @@ public class PlayFabMultiplayerModels {
     public static class GetMultiplayerServerDetailsResponse {
         /** The connected players in the multiplayer server. */
         public ArrayList<ConnectedPlayer> ConnectedPlayers;
+        /** The fully qualified domain name of the virtual machine that is hosting this multiplayer server. */
+        public String FQDN;
         /** The IPv4 address of the virtual machine that is hosting this multiplayer server. */
         public String IPV4Address;
         /** The time (UTC) at which a change in the multiplayer server state was observed. */
@@ -456,6 +485,7 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Gets a remote login endpoint to a VM that is hosting a multiplayer server build in a specific region. */
     public static class GetRemoteLoginEndpointRequest {
         /** The guid string build ID of the multiplayer server to get remote login information for. */
         public String BuildId;
@@ -474,6 +504,10 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /**
+     * Gets the status of whether a title is enabled for the multiplayer server feature. The enabled status can be
+     * Initializing, Enabled, and Disabled.
+     */
     public static class GetTitleEnabledForMultiplayerServersStatusRequest {
         
     }
@@ -484,6 +518,7 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Returns a list of multiplayer server game asset summaries for a title. */
     public static class ListAssetSummariesRequest {
         /** The page size for the request. */
         public Integer PageSize;
@@ -502,6 +537,7 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Returns a list of summarized details of all multiplayer server builds for a title. */
     public static class ListBuildSummariesRequest {
         /** The page size for the request. */
         public Integer PageSize;
@@ -520,6 +556,7 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Returns a list of multiplayer server game certificates for a title. */
     public static class ListCertificateSummariesRequest {
         /** The page size for the request. */
         public Integer PageSize;
@@ -538,6 +575,7 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Returns a list of the container images that have been uploaded to the container registry for a title. */
     public static class ListContainerImagesRequest {
         /** The page size for the request. */
         public Integer PageSize;
@@ -556,6 +594,7 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Returns a list of the tags for a particular container image that exists in the container registry for a title. */
     public static class ListContainerImageTagsRequest {
         /** The container images we want to list tags for. */
         public String ImageName;
@@ -568,6 +607,7 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Returns a list of multiplayer servers for a build in a specific region. */
     public static class ListMultiplayerServersRequest {
         /** The guid string build ID of the multiplayer servers to list. */
         public String BuildId;
@@ -590,6 +630,7 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Returns a list of quality of service servers. */
     public static class ListQosServersRequest {
         
     }
@@ -604,6 +645,7 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Returns a list of virtual machines for a title. */
     public static class ListVirtualMachineSummariesRequest {
         /** The guid string build ID of the virtual machines to list. */
         public String BuildId;
@@ -635,6 +677,8 @@ public class PlayFabMultiplayerModels {
         public AzureRegion Region;
         /** The string server ID of the multiplayer server generated by PlayFab. */
         public String ServerId;
+        /** The title generated guid string session ID of the multiplayer server. */
+        public String SessionId;
         /** The state of the multiplayer server. */
         public String State;
         /** The virtual machine ID that the multiplayer server is located on. */
@@ -665,9 +709,15 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Requests a multiplayer server session from a particular build in any of the given preferred regions. */
     public static class RequestMultiplayerServerRequest {
         /** The guid string build ID of the multiplayer server to request. */
         public String BuildId;
+        /**
+         * Initial list of players (potentially matchmade) allowed to connect to the game. The game server can use this list to
+         * validate players connecting to it.
+         */
+        public ArrayList<String> InitialPlayers;
         /** The preferred regions to request a multiplayer server from. */
         public ArrayList<AzureRegion> PreferredRegions;
         /**
@@ -684,6 +734,8 @@ public class PlayFabMultiplayerModels {
     public static class RequestMultiplayerServerResponse {
         /** The connected players in the multiplayer server. */
         public ArrayList<ConnectedPlayer> ConnectedPlayers;
+        /** The fully qualified domain name of the virtual machine that is hosting this multiplayer server. */
+        public String FQDN;
         /** The IPv4 address of the virtual machine that is hosting this multiplayer server. */
         public String IPV4Address;
         /** The time (UTC) at which a change in the multiplayer server state was observed. */
@@ -703,6 +755,10 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /**
+     * Gets new credentials to the container registry where game developers can upload custom container images to before
+     * creating a new build.
+     */
     public static class RolloverContainerRegistryCredentialsRequest {
         
     }
@@ -717,6 +773,11 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /**
+     * Executes the shutdown callback from the GSDK and terminates the multiplayer server session. The callback in the GSDK
+     * will allow for graceful shutdown with a 15 minute timeoutIf graceful shutdown has not been completed before 15 minutes
+     * have elapsed, the multiplayer server session will be forcefully terminated on it's own.
+     */
     public static class ShutdownMultiplayerServerRequest {
         /** The guid string build ID of the multiplayer server to delete. */
         public String BuildId;
@@ -733,6 +794,7 @@ public class PlayFabMultiplayerModels {
         Disabled
     }
 
+    /** Updates a multiplayer server build's regions. */
     public static class UpdateBuildRegionsRequest {
         /** The guid string ID of the build we want to update regions for. */
         public String BuildId;
@@ -741,6 +803,7 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Uploads a multiplayer server game certificate. */
     public static class UploadCertificateRequest {
         /** The game certificate to upload. */
         public Certificate GameCertificate;

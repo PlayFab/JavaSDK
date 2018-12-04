@@ -5,6 +5,7 @@ import com.playfab.PlayFabUtil.*;
 
 public class PlayFabAdminModels {
 
+    /** If the task instance has already completed, there will be no-op. */
     public static class AbortTaskInstanceRequest {
         /** ID of a task instance that is being aborted. */
         public String TaskInstanceId;
@@ -83,6 +84,11 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * This API will trigger a player_tag_added event and add a tag with the given TagName and PlayFabID to the corresponding
+     * player profile. TagName can be used for segmentation and it is limited to 256 characters. Also there is a limit on the
+     * number of tags a title can have.
+     */
     public static class AddPlayerTagRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
@@ -159,6 +165,11 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * This operation is additive. Any new currencies defined in the array will be added
+     * to the set of those available for the title, while any CurrencyCode identifiers matching existing ones in the
+     * game will be overwritten with the new values.
+     */
     public static class AddVirtualCurrencyTypesRequest {
         /**
          * List of virtual currencies and their initial deposits (the amount a user is granted when signing in for the first time)
@@ -214,6 +225,10 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * The existence of each user will not be verified. When banning by IP or MAC address, multiple players may be affected, so
+     * use this feature with caution. Returns information about the new bans.
+     */
     public static class BanUsersRequest {
         /** List of ban requests to be applied. Maximum 100. */
         public ArrayList<BanRequest> Bans;
@@ -354,6 +369,7 @@ public class PlayFabAdminModels {
         
     }
 
+    /** This returns the total number of these items available. */
     public static class CheckLimitedEditionItemAvailabilityRequest {
         /** Which catalog is being updated. If null, uses the default catalog. */
         public String CatalogVersion;
@@ -717,6 +733,10 @@ public class PlayFabAdminModels {
         ZW
     }
 
+    /**
+     * Task name is unique within a title. Using a task name that's already taken will cause a name conflict error. Too many
+     * create-task requests within a short time will cause a create conflict error.
+     */
     public static class CreateActionsOnPlayerSegmentTaskRequest {
         /** Description the task */
         public String Description;
@@ -731,6 +751,10 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Task name is unique within a title. Using a task name that's already taken will cause a name conflict error. Too many
+     * create-task requests within a short time will cause a create conflict error.
+     */
     public static class CreateCloudScriptTaskRequest {
         /** Description the task */
         public String Description;
@@ -745,6 +769,10 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Player Shared Secret Keys are used for the call to Client/GetTitlePublicKey, which exchanges the shared secret for an
+     * RSA CSP blob to be used to encrypt the payload of account creation requests when that API requires a signature header.
+     */
     public static class CreatePlayerSharedSecretRequest {
         /** Friendly name for this key */
         public String FriendlyName;
@@ -757,6 +785,26 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Statistics are numeric values, with each statistic in the title also generating a leaderboard. The ResetInterval
+     * enables automatically resetting leaderboards on a specified interval. Upon reset, the statistic updates to a new version
+     * with no values (effectively
+     * removing all players from the leaderboard). The previous version's statistic values are also archived for retrieval, if
+     * needed (see
+     * GetPlayerStatisticVersions). Statistics not created via a call to CreatePlayerStatisticDefinition by default have a
+     * VersionChangeInterval of Never,
+     * meaning they do not reset on a schedule, but they can be set to do so via a call to UpdatePlayerStatisticDefinition.
+     * Once a statistic has been reset
+     * (sometimes referred to as versioned or incremented), the now-previous version can still be written to for up a short,
+     * pre-defined period (currently
+     * 10 seconds), to prevent issues with levels completing around the time of the reset. Also, once reset, the historical
+     * statistics for players in the
+     * title may be retrieved using the URL specified in the version information (GetPlayerStatisticVersions). The
+     * AggregationMethod determines what action
+     * is taken when a new statistic value is submitted - always update with the new value (Last), use the highest of the old
+     * and new values (Max), use the
+     * smallest (Min), or add them together (Sum).
+     */
     public static class CreatePlayerStatisticDefinitionRequest {
         /** the aggregation method to use in updating the statistic (defaults to last) */
         public StatisticAggregationMethod AggregationMethod;
@@ -950,6 +998,20 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Deletes all data associated with the master player account, including data from all titles the player has played, such
+     * as statistics, custom data, inventory, purchases, virtual currency balances,
+     * characters, group memberships, publisher data, credential data, account linkages, friends list and
+     * PlayStream event history. Removes the player from all leaderboards and player search indexes.
+     * Note, this API queues the player for deletion and returns a receipt immediately. Record the receipt ID
+     * for future reference. It may take some time before all player data is fully deleted.
+     * Upon completion of the deletion, an email will be sent to the notification email address configured for
+     * the title confirming the deletion.
+     * Until the player data is fully deleted, attempts to recreate the player with the same user account in
+     * the same title will fail with the 'AccountDeleted' error.
+     * It is highly recommended to know the impact of the deletion by calling GetPlayedTitleList, before
+     * calling this API.
+     */
     public static class DeleteMasterPlayerAccountRequest {
         /** Developer created string to identify a user without PlayFab ID */
         public String MetaData;
@@ -969,6 +1031,18 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Deletes all data associated with the player, including statistics, custom data, inventory, purchases, virtual currency
+     * balances,
+     * characters and shared group memberships. Removes the player from all leaderboards and player search
+     * indexes. Does not delete PlayStream event history associated with the player.
+     * Does not delete the publisher user account that created the player in the title nor associated data such
+     * as username, password, email address, account linkages, or friends list.
+     * Note, this API queues the player for deletion and returns immediately. It may take several minutes or
+     * more before all player data is fully deleted.
+     * Until the player data is fully deleted, attempts to recreate the player with the same user account in
+     * the same title will fail with the 'AccountDeleted' error.
+     */
     public static class DeletePlayerRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
@@ -979,6 +1053,10 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Player Shared Secret Keys are used for the call to Client/GetTitlePublicKey, which exchanges the shared secret for an
+     * RSA CSP blob to be used to encrypt the payload of account creation requests when that API requires a signature header.
+     */
     public static class DeletePlayerSharedSecretRequest {
         /** The shared secret key to delete */
         public String SecretKey;
@@ -989,6 +1067,7 @@ public class PlayFabAdminModels {
         
     }
 
+    /** This non-reversible operation will permanently delete the requested store. */
     public static class DeleteStoreRequest {
         /** catalog version of the store to delete. If null, uses the default catalog. */
         public String CatalogVersion;
@@ -1001,12 +1080,31 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * After a task is deleted, for tracking purposes, the task instances belonging to this task will still remain. They will
+     * become orphaned and does not belongs to any task. Executions of any in-progress task instances will continue. If the
+     * task specified does not exist, the deletion is considered a success.
+     */
     public static class DeleteTaskRequest {
         /** Specify either the task ID or the name of task to be deleted. */
         public NameIdentifier Identifier;
         
     }
 
+    /**
+     * Deletes all data associated with the title, including catalog, virtual currencies, leaderboard statistics, Cloud Script
+     * revisions,
+     * segment definitions, event rules, tasks, add-ons, secret keys, data encryption keys, and permission
+     * policies.
+     * Removes the title from its studio and removes all associated developer roles and permissions.
+     * Does not delete PlayStream event history associated with the title.
+     * Note, this API queues the title for deletion and returns immediately. It may take several hours or more
+     * before all title data is fully deleted.
+     * All player accounts in the title must be deleted before deleting the title. If any player accounts
+     * exist, the API will return a 'TitleContainsUserAccounts' error.
+     * Until the title data is fully deleted, attempts to call APIs with the title will fail with the
+     * 'TitleDeleted' error.
+     */
     public static class DeleteTitleRequest {
         
     }
@@ -1077,6 +1175,16 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Exports all data associated with the master player account, including data from all titles the player has played, such
+     * as statistics, custom data, inventory, purchases, virtual currency balances,
+     * characters, group memberships, publisher data, credential data, account linkages, friends list and
+     * PlayStream event history.
+     * Note, this API queues the player for export and returns a receipt immediately. Record the receipt ID for
+     * future reference. It may take some time before the export is available for download.
+     * Upon completion of the export, an email containing the URL to download the export dump will be sent to
+     * the notification email address configured for the title.
+     */
     public static class ExportMasterPlayerDataRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
@@ -1555,6 +1663,7 @@ public class PlayFabAdminModels {
         
     }
 
+    /** Request has no paramaters. */
     public static class GetAllSegmentsRequest {
         
     }
@@ -1654,6 +1763,10 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Gets the download URL for the requested report data (in CSV form). The reports available through this API call are those
+     * available in the Game Manager, in the Analytics-&gt;Reports tab.
+     */
     public static class GetDataReportRequest {
         /** Reporting year (UTC) */
         public Integer Day;
@@ -1707,6 +1820,12 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * These details are used by the PlayFab matchmaking service to determine if an existing Game Server Instance has room
+     * for additional users, and by the PlayFab game server management service to determine when a new Game Server Host should
+     * be created in order to
+     * prevent excess load on existing Hosts.
+     */
     public static class GetMatchmakerGameModesRequest {
         /** previously uploaded build version for which game modes are being requested */
         public String BuildVersion;
@@ -1719,6 +1838,7 @@ public class PlayFabAdminModels {
         
     }
 
+    /** Useful for identifying titles of which the player's data will be deleted by DeleteMasterPlayer. */
     public static class GetPlayedTitleListRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
@@ -1731,6 +1851,10 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Gets a player ID from an auth token. The token expires after 30 minutes and cannot be used to look up a player when
+     * expired.
+     */
     public static class GetPlayerIdFromAuthTokenRequest {
         /** The auth token of the player requesting the password reset. */
         public String Token;
@@ -1745,6 +1869,14 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * This API allows for access to details regarding a user in the PlayFab service, usually for purposes of
+     * customer support. Note that data returned may be Personally Identifying Information (PII), such as email address, and so
+     * care should be
+     * taken in how this data is stored and managed. Since this call will always return the relevant information for users who
+     * have accessed
+     * the title, the recommendation is to not store this data locally.
+     */
     public static class GetPlayerProfileRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
@@ -1772,6 +1904,10 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Player Shared Secret Keys are used for the call to Client/GetTitlePublicKey, which exchanges the shared secret for an
+     * RSA CSP blob to be used to encrypt the payload of account creation requests when that API requires a signature header.
+     */
     public static class GetPlayerSharedSecretsRequest {
         
     }
@@ -1782,6 +1918,15 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Initial request must contain at least a Segment ID. Subsequent requests must contain the Segment ID as well as the
+     * Continuation Token. Failure to send the Continuation Token will result in a new player segment list being generated.
+     * Each time the Continuation Token is passed in the length of the Total Seconds to Live is refreshed. If too much time
+     * passes between requests to the point that a subsequent request is past the Total Seconds to Live an error will be
+     * returned and paging will be terminated. This API is resource intensive and should not be used in scenarios which might
+     * generate high request volumes. Only one request to this API at a time should be made per title. Concurrent requests to
+     * the API may be rejected with the APIConcurrentRequestLimitExceeded error.
+     */
     public static class GetPlayersInSegmentRequest {
         /** Continuation token if retrieving subsequent pages of results. */
         public String ContinuationToken;
@@ -1817,6 +1962,26 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Statistics are numeric values, with each statistic in the title also generating a leaderboard. The ResetInterval
+     * defines the period of time at which the leaderboard for the statistic will automatically reset. Upon reset, the
+     * statistic updates to a new version
+     * with no values (effectively removing all players from the leaderboard). The previous version's statistic values are also
+     * archived for retrieval,
+     * if needed (see GetPlayerStatisticVersions). Statistics not created via a call to CreatePlayerStatisticDefinition by
+     * default have a
+     * VersionChangeInterval of Never, meaning they do not reset on a schedule, but they can be set to do so via a call to
+     * UpdatePlayerStatisticDefinition.
+     * Once a statistic has been reset (sometimes referred to as versioned or incremented), the previous version can still be
+     * written to for up a short,
+     * pre-defined period (currently 10 seconds), to prevent issues with levels completing around the time of the reset. Also,
+     * once reset, the historical
+     * statistics for players in the title may be retrieved using the URL specified in the version information
+     * (GetPlayerStatisticVersions). The
+     * AggregationMethod defines what action is taken when a new statistic value is submitted - always update with the new
+     * value (Last), use the highest
+     * of the old and new values (Max), use the smallest (Min), or add them together (Sum).
+     */
     public static class GetPlayerStatisticDefinitionsResult {
         /** the player statistic definitions for the title */
         public ArrayList<PlayerStatisticDefinition> Statistics;
@@ -1829,12 +1994,29 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Statistics are numeric values, with each statistic in the title also generating a leaderboard. The information
+     * returned in the results defines the state of a specific version of a statistic, including when it was or will become the
+     * currently active version,
+     * when it will (or did) become a previous version, and its archival state if it is no longer the active version. For a
+     * statistic which has been
+     * reset, once the archival status is Complete, the full set of statistics for all players in the leaderboard for that
+     * version may be retrieved
+     * via the ArchiveDownloadUrl. Statistics which have not been reset (incremented/versioned) will only have a single version
+     * which is not scheduled
+     * to reset.
+     */
     public static class GetPlayerStatisticVersionsResult {
         /** version change history of the statistic */
         public ArrayList<PlayerStatisticVersion> StatisticVersions;
         
     }
 
+    /**
+     * This API will return a list of canonical tags which includes both namespace and tag's name. If namespace is not
+     * provided, the result is a list of all canonical tags. TagName can be used for segmentation and Namespace is limited to
+     * 128 characters.
+     */
     public static class GetPlayerTagsRequest {
         /** Optional namespace to filter results by */
         public String Namespace;
@@ -1851,6 +2033,7 @@ public class PlayFabAdminModels {
         
     }
 
+    /** Views the requested policy. Today, the only supported policy is 'ApiPolicy'. */
     public static class GetPolicyRequest {
         /** The name of the policy to read. Only supported name is 'ApiPolicy'. */
         public String PolicyName;
@@ -1865,6 +2048,14 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * This API is designed to return publisher-specific values which can be read, but not written to, by the client. This data
+     * is shared across all
+     * titles assigned to a particular publisher, and can be used for cross-game coordination. Only titles assigned to a
+     * publisher can use this API.
+     * For more information email devrel@playfab.com.  This AdminAPI call for getting title data guarantees no delay in between
+     * update and retrieval of newly set data.
+     */
     public static class GetPublisherDataRequest {
         /** array of keys to get back data from the Publisher data blob, set by the admin tools */
         public ArrayList<String> Keys;
@@ -1952,6 +2143,17 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * A store contains an array of references to items defined in the catalog,
+     * along with the prices for the item, in both real world and virtual currencies. These prices
+     * act as an override to any prices defined in the catalog. In this way, the base definitions of the items may be
+     * defined in the catalog, with all associated properties, while the pricing can be set for each store, as needed.
+     * This allows for subsets of goods to be defined for different purposes (in order to simplify showing some, but not
+     * all catalog items to users, based upon different characteristics), along with unique prices. Note that all prices
+     * defined in the catalog and store definitions for the item are considered valid, and that a compromised client can
+     * be made to send a request for an item based upon any of these definitions. If no price is specified in the store
+     * for an item, the price set in the catalog should be displayed to the user.
+     */
     public static class GetStoreItemsRequest {
         /** catalog version to store items from. Use default catalog version if null */
         public String CatalogVersion;
@@ -1975,12 +2177,21 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * The result includes detail information that's specific to a CloudScript tasks. To get a list of task instances with
+     * generic basic information, use GetTaskInstances.
+     */
     public static class GetTaskInstanceRequest {
         /** ID of the requested task instance. */
         public String TaskInstanceId;
         
     }
 
+    /**
+     * Only the most recent 100 task instances are returned, ordered by start time descending. The results are generic basic
+     * information for task instances. To get detail information specific to each task type, use Get*TaskInstance based on its
+     * corresponding task type.
+     */
     public static class GetTaskInstancesRequest {
         /** Optional range-from filter for task instances' StartedAt timestamp. */
         public Date StartedAtRangeFrom;
@@ -2018,6 +2229,14 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * This API method is designed to return title specific values which can be read by the client.
+     * For example, a developer could choose to store values which modify the user experience, such as enemy spawn rates,
+     * weapon
+     * strengths, movement speeds, etc. This allows a developer to update the title without the need to create,test, and ship a
+     * new build. Note that due to caching, there may up to a minute delay in between updating title data and a query returning
+     * the newest value.
+     */
     public static class GetTitleDataRequest {
         /** Specific keys to search for in the title data (leave null to get all keys) */
         public ArrayList<String> Keys;
@@ -2030,6 +2249,7 @@ public class PlayFabAdminModels {
         
     }
 
+    /** Get all bans for a user, including inactive and expired bans. */
     public static class GetUserBansRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
@@ -2042,6 +2262,12 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Data is stored as JSON key-value pairs. If the Keys parameter is provided,
+     * the data object returned will only contain the data specific to the indicated Keys. Otherwise, the full set of custom
+     * user
+     * data will be returned.
+     */
     public static class GetUserDataRequest {
         /**
          * The version that currently exists according to the caller. The call will return the data for all of the keys if the
@@ -2068,6 +2294,12 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * All items currently in the user inventory will be returned, irrespective of how they were acquired
+     * (via purchasing, grants, coupons, etc.). Items that are expired, fully consumed, or are no longer valid are not
+     * considered to be
+     * in the user's current inventory, and so will not be not included.
+     */
     public static class GetUserInventoryRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
@@ -2136,6 +2368,14 @@ public class PlayFabAdminModels {
         }
     }
 
+    /**
+     * This function directly adds inventory items to user inventories. As a result of this operations, the user
+     * will not be charged any transaction fee, regardless of the inventory item catalog definition. Please note that the
+     * processing time for
+     * inventory grants and purchases increases fractionally the more items are in the inventory, and the more items are in the
+     * grant/purchase
+     * operation.
+     */
     public static class GrantItemsToUsersRequest {
         /** Catalog version from which items are to be granted. */
         public String CatalogVersion;
@@ -2145,12 +2385,17 @@ public class PlayFabAdminModels {
         
     }
 
+    /** Please note that the order of the items in the response may not match the order of items in the request. */
     public static class GrantItemsToUsersResult {
         /** Array of items granted to users. */
         public ArrayList<GrantedItemInstance> ItemGrantResults;
         
     }
 
+    /**
+     * This operation will increment the global counter for the number of these items available. This number cannot be
+     * decremented, except by actual grants.
+     */
     public static class IncrementLimitedEditionItemAvailabilityRequest {
         /** Amount to increase availability by. */
         public Integer Amount;
@@ -2165,6 +2410,23 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Statistics are numeric values, with each statistic in the title also generating a leaderboard.
+     * When this call is made on a given statistic, this forces a reset of that statistic. Upon reset, the statistic updates to
+     * a new
+     * version with no values (effectively removing all players from the leaderboard). The previous version's statistic values
+     * are
+     * also archived for retrieval, if needed (see GetPlayerStatisticVersions). Statistics not created via a call to
+     * CreatePlayerStatisticDefinition by default have a VersionChangeInterval of Never, meaning they do not reset on a
+     * schedule, but
+     * they can be set to do so via a call to UpdatePlayerStatisticDefinition. Once a statistic has been reset (sometimes
+     * referred to
+     * as versioned or incremented), the now-previous version can still be written to for up a short, pre-defined period
+     * (currently
+     * 10 seconds), to prevent issues with levels completing around the time of the reset. Also, once reset, the historical
+     * statistics for players in the title may be retrieved using the URL specified in the version information
+     * (GetPlayerStatisticVersions).
+     */
     public static class IncrementPlayerStatisticVersionRequest {
         /** unique name of the statistic */
         public String StatisticName;
@@ -2326,6 +2588,14 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * This API allows for access to details regarding a user in the PlayFab service, usually for purposes of
+     * customer support. Note that data returned may be Personally Identifying Information (PII), such as email address, and so
+     * care should be
+     * taken in how this data is stored and managed. Since this call will always return the relevant information for users who
+     * have accessed
+     * the title, the recommendation is to not store this data locally.
+     */
     public static class LookupUserAccountInfoRequest {
         /** User email address attached to their account */
         public String Email;
@@ -2361,6 +2631,16 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * These details are used by the PlayFab matchmaking service to determine if an existing Game Server Instance has room
+     * for additional users, and by the PlayFab game server management service to determine when a new Game Server Host should
+     * be created in order to
+     * prevent excess load on existing Hosts. This operation is not additive. Using it will cause the game mode definition for
+     * the game server executable
+     * in question to be created from scratch. If there is an existing game server mode definition for the given BuildVersion,
+     * it will be deleted and
+     * replaced with the data specified in this call.
+     */
     public static class ModifyMatchmakerGameModesRequest {
         /** previously uploaded build version for which game modes are being specified */
         public String BuildVersion;
@@ -2742,6 +3022,10 @@ public class PlayFabAdminModels {
         Australia
     }
 
+    /**
+     * This API will trigger a player_tag_removed event and remove a tag with the given TagName and PlayFabID from the
+     * corresponding player profile. TagName can be used for segmentation and it is limited to 256 characters
+     */
     public static class RemovePlayerTagRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
@@ -2764,12 +3048,21 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Virtual currencies to be removed cannot have entries in any catalog nor store for the title. Note that this operation
+     * will not remove player balances for the removed currencies; if a deleted currency is recreated at any point, user
+     * balances will be in an undefined state.
+     */
     public static class RemoveVirtualCurrencyTypesRequest {
         /** List of virtual currencies to delete */
         public ArrayList<VirtualCurrencyData> VirtualCurrencies;
         
     }
 
+    /**
+     * Note that this action cannot be un-done. All statistics for this
+     * character will be deleted, removing the user from all leaderboards for the game.
+     */
     public static class ResetCharacterStatisticsRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         public String CharacterId;
@@ -2782,6 +3075,10 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Resets a player's password taking in a new password based and validating the user based off of a token sent to the
+     * playerto their email. The token expires after 30 minutes.
+     */
     public static class ResetPasswordRequest {
         /** The new password for the player. */
         public String Password;
@@ -2794,6 +3091,10 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Note that this action cannot be un-done. All statistics for this user will be deleted, removing the user from all
+     * leaderboards for the game.
+     */
     public static class ResetUserStatisticsRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
@@ -2850,6 +3151,10 @@ public class PlayFabAdminModels {
         TableId
     }
 
+    /**
+     * Setting the active state of all non-expired bans for a user to Inactive. Expired bans with an Active state will be
+     * ignored, however. Returns information about applied updates only.
+     */
     public static class RevokeAllBansForUserRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
@@ -2862,6 +3167,10 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Setting the active state of all bans requested to Inactive regardless of whether that ban has already expired. BanIds
+     * that do not exist will be skipped. Returns information about applied updates only.
+     */
     public static class RevokeBansRequest {
         /** Ids of the bans to be revoked. Maximum 100. */
         public ArrayList<String> BanIds;
@@ -2884,6 +3193,10 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * In cases where the inventory item in question is a "crate", and the items it contained have already been dispensed, this
+     * will not revoke access or otherwise remove the items which were dispensed.
+     */
     public static class RevokeInventoryItemRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         public String CharacterId;
@@ -2894,6 +3207,10 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * In cases where the inventory item in question is a "crate", and the items it contained have already been dispensed, this
+     * will not revoke access or otherwise remove the items which were dispensed.
+     */
     public static class RevokeInventoryItemsRequest {
         /** Array of player items to revoke, between 1 and 25 items. */
         public ArrayList<RevokeInventoryItem> Items;
@@ -2918,6 +3235,7 @@ public class PlayFabAdminModels {
         
     }
 
+    /** The returned task instance ID can be used to query for task execution status. */
     public static class RunTaskRequest {
         /** Provide either the task ID or the task name to run a task. */
         public NameIdentifier Identifier;
@@ -2976,6 +3294,11 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * If the account in question is a "temporary" account (for example, one that was created via a call to
+     * LoginFromIOSDeviceID), thisfunction will have no effect. Only PlayFab accounts which have valid email addresses will be
+     * able to receive a password reset email using this API.
+     */
     public static class SendAccountRecoveryEmailRequest {
         /** User email address attached to their account */
         public String Email;
@@ -2988,6 +3311,14 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * APIs that require signatures require that the player have a configured Player Secret Key that is used to sign all
+     * requests. Players that don't have a secret will be blocked from making API calls until it is configured. To create a
+     * signature header add a SHA256 hashed string containing UTF8 encoded JSON body as it will be sent to the server, the
+     * current time in UTC formatted to ISO 8601, and the players secret formatted as 'body.date.secret'. Place the resulting
+     * hash into the header X-PlayFab-Signature, along with a header X-PlayFab-Timestamp of the same UTC timestamp used in the
+     * signature.
+     */
     public static class SetPlayerSecretRequest {
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
@@ -3012,6 +3343,15 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * This API is designed to store publisher-specific values which can be read, but not written to, by the client. This data
+     * is shared across all
+     * titles assigned to a particular publisher, and can be used for cross-game coordination. Only titles assigned to a
+     * publisher can use this API. This operation is additive.
+     * If a Key does not exist in the current dataset, it will be added with
+     * the specified Value. If it already exists, the Value for that key will be overwritten with the new Value. For more
+     * information email devrel@playfab.com
+     */
     public static class SetPublisherDataRequest {
         /**
          * key we want to set a value on (note, this is additive - will only replace an existing key's value if they are the same
@@ -3027,6 +3367,16 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * This API method is designed to store title specific values which can be read by the client.
+     * For example, a developer could choose to store values which modify the user experience, such as enemy spawn rates,
+     * weapon
+     * strengths, movement speeds, etc. This allows a developer to update the title without the need to create, test, and ship
+     * a
+     * new build. This operation is additive. If a Key does not exist in the current dataset, it will be added with the
+     * specified
+     * Value. If it already exists, the Value for that key will be overwritten with the new Value.
+     */
     public static class SetTitleDataRequest {
         /**
          * key we want to set a value on (note, this is additive - will only replace an existing key's value if they are the same
@@ -3042,6 +3392,12 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * When using the Apple Push Notification service (APNS) or the development
+     * version (APNS_SANDBOX), the APNS Private Key should be used as the Credential in this call. With Google
+     * Cloud Messaging (GCM), the Android API Key should be used. The current ARN (if one exists) can be
+     * overwritten by setting the OverwriteOldARN boolean to true.
+     */
     public static class SetupPushNotificationRequest {
         /** Credential is the Private Key for APNS/APNS_SANDBOX, and the API Key for GCM */
         public String Credential;
@@ -3269,6 +3625,10 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * For each ban, only updates the values that are set. Leave any value to null for no change. If a ban could not be found,
+     * the rest are still applied. Returns information about applied updates only.
+     */
     public static class UpdateBansRequest {
         /** List of bans to be updated. Maximum 100. */
         public ArrayList<UpdateBanRequest> Bans;
@@ -3281,6 +3641,12 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * This operation is not additive. Using it will cause the indicated catalog version to be created from
+     * scratch. If there is an existing catalog with the version number in question, it will be deleted and replaced with only
+     * the items specified
+     * in this call.
+     */
     public static class UpdateCatalogItemsRequest {
         /**
          * Array of catalog items to be submitted. Note that while CatalogItem has a parameter for CatalogVersion, it is not
@@ -3319,6 +3685,10 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Player Shared Secret Keys are used for the call to Client/GetTitlePublicKey, which exchanges the shared secret for an
+     * RSA CSP blob to be used to encrypt the payload of account creation requests when that API requires a signature header.
+     */
     public static class UpdatePlayerSharedSecretRequest {
         /** Disable or Enable this key */
         public Boolean Disabled;
@@ -3333,6 +3703,26 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Statistics are numeric values, with each statistic in the title also generating a leaderboard. The ResetInterval
+     * enables automatically resetting leaderboards on a specified interval. Upon reset, the statistic updates to a new version
+     * with no values (effectively
+     * removing all players from the leaderboard). The previous version's statistic values are also archived for retrieval, if
+     * needed (see
+     * GetPlayerStatisticVersions). Statistics not created via a call to CreatePlayerStatisticDefinition by default have a
+     * VersionChangeInterval of Never,
+     * meaning they do not reset on a schedule, but they can be set to do so via a call to UpdatePlayerStatisticDefinition.
+     * Once a statistic has been reset
+     * (sometimes referred to as versioned or incremented), the now-previous version can still be written to for up a short,
+     * pre-defined period (currently
+     * 10 seconds), to prevent issues with levels completing around the time of the reset. Also, once reset, the historical
+     * statistics for players in the
+     * title may be retrieved using the URL specified in the version information (GetPlayerStatisticVersions). The
+     * AggregationMethod determines what action
+     * is taken when a new statistic value is submitted - always update with the new value (Last), use the highest of the old
+     * and new values (Max), use the
+     * smallest (Min), or add them together (Sum).
+     */
     public static class UpdatePlayerStatisticDefinitionRequest {
         /** the aggregation method to use in updating the statistic (defaults to last) */
         public StatisticAggregationMethod AggregationMethod;
@@ -3352,6 +3742,11 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Updates permissions for your title. Policies affect what is allowed to happen on your title. Your policy is a collection
+     * of statements that, together, govern particular area for your title. Today, the only allowed policy is called
+     * 'ApiPolicy' and it governs what calls players are allowed to make.
+     */
     public static class UpdatePolicyRequest {
         /** Whether to overwrite or append to the existing policy. */
         public Boolean OverwritePolicy;
@@ -3370,6 +3765,10 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * This operation is additive. Tables with TableId values not currently defined will be added,
+     * while those with TableId values matching Tables currently in the catalog will be overwritten with the given values.
+     */
     public static class UpdateRandomResultTablesRequest {
         /** which catalog is being updated. If null, update the current default catalog version */
         public String CatalogVersion;
@@ -3385,6 +3784,19 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * This operation is not additive. Using it will cause the indicated virtual store to
+     * be created from scratch. If there is an existing store with the same storeId, it will be deleted and replaced
+     * with only the items specified in this call. A store contains an array of references to items defined inthe catalog,
+     * along with the prices for the item, in both real world and virtual currencies.
+     * These prices act as an override to any prices defined in the catalog. In this way, the base definitions of the
+     * items may be defined in the catalog, with all associated properties, while the pricing can be set for each store,
+     * as needed. This allows for subsets of goods to be defined for different purposes (in order to simplify showing
+     * some, but not all catalog items to users, based upon different characteristics), along with unique prices. Note
+     * that all prices defined in the catalog and store definitions for the item are considered valid, and that a
+     * compromised client can be made to send a request for an item based upon any of these definitions. If no price
+     * is specified in the store for an item, the price set in the catalog should be displayed to the user.
+     */
     public static class UpdateStoreItemsRequest {
         /** Catalog version of the store to update. If null, uses the default catalog. */
         public String CatalogVersion;
@@ -3401,6 +3813,12 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Note that when calling this API, all properties of the task have to be provided, including properties that you do not
+     * want to change. Parameters not specified would be set to default value. If the task name in the update request is new, a
+     * task rename operation will be executed before updating other fields of the task. WARNING: Renaming of a task may break
+     * logics where the task name is used as an identifier.
+     */
     public static class UpdateTaskRequest {
         /** Description the task */
         public String Description;
@@ -3419,6 +3837,12 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * This function performs an additive update of the arbitrary JSON object containing the custom data for the user.
+     * In updating the custom data object, keys which already exist in the object will have their values overwritten, while
+     * keys with null values will
+     * be removed. No other key-value pairs will be changed apart from those specified in the call.
+     */
     public static class UpdateUserDataRequest {
         /**
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
@@ -3446,6 +3870,12 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * This function performs an additive update of the arbitrary JSON object containing the custom data for the user.
+     * In updating the custom data object, keys which already exist in the object will have their values overwritten, keys with
+     * null values will be
+     * removed. No other key-value pairs will be changed apart from those specified in the call.
+     */
     public static class UpdateUserInternalDataRequest {
         /**
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
@@ -3462,6 +3892,12 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * In addition to the PlayFab username, titles can make use of a DisplayName which is also a unique identifier,
+     * but specific to the title. This allows for unique names which more closely match the theme or genre of a title, for
+     * example. This API enables
+     * changing that name, whether due to a customer request, an offensive name choice, etc.
+     */
     public static class UpdateUserTitleDisplayNameRequest {
         /** New title display name for the user - must be between 3 and 25 characters */
         public String DisplayName;

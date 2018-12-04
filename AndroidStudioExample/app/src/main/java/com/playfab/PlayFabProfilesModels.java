@@ -106,6 +106,13 @@ public class PlayFabProfilesModels {
         
     }
 
+    /**
+     * Given an entity type and entity identifier will retrieve the profile from the entity store. If the profile being
+     * retrieved is the caller's, then the read operation is consistent, if not it is an inconsistent read. An inconsistent
+     * read means that we do not guarantee all committed writes have occurred before reading the profile, allowing for a stale
+     * read. If consistency is important the Version Number on the result can be used to compare which version of the profile
+     * any reader has.
+     */
     public static class GetEntityProfileRequest {
         /**
          * Determines whether the objects will be returned as an escaped JSON string or as a un-escaped JSON object. Default is
@@ -123,6 +130,10 @@ public class PlayFabProfilesModels {
         
     }
 
+    /**
+     * Given a set of entity types and entity identifiers will retrieve all readable profiles properties for the caller.
+     * Profiles that the caller is not allowed to read will silently not be included in the results.
+     */
     public static class GetEntityProfilesRequest {
         /**
          * Determines whether the objects will be returned as an escaped JSON string or as a un-escaped JSON object. Default is
@@ -140,6 +151,10 @@ public class PlayFabProfilesModels {
         
     }
 
+    /**
+     * Retrieves the title access policy that is used before the profile's policy is inspected during a request. If never
+     * customized this will return the default starter policy built by PlayFab.
+     */
     public static class GetGlobalPolicyRequest {
         
     }
@@ -157,6 +172,10 @@ public class PlayFabProfilesModels {
         None
     }
 
+    /**
+     * This will set the access policy statements on the given entity profile. This is not additive, any existing statements
+     * will be replaced with the statements in this request.
+     */
     public static class SetEntityProfilePolicyRequest {
         /** The entity to perform this action on. */
         public EntityKey Entity;
@@ -174,6 +193,10 @@ public class PlayFabProfilesModels {
         
     }
 
+    /**
+     * Updates the title access policy that is used before the profile's policy is inspected during a request. Policies are
+     * compiled and cached for several minutes so an update here may not be reflected in behavior for a short time.
+     */
     public static class SetGlobalPolicyRequest {
         /** The permissions that govern access to all entities under this title or namespace. */
         public ArrayList<EntityPermissionStatement> Permissions;
@@ -184,6 +207,10 @@ public class PlayFabProfilesModels {
         
     }
 
+    /**
+     * Given an entity profile, will update its language to the one passed in if the profile's version is at least the one
+     * passed in.
+     */
     public static class SetProfileLanguageRequest {
         /** The entity to perform this action on. */
         public EntityKey Entity;

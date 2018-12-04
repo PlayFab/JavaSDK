@@ -5,6 +5,10 @@ import com.playfab.PlayFabUtil.*;
 
 public class PlayFabGroupsModels {
 
+    /**
+     * Accepts an outstanding invitation to to join a group if the invited entity is not blocked by the group. Nothing is
+     * returned in the case of success.
+     */
     public static class AcceptGroupApplicationRequest {
         /**
          * Optional. Type of the entity to accept as. If specified, must be the same entity as the claimant or an entity that is a
@@ -16,6 +20,11 @@ public class PlayFabGroupsModels {
         
     }
 
+    /**
+     * Accepts an outstanding invitation to join the group if the invited entity is not blocked by the group. Only the invited
+     * entity or a parent in its chain (e.g. title) may accept the invitation on the invited entity's behalf. Nothing is
+     * returned in the case of success.
+     */
     public static class AcceptGroupInvitationRequest {
         /** The entity to perform this action on. */
         public EntityKey Entity;
@@ -24,6 +33,11 @@ public class PlayFabGroupsModels {
         
     }
 
+    /**
+     * Adds members to a group or role. Existing members of the group will added to roles within the group, but if the user is
+     * not already a member of the group, only title claimants may add them to the group, and others must use the group
+     * application or invite system to add new members to a group. Returns nothing if successful.
+     */
     public static class AddMembersRequest {
         /** The identifier of the group */
         public EntityKey Group;
@@ -37,6 +51,13 @@ public class PlayFabGroupsModels {
         
     }
 
+    /**
+     * Creates an application to join a group. Calling this while a group application already exists will return the same
+     * application instead of an error and will not refresh the time before the application expires. By default, if the entity
+     * has an invitation to join the group outstanding, this will accept the invitation to join the group instead and return an
+     * error indicating such, rather than creating a duplicate application to join that will need to be cleaned up later.
+     * Returns information about the application or an error indicating an invitation was accepted instead.
+     */
     public static class ApplyToGroupRequest {
         /** Optional, default true. Automatically accept an outstanding invitation if one exists instead of creating an application */
         public Boolean AutoAcceptOutstandingInvite;
@@ -58,6 +79,11 @@ public class PlayFabGroupsModels {
         
     }
 
+    /**
+     * Blocks a list of entities from joining a group. Blocked entities may not create new applications to join, be invited to
+     * join, accept an invitation, or have an application accepted. Failure due to being blocked does not clean up existing
+     * applications or invitations to the group. No data is returned in the case of success.
+     */
     public static class BlockEntityRequest {
         /** The entity to perform this action on. */
         public EntityKey Entity;
@@ -66,6 +92,11 @@ public class PlayFabGroupsModels {
         
     }
 
+    /**
+     * Changes the role membership of a list of entities from one role to another in in a single operation. The destination
+     * role must already exist. This is equivalent to adding the entities to the destination role and removing from the origin
+     * role. Returns nothing if successful.
+     */
     public static class ChangeMemberRoleRequest {
         /**
          * The ID of the role that the entities will become a member of. This must be an existing role. Role IDs must be between 1
@@ -84,6 +115,10 @@ public class PlayFabGroupsModels {
         
     }
 
+    /**
+     * Creates a new group, as well as administration and member roles, based off of a title's group template. Returns
+     * information about the group that was created.
+     */
     public static class CreateGroupRequest {
         /** The entity to perform this action on. */
         public EntityKey Entity;
@@ -110,6 +145,11 @@ public class PlayFabGroupsModels {
         
     }
 
+    /**
+     * Creates a new role within an existing group, with no members. Both the role ID and role name must be unique within the
+     * group, but the name can be the same as the ID. The role ID is set at creation and cannot be changed. Returns information
+     * about the role that was created.
+     */
     public static class CreateGroupRoleRequest {
         /** The identifier of the group */
         public EntityKey Group;
@@ -136,12 +176,18 @@ public class PlayFabGroupsModels {
         
     }
 
+    /**
+     * Deletes a group and all roles, invitations, join requests, and blocks associated with it. Permission to delete is only
+     * required the group itself to execute this action. The group and data cannot be cannot be recovered once removed, but any
+     * abuse reports about the group will remain. No data is returned in the case of success.
+     */
     public static class DeleteGroupRequest {
         /** ID of the group or role to remove */
         public EntityKey Group;
         
     }
 
+    /** Returns information about the role */
     public static class DeleteRoleRequest {
         /** The identifier of the group */
         public EntityKey Group;
@@ -182,6 +228,7 @@ public class PlayFabGroupsModels {
         
     }
 
+    /** Returns the ID, name, role list and other non-membership related information about a group. */
     public static class GetGroupRequest {
         /** The identifier of the group */
         public EntityKey Group;
@@ -265,6 +312,13 @@ public class PlayFabGroupsModels {
         
     }
 
+    /**
+     * Invites a player to join a group, if they are not blocked by the group. An optional role can be provided to
+     * automatically assign the player to the role if they accept the invitation. By default, if the entity has an application
+     * to the group outstanding, this will accept the application instead and return an error indicating such, rather than
+     * creating a duplicate invitation to join that will need to be cleaned up later. Returns information about the new
+     * invitation or an error indicating an existing application to join was accepted.
+     */
     public static class InviteToGroupRequest {
         /** Optional, default true. Automatically accept an application if one exists instead of creating an invitation */
         public Boolean AutoAcceptOutstandingApplication;
@@ -295,6 +349,11 @@ public class PlayFabGroupsModels {
         
     }
 
+    /**
+     * Checks to see if an entity is a member of a group or role within the group. A result indicating if the entity is a
+     * member of the group is returned, or a permission error if the caller does not have permission to read the group's member
+     * list.
+     */
     public static class IsMemberRequest {
         /** The entity to perform this action on. */
         public EntityKey Entity;
@@ -314,6 +373,10 @@ public class PlayFabGroupsModels {
         
     }
 
+    /**
+     * Lists all outstanding requests to join a group. Returns a list of all requests to join, as well as when the request will
+     * expire. To get the group applications for a specific entity, use ListMembershipOpportunities.
+     */
     public static class ListGroupApplicationsRequest {
         /** The identifier of the group */
         public EntityKey Group;
@@ -326,6 +389,7 @@ public class PlayFabGroupsModels {
         
     }
 
+    /** Lists all entities blocked from joining a group. A list of blocked entities is returned */
     public static class ListGroupBlocksRequest {
         /** The identifier of the group */
         public EntityKey Group;
@@ -338,6 +402,10 @@ public class PlayFabGroupsModels {
         
     }
 
+    /**
+     * Lists all outstanding invitations for a group. Returns a list of entities that have been invited, as well as when the
+     * invitation will expire. To get the group invitations for a specific entity, use ListMembershipOpportunities.
+     */
     public static class ListGroupInvitationsRequest {
         /** The identifier of the group */
         public EntityKey Group;
@@ -350,6 +418,11 @@ public class PlayFabGroupsModels {
         
     }
 
+    /**
+     * Gets a list of members and the roles they belong to within the group. If the caller does not have permission to view the
+     * role, and the member is in no other role, the member is not displayed. Returns a list of entities that are members of
+     * the group.
+     */
     public static class ListGroupMembersRequest {
         /** ID of the group to list the members and roles for */
         public EntityKey Group;
@@ -362,6 +435,11 @@ public class PlayFabGroupsModels {
         
     }
 
+    /**
+     * Lists all outstanding group applications and invitations for an entity. Anyone may call this for any entity, but data
+     * will only be returned for the entity or a parent of that entity. To list invitations or applications for a group to
+     * check if a player is trying to join, use ListGroupInvitations and ListGroupApplications.
+     */
     public static class ListMembershipOpportunitiesRequest {
         /** The entity to perform this action on. */
         public EntityKey Entity;
@@ -376,6 +454,11 @@ public class PlayFabGroupsModels {
         
     }
 
+    /**
+     * Lists the groups and roles that an entity is a part of, checking to see if group and role metadata and memberships
+     * should be visible to the caller. If the entity is not in any roles that are visible to the caller, the group is not
+     * returned in the results, even if the caller otherwise has permission to see that the entity is a member of that group.
+     */
     public static class ListMembershipRequest {
         /** The entity to perform this action on. */
         public EntityKey Entity;
@@ -395,6 +478,11 @@ public class PlayFabGroupsModels {
         None
     }
 
+    /**
+     * Removes an existing application to join the group. This is used for both rejection of an application as well as
+     * withdrawing an application. The applying entity or a parent in its chain (e.g. title) may withdraw the application, and
+     * any caller with appropriate access in the group may reject an application. No data is returned in the case of success.
+     */
     public static class RemoveGroupApplicationRequest {
         /** The entity to perform this action on. */
         public EntityKey Entity;
@@ -403,6 +491,12 @@ public class PlayFabGroupsModels {
         
     }
 
+    /**
+     * Removes an existing invitation to join the group. This is used for both rejection of an invitation as well as rescinding
+     * an invitation. The invited entity or a parent in its chain (e.g. title) may reject the invitation by calling this
+     * method, and any caller with appropriate access in the group may rescind an invitation. No data is returned in the case
+     * of success.
+     */
     public static class RemoveGroupInvitationRequest {
         /** The entity to perform this action on. */
         public EntityKey Entity;
@@ -411,6 +505,10 @@ public class PlayFabGroupsModels {
         
     }
 
+    /**
+     * Removes members from a group. A member can always remove themselves from a group, regardless of permissions. Returns
+     * nothing if successful.
+     */
     public static class RemoveMembersRequest {
         /** The identifier of the group */
         public EntityKey Group;
@@ -421,6 +519,7 @@ public class PlayFabGroupsModels {
         
     }
 
+    /** Unblocks a list of entities from joining a group. No data is returned in the case of success. */
     public static class UnblockEntityRequest {
         /** The entity to perform this action on. */
         public EntityKey Entity;
@@ -429,6 +528,10 @@ public class PlayFabGroupsModels {
         
     }
 
+    /**
+     * Updates data about a group, such as the name or default member role. Returns information about whether the update was
+     * successful. Only title claimants may modify the administration role for a group.
+     */
     public static class UpdateGroupRequest {
         /** Optional: the ID of an existing role to set as the new administrator role for the group */
         public String AdminRoleId;
@@ -457,6 +560,7 @@ public class PlayFabGroupsModels {
         
     }
 
+    /** Updates the role name. Returns information about whether the update was successful. */
     public static class UpdateGroupRoleRequest {
         /**
          * Optional field used for concurrency control. By specifying the previously returned value of ProfileVersion from the
