@@ -786,6 +786,66 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Checks for any new consumable entitlements. If any are found, they are consumed and added as PlayFab items
+     * @param request ConsumePSNEntitlementsRequest
+     * @return Async Task will return ConsumePSNEntitlementsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ConsumePSNEntitlementsResult>> ConsumePSNEntitlementsAsync(final ConsumePSNEntitlementsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ConsumePSNEntitlementsResult>>() {
+            public PlayFabResult<ConsumePSNEntitlementsResult> call() throws Exception {
+                return privateConsumePSNEntitlementsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Checks for any new consumable entitlements. If any are found, they are consumed and added as PlayFab items
+     * @param request ConsumePSNEntitlementsRequest
+     * @return ConsumePSNEntitlementsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ConsumePSNEntitlementsResult> ConsumePSNEntitlements(final ConsumePSNEntitlementsRequest request) {
+        FutureTask<PlayFabResult<ConsumePSNEntitlementsResult>> task = new FutureTask(new Callable<PlayFabResult<ConsumePSNEntitlementsResult>>() {
+            public PlayFabResult<ConsumePSNEntitlementsResult> call() throws Exception {
+                return privateConsumePSNEntitlementsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Checks for any new consumable entitlements. If any are found, they are consumed and added as PlayFab items */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ConsumePSNEntitlementsResult> privateConsumePSNEntitlementsAsync(final ConsumePSNEntitlementsRequest request) throws Exception {
+        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/ConsumePSNEntitlements"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ConsumePSNEntitlementsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ConsumePSNEntitlementsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ConsumePSNEntitlementsResult>>(){}.getType());
+        ConsumePSNEntitlementsResult result = resultData.data;
+
+        PlayFabResult<ConsumePSNEntitlementsResult> pfResult = new PlayFabResult<ConsumePSNEntitlementsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Grants the player's current entitlements from Xbox Live, consuming all availble items in Xbox and granting them to the
      * player's PlayFab inventory. This call is idempotent and will not grant previously granted items to the player.
      * @param request ConsumeXboxEntitlementsRequest
@@ -3108,6 +3168,66 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Retrieves the unique PlayFab identifiers for the given set of PlayStation Network identifiers.
+     * @param request GetPlayFabIDsFromPSNAccountIDsRequest
+     * @return Async Task will return GetPlayFabIDsFromPSNAccountIDsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult>> GetPlayFabIDsFromPSNAccountIDsAsync(final GetPlayFabIDsFromPSNAccountIDsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromPSNAccountIDsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of PlayStation Network identifiers.
+     * @param request GetPlayFabIDsFromPSNAccountIDsRequest
+     * @return GetPlayFabIDsFromPSNAccountIDsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult> GetPlayFabIDsFromPSNAccountIDs(final GetPlayFabIDsFromPSNAccountIDsRequest request) {
+        FutureTask<PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromPSNAccountIDsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Retrieves the unique PlayFab identifiers for the given set of PlayStation Network identifiers. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult> privateGetPlayFabIDsFromPSNAccountIDsAsync(final GetPlayFabIDsFromPSNAccountIDsRequest request) throws Exception {
+        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayFabIDsFromPSNAccountIDs"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayFabIDsFromPSNAccountIDsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayFabIDsFromPSNAccountIDsResult>>(){}.getType());
+        GetPlayFabIDsFromPSNAccountIDsResult result = resultData.data;
+
+        PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
      * IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
      * @param request GetPlayFabIDsFromSteamIDsRequest
@@ -4885,6 +5005,66 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Links the PlayStation Network account associated with the provided access code to the user's PlayFab account
+     * @param request LinkPSNAccountRequest
+     * @return Async Task will return LinkPSNAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<LinkPSNAccountResult>> LinkPSNAccountAsync(final LinkPSNAccountRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<LinkPSNAccountResult>>() {
+            public PlayFabResult<LinkPSNAccountResult> call() throws Exception {
+                return privateLinkPSNAccountAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Links the PlayStation Network account associated with the provided access code to the user's PlayFab account
+     * @param request LinkPSNAccountRequest
+     * @return LinkPSNAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<LinkPSNAccountResult> LinkPSNAccount(final LinkPSNAccountRequest request) {
+        FutureTask<PlayFabResult<LinkPSNAccountResult>> task = new FutureTask(new Callable<PlayFabResult<LinkPSNAccountResult>>() {
+            public PlayFabResult<LinkPSNAccountResult> call() throws Exception {
+                return privateLinkPSNAccountAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Links the PlayStation Network account associated with the provided access code to the user's PlayFab account */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<LinkPSNAccountResult> privateLinkPSNAccountAsync(final LinkPSNAccountRequest request) throws Exception {
+        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LinkPSNAccount"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<LinkPSNAccountResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<LinkPSNAccountResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LinkPSNAccountResult>>(){}.getType());
+        LinkPSNAccountResult result = resultData.data;
+
+        PlayFabResult<LinkPSNAccountResult> pfResult = new PlayFabResult<LinkPSNAccountResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Links the Steam account associated with the provided Steam authentication ticket to the user's PlayFab account
      * @param request LinkSteamAccountRequest
      * @return Async Task will return LinkSteamAccountResult
@@ -5955,6 +6135,75 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Signs the user in using a PlayStation Network authentication code, returning a session identifier that can subsequently
+     * be used for API calls which require an authenticated user
+     * @param request LoginWithPSNRequest
+     * @return Async Task will return LoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<LoginResult>> LoginWithPSNAsync(final LoginWithPSNRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
+            public PlayFabResult<LoginResult> call() throws Exception {
+                return privateLoginWithPSNAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Signs the user in using a PlayStation Network authentication code, returning a session identifier that can subsequently
+     * be used for API calls which require an authenticated user
+     * @param request LoginWithPSNRequest
+     * @return LoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<LoginResult> LoginWithPSN(final LoginWithPSNRequest request) {
+        FutureTask<PlayFabResult<LoginResult>> task = new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
+            public PlayFabResult<LoginResult> call() throws Exception {
+                return privateLoginWithPSNAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Signs the user in using a PlayStation Network authentication code, returning a session identifier that can subsequently
+     * be used for API calls which require an authenticated user
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<LoginResult> privateLoginWithPSNAsync(final LoginWithPSNRequest request) throws Exception {
+        request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
+        if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithPSN"), request, null, null);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<LoginResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
+        LoginResult result = resultData.data;
+        PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
+        if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
+        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
+
+        PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Signs the user in using a Steam authentication ticket, returning a session identifier that can subsequently be used for
      * API calls which require an authenticated user
      * @param request LoginWithSteamRequest
@@ -6554,6 +6803,66 @@ public class PlayFabClientAPI {
         RedeemCouponResult result = resultData.data;
 
         PlayFabResult<RedeemCouponResult> pfResult = new PlayFabResult<RedeemCouponResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Uses the supplied OAuth code to refresh the internally cached player PSN auth token
+     * @param request RefreshPSNAuthTokenRequest
+     * @return Async Task will return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResponse>> RefreshPSNAuthTokenAsync(final RefreshPSNAuthTokenRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateRefreshPSNAuthTokenAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Uses the supplied OAuth code to refresh the internally cached player PSN auth token
+     * @param request RefreshPSNAuthTokenRequest
+     * @return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResponse> RefreshPSNAuthToken(final RefreshPSNAuthTokenRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateRefreshPSNAuthTokenAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Uses the supplied OAuth code to refresh the internally cached player PSN auth token */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResponse> privateRefreshPSNAuthTokenAsync(final RefreshPSNAuthTokenRequest request) throws Exception {
+        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/RefreshPSNAuthToken"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
+
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -8179,6 +8488,66 @@ public class PlayFabClientAPI {
         EmptyResponse result = resultData.data;
 
         PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Unlinks the related PSN account from the user's PlayFab account
+     * @param request UnlinkPSNAccountRequest
+     * @return Async Task will return UnlinkPSNAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<UnlinkPSNAccountResult>> UnlinkPSNAccountAsync(final UnlinkPSNAccountRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<UnlinkPSNAccountResult>>() {
+            public PlayFabResult<UnlinkPSNAccountResult> call() throws Exception {
+                return privateUnlinkPSNAccountAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Unlinks the related PSN account from the user's PlayFab account
+     * @param request UnlinkPSNAccountRequest
+     * @return UnlinkPSNAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<UnlinkPSNAccountResult> UnlinkPSNAccount(final UnlinkPSNAccountRequest request) {
+        FutureTask<PlayFabResult<UnlinkPSNAccountResult>> task = new FutureTask(new Callable<PlayFabResult<UnlinkPSNAccountResult>>() {
+            public PlayFabResult<UnlinkPSNAccountResult> call() throws Exception {
+                return privateUnlinkPSNAccountAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Unlinks the related PSN account from the user's PlayFab account */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<UnlinkPSNAccountResult> privateUnlinkPSNAccountAsync(final UnlinkPSNAccountRequest request) throws Exception {
+        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UnlinkPSNAccount"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<UnlinkPSNAccountResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<UnlinkPSNAccountResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UnlinkPSNAccountResult>>(){}.getType());
+        UnlinkPSNAccountResult result = resultData.data;
+
+        PlayFabResult<UnlinkPSNAccountResult> pfResult = new PlayFabResult<UnlinkPSNAccountResult>();
         pfResult.Result = result;
         return pfResult;
     }
