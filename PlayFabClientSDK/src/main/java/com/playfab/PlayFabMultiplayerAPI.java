@@ -9,7 +9,7 @@ import java.util.*;
 import com.google.gson.*;
 import com.google.gson.reflect.*;
 
-    /** API methods for managing multiplayer servers. */
+    /** API methods for managing multiplayer servers. API methods for managing parties. */
 public class PlayFabMultiplayerAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 

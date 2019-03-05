@@ -1052,7 +1052,11 @@ public class PlayFabClientModels {
     }
 
     public static class FriendInfo {
-        /** Unique lobby identifier of the Game Server Instance to which this player is currently connected. */
+        /**
+         * This field is not populated.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public String CurrentMatchmakerLobbyId;
         /** Available Facebook information (if the user and PlayFab friend are also connected in Facebook). */
         public UserFacebookInfo FacebookInfo;
@@ -2336,6 +2340,17 @@ public class PlayFabClientModels {
         public Boolean ForceLink;
         /** Game Center identifier for the player account to be linked. */
         public String GameCenterId;
+        /** The URL for the public encryption key that will be used to verify the signature. */
+        public String PublicKeyUrl;
+        /** A random value used to compute the hash and keep it randomized. */
+        public String Salt;
+        /** The verification signature of the authentication payload. */
+        public String Signature;
+        /**
+         * The integer representation of date and time that the signature was created on. PlayFab will reject authentication
+         * signatures not within 10 minutes of the server's current time.
+         */
+        public String Timestamp;
         
     }
 
@@ -2597,12 +2612,6 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /**
-         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean LoginTitlePlayerAccountEntity;
         /** Specific Operating System version for the user's device. */
         public String OS;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
@@ -2632,12 +2641,6 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /**
-         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
         /**
@@ -2659,12 +2662,6 @@ public class PlayFabClientModels {
         public String Email;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /**
-         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean LoginTitlePlayerAccountEntity;
         /** Password for the PlayFab account (6-100 characters) */
         public String Password;
         /**
@@ -2684,12 +2681,6 @@ public class PlayFabClientModels {
         public String FacebookInstantGamesSignature;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /**
-         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
         /**
@@ -2729,12 +2720,6 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /**
-         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
         /**
@@ -2767,16 +2752,21 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /**
-         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean LoginTitlePlayerAccountEntity;
         /** Unique Game Center player id. */
         public String PlayerId;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
+        /** The URL for the public encryption key that will be used to verify the signature. */
+        public String PublicKeyUrl;
+        /** A random value used to compute the hash and keep it randomized. */
+        public String Salt;
+        /** The verification signature of the authentication payload. */
+        public String Signature;
+        /**
+         * The integer representation of date and time that the signature was created on. PlayFab will reject authentication
+         * signatures not within 10 minutes of the server's current time.
+         */
+        public String Timestamp;
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
          * title has been selected.
@@ -2813,12 +2803,6 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /**
-         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
         /**
@@ -2864,12 +2848,6 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /**
-         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean LoginTitlePlayerAccountEntity;
         /** Specific Operating System version for the user's device. */
         public String OS;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
@@ -2903,12 +2881,6 @@ public class PlayFabClientModels {
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         /** Numeric user ID assigned by Kongregate */
         public String KongregateId;
-        /**
-         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
         /**
@@ -2926,12 +2898,6 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /**
-         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean LoginTitlePlayerAccountEntity;
         /** Nintendo Switch unique identifier for the user's device. */
         public String NintendoSwitchDeviceId;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
@@ -2958,12 +2924,6 @@ public class PlayFabClientModels {
         public String IdToken;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /**
-         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
         /**
@@ -2983,12 +2943,6 @@ public class PlayFabClientModels {
     public static class LoginWithPlayFabRequest {
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /**
-         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean LoginTitlePlayerAccountEntity;
         /** Password for the PlayFab account (6-100 characters) */
         public String Password;
         /**
@@ -3020,12 +2974,6 @@ public class PlayFabClientModels {
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
         public Integer IssuerId;
-        /**
-         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
         /** Redirect URI supplied to PSN when requesting an auth code */
@@ -3061,12 +3009,6 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /**
-         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
         /**
@@ -3100,12 +3042,6 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /**
-         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
         /**
@@ -3122,12 +3058,6 @@ public class PlayFabClientModels {
         public String ChallengeSignature;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /**
-         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean LoginTitlePlayerAccountEntity;
         /** SHA256 hash of the PublicKey generated by Windows Hello. */
         public String PublicKeyHint;
         /**
@@ -3153,12 +3083,6 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /**
-         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
         /**
@@ -3588,12 +3512,6 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /**
-         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean LoginTitlePlayerAccountEntity;
         /** Password for the PlayFab account (6-100 characters) */
         public String Password;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
@@ -3644,12 +3562,6 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /**
-         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
         /** PublicKey generated by Windows Hello. */
@@ -4041,7 +3953,7 @@ public class PlayFabClientModels {
         public String Body;
         /** Unique identifier of news item. */
         public String NewsId;
-        /** Date and time when the news items was posted. */
+        /** Date and time when the news item was posted. */
         public Date Timestamp;
         /** Title of the news item. */
         public String Title;

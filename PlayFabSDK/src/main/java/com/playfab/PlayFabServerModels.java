@@ -1036,7 +1036,11 @@ public class PlayFabServerModels {
     }
 
     public static class FriendInfo {
-        /** Unique lobby identifier of the Game Server Instance to which this player is currently connected. */
+        /**
+         * This field is not populated.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public String CurrentMatchmakerLobbyId;
         /** Available Facebook information (if the user and PlayFab friend are also connected in Facebook). */
         public UserFacebookInfo FacebookInfo;
@@ -1478,13 +1482,37 @@ public class PlayFabServerModels {
         PushNotificationTemplateMissingDefaultVersion,
         PushNotificationTemplateInvalidSyntax,
         PushNotificationTemplateNoCustomPayloadForV1,
+        NoLeaderboardForStatistic,
+        TitleNewsMissingDefaultLanguage,
+        TitleNewsNotFound,
+        TitleNewsDuplicateLanguage,
+        TitleNewsMissingTitleOrBody,
+        TitleNewsInvalidLanguage,
+        EmailRecipientBlacklisted,
+        InvalidGameCenterAuthRequest,
+        GameCenterAuthenticationFailed,
+        CannotEnablePartiesForTitle,
+        PartyError,
+        PartyRequests,
+        PartyNoContent,
+        PartyBadRequest,
+        PartyUnauthorized,
+        PartyForbidden,
+        PartyNotFound,
+        PartyConflict,
+        PartyInternalServerError,
+        PartyUnavailable,
+        PartyTooManyRequests,
+        PushNotificationTemplateMissingName,
+        CannotEnableMultiplayerServersForTitle,
+        WriteAttemptedDuringExport,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
-        MatchmakingCreateRequestMissing,
-        MatchmakingCreateRequestCreatorMissing,
-        MatchmakingCreateRequestCreatorIdMissing,
-        MatchmakingCreateRequestUserListMissing,
-        MatchmakingCreateRequestGiveUpAfterInvalid,
+        MatchmakingCreateTicketRequestMissing,
+        MatchmakingCreateTicketCreatorMissing,
+        MatchmakingCreateTicketCreatorIdMissing,
+        MatchmakingCreateTicketMemberListMissing,
+        MatchmakingCreateTicketGiveUpAfterInvalid,
         MatchmakingTicketIdMissing,
         MatchmakingMatchIdMissing,
         MatchmakingMatchIdIdMissing,
@@ -1492,30 +1520,60 @@ public class PlayFabServerModels {
         MatchmakingTitleIdMissing,
         MatchmakingTicketIdIdMissing,
         MatchmakingPlayerIdMissing,
-        MatchmakingJoinRequestUserMissing,
+        MatchmakingJoinTicketPlayerMissing,
         MatchmakingQueueConfigNotFound,
         MatchmakingMatchNotFound,
         MatchmakingTicketNotFound,
         MatchmakingCreateTicketServerIdentityInvalid,
         MatchmakingCreateTicketClientIdentityInvalid,
-        MatchmakingGetTicketUserMismatch,
+        MatchmakingGetTicketPlayerMismatch,
         MatchmakingJoinTicketServerIdentityInvalid,
-        MatchmakingJoinTicketUserIdentityMismatch,
+        MatchmakingJoinTicketPlayerIdentityMismatch,
         MatchmakingCancelTicketServerIdentityInvalid,
-        MatchmakingCancelTicketUserIdentityMismatch,
+        MatchmakingCancelTicketPlayerIdentityMismatch,
         MatchmakingGetMatchIdentityMismatch,
         MatchmakingPlayerIdentityMismatch,
         MatchmakingAlreadyJoinedTicket,
         MatchmakingTicketAlreadyCompleted,
-        MatchmakingQueueNameInvalid,
+        MatchmakingClientTimeout,
         MatchmakingQueueConfigInvalid,
         MatchmakingMemberProfileInvalid,
-        WriteAttemptedDuringExport,
         NintendoSwitchDeviceIdNotLinked,
         MatchmakingNotEnabled,
         MatchmakingGetStatisticsIdentityInvalid,
-        MatchmakingStatisticsIdMissing,
-        CannotEnableMultiplayerServersForTitle
+        MatchmakingBucketOwnerNotFound,
+        MatchmakingCancelAllTicketsUnauthorized,
+        MatchmakingListTicketsUnauthorized,
+        MatchmakingPlayerAttributesTooLarge,
+        MatchmakingNumberOfPlayersInTicketTooLarge,
+        MatchmakingMatchTotalAttributeIsNegative,
+        MatchmakingAttributeTypeInvalid,
+        MatchmakingMatchTotalAttributeTooLarge,
+        MatchmakingMatchTotalAttributeSumTooLarge,
+        MatchmakingTicketUnmatchable,
+        MatchmakingCommonRegionMissing,
+        MatchmakingLatencyMeasurementMissing,
+        MatchmakingStatisticsNotFound,
+        MatchmakingPlayerHasNotJoinedTicket,
+        MatchmakingRateLimitExceeded,
+        MatchmakingTicketMembershipLimitExceeded,
+        TitleConfigNotFound,
+        TitleConfigUpdateConflict,
+        TitleConfigSerializationError,
+        CatalogEntityInvalid,
+        CatalogTitleIdMissing,
+        CatalogPlayerIdMissing,
+        CatalogClientIdentityInvalid,
+        CatalogOneOrMoreFilesInvalid,
+        CatalogItemMetadataInvalid,
+        CatalogItemIdInvalid,
+        CatalogSearchParameterInvalid,
+        CatalogFeatureDisabled,
+        CatalogConfigMissing,
+        CatalogConfigTooManyContentTypes,
+        CatalogConfigContentTypeTooLong,
+        CatalogConfigTooManyTags,
+        CatalogConfigTagTooLong
     }
 
     /** Request has no paramaters. */
@@ -2082,6 +2140,21 @@ public class PlayFabServerModels {
         
     }
 
+    public static class GetPlayFabIDsFromPSNAccountIDsRequest {
+        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        public Integer IssuerId;
+        /** Array of unique PlayStation Network identifiers for which the title needs to get PlayFab identifiers. */
+        public ArrayList<String> PSNAccountIDs;
+        
+    }
+
+    /** For PlayStation Network identifiers which have not been linked to PlayFab accounts, null will be returned. */
+    public static class GetPlayFabIDsFromPSNAccountIDsResult {
+        /** Mapping of PlayStation Network identifiers to PlayFab identifiers. */
+        public ArrayList<PSNAccountPlayFabIdPair> Data;
+        
+    }
+
     public static class GetPlayFabIDsFromSteamIDsRequest {
         /** Array of unique Steam identifiers (Steam profile IDs) for which the title needs to get PlayFab identifiers. */
         public ArrayList<String> SteamStringIDs;
@@ -2243,7 +2316,7 @@ public class PlayFabServerModels {
     }
 
     public static class GetTitleNewsResult {
-        /** Array of news items. */
+        /** Array of localized news items. */
         public ArrayList<TitleNewsItem> News;
         
     }
@@ -2631,12 +2704,6 @@ public class PlayFabServerModels {
         public Boolean CreateAccount;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /**
-         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean LoginTitlePlayerAccountEntity;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
         /** The backend server identifier for this player. */
@@ -2657,12 +2724,6 @@ public class PlayFabServerModels {
         public Boolean CreateAccount;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /**
-         * Formerly triggered an Entity login with a normal client login. This is now automatic, and always-on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean LoginTitlePlayerAccountEntity;
         /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
         public String XboxToken;
         
@@ -3017,6 +3078,14 @@ public class PlayFabServerModels {
         public String StatisticName;
         /** version of the statistic */
         public Long Version;
+        
+    }
+
+    public static class PSNAccountPlayFabIdPair {
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the PlayStation Network identifier. */
+        public String PlayFabId;
+        /** Unique PlayStation Network identifier for a user. */
+        public String PSNAccountId;
         
     }
 
@@ -3685,11 +3754,11 @@ public class PlayFabServerModels {
     }
 
     public static class TitleNewsItem {
-        /** News item text. */
+        /** News item body. */
         public String Body;
         /** Unique identifier of news item. */
         public String NewsId;
-        /** Date and time when the news items was posted. */
+        /** Date and time when the news item was posted. */
         public Date Timestamp;
         /** Title of the news item. */
         public String Title;

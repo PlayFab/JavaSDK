@@ -68,12 +68,28 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class AddLocalizedNewsRequest {
+        /** Localized body text of the news. */
+        public String Body;
+        /** Language of the news item. */
+        public String Language;
+        /** Unique id of the updated news item. */
+        public String NewsId;
+        /** Localized title (headline) of the news item. */
+        public String Title;
+        
+    }
+
+    public static class AddLocalizedNewsResult {
+        
+    }
+
     public static class AddNewsRequest {
-        /** Body text of the news */
+        /** Default body text of the news. */
         public String Body;
         /** Time this news was published. If not set, defaults to now. */
         public Date Timestamp;
-        /** Title (headline) of the news item */
+        /** Default title (headline) of the news item. */
         public String Title;
         
     }
@@ -769,6 +785,20 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class CreateOpenIdConnectionRequest {
+        /** The client ID given by the ID provider. */
+        public String ClientId;
+        /** The client secret given by the ID provider. */
+        public String ClientSecret;
+        /** A name for the connection that identifies it within the title. */
+        public String ConnectionId;
+        /** The issuer URL or discovery document URL to read issuer information from */
+        public String IssuerDiscoveryUrl;
+        /** Manually specified information for an OpenID Connect issuer. */
+        public OpenIdIssuerInformation IssuerInformation;
+        
+    }
+
     /**
      * Player Shared Secret Keys are used for the call to Client/GetTitlePublicKey, which exchanges the shared secret for an
      * RSA CSP blob to be used to encrypt the payload of account creation requests when that API requires a signature header.
@@ -1028,6 +1058,12 @@ public class PlayFabAdminModels {
         public String JobReceiptId;
         /** List of titles from which the player's data will be deleted. */
         public ArrayList<String> TitleIds;
+        
+    }
+
+    public static class DeleteOpenIdConnectionRequest {
+        /** unique name of the connection */
+        public String ConnectionId;
         
     }
 
@@ -1632,13 +1668,37 @@ public class PlayFabAdminModels {
         PushNotificationTemplateMissingDefaultVersion,
         PushNotificationTemplateInvalidSyntax,
         PushNotificationTemplateNoCustomPayloadForV1,
+        NoLeaderboardForStatistic,
+        TitleNewsMissingDefaultLanguage,
+        TitleNewsNotFound,
+        TitleNewsDuplicateLanguage,
+        TitleNewsMissingTitleOrBody,
+        TitleNewsInvalidLanguage,
+        EmailRecipientBlacklisted,
+        InvalidGameCenterAuthRequest,
+        GameCenterAuthenticationFailed,
+        CannotEnablePartiesForTitle,
+        PartyError,
+        PartyRequests,
+        PartyNoContent,
+        PartyBadRequest,
+        PartyUnauthorized,
+        PartyForbidden,
+        PartyNotFound,
+        PartyConflict,
+        PartyInternalServerError,
+        PartyUnavailable,
+        PartyTooManyRequests,
+        PushNotificationTemplateMissingName,
+        CannotEnableMultiplayerServersForTitle,
+        WriteAttemptedDuringExport,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
-        MatchmakingCreateRequestMissing,
-        MatchmakingCreateRequestCreatorMissing,
-        MatchmakingCreateRequestCreatorIdMissing,
-        MatchmakingCreateRequestUserListMissing,
-        MatchmakingCreateRequestGiveUpAfterInvalid,
+        MatchmakingCreateTicketRequestMissing,
+        MatchmakingCreateTicketCreatorMissing,
+        MatchmakingCreateTicketCreatorIdMissing,
+        MatchmakingCreateTicketMemberListMissing,
+        MatchmakingCreateTicketGiveUpAfterInvalid,
         MatchmakingTicketIdMissing,
         MatchmakingMatchIdMissing,
         MatchmakingMatchIdIdMissing,
@@ -1646,30 +1706,60 @@ public class PlayFabAdminModels {
         MatchmakingTitleIdMissing,
         MatchmakingTicketIdIdMissing,
         MatchmakingPlayerIdMissing,
-        MatchmakingJoinRequestUserMissing,
+        MatchmakingJoinTicketPlayerMissing,
         MatchmakingQueueConfigNotFound,
         MatchmakingMatchNotFound,
         MatchmakingTicketNotFound,
         MatchmakingCreateTicketServerIdentityInvalid,
         MatchmakingCreateTicketClientIdentityInvalid,
-        MatchmakingGetTicketUserMismatch,
+        MatchmakingGetTicketPlayerMismatch,
         MatchmakingJoinTicketServerIdentityInvalid,
-        MatchmakingJoinTicketUserIdentityMismatch,
+        MatchmakingJoinTicketPlayerIdentityMismatch,
         MatchmakingCancelTicketServerIdentityInvalid,
-        MatchmakingCancelTicketUserIdentityMismatch,
+        MatchmakingCancelTicketPlayerIdentityMismatch,
         MatchmakingGetMatchIdentityMismatch,
         MatchmakingPlayerIdentityMismatch,
         MatchmakingAlreadyJoinedTicket,
         MatchmakingTicketAlreadyCompleted,
-        MatchmakingQueueNameInvalid,
+        MatchmakingClientTimeout,
         MatchmakingQueueConfigInvalid,
         MatchmakingMemberProfileInvalid,
-        WriteAttemptedDuringExport,
         NintendoSwitchDeviceIdNotLinked,
         MatchmakingNotEnabled,
         MatchmakingGetStatisticsIdentityInvalid,
-        MatchmakingStatisticsIdMissing,
-        CannotEnableMultiplayerServersForTitle
+        MatchmakingBucketOwnerNotFound,
+        MatchmakingCancelAllTicketsUnauthorized,
+        MatchmakingListTicketsUnauthorized,
+        MatchmakingPlayerAttributesTooLarge,
+        MatchmakingNumberOfPlayersInTicketTooLarge,
+        MatchmakingMatchTotalAttributeIsNegative,
+        MatchmakingAttributeTypeInvalid,
+        MatchmakingMatchTotalAttributeTooLarge,
+        MatchmakingMatchTotalAttributeSumTooLarge,
+        MatchmakingTicketUnmatchable,
+        MatchmakingCommonRegionMissing,
+        MatchmakingLatencyMeasurementMissing,
+        MatchmakingStatisticsNotFound,
+        MatchmakingPlayerHasNotJoinedTicket,
+        MatchmakingRateLimitExceeded,
+        MatchmakingTicketMembershipLimitExceeded,
+        TitleConfigNotFound,
+        TitleConfigUpdateConflict,
+        TitleConfigSerializationError,
+        CatalogEntityInvalid,
+        CatalogTitleIdMissing,
+        CatalogPlayerIdMissing,
+        CatalogClientIdentityInvalid,
+        CatalogOneOrMoreFilesInvalid,
+        CatalogItemMetadataInvalid,
+        CatalogItemIdInvalid,
+        CatalogSearchParameterInvalid,
+        CatalogFeatureDisabled,
+        CatalogConfigMissing,
+        CatalogConfigTooManyContentTypes,
+        CatalogConfigContentTypeTooLong,
+        CatalogConfigTooManyTags,
+        CatalogConfigTagTooLong
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {
@@ -2549,6 +2639,16 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class ListOpenIdConnectionRequest {
+        
+    }
+
+    public static class ListOpenIdConnectionResponse {
+        /** The list of Open ID Connections */
+        public ArrayList<OpenIdConnection> Connections;
+        
+    }
+
     public static class ListVirtualCurrencyTypesRequest {
         
     }
@@ -2747,6 +2847,32 @@ public class PlayFabAdminModels {
         public String Id;
         /** Name Identifier, if present */
         public String Name;
+        
+    }
+
+    public static class OpenIdConnection {
+        /** The client ID given by the ID provider. */
+        public String ClientId;
+        /** The client secret given by the ID provider. */
+        public String ClientSecret;
+        /** A name for the connection to identify it within the title. */
+        public String ConnectionId;
+        /** Shows if data about the connection will be loaded from the issuer's discovery document */
+        public Boolean DiscoverConfiguration;
+        /** Information for an OpenID Connect provider. */
+        public OpenIdIssuerInformation IssuerInformation;
+        
+    }
+
+    public static class OpenIdIssuerInformation {
+        /** Authorization endpoint URL to direct users to for signin. */
+        public String AuthorizationUrl;
+        /** The URL of the issuer of the tokens. This must match the exact URL of the issuer field in tokens. */
+        public String Issuer;
+        /** JSON Web Key Set for validating the signature of tokens. */
+        public Object JsonWebKeySet;
+        /** Token endpoint URL for code verification. */
+        public String TokenUrl;
         
     }
 
@@ -3699,6 +3825,20 @@ public class PlayFabAdminModels {
         public Integer Revision;
         /** Cloud Script version updated */
         public Integer Version;
+        
+    }
+
+    public static class UpdateOpenIdConnectionRequest {
+        /** The client ID given by the ID provider. */
+        public String ClientId;
+        /** The client secret given by the ID provider. */
+        public String ClientSecret;
+        /** A name for the connection that identifies it within the title. */
+        public String ConnectionId;
+        /** The issuer URL or discovery document URL to read issuer information from */
+        public String IssuerDiscoveryUrl;
+        /** Manually specified information for an OpenID Connect issuer. */
+        public OpenIdIssuerInformation IssuerInformation;
         
     }
 
