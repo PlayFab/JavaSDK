@@ -63,17 +63,19 @@ public class PlayFabProfilesModels {
     }
 
     public static class EntityProfileBody {
+        /** The creation time of this profile in UTC. */
+        public Date Created;
+        /**
+         * The display name of the entity. This field may serve different purposes for different entity types. i.e.: for a title
+         * player account it could represent the display name of the player, whereas on a character it could be character's name.
+         */
+        public String DisplayName;
         /** The entity id and type. */
         public EntityKey Entity;
         /** The chain of responsibility for this entity. Use Lineage. */
         public String EntityChain;
         /** The files on this profile. */
         public Map<String,EntityProfileFileMetadata> Files;
-        /**
-         * The friendly name of the entity. This field may serve different purposes for different entity types. i.e.: for a title
-         * player account it could represent the display name of the player, whereas on a character it could be character's name.
-         */
-        public String FriendlyName;
         /** The language on this profile. */
         public String Language;
         /** The lineage of this profile. */

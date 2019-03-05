@@ -14,7 +14,7 @@ public class PlayFabMultiplayerModels {
     }
 
     public static class AssetReferenceParams {
-        /** The asset's file name. This must be a filename with the .zip, .tar, or .tar.gz extension. */
+        /** The asset's file name. */
         public String FileName;
         /** The asset's mount path. */
         public String MountPath;
@@ -44,7 +44,9 @@ public class PlayFabMultiplayerModels {
         SouthCentralUs,
         SoutheastAsia,
         WestEurope,
-        WestUs
+        WestUs,
+        ChinaEast2,
+        ChinaNorth2
     }
 
     public static enum AzureVmSize {
@@ -73,6 +75,8 @@ public class PlayFabMultiplayerModels {
     }
 
     public static class BuildRegion {
+        /** The current multiplayer server stats for the region. */
+        public CurrentServerStats CurrentServerStats;
         /** The maximum number of multiplayer servers for the region. */
         public Integer MaxServers;
         /** The build region. */
@@ -296,9 +300,21 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    public static class CurrentServerStats {
+        /** The number of active multiplayer servers. */
+        public Integer Active;
+        /** The number of multiplayer servers still downloading game resources (such as assets). */
+        public Integer Propping;
+        /** The number of standingby multiplayer servers. */
+        public Integer StandingBy;
+        /** The total number of multiplayer servers. */
+        public Integer Total;
+        
+    }
+
     /** Deletes a multiplayer server game asset for a title. */
     public static class DeleteAssetRequest {
-        /** The filename of the asset to delete. This must be a filename with the .zip, .tar, or .tar.gz extension. */
+        /** The filename of the asset to delete. */
         public String FileName;
         
     }
@@ -384,7 +400,7 @@ public class PlayFabMultiplayerModels {
 
     /** Gets the URL to upload assets to. */
     public static class GetAssetUploadUrlRequest {
-        /** The asset's file name to get the upload URL for. This must be a filename with the .zip, .tar, or .tar.gz extension. */
+        /** The asset's file name to get the upload URL for. */
         public String FileName;
         
     }
@@ -392,10 +408,7 @@ public class PlayFabMultiplayerModels {
     public static class GetAssetUploadUrlResponse {
         /** The asset's upload URL. */
         public String AssetUploadUrl;
-        /**
-         * The asset's file name to get the upload URL for. This must be a filename will be a file with the .zip, .tar, or .tar.gz
-         * extension.
-         */
+        /** The asset's file name to get the upload URL for. */
         public String FileName;
         
     }

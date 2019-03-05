@@ -2627,6 +2627,66 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Retrieves the unique PlayFab identifiers for the given set of PlayStation Network identifiers.
+     * @param request GetPlayFabIDsFromPSNAccountIDsRequest
+     * @return Async Task will return GetPlayFabIDsFromPSNAccountIDsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult>> GetPlayFabIDsFromPSNAccountIDsAsync(final GetPlayFabIDsFromPSNAccountIDsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromPSNAccountIDsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of PlayStation Network identifiers.
+     * @param request GetPlayFabIDsFromPSNAccountIDsRequest
+     * @return GetPlayFabIDsFromPSNAccountIDsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult> GetPlayFabIDsFromPSNAccountIDs(final GetPlayFabIDsFromPSNAccountIDsRequest request) {
+        FutureTask<PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromPSNAccountIDsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Retrieves the unique PlayFab identifiers for the given set of PlayStation Network identifiers. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult> privateGetPlayFabIDsFromPSNAccountIDsAsync(final GetPlayFabIDsFromPSNAccountIDsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/GetPlayFabIDsFromPSNAccountIDs"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayFabIDsFromPSNAccountIDsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayFabIDsFromPSNAccountIDsResult>>(){}.getType());
+        GetPlayFabIDsFromPSNAccountIDsResult result = resultData.data;
+
+        PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
      * IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
      * @param request GetPlayFabIDsFromSteamIDsRequest

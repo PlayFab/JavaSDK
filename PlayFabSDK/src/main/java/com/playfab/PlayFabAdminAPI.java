@@ -74,6 +74,66 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Update news item to include localized version
+     * @param request AddLocalizedNewsRequest
+     * @return Async Task will return AddLocalizedNewsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<AddLocalizedNewsResult>> AddLocalizedNewsAsync(final AddLocalizedNewsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<AddLocalizedNewsResult>>() {
+            public PlayFabResult<AddLocalizedNewsResult> call() throws Exception {
+                return privateAddLocalizedNewsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Update news item to include localized version
+     * @param request AddLocalizedNewsRequest
+     * @return AddLocalizedNewsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<AddLocalizedNewsResult> AddLocalizedNews(final AddLocalizedNewsRequest request) {
+        FutureTask<PlayFabResult<AddLocalizedNewsResult>> task = new FutureTask(new Callable<PlayFabResult<AddLocalizedNewsResult>>() {
+            public PlayFabResult<AddLocalizedNewsResult> call() throws Exception {
+                return privateAddLocalizedNewsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Update news item to include localized version */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<AddLocalizedNewsResult> privateAddLocalizedNewsAsync(final AddLocalizedNewsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/AddLocalizedNews"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<AddLocalizedNewsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<AddLocalizedNewsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AddLocalizedNewsResult>>(){}.getType());
+        AddLocalizedNewsResult result = resultData.data;
+
+        PlayFabResult<AddLocalizedNewsResult> pfResult = new PlayFabResult<AddLocalizedNewsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Adds a new news item to the title's news feed
      * @param request AddNewsRequest
      * @return Async Task will return AddNewsResult
@@ -624,6 +684,66 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Registers a relationship between a title and an Open ID Connect provider.
+     * @param request CreateOpenIdConnectionRequest
+     * @return Async Task will return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResponse>> CreateOpenIdConnectionAsync(final CreateOpenIdConnectionRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateCreateOpenIdConnectionAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Registers a relationship between a title and an Open ID Connect provider.
+     * @param request CreateOpenIdConnectionRequest
+     * @return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResponse> CreateOpenIdConnection(final CreateOpenIdConnectionRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateCreateOpenIdConnectionAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Registers a relationship between a title and an Open ID Connect provider. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResponse> privateCreateOpenIdConnectionAsync(final CreateOpenIdConnectionRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/CreateOpenIdConnection"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
+
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Creates a new Player Shared Secret Key. It may take up to 5 minutes for this key to become generally available after
      * this API returns.
      * @param request CreatePlayerSharedSecretRequest
@@ -869,6 +989,66 @@ public class PlayFabAdminAPI {
         DeleteMasterPlayerAccountResult result = resultData.data;
 
         PlayFabResult<DeleteMasterPlayerAccountResult> pfResult = new PlayFabResult<DeleteMasterPlayerAccountResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Removes a relationship between a title and an OpenID Connect provider.
+     * @param request DeleteOpenIdConnectionRequest
+     * @return Async Task will return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResponse>> DeleteOpenIdConnectionAsync(final DeleteOpenIdConnectionRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateDeleteOpenIdConnectionAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Removes a relationship between a title and an OpenID Connect provider.
+     * @param request DeleteOpenIdConnectionRequest
+     * @return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResponse> DeleteOpenIdConnection(final DeleteOpenIdConnectionRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateDeleteOpenIdConnectionAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Removes a relationship between a title and an OpenID Connect provider. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResponse> privateDeleteOpenIdConnectionAsync(final DeleteOpenIdConnectionRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/DeleteOpenIdConnection"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
+
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -3798,6 +3978,66 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Retrieves a list of all Open ID Connect providers registered to a title.
+     * @param request ListOpenIdConnectionRequest
+     * @return Async Task will return ListOpenIdConnectionResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ListOpenIdConnectionResponse>> ListOpenIdConnectionAsync(final ListOpenIdConnectionRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ListOpenIdConnectionResponse>>() {
+            public PlayFabResult<ListOpenIdConnectionResponse> call() throws Exception {
+                return privateListOpenIdConnectionAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves a list of all Open ID Connect providers registered to a title.
+     * @param request ListOpenIdConnectionRequest
+     * @return ListOpenIdConnectionResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ListOpenIdConnectionResponse> ListOpenIdConnection(final ListOpenIdConnectionRequest request) {
+        FutureTask<PlayFabResult<ListOpenIdConnectionResponse>> task = new FutureTask(new Callable<PlayFabResult<ListOpenIdConnectionResponse>>() {
+            public PlayFabResult<ListOpenIdConnectionResponse> call() throws Exception {
+                return privateListOpenIdConnectionAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Retrieves a list of all Open ID Connect providers registered to a title. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ListOpenIdConnectionResponse> privateListOpenIdConnectionAsync(final ListOpenIdConnectionRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/ListOpenIdConnection"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ListOpenIdConnectionResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ListOpenIdConnectionResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListOpenIdConnectionResponse>>(){}.getType());
+        ListOpenIdConnectionResponse result = resultData.data;
+
+        PlayFabResult<ListOpenIdConnectionResponse> pfResult = new PlayFabResult<ListOpenIdConnectionResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the build details for all game server executables which are currently defined for the title
      * @param request ListBuildsRequest
      * @return Async Task will return ListBuildsResult
@@ -5619,6 +5859,66 @@ public class PlayFabAdminAPI {
         UpdateCloudScriptResult result = resultData.data;
 
         PlayFabResult<UpdateCloudScriptResult> pfResult = new PlayFabResult<UpdateCloudScriptResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Modifies data and credentials for an existing relationship between a title and an Open ID Connect provider
+     * @param request UpdateOpenIdConnectionRequest
+     * @return Async Task will return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResponse>> UpdateOpenIdConnectionAsync(final UpdateOpenIdConnectionRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateUpdateOpenIdConnectionAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Modifies data and credentials for an existing relationship between a title and an Open ID Connect provider
+     * @param request UpdateOpenIdConnectionRequest
+     * @return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResponse> UpdateOpenIdConnection(final UpdateOpenIdConnectionRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateUpdateOpenIdConnectionAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Modifies data and credentials for an existing relationship between a title and an Open ID Connect provider */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResponse> privateUpdateOpenIdConnectionAsync(final UpdateOpenIdConnectionRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/UpdateOpenIdConnection"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
+
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
         pfResult.Result = result;
         return pfResult;
     }
