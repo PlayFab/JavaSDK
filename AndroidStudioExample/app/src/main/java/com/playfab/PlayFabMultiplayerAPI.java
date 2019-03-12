@@ -14,6 +14,126 @@ public class PlayFabMultiplayerAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 
     /**
+     * Cancel all active tickets the player is a member of in a given queue.
+     * @param request CancelAllMatchmakingTicketsForPlayerRequest
+     * @return Async Task will return CancelAllMatchmakingTicketsForPlayerResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<CancelAllMatchmakingTicketsForPlayerResult>> CancelAllMatchmakingTicketsForPlayerAsync(final CancelAllMatchmakingTicketsForPlayerRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<CancelAllMatchmakingTicketsForPlayerResult>>() {
+            public PlayFabResult<CancelAllMatchmakingTicketsForPlayerResult> call() throws Exception {
+                return privateCancelAllMatchmakingTicketsForPlayerAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Cancel all active tickets the player is a member of in a given queue.
+     * @param request CancelAllMatchmakingTicketsForPlayerRequest
+     * @return CancelAllMatchmakingTicketsForPlayerResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<CancelAllMatchmakingTicketsForPlayerResult> CancelAllMatchmakingTicketsForPlayer(final CancelAllMatchmakingTicketsForPlayerRequest request) {
+        FutureTask<PlayFabResult<CancelAllMatchmakingTicketsForPlayerResult>> task = new FutureTask(new Callable<PlayFabResult<CancelAllMatchmakingTicketsForPlayerResult>>() {
+            public PlayFabResult<CancelAllMatchmakingTicketsForPlayerResult> call() throws Exception {
+                return privateCancelAllMatchmakingTicketsForPlayerAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Cancel all active tickets the player is a member of in a given queue. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<CancelAllMatchmakingTicketsForPlayerResult> privateCancelAllMatchmakingTicketsForPlayerAsync(final CancelAllMatchmakingTicketsForPlayerRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/CancelAllMatchmakingTicketsForPlayer"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<CancelAllMatchmakingTicketsForPlayerResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<CancelAllMatchmakingTicketsForPlayerResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<CancelAllMatchmakingTicketsForPlayerResult>>(){}.getType());
+        CancelAllMatchmakingTicketsForPlayerResult result = resultData.data;
+
+        PlayFabResult<CancelAllMatchmakingTicketsForPlayerResult> pfResult = new PlayFabResult<CancelAllMatchmakingTicketsForPlayerResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Cancel a matchmaking ticket.
+     * @param request CancelMatchmakingTicketRequest
+     * @return Async Task will return CancelMatchmakingTicketResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<CancelMatchmakingTicketResult>> CancelMatchmakingTicketAsync(final CancelMatchmakingTicketRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<CancelMatchmakingTicketResult>>() {
+            public PlayFabResult<CancelMatchmakingTicketResult> call() throws Exception {
+                return privateCancelMatchmakingTicketAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Cancel a matchmaking ticket.
+     * @param request CancelMatchmakingTicketRequest
+     * @return CancelMatchmakingTicketResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<CancelMatchmakingTicketResult> CancelMatchmakingTicket(final CancelMatchmakingTicketRequest request) {
+        FutureTask<PlayFabResult<CancelMatchmakingTicketResult>> task = new FutureTask(new Callable<PlayFabResult<CancelMatchmakingTicketResult>>() {
+            public PlayFabResult<CancelMatchmakingTicketResult> call() throws Exception {
+                return privateCancelMatchmakingTicketAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Cancel a matchmaking ticket. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<CancelMatchmakingTicketResult> privateCancelMatchmakingTicketAsync(final CancelMatchmakingTicketRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/CancelMatchmakingTicket"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<CancelMatchmakingTicketResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<CancelMatchmakingTicketResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<CancelMatchmakingTicketResult>>(){}.getType());
+        CancelMatchmakingTicketResult result = resultData.data;
+
+        PlayFabResult<CancelMatchmakingTicketResult> pfResult = new PlayFabResult<CancelMatchmakingTicketResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Creates a multiplayer server build with a custom container.
      * @param request CreateBuildWithCustomContainerRequest
      * @return Async Task will return CreateBuildWithCustomContainerResponse
@@ -134,6 +254,66 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * Create a matchmaking ticket as a client.
+     * @param request CreateMatchmakingTicketRequest
+     * @return Async Task will return CreateMatchmakingTicketResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<CreateMatchmakingTicketResult>> CreateMatchmakingTicketAsync(final CreateMatchmakingTicketRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<CreateMatchmakingTicketResult>>() {
+            public PlayFabResult<CreateMatchmakingTicketResult> call() throws Exception {
+                return privateCreateMatchmakingTicketAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Create a matchmaking ticket as a client.
+     * @param request CreateMatchmakingTicketRequest
+     * @return CreateMatchmakingTicketResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<CreateMatchmakingTicketResult> CreateMatchmakingTicket(final CreateMatchmakingTicketRequest request) {
+        FutureTask<PlayFabResult<CreateMatchmakingTicketResult>> task = new FutureTask(new Callable<PlayFabResult<CreateMatchmakingTicketResult>>() {
+            public PlayFabResult<CreateMatchmakingTicketResult> call() throws Exception {
+                return privateCreateMatchmakingTicketAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Create a matchmaking ticket as a client. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<CreateMatchmakingTicketResult> privateCreateMatchmakingTicketAsync(final CreateMatchmakingTicketRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/CreateMatchmakingTicket"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<CreateMatchmakingTicketResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<CreateMatchmakingTicketResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<CreateMatchmakingTicketResult>>(){}.getType());
+        CreateMatchmakingTicketResult result = resultData.data;
+
+        PlayFabResult<CreateMatchmakingTicketResult> pfResult = new PlayFabResult<CreateMatchmakingTicketResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Creates a remote user to log on to a VM for a multiplayer server build.
      * @param request CreateRemoteUserRequest
      * @return Async Task will return CreateRemoteUserResponse
@@ -189,6 +369,71 @@ public class PlayFabMultiplayerAPI {
         CreateRemoteUserResponse result = resultData.data;
 
         PlayFabResult<CreateRemoteUserResponse> pfResult = new PlayFabResult<CreateRemoteUserResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Create a matchmaking ticket as a server. The matchmaking service automatically starts matching the ticket against other
+     * matchmaking tickets.
+     * @param request CreateServerMatchmakingTicketRequest
+     * @return Async Task will return CreateMatchmakingTicketResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<CreateMatchmakingTicketResult>> CreateServerMatchmakingTicketAsync(final CreateServerMatchmakingTicketRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<CreateMatchmakingTicketResult>>() {
+            public PlayFabResult<CreateMatchmakingTicketResult> call() throws Exception {
+                return privateCreateServerMatchmakingTicketAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Create a matchmaking ticket as a server. The matchmaking service automatically starts matching the ticket against other
+     * matchmaking tickets.
+     * @param request CreateServerMatchmakingTicketRequest
+     * @return CreateMatchmakingTicketResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<CreateMatchmakingTicketResult> CreateServerMatchmakingTicket(final CreateServerMatchmakingTicketRequest request) {
+        FutureTask<PlayFabResult<CreateMatchmakingTicketResult>> task = new FutureTask(new Callable<PlayFabResult<CreateMatchmakingTicketResult>>() {
+            public PlayFabResult<CreateMatchmakingTicketResult> call() throws Exception {
+                return privateCreateServerMatchmakingTicketAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Create a matchmaking ticket as a server. The matchmaking service automatically starts matching the ticket against other
+     * matchmaking tickets.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<CreateMatchmakingTicketResult> privateCreateServerMatchmakingTicketAsync(final CreateServerMatchmakingTicketRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/CreateServerMatchmakingTicket"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<CreateMatchmakingTicketResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<CreateMatchmakingTicketResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<CreateMatchmakingTicketResult>>(){}.getType());
+        CreateMatchmakingTicketResult result = resultData.data;
+
+        PlayFabResult<CreateMatchmakingTicketResult> pfResult = new PlayFabResult<CreateMatchmakingTicketResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -674,6 +919,186 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * Get a match.
+     * @param request GetMatchRequest
+     * @return Async Task will return GetMatchResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetMatchResult>> GetMatchAsync(final GetMatchRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetMatchResult>>() {
+            public PlayFabResult<GetMatchResult> call() throws Exception {
+                return privateGetMatchAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Get a match.
+     * @param request GetMatchRequest
+     * @return GetMatchResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetMatchResult> GetMatch(final GetMatchRequest request) {
+        FutureTask<PlayFabResult<GetMatchResult>> task = new FutureTask(new Callable<PlayFabResult<GetMatchResult>>() {
+            public PlayFabResult<GetMatchResult> call() throws Exception {
+                return privateGetMatchAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Get a match. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetMatchResult> privateGetMatchAsync(final GetMatchRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/GetMatch"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetMatchResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetMatchResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetMatchResult>>(){}.getType());
+        GetMatchResult result = resultData.data;
+
+        PlayFabResult<GetMatchResult> pfResult = new PlayFabResult<GetMatchResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Get a matchmaking queue configuration.
+     * @param request GetMatchmakingQueueRequest
+     * @return Async Task will return GetMatchmakingQueueResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetMatchmakingQueueResult>> GetMatchmakingQueueAsync(final GetMatchmakingQueueRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetMatchmakingQueueResult>>() {
+            public PlayFabResult<GetMatchmakingQueueResult> call() throws Exception {
+                return privateGetMatchmakingQueueAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Get a matchmaking queue configuration.
+     * @param request GetMatchmakingQueueRequest
+     * @return GetMatchmakingQueueResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetMatchmakingQueueResult> GetMatchmakingQueue(final GetMatchmakingQueueRequest request) {
+        FutureTask<PlayFabResult<GetMatchmakingQueueResult>> task = new FutureTask(new Callable<PlayFabResult<GetMatchmakingQueueResult>>() {
+            public PlayFabResult<GetMatchmakingQueueResult> call() throws Exception {
+                return privateGetMatchmakingQueueAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Get a matchmaking queue configuration. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetMatchmakingQueueResult> privateGetMatchmakingQueueAsync(final GetMatchmakingQueueRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/GetMatchmakingQueue"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetMatchmakingQueueResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetMatchmakingQueueResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetMatchmakingQueueResult>>(){}.getType());
+        GetMatchmakingQueueResult result = resultData.data;
+
+        PlayFabResult<GetMatchmakingQueueResult> pfResult = new PlayFabResult<GetMatchmakingQueueResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Get a matchmaking ticket by ticket Id.
+     * @param request GetMatchmakingTicketRequest
+     * @return Async Task will return GetMatchmakingTicketResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetMatchmakingTicketResult>> GetMatchmakingTicketAsync(final GetMatchmakingTicketRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetMatchmakingTicketResult>>() {
+            public PlayFabResult<GetMatchmakingTicketResult> call() throws Exception {
+                return privateGetMatchmakingTicketAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Get a matchmaking ticket by ticket Id.
+     * @param request GetMatchmakingTicketRequest
+     * @return GetMatchmakingTicketResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetMatchmakingTicketResult> GetMatchmakingTicket(final GetMatchmakingTicketRequest request) {
+        FutureTask<PlayFabResult<GetMatchmakingTicketResult>> task = new FutureTask(new Callable<PlayFabResult<GetMatchmakingTicketResult>>() {
+            public PlayFabResult<GetMatchmakingTicketResult> call() throws Exception {
+                return privateGetMatchmakingTicketAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Get a matchmaking ticket by ticket Id. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetMatchmakingTicketResult> privateGetMatchmakingTicketAsync(final GetMatchmakingTicketRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/GetMatchmakingTicket"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetMatchmakingTicketResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetMatchmakingTicketResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetMatchmakingTicketResult>>(){}.getType());
+        GetMatchmakingTicketResult result = resultData.data;
+
+        PlayFabResult<GetMatchmakingTicketResult> pfResult = new PlayFabResult<GetMatchmakingTicketResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Gets multiplayer server session details for a build.
      * @param request GetMultiplayerServerDetailsRequest
      * @return Async Task will return GetMultiplayerServerDetailsResponse
@@ -729,6 +1154,66 @@ public class PlayFabMultiplayerAPI {
         GetMultiplayerServerDetailsResponse result = resultData.data;
 
         PlayFabResult<GetMultiplayerServerDetailsResponse> pfResult = new PlayFabResult<GetMultiplayerServerDetailsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Get the statistics for a queue.
+     * @param request GetQueueStatisticsRequest
+     * @return Async Task will return GetQueueStatisticsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetQueueStatisticsResult>> GetQueueStatisticsAsync(final GetQueueStatisticsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetQueueStatisticsResult>>() {
+            public PlayFabResult<GetQueueStatisticsResult> call() throws Exception {
+                return privateGetQueueStatisticsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Get the statistics for a queue.
+     * @param request GetQueueStatisticsRequest
+     * @return GetQueueStatisticsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetQueueStatisticsResult> GetQueueStatistics(final GetQueueStatisticsRequest request) {
+        FutureTask<PlayFabResult<GetQueueStatisticsResult>> task = new FutureTask(new Callable<PlayFabResult<GetQueueStatisticsResult>>() {
+            public PlayFabResult<GetQueueStatisticsResult> call() throws Exception {
+                return privateGetQueueStatisticsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Get the statistics for a queue. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetQueueStatisticsResult> privateGetQueueStatisticsAsync(final GetQueueStatisticsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/GetQueueStatistics"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetQueueStatisticsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetQueueStatisticsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetQueueStatisticsResult>>(){}.getType());
+        GetQueueStatisticsResult result = resultData.data;
+
+        PlayFabResult<GetQueueStatisticsResult> pfResult = new PlayFabResult<GetQueueStatisticsResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -849,6 +1334,66 @@ public class PlayFabMultiplayerAPI {
         GetTitleEnabledForMultiplayerServersStatusResponse result = resultData.data;
 
         PlayFabResult<GetTitleEnabledForMultiplayerServersStatusResponse> pfResult = new PlayFabResult<GetTitleEnabledForMultiplayerServersStatusResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Join a matchmaking ticket.
+     * @param request JoinMatchmakingTicketRequest
+     * @return Async Task will return JoinMatchmakingTicketResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<JoinMatchmakingTicketResult>> JoinMatchmakingTicketAsync(final JoinMatchmakingTicketRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<JoinMatchmakingTicketResult>>() {
+            public PlayFabResult<JoinMatchmakingTicketResult> call() throws Exception {
+                return privateJoinMatchmakingTicketAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Join a matchmaking ticket.
+     * @param request JoinMatchmakingTicketRequest
+     * @return JoinMatchmakingTicketResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<JoinMatchmakingTicketResult> JoinMatchmakingTicket(final JoinMatchmakingTicketRequest request) {
+        FutureTask<PlayFabResult<JoinMatchmakingTicketResult>> task = new FutureTask(new Callable<PlayFabResult<JoinMatchmakingTicketResult>>() {
+            public PlayFabResult<JoinMatchmakingTicketResult> call() throws Exception {
+                return privateJoinMatchmakingTicketAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Join a matchmaking ticket. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<JoinMatchmakingTicketResult> privateJoinMatchmakingTicketAsync(final JoinMatchmakingTicketRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/JoinMatchmakingTicket"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<JoinMatchmakingTicketResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<JoinMatchmakingTicketResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<JoinMatchmakingTicketResult>>(){}.getType());
+        JoinMatchmakingTicketResult result = resultData.data;
+
+        PlayFabResult<JoinMatchmakingTicketResult> pfResult = new PlayFabResult<JoinMatchmakingTicketResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -1214,6 +1759,126 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * List all matchmaking queue configs.
+     * @param request ListMatchmakingQueuesRequest
+     * @return Async Task will return ListMatchmakingQueuesResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ListMatchmakingQueuesResult>> ListMatchmakingQueuesAsync(final ListMatchmakingQueuesRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ListMatchmakingQueuesResult>>() {
+            public PlayFabResult<ListMatchmakingQueuesResult> call() throws Exception {
+                return privateListMatchmakingQueuesAsync(request);
+            }
+        });
+    }
+
+    /**
+     * List all matchmaking queue configs.
+     * @param request ListMatchmakingQueuesRequest
+     * @return ListMatchmakingQueuesResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ListMatchmakingQueuesResult> ListMatchmakingQueues(final ListMatchmakingQueuesRequest request) {
+        FutureTask<PlayFabResult<ListMatchmakingQueuesResult>> task = new FutureTask(new Callable<PlayFabResult<ListMatchmakingQueuesResult>>() {
+            public PlayFabResult<ListMatchmakingQueuesResult> call() throws Exception {
+                return privateListMatchmakingQueuesAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** List all matchmaking queue configs. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ListMatchmakingQueuesResult> privateListMatchmakingQueuesAsync(final ListMatchmakingQueuesRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/ListMatchmakingQueues"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ListMatchmakingQueuesResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ListMatchmakingQueuesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListMatchmakingQueuesResult>>(){}.getType());
+        ListMatchmakingQueuesResult result = resultData.data;
+
+        PlayFabResult<ListMatchmakingQueuesResult> pfResult = new PlayFabResult<ListMatchmakingQueuesResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * List all matchmaking ticket Ids the user is a member of.
+     * @param request ListMatchmakingTicketsForPlayerRequest
+     * @return Async Task will return ListMatchmakingTicketsForPlayerResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ListMatchmakingTicketsForPlayerResult>> ListMatchmakingTicketsForPlayerAsync(final ListMatchmakingTicketsForPlayerRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ListMatchmakingTicketsForPlayerResult>>() {
+            public PlayFabResult<ListMatchmakingTicketsForPlayerResult> call() throws Exception {
+                return privateListMatchmakingTicketsForPlayerAsync(request);
+            }
+        });
+    }
+
+    /**
+     * List all matchmaking ticket Ids the user is a member of.
+     * @param request ListMatchmakingTicketsForPlayerRequest
+     * @return ListMatchmakingTicketsForPlayerResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ListMatchmakingTicketsForPlayerResult> ListMatchmakingTicketsForPlayer(final ListMatchmakingTicketsForPlayerRequest request) {
+        FutureTask<PlayFabResult<ListMatchmakingTicketsForPlayerResult>> task = new FutureTask(new Callable<PlayFabResult<ListMatchmakingTicketsForPlayerResult>>() {
+            public PlayFabResult<ListMatchmakingTicketsForPlayerResult> call() throws Exception {
+                return privateListMatchmakingTicketsForPlayerAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** List all matchmaking ticket Ids the user is a member of. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ListMatchmakingTicketsForPlayerResult> privateListMatchmakingTicketsForPlayerAsync(final ListMatchmakingTicketsForPlayerRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/ListMatchmakingTicketsForPlayer"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ListMatchmakingTicketsForPlayerResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ListMatchmakingTicketsForPlayerResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListMatchmakingTicketsForPlayerResult>>(){}.getType());
+        ListMatchmakingTicketsForPlayerResult result = resultData.data;
+
+        PlayFabResult<ListMatchmakingTicketsForPlayerResult> pfResult = new PlayFabResult<ListMatchmakingTicketsForPlayerResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Lists multiplayer server sessions for a build.
      * @param request ListMultiplayerServersRequest
      * @return Async Task will return ListMultiplayerServersResponse
@@ -1393,6 +2058,66 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * Remove a matchmaking queue config.
+     * @param request RemoveMatchmakingQueueRequest
+     * @return Async Task will return RemoveMatchmakingQueueResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RemoveMatchmakingQueueResult>> RemoveMatchmakingQueueAsync(final RemoveMatchmakingQueueRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RemoveMatchmakingQueueResult>>() {
+            public PlayFabResult<RemoveMatchmakingQueueResult> call() throws Exception {
+                return privateRemoveMatchmakingQueueAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Remove a matchmaking queue config.
+     * @param request RemoveMatchmakingQueueRequest
+     * @return RemoveMatchmakingQueueResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RemoveMatchmakingQueueResult> RemoveMatchmakingQueue(final RemoveMatchmakingQueueRequest request) {
+        FutureTask<PlayFabResult<RemoveMatchmakingQueueResult>> task = new FutureTask(new Callable<PlayFabResult<RemoveMatchmakingQueueResult>>() {
+            public PlayFabResult<RemoveMatchmakingQueueResult> call() throws Exception {
+                return privateRemoveMatchmakingQueueAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Remove a matchmaking queue config. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RemoveMatchmakingQueueResult> privateRemoveMatchmakingQueueAsync(final RemoveMatchmakingQueueRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/RemoveMatchmakingQueue"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RemoveMatchmakingQueueResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RemoveMatchmakingQueueResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RemoveMatchmakingQueueResult>>(){}.getType());
+        RemoveMatchmakingQueueResult result = resultData.data;
+
+        PlayFabResult<RemoveMatchmakingQueueResult> pfResult = new PlayFabResult<RemoveMatchmakingQueueResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Request a multiplayer server session. Accepts tokens for title and if game client accesss is enabled, allows game client
      * to request a server with player entity token.
      * @param request RequestMultiplayerServerRequest
@@ -1513,6 +2238,66 @@ public class PlayFabMultiplayerAPI {
         RolloverContainerRegistryCredentialsResponse result = resultData.data;
 
         PlayFabResult<RolloverContainerRegistryCredentialsResponse> pfResult = new PlayFabResult<RolloverContainerRegistryCredentialsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Create or update a matchmaking queue configuration.
+     * @param request SetMatchmakingQueueRequest
+     * @return Async Task will return SetMatchmakingQueueResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<SetMatchmakingQueueResult>> SetMatchmakingQueueAsync(final SetMatchmakingQueueRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<SetMatchmakingQueueResult>>() {
+            public PlayFabResult<SetMatchmakingQueueResult> call() throws Exception {
+                return privateSetMatchmakingQueueAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Create or update a matchmaking queue configuration.
+     * @param request SetMatchmakingQueueRequest
+     * @return SetMatchmakingQueueResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<SetMatchmakingQueueResult> SetMatchmakingQueue(final SetMatchmakingQueueRequest request) {
+        FutureTask<PlayFabResult<SetMatchmakingQueueResult>> task = new FutureTask(new Callable<PlayFabResult<SetMatchmakingQueueResult>>() {
+            public PlayFabResult<SetMatchmakingQueueResult> call() throws Exception {
+                return privateSetMatchmakingQueueAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Create or update a matchmaking queue configuration. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<SetMatchmakingQueueResult> privateSetMatchmakingQueueAsync(final SetMatchmakingQueueRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/SetMatchmakingQueue"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<SetMatchmakingQueueResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<SetMatchmakingQueueResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetMatchmakingQueueResult>>(){}.getType());
+        SetMatchmakingQueueResult result = resultData.data;
+
+        PlayFabResult<SetMatchmakingQueueResult> pfResult = new PlayFabResult<SetMatchmakingQueueResult>();
         pfResult.Result = result;
         return pfResult;
     }
