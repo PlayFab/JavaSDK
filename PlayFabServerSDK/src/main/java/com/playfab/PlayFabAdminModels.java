@@ -792,7 +792,12 @@ public class PlayFabAdminModels {
         public String ClientSecret;
         /** A name for the connection that identifies it within the title. */
         public String ConnectionId;
-        /** The issuer URL or discovery document URL to read issuer information from */
+        /**
+         * The discovery document URL to read issuer information from. This must be the absolute URL to the JSON OpenId
+         * Configuration document and must be accessible from the internet. If you don't know it, try your issuer URL followed by
+         * "/.well-known/openid-configuration". For example, if the issuer is https://example.com, try
+         * https://example.com/.well-known/openid-configuration
+         */
         public String IssuerDiscoveryUrl;
         /** Manually specified information for an OpenID Connect issuer. */
         public OpenIdIssuerInformation IssuerInformation;
@@ -1648,8 +1653,7 @@ public class PlayFabAdminModels {
         EntityProfileConstraintValidationFailed,
         TelemetryIngestionKeyPending,
         TelemetryIngestionKeyNotFound,
-        StatisticTagRequired,
-        StatisticTagInvalid,
+        StatisticChildNameInvalid,
         DataIntegrityError,
         VirtualCurrencyCannotBeSetToOlderVersion,
         VirtualCurrencyMustBeWithinIntegerRange,
@@ -1692,57 +1696,25 @@ public class PlayFabAdminModels {
         PushNotificationTemplateMissingName,
         CannotEnableMultiplayerServersForTitle,
         WriteAttemptedDuringExport,
+        MultiplayerServerTitleQuotaCoresExceeded,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
-        MatchmakingCreateTicketRequestMissing,
-        MatchmakingCreateTicketCreatorMissing,
-        MatchmakingCreateTicketCreatorIdMissing,
-        MatchmakingCreateTicketMemberListMissing,
-        MatchmakingCreateTicketGiveUpAfterInvalid,
-        MatchmakingTicketIdMissing,
-        MatchmakingMatchIdMissing,
-        MatchmakingMatchIdIdMissing,
-        MatchmakingQueueNameMissing,
-        MatchmakingTitleIdMissing,
-        MatchmakingTicketIdIdMissing,
-        MatchmakingPlayerIdMissing,
-        MatchmakingJoinTicketPlayerMissing,
-        MatchmakingQueueConfigNotFound,
+        MatchmakingQueueNotFound,
         MatchmakingMatchNotFound,
         MatchmakingTicketNotFound,
-        MatchmakingCreateTicketServerIdentityInvalid,
-        MatchmakingCreateTicketClientIdentityInvalid,
-        MatchmakingGetTicketPlayerMismatch,
-        MatchmakingJoinTicketServerIdentityInvalid,
-        MatchmakingJoinTicketPlayerIdentityMismatch,
-        MatchmakingCancelTicketServerIdentityInvalid,
-        MatchmakingCancelTicketPlayerIdentityMismatch,
-        MatchmakingGetMatchIdentityMismatch,
-        MatchmakingPlayerIdentityMismatch,
         MatchmakingAlreadyJoinedTicket,
         MatchmakingTicketAlreadyCompleted,
-        MatchmakingClientTimeout,
         MatchmakingQueueConfigInvalid,
         MatchmakingMemberProfileInvalid,
         NintendoSwitchDeviceIdNotLinked,
         MatchmakingNotEnabled,
-        MatchmakingGetStatisticsIdentityInvalid,
-        MatchmakingBucketOwnerNotFound,
-        MatchmakingCancelAllTicketsUnauthorized,
-        MatchmakingListTicketsUnauthorized,
         MatchmakingPlayerAttributesTooLarge,
         MatchmakingNumberOfPlayersInTicketTooLarge,
-        MatchmakingMatchTotalAttributeIsNegative,
-        MatchmakingAttributeTypeInvalid,
-        MatchmakingMatchTotalAttributeTooLarge,
-        MatchmakingMatchTotalAttributeSumTooLarge,
-        MatchmakingTicketUnmatchable,
-        MatchmakingCommonRegionMissing,
-        MatchmakingLatencyMeasurementMissing,
-        MatchmakingStatisticsNotFound,
+        MatchmakingAttributeInvalid,
         MatchmakingPlayerHasNotJoinedTicket,
         MatchmakingRateLimitExceeded,
         MatchmakingTicketMembershipLimitExceeded,
+        MatchmakingUnauthorized,
         TitleConfigNotFound,
         TitleConfigUpdateConflict,
         TitleConfigSerializationError,
@@ -1759,7 +1731,14 @@ public class PlayFabAdminModels {
         CatalogConfigTooManyContentTypes,
         CatalogConfigContentTypeTooLong,
         CatalogConfigTooManyTags,
-        CatalogConfigTagTooLong
+        CatalogConfigTagTooLong,
+        ExportInvalidStatusUpdate,
+        ExportInvalidPrefix,
+        ExportBlobContainerDoesNotExist,
+        ExportEventNameNotFound,
+        ExportExportTitleIdNotFound,
+        ExportCouldNotUpdate,
+        ExportInvalidStorageType
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {
