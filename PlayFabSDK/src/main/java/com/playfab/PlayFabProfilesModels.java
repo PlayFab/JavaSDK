@@ -87,6 +87,8 @@ public class PlayFabProfilesModels {
          * profile, not global statements from titles and namespaces.
          */
         public ArrayList<EntityPermissionStatement> Permissions;
+        /** The statistics on this profile. */
+        public Map<String,EntityStatisticValue> Statistics;
         /**
          * The version number of the profile in persistent storage at the time of the read. Used for optional optimistic
          * concurrency during update.
@@ -105,6 +107,30 @@ public class PlayFabProfilesModels {
         public Date LastModified;
         /** Storage service's reported byte count */
         public Integer Size;
+        
+    }
+
+    public static class EntityStatisticChildValue {
+        /** Child name value, if child statistic */
+        public String ChildName;
+        /** Child statistic metadata */
+        public String Metadata;
+        /** Child statistic value */
+        public Integer Value;
+        
+    }
+
+    public static class EntityStatisticValue {
+        /** Child statistic values */
+        public Map<String,EntityStatisticChildValue> ChildStatistics;
+        /** Statistic metadata */
+        public String Metadata;
+        /** Statistic name */
+        public String Name;
+        /** Statistic value */
+        public Integer Value;
+        /** Statistic version */
+        public Integer Version;
         
     }
 

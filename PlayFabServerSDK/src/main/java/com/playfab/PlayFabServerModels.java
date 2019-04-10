@@ -107,8 +107,7 @@ public class PlayFabServerModels {
     /**
      * Note that data returned may be Personally Identifying Information (PII), such as email address, and so care should be
      * taken in how this data is stored and managed. Since this call will always return the relevant information for users who
-     * have accessed
-     * the title, the recommendation is to not store this data locally.
+     * have accessed the title, the recommendation is to not store this data locally.
      */
     public static class AuthenticateSessionTicketRequest {
         /** Session ticket as issued by a PlayFab client login API. */
@@ -665,9 +664,8 @@ public class PlayFabServerModels {
     }
 
     /**
-     * If SharedGroupId is specified, the service will attempt to create a group with that
-     * identifier, and will return an error if it is already in use. If no SharedGroupId is specified, a random identifier will
-     * be assigned.
+     * If SharedGroupId is specified, the service will attempt to create a group with that identifier, and will return an error
+     * if it is already in use. If no SharedGroupId is specified, a random identifier will be assigned.
      */
     public static class CreateSharedGroupRequest {
         /** Unique identifier for the shared group (a random identifier will be assigned, if one is not specified). */
@@ -847,9 +845,9 @@ public class PlayFabServerModels {
     }
 
     /**
-     * This function will delete the specified character from the list allowed by the user, and
-     * will also delete any inventory or VC currently held by that character. It will NOT delete any statistics
-     * associated for this character, in order to preserve leaderboard integrity.
+     * This function will delete the specified character from the list allowed by the user, and will also delete any inventory
+     * or VC currently held by that character. It will NOT delete any statistics associated for this character, in order to
+     * preserve leaderboard integrity.
      */
     public static class DeleteCharacterFromUserRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
@@ -870,17 +868,13 @@ public class PlayFabServerModels {
 
     /**
      * Deletes all data associated with the player, including statistics, custom data, inventory, purchases, virtual currency
-     * balances,
-     * characters and shared group memberships. Removes the player from all leaderboards and player search
-     * indexes. Does not delete PlayStream event history associated with the player.
-     * Does not delete the publisher user account that created the player in the title nor associated data
-     * such as username, password, email address, account linkages, or friends list.
-     * Note, this API queues the player for deletion and returns immediately. It may take several minutes
-     * or more before all player data is fully deleted.
-     * Until the player data is fully deleted, attempts to recreate the player with the same user account
-     * in the same title will fail with the 'AccountDeleted' error.
-     * This API must be enabled for use as an option in the game manager website. It is disabled by
-     * default.
+     * balances, characters and shared group memberships. Removes the player from all leaderboards and player search indexes.
+     * Does not delete PlayStream event history associated with the player. Does not delete the publisher user account that
+     * created the player in the title nor associated data such as username, password, email address, account linkages, or
+     * friends list. Note, this API queues the player for deletion and returns immediately. It may take several minutes or more
+     * before all player data is fully deleted. Until the player data is fully deleted, attempts to recreate the player with
+     * the same user account in the same title will fail with the 'AccountDeleted' error. This API must be enabled for use as
+     * an option in the game manager website. It is disabled by default.
      */
     public static class DeletePlayerRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -1036,12 +1030,6 @@ public class PlayFabServerModels {
     }
 
     public static class FriendInfo {
-        /**
-         * This field is not populated.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public String CurrentMatchmakerLobbyId;
         /** Available Facebook information (if the user and PlayFab friend are also connected in Facebook). */
         public UserFacebookInfo FacebookInfo;
         /** PlayFab unique identifier for this friend. */
@@ -1506,6 +1494,7 @@ public class PlayFabServerModels {
         CannotEnableMultiplayerServersForTitle,
         WriteAttemptedDuringExport,
         MultiplayerServerTitleQuotaCoresExceeded,
+        AutomationRuleNotFound,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1524,6 +1513,7 @@ public class PlayFabServerModels {
         MatchmakingRateLimitExceeded,
         MatchmakingTicketMembershipLimitExceeded,
         MatchmakingUnauthorized,
+        MatchmakingQueueLimitExceeded,
         TitleConfigNotFound,
         TitleConfigUpdateConflict,
         TitleConfigSerializationError,
@@ -1541,13 +1531,27 @@ public class PlayFabServerModels {
         CatalogConfigContentTypeTooLong,
         CatalogConfigTooManyTags,
         CatalogConfigTagTooLong,
+        CatalogConfigInvalidDeepLinkObject,
+        CatalogConfigInvalidDeepLinkPlatform,
+        CatalogConfigInvalidDeepLinkFormat,
+        CatalogConfigInvalidDisplayPropertyObject,
+        CatalogConfigInvalidDisplayPropertyName,
+        CatalogConfigInvalidDisplayPropertyType,
+        CatalogConfigDisplayPropertyMappingLimit,
         ExportInvalidStatusUpdate,
         ExportInvalidPrefix,
         ExportBlobContainerDoesNotExist,
         ExportEventNameNotFound,
         ExportExportTitleIdNotFound,
         ExportCouldNotUpdate,
-        ExportInvalidStorageType
+        ExportInvalidStorageType,
+        ExportAmazonBucketDoesNotExist,
+        ExportInvalidBlobStorage,
+        ExportKustoException,
+        ExportKustoExceptionNew_SomeResources,
+        ExportKustoExceptionEdit,
+        ExportKustoConnectionFailed,
+        ExportUnknownError
     }
 
     /** Request has no paramaters. */
@@ -1575,9 +1579,8 @@ public class PlayFabServerModels {
     }
 
     /**
-     * Data is stored as JSON key-value pairs. If the Keys parameter is provided,
-     * the data object returned will only contain the data specific to the indicated Keys. Otherwise, the full set
-     * of custom user data will be returned.
+     * Data is stored as JSON key-value pairs. If the Keys parameter is provided, the data object returned will only contain
+     * the data specific to the indicated Keys. Otherwise, the full set of custom user data will be returned.
      */
     public static class GetCharacterDataRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
@@ -1610,10 +1613,9 @@ public class PlayFabServerModels {
     }
 
     /**
-     * All items currently in the character inventory will be returned, irrespective of how they were acquired
-     * (via purchasing, grants, coupons, etc.). Items that are expired, fully consumed, or are no longer valid are not
-     * considered to be
-     * in the user's current inventory, and so will not be not included. Also returns their virtual currency balances.
+     * All items currently in the character inventory will be returned, irrespective of how they were acquired (via purchasing,
+     * grants, coupons, etc.). Items that are expired, fully consumed, or are no longer valid are not considered to be in the
+     * user's current inventory, and so will not be not included. Also returns their virtual currency balances.
      */
     public static class GetCharacterInventoryRequest {
         /** Used to limit results to only those from a specific catalog version. */
@@ -1660,9 +1662,9 @@ public class PlayFabServerModels {
     }
 
     /**
-     * Character statistics are similar to user statistics in that they are numeric values which
-     * may only be updated by a server operation, in order to minimize the opportunity for unauthorized changes. In addition to
-     * being available for use by the title, the statistics are used for all leaderboard operations in PlayFab.
+     * Character statistics are similar to user statistics in that they are numeric values which may only be updated by a
+     * server operation, in order to minimize the opportunity for unauthorized changes. In addition to being available for use
+     * by the title, the statistics are used for all leaderboard operations in PlayFab.
      */
     public static class GetCharacterStatisticsRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
@@ -1871,7 +1873,7 @@ public class PlayFabServerModels {
         public Boolean GetCharacterInventories;
         /** Whether to get the list of characters. Defaults to false. */
         public Boolean GetCharacterList;
-        /** Whether to get player profile. Defaults to false. */
+        /** Whether to get player profile. Defaults to false. Has no effect for a new player. */
         public Boolean GetPlayerProfile;
         /** Whether to get player statistics. Defaults to false. */
         public Boolean GetPlayerStatistics;
@@ -1946,12 +1948,10 @@ public class PlayFabServerModels {
     }
 
     /**
-     * This API allows for access to details regarding a user in the PlayFab service, usually for purposes of
-     * customer support. Note that data returned may be Personally Identifying Information (PII), such as email address, and so
-     * care should be
+     * This API allows for access to details regarding a user in the PlayFab service, usually for purposes of customer support.
+     * Note that data returned may be Personally Identifying Information (PII), such as email address, and so care should be
      * taken in how this data is stored and managed. Since this call will always return the relevant information for users who
-     * have accessed
-     * the title, the recommendation is to not store this data locally.
+     * have accessed the title, the recommendation is to not store this data locally.
      */
     public static class GetPlayerProfileRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -2159,12 +2159,9 @@ public class PlayFabServerModels {
 
     /**
      * This API is designed to return publisher-specific values which can be read, but not written to, by the client. This data
-     * is shared across all
-     * titles assigned to a particular publisher, and can be used for cross-game coordination. Only titles assigned to a
-     * publisher can use this API.
-     * For more information email devrel@playfab.com. Note that there may up to a minute delay in between updating title data
-     * and this API call returning
-     * the newest value.
+     * is shared across all titles assigned to a particular publisher, and can be used for cross-game coordination. Only titles
+     * assigned to a publisher can use this API. For more information email devrel@playfab.com. Note that there may up to a
+     * minute delay in between updating title data and this API call returning the newest value.
      */
     public static class GetPublisherDataRequest {
         /** array of keys to get back data from the Publisher data blob, set by the admin tools */
@@ -2248,8 +2245,7 @@ public class PlayFabServerModels {
 
     /**
      * This query retrieves the current time from one of the servers in PlayFab. Please note that due to clock drift between
-     * servers,
-     * there is a potential variance of up to 5 seconds.
+     * servers, there is a potential variance of up to 5 seconds.
      */
     public static class GetTimeRequest {
         
@@ -2264,12 +2260,10 @@ public class PlayFabServerModels {
 
     /**
      * This API is designed to return title specific values which can be read, but not written to, by the client. For example,
-     * a developer
-     * could choose to store values which modify the user experience, such as enemy spawn rates, weapon strengths, movement
-     * speeds, etc. This allows a developer to update
-     * the title without the need to create, test, and ship a new build. Note that there may up to a minute delay in between
-     * updating title data and this API call returning
-     * the newest value.
+     * a developer could choose to store values which modify the user experience, such as enemy spawn rates, weapon strengths,
+     * movement speeds, etc. This allows a developer to update the title without the need to create, test, and ship a new
+     * build. Note that there may up to a minute delay in between updating title data and this API call returning the newest
+     * value.
      */
     public static class GetTitleDataRequest {
         /** Specific keys to search for in the title data (leave null to get all keys) */
@@ -2296,12 +2290,10 @@ public class PlayFabServerModels {
     }
 
     /**
-     * This API allows for access to details regarding a user in the PlayFab service, usually for purposes of
-     * customer support. Note that data returned may be Personally Identifying Information (PII), such as email address, and so
-     * care should be
+     * This API allows for access to details regarding a user in the PlayFab service, usually for purposes of customer support.
+     * Note that data returned may be Personally Identifying Information (PII), such as email address, and so care should be
      * taken in how this data is stored and managed. Since this call will always return the relevant information for users who
-     * have accessed
-     * the title, the recommendation is to not store this data locally.
+     * have accessed the title, the recommendation is to not store this data locally.
      */
     public static class GetUserAccountInfoRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -2329,10 +2321,8 @@ public class PlayFabServerModels {
     }
 
     /**
-     * Data is stored as JSON key-value pairs. If the Keys parameter is provided,
-     * the data object returned will only contain the data specific to the indicated Keys. Otherwise, the full set of custom
-     * user
-     * data will be returned.
+     * Data is stored as JSON key-value pairs. If the Keys parameter is provided, the data object returned will only contain
+     * the data specific to the indicated Keys. Otherwise, the full set of custom user data will be returned.
      */
     public static class GetUserDataRequest {
         /**
@@ -2361,10 +2351,9 @@ public class PlayFabServerModels {
     }
 
     /**
-     * All items currently in the user inventory will be returned, irrespective of how they were acquired
-     * (via purchasing, grants, coupons, etc.). Items that are expired, fully consumed, or are no longer valid are not
-     * considered to be
-     * in the user's current inventory, and so will not be not included.
+     * All items currently in the user inventory will be returned, irrespective of how they were acquired (via purchasing,
+     * grants, coupons, etc.). Items that are expired, fully consumed, or are no longer valid are not considered to be in the
+     * user's current inventory, and so will not be not included.
      */
     public static class GetUserInventoryRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -2452,10 +2441,10 @@ public class PlayFabServerModels {
     }
 
     /**
-     * This function directly adds inventory items to the character's inventories. As
-     * a result of this operations, the user will not be charged any transaction fee, regardless of the inventory item
-     * catalog definition. Please note that the processing time for inventory grants and purchases increases fractionally
-     * the more items are in the inventory, and the more items are in the grant/purchase operation.
+     * This function directly adds inventory items to the character's inventories. As a result of this operations, the user
+     * will not be charged any transaction fee, regardless of the inventory item catalog definition. Please note that the
+     * processing time for inventory grants and purchases increases fractionally the more items are in the inventory, and the
+     * more items are in the grant/purchase operation.
      */
     public static class GrantItemsToCharacterRequest {
         /** String detailing any additional information concerning this operation. */
@@ -2478,12 +2467,10 @@ public class PlayFabServerModels {
     }
 
     /**
-     * This function directly adds inventory items to the user's inventories. As a result of this operations, the user
-     * will not be charged any transaction fee, regardless of the inventory item catalog definition. Please note that the
-     * processing time for
-     * inventory grants and purchases increases fractionally the more items are in the inventory, and the more items are in the
-     * grant/purchase
-     * operation.
+     * This function directly adds inventory items to the user's inventories. As a result of this operations, the user will not
+     * be charged any transaction fee, regardless of the inventory item catalog definition. Please note that the processing
+     * time for inventory grants and purchases increases fractionally the more items are in the inventory, and the more items
+     * are in the grant/purchase operation.
      */
     public static class GrantItemsToUserRequest {
         /** String detailing any additional information concerning this operation. */
@@ -2505,12 +2492,10 @@ public class PlayFabServerModels {
     }
 
     /**
-     * This function directly adds inventory items to user inventories. As a result of this operations, the user
-     * will not be charged any transaction fee, regardless of the inventory item catalog definition. Please note that the
-     * processing time for
-     * inventory grants and purchases increases fractionally the more items are in the inventory, and the more items are in the
-     * grant/purchase
-     * operation.
+     * This function directly adds inventory items to user inventories. As a result of this operations, the user will not be
+     * charged any transaction fee, regardless of the inventory item catalog definition. Please note that the processing time
+     * for inventory grants and purchases increases fractionally the more items are in the inventory, and the more items are in
+     * the grant/purchase operation.
      */
     public static class GrantItemsToUsersRequest {
         /** Catalog version from which items are to be granted. */
@@ -2686,12 +2671,10 @@ public class PlayFabServerModels {
     }
 
     /**
-     * If this is the first time a user has signed in with the Xbox Live account and CreateAccount
-     * is set to true, a new PlayFab account will be created and linked to the Xbox Live account. In this case, no email or
-     * username will be
+     * If this is the first time a user has signed in with the Xbox Live account and CreateAccount is set to true, a new
+     * PlayFab account will be created and linked to the Xbox Live account. In this case, no email or username will be
      * associated with the PlayFab account. Otherwise, if no PlayFab account is linked to the Xbox Live account, an error
-     * indicating this will
-     * be returned, so that the title can guide the user through creation of a PlayFab account.
+     * indicating this will be returned, so that the title can guide the user through creation of a PlayFab account.
      */
     public static class LoginWithXboxRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
@@ -2775,9 +2758,9 @@ public class PlayFabServerModels {
     }
 
     /**
-     * Transfers an item from a character to another character that is owned by the same
-     * user. This will remove the item from the character's inventory (until and unless it is moved back), and will enable the
-     * other character to make use of the item instead.
+     * Transfers an item from a character to another character that is owned by the same user. This will remove the item from
+     * the character's inventory (until and unless it is moved back), and will enable the other character to make use of the
+     * item instead.
      */
     public static class MoveItemToCharacterFromCharacterRequest {
         /** Unique identifier of the character that currently has the item. */
@@ -2796,9 +2779,8 @@ public class PlayFabServerModels {
     }
 
     /**
-     * Transfers an item from a user to a character she owns. This will remove
-     * the item from the user's inventory (until and unless it is moved back), and will enable the
-     * character to make use of the item instead.
+     * Transfers an item from a user to a character she owns. This will remove the item from the user's inventory (until and
+     * unless it is moved back), and will enable the character to make use of the item instead.
      */
     public static class MoveItemToCharacterFromUserRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
@@ -2815,9 +2797,8 @@ public class PlayFabServerModels {
     }
 
     /**
-     * Transfers an item from a character to the owning user. This will remove
-     * the item from the character's inventory (until and unless it is moved back), and will enable the
-     * user to make use of the item instead.
+     * Transfers an item from a character to the owning user. This will remove the item from the character's inventory (until
+     * and unless it is moved back), and will enable the user to make use of the item instead.
      */
     public static class MoveItemToUserFromCharacterRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
@@ -3111,10 +3092,9 @@ public class PlayFabServerModels {
     }
 
     /**
-     * Coupon codes can be created for any item, or set of items, in the catalog for the title. This
-     * operation causes the coupon to be consumed, and the specific items to be awarded to the user. Attempting to re-use an
-     * already
-     * consumed code, or a code which has not yet been created in the service, will result in an error.
+     * Coupon codes can be created for any item, or set of items, in the catalog for the title. This operation causes the
+     * coupon to be consumed, and the specific items to be awarded to the user. Attempting to re-use an already consumed code,
+     * or a code which has not yet been created in the service, will result in an error.
      */
     public static class RedeemCouponRequest {
         /** Catalog version of the coupon. */
@@ -3135,16 +3115,13 @@ public class PlayFabServerModels {
     }
 
     /**
-     * This function is used by a Game Server Instance to validate with the PlayFab service that a user has been
-     * registered as connected to the server. The Ticket is provided to the client either as a result of a call to StartGame or
-     * Matchmake, each
-     * of which return a Ticket specific to the Game Server Instance. This function will fail in any case where the Ticket
-     * presented is not valid
-     * for the specific Game Server Instance making the call. Note that data returned may be Personally Identifying Information
-     * (PII), such as
-     * email address, and so care should be taken in how this data is stored and managed. Since this call will always return
-     * the relevant information
-     * for users who have accessed the title, the recommendation is to not store this data locally.
+     * This function is used by a Game Server Instance to validate with the PlayFab service that a user has been registered as
+     * connected to the server. The Ticket is provided to the client either as a result of a call to StartGame or Matchmake,
+     * each of which return a Ticket specific to the Game Server Instance. This function will fail in any case where the Ticket
+     * presented is not valid for the specific Game Server Instance making the call. Note that data returned may be Personally
+     * Identifying Information (PII), such as email address, and so care should be taken in how this data is stored and
+     * managed. Since this call will always return the relevant information for users who have accessed the title, the
+     * recommendation is to not store this data locally.
      */
     public static class RedeemMatchmakerTicketRequest {
         /** Unique identifier of the Game Server Instance that is asking for validation of the authorization ticket. */
@@ -3479,10 +3456,9 @@ public class PlayFabServerModels {
     }
 
     /**
-     * This operation is not additive. It will completely replace the tag list for the specified user.
-     * Please note that only users in the PlayFab friends list can be assigned tags. Attempting to set a tag on a friend only
-     * included
-     * in the friends list from a social site integration (such as Facebook or Steam) will return the AccountNotFound error.
+     * This operation is not additive. It will completely replace the tag list for the specified user. Please note that only
+     * users in the PlayFab friends list can be assigned tags. Attempting to set a tag on a friend only included in the friends
+     * list from a social site integration (such as Facebook or Steam) will return the AccountNotFound error.
      */
     public static class SetFriendTagsRequest {
         /** PlayFab identifier of the friend account to which the tag(s) should be applied. */
@@ -3555,12 +3531,10 @@ public class PlayFabServerModels {
 
     /**
      * This API is designed to store publisher-specific values which can be read, but not written to, by the client. This data
-     * is shared across all
-     * titles assigned to a particular publisher, and can be used for cross-game coordination. Only titles assigned to a
-     * publisher can use this API. This operation is additive.
-     * If a Key does not exist in the current dataset, it will be added with
-     * the specified Value. If it already exists, the Value for that key will be overwritten with the new Value. For more
-     * information email devrel@playfab.com
+     * is shared across all titles assigned to a particular publisher, and can be used for cross-game coordination. Only titles
+     * assigned to a publisher can use this API. This operation is additive. If a Key does not exist in the current dataset, it
+     * will be added with the specified Value. If it already exists, the Value for that key will be overwritten with the new
+     * Value. For more information email devrel@playfab.com
      */
     public static class SetPublisherDataRequest {
         /**
@@ -3579,12 +3553,10 @@ public class PlayFabServerModels {
 
     /**
      * This API is designed to store title specific values which can be read, but not written to, by the client. For example, a
-     * developer
-     * could choose to store values which modify the user experience, such as enemy spawn rates, weapon strengths, movement
-     * speeds, etc. This allows a developer to update
-     * the title without the need to create, test, and ship a new build. This operation is additive. If a Key does not exist in
-     * the current dataset, it will be added with
-     * the specified Value. If it already exists, the Value for that key will be overwritten with the new Value.
+     * developer could choose to store values which modify the user experience, such as enemy spawn rates, weapon strengths,
+     * movement speeds, etc. This allows a developer to update the title without the need to create, test, and ship a new
+     * build. This operation is additive. If a Key does not exist in the current dataset, it will be added with the specified
+     * Value. If it already exists, the Value for that key will be overwritten with the new Value.
      */
     public static class SetTitleDataRequest {
         /**
@@ -3788,7 +3760,7 @@ public class PlayFabServerModels {
         
     }
 
-    /** The items and vc found within the container.  These will be added and stacked in your inventory as appropriate. */
+    /** The items and vc found within the container. These will be added and stacked in your inventory as appropriate. */
     public static class UnlockContainerItemResult {
         /** Items granted to the player as a result of unlocking the container. */
         public ArrayList<ItemInstance> GrantedItems;
@@ -3845,10 +3817,9 @@ public class PlayFabServerModels {
     }
 
     /**
-     * This function performs an additive update of the arbitrary JSON object containing
-     * the custom data for the user. In updating the custom data object, keys which already exist in the object will have
-     * their values overwritten, while keys with null values will be removed. No other key-value pairs will be changed apart
-     * from those specified in the call.
+     * This function performs an additive update of the arbitrary JSON object containing the custom data for the user. In
+     * updating the custom data object, keys which already exist in the object will have their values overwritten, while keys
+     * with null values will be removed. No other key-value pairs will be changed apart from those specified in the call.
      */
     public static class UpdateCharacterDataRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
@@ -3880,9 +3851,9 @@ public class PlayFabServerModels {
     }
 
     /**
-     * Character statistics are similar to user statistics in that they are numeric values which
-     * may only be updated by a server operation, in order to minimize the opportunity for unauthorized changes. In addition to
-     * being available for use by the title, the statistics are used for all leaderboard operations in PlayFab.
+     * Character statistics are similar to user statistics in that they are numeric values which may only be updated by a
+     * server operation, in order to minimize the opportunity for unauthorized changes. In addition to being available for use
+     * by the title, the statistics are used for all leaderboard operations in PlayFab.
      */
     public static class UpdateCharacterStatisticsRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
@@ -3899,8 +3870,8 @@ public class PlayFabServerModels {
     }
 
     /**
-     * This operation is additive. Statistics not currently defined will be added,
-     * while those already defined will be updated with the given values. All other user statistics will remain unchanged.
+     * This operation is additive. Statistics not currently defined will be added, while those already defined will be updated
+     * with the given values. All other user statistics will remain unchanged.
      */
     public static class UpdatePlayerStatisticsRequest {
         /**
@@ -3920,11 +3891,10 @@ public class PlayFabServerModels {
     }
 
     /**
-     * Note that in the case of multiple calls to write to the same shared group data keys, the
-     * last write received by the PlayFab service will determine the value available to subsequent read operations. For
-     * scenarios
-     * requiring coordination of data updates, it is recommended that titles make use of user data with read permission set to
-     * public, or a combination of user data and shared group data.
+     * Note that in the case of multiple calls to write to the same shared group data keys, the last write received by the
+     * PlayFab service will determine the value available to subsequent read operations. For scenarios requiring coordination
+     * of data updates, it is recommended that titles make use of user data with read permission set to public, or a
+     * combination of user data and shared group data.
      */
     public static class UpdateSharedGroupDataRequest {
         /**
@@ -3949,10 +3919,9 @@ public class PlayFabServerModels {
     }
 
     /**
-     * This function performs an additive update of the arbitrary JSON object containing the custom data for the user.
-     * In updating the custom data object, keys which already exist in the object will have their values overwritten, while
-     * keys with null values will
-     * be removed. No other key-value pairs will be changed apart from those specified in the call.
+     * This function performs an additive update of the arbitrary JSON object containing the custom data for the user. In
+     * updating the custom data object, keys which already exist in the object will have their values overwritten, while keys
+     * with null values will be removed. No other key-value pairs will be changed apart from those specified in the call.
      */
     public static class UpdateUserDataRequest {
         /**
@@ -3982,10 +3951,9 @@ public class PlayFabServerModels {
     }
 
     /**
-     * This function performs an additive update of the arbitrary JSON object containing the custom data for the user.
-     * In updating the custom data object, keys which already exist in the object will have their values overwritten, keys with
-     * null values will be
-     * removed. No other key-value pairs will be changed apart from those specified in the call.
+     * This function performs an additive update of the arbitrary JSON object containing the custom data for the user. In
+     * updating the custom data object, keys which already exist in the object will have their values overwritten, keys with
+     * null values will be removed. No other key-value pairs will be changed apart from those specified in the call.
      */
     public static class UpdateUserInternalDataRequest {
         /**
@@ -4006,8 +3974,8 @@ public class PlayFabServerModels {
     /**
      * This function performs an additive update of the arbitrary JSON object containing the custom data for the item instance
      * which belongs to the specified user. In updating the custom data object, keys which already exist in the object will
-     * have their values overwritten, while
-     * keys with null values will be removed. No other key-value pairs will be changed apart from those specified in the call.
+     * have their values overwritten, while keys with null values will be removed. No other key-value pairs will be changed
+     * apart from those specified in the call.
      */
     public static class UpdateUserInventoryItemDataRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
@@ -4136,6 +4104,8 @@ public class PlayFabServerModels {
         public String GoogleId;
         /** Locale of the Google account */
         public String GoogleLocale;
+        /** Name of the Google account user */
+        public String GoogleName;
         
     }
 
@@ -4227,6 +4197,8 @@ public class PlayFabServerModels {
         public Currency SteamCurrency;
         /** Steam identifier */
         public String SteamId;
+        /** Steam display name */
+        public String SteamName;
         
     }
 
