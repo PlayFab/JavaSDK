@@ -914,7 +914,7 @@ public class PlayFabClientAPI {
      * Requests the creation of a shared group object, containing key/value pairs which may be updated by all members of the
      * group. Upon creation, the current user will be the only member of the group. Shared Groups are designed for sharing data
      * between a very small number of players, please see our guide:
-     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * https://docs.microsoft.com/en-us/gaming/playfab/features/social/groups/using-shared-group-data
      * @param request CreateSharedGroupRequest
      * @return Async Task will return CreateSharedGroupResult
      */
@@ -931,7 +931,7 @@ public class PlayFabClientAPI {
      * Requests the creation of a shared group object, containing key/value pairs which may be updated by all members of the
      * group. Upon creation, the current user will be the only member of the group. Shared Groups are designed for sharing data
      * between a very small number of players, please see our guide:
-     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * https://docs.microsoft.com/en-us/gaming/playfab/features/social/groups/using-shared-group-data
      * @param request CreateSharedGroupRequest
      * @return CreateSharedGroupResult
      */
@@ -954,7 +954,7 @@ public class PlayFabClientAPI {
      * Requests the creation of a shared group object, containing key/value pairs which may be updated by all members of the
      * group. Upon creation, the current user will be the only member of the group. Shared Groups are designed for sharing data
      * between a very small number of players, please see our guide:
-     * https://api.playfab.com/docs/tutorials/landing-players/shared-groups
+     * https://docs.microsoft.com/en-us/gaming/playfab/features/social/groups/using-shared-group-data
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateSharedGroupResult> privateCreateSharedGroupAsync(final CreateSharedGroupRequest request) throws Exception {
@@ -2233,7 +2233,7 @@ public class PlayFabClientAPI {
 
     /**
      * Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See
-     * https://api.playfab.com/docs/using-photon-with-playfab/ for more details.
+     * https://docs.microsoft.com/en-us/gaming/playfab/features/multiplayer/photon/quickstart for more details.
      * @param request GetPhotonAuthenticationTokenRequest
      * @return Async Task will return GetPhotonAuthenticationTokenResult
      */
@@ -2248,7 +2248,7 @@ public class PlayFabClientAPI {
 
     /**
      * Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See
-     * https://api.playfab.com/docs/using-photon-with-playfab/ for more details.
+     * https://docs.microsoft.com/en-us/gaming/playfab/features/multiplayer/photon/quickstart for more details.
      * @param request GetPhotonAuthenticationTokenRequest
      * @return GetPhotonAuthenticationTokenResult
      */
@@ -2269,7 +2269,7 @@ public class PlayFabClientAPI {
 
     /**
      * Gets a Photon custom authentication token that can be used to securely join the player into a Photon room. See
-     * https://api.playfab.com/docs/using-photon-with-playfab/ for more details.
+     * https://docs.microsoft.com/en-us/gaming/playfab/features/multiplayer/photon/quickstart for more details.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPhotonAuthenticationTokenResult> privateGetPhotonAuthenticationTokenAsync(final GetPhotonAuthenticationTokenRequest request) throws Exception {
