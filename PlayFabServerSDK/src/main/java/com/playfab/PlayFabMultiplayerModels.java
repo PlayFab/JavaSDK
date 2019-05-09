@@ -49,6 +49,14 @@ public class PlayFabMultiplayerModels {
         ChinaNorth2
     }
 
+    public static enum AzureVmFamily {
+        A,
+        Av2,
+        Dv2,
+        F,
+        Fsv2
+    }
+
     public static enum AzureVmSize {
         Standard_D1_v2,
         Standard_D2_v2,
@@ -124,7 +132,7 @@ public class PlayFabMultiplayerModels {
     public static class CancelAllMatchmakingTicketsForPlayerRequest {
         /** The entity key of the player whose tickets should be canceled. */
         public EntityKey Entity;
-        /** The Id of the queue from which a player's tickets should be canceled. */
+        /** The name of the queue from which a player's tickets should be canceled. */
         public String QueueName;
         
     }
@@ -140,17 +148,18 @@ public class PlayFabMultiplayerModels {
     }
 
     /**
-     * Only servers and ticket members can cancel a ticket. The ticket can be in four different states when it is cancelled. 1:
+     * Only servers and ticket members can cancel a ticket. The ticket can be in five different states when it is cancelled. 1:
      * the ticket is waiting for members to join it, and it has not started matching. If the ticket is cancelled at this stage,
      * it will never match. 2: the ticket is matching. If the ticket is cancelled, it will stop matching. 3: the ticket is
-     * matched. A matched ticket cannot be cancelled. 4: the ticket is already cancelled and nothing happens. There may be race
-     * conditions between the ticket getting matched and the client making a cancellation request. The client must handle the
-     * possibility that the cancel request fails if a match is found before the cancellation request is processed. We do not
-     * allow resubmitting a cancelled ticket because players must consent to enter matchmaking again. Create a new ticket
-     * instead.
+     * matched. A matched ticket cannot be cancelled. 4: the ticket is already cancelled and nothing happens. 5: the ticket is
+     * waiting for a server. If the ticket is cancelled, server allocation will be stopped. A server may still be allocated due
+     * to a race condition, but that will not be reflected in the ticket. There may be race conditions between the ticket
+     * getting matched and the client making a cancellation request. The client must handle the possibility that the cancel
+     * request fails if a match is found before the cancellation request is processed. We do not allow resubmitting a cancelled
+     * ticket because players must consent to enter matchmaking again. Create a new ticket instead.
      */
     public static class CancelMatchmakingTicketRequest {
-        /** The Id of the queue to join. */
+        /** The name of the queue the ticket is in. */
         public String QueueName;
         /** The Id of the ticket to find a match for. */
         public String TicketId;
@@ -202,17 +211,39 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    public static class CoreCapacity {
+        /** The available core capacity for the (Region, VmFamily) */
+        public Integer Available;
+        /** The AzureRegion */
+        public AzureRegion Region;
+        /** The total core capacity for the (Region, VmFamily) */
+        public Integer Total;
+        /** The AzureVmFamily */
+        public AzureVmFamily VmFamily;
+        
+    }
+
     /** Creates a multiplayer server build with a custom container and returns information about the build creation request. */
     public static class CreateBuildWithCustomContainerRequest {
         /** The build name. */
         public String BuildName;
         /** The flavor of container to create a build from. */
         public ContainerFlavor ContainerFlavor;
-        /** The name of the container repository. */
+        /** The container reference, consisting of the image name and tag. */
+        public ContainerImageReference ContainerImageReference;
+        /**
+         * The name of the container repository.
+         * @deprecated Please use ContainerImageReference instead.
+         */
+        @Deprecated
         public String ContainerRepositoryName;
         /** The container command to run when the multiplayer server has been allocated, including any arguments. */
         public String ContainerRunCommand;
-        /** The tag for the container. */
+        /**
+         * The tag for the container.
+         * @deprecated Please use ContainerImageReference instead.
+         */
+        @Deprecated
         public String ContainerTag;
         /** The list of game assets related to the build. */
         public ArrayList<AssetReferenceParams> GameAssetReferences;
@@ -568,19 +599,6 @@ public class PlayFabMultiplayerModels {
         
     }
 
-    /** Gets the current configuration for a queue. */
-    public static class GetMatchmakingQueueRequest {
-        /** The Id of the matchmaking queue to retrieve. */
-        public String QueueName;
-        
-    }
-
-    public static class GetMatchmakingQueueResult {
-        /** The matchmaking queue config. */
-        public MatchmakingQueueConfig MatchmakingQueue;
-        
-    }
-
     /**
      * The ticket includes the invited players, their attributes if they have joined, the ticket status, the match Id when
      * applicable, etc. Only servers, the ticket creator and the invited players can get the ticket.
@@ -591,7 +609,7 @@ public class PlayFabMultiplayerModels {
          * object.
          */
         public Boolean EscapeObject;
-        /** The Id of the queue to find a match for. */
+        /** The name of the queue to find a match for. */
         public String QueueName;
         /** The Id of the ticket to find a match for. */
         public String TicketId;
@@ -638,7 +656,7 @@ public class PlayFabMultiplayerModels {
         public Boolean EscapeObject;
         /** The Id of a match. */
         public String MatchId;
-        /** The Id of the queue to join. */
+        /** The name of the queue to join. */
         public String QueueName;
         /** Determines whether the matchmaking attributes for each user should be returned in the response for match request. */
         public Boolean ReturnMemberAttributes;
@@ -752,6 +770,17 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Gets the quotas for a title in relation to multiplayer servers. */
+    public static class GetTitleMultiplayerServersQuotasRequest {
+        
+    }
+
+    public static class GetTitleMultiplayerServersQuotasResponse {
+        /** The various quotas for multiplayer servers for the title. */
+        public TitleMultiplayerServersQuotas Quotas;
+        
+    }
+
     /**
      * Add the player to a matchmaking ticket and specify all of its matchmaking attributes. Players can join a ticket if and
      * only if their EntityKeys are already listed in the ticket's Members list. The matchmaking service automatically starts
@@ -761,7 +790,7 @@ public class PlayFabMultiplayerModels {
     public static class JoinMatchmakingTicketRequest {
         /** The User who wants to join the ticket. Their Id must be listed in PlayFabIdsToMatchWith. */
         public MatchmakingPlayer Member;
-        /** The Id of the queue to join. */
+        /** The name of the queue to join. */
         public String QueueName;
         /** The Id of the ticket to find a match for. */
         public String TicketId;
@@ -861,17 +890,6 @@ public class PlayFabMultiplayerModels {
         
     }
 
-    /** Gets a list of all the matchmaking queue configurations for the title. */
-    public static class ListMatchmakingQueuesRequest {
-        
-    }
-
-    public static class ListMatchmakingQueuesResult {
-        /** The list of matchmaking queue configs for this title. */
-        public ArrayList<MatchmakingQueueConfig> MatchMakingQueues;
-        
-    }
-
     /**
      * If the caller is a title, the EntityKey in the request is required. If the caller is a player, then it is optional. If
      * it is provided it must match the caller's entity.
@@ -879,7 +897,7 @@ public class PlayFabMultiplayerModels {
     public static class ListMatchmakingTicketsForPlayerRequest {
         /** The entity key for which to find the ticket Ids. */
         public EntityKey Entity;
-        /** The Id of the queue to find a match for. */
+        /** The name of the queue to find a match for. */
         public String QueueName;
         
     }
@@ -978,51 +996,8 @@ public class PlayFabMultiplayerModels {
         public MatchmakingPlayerAttributes Attributes;
         /** The entity key of the matchmaking user. */
         public EntityKey Entity;
-        /** The Id of the team the User has been assigned to by matchmaking. */
+        /** The Id of the team the User is assigned to. */
         public String TeamId;
-        
-    }
-
-    public static class MatchmakingQueueConfig {
-        /** This is the buildId that will be used to allocate the multiplayer server for the match. */
-        public String BuildId;
-        /** Maximum number of players in a match. */
-        public Long MaxMatchSize;
-        /** Minimum number of players in a match. */
-        public Long MinMatchSize;
-        /** Unique identifier for a Queue. Chosen by the developer. */
-        public String Name;
-        /** List of rules used to find an optimal match. */
-        public ArrayList<MatchmakingQueueRule> Rules;
-        /** Boolean flag to enable server allocation for the queue. */
-        public Boolean ServerAllocationEnabled;
-        /** Controls which statistics are visible to players. */
-        public StatisticsVisibilityToPlayers StatisticsVisibilityToPlayers;
-        /** The team configuration for a match. This may be null if there are no teams. */
-        public ArrayList<MatchmakingQueueTeam> Teams;
-        
-    }
-
-    public static class MatchmakingQueueRule {
-        /** Friendly name chosen by developer. */
-        public String Name;
-        /**
-         * How many seconds before this rule is no longer enforced (but tickets that comply with this rule will still be
-         * prioritized over those that don't). Leave blank if this rule is always enforced.
-         */
-        public Long SecondsUntilOptional;
-        /** Type of rule being described. */
-        public RuleType Type;
-        
-    }
-
-    public static class MatchmakingQueueTeam {
-        /** The maximum number of players required for the team. */
-        public Long MaxTeamSize;
-        /** The minimum number of players required for the team. */
-        public Long MinTeamSize;
-        /** A name to identify the team. This is case insensitive. */
-        public String Name;
         
     }
 
@@ -1064,20 +1039,6 @@ public class PlayFabMultiplayerModels {
         public AzureRegion Region;
         /** The QoS server URL. */
         public String ServerUrl;
-        
-    }
-
-    /**
-     * Deletes the configuration for a queue. This will permanently delete the configuration and players will no longer be able
-     * to match in the queue. All outstanding matchmaking tickets will be cancelled.
-     */
-    public static class RemoveMatchmakingQueueRequest {
-        /** The Id of the matchmaking queue to remove. */
-        public String QueueName;
-        
-    }
-
-    public static class RemoveMatchmakingQueueResult {
         
     }
 
@@ -1147,38 +1108,13 @@ public class PlayFabMultiplayerModels {
         
     }
 
-    public static enum RuleType {
-        Unknown,
-        DifferenceRule,
-        StringEqualityRule,
-        MatchTotalRule,
-        SetIntersectionRule,
-        TeamSizeBalanceRule,
-        RegionSelectionRule,
-        TeamDifferenceRule,
-        TeamTicketSizeSimilarityRule
-    }
-
     public static class ServerDetails {
         /** The IPv4 address of the virtual machine that is hosting this multiplayer server. */
         public String IPV4Address;
         /** The ports the multiplayer server uses. */
         public ArrayList<Port> Ports;
-        
-    }
-
-    /**
-     * Use this API to create or update matchmaking queue configurations. The queue configuration defines the matchmaking
-     * rules. The matchmaking service will match tickets together according to the configured rules. Queue resources are not
-     * spun up by calling this API. Queues are created when the first ticket is submitted.
-     */
-    public static class SetMatchmakingQueueRequest {
-        /** The matchmaking queue config. */
-        public MatchmakingQueueConfig MatchmakingQueue;
-        
-    }
-
-    public static class SetMatchmakingQueueResult {
+        /** The server's region. */
+        public String Region;
         
     }
 
@@ -1209,18 +1145,16 @@ public class PlayFabMultiplayerModels {
         
     }
 
-    public static class StatisticsVisibilityToPlayers {
-        /** Whether to allow players to view the current number of players in the matchmaking queue. */
-        public Boolean ShowNumberOfPlayersMatching;
-        /** Whether to allow players to view statistics representing the time it takes for tickets to find a match. */
-        public Boolean ShowTimeToMatch;
-        
-    }
-
     public static enum TitleMultiplayerServerEnabledStatus {
         Initializing,
         Enabled,
         Disabled
+    }
+
+    public static class TitleMultiplayerServersQuotas {
+        /** The core capacity for the various regions and VM Family */
+        public ArrayList<CoreCapacity> CoreCapacities;
+        
     }
 
     /** Updates a multiplayer server build's regions. */

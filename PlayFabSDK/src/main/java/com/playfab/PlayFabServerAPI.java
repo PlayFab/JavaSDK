@@ -142,6 +142,74 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab
+     * ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as
+     * authentication credentials, as the intent is that it is easily accessible by other players.
+     * @param request AddGenericIDRequest
+     * @return Async Task will return EmptyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResult>> AddGenericIDAsync(final AddGenericIDRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateAddGenericIDAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab
+     * ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as
+     * authentication credentials, as the intent is that it is easily accessible by other players.
+     * @param request AddGenericIDRequest
+     * @return EmptyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResult> AddGenericID(final AddGenericIDRequest request) {
+        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateAddGenericIDAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Adds the specified generic service identifier to the player's PlayFab account. This is designed to allow for a PlayFab
+     * ID lookup of any arbitrary service identifier a title wants to add. This identifier should never be used as
+     * authentication credentials, as the intent is that it is easily accessible by other players.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResult> privateAddGenericIDAsync(final AddGenericIDRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/AddGenericID"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
+        EmptyResult result = resultData.data;
+
+        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Adds a given tag to a player profile. The tag's namespace is automatically generated based on the source of the tag.
      * @param request AddPlayerTagRequest
      * @return Async Task will return AddPlayerTagResult
@@ -756,6 +824,66 @@ public class PlayFabServerAPI {
         DeletePlayerResult result = resultData.data;
 
         PlayFabResult<DeletePlayerResult> pfResult = new PlayFabResult<DeletePlayerResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Deletes push notification template for title
+     * @param request DeletePushNotificationTemplateRequest
+     * @return Async Task will return DeletePushNotificationTemplateResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<DeletePushNotificationTemplateResult>> DeletePushNotificationTemplateAsync(final DeletePushNotificationTemplateRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<DeletePushNotificationTemplateResult>>() {
+            public PlayFabResult<DeletePushNotificationTemplateResult> call() throws Exception {
+                return privateDeletePushNotificationTemplateAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Deletes push notification template for title
+     * @param request DeletePushNotificationTemplateRequest
+     * @return DeletePushNotificationTemplateResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<DeletePushNotificationTemplateResult> DeletePushNotificationTemplate(final DeletePushNotificationTemplateRequest request) {
+        FutureTask<PlayFabResult<DeletePushNotificationTemplateResult>> task = new FutureTask(new Callable<PlayFabResult<DeletePushNotificationTemplateResult>>() {
+            public PlayFabResult<DeletePushNotificationTemplateResult> call() throws Exception {
+                return privateDeletePushNotificationTemplateAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Deletes push notification template for title */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<DeletePushNotificationTemplateResult> privateDeletePushNotificationTemplateAsync(final DeletePushNotificationTemplateRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/DeletePushNotificationTemplate"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<DeletePushNotificationTemplateResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<DeletePushNotificationTemplateResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<DeletePushNotificationTemplateResult>>(){}.getType());
+        DeletePushNotificationTemplateResult result = resultData.data;
+
+        PlayFabResult<DeletePushNotificationTemplateResult> pfResult = new PlayFabResult<DeletePushNotificationTemplateResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -2567,6 +2695,74 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Retrieves the unique PlayFab identifiers for the given set of generic service identifiers. A generic identifier is the
+     * service name plus the service-specific ID for the player, as specified by the title when the generic identifier was
+     * added to the player account.
+     * @param request GetPlayFabIDsFromGenericIDsRequest
+     * @return Async Task will return GetPlayFabIDsFromGenericIDsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayFabIDsFromGenericIDsResult>> GetPlayFabIDsFromGenericIDsAsync(final GetPlayFabIDsFromGenericIDsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromGenericIDsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromGenericIDsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromGenericIDsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of generic service identifiers. A generic identifier is the
+     * service name plus the service-specific ID for the player, as specified by the title when the generic identifier was
+     * added to the player account.
+     * @param request GetPlayFabIDsFromGenericIDsRequest
+     * @return GetPlayFabIDsFromGenericIDsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayFabIDsFromGenericIDsResult> GetPlayFabIDsFromGenericIDs(final GetPlayFabIDsFromGenericIDsRequest request) {
+        FutureTask<PlayFabResult<GetPlayFabIDsFromGenericIDsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromGenericIDsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromGenericIDsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromGenericIDsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of generic service identifiers. A generic identifier is the
+     * service name plus the service-specific ID for the player, as specified by the title when the generic identifier was
+     * added to the player account.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayFabIDsFromGenericIDsResult> privateGetPlayFabIDsFromGenericIDsAsync(final GetPlayFabIDsFromGenericIDsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/GetPlayFabIDsFromGenericIDs"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayFabIDsFromGenericIDsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayFabIDsFromGenericIDsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayFabIDsFromGenericIDsResult>>(){}.getType());
+        GetPlayFabIDsFromGenericIDsResult result = resultData.data;
+
+        PlayFabResult<GetPlayFabIDsFromGenericIDsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromGenericIDsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the unique PlayFab identifiers for the given set of Nintendo Switch Device identifiers.
      * @param request GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest
      * @return Async Task will return GetPlayFabIDsFromNintendoSwitchDeviceIdsResult
@@ -4090,6 +4286,66 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Links the custom server identifier, generated by the title, to the user's PlayFab account.
+     * @param request LinkServerCustomIdRequest
+     * @return Async Task will return LinkServerCustomIdResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<LinkServerCustomIdResult>> LinkServerCustomIdAsync(final LinkServerCustomIdRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<LinkServerCustomIdResult>>() {
+            public PlayFabResult<LinkServerCustomIdResult> call() throws Exception {
+                return privateLinkServerCustomIdAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Links the custom server identifier, generated by the title, to the user's PlayFab account.
+     * @param request LinkServerCustomIdRequest
+     * @return LinkServerCustomIdResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<LinkServerCustomIdResult> LinkServerCustomId(final LinkServerCustomIdRequest request) {
+        FutureTask<PlayFabResult<LinkServerCustomIdResult>> task = new FutureTask(new Callable<PlayFabResult<LinkServerCustomIdResult>>() {
+            public PlayFabResult<LinkServerCustomIdResult> call() throws Exception {
+                return privateLinkServerCustomIdAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Links the custom server identifier, generated by the title, to the user's PlayFab account. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<LinkServerCustomIdResult> privateLinkServerCustomIdAsync(final LinkServerCustomIdRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/LinkServerCustomId"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<LinkServerCustomIdResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<LinkServerCustomIdResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LinkServerCustomIdResult>>(){}.getType());
+        LinkServerCustomIdResult result = resultData.data;
+
+        PlayFabResult<LinkServerCustomIdResult> pfResult = new PlayFabResult<LinkServerCustomIdResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Links the Xbox Live account associated with the provided access code to the user's PlayFab account
      * @param request LinkXboxAccountRequest
      * @return Async Task will return LinkXboxAccountResult
@@ -4885,6 +5141,66 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Removes the specified generic service identifier from the player's PlayFab account.
+     * @param request RemoveGenericIDRequest
+     * @return Async Task will return EmptyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResult>> RemoveGenericIDAsync(final RemoveGenericIDRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateRemoveGenericIDAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Removes the specified generic service identifier from the player's PlayFab account.
+     * @param request RemoveGenericIDRequest
+     * @return EmptyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResult> RemoveGenericID(final RemoveGenericIDRequest request) {
+        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateRemoveGenericIDAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Removes the specified generic service identifier from the player's PlayFab account. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResult> privateRemoveGenericIDAsync(final RemoveGenericIDRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/RemoveGenericID"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
+        EmptyResult result = resultData.data;
+
+        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Remove a given tag from a player profile. The tag's namespace is automatically generated based on the source of the tag.
      * @param request RemovePlayerTagRequest
      * @return Async Task will return RemovePlayerTagResult
@@ -5321,6 +5637,66 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Saves push notification template for title
+     * @param request SavePushNotificationTemplateRequest
+     * @return Async Task will return SavePushNotificationTemplateResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<SavePushNotificationTemplateResult>> SavePushNotificationTemplateAsync(final SavePushNotificationTemplateRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<SavePushNotificationTemplateResult>>() {
+            public PlayFabResult<SavePushNotificationTemplateResult> call() throws Exception {
+                return privateSavePushNotificationTemplateAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Saves push notification template for title
+     * @param request SavePushNotificationTemplateRequest
+     * @return SavePushNotificationTemplateResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<SavePushNotificationTemplateResult> SavePushNotificationTemplate(final SavePushNotificationTemplateRequest request) {
+        FutureTask<PlayFabResult<SavePushNotificationTemplateResult>> task = new FutureTask(new Callable<PlayFabResult<SavePushNotificationTemplateResult>>() {
+            public PlayFabResult<SavePushNotificationTemplateResult> call() throws Exception {
+                return privateSavePushNotificationTemplateAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Saves push notification template for title */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<SavePushNotificationTemplateResult> privateSavePushNotificationTemplateAsync(final SavePushNotificationTemplateRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/SavePushNotificationTemplate"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<SavePushNotificationTemplateResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<SavePushNotificationTemplateResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SavePushNotificationTemplateResult>>(){}.getType());
+        SavePushNotificationTemplateResult result = resultData.data;
+
+        PlayFabResult<SavePushNotificationTemplateResult> pfResult = new PlayFabResult<SavePushNotificationTemplateResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Forces an email to be sent to the registered contact email address for the user's account based on an account recovery
      * email template
      * @param request SendCustomAccountRecoveryEmailRequest
@@ -5490,6 +5866,71 @@ public class PlayFabServerAPI {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/SendPushNotification"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<SendPushNotificationResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<SendPushNotificationResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SendPushNotificationResult>>(){}.getType());
+        SendPushNotificationResult result = resultData.data;
+
+        PlayFabResult<SendPushNotificationResult> pfResult = new PlayFabResult<SendPushNotificationResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Sends an iOS/Android Push Notification template to a specific user, if that user's device has been configured for Push
+     * Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
+     * @param request SendPushNotificationFromTemplateRequest
+     * @return Async Task will return SendPushNotificationResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<SendPushNotificationResult>> SendPushNotificationFromTemplateAsync(final SendPushNotificationFromTemplateRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<SendPushNotificationResult>>() {
+            public PlayFabResult<SendPushNotificationResult> call() throws Exception {
+                return privateSendPushNotificationFromTemplateAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Sends an iOS/Android Push Notification template to a specific user, if that user's device has been configured for Push
+     * Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
+     * @param request SendPushNotificationFromTemplateRequest
+     * @return SendPushNotificationResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<SendPushNotificationResult> SendPushNotificationFromTemplate(final SendPushNotificationFromTemplateRequest request) {
+        FutureTask<PlayFabResult<SendPushNotificationResult>> task = new FutureTask(new Callable<PlayFabResult<SendPushNotificationResult>>() {
+            public PlayFabResult<SendPushNotificationResult> call() throws Exception {
+                return privateSendPushNotificationFromTemplateAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Sends an iOS/Android Push Notification template to a specific user, if that user's device has been configured for Push
+     * Notifications in PlayFab. If a user has linked both Android and iOS devices, both will be notified.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<SendPushNotificationResult> privateSendPushNotificationFromTemplateAsync(final SendPushNotificationFromTemplateRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/SendPushNotificationFromTemplate"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -6121,6 +6562,66 @@ public class PlayFabServerAPI {
         ModifyUserVirtualCurrencyResult result = resultData.data;
 
         PlayFabResult<ModifyUserVirtualCurrencyResult> pfResult = new PlayFabResult<ModifyUserVirtualCurrencyResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Unlinks the custom server identifier from the user's PlayFab account.
+     * @param request UnlinkServerCustomIdRequest
+     * @return Async Task will return UnlinkServerCustomIdResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<UnlinkServerCustomIdResult>> UnlinkServerCustomIdAsync(final UnlinkServerCustomIdRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<UnlinkServerCustomIdResult>>() {
+            public PlayFabResult<UnlinkServerCustomIdResult> call() throws Exception {
+                return privateUnlinkServerCustomIdAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Unlinks the custom server identifier from the user's PlayFab account.
+     * @param request UnlinkServerCustomIdRequest
+     * @return UnlinkServerCustomIdResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<UnlinkServerCustomIdResult> UnlinkServerCustomId(final UnlinkServerCustomIdRequest request) {
+        FutureTask<PlayFabResult<UnlinkServerCustomIdResult>> task = new FutureTask(new Callable<PlayFabResult<UnlinkServerCustomIdResult>>() {
+            public PlayFabResult<UnlinkServerCustomIdResult> call() throws Exception {
+                return privateUnlinkServerCustomIdAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Unlinks the custom server identifier from the user's PlayFab account. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<UnlinkServerCustomIdResult> privateUnlinkServerCustomIdAsync(final UnlinkServerCustomIdRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/UnlinkServerCustomId"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<UnlinkServerCustomIdResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<UnlinkServerCustomIdResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UnlinkServerCustomIdResult>>(){}.getType());
+        UnlinkServerCustomIdResult result = resultData.data;
+
+        PlayFabResult<UnlinkServerCustomIdResult> pfResult = new PlayFabResult<UnlinkServerCustomIdResult>();
         pfResult.Result = result;
         return pfResult;
     }

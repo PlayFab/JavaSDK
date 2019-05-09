@@ -63,6 +63,8 @@ public class PlayFabProfilesModels {
     }
 
     public static class EntityProfileBody {
+        /** Avatar URL for the entity. */
+        public String AvatarUrl;
         /** The creation time of this profile in UTC. */
         public Date Created;
         /**
@@ -236,7 +238,7 @@ public class PlayFabProfilesModels {
     }
 
     /**
-     * Given an entity profile, will update its language to the one passed in if the profile's version is at least the one
+     * Given an entity profile, will update its language to the one passed in if the profile's version is equal to the one
      * passed in.
      */
     public static class SetProfileLanguageRequest {
