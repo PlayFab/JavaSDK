@@ -3384,7 +3384,8 @@ public class PlayFabAdminModels {
 
     public static enum ScheduledTaskType {
         CloudScript,
-        ActionsOnPlayerSegment
+        ActionsOnPlayerSegment,
+        CloudScriptAzureFunctions
     }
 
     public static class ScriptExecutionError {
