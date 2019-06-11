@@ -46,7 +46,8 @@ public class PlayFabMultiplayerModels {
         WestEurope,
         WestUs,
         ChinaEast2,
-        ChinaNorth2
+        ChinaNorth2,
+        SouthAfricaNorth
     }
 
     public static enum AzureVmFamily {
@@ -144,7 +145,8 @@ public class PlayFabMultiplayerModels {
     public static enum CancellationReason {
         Requested,
         Internal,
-        Timeout
+        Timeout,
+        ServerAllocationFailed
     }
 
     /**

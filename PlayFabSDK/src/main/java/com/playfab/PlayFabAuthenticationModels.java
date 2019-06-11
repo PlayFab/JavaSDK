@@ -14,6 +14,22 @@ public class PlayFabAuthenticationModels {
         
     }
 
+    public static class EntityLineage {
+        /** The Character Id of the associated entity. */
+        public String CharacterId;
+        /** The Group Id of the associated entity. */
+        public String GroupId;
+        /** The Master Player Account Id of the associated entity. */
+        public String MasterPlayerAccountId;
+        /** The Namespace Id of the associated entity. */
+        public String NamespaceId;
+        /** The Title Id of the associated entity. */
+        public String TitleId;
+        /** The Title Player Account Id of the associated entity. */
+        public String TitlePlayerAccountId;
+        
+    }
+
     /**
      * This API must be called with X-SecretKey, X-Authentication or X-EntityToken headers. An optional EntityKey may be
      * included to attempt to set the resulting EntityToken to a specific entity, however the entity must be a relation of the
@@ -34,6 +50,21 @@ public class PlayFabAuthenticationModels {
         public String EntityToken;
         /** The time the token will expire, if it is an expiring token, in UTC. */
         public Date TokenExpiration;
+        
+    }
+
+    /** Given an entity token, validates that it hasn't exipired or been revoked and will return details of the owner. */
+    public static class ValidateEntityTokenRequest {
+        /** Client EntityToken */
+        public String EntityToken;
+        
+    }
+
+    public static class ValidateEntityTokenResponse {
+        /** The entity id and type. */
+        public EntityKey Entity;
+        /** The lineage of this profile. */
+        public EntityLineage Lineage;
         
     }
 

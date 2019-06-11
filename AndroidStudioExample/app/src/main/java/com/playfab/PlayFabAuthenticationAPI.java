@@ -85,4 +85,64 @@ public class PlayFabAuthenticationAPI {
         pfResult.Result = result;
         return pfResult;
     }
+
+    /**
+     * Method for a server to validate a client provided EntityToken. Only callable by the title entity.
+     * @param request ValidateEntityTokenRequest
+     * @return Async Task will return ValidateEntityTokenResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ValidateEntityTokenResponse>> ValidateEntityTokenAsync(final ValidateEntityTokenRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ValidateEntityTokenResponse>>() {
+            public PlayFabResult<ValidateEntityTokenResponse> call() throws Exception {
+                return privateValidateEntityTokenAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Method for a server to validate a client provided EntityToken. Only callable by the title entity.
+     * @param request ValidateEntityTokenRequest
+     * @return ValidateEntityTokenResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ValidateEntityTokenResponse> ValidateEntityToken(final ValidateEntityTokenRequest request) {
+        FutureTask<PlayFabResult<ValidateEntityTokenResponse>> task = new FutureTask(new Callable<PlayFabResult<ValidateEntityTokenResponse>>() {
+            public PlayFabResult<ValidateEntityTokenResponse> call() throws Exception {
+                return privateValidateEntityTokenAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Method for a server to validate a client provided EntityToken. Only callable by the title entity. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ValidateEntityTokenResponse> privateValidateEntityTokenAsync(final ValidateEntityTokenRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Authentication/ValidateEntityToken"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ValidateEntityTokenResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ValidateEntityTokenResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ValidateEntityTokenResponse>>(){}.getType());
+        ValidateEntityTokenResponse result = resultData.data;
+
+        PlayFabResult<ValidateEntityTokenResponse> pfResult = new PlayFabResult<ValidateEntityTokenResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
 }
