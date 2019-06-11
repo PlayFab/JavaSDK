@@ -4186,7 +4186,7 @@ public class PlayFabClientModels {
     public static class UpdateCharacterStatisticsRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         public String CharacterId;
-        /** Statistics to be updated with the provided values. */
+        /** Statistics to be updated with the provided values, in the Key(string), Value(int) pattern. */
         public Map<String,Integer> CharacterStatistics;
         
     }
