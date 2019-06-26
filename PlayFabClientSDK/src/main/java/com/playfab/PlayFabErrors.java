@@ -524,7 +524,9 @@ public class PlayFabErrors {
         ExportUnknownError(5013),
         ExportCantEditPendingExport(5014),
         ExportLimitExports(5015),
-        ExportLimitEvents(5016);
+        ExportLimitEvents(5016),
+        TitleNotEnabledForParty(6000),
+        PartyVersionNotFound(6001);
 
         public int id;
 

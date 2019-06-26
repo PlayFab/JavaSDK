@@ -1755,7 +1755,9 @@ public class PlayFabAdminModels {
         ExportUnknownError,
         ExportCantEditPendingExport,
         ExportLimitExports,
-        ExportLimitEvents
+        ExportLimitEvents,
+        TitleNotEnabledForParty,
+        PartyVersionNotFound
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {

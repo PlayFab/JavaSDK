@@ -1594,7 +1594,9 @@ public class PlayFabServerModels {
         ExportUnknownError,
         ExportCantEditPendingExport,
         ExportLimitExports,
-        ExportLimitEvents
+        ExportLimitEvents,
+        TitleNotEnabledForParty,
+        PartyVersionNotFound
     }
 
     public static class GenericPlayFabIdPair {
