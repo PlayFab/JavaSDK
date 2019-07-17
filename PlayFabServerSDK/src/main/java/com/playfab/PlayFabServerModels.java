@@ -894,6 +894,7 @@ public class PlayFabServerModels {
         
     }
 
+    /** Represents the request to delete a push notification template. */
     public static class DeletePushNotificationTemplateRequest {
         /** Id of the push notification template to be deleted. */
         public String PushNotificationTemplateId;
@@ -1524,6 +1525,7 @@ public class PlayFabServerModels {
         EconomyServiceInternalError,
         QueryRateLimitExceeded,
         EntityAPIKeyCreationDisabledForEntity,
+        ForbiddenByEntityPolicy,
         StudioCreationRateLimited,
         StudioCreationInProgress,
         DuplicateStudioName,
@@ -1542,6 +1544,14 @@ public class PlayFabServerModels {
         CloudScriptAzureFunctionsArgumentSizeExceeded,
         CloudScriptAzureFunctionsReturnSizeExceeded,
         CloudScriptAzureFunctionsHTTPRequestError,
+        VirtualCurrencyBetaGetError,
+        VirtualCurrencyBetaCreateError,
+        VirtualCurrencyBetaInitialDepositSaveError,
+        VirtualCurrencyBetaSaveError,
+        VirtualCurrencyBetaDeleteError,
+        VirtualCurrencyBetaRestoreError,
+        VirtualCurrencyBetaSaveConflict,
+        VirtualCurrencyBetaUpdateError,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1581,22 +1591,30 @@ public class PlayFabServerModels {
         ExportInvalidStatusUpdate,
         ExportInvalidPrefix,
         ExportBlobContainerDoesNotExist,
-        ExportEventNameNotFound,
-        ExportExportTitleIdNotFound,
+        ExportNotFound,
         ExportCouldNotUpdate,
         ExportInvalidStorageType,
         ExportAmazonBucketDoesNotExist,
         ExportInvalidBlobStorage,
         ExportKustoException,
-        ExportKustoExceptionPartialErrorOnNewExport,
-        ExportKustoExceptionEdit,
         ExportKustoConnectionFailed,
         ExportUnknownError,
         ExportCantEditPendingExport,
         ExportLimitExports,
         ExportLimitEvents,
         TitleNotEnabledForParty,
-        PartyVersionNotFound
+        PartyVersionNotFound,
+        MultiplayerServerBuildReferencedByMatchmakingQueue,
+        ExperimentationExperimentStopped,
+        ExperimentationExperimentRunning,
+        ExperimentationExperimentNotFound,
+        ExperimentationExperimentNeverStarted,
+        ExperimentationExperimentDeleted,
+        ExperimentationClientTimeout,
+        ExperimentationExceededVariantNameLength,
+        ExperimentationExceededMaxVariantLength,
+        ExperimentInvalidId,
+        SnapshotNotFound
     }
 
     public static class GenericPlayFabIdPair {
@@ -2713,6 +2731,7 @@ public class PlayFabServerModels {
         
     }
 
+    /** Contains the localized push notification content. */
     public static class LocalizedPushNotificationProperties {
         /** Message of the localized push notification template. */
         public String Message;
@@ -3460,6 +3479,7 @@ public class PlayFabServerModels {
         
     }
 
+    /** Represents the save push notification template request. */
     public static class SavePushNotificationTemplateRequest {
         /** Android JSON for the notification template. */
         public String AndroidPayload;
@@ -3467,13 +3487,14 @@ public class PlayFabServerModels {
         public String Id;
         /** IOS JSON for the notification template. */
         public String IOSPayload;
-        /** Dictionary of localized push notification templates. */
+        /** Dictionary of localized push notification templates with the language as the key. */
         public Map<String,LocalizedPushNotificationProperties> LocalizedPushNotificationTemplates;
         /** Name of the push notification template. */
         public String Name;
         
     }
 
+    /** Represents the save push notification template result. */
     public static class SavePushNotificationTemplateResult {
         /** Id of the push notification template that was saved. */
         public String PushNotificationTemplateId;
@@ -3527,6 +3548,7 @@ public class PlayFabServerModels {
         
     }
 
+    /** Represents the request for sending a push notification template to a recipient. */
     public static class SendPushNotificationFromTemplateRequest {
         /** Id of the push notification template. */
         public String PushNotificationTemplateId;

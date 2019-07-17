@@ -145,8 +145,7 @@ public class PlayFabMultiplayerModels {
     public static enum CancellationReason {
         Requested,
         Internal,
-        Timeout,
-        ServerAllocationFailed
+        Timeout
     }
 
     /**
@@ -233,20 +232,8 @@ public class PlayFabMultiplayerModels {
         public ContainerFlavor ContainerFlavor;
         /** The container reference, consisting of the image name and tag. */
         public ContainerImageReference ContainerImageReference;
-        /**
-         * The name of the container repository.
-         * @deprecated Please use ContainerImageReference instead.
-         */
-        @Deprecated
-        public String ContainerRepositoryName;
         /** The container command to run when the multiplayer server has been allocated, including any arguments. */
         public String ContainerRunCommand;
-        /**
-         * The tag for the container.
-         * @deprecated Please use ContainerImageReference instead.
-         */
-        @Deprecated
-        public String ContainerTag;
         /** The list of game assets related to the build. */
         public ArrayList<AssetReferenceParams> GameAssetReferences;
         /** The game certificates for the build. */
@@ -619,8 +606,14 @@ public class PlayFabMultiplayerModels {
     }
 
     public static class GetMatchmakingTicketResult {
-        /** The reason why the current ticket was canceled. This field is only set if the ticket is in canceled state. */
+        /**
+         * The reason why the current ticket was canceled. This field is only set if the ticket is in canceled state.
+         * @deprecated Please use CancellationReasonString instead.
+         */
+        @Deprecated
         public CancellationReason CancellationReason;
+        /** The reason why the current ticket was canceled. This field is only set if the ticket is in canceled state. */
+        public String CancellationReasonString;
         /** The server date and time at which ticket was created. */
         public Date Created;
         /** The Creator's entity key. */

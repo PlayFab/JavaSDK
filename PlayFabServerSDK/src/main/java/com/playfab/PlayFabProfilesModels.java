@@ -80,6 +80,8 @@ public class PlayFabProfilesModels {
         public Map<String,EntityProfileFileMetadata> Files;
         /** The language on this profile. */
         public String Language;
+        /** Leaderboard metadata for the entity. */
+        public String LeaderboardMetadata;
         /** The lineage of this profile. */
         public EntityLineage Lineage;
         /** The objects on this profile. */
@@ -192,6 +194,21 @@ public class PlayFabProfilesModels {
     public static class GetGlobalPolicyResponse {
         /** The permissions that govern access to all entities under this title or namespace. */
         public ArrayList<EntityPermissionStatement> Permissions;
+        
+    }
+
+    /** Given a master player account id (PlayFab ID), returns all title player accounts associated with it. */
+    public static class GetTitlePlayersFromMasterPlayerAccountIdsRequest {
+        /** Master player account ids. */
+        public ArrayList<String> MasterPlayerAccountIds;
+        /** Id of title to get players from. */
+        public String TitleId;
+        
+    }
+
+    public static class GetTitlePlayersFromMasterPlayerAccountIdsResponse {
+        /** Dictionary of master player ids mapped to title player entity keys and id pairs */
+        public Map<String,EntityKey> TitlePlayerAccounts;
         
     }
 
