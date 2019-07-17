@@ -197,6 +197,66 @@ public class PlayFabProfilesAPI {
     }
 
     /**
+     * Retrieves the title player accounts associated with the given master player account.
+     * @param request GetTitlePlayersFromMasterPlayerAccountIdsRequest
+     * @return Async Task will return GetTitlePlayersFromMasterPlayerAccountIdsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetTitlePlayersFromMasterPlayerAccountIdsResponse>> GetTitlePlayersFromMasterPlayerAccountIdsAsync(final GetTitlePlayersFromMasterPlayerAccountIdsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetTitlePlayersFromMasterPlayerAccountIdsResponse>>() {
+            public PlayFabResult<GetTitlePlayersFromMasterPlayerAccountIdsResponse> call() throws Exception {
+                return privateGetTitlePlayersFromMasterPlayerAccountIdsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the title player accounts associated with the given master player account.
+     * @param request GetTitlePlayersFromMasterPlayerAccountIdsRequest
+     * @return GetTitlePlayersFromMasterPlayerAccountIdsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetTitlePlayersFromMasterPlayerAccountIdsResponse> GetTitlePlayersFromMasterPlayerAccountIds(final GetTitlePlayersFromMasterPlayerAccountIdsRequest request) {
+        FutureTask<PlayFabResult<GetTitlePlayersFromMasterPlayerAccountIdsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetTitlePlayersFromMasterPlayerAccountIdsResponse>>() {
+            public PlayFabResult<GetTitlePlayersFromMasterPlayerAccountIdsResponse> call() throws Exception {
+                return privateGetTitlePlayersFromMasterPlayerAccountIdsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Retrieves the title player accounts associated with the given master player account. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetTitlePlayersFromMasterPlayerAccountIdsResponse> privateGetTitlePlayersFromMasterPlayerAccountIdsAsync(final GetTitlePlayersFromMasterPlayerAccountIdsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Profile/GetTitlePlayersFromMasterPlayerAccountIds"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetTitlePlayersFromMasterPlayerAccountIdsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetTitlePlayersFromMasterPlayerAccountIdsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetTitlePlayersFromMasterPlayerAccountIdsResponse>>(){}.getType());
+        GetTitlePlayersFromMasterPlayerAccountIdsResponse result = resultData.data;
+
+        PlayFabResult<GetTitlePlayersFromMasterPlayerAccountIdsResponse> pfResult = new PlayFabResult<GetTitlePlayersFromMasterPlayerAccountIdsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Sets the global title access policy
      * @param request SetGlobalPolicyRequest
      * @return Async Task will return SetGlobalPolicyResponse
