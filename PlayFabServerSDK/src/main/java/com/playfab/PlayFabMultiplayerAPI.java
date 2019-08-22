@@ -1879,6 +1879,66 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * Lists quality of service servers for party.
+     * @param request ListPartyQosServersRequest
+     * @return Async Task will return ListPartyQosServersResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ListPartyQosServersResponse>> ListPartyQosServersAsync(final ListPartyQosServersRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ListPartyQosServersResponse>>() {
+            public PlayFabResult<ListPartyQosServersResponse> call() throws Exception {
+                return privateListPartyQosServersAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Lists quality of service servers for party.
+     * @param request ListPartyQosServersRequest
+     * @return ListPartyQosServersResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ListPartyQosServersResponse> ListPartyQosServers(final ListPartyQosServersRequest request) {
+        FutureTask<PlayFabResult<ListPartyQosServersResponse>> task = new FutureTask(new Callable<PlayFabResult<ListPartyQosServersResponse>>() {
+            public PlayFabResult<ListPartyQosServersResponse> call() throws Exception {
+                return privateListPartyQosServersAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Lists quality of service servers for party. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ListPartyQosServersResponse> privateListPartyQosServersAsync(final ListPartyQosServersRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListPartyQosServers"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ListPartyQosServersResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ListPartyQosServersResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListPartyQosServersResponse>>(){}.getType());
+        ListPartyQosServersResponse result = resultData.data;
+
+        PlayFabResult<ListPartyQosServersResponse> pfResult = new PlayFabResult<ListPartyQosServersResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Lists quality of service servers.
      * @param request ListQosServersRequest
      * @return Async Task will return ListQosServersResponse

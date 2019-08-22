@@ -53,6 +53,28 @@ public class PlayFabAuthenticationModels {
         
     }
 
+    public static enum LoginIdentityProvider {
+        Unknown,
+        PlayFab,
+        Custom,
+        GameCenter,
+        GooglePlay,
+        Steam,
+        XBoxLive,
+        PSN,
+        Kongregate,
+        Facebook,
+        IOSDevice,
+        AndroidDevice,
+        Twitch,
+        WindowsHello,
+        GameServer,
+        CustomServer,
+        NintendoSwitch,
+        FacebookInstantGames,
+        OpenIdConnect
+    }
+
     /** Given an entity token, validates that it hasn't exipired or been revoked and will return details of the owner. */
     public static class ValidateEntityTokenRequest {
         /** Client EntityToken */
@@ -63,6 +85,8 @@ public class PlayFabAuthenticationModels {
     public static class ValidateEntityTokenResponse {
         /** The entity id and type. */
         public EntityKey Entity;
+        /** The identity provider for this entity, for the given login */
+        public LoginIdentityProvider IdentityProvider;
         /** The lineage of this profile. */
         public EntityLineage Lineage;
         
