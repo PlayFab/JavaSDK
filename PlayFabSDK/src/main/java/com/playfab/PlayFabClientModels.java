@@ -436,7 +436,7 @@ public class PlayFabClientModels {
     public static class ConsumeXboxEntitlementsRequest {
         /** Catalog version to use */
         public String CatalogVersion;
-        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). */
         public String XboxToken;
         
     }
@@ -2164,10 +2164,11 @@ public class PlayFabClientModels {
     }
 
     /**
-     * A unique instance of an item in a user's inventory. Note, to retrieve additional information for an item instance (such
-     * as Tags, Description, or Custom Data that are set on the root catalog item), a call to GetCatalogItems is required. The
-     * Item ID of the instance can then be matched to a catalog entry, which contains the additional information. Also note
-     * that Custom Data is only set here from a call to UpdateUserInventoryItemCustomData.
+     * A unique instance of an item in a user's inventory. Note, to retrieve additional information for an item such as Tags,
+     * Description that are the same across all instances of the item, a call to GetCatalogItems is required. The ItemID of can
+     * be matched to a catalog entry, which contains the additional information. Also note that Custom Data is only set when
+     * the User's specific instance has updated the CustomData via a call to UpdateUserInventoryItemCustomData. Other fields
+     * such as UnitPrice and UnitCurrency are only set when the item was granted via a purchase.
      */
     public static class ItemInstance implements Comparable<ItemInstance> {
         /** Game specific comment associated with this instance when it was added to the user inventory. */
@@ -2197,9 +2198,9 @@ public class PlayFabClientModels {
         public Date PurchaseDate;
         /** Total number of remaining uses, if this is a consumable item. */
         public Integer RemainingUses;
-        /** Currency type for the cost of the catalog item. */
+        /** Currency type for the cost of the catalog item. Not available when granting items. */
         public String UnitCurrency;
-        /** Cost of the catalog item in the given currency. */
+        /** Cost of the catalog item in the given currency. Not available when granting items. */
         public Long UnitPrice;
         /** The number of uses that were added or removed to this item in this call. */
         public Integer UsesIncrementedBy;
@@ -2471,7 +2472,7 @@ public class PlayFabClientModels {
     public static class LinkXboxAccountRequest {
         /** If another user is already linked to the account, unlink the other user and re-link. */
         public Boolean ForceLink;
-        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). */
         public String XboxToken;
         
     }
@@ -3014,7 +3015,7 @@ public class PlayFabClientModels {
          * title has been selected.
          */
         public String TitleId;
-        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). */
         public String XboxToken;
         
     }
@@ -3340,6 +3341,23 @@ public class PlayFabClientModels {
         
     }
 
+    public static class PurchaseReceiptFulfillment {
+        /** Items granted to the player in fulfillment of the validated receipt. */
+        public ArrayList<ItemInstance> FulfilledItems;
+        /**
+         * Source of the payment price information for the recorded purchase transaction. A value of 'Request' indicates that the
+         * price specified in the request was used, whereas a value of 'Catalog' indicates that the real-money price of the catalog
+         * item matching the product ID in the validated receipt transaction and the currency specified in the request (defaulting
+         * to USD) was used.
+         */
+        public String RecordedPriceSource;
+        /** Currency used to purchase the items (ISO 4217 currency code). */
+        public String RecordedTransactionCurrency;
+        /** Amount of the stated currency paid for the items, in centesimal units */
+        public Long RecordedTransactionTotal;
+        
+    }
+
     public static enum PushNotificationPlatform {
         ApplePushNotificationService,
         GoogleCloudMessaging
@@ -3563,6 +3581,8 @@ public class PlayFabClientModels {
      * they still exist in the catalog and can be validated.
      */
     public static class RestoreIOSPurchasesRequest {
+        /** Catalog version of the restored items. If null, defaults to primary catalog. */
+        public String CatalogVersion;
         /** Base64 encoded receipt data, passed back by the App Store as a result of a successful purchase. */
         public String ReceiptData;
         
@@ -3570,6 +3590,8 @@ public class PlayFabClientModels {
 
     /** Once verified, the valid items will be restored into the user's inventory. */
     public static class RestoreIOSPurchasesResult {
+        /** Fulfilled inventory items and recorded purchases in fulfillment of the validated receipt transactions. */
+        public ArrayList<PurchaseReceiptFulfillment> Fulfillments;
         
     }
 
@@ -4082,7 +4104,7 @@ public class PlayFabClientModels {
     }
 
     public static class UnlinkXboxAccountRequest {
-        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com", ""). */
+        /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). */
         public String XboxToken;
         
     }
@@ -4546,11 +4568,11 @@ public class PlayFabClientModels {
     }
 
     public static class ValidateAmazonReceiptRequest {
-        /** Catalog version to use when granting receipt item. If null, defaults to primary catalog. */
+        /** Catalog version of the fulfilled items. If null, defaults to the primary catalog. */
         public String CatalogVersion;
-        /** Currency used for the purchase. */
+        /** Currency used to pay for the purchase (ISO 4217 currency code). */
         public String CurrencyCode;
-        /** Amount of the stated currency paid for the object. */
+        /** Amount of the stated currency paid, in centesimal units. */
         public Integer PurchasePrice;
         /** ReceiptId returned by the Amazon App Store in-app purchase API */
         public String ReceiptId;
@@ -4561,6 +4583,8 @@ public class PlayFabClientModels {
 
     /** Once verified, the catalog item matching the Amazon item name will be added to the user's inventory. */
     public static class ValidateAmazonReceiptResult {
+        /** Fulfilled inventory items and recorded purchases in fulfillment of the validated receipt transactions. */
+        public ArrayList<PurchaseReceiptFulfillment> Fulfillments;
         
     }
 
@@ -4572,9 +4596,11 @@ public class PlayFabClientModels {
      * avoid granting the same item over and over from a single purchase.
      */
     public static class ValidateGooglePlayPurchaseRequest {
-        /** Currency used for the purchase. */
+        /** Catalog version of the fulfilled items. If null, defaults to the primary catalog. */
+        public String CatalogVersion;
+        /** Currency used to pay for the purchase (ISO 4217 currency code). */
         public String CurrencyCode;
-        /** Amount of the stated currency paid for the object. */
+        /** Amount of the stated currency paid, in centesimal units. */
         public Long PurchasePrice;
         /** Original JSON string returned by the Google Play IAB API. */
         public String ReceiptJson;
@@ -4588,6 +4614,8 @@ public class PlayFabClientModels {
      * inventory.
      */
     public static class ValidateGooglePlayPurchaseResult {
+        /** Fulfilled inventory items and recorded purchases in fulfillment of the validated receipt transactions. */
+        public ArrayList<PurchaseReceiptFulfillment> Fulfillments;
         
     }
 
@@ -4599,9 +4627,11 @@ public class PlayFabClientModels {
      * $19.99 purchase, for example).
      */
     public static class ValidateIOSReceiptRequest {
-        /** Currency used for the purchase. */
+        /** Catalog version of the fulfilled items. If null, defaults to the primary catalog. */
+        public String CatalogVersion;
+        /** Currency used to pay for the purchase (ISO 4217 currency code). */
         public String CurrencyCode;
-        /** Amount of the stated currency paid for the object. */
+        /** Amount of the stated currency paid, in centesimal units. */
         public Integer PurchasePrice;
         /** Base64 encoded receipt data, passed back by the App Store as a result of a successful purchase. */
         public String ReceiptData;
@@ -4610,15 +4640,17 @@ public class PlayFabClientModels {
 
     /** Once verified, the catalog item matching the iTunes item name will be added to the user's inventory. */
     public static class ValidateIOSReceiptResult {
+        /** Fulfilled inventory items and recorded purchases in fulfillment of the validated receipt transactions. */
+        public ArrayList<PurchaseReceiptFulfillment> Fulfillments;
         
     }
 
     public static class ValidateWindowsReceiptRequest {
-        /** Catalog version to use when granting receipt item. If null, defaults to primary catalog. */
+        /** Catalog version of the fulfilled items. If null, defaults to the primary catalog. */
         public String CatalogVersion;
-        /** Currency used for the purchase. */
+        /** Currency used to pay for the purchase (ISO 4217 currency code). */
         public String CurrencyCode;
-        /** Amount of the stated currency paid for the object. */
+        /** Amount of the stated currency paid, in centesimal units. */
         public Long PurchasePrice;
         /** XML Receipt returned by the Windows App Store in-app purchase API */
         public String Receipt;
@@ -4627,6 +4659,8 @@ public class PlayFabClientModels {
 
     /** Once verified, the catalog item matching the Product name will be added to the user's inventory. */
     public static class ValidateWindowsReceiptResult {
+        /** Fulfilled inventory items and recorded purchases in fulfillment of the validated receipt transactions. */
+        public ArrayList<PurchaseReceiptFulfillment> Fulfillments;
         
     }
 
