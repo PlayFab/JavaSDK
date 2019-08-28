@@ -294,6 +294,8 @@ public class PlayFabMultiplayerModels {
         public ArrayList<AssetReferenceParams> GameAssetReferences;
         /** The game certificates for the build. */
         public ArrayList<GameCertificateReferenceParams> GameCertificateReferences;
+        /** The instrumentation configuration for the build. */
+        public InstrumentationConfiguration InstrumentationConfiguration;
         /**
          * Metadata to tag the build. The keys are case insensitive. The build metadata is made available to the server through
          * Game Server SDK (GSDK).
@@ -325,6 +327,8 @@ public class PlayFabMultiplayerModels {
         public ArrayList<AssetReference> GameAssetReferences;
         /** The game certificates for the build. */
         public ArrayList<GameCertificateReference> GameCertificateReferences;
+        /** The instrumentation configuration for this build. */
+        public InstrumentationConfiguration InstrumentationConfiguration;
         /** The metadata of the build. */
         public Map<String,String> Metadata;
         /** The number of multiplayer servers to host on a single VM of the build. */
@@ -549,6 +553,8 @@ public class PlayFabMultiplayerModels {
         public ArrayList<AssetReference> GameAssetReferences;
         /** The game certificates for the build. */
         public ArrayList<GameCertificateReference> GameCertificateReferences;
+        /** The instrumentation configuration of the build. */
+        public InstrumentationConfiguration InstrumentationConfiguration;
         /**
          * Metadata of the build. The keys are case insensitive. The build metadata is made available to the server through Game
          * Server SDK (GSDK).
@@ -776,6 +782,16 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    public static class InstrumentationConfiguration {
+        /**
+         * The list of processes to be monitored on a VM for this build. Providing processes will turn on performance metrics
+         * collection for this build. Process names should not include extensions. If the game server process is: GameServer.exe;
+         * then, ProcessesToMonitor = [ GameServer ]
+         */
+        public ArrayList<String> ProcessesToMonitor;
+        
+    }
+
     /**
      * Add the player to a matchmaking ticket and specify all of its matchmaking attributes. Players can join a ticket if and
      * only if their EntityKeys are already listed in the ticket's Members list. The matchmaking service automatically starts
@@ -934,6 +950,21 @@ public class PlayFabMultiplayerModels {
     }
 
     public static class ListPartyQosServersResponse {
+        /** The page size on the response. */
+        public Integer PageSize;
+        /** The list of QoS servers. */
+        public ArrayList<QosServer> QosServers;
+        /** The skip token for the paged response. */
+        public String SkipToken;
+        
+    }
+
+    /** Returns a list of quality of service servers for a title. */
+    public static class ListQosServersForTitleRequest {
+        
+    }
+
+    public static class ListQosServersForTitleResponse {
         /** The page size on the response. */
         public Integer PageSize;
         /** The list of QoS servers. */
