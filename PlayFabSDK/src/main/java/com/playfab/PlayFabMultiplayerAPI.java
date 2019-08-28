@@ -1998,6 +1998,66 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * Lists quality of service servers.
+     * @param request ListQosServersForTitleRequest
+     * @return Async Task will return ListQosServersForTitleResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ListQosServersForTitleResponse>> ListQosServersForTitleAsync(final ListQosServersForTitleRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ListQosServersForTitleResponse>>() {
+            public PlayFabResult<ListQosServersForTitleResponse> call() throws Exception {
+                return privateListQosServersForTitleAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Lists quality of service servers.
+     * @param request ListQosServersForTitleRequest
+     * @return ListQosServersForTitleResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ListQosServersForTitleResponse> ListQosServersForTitle(final ListQosServersForTitleRequest request) {
+        FutureTask<PlayFabResult<ListQosServersForTitleResponse>> task = new FutureTask(new Callable<PlayFabResult<ListQosServersForTitleResponse>>() {
+            public PlayFabResult<ListQosServersForTitleResponse> call() throws Exception {
+                return privateListQosServersForTitleAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Lists quality of service servers. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ListQosServersForTitleResponse> privateListQosServersForTitleAsync(final ListQosServersForTitleRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListQosServersForTitle"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ListQosServersForTitleResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ListQosServersForTitleResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListQosServersForTitleResponse>>(){}.getType());
+        ListQosServersForTitleResponse result = resultData.data;
+
+        PlayFabResult<ListQosServersForTitleResponse> pfResult = new PlayFabResult<ListQosServersForTitleResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Lists virtual machines for a title.
      * @param request ListVirtualMachineSummariesRequest
      * @return Async Task will return ListVirtualMachineSummariesResponse

@@ -1686,6 +1686,7 @@ public class PlayFabAdminModels {
         QueryRateLimitExceeded,
         EntityAPIKeyCreationDisabledForEntity,
         ForbiddenByEntityPolicy,
+        UpdateInventoryRateLimitExceeded,
         StudioCreationRateLimited,
         StudioCreationInProgress,
         DuplicateStudioName,
