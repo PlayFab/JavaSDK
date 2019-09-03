@@ -3261,6 +3261,66 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Retrieves the set of items defined for the specified store, including all prices defined, for the specified player
+     * @param request GetStoreItemsServerRequest
+     * @return Async Task will return GetStoreItemsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetStoreItemsResult>> GetStoreItemsAsync(final GetStoreItemsServerRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetStoreItemsResult>>() {
+            public PlayFabResult<GetStoreItemsResult> call() throws Exception {
+                return privateGetStoreItemsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the set of items defined for the specified store, including all prices defined, for the specified player
+     * @param request GetStoreItemsServerRequest
+     * @return GetStoreItemsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetStoreItemsResult> GetStoreItems(final GetStoreItemsServerRequest request) {
+        FutureTask<PlayFabResult<GetStoreItemsResult>> task = new FutureTask(new Callable<PlayFabResult<GetStoreItemsResult>>() {
+            public PlayFabResult<GetStoreItemsResult> call() throws Exception {
+                return privateGetStoreItemsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Retrieves the set of items defined for the specified store, including all prices defined, for the specified player */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetStoreItemsResult> privateGetStoreItemsAsync(final GetStoreItemsServerRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/GetStoreItems"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetStoreItemsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetStoreItemsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetStoreItemsResult>>(){}.getType());
+        GetStoreItemsResult result = resultData.data;
+
+        PlayFabResult<GetStoreItemsResult> pfResult = new PlayFabResult<GetStoreItemsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the current server time
      * @param request GetTimeRequest
      * @return Async Task will return GetTimeResult
