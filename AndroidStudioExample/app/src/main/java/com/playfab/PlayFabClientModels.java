@@ -1948,7 +1948,7 @@ public class PlayFabClientModels {
      * to the user.
      */
     public static class GetStoreItemsRequest {
-        /** catalog version to store items from. Use default catalog version if null */
+        /** Catalog version to store items from. Use default catalog version if null */
         public String CatalogVersion;
         /** Unqiue identifier for the store which is being requested. */
         public String StoreId;

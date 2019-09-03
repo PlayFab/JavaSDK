@@ -2262,7 +2262,7 @@ public class PlayFabAdminModels {
      * specified in the store for an item, the price set in the catalog should be displayed to the user.
      */
     public static class GetStoreItemsRequest {
-        /** catalog version to store items from. Use default catalog version if null */
+        /** Catalog version to store items from. Use default catalog version if null */
         public String CatalogVersion;
         /** Unqiue identifier for the store which is being requested. */
         public String StoreId;

@@ -2339,6 +2339,45 @@ public class PlayFabServerModels {
         
     }
 
+    public static class GetStoreItemsResult {
+        /** The base catalog that this store is a part of. */
+        public String CatalogVersion;
+        /** Additional data about the store. */
+        public StoreMarketingModel MarketingData;
+        /** How the store was last updated (Admin or a third party). */
+        public SourceType Source;
+        /** Array of items which can be purchased from this store. */
+        @Unordered("ItemId")
+        public ArrayList<StoreItem> Store;
+        /** The ID of this store. */
+        public String StoreId;
+        
+    }
+
+    /**
+     * A store contains an array of references to items defined in one or more catalog versions of the game, along with the
+     * prices for the item, in both real world and virtual currencies. These prices act as an override to any prices defined in
+     * the catalog. In this way, the base definitions of the items may be defined in the catalog, with all associated
+     * properties, while the pricing can be set for each store, as needed. This allows for subsets of goods to be defined for
+     * different purposes (in order to simplify showing some, but not all catalog items to users, based upon different
+     * characteristics), along with unique prices. Note that all prices defined in the catalog and store definitions for the
+     * item are considered valid, and that a compromised client can be made to send a request for an item based upon any of
+     * these definitions. If no price is specified in the store for an item, the price set in the catalog should be displayed
+     * to the user.
+     */
+    public static class GetStoreItemsServerRequest {
+        /** Catalog version to store items from. Use default catalog version if null */
+        public String CatalogVersion;
+        /**
+         * Optional identifier for the player to use in requesting the store information - if used, segment overrides will be
+         * applied
+         */
+        public String PlayFabId;
+        /** Unqiue identifier for the store which is being requested */
+        public String StoreId;
+        
+    }
+
     /**
      * This query retrieves the current time from one of the servers in PlayFab. Please note that due to clock drift between
      * servers, there is a potential variance of up to 5 seconds.
@@ -3768,6 +3807,16 @@ public class PlayFabServerModels {
         
     }
 
+    public static enum SourceType {
+        Admin,
+        BackEnd,
+        GameClient,
+        GameServer,
+        Partner,
+        Custom,
+        API
+    }
+
     public static class StatisticModel {
         /** Statistic name */
         public String Name;
@@ -3814,6 +3863,40 @@ public class PlayFabServerModels {
         public String PlayFabId;
         /** Unique Steam identifier for a user. */
         public String SteamStringId;
+        
+    }
+
+    /** A store entry that list a catalog item at a particular price */
+    public static class StoreItem implements Comparable<StoreItem> {
+        /** Store specific custom data. The data only exists as part of this store; it is not transferred to item instances */
+        public Object CustomData;
+        /** Intended display position for this item. Note that 0 is the first position */
+        public Long DisplayPosition;
+        /**
+         * Unique identifier of the item as it exists in the catalog - note that this must exactly match the ItemId from the
+         * catalog
+         */
+        public String ItemId;
+        /** Override prices for this item for specific currencies */
+        public Map<String,Long> RealCurrencyPrices;
+        /** Override prices for this item in virtual currencies and "RM" (the base Real Money purchase price, in USD pennies) */
+        public Map<String,Long> VirtualCurrencyPrices;
+        
+        public int compareTo(StoreItem other) {
+            if (other == null || other.ItemId == null) return 1;
+            if (ItemId == null) return -1;
+            return ItemId.compareTo(other.ItemId);
+        }
+    }
+
+    /** Marketing data about a specific store */
+    public static class StoreMarketingModel {
+        /** Tagline for a store. */
+        public String Description;
+        /** Display name of a store as it will appear to users. */
+        public String DisplayName;
+        /** Custom data about a store. */
+        public Object Metadata;
         
     }
 
