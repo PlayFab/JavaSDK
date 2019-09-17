@@ -482,6 +482,13 @@ public class PlayFabErrors {
         VirtualCurrencyBetaRestoreError(1479),
         VirtualCurrencyBetaSaveConflict(1480),
         VirtualCurrencyBetaUpdateError(1481),
+        InsightsManagementDatabaseNotFound(1482),
+        InsightsManagementOperationNotFound(1483),
+        InsightsManagementErrorPendingOperationExists(1484),
+        InsightsManagementSetPerformanceLevelInvalidParameter(1485),
+        InsightsManagementSetStorageRetentionInvalidParameter(1486),
+        InsightsManagementGetStorageUsageInvalidParameter(1487),
+        InsightsManagementGetOperationStatusInvalidParameter(1488),
         MatchmakingEntityInvalid(2001),
         MatchmakingPlayerAttributesInvalid(2002),
         MatchmakingQueueNotFound(2016),
@@ -544,6 +551,7 @@ public class PlayFabErrors {
         ExperimentationExceededVariantNameLength(7006),
         ExperimentationExceededMaxVariantLength(7007),
         ExperimentInvalidId(7008),
+        MaxActionDepthExceeded(8000),
         SnapshotNotFound(11000);
 
         public int id;
