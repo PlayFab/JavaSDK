@@ -474,7 +474,7 @@ public class PlayFabMultiplayerModels {
     public static class EntityKey {
         /** Unique ID of the entity. */
         public String Id;
-        /** Entity type. See https://api.playfab.com/docs/tutorials/entities/entitytypes */
+        /** Entity type. See https://docs.microsoft.com/gaming/playfab/features/data/entities/available-built-in-entity-types */
         public String Type;
         
     }
