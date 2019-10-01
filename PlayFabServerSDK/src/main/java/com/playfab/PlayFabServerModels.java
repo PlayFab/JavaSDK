@@ -1912,7 +1912,11 @@ public class PlayFabServerModels {
         
     }
 
-    /** Note that the Position of the user in the results is for the overall leaderboard. */
+    /**
+     * NOTE: The position of the character in the results is relative to the other characters for that specific user. This mean
+     * the values will always be between 0 and one less than the number of characters returned regardless of the size of the
+     * actual leaderboard.
+     */
     public static class GetLeaderboardForUsersCharactersResult {
         /** Ordered list of leaderboard entries. */
         public ArrayList<CharacterLeaderboardEntry> Leaderboard;
@@ -2555,7 +2559,10 @@ public class PlayFabServerModels {
         public String CatalogVersion;
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         public String CharacterId;
-        /** A set of custom key-value pairs on the inventory item. */
+        /**
+         * A set of custom key-value pairs on the instance of the inventory item, which is not to be confused with the catalog
+         * item's custom data.
+         */
         public Map<String,String> CustomData;
         /** CatalogItem.DisplayName at the time this item was purchased. */
         public String DisplayName;
@@ -2703,7 +2710,10 @@ public class PlayFabServerModels {
         public String BundleParent;
         /** Catalog version for the inventory item, when this instance was created. */
         public String CatalogVersion;
-        /** A set of custom key-value pairs on the inventory item. */
+        /**
+         * A set of custom key-value pairs on the instance of the inventory item, which is not to be confused with the catalog
+         * item's custom data.
+         */
         public Map<String,String> CustomData;
         /** CatalogItem.DisplayName at the time this item was purchased. */
         public String DisplayName;

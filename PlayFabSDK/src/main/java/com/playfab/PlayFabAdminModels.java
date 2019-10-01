@@ -1911,7 +1911,10 @@ public class PlayFabAdminModels {
     }
 
     public static class GetDataReportResult {
-        /** The URL where the requested report can be downloaded. */
+        /**
+         * The URL where the requested report can be downloaded. This can be any PlayFab generated reports. The full list of
+         * reports can be found at: https://docs.microsoft.com/en-us/gaming/playfab/features/analytics/reports/quickstart.
+         */
         public String DownloadUrl;
         
     }
@@ -2452,7 +2455,10 @@ public class PlayFabAdminModels {
         public String CatalogVersion;
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         public String CharacterId;
-        /** A set of custom key-value pairs on the inventory item. */
+        /**
+         * A set of custom key-value pairs on the instance of the inventory item, which is not to be confused with the catalog
+         * item's custom data.
+         */
         public Map<String,String> CustomData;
         /** CatalogItem.DisplayName at the time this item was purchased. */
         public String DisplayName;
@@ -2591,7 +2597,10 @@ public class PlayFabAdminModels {
         public String BundleParent;
         /** Catalog version for the inventory item, when this instance was created. */
         public String CatalogVersion;
-        /** A set of custom key-value pairs on the inventory item. */
+        /**
+         * A set of custom key-value pairs on the instance of the inventory item, which is not to be confused with the catalog
+         * item's custom data.
+         */
         public Map<String,String> CustomData;
         /** CatalogItem.DisplayName at the time this item was purchased. */
         public String DisplayName;
