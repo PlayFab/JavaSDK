@@ -1519,7 +1519,8 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
-     * Lists summarized details of all multiplayer server builds for a title.
+     * Lists summarized details of all multiplayer server builds for a title. Accepts tokens for title and if game client
+     * access is enabled, allows game client to request list of builds with player entity token.
      * @param request ListBuildSummariesRequest
      * @return Async Task will return ListBuildSummariesResponse
      */
@@ -1533,7 +1534,8 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
-     * Lists summarized details of all multiplayer server builds for a title.
+     * Lists summarized details of all multiplayer server builds for a title. Accepts tokens for title and if game client
+     * access is enabled, allows game client to request list of builds with player entity token.
      * @param request ListBuildSummariesRequest
      * @return ListBuildSummariesResponse
      */
@@ -1552,7 +1554,10 @@ public class PlayFabMultiplayerAPI {
         }
     }
 
-    /** Lists summarized details of all multiplayer server builds for a title. */
+    /**
+     * Lists summarized details of all multiplayer server builds for a title. Accepts tokens for title and if game client
+     * access is enabled, allows game client to request list of builds with player entity token.
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListBuildSummariesResponse> privateListBuildSummariesAsync(final ListBuildSummariesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2118,7 +2123,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
-     * Request a multiplayer server session. Accepts tokens for title and if game client accesss is enabled, allows game client
+     * Request a multiplayer server session. Accepts tokens for title and if game client access is enabled, allows game client
      * to request a server with player entity token.
      * @param request RequestMultiplayerServerRequest
      * @return Async Task will return RequestMultiplayerServerResponse
@@ -2133,7 +2138,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
-     * Request a multiplayer server session. Accepts tokens for title and if game client accesss is enabled, allows game client
+     * Request a multiplayer server session. Accepts tokens for title and if game client access is enabled, allows game client
      * to request a server with player entity token.
      * @param request RequestMultiplayerServerRequest
      * @return RequestMultiplayerServerResponse
@@ -2154,7 +2159,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
-     * Request a multiplayer server session. Accepts tokens for title and if game client accesss is enabled, allows game client
+     * Request a multiplayer server session. Accepts tokens for title and if game client access is enabled, allows game client
      * to request a server with player entity token.
      */
     @SuppressWarnings("unchecked")

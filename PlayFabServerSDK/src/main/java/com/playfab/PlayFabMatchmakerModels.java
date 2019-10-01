@@ -43,7 +43,10 @@ public class PlayFabMatchmakerModels {
         public String BundleParent;
         /** Catalog version for the inventory item, when this instance was created. */
         public String CatalogVersion;
-        /** A set of custom key-value pairs on the inventory item. */
+        /**
+         * A set of custom key-value pairs on the instance of the inventory item, which is not to be confused with the catalog
+         * item's custom data.
+         */
         public Map<String,String> CustomData;
         /** CatalogItem.DisplayName at the time this item was purchased. */
         public String DisplayName;
