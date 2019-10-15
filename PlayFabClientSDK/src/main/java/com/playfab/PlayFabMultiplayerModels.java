@@ -83,6 +83,26 @@ public class PlayFabMultiplayerModels {
         Standard_A4
     }
 
+    public static class BuildAliasDetailsResponse {
+        /** The guid string alias Id of the alias to be created or updated. */
+        public String AliasId;
+        /** The alias name. */
+        public String AliasName;
+        /** Array of build selection criteria. */
+        public ArrayList<BuildSelectionCriterion> BuildSelectionCriteria;
+        /** The page size on the response. */
+        public Integer PageSize;
+        /** The skip token for the paged response. */
+        public String SkipToken;
+        
+    }
+
+    public static class BuildAliasParams {
+        /** The guid string alias ID to use for the request. */
+        public String AliasId;
+        
+    }
+
     public static class BuildRegion {
         /** The current multiplayer server stats for the region. */
         public CurrentServerStats CurrentServerStats;
@@ -107,6 +127,12 @@ public class PlayFabMultiplayerModels {
         public String Region;
         /** The number of standby multiplayer servers for the region. */
         public Integer StandbyServers;
+        
+    }
+
+    public static class BuildSelectionCriterion {
+        /** Dictionary of build ids and their respective weights for distribution of allocation requests. */
+        public Map<String,Long> BuildWeightDistribution;
         
     }
 
@@ -221,6 +247,15 @@ public class PlayFabMultiplayerModels {
         public Integer Total;
         /** The AzureVmFamily */
         public AzureVmFamily VmFamily;
+        
+    }
+
+    /** Creates a multiplayer server build alias and returns the created alias. */
+    public static class CreateBuildAliasRequest {
+        /** The alias name. */
+        public String AliasName;
+        /** Array of build selection criteria. */
+        public ArrayList<BuildSelectionCriterion> BuildSelectionCriteria;
         
     }
 
@@ -421,6 +456,13 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Deletes a multiplayer server build alias. */
+    public static class DeleteBuildAliasRequest {
+        /** The guid string alias ID of the alias to perform the action on. */
+        public String AliasId;
+        
+    }
+
     /** Deletes a multiplayer server build. */
     public static class DeleteBuildRequest {
         /** The guid string build ID of the build to delete. */
@@ -521,6 +563,13 @@ public class PlayFabMultiplayerModels {
         public String AssetUploadUrl;
         /** The asset's file name to get the upload URL for. */
         public String FileName;
+        
+    }
+
+    /** Returns the details about a multiplayer server build alias. */
+    public static class GetBuildAliasRequest {
+        /** The guid string alias ID of the alias to perform the action on. */
+        public String AliasId;
         
     }
 
@@ -831,6 +880,12 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    public static class ListBuildAliasesForTitleResponse {
+        /** The list of build aliases for the title */
+        public ArrayList<BuildAliasDetailsResponse> BuildAliases;
+        
+    }
+
     /** Returns a list of summarized details of all multiplayer server builds for a title. */
     public static class ListBuildSummariesRequest {
         /** The page size for the request. */
@@ -1044,6 +1099,11 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Returns a list of summarized details of all multiplayer server builds for a title. */
+    public static class MultiplayerEmptyRequest {
+        
+    }
+
     public static class MultiplayerServerSummary {
         /** The connected players in the multiplayer server. */
         public ArrayList<ConnectedPlayer> ConnectedPlayers;
@@ -1087,6 +1147,8 @@ public class PlayFabMultiplayerModels {
 
     /** Requests a multiplayer server session from a particular build in any of the given preferred regions. */
     public static class RequestMultiplayerServerRequest {
+        /** The identifiers of the build alias to use for the request. */
+        public BuildAliasParams BuildAliasParams;
         /** The guid string build ID of the multiplayer server to request. */
         public String BuildId;
         /**
@@ -1197,6 +1259,17 @@ public class PlayFabMultiplayerModels {
     public static class TitleMultiplayerServersQuotas {
         /** The core capacity for the various regions and VM Family */
         public ArrayList<CoreCapacity> CoreCapacities;
+        
+    }
+
+    /** Creates a multiplayer server build alias and returns the created alias. */
+    public static class UpdateBuildAliasRequest {
+        /** The guid string alias Id of the alias to be updated. */
+        public String AliasId;
+        /** The alias name. */
+        public String AliasName;
+        /** Array of build selection criteria. */
+        public ArrayList<BuildSelectionCriterion> BuildSelectionCriteria;
         
     }
 

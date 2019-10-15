@@ -76,6 +76,8 @@ public class PlayFabProfilesModels {
         public EntityKey Entity;
         /** The chain of responsibility for this entity. Use Lineage. */
         public String EntityChain;
+        /** The experiment variants of this profile. */
+        public ArrayList<String> ExperimentVariants;
         /** The files on this profile. */
         public Map<String,EntityProfileFileMetadata> Files;
         /** The language on this profile. */
