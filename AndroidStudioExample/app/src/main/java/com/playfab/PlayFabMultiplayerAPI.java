@@ -134,6 +134,66 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * Creates a multiplayer server build alias.
+     * @param request CreateBuildAliasRequest
+     * @return Async Task will return BuildAliasDetailsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<BuildAliasDetailsResponse>> CreateBuildAliasAsync(final CreateBuildAliasRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<BuildAliasDetailsResponse>>() {
+            public PlayFabResult<BuildAliasDetailsResponse> call() throws Exception {
+                return privateCreateBuildAliasAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Creates a multiplayer server build alias.
+     * @param request CreateBuildAliasRequest
+     * @return BuildAliasDetailsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<BuildAliasDetailsResponse> CreateBuildAlias(final CreateBuildAliasRequest request) {
+        FutureTask<PlayFabResult<BuildAliasDetailsResponse>> task = new FutureTask(new Callable<PlayFabResult<BuildAliasDetailsResponse>>() {
+            public PlayFabResult<BuildAliasDetailsResponse> call() throws Exception {
+                return privateCreateBuildAliasAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Creates a multiplayer server build alias. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<BuildAliasDetailsResponse> privateCreateBuildAliasAsync(final CreateBuildAliasRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/CreateBuildAlias"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<BuildAliasDetailsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<BuildAliasDetailsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<BuildAliasDetailsResponse>>(){}.getType());
+        BuildAliasDetailsResponse result = resultData.data;
+
+        PlayFabResult<BuildAliasDetailsResponse> pfResult = new PlayFabResult<BuildAliasDetailsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Creates a multiplayer server build with a custom container.
      * @param request CreateBuildWithCustomContainerRequest
      * @return Async Task will return CreateBuildWithCustomContainerResponse
@@ -559,6 +619,66 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * Deletes a multiplayer server build alias.
+     * @param request DeleteBuildAliasRequest
+     * @return Async Task will return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResponse>> DeleteBuildAliasAsync(final DeleteBuildAliasRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateDeleteBuildAliasAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Deletes a multiplayer server build alias.
+     * @param request DeleteBuildAliasRequest
+     * @return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResponse> DeleteBuildAlias(final DeleteBuildAliasRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateDeleteBuildAliasAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Deletes a multiplayer server build alias. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResponse> privateDeleteBuildAliasAsync(final DeleteBuildAliasRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/DeleteBuildAlias"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
+
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Deletes a multiplayer server game certificate.
      * @param request DeleteCertificateRequest
      * @return Async Task will return EmptyResponse
@@ -854,6 +974,66 @@ public class PlayFabMultiplayerAPI {
         GetBuildResponse result = resultData.data;
 
         PlayFabResult<GetBuildResponse> pfResult = new PlayFabResult<GetBuildResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Gets a multiplayer server build alias.
+     * @param request GetBuildAliasRequest
+     * @return Async Task will return BuildAliasDetailsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<BuildAliasDetailsResponse>> GetBuildAliasAsync(final GetBuildAliasRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<BuildAliasDetailsResponse>>() {
+            public PlayFabResult<BuildAliasDetailsResponse> call() throws Exception {
+                return privateGetBuildAliasAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Gets a multiplayer server build alias.
+     * @param request GetBuildAliasRequest
+     * @return BuildAliasDetailsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<BuildAliasDetailsResponse> GetBuildAlias(final GetBuildAliasRequest request) {
+        FutureTask<PlayFabResult<BuildAliasDetailsResponse>> task = new FutureTask(new Callable<PlayFabResult<BuildAliasDetailsResponse>>() {
+            public PlayFabResult<BuildAliasDetailsResponse> call() throws Exception {
+                return privateGetBuildAliasAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Gets a multiplayer server build alias. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<BuildAliasDetailsResponse> privateGetBuildAliasAsync(final GetBuildAliasRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetBuildAlias"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<BuildAliasDetailsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<BuildAliasDetailsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<BuildAliasDetailsResponse>>(){}.getType());
+        BuildAliasDetailsResponse result = resultData.data;
+
+        PlayFabResult<BuildAliasDetailsResponse> pfResult = new PlayFabResult<BuildAliasDetailsResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -1514,6 +1694,71 @@ public class PlayFabMultiplayerAPI {
         ListAssetSummariesResponse result = resultData.data;
 
         PlayFabResult<ListAssetSummariesResponse> pfResult = new PlayFabResult<ListAssetSummariesResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Lists details of all build aliases for a title. Accepts tokens for title and if game client access is enabled, allows
+     * game client to request list of builds with player entity token.
+     * @param request MultiplayerEmptyRequest
+     * @return Async Task will return ListBuildAliasesForTitleResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ListBuildAliasesForTitleResponse>> ListBuildAliasesAsync(final MultiplayerEmptyRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ListBuildAliasesForTitleResponse>>() {
+            public PlayFabResult<ListBuildAliasesForTitleResponse> call() throws Exception {
+                return privateListBuildAliasesAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Lists details of all build aliases for a title. Accepts tokens for title and if game client access is enabled, allows
+     * game client to request list of builds with player entity token.
+     * @param request MultiplayerEmptyRequest
+     * @return ListBuildAliasesForTitleResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ListBuildAliasesForTitleResponse> ListBuildAliases(final MultiplayerEmptyRequest request) {
+        FutureTask<PlayFabResult<ListBuildAliasesForTitleResponse>> task = new FutureTask(new Callable<PlayFabResult<ListBuildAliasesForTitleResponse>>() {
+            public PlayFabResult<ListBuildAliasesForTitleResponse> call() throws Exception {
+                return privateListBuildAliasesAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Lists details of all build aliases for a title. Accepts tokens for title and if game client access is enabled, allows
+     * game client to request list of builds with player entity token.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ListBuildAliasesForTitleResponse> privateListBuildAliasesAsync(final MultiplayerEmptyRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListBuildAliases"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ListBuildAliasesForTitleResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ListBuildAliasesForTitleResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListBuildAliasesForTitleResponse>>(){}.getType());
+        ListBuildAliasesForTitleResponse result = resultData.data;
+
+        PlayFabResult<ListBuildAliasesForTitleResponse> pfResult = new PlayFabResult<ListBuildAliasesForTitleResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -2303,6 +2548,66 @@ public class PlayFabMultiplayerAPI {
         EmptyResponse result = resultData.data;
 
         PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Creates a multiplayer server build alias.
+     * @param request UpdateBuildAliasRequest
+     * @return Async Task will return BuildAliasDetailsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<BuildAliasDetailsResponse>> UpdateBuildAliasAsync(final UpdateBuildAliasRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<BuildAliasDetailsResponse>>() {
+            public PlayFabResult<BuildAliasDetailsResponse> call() throws Exception {
+                return privateUpdateBuildAliasAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Creates a multiplayer server build alias.
+     * @param request UpdateBuildAliasRequest
+     * @return BuildAliasDetailsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<BuildAliasDetailsResponse> UpdateBuildAlias(final UpdateBuildAliasRequest request) {
+        FutureTask<PlayFabResult<BuildAliasDetailsResponse>> task = new FutureTask(new Callable<PlayFabResult<BuildAliasDetailsResponse>>() {
+            public PlayFabResult<BuildAliasDetailsResponse> call() throws Exception {
+                return privateUpdateBuildAliasAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Creates a multiplayer server build alias. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<BuildAliasDetailsResponse> privateUpdateBuildAliasAsync(final UpdateBuildAliasRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/UpdateBuildAlias"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<BuildAliasDetailsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<BuildAliasDetailsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<BuildAliasDetailsResponse>>(){}.getType());
+        BuildAliasDetailsResponse result = resultData.data;
+
+        PlayFabResult<BuildAliasDetailsResponse> pfResult = new PlayFabResult<BuildAliasDetailsResponse>();
         pfResult.Result = result;
         return pfResult;
     }

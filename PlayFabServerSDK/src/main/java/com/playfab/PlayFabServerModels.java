@@ -3105,6 +3105,8 @@ public class PlayFabServerModels {
         public Map<String,PlayerLocation> Locations;
         /** Player account origination */
         public LoginIdentityProvider Origination;
+        /** List of player variants for experimentation */
+        public ArrayList<String> PlayerExperimentVariants;
         /** PlayFab Player ID */
         public String PlayerId;
         /** Array of player statistics */

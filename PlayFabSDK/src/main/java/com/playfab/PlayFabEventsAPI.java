@@ -17,7 +17,7 @@ public class PlayFabEventsAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 
     /**
-     * Write batches of entity based events to PlayStream.
+     * Write batches of entity based events to PlayStream. The namespace of the Event must start with 'com.playfab.events.'
      * @param request WriteEventsRequest
      * @return Async Task will return WriteEventsResponse
      */
@@ -31,7 +31,7 @@ public class PlayFabEventsAPI {
     }
 
     /**
-     * Write batches of entity based events to PlayStream.
+     * Write batches of entity based events to PlayStream. The namespace of the Event must start with 'com.playfab.events.'
      * @param request WriteEventsRequest
      * @return WriteEventsResponse
      */
@@ -50,7 +50,7 @@ public class PlayFabEventsAPI {
         }
     }
 
-    /** Write batches of entity based events to PlayStream. */
+    /** Write batches of entity based events to PlayStream. The namespace of the Event must start with 'com.playfab.events.' */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<WriteEventsResponse> privateWriteEventsAsync(final WriteEventsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -77,7 +77,8 @@ public class PlayFabEventsAPI {
     }
 
     /**
-     * Write batches of entity based events to as Telemetry events (bypass PlayStream).
+     * Write batches of entity based events to as Telemetry events (bypass PlayStream). The namespace must be 'custom' or start
+     * with 'custom.'
      * @param request WriteEventsRequest
      * @return Async Task will return WriteEventsResponse
      */
@@ -91,7 +92,8 @@ public class PlayFabEventsAPI {
     }
 
     /**
-     * Write batches of entity based events to as Telemetry events (bypass PlayStream).
+     * Write batches of entity based events to as Telemetry events (bypass PlayStream). The namespace must be 'custom' or start
+     * with 'custom.'
      * @param request WriteEventsRequest
      * @return WriteEventsResponse
      */
@@ -110,7 +112,10 @@ public class PlayFabEventsAPI {
         }
     }
 
-    /** Write batches of entity based events to as Telemetry events (bypass PlayStream). */
+    /**
+     * Write batches of entity based events to as Telemetry events (bypass PlayStream). The namespace must be 'custom' or start
+     * with 'custom.'
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<WriteEventsResponse> privateWriteTelemetryEventsAsync(final WriteEventsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
