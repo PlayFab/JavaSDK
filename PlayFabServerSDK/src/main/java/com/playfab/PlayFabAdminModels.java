@@ -1720,6 +1720,8 @@ public class PlayFabAdminModels {
         InsightsManagementSetStorageRetentionInvalidParameter,
         InsightsManagementGetStorageUsageInvalidParameter,
         InsightsManagementGetOperationStatusInvalidParameter,
+        DuplicatePurchaseTransactionId,
+        EvaluationModePlayerCountExceeded,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1756,6 +1758,8 @@ public class PlayFabAdminModels {
         CatalogConfigInvalid,
         CatalogUnauthorized,
         CatalogItemTypeInvalid,
+        CatalogBadRequest,
+        CatalogTooManyRequests,
         ExportInvalidStatusUpdate,
         ExportInvalidPrefix,
         ExportBlobContainerDoesNotExist,
@@ -1782,6 +1786,7 @@ public class PlayFabAdminModels {
         ExperimentationExceededVariantNameLength,
         ExperimentationExceededMaxVariantLength,
         ExperimentInvalidId,
+        ExperimentationNoScorecard,
         MaxActionDepthExceeded,
         SnapshotNotFound
     }
@@ -2989,6 +2994,8 @@ public class PlayFabAdminModels {
         public Date Created;
         /** Player display name */
         public String DisplayName;
+        /** List of experiment variants for the player. */
+        public ArrayList<String> ExperimentVariants;
         /** UTC time when the player most recently logged in to the title */
         public Date LastLogin;
         /** List of all authentication systems linked to this player account */
@@ -3034,6 +3041,8 @@ public class PlayFabAdminModels {
         public Boolean ShowCreated;
         /** Whether to show the display name. Defaults to false */
         public Boolean ShowDisplayName;
+        /** Whether to show player's experiment variants. Defaults to false */
+        public Boolean ShowExperimentVariants;
         /** Whether to show the last login time. Defaults to false */
         public Boolean ShowLastLogin;
         /** Whether to show the linked accounts. Defaults to false */
