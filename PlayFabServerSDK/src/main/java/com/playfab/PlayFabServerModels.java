@@ -1560,6 +1560,8 @@ public class PlayFabServerModels {
         InsightsManagementSetStorageRetentionInvalidParameter,
         InsightsManagementGetStorageUsageInvalidParameter,
         InsightsManagementGetOperationStatusInvalidParameter,
+        DuplicatePurchaseTransactionId,
+        EvaluationModePlayerCountExceeded,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1596,6 +1598,8 @@ public class PlayFabServerModels {
         CatalogConfigInvalid,
         CatalogUnauthorized,
         CatalogItemTypeInvalid,
+        CatalogBadRequest,
+        CatalogTooManyRequests,
         ExportInvalidStatusUpdate,
         ExportInvalidPrefix,
         ExportBlobContainerDoesNotExist,
@@ -1622,6 +1626,7 @@ public class PlayFabServerModels {
         ExperimentationExceededVariantNameLength,
         ExperimentationExceededMaxVariantLength,
         ExperimentInvalidId,
+        ExperimentationNoScorecard,
         MaxActionDepthExceeded,
         SnapshotNotFound
     }
@@ -3143,6 +3148,8 @@ public class PlayFabServerModels {
         public Date Created;
         /** Player display name */
         public String DisplayName;
+        /** List of experiment variants for the player. */
+        public ArrayList<String> ExperimentVariants;
         /** UTC time when the player most recently logged in to the title */
         public Date LastLogin;
         /** List of all authentication systems linked to this player account */
@@ -3188,6 +3195,8 @@ public class PlayFabServerModels {
         public Boolean ShowCreated;
         /** Whether to show the display name. Defaults to false */
         public Boolean ShowDisplayName;
+        /** Whether to show player's experiment variants. Defaults to false */
+        public Boolean ShowExperimentVariants;
         /** Whether to show the last login time. Defaults to false */
         public Boolean ShowLastLogin;
         /** Whether to show the linked accounts. Defaults to false */
@@ -3694,6 +3703,8 @@ public class PlayFabServerModels {
         public String SessionTicket;
         /** Settings specific to this user. */
         public UserSettings SettingsForUser;
+        /** The experimentation treatments for this user at the time of login. */
+        public TreatmentAssignment TreatmentAssignment;
         
     }
 
@@ -3994,6 +4005,14 @@ public class PlayFabServerModels {
         public Date Timestamp;
         /** Title of the news item. */
         public String Title;
+        
+    }
+
+    public static class TreatmentAssignment {
+        /** List of the experiment variables. */
+        public ArrayList<Variable> Variables;
+        /** List of the experiment variants. */
+        public ArrayList<String> Variants;
         
     }
 
@@ -4561,6 +4580,14 @@ public class PlayFabServerModels {
          * dollars and ninety-nine cents when Currency is 'USD'.
          */
         public String TotalValueAsDecimal;
+        
+    }
+
+    public static class Variable {
+        /** Name of the variable. */
+        public String Name;
+        /** Value of the variable. */
+        public String Value;
         
     }
 
