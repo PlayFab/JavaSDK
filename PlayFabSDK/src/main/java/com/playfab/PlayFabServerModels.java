@@ -1562,6 +1562,10 @@ public class PlayFabServerModels {
         InsightsManagementGetOperationStatusInvalidParameter,
         DuplicatePurchaseTransactionId,
         EvaluationModePlayerCountExceeded,
+        GetPlayersInSegmentRateLimitExceeded,
+        CloudScriptFunctionNameSizeExceeded,
+        InsightsManagementTitleInEvaluationMode,
+        CloudScriptAzureFunctionsQueueRequestError,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1614,6 +1618,7 @@ public class PlayFabServerModels {
         ExportCantEditPendingExport,
         ExportLimitExports,
         ExportLimitEvents,
+        ExportInvalidPartitionStatusModification,
         TitleNotEnabledForParty,
         PartyVersionNotFound,
         MultiplayerServerBuildReferencedByMatchmakingQueue,
@@ -1627,6 +1632,8 @@ public class PlayFabServerModels {
         ExperimentationExceededMaxVariantLength,
         ExperimentInvalidId,
         ExperimentationNoScorecard,
+        ExperimentationTreatmentAssignmentFailed,
+        ExperimentationTreatmentAssignmentDisabled,
         MaxActionDepthExceeded,
         SnapshotNotFound
     }
