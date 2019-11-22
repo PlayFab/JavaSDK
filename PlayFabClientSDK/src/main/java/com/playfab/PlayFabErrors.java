@@ -491,6 +491,10 @@ public class PlayFabErrors {
         InsightsManagementGetOperationStatusInvalidParameter(1488),
         DuplicatePurchaseTransactionId(1489),
         EvaluationModePlayerCountExceeded(1490),
+        GetPlayersInSegmentRateLimitExceeded(1491),
+        CloudScriptFunctionNameSizeExceeded(1492),
+        InsightsManagementTitleInEvaluationMode(1493),
+        CloudScriptAzureFunctionsQueueRequestError(1494),
         MatchmakingEntityInvalid(2001),
         MatchmakingPlayerAttributesInvalid(2002),
         MatchmakingQueueNotFound(2016),
@@ -543,6 +547,7 @@ public class PlayFabErrors {
         ExportCantEditPendingExport(5014),
         ExportLimitExports(5015),
         ExportLimitEvents(5016),
+        ExportInvalidPartitionStatusModification(5017),
         TitleNotEnabledForParty(6000),
         PartyVersionNotFound(6001),
         MultiplayerServerBuildReferencedByMatchmakingQueue(6002),
@@ -556,6 +561,8 @@ public class PlayFabErrors {
         ExperimentationExceededMaxVariantLength(7007),
         ExperimentInvalidId(7008),
         ExperimentationNoScorecard(7009),
+        ExperimentationTreatmentAssignmentFailed(7010),
+        ExperimentationTreatmentAssignmentDisabled(7011),
         MaxActionDepthExceeded(8000),
         SnapshotNotFound(11000);
 
