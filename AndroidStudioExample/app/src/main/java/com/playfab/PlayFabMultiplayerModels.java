@@ -106,11 +106,13 @@ public class PlayFabMultiplayerModels {
     public static class BuildRegion {
         /** The current multiplayer server stats for the region. */
         public CurrentServerStats CurrentServerStats;
+        /** Optional settings to control dynamic adjustment of standby target */
+        public DynamicStandbySettings DynamicStandbySettings;
         /** The maximum number of multiplayer servers for the region. */
         public Integer MaxServers;
         /** The build region. */
         public String Region;
-        /** The number of standby multiplayer servers for the region. */
+        /** The target number of standby multiplayer servers for the region. */
         public Integer StandbyServers;
         /**
          * The status of multiplayer servers in the build region. Valid values are - Unknown, Initialized, Deploying, Deployed,
@@ -121,6 +123,8 @@ public class PlayFabMultiplayerModels {
     }
 
     public static class BuildRegionParams {
+        /** Optional settings to control dynamic adjustment of standby target. If not specified, dynamic standby is disabled */
+        public DynamicStandbySettings DynamicStandbySettings;
         /** The maximum number of multiplayer servers for the region. */
         public Integer MaxServers;
         /** The build region. */
@@ -493,6 +497,27 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    public static class DynamicStandbySettings {
+        /**
+         * List of auto standing by trigger values and corresponding standing by multiplier. Defaults to 1.5X at 50%, 3X at 25%,
+         * and 4X at 5%
+         */
+        public ArrayList<DynamicStandbyThreshold> DynamicFloorMultiplierThresholds;
+        /** When true, dynamic standby will be enabled */
+        public Boolean IsEnabled;
+        /** The time it takes to reduce target standing by to configured floor value after an increase. Defaults to 30 minutes */
+        public Integer RampDownSeconds;
+        
+    }
+
+    public static class DynamicStandbyThreshold {
+        /** When the trigger threshold is reached, multiply by this value */
+        public Double Multiplier;
+        /** The multiplier will be applied when the actual standby divided by target standby floor is less than this value */
+        public Double TriggerThresholdPercentage;
+        
+    }
+
     public static class EmptyResponse {
         
     }
@@ -763,6 +788,24 @@ public class PlayFabMultiplayerModels {
         public String State;
         /** The virtual machine ID that the multiplayer server is located on. */
         public String VmId;
+        
+    }
+
+    /**
+     * Gets multiplayer server logs for a specific server id in a region. The logs are available only after a server has
+     * terminated.
+     */
+    public static class GetMultiplayerServerLogsRequest {
+        /** The region of the multiplayer server to get logs for. */
+        public String Region;
+        /** The server ID of multiplayer server to get logs for. */
+        public String ServerId;
+        
+    }
+
+    public static class GetMultiplayerServerLogsResponse {
+        /** URL for logs download. */
+        public String LogDownloadUrl;
         
     }
 
@@ -1259,6 +1302,18 @@ public class PlayFabMultiplayerModels {
     public static class TitleMultiplayerServersQuotas {
         /** The core capacity for the various regions and VM Family */
         public ArrayList<CoreCapacity> CoreCapacities;
+        
+    }
+
+    /**
+     * Removes the specified tag from the image. After this operation, a 'docker pull' will fail for the specified image and
+     * tag combination. Morever, ListContainerImageTags will not return the specified tag.
+     */
+    public static class UntagContainerImageRequest {
+        /** The container image which tag we want to remove. */
+        public String ImageName;
+        /** The tag we want to remove. */
+        public String Tag;
         
     }
 

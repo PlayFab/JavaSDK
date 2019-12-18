@@ -2147,7 +2147,7 @@ public class PlayFabClientModels {
     public static class GrantCharacterToUserRequest {
         /** Catalog version from which items are to be granted. */
         public String CatalogVersion;
-        /** Non-unique display name of the character being granted (1-20 characters in length). */
+        /** Non-unique display name of the character being granted (1-40 characters in length). */
         public String CharacterName;
         /**
          * Catalog item identifier of the item in the user's inventory that corresponds to the character in the catalog to be
@@ -4733,12 +4733,14 @@ public class PlayFabClientModels {
         public Map<String,Object> Body;
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         public String CharacterId;
+        /** The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> EventCustomTags;
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
          */
         public String EventName;
-        /** The time (in UTC) associated with this event. The value dafaults to the current time. */
+        /** The time (in UTC) associated with this event. The value defaults to the current time. */
         public Date Timestamp;
         
     }
@@ -4751,12 +4753,14 @@ public class PlayFabClientModels {
     public static class WriteClientPlayerEventRequest {
         /** Custom data properties associated with the event. Each property consists of a name (string) and a value (JSON object). */
         public Map<String,Object> Body;
+        /** The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> EventCustomTags;
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
          */
         public String EventName;
-        /** The time (in UTC) associated with this event. The value dafaults to the current time. */
+        /** The time (in UTC) associated with this event. The value defaults to the current time. */
         public Date Timestamp;
         
     }
@@ -4778,12 +4782,14 @@ public class PlayFabClientModels {
     public static class WriteTitleEventRequest {
         /** Custom event properties. Each property consists of a name (string) and a value (JSON object). */
         public Map<String,Object> Body;
+        /** The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> EventCustomTags;
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
          */
         public String EventName;
-        /** The time (in UTC) associated with this event. The value dafaults to the current time. */
+        /** The time (in UTC) associated with this event. The value defaults to the current time. */
         public Date Timestamp;
         
     }
