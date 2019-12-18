@@ -1566,6 +1566,7 @@ public class PlayFabServerModels {
         CloudScriptFunctionNameSizeExceeded,
         InsightsManagementTitleInEvaluationMode,
         CloudScriptAzureFunctionsQueueRequestError,
+        EvaluationModeTitleCountExceeded,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1619,6 +1620,9 @@ public class PlayFabServerModels {
         ExportLimitExports,
         ExportLimitEvents,
         ExportInvalidPartitionStatusModification,
+        ExportCouldNotCreate,
+        ExportNoBackingDatabaseFound,
+        ExportCouldNotDelete,
         TitleNotEnabledForParty,
         PartyVersionNotFound,
         MultiplayerServerBuildReferencedByMatchmakingQueue,
@@ -1628,8 +1632,8 @@ public class PlayFabServerModels {
         ExperimentationExperimentNeverStarted,
         ExperimentationExperimentDeleted,
         ExperimentationClientTimeout,
-        ExperimentationExceededVariantNameLength,
-        ExperimentationExceededMaxVariantLength,
+        ExperimentationInvalidVariantConfiguration,
+        ExperimentationInvalidVariableConfiguration,
         ExperimentInvalidId,
         ExperimentationNoScorecard,
         ExperimentationTreatmentAssignmentFailed,
@@ -2535,7 +2539,7 @@ public class PlayFabServerModels {
 
     /** Grants a character to the user of the type and name specified in the request. */
     public static class GrantCharacterToUserRequest {
-        /** Non-unique display name of the character being granted (1-20 characters in length). */
+        /** Non-unique display name of the character being granted (1-40 characters in length). */
         public String CharacterName;
         /** Type of the character being granted; statistics can be sliced based on this value. */
         public String CharacterType;
@@ -4631,6 +4635,8 @@ public class PlayFabServerModels {
         public Map<String,Object> Body;
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         public String CharacterId;
+        /** The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> EventCustomTags;
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
@@ -4638,7 +4644,7 @@ public class PlayFabServerModels {
         public String EventName;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
-        /** The time (in UTC) associated with this event. The value dafaults to the current time. */
+        /** The time (in UTC) associated with this event. The value defaults to the current time. */
         public Date Timestamp;
         
     }
@@ -4651,6 +4657,8 @@ public class PlayFabServerModels {
     public static class WriteServerPlayerEventRequest {
         /** Custom data properties associated with the event. Each property consists of a name (string) and a value (JSON object). */
         public Map<String,Object> Body;
+        /** The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> EventCustomTags;
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
@@ -4658,7 +4666,7 @@ public class PlayFabServerModels {
         public String EventName;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
-        /** The time (in UTC) associated with this event. The value dafaults to the current time. */
+        /** The time (in UTC) associated with this event. The value defaults to the current time. */
         public Date Timestamp;
         
     }
@@ -4671,12 +4679,14 @@ public class PlayFabServerModels {
     public static class WriteTitleEventRequest {
         /** Custom event properties. Each property consists of a name (string) and a value (JSON object). */
         public Map<String,Object> Body;
+        /** The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> EventCustomTags;
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
          */
         public String EventName;
-        /** The time (in UTC) associated with this event. The value dafaults to the current time. */
+        /** The time (in UTC) associated with this event. The value defaults to the current time. */
         public Date Timestamp;
         
     }

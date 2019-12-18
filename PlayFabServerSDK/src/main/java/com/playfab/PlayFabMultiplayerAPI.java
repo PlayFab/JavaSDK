@@ -1279,6 +1279,66 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * Gets multiplayer server logs after a server has terminated.
+     * @param request GetMultiplayerServerLogsRequest
+     * @return Async Task will return GetMultiplayerServerLogsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetMultiplayerServerLogsResponse>> GetMultiplayerServerLogsAsync(final GetMultiplayerServerLogsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetMultiplayerServerLogsResponse>>() {
+            public PlayFabResult<GetMultiplayerServerLogsResponse> call() throws Exception {
+                return privateGetMultiplayerServerLogsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Gets multiplayer server logs after a server has terminated.
+     * @param request GetMultiplayerServerLogsRequest
+     * @return GetMultiplayerServerLogsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetMultiplayerServerLogsResponse> GetMultiplayerServerLogs(final GetMultiplayerServerLogsRequest request) {
+        FutureTask<PlayFabResult<GetMultiplayerServerLogsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetMultiplayerServerLogsResponse>>() {
+            public PlayFabResult<GetMultiplayerServerLogsResponse> call() throws Exception {
+                return privateGetMultiplayerServerLogsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Gets multiplayer server logs after a server has terminated. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetMultiplayerServerLogsResponse> privateGetMultiplayerServerLogsAsync(final GetMultiplayerServerLogsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetMultiplayerServerLogs"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetMultiplayerServerLogsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetMultiplayerServerLogsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetMultiplayerServerLogsResponse>>(){}.getType());
+        GetMultiplayerServerLogsResponse result = resultData.data;
+
+        PlayFabResult<GetMultiplayerServerLogsResponse> pfResult = new PlayFabResult<GetMultiplayerServerLogsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Get the statistics for a queue.
      * @param request GetQueueStatisticsRequest
      * @return Async Task will return GetQueueStatisticsResult
@@ -2532,6 +2592,66 @@ public class PlayFabMultiplayerAPI {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ShutdownMultiplayerServer"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
+
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Untags a container image.
+     * @param request UntagContainerImageRequest
+     * @return Async Task will return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResponse>> UntagContainerImageAsync(final UntagContainerImageRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateUntagContainerImageAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Untags a container image.
+     * @param request UntagContainerImageRequest
+     * @return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResponse> UntagContainerImage(final UntagContainerImageRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateUntagContainerImageAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Untags a container image. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResponse> privateUntagContainerImageAsync(final UntagContainerImageRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/UntagContainerImage"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
