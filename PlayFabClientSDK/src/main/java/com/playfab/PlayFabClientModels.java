@@ -122,7 +122,8 @@ public class PlayFabClientModels {
     /**
      * More information can be found on configuring your game for the Google Cloud Messaging service in the Google developer
      * documentation, here: http://developer.android.com/google/gcm/client.html. The steps to configure and send Push
-     * Notifications is described in the PlayFab tutorials, here: https://api.playfab.com/docs/pushCrashCourse/.
+     * Notifications is described in the PlayFab tutorials, here:
+     * https://docs.microsoft.com/gaming/playfab/features/engagement/push-notifications/quickstart.
      */
     public static class AndroidDevicePushNotificationRegistrationRequest {
         /** Message to display when confirming push notification. */
@@ -3439,7 +3440,7 @@ public class PlayFabClientModels {
 
     /**
      * The steps to configure and send Push Notifications is described in the PlayFab tutorials, here:
-     * https://api.playfab.com/docs/pushCrashCourse/
+     * https://docs.microsoft.com/gaming/playfab/features/engagement/push-notifications/quickstart
      */
     public static class RegisterForIOSPushNotificationRequest {
         /** Message to display when confirming push notification. */
@@ -4733,8 +4734,6 @@ public class PlayFabClientModels {
         public Map<String,Object> Body;
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         public String CharacterId;
-        /** The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). */
-        public Map<String,String> EventCustomTags;
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
@@ -4753,8 +4752,6 @@ public class PlayFabClientModels {
     public static class WriteClientPlayerEventRequest {
         /** Custom data properties associated with the event. Each property consists of a name (string) and a value (JSON object). */
         public Map<String,Object> Body;
-        /** The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). */
-        public Map<String,String> EventCustomTags;
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
@@ -4782,8 +4779,6 @@ public class PlayFabClientModels {
     public static class WriteTitleEventRequest {
         /** Custom event properties. Each property consists of a name (string) and a value (JSON object). */
         public Map<String,Object> Body;
-        /** The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). */
-        public Map<String,String> EventCustomTags;
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).

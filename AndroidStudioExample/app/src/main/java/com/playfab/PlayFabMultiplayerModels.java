@@ -172,6 +172,23 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /**
+     * Cancels all backfill tickets of which the player is a member in a given queue that are not cancelled or matched. This
+     * API is useful if you lose track of what tickets the player is a member of (if the server crashes for instance) and want
+     * to "reset".
+     */
+    public static class CancelAllServerBackfillTicketsForPlayerRequest {
+        /** The entity key of the player whose backfill tickets should be canceled. */
+        public EntityKey Entity;
+        /** The name of the queue from which a player's backfill tickets should be canceled. */
+        public String QueueName;
+        
+    }
+
+    public static class CancelAllServerBackfillTicketsForPlayerResult {
+        
+    }
+
     public static enum CancellationReason {
         Requested,
         Internal,
@@ -198,6 +215,26 @@ public class PlayFabMultiplayerModels {
     }
 
     public static class CancelMatchmakingTicketResult {
+        
+    }
+
+    /**
+     * Only servers can cancel a backfill ticket. The ticket can be in three different states when it is cancelled. 1: the
+     * ticket is matching. If the ticket is cancelled, it will stop matching. 2: the ticket is matched. A matched ticket cannot
+     * be cancelled. 3: the ticket is already cancelled and nothing happens. There may be race conditions between the ticket
+     * getting matched and the server making a cancellation request. The server must handle the possibility that the cancel
+     * request fails if a match is found before the cancellation request is processed. We do not allow resubmitting a cancelled
+     * ticket. Create a new ticket instead.
+     */
+    public static class CancelServerBackfillTicketRequest {
+        /** The name of the queue the ticket is in. */
+        public String QueueName;
+        /** The Id of the ticket to find a match for. */
+        public String TicketId;
+        
+    }
+
+    public static class CancelServerBackfillTicketResult {
         
     }
 
@@ -427,6 +464,25 @@ public class PlayFabMultiplayerModels {
         public String Password;
         /** The username for the remote user that was created. */
         public String Username;
+        
+    }
+
+    /** The server specifies all the members, their teams and their attributes, and the server details if applicable. */
+    public static class CreateServerBackfillTicketRequest {
+        /** How long to attempt matching this ticket in seconds. */
+        public Integer GiveUpAfterSeconds;
+        /** The users who will be part of this ticket, along with their team assignments. */
+        public ArrayList<MatchmakingPlayerWithTeamAssignment> Members;
+        /** The Id of a match queue. */
+        public String QueueName;
+        /** The details of the server the members are connected to. */
+        public ServerDetails ServerDetails;
+        
+    }
+
+    public static class CreateServerBackfillTicketResult {
+        /** The Id of the ticket to find a match for. */
+        public String TicketId;
         
     }
 
@@ -686,12 +742,6 @@ public class PlayFabMultiplayerModels {
     }
 
     public static class GetMatchmakingTicketResult {
-        /**
-         * The reason why the current ticket was canceled. This field is only set if the ticket is in canceled state.
-         * @deprecated Please use CancellationReasonString instead.
-         */
-        @Deprecated
-        public CancellationReason CancellationReason;
         /** The reason why the current ticket was canceled. This field is only set if the ticket is in canceled state. */
         public String CancellationReasonString;
         /** The server date and time at which ticket was created. */
@@ -846,6 +896,45 @@ public class PlayFabMultiplayerModels {
         public String IPV4Address;
         /** The remote login port of multiplayer server. */
         public Integer Port;
+        
+    }
+
+    /**
+     * The ticket includes the players, their attributes, their teams, the ticket status, the match Id and the server details
+     * when applicable, etc. Only servers can get the ticket.
+     */
+    public static class GetServerBackfillTicketRequest {
+        /**
+         * Determines whether the matchmaking attributes will be returned as an escaped JSON string or as an un-escaped JSON
+         * object.
+         */
+        public Boolean EscapeObject;
+        /** The name of the queue to find a match for. */
+        public String QueueName;
+        /** The Id of the ticket to find a match for. */
+        public String TicketId;
+        
+    }
+
+    public static class GetServerBackfillTicketResult {
+        /** The reason why the current ticket was canceled. This field is only set if the ticket is in canceled state. */
+        public String CancellationReasonString;
+        /** The server date and time at which ticket was created. */
+        public Date Created;
+        /** How long to attempt matching this ticket in seconds. */
+        public Integer GiveUpAfterSeconds;
+        /** The Id of a match. */
+        public String MatchId;
+        /** A list of Users that are part of this ticket, along with their team assignments. */
+        public ArrayList<MatchmakingPlayerWithTeamAssignment> Members;
+        /** The Id of a match queue. */
+        public String QueueName;
+        /** The details of the server the members are connected to. */
+        public ServerDetails ServerDetails;
+        /** The current ticket status. Possible values are: WaitingForMatch, Canceled and Matched. */
+        public String Status;
+        /** The Id of the ticket to find a match for. */
+        public String TicketId;
         
     }
 
@@ -1084,6 +1173,21 @@ public class PlayFabMultiplayerModels {
         public ArrayList<QosServer> QosServers;
         /** The skip token for the paged response. */
         public String SkipToken;
+        
+    }
+
+    /** List all server backfill ticket Ids the user is a member of. */
+    public static class ListServerBackfillTicketsForPlayerRequest {
+        /** The entity key for which to find the ticket Ids. */
+        public EntityKey Entity;
+        /** The name of the queue the tickets are in. */
+        public String QueueName;
+        
+    }
+
+    public static class ListServerBackfillTicketsForPlayerResult {
+        /** The list of backfill ticket Ids the user is a member of. */
+        public ArrayList<String> TicketIds;
         
     }
 

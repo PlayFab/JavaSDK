@@ -1567,6 +1567,7 @@ public class PlayFabServerModels {
         InsightsManagementTitleInEvaluationMode,
         CloudScriptAzureFunctionsQueueRequestError,
         EvaluationModeTitleCountExceeded,
+        InsightsManagementTitleNotInFlight,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -2768,6 +2769,24 @@ public class PlayFabServerModels {
         public String PlatformUserId;
         /** Linked account username of the user on the platform, if available */
         public String Username;
+        
+    }
+
+    public static class LinkPSNAccountRequest {
+        /** Authentication code provided by the PlayStation Network. */
+        public String AuthCode;
+        /** If another user is already linked to the account, unlink the other user and re-link. */
+        public Boolean ForceLink;
+        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        public Integer IssuerId;
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        public String PlayFabId;
+        /** Redirect URI supplied to PSN when requesting an auth code */
+        public String RedirectUri;
+        
+    }
+
+    public static class LinkPSNAccountResult {
         
     }
 
@@ -4027,6 +4046,16 @@ public class PlayFabServerModels {
         
     }
 
+    public static class UnlinkPSNAccountRequest {
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        public String PlayFabId;
+        
+    }
+
+    public static class UnlinkPSNAccountResult {
+        
+    }
+
     public static class UnlinkServerCustomIdRequest {
         /** Unique PlayFab identifier. */
         public String PlayFabId;
@@ -4635,8 +4664,6 @@ public class PlayFabServerModels {
         public Map<String,Object> Body;
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         public String CharacterId;
-        /** The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). */
-        public Map<String,String> EventCustomTags;
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
@@ -4657,8 +4684,6 @@ public class PlayFabServerModels {
     public static class WriteServerPlayerEventRequest {
         /** Custom data properties associated with the event. Each property consists of a name (string) and a value (JSON object). */
         public Map<String,Object> Body;
-        /** The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). */
-        public Map<String,String> EventCustomTags;
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
@@ -4679,8 +4704,6 @@ public class PlayFabServerModels {
     public static class WriteTitleEventRequest {
         /** Custom event properties. Each property consists of a name (string) and a value (JSON object). */
         public Map<String,Object> Body;
-        /** The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). */
-        public Map<String,String> EventCustomTags;
         /**
          * The name of the event, within the namespace scoped to the title. The naming convention is up to the caller, but it
          * commonly follows the subject_verb_object pattern (e.g. player_logged_in).
