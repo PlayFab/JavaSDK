@@ -74,6 +74,66 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * Cancel all active backfill tickets the player is a member of in a given queue.
+     * @param request CancelAllServerBackfillTicketsForPlayerRequest
+     * @return Async Task will return CancelAllServerBackfillTicketsForPlayerResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<CancelAllServerBackfillTicketsForPlayerResult>> CancelAllServerBackfillTicketsForPlayerAsync(final CancelAllServerBackfillTicketsForPlayerRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<CancelAllServerBackfillTicketsForPlayerResult>>() {
+            public PlayFabResult<CancelAllServerBackfillTicketsForPlayerResult> call() throws Exception {
+                return privateCancelAllServerBackfillTicketsForPlayerAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Cancel all active backfill tickets the player is a member of in a given queue.
+     * @param request CancelAllServerBackfillTicketsForPlayerRequest
+     * @return CancelAllServerBackfillTicketsForPlayerResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<CancelAllServerBackfillTicketsForPlayerResult> CancelAllServerBackfillTicketsForPlayer(final CancelAllServerBackfillTicketsForPlayerRequest request) {
+        FutureTask<PlayFabResult<CancelAllServerBackfillTicketsForPlayerResult>> task = new FutureTask(new Callable<PlayFabResult<CancelAllServerBackfillTicketsForPlayerResult>>() {
+            public PlayFabResult<CancelAllServerBackfillTicketsForPlayerResult> call() throws Exception {
+                return privateCancelAllServerBackfillTicketsForPlayerAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Cancel all active backfill tickets the player is a member of in a given queue. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<CancelAllServerBackfillTicketsForPlayerResult> privateCancelAllServerBackfillTicketsForPlayerAsync(final CancelAllServerBackfillTicketsForPlayerRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/CancelAllServerBackfillTicketsForPlayer"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<CancelAllServerBackfillTicketsForPlayerResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<CancelAllServerBackfillTicketsForPlayerResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<CancelAllServerBackfillTicketsForPlayerResult>>(){}.getType());
+        CancelAllServerBackfillTicketsForPlayerResult result = resultData.data;
+
+        PlayFabResult<CancelAllServerBackfillTicketsForPlayerResult> pfResult = new PlayFabResult<CancelAllServerBackfillTicketsForPlayerResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Cancel a matchmaking ticket.
      * @param request CancelMatchmakingTicketRequest
      * @return Async Task will return CancelMatchmakingTicketResult
@@ -129,6 +189,66 @@ public class PlayFabMultiplayerAPI {
         CancelMatchmakingTicketResult result = resultData.data;
 
         PlayFabResult<CancelMatchmakingTicketResult> pfResult = new PlayFabResult<CancelMatchmakingTicketResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Cancel a server backfill ticket.
+     * @param request CancelServerBackfillTicketRequest
+     * @return Async Task will return CancelServerBackfillTicketResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<CancelServerBackfillTicketResult>> CancelServerBackfillTicketAsync(final CancelServerBackfillTicketRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<CancelServerBackfillTicketResult>>() {
+            public PlayFabResult<CancelServerBackfillTicketResult> call() throws Exception {
+                return privateCancelServerBackfillTicketAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Cancel a server backfill ticket.
+     * @param request CancelServerBackfillTicketRequest
+     * @return CancelServerBackfillTicketResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<CancelServerBackfillTicketResult> CancelServerBackfillTicket(final CancelServerBackfillTicketRequest request) {
+        FutureTask<PlayFabResult<CancelServerBackfillTicketResult>> task = new FutureTask(new Callable<PlayFabResult<CancelServerBackfillTicketResult>>() {
+            public PlayFabResult<CancelServerBackfillTicketResult> call() throws Exception {
+                return privateCancelServerBackfillTicketAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Cancel a server backfill ticket. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<CancelServerBackfillTicketResult> privateCancelServerBackfillTicketAsync(final CancelServerBackfillTicketRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/CancelServerBackfillTicket"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<CancelServerBackfillTicketResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<CancelServerBackfillTicketResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<CancelServerBackfillTicketResult>>(){}.getType());
+        CancelServerBackfillTicketResult result = resultData.data;
+
+        PlayFabResult<CancelServerBackfillTicketResult> pfResult = new PlayFabResult<CancelServerBackfillTicketResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -429,6 +549,74 @@ public class PlayFabMultiplayerAPI {
         CreateRemoteUserResponse result = resultData.data;
 
         PlayFabResult<CreateRemoteUserResponse> pfResult = new PlayFabResult<CreateRemoteUserResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Create a backfill matchmaking ticket as a server. A backfill ticket represents an ongoing game. The matchmaking service
+     * automatically starts matching the backfill ticket against other matchmaking tickets. Backfill tickets cannot match with
+     * other backfill tickets.
+     * @param request CreateServerBackfillTicketRequest
+     * @return Async Task will return CreateServerBackfillTicketResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<CreateServerBackfillTicketResult>> CreateServerBackfillTicketAsync(final CreateServerBackfillTicketRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<CreateServerBackfillTicketResult>>() {
+            public PlayFabResult<CreateServerBackfillTicketResult> call() throws Exception {
+                return privateCreateServerBackfillTicketAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Create a backfill matchmaking ticket as a server. A backfill ticket represents an ongoing game. The matchmaking service
+     * automatically starts matching the backfill ticket against other matchmaking tickets. Backfill tickets cannot match with
+     * other backfill tickets.
+     * @param request CreateServerBackfillTicketRequest
+     * @return CreateServerBackfillTicketResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<CreateServerBackfillTicketResult> CreateServerBackfillTicket(final CreateServerBackfillTicketRequest request) {
+        FutureTask<PlayFabResult<CreateServerBackfillTicketResult>> task = new FutureTask(new Callable<PlayFabResult<CreateServerBackfillTicketResult>>() {
+            public PlayFabResult<CreateServerBackfillTicketResult> call() throws Exception {
+                return privateCreateServerBackfillTicketAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /**
+     * Create a backfill matchmaking ticket as a server. A backfill ticket represents an ongoing game. The matchmaking service
+     * automatically starts matching the backfill ticket against other matchmaking tickets. Backfill tickets cannot match with
+     * other backfill tickets.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<CreateServerBackfillTicketResult> privateCreateServerBackfillTicketAsync(final CreateServerBackfillTicketRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/CreateServerBackfillTicket"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<CreateServerBackfillTicketResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<CreateServerBackfillTicketResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<CreateServerBackfillTicketResult>>(){}.getType());
+        CreateServerBackfillTicketResult result = resultData.data;
+
+        PlayFabResult<CreateServerBackfillTicketResult> pfResult = new PlayFabResult<CreateServerBackfillTicketResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -1459,6 +1647,66 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * Get a matchmaking backfill ticket by ticket Id.
+     * @param request GetServerBackfillTicketRequest
+     * @return Async Task will return GetServerBackfillTicketResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetServerBackfillTicketResult>> GetServerBackfillTicketAsync(final GetServerBackfillTicketRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetServerBackfillTicketResult>>() {
+            public PlayFabResult<GetServerBackfillTicketResult> call() throws Exception {
+                return privateGetServerBackfillTicketAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Get a matchmaking backfill ticket by ticket Id.
+     * @param request GetServerBackfillTicketRequest
+     * @return GetServerBackfillTicketResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetServerBackfillTicketResult> GetServerBackfillTicket(final GetServerBackfillTicketRequest request) {
+        FutureTask<PlayFabResult<GetServerBackfillTicketResult>> task = new FutureTask(new Callable<PlayFabResult<GetServerBackfillTicketResult>>() {
+            public PlayFabResult<GetServerBackfillTicketResult> call() throws Exception {
+                return privateGetServerBackfillTicketAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Get a matchmaking backfill ticket by ticket Id. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetServerBackfillTicketResult> privateGetServerBackfillTicketAsync(final GetServerBackfillTicketRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/GetServerBackfillTicket"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetServerBackfillTicketResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetServerBackfillTicketResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetServerBackfillTicketResult>>(){}.getType());
+        GetServerBackfillTicketResult result = resultData.data;
+
+        PlayFabResult<GetServerBackfillTicketResult> pfResult = new PlayFabResult<GetServerBackfillTicketResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Gets the status of whether a title is enabled for the multiplayer server feature.
      * @param request GetTitleEnabledForMultiplayerServersStatusRequest
      * @return Async Task will return GetTitleEnabledForMultiplayerServersStatusResponse
@@ -2363,6 +2611,66 @@ public class PlayFabMultiplayerAPI {
         ListQosServersForTitleResponse result = resultData.data;
 
         PlayFabResult<ListQosServersForTitleResponse> pfResult = new PlayFabResult<ListQosServersForTitleResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * List all server backfill ticket Ids the user is a member of.
+     * @param request ListServerBackfillTicketsForPlayerRequest
+     * @return Async Task will return ListServerBackfillTicketsForPlayerResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ListServerBackfillTicketsForPlayerResult>> ListServerBackfillTicketsForPlayerAsync(final ListServerBackfillTicketsForPlayerRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ListServerBackfillTicketsForPlayerResult>>() {
+            public PlayFabResult<ListServerBackfillTicketsForPlayerResult> call() throws Exception {
+                return privateListServerBackfillTicketsForPlayerAsync(request);
+            }
+        });
+    }
+
+    /**
+     * List all server backfill ticket Ids the user is a member of.
+     * @param request ListServerBackfillTicketsForPlayerRequest
+     * @return ListServerBackfillTicketsForPlayerResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ListServerBackfillTicketsForPlayerResult> ListServerBackfillTicketsForPlayer(final ListServerBackfillTicketsForPlayerRequest request) {
+        FutureTask<PlayFabResult<ListServerBackfillTicketsForPlayerResult>> task = new FutureTask(new Callable<PlayFabResult<ListServerBackfillTicketsForPlayerResult>>() {
+            public PlayFabResult<ListServerBackfillTicketsForPlayerResult> call() throws Exception {
+                return privateListServerBackfillTicketsForPlayerAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** List all server backfill ticket Ids the user is a member of. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ListServerBackfillTicketsForPlayerResult> privateListServerBackfillTicketsForPlayerAsync(final ListServerBackfillTicketsForPlayerRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/ListServerBackfillTicketsForPlayer"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ListServerBackfillTicketsForPlayerResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ListServerBackfillTicketsForPlayerResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListServerBackfillTicketsForPlayerResult>>(){}.getType());
+        ListServerBackfillTicketsForPlayerResult result = resultData.data;
+
+        PlayFabResult<ListServerBackfillTicketsForPlayerResult> pfResult = new PlayFabResult<ListServerBackfillTicketsForPlayerResult>();
         pfResult.Result = result;
         return pfResult;
     }

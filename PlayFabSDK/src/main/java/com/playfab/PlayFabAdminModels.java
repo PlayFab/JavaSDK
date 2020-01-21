@@ -1727,6 +1727,7 @@ public class PlayFabAdminModels {
         InsightsManagementTitleInEvaluationMode,
         CloudScriptAzureFunctionsQueueRequestError,
         EvaluationModeTitleCountExceeded,
+        InsightsManagementTitleNotInFlight,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
