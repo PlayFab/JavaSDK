@@ -684,6 +684,66 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Create a Insights Scheduled Scaling task, which can scale Insights Performance Units on a schedule
+     * @param request CreateInsightsScheduledScalingTaskRequest
+     * @return Async Task will return CreateTaskResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<CreateTaskResult>> CreateInsightsScheduledScalingTaskAsync(final CreateInsightsScheduledScalingTaskRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<CreateTaskResult>>() {
+            public PlayFabResult<CreateTaskResult> call() throws Exception {
+                return privateCreateInsightsScheduledScalingTaskAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Create a Insights Scheduled Scaling task, which can scale Insights Performance Units on a schedule
+     * @param request CreateInsightsScheduledScalingTaskRequest
+     * @return CreateTaskResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<CreateTaskResult> CreateInsightsScheduledScalingTask(final CreateInsightsScheduledScalingTaskRequest request) {
+        FutureTask<PlayFabResult<CreateTaskResult>> task = new FutureTask(new Callable<PlayFabResult<CreateTaskResult>>() {
+            public PlayFabResult<CreateTaskResult> call() throws Exception {
+                return privateCreateInsightsScheduledScalingTaskAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Create a Insights Scheduled Scaling task, which can scale Insights Performance Units on a schedule */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<CreateTaskResult> privateCreateInsightsScheduledScalingTaskAsync(final CreateInsightsScheduledScalingTaskRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/CreateInsightsScheduledScalingTask"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<CreateTaskResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<CreateTaskResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<CreateTaskResult>>(){}.getType());
+        CreateTaskResult result = resultData.data;
+
+        PlayFabResult<CreateTaskResult> pfResult = new PlayFabResult<CreateTaskResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Registers a relationship between a title and an Open ID Connect provider.
      * @param request CreateOpenIdConnectionRequest
      * @return Async Task will return EmptyResponse

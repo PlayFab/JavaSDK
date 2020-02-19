@@ -784,6 +784,24 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Task name is unique within a title. Using a task name that's already taken will cause a name conflict error. Too many
+     * create-task requests within a short time will cause a create conflict error.
+     */
+    public static class CreateInsightsScheduledScalingTaskRequest {
+        /** Description the task */
+        public String Description;
+        /** Whether the schedule is active. Inactive schedule will not trigger task execution. */
+        public Boolean IsActive;
+        /** Name of the task. This is a unique identifier for tasks in the title. */
+        public String Name;
+        /** Task details related to Insights Scaling */
+        public InsightsScalingTaskParameter Parameter;
+        /** Cron expression for the run schedule of the task. The expression should be in UTC. */
+        public String Schedule;
+        
+    }
+
     public static class CreateOpenIdConnectionRequest {
         /** The client ID given by the ID provider. */
         public String ClientId;
@@ -1799,6 +1817,8 @@ public class PlayFabAdminModels {
         ExperimentationNoScorecard,
         ExperimentationTreatmentAssignmentFailed,
         ExperimentationTreatmentAssignmentDisabled,
+        ExperimentationInvalidDuration,
+        ExperimentationMaxExperimentsReached,
         MaxActionDepthExceeded,
         SnapshotNotFound
     }
@@ -2570,6 +2590,12 @@ public class PlayFabAdminModels {
     public static class IncrementPlayerStatisticVersionResult {
         /** version change history of the statistic */
         public PlayerStatisticVersion StatisticVersion;
+        
+    }
+
+    public static class InsightsScalingTaskParameter {
+        /** Insights Performance Level to scale to. */
+        public Integer Level;
         
     }
 
@@ -3454,7 +3480,8 @@ public class PlayFabAdminModels {
     public static enum ScheduledTaskType {
         CloudScript,
         ActionsOnPlayerSegment,
-        CloudScriptAzureFunctions
+        CloudScriptAzureFunctions,
+        InsightsScheduledScaling
     }
 
     public static class ScriptExecutionError {

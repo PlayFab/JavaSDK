@@ -568,6 +568,8 @@ public class PlayFabErrors {
         ExperimentationNoScorecard(7009),
         ExperimentationTreatmentAssignmentFailed(7010),
         ExperimentationTreatmentAssignmentDisabled(7011),
+        ExperimentationInvalidDuration(7012),
+        ExperimentationMaxExperimentsReached(7013),
         MaxActionDepthExceeded(8000),
         SnapshotNotFound(11000);
 

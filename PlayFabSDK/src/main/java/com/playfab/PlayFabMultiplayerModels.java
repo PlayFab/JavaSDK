@@ -846,7 +846,11 @@ public class PlayFabMultiplayerModels {
      * terminated.
      */
     public static class GetMultiplayerServerLogsRequest {
-        /** The region of the multiplayer server to get logs for. */
+        /**
+         * The region of the multiplayer server to get logs for.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public String Region;
         /** The server ID of multiplayer server to get logs for. */
         public String ServerId;
@@ -856,6 +860,16 @@ public class PlayFabMultiplayerModels {
     public static class GetMultiplayerServerLogsResponse {
         /** URL for logs download. */
         public String LogDownloadUrl;
+        
+    }
+
+    /**
+     * Gets multiplayer server logs for a specific server id in a region. The logs are available only after a server has
+     * terminated.
+     */
+    public static class GetMultiplayerSessionLogsBySessionIdRequest {
+        /** The server ID of multiplayer server to get logs for. */
+        public String SessionId;
         
     }
 

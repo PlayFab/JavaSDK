@@ -1527,6 +1527,66 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * Gets multiplayer server logs after a server has terminated.
+     * @param request GetMultiplayerSessionLogsBySessionIdRequest
+     * @return Async Task will return GetMultiplayerServerLogsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetMultiplayerServerLogsResponse>> GetMultiplayerSessionLogsBySessionIdAsync(final GetMultiplayerSessionLogsBySessionIdRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetMultiplayerServerLogsResponse>>() {
+            public PlayFabResult<GetMultiplayerServerLogsResponse> call() throws Exception {
+                return privateGetMultiplayerSessionLogsBySessionIdAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Gets multiplayer server logs after a server has terminated.
+     * @param request GetMultiplayerSessionLogsBySessionIdRequest
+     * @return GetMultiplayerServerLogsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetMultiplayerServerLogsResponse> GetMultiplayerSessionLogsBySessionId(final GetMultiplayerSessionLogsBySessionIdRequest request) {
+        FutureTask<PlayFabResult<GetMultiplayerServerLogsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetMultiplayerServerLogsResponse>>() {
+            public PlayFabResult<GetMultiplayerServerLogsResponse> call() throws Exception {
+                return privateGetMultiplayerSessionLogsBySessionIdAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Gets multiplayer server logs after a server has terminated. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetMultiplayerServerLogsResponse> privateGetMultiplayerSessionLogsBySessionIdAsync(final GetMultiplayerSessionLogsBySessionIdRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetMultiplayerSessionLogsBySessionId"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetMultiplayerServerLogsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetMultiplayerServerLogsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetMultiplayerServerLogsResponse>>(){}.getType());
+        GetMultiplayerServerLogsResponse result = resultData.data;
+
+        PlayFabResult<GetMultiplayerServerLogsResponse> pfResult = new PlayFabResult<GetMultiplayerServerLogsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Get the statistics for a queue.
      * @param request GetQueueStatisticsRequest
      * @return Async Task will return GetQueueStatisticsResult
