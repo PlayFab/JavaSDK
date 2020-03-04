@@ -72,7 +72,8 @@ public class PlayFabAuthenticationModels {
         CustomServer,
         NintendoSwitch,
         FacebookInstantGames,
-        OpenIdConnect
+        OpenIdConnect,
+        Apple
     }
 
     /** Given an entity token, validates that it hasn't exipired or been revoked and will return details of the owner. */
