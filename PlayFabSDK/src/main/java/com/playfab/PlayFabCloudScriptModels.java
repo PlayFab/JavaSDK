@@ -506,7 +506,8 @@ public class PlayFabCloudScriptModels {
         CustomServer,
         NintendoSwitch,
         FacebookInstantGames,
-        OpenIdConnect
+        OpenIdConnect,
+        Apple
     }
 
     public static class LogStatement {
