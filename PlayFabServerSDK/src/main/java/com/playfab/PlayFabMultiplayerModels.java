@@ -116,7 +116,7 @@ public class PlayFabMultiplayerModels {
         public Integer StandbyServers;
         /**
          * The status of multiplayer servers in the build region. Valid values are - Unknown, Initialized, Deploying, Deployed,
-         * Unhealthy.
+         * Unhealthy, Deleting, Deleted.
          */
         public String Status;
         
@@ -268,7 +268,8 @@ public class PlayFabMultiplayerModels {
     public static enum ContainerFlavor {
         ManagedWindowsServerCore,
         CustomLinux,
-        ManagedWindowsServerCorePreview
+        ManagedWindowsServerCorePreview,
+        Invalid
     }
 
     public static class ContainerImageReference {
@@ -351,10 +352,14 @@ public class PlayFabMultiplayerModels {
         public Map<String,String> Metadata;
         /** The number of multiplayer servers to host on a single VM of the build. */
         public Integer MultiplayerServerCountPerVm;
+        /** The OS platform used for running the game process. */
+        public String OsPlatform;
         /** The ports the build is mapped on. */
         public ArrayList<Port> Ports;
         /** The region configuration for the build. */
         public ArrayList<BuildRegion> RegionConfigurations;
+        /** The type of game server being hosted. */
+        public String ServerType;
         /** The VM size the build was created on. */
         public AzureVmSize VmSize;
         
@@ -370,6 +375,11 @@ public class PlayFabMultiplayerModels {
         public ArrayList<AssetReferenceParams> GameAssetReferences;
         /** The game certificates for the build. */
         public ArrayList<GameCertificateReferenceParams> GameCertificateReferences;
+        /**
+         * The directory containing the game executable. This would be the start path of the game assets that contain the main game
+         * server executable. If not provided, a best effort will be made to extract it from the start game command.
+         */
+        public String GameWorkingDirectory;
         /** The instrumentation configuration for the build. */
         public InstrumentationConfiguration InstrumentationConfiguration;
         /**
@@ -403,16 +413,25 @@ public class PlayFabMultiplayerModels {
         public ArrayList<AssetReference> GameAssetReferences;
         /** The game certificates for the build. */
         public ArrayList<GameCertificateReference> GameCertificateReferences;
+        /**
+         * The directory containing the game executable. This would be the start path of the game assets that contain the main game
+         * server executable. If not provided, a best effort will be made to extract it from the start game command.
+         */
+        public String GameWorkingDirectory;
         /** The instrumentation configuration for this build. */
         public InstrumentationConfiguration InstrumentationConfiguration;
         /** The metadata of the build. */
         public Map<String,String> Metadata;
         /** The number of multiplayer servers to host on a single VM of the build. */
         public Integer MultiplayerServerCountPerVm;
+        /** The OS platform used for running the game process. */
+        public String OsPlatform;
         /** The ports the build is mapped on. */
         public ArrayList<Port> Ports;
         /** The region configuration for the build. */
         public ArrayList<BuildRegion> RegionConfigurations;
+        /** The type of game server being hosted. */
+        public String ServerType;
         /** The command to run when the multiplayer server has been allocated, including any arguments. */
         public String StartMultiplayerServerCommand;
         /** The VM size the build was created on. */
@@ -520,6 +539,15 @@ public class PlayFabMultiplayerModels {
     public static class DeleteBuildAliasRequest {
         /** The guid string alias ID of the alias to perform the action on. */
         public String AliasId;
+        
+    }
+
+    /** Removes a multiplayer server build's region. */
+    public static class DeleteBuildRegionRequest {
+        /** The guid string ID of the build we want to update regions for. */
+        public String BuildId;
+        /** The build region to delete. */
+        public String Region;
         
     }
 
@@ -692,10 +720,14 @@ public class PlayFabMultiplayerModels {
         public Map<String,String> Metadata;
         /** The number of multiplayer servers to hosted on a single VM of the build. */
         public Integer MultiplayerServerCountPerVm;
+        /** The OS platform used for running the game process. */
+        public String OsPlatform;
         /** The ports the build is mapped on. */
         public ArrayList<Port> Ports;
         /** The region configuration for the build. */
         public ArrayList<BuildRegion> RegionConfigurations;
+        /** The type of game server being hosted. */
+        public String ServerType;
         /**
          * The command to run when the multiplayer server has been allocated, including any arguments. This only applies to managed
          * builds. If the build is a custom build, this field will be null.
@@ -846,12 +878,6 @@ public class PlayFabMultiplayerModels {
      * terminated.
      */
     public static class GetMultiplayerServerLogsRequest {
-        /**
-         * The region of the multiplayer server to get logs for.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public String Region;
         /** The server ID of multiplayer server to get logs for. */
         public String ServerId;
         
@@ -1283,6 +1309,11 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    public static enum OsPlatform {
+        Windows,
+        Linux
+    }
+
     public static class Port {
         /** The name for the port. */
         public String Name;
@@ -1384,6 +1415,11 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    public static enum ServerType {
+        Container,
+        Process
+    }
+
     /**
      * Executes the shutdown callback from the GSDK and terminates the multiplayer server session. The callback in the GSDK
      * will allow for graceful shutdown with a 15 minute timeoutIf graceful shutdown has not been completed before 15 minutes
@@ -1443,6 +1479,15 @@ public class PlayFabMultiplayerModels {
         public String AliasName;
         /** Array of build selection criteria. */
         public ArrayList<BuildSelectionCriterion> BuildSelectionCriteria;
+        
+    }
+
+    /** Updates a multiplayer server build's region. */
+    public static class UpdateBuildRegionRequest {
+        /** The guid string ID of the build we want to update regions for. */
+        public String BuildId;
+        /** The updated region configuration that should be applied to the specified build. */
+        public BuildRegionParams BuildRegion;
         
     }
 

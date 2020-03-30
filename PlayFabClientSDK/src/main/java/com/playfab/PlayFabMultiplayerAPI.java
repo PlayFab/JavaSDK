@@ -867,6 +867,66 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * Removes a multiplayer server build's region.
+     * @param request DeleteBuildRegionRequest
+     * @return Async Task will return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResponse>> DeleteBuildRegionAsync(final DeleteBuildRegionRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateDeleteBuildRegionAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Removes a multiplayer server build's region.
+     * @param request DeleteBuildRegionRequest
+     * @return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResponse> DeleteBuildRegion(final DeleteBuildRegionRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateDeleteBuildRegionAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Removes a multiplayer server build's region. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResponse> privateDeleteBuildRegionAsync(final DeleteBuildRegionRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/DeleteBuildRegion"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
+
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Deletes a multiplayer server game certificate.
      * @param request DeleteCertificateRequest
      * @return Async Task will return EmptyResponse
@@ -3096,6 +3156,66 @@ public class PlayFabMultiplayerAPI {
         BuildAliasDetailsResponse result = resultData.data;
 
         PlayFabResult<BuildAliasDetailsResponse> pfResult = new PlayFabResult<BuildAliasDetailsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Updates a multiplayer server build's region. If the region is not yet created, it will be created
+     * @param request UpdateBuildRegionRequest
+     * @return Async Task will return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResponse>> UpdateBuildRegionAsync(final UpdateBuildRegionRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateUpdateBuildRegionAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Updates a multiplayer server build's region. If the region is not yet created, it will be created
+     * @param request UpdateBuildRegionRequest
+     * @return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResponse> UpdateBuildRegion(final UpdateBuildRegionRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateUpdateBuildRegionAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            return null;
+        }
+    }
+
+    /** Updates a multiplayer server build's region. If the region is not yet created, it will be created */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResponse> privateUpdateBuildRegionAsync(final UpdateBuildRegionRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/UpdateBuildRegion"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
+
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
         pfResult.Result = result;
         return pfResult;
     }
