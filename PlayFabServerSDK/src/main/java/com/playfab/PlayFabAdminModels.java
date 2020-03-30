@@ -1751,7 +1751,11 @@ public class PlayFabAdminModels {
         InsightsManagementSetStorageRetentionBelowMinimum,
         InsightsManagementSetStorageRetentionAboveMaximum,
         AppleNotEnabledForTitle,
-        InsightsManagementNewActiveEventArchiveLimitInvalid,
+        InsightsManagementNewActiveEventExportLimitInvalid,
+        InsightsManagementSetPerformanceRateLimited,
+        PartyRequestsThrottledFromRateLimiter,
+        XboxServiceTooManyRequests,
+        NintendoSwitchNotEnabledForTitle,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1808,6 +1812,11 @@ public class PlayFabAdminModels {
         ExportCouldNotCreate,
         ExportNoBackingDatabaseFound,
         ExportCouldNotDelete,
+        ExportCannotDetermineEventQuery,
+        ExportInvalidQuerySchemaModification,
+        ExportQuerySchemaMissingRequiredColumns,
+        ExportCannotParseQuery,
+        ExportControlCommandsNotAllowed,
         TitleNotEnabledForParty,
         PartyVersionNotFound,
         MultiplayerServerBuildReferencedByMatchmakingQueue,
@@ -1826,6 +1835,7 @@ public class PlayFabAdminModels {
         ExperimentationInvalidDuration,
         ExperimentationMaxExperimentsReached,
         MaxActionDepthExceeded,
+        TitleNotOnUpdatedPricingPlan,
         SnapshotNotFound
     }
 
@@ -2757,7 +2767,8 @@ public class PlayFabAdminModels {
         NintendoSwitch,
         FacebookInstantGames,
         OpenIdConnect,
-        Apple
+        Apple,
+        NintendoSwitchAccount
     }
 
     public static class LogStatement {
@@ -3774,6 +3785,8 @@ public class PlayFabAdminModels {
     public static class TaskInstanceBasicSummary {
         /** UTC timestamp when the task completed. */
         public Date CompletedAt;
+        /** Error message for last processing attempt, if an error occured. */
+        public String ErrorMessage;
         /** Estimated time remaining in seconds. */
         public Double EstimatedSecondsRemaining;
         /** Progress represented as percentage. */
@@ -4122,6 +4135,8 @@ public class PlayFabAdminModels {
     public static class UserAccountInfo {
         /** User Android device information, if an Android device has been linked */
         public UserAndroidDeviceInfo AndroidDeviceInfo;
+        /** Sign in with Apple account information, if an Apple account has been linked */
+        public UserAppleIdInfo AppleAccountInfo;
         /** Timestamp indicating when the user account was created */
         public Date Created;
         /** Custom ID information, if a custom ID has been assigned */
@@ -4139,6 +4154,8 @@ public class PlayFabAdminModels {
         /** User Kongregate account information, if a Kongregate account has been linked */
         public UserKongregateInfo KongregateInfo;
         /** Nintendo Switch account information, if a Nintendo Switch account has been linked */
+        public UserNintendoSwitchAccountIdInfo NintendoSwitchAccountInfo;
+        /** Nintendo Switch device information, if a Nintendo Switch device has been linked */
         public UserNintendoSwitchDeviceIdInfo NintendoSwitchDeviceIdInfo;
         /** OpenID Connect information, if any OpenID Connect accounts have been linked */
         public ArrayList<UserOpenIdInfo> OpenIdInfo;
@@ -4166,6 +4183,12 @@ public class PlayFabAdminModels {
     public static class UserAndroidDeviceInfo {
         /** Android device ID */
         public String AndroidDeviceId;
+        
+    }
+
+    public static class UserAppleIdInfo {
+        /** Apple subject ID */
+        public String AppleSubjectId;
         
     }
 
@@ -4245,6 +4268,12 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class UserNintendoSwitchAccountIdInfo {
+        /** Nintendo Switch account subject ID */
+        public String NintendoSwitchAccountSubjectId;
+        
+    }
+
     public static class UserNintendoSwitchDeviceIdInfo {
         /** Nintendo Switch Device ID */
         public String NintendoSwitchDeviceId;
@@ -4283,7 +4312,9 @@ public class PlayFabAdminModels {
         ServerCustomId,
         NintendoSwitchDeviceId,
         FacebookInstantGamesId,
-        OpenIdConnect
+        OpenIdConnect,
+        Apple,
+        NintendoSwitchAccount
     }
 
     public static class UserPrivateAccountInfo {

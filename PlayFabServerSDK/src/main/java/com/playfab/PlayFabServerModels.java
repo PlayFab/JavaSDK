@@ -1573,7 +1573,11 @@ public class PlayFabServerModels {
         InsightsManagementSetStorageRetentionBelowMinimum,
         InsightsManagementSetStorageRetentionAboveMaximum,
         AppleNotEnabledForTitle,
-        InsightsManagementNewActiveEventArchiveLimitInvalid,
+        InsightsManagementNewActiveEventExportLimitInvalid,
+        InsightsManagementSetPerformanceRateLimited,
+        PartyRequestsThrottledFromRateLimiter,
+        XboxServiceTooManyRequests,
+        NintendoSwitchNotEnabledForTitle,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1630,6 +1634,11 @@ public class PlayFabServerModels {
         ExportCouldNotCreate,
         ExportNoBackingDatabaseFound,
         ExportCouldNotDelete,
+        ExportCannotDetermineEventQuery,
+        ExportInvalidQuerySchemaModification,
+        ExportQuerySchemaMissingRequiredColumns,
+        ExportCannotParseQuery,
+        ExportControlCommandsNotAllowed,
         TitleNotEnabledForParty,
         PartyVersionNotFound,
         MultiplayerServerBuildReferencedByMatchmakingQueue,
@@ -1648,6 +1657,7 @@ public class PlayFabServerModels {
         ExperimentationInvalidDuration,
         ExperimentationMaxExperimentsReached,
         MaxActionDepthExceeded,
+        TitleNotOnUpdatedPricingPlan,
         SnapshotNotFound
     }
 
@@ -1863,7 +1873,8 @@ public class PlayFabServerModels {
     /**
      * If any additional services are queried for the user's friends, those friends who also have a PlayFab account registered
      * for the title will be returned in the results. For Facebook, user has to have logged into the title's Facebook app
-     * recently, and only friends who also plays this game will be included.
+     * recently, and only friends who also plays this game will be included. For Xbox Live, user has to have logged into the
+     * Xbox Live recently, and only friends who also play this game will be included.
      */
     public static class GetFriendsListResult {
         /** Array of friends found. */
@@ -2882,7 +2893,8 @@ public class PlayFabServerModels {
         NintendoSwitch,
         FacebookInstantGames,
         OpenIdConnect,
-        Apple
+        Apple,
+        NintendoSwitchAccount
     }
 
     public static class LoginWithServerCustomIdRequest {
@@ -4370,6 +4382,8 @@ public class PlayFabServerModels {
     public static class UserAccountInfo {
         /** User Android device information, if an Android device has been linked */
         public UserAndroidDeviceInfo AndroidDeviceInfo;
+        /** Sign in with Apple account information, if an Apple account has been linked */
+        public UserAppleIdInfo AppleAccountInfo;
         /** Timestamp indicating when the user account was created */
         public Date Created;
         /** Custom ID information, if a custom ID has been assigned */
@@ -4387,6 +4401,8 @@ public class PlayFabServerModels {
         /** User Kongregate account information, if a Kongregate account has been linked */
         public UserKongregateInfo KongregateInfo;
         /** Nintendo Switch account information, if a Nintendo Switch account has been linked */
+        public UserNintendoSwitchAccountIdInfo NintendoSwitchAccountInfo;
+        /** Nintendo Switch device information, if a Nintendo Switch device has been linked */
         public UserNintendoSwitchDeviceIdInfo NintendoSwitchDeviceIdInfo;
         /** OpenID Connect information, if any OpenID Connect accounts have been linked */
         public ArrayList<UserOpenIdInfo> OpenIdInfo;
@@ -4414,6 +4430,12 @@ public class PlayFabServerModels {
     public static class UserAndroidDeviceInfo {
         /** Android device ID */
         public String AndroidDeviceId;
+        
+    }
+
+    public static class UserAppleIdInfo {
+        /** Apple subject ID */
+        public String AppleSubjectId;
         
     }
 
@@ -4493,6 +4515,12 @@ public class PlayFabServerModels {
         
     }
 
+    public static class UserNintendoSwitchAccountIdInfo {
+        /** Nintendo Switch account subject ID */
+        public String NintendoSwitchAccountSubjectId;
+        
+    }
+
     public static class UserNintendoSwitchDeviceIdInfo {
         /** Nintendo Switch Device ID */
         public String NintendoSwitchDeviceId;
@@ -4531,7 +4559,9 @@ public class PlayFabServerModels {
         ServerCustomId,
         NintendoSwitchDeviceId,
         FacebookInstantGamesId,
-        OpenIdConnect
+        OpenIdConnect,
+        Apple,
+        NintendoSwitchAccount
     }
 
     public static class UserPrivateAccountInfo {
