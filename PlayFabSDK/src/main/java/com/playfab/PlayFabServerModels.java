@@ -1639,6 +1639,7 @@ public class PlayFabServerModels {
         ExportQuerySchemaMissingRequiredColumns,
         ExportCannotParseQuery,
         ExportControlCommandsNotAllowed,
+        ExportQueryMissingTableReference,
         TitleNotEnabledForParty,
         PartyVersionNotFound,
         MultiplayerServerBuildReferencedByMatchmakingQueue,
@@ -1656,6 +1657,7 @@ public class PlayFabServerModels {
         ExperimentationTreatmentAssignmentDisabled,
         ExperimentationInvalidDuration,
         ExperimentationMaxExperimentsReached,
+        ExperimentationExperimentSchedulingInProgress,
         MaxActionDepthExceeded,
         TitleNotOnUpdatedPricingPlan,
         SnapshotNotFound
