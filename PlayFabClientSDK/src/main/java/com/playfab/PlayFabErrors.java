@@ -568,6 +568,7 @@ public class PlayFabErrors {
         ExportQuerySchemaMissingRequiredColumns(5023),
         ExportCannotParseQuery(5024),
         ExportControlCommandsNotAllowed(5025),
+        ExportQueryMissingTableReference(5026),
         TitleNotEnabledForParty(6000),
         PartyVersionNotFound(6001),
         MultiplayerServerBuildReferencedByMatchmakingQueue(6002),
@@ -585,6 +586,7 @@ public class PlayFabErrors {
         ExperimentationTreatmentAssignmentDisabled(7011),
         ExperimentationInvalidDuration(7012),
         ExperimentationMaxExperimentsReached(7013),
+        ExperimentationExperimentSchedulingInProgress(7014),
         MaxActionDepthExceeded(8000),
         TitleNotOnUpdatedPricingPlan(9000),
         SnapshotNotFound(11000);
