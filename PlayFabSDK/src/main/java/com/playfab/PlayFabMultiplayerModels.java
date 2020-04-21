@@ -566,6 +566,16 @@ public class PlayFabMultiplayerModels {
     }
 
     /**
+     * Removes the specified container image repository. After this operation, a 'docker pull' will fail for all the tags of
+     * the specified image. Morever, ListContainerImages will not return the specified image.
+     */
+    public static class DeleteContainerImageRequest {
+        /** The container image repository we want to delete. */
+        public String ImageName;
+        
+    }
+
+    /**
      * Deletes a remote user to log on to a VM for a multiplayer server build in a specific region. Returns user credential
      * information necessary to log on.
      */
@@ -1201,11 +1211,17 @@ public class PlayFabMultiplayerModels {
         
     }
 
-    /** Returns a list of quality of service servers. */
+    /**
+     * Returns a list of quality of service servers.
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class ListQosServersRequest {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class ListQosServersResponse {
         /** The page size on the response. */
         public Integer PageSize;

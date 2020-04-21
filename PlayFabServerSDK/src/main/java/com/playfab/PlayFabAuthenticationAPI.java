@@ -49,7 +49,9 @@ public class PlayFabAuthenticationAPI {
             task.run();
             return task.get();
         } catch(Exception e) {
-            return null;
+            PlayFabResult<GetEntityTokenResponse> exceptionResult = new PlayFabResult<GetEntityTokenResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
         }
     }
 
@@ -116,7 +118,9 @@ public class PlayFabAuthenticationAPI {
             task.run();
             return task.get();
         } catch(Exception e) {
-            return null;
+            PlayFabResult<ValidateEntityTokenResponse> exceptionResult = new PlayFabResult<ValidateEntityTokenResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
         }
     }
 

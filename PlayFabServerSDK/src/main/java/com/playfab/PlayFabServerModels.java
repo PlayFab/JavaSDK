@@ -1578,6 +1578,7 @@ public class PlayFabServerModels {
         PartyRequestsThrottledFromRateLimiter,
         XboxServiceTooManyRequests,
         NintendoSwitchNotEnabledForTitle,
+        RequestMultiplayerServersThrottledFromRateLimiter,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,

@@ -1756,6 +1756,7 @@ public class PlayFabAdminModels {
         PartyRequestsThrottledFromRateLimiter,
         XboxServiceTooManyRequests,
         NintendoSwitchNotEnabledForTitle,
+        RequestMultiplayerServersThrottledFromRateLimiter,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
