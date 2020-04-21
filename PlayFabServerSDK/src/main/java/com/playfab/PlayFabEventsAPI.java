@@ -46,7 +46,9 @@ public class PlayFabEventsAPI {
             task.run();
             return task.get();
         } catch(Exception e) {
-            return null;
+            PlayFabResult<WriteEventsResponse> exceptionResult = new PlayFabResult<WriteEventsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
         }
     }
 
@@ -108,7 +110,9 @@ public class PlayFabEventsAPI {
             task.run();
             return task.get();
         } catch(Exception e) {
-            return null;
+            PlayFabResult<WriteEventsResponse> exceptionResult = new PlayFabResult<WriteEventsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
         }
     }
 

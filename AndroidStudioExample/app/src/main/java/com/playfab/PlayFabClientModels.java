@@ -24,6 +24,13 @@ public class PlayFabClientModels {
         
     }
 
+    public static enum AdActivity {
+        Opened,
+        Closed,
+        Start,
+        End
+    }
+
     public static class AdCampaignAttributionModel {
         /** UTC time stamp of attribution */
         public Date AttributedAt;
@@ -116,6 +123,51 @@ public class PlayFabClientModels {
         public Integer Amount;
         /** Name of the virtual currency which is to be incremented. */
         public String VirtualCurrency;
+        
+    }
+
+    /** A single ad placement details including placement and reward information */
+    public static class AdPlacementDetails {
+        /** Placement unique ID */
+        public String PlacementId;
+        /** Placement name */
+        public String PlacementName;
+        /** If placement has viewing limits indicates how many views are left */
+        public Integer PlacementViewsRemaining;
+        /** If placement has viewing limits indicates when they will next reset */
+        public Double PlacementViewsResetMinutes;
+        /** Optional URL to a reward asset */
+        public String RewardAssetUrl;
+        /** Reward description */
+        public String RewardDescription;
+        /** Reward unique ID */
+        public String RewardId;
+        /** Reward name */
+        public String RewardName;
+        
+    }
+
+    /** Details for each item granted */
+    public static class AdRewardItemGranted {
+        /** Catalog ID */
+        public String CatalogId;
+        /** Catalog item display name */
+        public String DisplayName;
+        /** Inventory instance ID */
+        public String InstanceId;
+        /** Item ID */
+        public String ItemId;
+        
+    }
+
+    /** Details on what was granted to the player */
+    public static class AdRewardResults {
+        /** Array of the items granted to the player */
+        public ArrayList<AdRewardItemGranted> GrantedItems;
+        /** Dictionary of virtual currencies that were granted to the player */
+        public Map<String,Integer> GrantedVirtualCurrencies;
+        /** Dictionary of statistics that were modified for the player */
+        public Map<String,Integer> IncrementedStatistics;
         
     }
 
@@ -1181,6 +1233,22 @@ public class PlayFabClientModels {
     public static class GetAccountInfoResult {
         /** Account information for the local user. */
         public UserAccountInfo AccountInfo;
+        
+    }
+
+    /** Using an AppId to return a list of valid ad placements for a player. */
+    public static class GetAdPlacementsRequest {
+        /** The current AppId to use */
+        public String AppId;
+        /** Using the name or unique identifier, filter the result for get a specific placement. */
+        public NameIdentifier Identifier;
+        
+    }
+
+    /** Array of AdPlacementDetails */
+    public static class GetAdPlacementsResult {
+        /** Array of results */
+        public ArrayList<AdPlacementDetails> AdPlacements;
         
     }
 
@@ -2398,6 +2466,19 @@ public class PlayFabClientModels {
         
     }
 
+    public static class LinkNintendoSwitchAccountRequest {
+        /** ID of the Nintendo Switch environment. If null, defaults to the production environment. */
+        public String EnvironmentId;
+        /** If another user is already linked to a specific Nintendo Switch account, unlink the other user and re-link. */
+        public Boolean ForceLink;
+        /**
+         * The JSON Web token (JWT) returned by Nintendo after login. Used to validate the request and find the user ID (Nintendo
+         * Switch subject) to link with.
+         */
+        public String IdentityToken;
+        
+    }
+
     public static class LinkNintendoSwitchDeviceIdRequest {
         /** If another user is already linked to the Nintendo Switch Device ID, unlink the other user and re-link. */
         public Boolean ForceLink;
@@ -2873,6 +2954,27 @@ public class PlayFabClientModels {
         
     }
 
+    public static class LoginWithNintendoSwitchAccountRequest {
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        public Boolean CreateAccount;
+        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        public String EncryptedRequest;
+        /** ID of the Nintendo Switch environment. If null, defaults to the production environment. */
+        public String EnvironmentId;
+        /** The JSON Web token (JWT) returned by Nintendo after login. */
+        public String IdentityToken;
+        /** Flags for which pieces of info to return for the user. */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        public String PlayerSecret;
+        /**
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
+         * title has been selected.
+         */
+        public String TitleId;
+        
+    }
+
     public static class LoginWithNintendoSwitchDeviceIdRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         public Boolean CreateAccount;
@@ -3155,6 +3257,18 @@ public class PlayFabClientModels {
         public String PlayFabId;
         /** Name of the virtual currency which was modified. */
         public String VirtualCurrency;
+        
+    }
+
+    /**
+     * Identifier by either name or ID. Note that a name may change due to renaming, or reused after being deleted. ID is
+     * immutable and unique.
+     */
+    public static class NameIdentifier {
+        /** Id Identifier, if present */
+        public String Id;
+        /** Name Identifier, if present */
+        public String Name;
         
     }
 
@@ -3607,6 +3721,22 @@ public class PlayFabClientModels {
         
     }
 
+    /** Report ad activity */
+    public static class ReportAdActivityRequest {
+        /** Type of activity, may be Opened, Closed, Start or End */
+        public AdActivity Activity;
+        /** Unique ID of the placement to report for */
+        public String PlacementId;
+        /** Unique ID of the reward the player was offered */
+        public String RewardId;
+        
+    }
+
+    /** Report ad activity response has no body */
+    public static class ReportAdActivityResult {
+        
+    }
+
     public static class ReportPlayerClientRequest {
         /** Optional additional comment by reporting player. */
         public String Comment;
@@ -3643,6 +3773,34 @@ public class PlayFabClientModels {
     public static class RestoreIOSPurchasesResult {
         /** Fulfilled inventory items and recorded purchases in fulfillment of the validated receipt transactions. */
         public ArrayList<PurchaseReceiptFulfillment> Fulfillments;
+        
+    }
+
+    /** Details on which placement and reward to perform a grant on */
+    public static class RewardAdActivityRequest {
+        /** Placement unique ID */
+        public String PlacementId;
+        /** Reward unique ID */
+        public String RewardId;
+        
+    }
+
+    /** Result for rewarding an ad activity */
+    public static class RewardAdActivityResult {
+        /** PlayStream Event ID that was generated by this reward (all subsequent events are associated with this event identifier) */
+        public String AdActivityEventId;
+        /** Debug results from the grants */
+        public ArrayList<String> DebugResults;
+        /** Id of the placement the reward was for */
+        public String PlacementId;
+        /** Name of the placement the reward was for */
+        public String PlacementName;
+        /** If placement has viewing limits indicates how many views are left */
+        public Integer PlacementViewsRemaining;
+        /** If placement has viewing limits indicates when they will next reset */
+        public Double PlacementViewsResetMinutes;
+        /** Reward results */
+        public AdRewardResults RewardResults;
         
     }
 
@@ -4030,12 +4188,6 @@ public class PlayFabClientModels {
         
     }
 
-    public static class UninkOpenIdConnectRequest {
-        /** A name that identifies which configured OpenID Connect provider relationship to use. Maximum 100 characters. */
-        public String ConnectionId;
-        
-    }
-
     public static class UnlinkAndroidDeviceIDRequest {
         /**
          * Android device identifier for the user's device. If not specified, the most recently signed in Android Device ID will be
@@ -4121,6 +4273,10 @@ public class PlayFabClientModels {
         
     }
 
+    public static class UnlinkNintendoSwitchAccountRequest {
+        
+    }
+
     public static class UnlinkNintendoSwitchDeviceIdRequest {
         /** Nintendo Switch Device identifier for the user. If not specified, the most recently signed in device ID will be used. */
         public String NintendoSwitchDeviceId;
@@ -4128,6 +4284,12 @@ public class PlayFabClientModels {
     }
 
     public static class UnlinkNintendoSwitchDeviceIdResult {
+        
+    }
+
+    public static class UnlinkOpenIdConnectRequest {
+        /** A name that identifies which configured OpenID Connect provider relationship to use. Maximum 100 characters. */
+        public String ConnectionId;
         
     }
 

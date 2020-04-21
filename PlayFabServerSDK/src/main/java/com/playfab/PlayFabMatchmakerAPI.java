@@ -43,7 +43,9 @@ public class PlayFabMatchmakerAPI {
             task.run();
             return task.get();
         } catch(Exception e) {
-            return null;
+            PlayFabResult<AuthUserResponse> exceptionResult = new PlayFabResult<AuthUserResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
         }
     }
 
@@ -103,7 +105,9 @@ public class PlayFabMatchmakerAPI {
             task.run();
             return task.get();
         } catch(Exception e) {
-            return null;
+            PlayFabResult<PlayerJoinedResponse> exceptionResult = new PlayFabResult<PlayerJoinedResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
         }
     }
 
@@ -163,7 +167,9 @@ public class PlayFabMatchmakerAPI {
             task.run();
             return task.get();
         } catch(Exception e) {
-            return null;
+            PlayFabResult<PlayerLeftResponse> exceptionResult = new PlayFabResult<PlayerLeftResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
         }
     }
 
@@ -223,7 +229,9 @@ public class PlayFabMatchmakerAPI {
             task.run();
             return task.get();
         } catch(Exception e) {
-            return null;
+            PlayFabResult<StartGameResponse> exceptionResult = new PlayFabResult<StartGameResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
         }
     }
 
@@ -285,7 +293,9 @@ public class PlayFabMatchmakerAPI {
             task.run();
             return task.get();
         } catch(Exception e) {
-            return null;
+            PlayFabResult<UserInfoResponse> exceptionResult = new PlayFabResult<UserInfoResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
         }
     }
 
