@@ -59,15 +59,23 @@ public class PlayFabMultiplayerModels {
     }
 
     public static enum AzureVmSize {
+        Standard_A1,
+        Standard_A2,
+        Standard_A3,
+        Standard_A4,
+        Standard_A1_v2,
+        Standard_A2_v2,
+        Standard_A4_v2,
+        Standard_A8_v2,
         Standard_D1_v2,
         Standard_D2_v2,
         Standard_D3_v2,
         Standard_D4_v2,
         Standard_D5_v2,
-        Standard_A1_v2,
-        Standard_A2_v2,
-        Standard_A4_v2,
-        Standard_A8_v2,
+        Standard_D2_v3,
+        Standard_D4_v3,
+        Standard_D8_v3,
+        Standard_D16_v3,
         Standard_F1,
         Standard_F2,
         Standard_F4,
@@ -76,11 +84,7 @@ public class PlayFabMultiplayerModels {
         Standard_F2s_v2,
         Standard_F4s_v2,
         Standard_F8s_v2,
-        Standard_F16s_v2,
-        Standard_A1,
-        Standard_A2,
-        Standard_A3,
-        Standard_A4
+        Standard_F16s_v2
     }
 
     public static class BuildAliasDetailsResponse {

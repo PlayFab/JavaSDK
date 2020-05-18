@@ -280,6 +280,8 @@ public class PlayFabExperimentationModels {
         public Boolean IsControl;
         /** Name of the variant. */
         public String Name;
+        /** Id of the TitleDataOverrideGroup to use with this variant. */
+        public String TitleDataOverrideId;
         /** Percentage of target audience traffic that will see this variant. */
         public Long TrafficPercentage;
         /** Variables returned by this variant. */
