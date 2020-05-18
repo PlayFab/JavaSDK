@@ -1757,6 +1757,8 @@ public class PlayFabAdminModels {
         XboxServiceTooManyRequests,
         NintendoSwitchNotEnabledForTitle,
         RequestMultiplayerServersThrottledFromRateLimiter,
+        TitleDataInstanceNotFound,
+        DuplicateTitleDataOverrideInstanceName,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1837,6 +1839,7 @@ public class PlayFabAdminModels {
         ExperimentationInvalidDuration,
         ExperimentationMaxExperimentsReached,
         ExperimentationExperimentSchedulingInProgress,
+        ExperimentationExistingCodelessScheduled,
         MaxActionDepthExceeded,
         TitleNotOnUpdatedPricingPlan,
         SnapshotNotFound

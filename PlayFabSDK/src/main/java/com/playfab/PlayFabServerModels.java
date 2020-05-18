@@ -1579,6 +1579,8 @@ public class PlayFabServerModels {
         XboxServiceTooManyRequests,
         NintendoSwitchNotEnabledForTitle,
         RequestMultiplayerServersThrottledFromRateLimiter,
+        TitleDataInstanceNotFound,
+        DuplicateTitleDataOverrideInstanceName,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1659,6 +1661,7 @@ public class PlayFabServerModels {
         ExperimentationInvalidDuration,
         ExperimentationMaxExperimentsReached,
         ExperimentationExperimentSchedulingInProgress,
+        ExperimentationExistingCodelessScheduled,
         MaxActionDepthExceeded,
         TitleNotOnUpdatedPricingPlan,
         SnapshotNotFound

@@ -14,7 +14,7 @@
     <!-- GAV & Meta -->
     <groupId>com.playfab</groupId>
     <artifactId>combo-sdk</artifactId>
-    <version>0.109.200421</version>
+    <version>0.110.200518</version>
     <name>PlayFab Combo API</name>
     <description>PlayFab is the unified backend platform for games — everything you need to build and operate your game, all in one place, so you can focus on creating and delivering a great player experience. </description>
     <url>https://docs.microsoft.com/gaming/playfab/</url>
@@ -25,7 +25,7 @@
     <developers>
         <developer>
             <name>Playfab</name>
-            <email>devrel@playfab.com</email>
+            <email>helloplayfab@microsoft.com</email>
             <organization>PlayFab</organization>
             <organizationUrl>https://playfab.com/</organizationUrl>
         </developer>

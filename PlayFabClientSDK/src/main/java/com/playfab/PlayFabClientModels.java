@@ -4310,6 +4310,11 @@ public class PlayFabClientModels {
     }
 
     public static class UnlinkTwitchAccountRequest {
+        /**
+         * Valid token issued by Twitch. Used to specify which twitch account to unlink from the profile. By default it uses the
+         * one that is present on the profile.
+         */
+        public String AccessToken;
         
     }
 
