@@ -1945,8 +1945,8 @@ public class PlayFabClientModels {
     /**
      * This API is designed to return publisher-specific values which can be read, but not written to, by the client. This data
      * is shared across all titles assigned to a particular publisher, and can be used for cross-game coordination. Only titles
-     * assigned to a publisher can use this API. For more information email devrel@playfab.com. Note that there may up to a
-     * minute delay in between updating title data and this API call returning the newest value.
+     * assigned to a publisher can use this API. For more information email helloplayfab@microsoft.com. Note that there may up
+     * to a minute delay in between updating title data and this API call returning the newest value.
      */
     public static class GetPublisherDataRequest {
         /** array of keys to get back data from the Publisher data blob, set by the admin tools */
@@ -2466,9 +2466,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LinkNintendoSwitchAccountRequest {
-        /** ID of the Nintendo Switch environment. If null, defaults to the production environment. */
-        public String EnvironmentId;
+    public static class LinkNintendoAccountRequest {
         /** If another user is already linked to a specific Nintendo Switch account, unlink the other user and re-link. */
         public Boolean ForceLink;
         /**
@@ -2954,13 +2952,11 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LoginWithNintendoSwitchAccountRequest {
+    public static class LoginWithNintendoAccountRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         public Boolean CreateAccount;
         /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
         public String EncryptedRequest;
-        /** ID of the Nintendo Switch environment. If null, defaults to the production environment. */
-        public String EnvironmentId;
         /** The JSON Web token (JWT) returned by Nintendo after login. */
         public String IdentityToken;
         /** Flags for which pieces of info to return for the user. */
@@ -4273,7 +4269,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class UnlinkNintendoSwitchAccountRequest {
+    public static class UnlinkNintendoAccountRequest {
         
     }
 
