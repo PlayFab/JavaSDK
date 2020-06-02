@@ -17,7 +17,7 @@ public class PlayFabEventsAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 
     /**
-     * Write batches of entity based events to PlayStream. The namespace of the Event must start with 'com.playfab.events.'
+     * Write batches of entity based events to PlayStream. The namespace of the Event must be 'custom' or start with 'custom.'.
      * @param request WriteEventsRequest
      * @return Async Task will return WriteEventsResponse
      */
@@ -31,7 +31,7 @@ public class PlayFabEventsAPI {
     }
 
     /**
-     * Write batches of entity based events to PlayStream. The namespace of the Event must start with 'com.playfab.events.'
+     * Write batches of entity based events to PlayStream. The namespace of the Event must be 'custom' or start with 'custom.'.
      * @param request WriteEventsRequest
      * @return WriteEventsResponse
      */
@@ -52,7 +52,7 @@ public class PlayFabEventsAPI {
         }
     }
 
-    /** Write batches of entity based events to PlayStream. The namespace of the Event must start with 'com.playfab.events.' */
+    /** Write batches of entity based events to PlayStream. The namespace of the Event must be 'custom' or start with 'custom.'. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<WriteEventsResponse> privateWriteEventsAsync(final WriteEventsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
