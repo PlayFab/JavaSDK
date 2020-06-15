@@ -2070,6 +2070,8 @@ public class PlayFabClientModels {
     public static class GetTitleDataRequest {
         /** Specific keys to search for in the title data (leave null to get all keys) */
         public ArrayList<String> Keys;
+        /** Name of the override. */
+        public String OverrideLabel;
         
     }
 

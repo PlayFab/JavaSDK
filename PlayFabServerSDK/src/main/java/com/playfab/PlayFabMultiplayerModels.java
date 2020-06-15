@@ -313,6 +313,11 @@ public class PlayFabMultiplayerModels {
 
     /** Creates a multiplayer server build with a custom container and returns information about the build creation request. */
     public static class CreateBuildWithCustomContainerRequest {
+        /**
+         * When true, assets will not be copied for each server inside the VM. All serverswill run from the same set of assets, or
+         * will have the same assets mounted in the container.
+         */
+        public Boolean AreAssetsReadonly;
         /** The build name. */
         public String BuildName;
         /** The flavor of container to create a build from. */
@@ -336,12 +341,22 @@ public class PlayFabMultiplayerModels {
         public ArrayList<Port> Ports;
         /** The region configurations for the build. */
         public ArrayList<BuildRegionParams> RegionConfigurations;
+        /**
+         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
+         * disc.
+         */
+        public Boolean UseStreamingForAssetDownloads;
         /** The VM size to create the build on. */
         public AzureVmSize VmSize;
         
     }
 
     public static class CreateBuildWithCustomContainerResponse {
+        /**
+         * When true, assets will not be copied for each server inside the VM. All serverswill run from the same set of assets, or
+         * will have the same assets mounted in the container.
+         */
+        public Boolean AreAssetsReadonly;
         /** The guid string build ID. Must be unique for every build. */
         public String BuildId;
         /** The build name. */
@@ -370,6 +385,11 @@ public class PlayFabMultiplayerModels {
         public ArrayList<BuildRegion> RegionConfigurations;
         /** The type of game server being hosted. */
         public String ServerType;
+        /**
+         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
+         * disc.
+         */
+        public Boolean UseStreamingForAssetDownloads;
         /** The VM size the build was created on. */
         public AzureVmSize VmSize;
         
@@ -377,6 +397,11 @@ public class PlayFabMultiplayerModels {
 
     /** Creates a multiplayer server build with a managed container and returns information about the build creation request. */
     public static class CreateBuildWithManagedContainerRequest {
+        /**
+         * When true, assets will not be copied for each server inside the VM. All serverswill run from the same set of assets, or
+         * will have the same assets mounted in the container.
+         */
+        public Boolean AreAssetsReadonly;
         /** The build name. */
         public String BuildName;
         /** The flavor of container to create a build from. */
@@ -405,12 +430,22 @@ public class PlayFabMultiplayerModels {
         public ArrayList<BuildRegionParams> RegionConfigurations;
         /** The command to run when the multiplayer server is started, including any arguments. */
         public String StartMultiplayerServerCommand;
+        /**
+         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
+         * disc.
+         */
+        public Boolean UseStreamingForAssetDownloads;
         /** The VM size to create the build on. */
         public AzureVmSize VmSize;
         
     }
 
     public static class CreateBuildWithManagedContainerResponse {
+        /**
+         * When true, assets will not be copied for each server inside the VM. All serverswill run from the same set of assets, or
+         * will have the same assets mounted in the container.
+         */
+        public Boolean AreAssetsReadonly;
         /** The guid string build ID. Must be unique for every build. */
         public String BuildId;
         /** The build name. */
@@ -444,6 +479,11 @@ public class PlayFabMultiplayerModels {
         public String ServerType;
         /** The command to run when the multiplayer server has been allocated, including any arguments. */
         public String StartMultiplayerServerCommand;
+        /**
+         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
+         * disc.
+         */
+        public Boolean UseStreamingForAssetDownloads;
         /** The VM size the build was created on. */
         public AzureVmSize VmSize;
         
@@ -710,6 +750,11 @@ public class PlayFabMultiplayerModels {
     }
 
     public static class GetBuildResponse {
+        /**
+         * When true, assets will not be copied for each server inside the VM. All serverswill run from the same set of assets, or
+         * will have the same assets mounted in the container.
+         */
+        public Boolean AreAssetsReadonly;
         /** The guid string build ID of the build. */
         public String BuildId;
         /** The build name. */
@@ -753,6 +798,11 @@ public class PlayFabMultiplayerModels {
          * builds. If the build is a custom build, this field will be null.
          */
         public String StartMultiplayerServerCommand;
+        /**
+         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
+         * disc.
+         */
+        public Boolean UseStreamingForAssetDownloads;
         /** The VM size the build was created on. */
         public AzureVmSize VmSize;
         
