@@ -1757,8 +1757,8 @@ public class PlayFabAdminModels {
         XboxServiceTooManyRequests,
         NintendoSwitchNotEnabledForTitle,
         RequestMultiplayerServersThrottledFromRateLimiter,
-        TitleDataInstanceNotFound,
-        DuplicateTitleDataOverrideInstanceName,
+        TitleDataOverrideNotFound,
+        DuplicateKeys,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -2417,6 +2417,8 @@ public class PlayFabAdminModels {
     public static class GetTitleDataRequest {
         /** Specific keys to search for in the title data (leave null to get all keys) */
         public ArrayList<String> Keys;
+        /** Name of the override. */
+        public String OverrideLabel;
         
     }
 
