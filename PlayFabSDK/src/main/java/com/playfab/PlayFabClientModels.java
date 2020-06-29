@@ -2468,7 +2468,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LinkNintendoAccountRequest {
+    public static class LinkNintendoServiceAccountRequest {
         /** If another user is already linked to a specific Nintendo Switch account, unlink the other user and re-link. */
         public Boolean ForceLink;
         /**
@@ -2954,7 +2954,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LoginWithNintendoAccountRequest {
+    public static class LoginWithNintendoServiceAccountRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         public Boolean CreateAccount;
         /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
@@ -4271,7 +4271,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class UnlinkNintendoAccountRequest {
+    public static class UnlinkNintendoServiceAccountRequest {
         
     }
 
@@ -4332,12 +4332,6 @@ public class PlayFabClientModels {
     }
 
     public static class UnlinkXboxAccountRequest {
-        /**
-         * Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", "").
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public String XboxToken;
         
     }
 
