@@ -5160,29 +5160,29 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Links the Nintendo account associated with the token to the user's PlayFab account. (Open ID)
-     * @param request LinkNintendoAccountRequest
+     * Links the Nintendo account associated with the token to the user's PlayFab account.
+     * @param request LinkNintendoServiceAccountRequest
      * @return Async Task will return EmptyResult
      */
     @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<EmptyResult>> LinkNintendoAccountAsync(final LinkNintendoAccountRequest request) {
+    public static FutureTask<PlayFabResult<EmptyResult>> LinkNintendoServiceAccountAsync(final LinkNintendoServiceAccountRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
             public PlayFabResult<EmptyResult> call() throws Exception {
-                return privateLinkNintendoAccountAsync(request);
+                return privateLinkNintendoServiceAccountAsync(request);
             }
         });
     }
 
     /**
-     * Links the Nintendo account associated with the token to the user's PlayFab account. (Open ID)
-     * @param request LinkNintendoAccountRequest
+     * Links the Nintendo account associated with the token to the user's PlayFab account.
+     * @param request LinkNintendoServiceAccountRequest
      * @return EmptyResult
      */
     @SuppressWarnings("unchecked")
-    public static PlayFabResult<EmptyResult> LinkNintendoAccount(final LinkNintendoAccountRequest request) {
+    public static PlayFabResult<EmptyResult> LinkNintendoServiceAccount(final LinkNintendoServiceAccountRequest request) {
         FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
             public PlayFabResult<EmptyResult> call() throws Exception {
-                return privateLinkNintendoAccountAsync(request);
+                return privateLinkNintendoServiceAccountAsync(request);
             }
         });
         try {
@@ -5195,12 +5195,12 @@ public class PlayFabClientAPI {
         }
     }
 
-    /** Links the Nintendo account associated with the token to the user's PlayFab account. (Open ID) */
+    /** Links the Nintendo account associated with the token to the user's PlayFab account. */
     @SuppressWarnings("unchecked")
-    private static PlayFabResult<EmptyResult> privateLinkNintendoAccountAsync(final LinkNintendoAccountRequest request) throws Exception {
+    private static PlayFabResult<EmptyResult> privateLinkNintendoServiceAccountAsync(final LinkNintendoServiceAccountRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LinkNintendoAccount"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LinkNintendoServiceAccount"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -6362,29 +6362,29 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Signs in the user with a Nintendo account identity token. (Open ID)
-     * @param request LoginWithNintendoAccountRequest
+     * Signs in the user with a Nintendo service account token.
+     * @param request LoginWithNintendoServiceAccountRequest
      * @return Async Task will return LoginResult
      */
     @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<LoginResult>> LoginWithNintendoAccountAsync(final LoginWithNintendoAccountRequest request) {
+    public static FutureTask<PlayFabResult<LoginResult>> LoginWithNintendoServiceAccountAsync(final LoginWithNintendoServiceAccountRequest request) {
         return new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
             public PlayFabResult<LoginResult> call() throws Exception {
-                return privateLoginWithNintendoAccountAsync(request);
+                return privateLoginWithNintendoServiceAccountAsync(request);
             }
         });
     }
 
     /**
-     * Signs in the user with a Nintendo account identity token. (Open ID)
-     * @param request LoginWithNintendoAccountRequest
+     * Signs in the user with a Nintendo service account token.
+     * @param request LoginWithNintendoServiceAccountRequest
      * @return LoginResult
      */
     @SuppressWarnings("unchecked")
-    public static PlayFabResult<LoginResult> LoginWithNintendoAccount(final LoginWithNintendoAccountRequest request) {
+    public static PlayFabResult<LoginResult> LoginWithNintendoServiceAccount(final LoginWithNintendoServiceAccountRequest request) {
         FutureTask<PlayFabResult<LoginResult>> task = new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
             public PlayFabResult<LoginResult> call() throws Exception {
-                return privateLoginWithNintendoAccountAsync(request);
+                return privateLoginWithNintendoServiceAccountAsync(request);
             }
         });
         try {
@@ -6397,13 +6397,13 @@ public class PlayFabClientAPI {
         }
     }
 
-    /** Signs in the user with a Nintendo account identity token. (Open ID) */
+    /** Signs in the user with a Nintendo service account token. */
     @SuppressWarnings("unchecked")
-    private static PlayFabResult<LoginResult> privateLoginWithNintendoAccountAsync(final LoginWithNintendoAccountRequest request) throws Exception {
+    private static PlayFabResult<LoginResult> privateLoginWithNintendoServiceAccountAsync(final LoginWithNintendoServiceAccountRequest request) throws Exception {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
         if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithNintendoAccount"), request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithNintendoServiceAccount"), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -9136,29 +9136,29 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Unlinks the related Nintendo account from the user's PlayFab account. (Open ID)
-     * @param request UnlinkNintendoAccountRequest
+     * Unlinks the related Nintendo account from the user's PlayFab account.
+     * @param request UnlinkNintendoServiceAccountRequest
      * @return Async Task will return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<EmptyResponse>> UnlinkNintendoAccountAsync(final UnlinkNintendoAccountRequest request) {
+    public static FutureTask<PlayFabResult<EmptyResponse>> UnlinkNintendoServiceAccountAsync(final UnlinkNintendoServiceAccountRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
             public PlayFabResult<EmptyResponse> call() throws Exception {
-                return privateUnlinkNintendoAccountAsync(request);
+                return privateUnlinkNintendoServiceAccountAsync(request);
             }
         });
     }
 
     /**
-     * Unlinks the related Nintendo account from the user's PlayFab account. (Open ID)
-     * @param request UnlinkNintendoAccountRequest
+     * Unlinks the related Nintendo account from the user's PlayFab account.
+     * @param request UnlinkNintendoServiceAccountRequest
      * @return EmptyResponse
      */
     @SuppressWarnings("unchecked")
-    public static PlayFabResult<EmptyResponse> UnlinkNintendoAccount(final UnlinkNintendoAccountRequest request) {
+    public static PlayFabResult<EmptyResponse> UnlinkNintendoServiceAccount(final UnlinkNintendoServiceAccountRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
             public PlayFabResult<EmptyResponse> call() throws Exception {
-                return privateUnlinkNintendoAccountAsync(request);
+                return privateUnlinkNintendoServiceAccountAsync(request);
             }
         });
         try {
@@ -9171,12 +9171,12 @@ public class PlayFabClientAPI {
         }
     }
 
-    /** Unlinks the related Nintendo account from the user's PlayFab account. (Open ID) */
+    /** Unlinks the related Nintendo account from the user's PlayFab account. */
     @SuppressWarnings("unchecked")
-    private static PlayFabResult<EmptyResponse> privateUnlinkNintendoAccountAsync(final UnlinkNintendoAccountRequest request) throws Exception {
+    private static PlayFabResult<EmptyResponse> privateUnlinkNintendoServiceAccountAsync(final UnlinkNintendoServiceAccountRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UnlinkNintendoAccount"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UnlinkNintendoServiceAccount"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
