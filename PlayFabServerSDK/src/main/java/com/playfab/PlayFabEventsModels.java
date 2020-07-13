@@ -15,6 +15,12 @@ public class PlayFabEventsModels {
     }
 
     public static class EventContents {
+        /**
+         * The optional custom tags associated with the event (e.g. build number, external trace identifiers, etc.). Before an
+         * event is written, this collection and the base request custom tags will be merged, but not overriden. This enables the
+         * caller to specify static tags and per event tags.
+         */
+        public Map<String,String> CustomTags;
         /** Entity associated with the event. If null, the event will apply to the calling entity. */
         public EntityKey Entity;
         /** The namespace in which the event is defined. Allowed namespaces can vary by API. */
@@ -42,6 +48,8 @@ public class PlayFabEventsModels {
     }
 
     public static class WriteEventsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Collection of events to write to PlayStream. */
         public ArrayList<EventContents> Events;
         

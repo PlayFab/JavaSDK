@@ -171,6 +171,8 @@ public class PlayFabMultiplayerModels {
      * tickets for other people. The Entity field is required if the caller is a server (authenticated as the title).
      */
     public static class CancelAllMatchmakingTicketsForPlayerRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity key of the player whose tickets should be canceled. */
         public EntityKey Entity;
         /** The name of the queue from which a player's tickets should be canceled. */
@@ -188,6 +190,8 @@ public class PlayFabMultiplayerModels {
      * to "reset".
      */
     public static class CancelAllServerBackfillTicketsForPlayerRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity key of the player whose backfill tickets should be canceled. */
         public EntityKey Entity;
         /** The name of the queue from which a player's backfill tickets should be canceled. */
@@ -217,6 +221,8 @@ public class PlayFabMultiplayerModels {
      * ticket because players must consent to enter matchmaking again. Create a new ticket instead.
      */
     public static class CancelMatchmakingTicketRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The name of the queue the ticket is in. */
         public String QueueName;
         /** The Id of the ticket to find a match for. */
@@ -237,6 +243,8 @@ public class PlayFabMultiplayerModels {
      * ticket. Create a new ticket instead.
      */
     public static class CancelServerBackfillTicketRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The name of the queue the ticket is in. */
         public String QueueName;
         /** The Id of the ticket to find a match for. */
@@ -308,6 +316,8 @@ public class PlayFabMultiplayerModels {
         public String AliasName;
         /** Array of build selection criteria. */
         public ArrayList<BuildSelectionCriterion> BuildSelectionCriteria;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 
@@ -326,6 +336,8 @@ public class PlayFabMultiplayerModels {
         public ContainerImageReference ContainerImageReference;
         /** The container command to run when the multiplayer server has been allocated, including any arguments. */
         public String ContainerRunCommand;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The list of game assets related to the build. */
         public ArrayList<AssetReferenceParams> GameAssetReferences;
         /** The game certificates for the build. */
@@ -406,6 +418,8 @@ public class PlayFabMultiplayerModels {
         public String BuildName;
         /** The flavor of container to create a build from. */
         public ContainerFlavor ContainerFlavor;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The list of game assets related to the build. */
         public ArrayList<AssetReferenceParams> GameAssetReferences;
         /** The game certificates for the build. */
@@ -489,10 +503,113 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /**
+     * Creates a multiplayer server build with the game server running as a process and returns information about the build
+     * creation request.
+     */
+    public static class CreateBuildWithProcessBasedServerRequest {
+        /**
+         * When true, assets will not be copied for each server inside the VM. All serverswill run from the same set of assets, or
+         * will have the same assets mounted in the container.
+         */
+        public Boolean AreAssetsReadonly;
+        /** The build name. */
+        public String BuildName;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The list of game assets related to the build. */
+        public ArrayList<AssetReferenceParams> GameAssetReferences;
+        /** The game certificates for the build. */
+        public ArrayList<GameCertificateReferenceParams> GameCertificateReferences;
+        /**
+         * The working directory for the game process. If this is not provided, the working directory will be set based on the
+         * mount path of the game server executable.
+         */
+        public String GameWorkingDirectory;
+        /**
+         * Metadata to tag the build. The keys are case insensitive. The build metadata is made available to the server through
+         * Game Server SDK (GSDK).Constraints: Maximum number of keys: 30, Maximum key length: 50, Maximum value length: 100
+         */
+        public Map<String,String> Metadata;
+        /** The number of multiplayer servers to host on a single VM. */
+        public Integer MultiplayerServerCountPerVm;
+        /** The OS platform used for running the game process. */
+        public String OsPlatform;
+        /** The ports to map the build on. */
+        public ArrayList<Port> Ports;
+        /** The region configurations for the build. */
+        public ArrayList<BuildRegionParams> RegionConfigurations;
+        /**
+         * The command to run when the multiplayer server is started, including any arguments. The path to any executable should be
+         * relative to the root asset folder when unzipped.
+         */
+        public String StartMultiplayerServerCommand;
+        /**
+         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
+         * disc.
+         */
+        public Boolean UseStreamingForAssetDownloads;
+        /** The VM size to create the build on. */
+        public AzureVmSize VmSize;
+        
+    }
+
+    public static class CreateBuildWithProcessBasedServerResponse {
+        /**
+         * When true, assets will not be copied for each server inside the VM. All serverswill run from the same set of assets, or
+         * will have the same assets mounted in the container.
+         */
+        public Boolean AreAssetsReadonly;
+        /** The guid string build ID. Must be unique for every build. */
+        public String BuildId;
+        /** The build name. */
+        public String BuildName;
+        /** The flavor of container of the build. */
+        public ContainerFlavor ContainerFlavor;
+        /** The time the build was created in UTC. */
+        public Date CreationTime;
+        /** The game assets for the build. */
+        public ArrayList<AssetReference> GameAssetReferences;
+        /** The game certificates for the build. */
+        public ArrayList<GameCertificateReference> GameCertificateReferences;
+        /**
+         * The working directory for the game process. If this is not provided, the working directory will be set based on the
+         * mount path of the game server executable.
+         */
+        public String GameWorkingDirectory;
+        /** The metadata of the build. */
+        public Map<String,String> Metadata;
+        /** The number of multiplayer servers to host on a single VM of the build. */
+        public Integer MultiplayerServerCountPerVm;
+        /** The OS platform used for running the game process. */
+        public String OsPlatform;
+        /** The ports the build is mapped on. */
+        public ArrayList<Port> Ports;
+        /** The region configuration for the build. */
+        public ArrayList<BuildRegion> RegionConfigurations;
+        /** The type of game server being hosted. */
+        public String ServerType;
+        /**
+         * The command to run when the multiplayer server is started, including any arguments. The path to any executable is
+         * relative to the root asset folder when unzipped.
+         */
+        public String StartMultiplayerServerCommand;
+        /**
+         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
+         * disc.
+         */
+        public Boolean UseStreamingForAssetDownloads;
+        /** The VM size the build was created on. */
+        public AzureVmSize VmSize;
+        
+    }
+
     /** The client specifies the creator's attributes and optionally a list of other users to match with. */
     public static class CreateMatchmakingTicketRequest {
         /** The User who created this ticket. */
         public MatchmakingPlayer Creator;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** How long to attempt matching this ticket in seconds. */
         public Integer GiveUpAfterSeconds;
         /** A list of Entity Keys of other users to match with. */
@@ -515,6 +632,8 @@ public class PlayFabMultiplayerModels {
     public static class CreateRemoteUserRequest {
         /** The guid string build ID of to create the remote user for. */
         public String BuildId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The expiration time for the remote user created. Defaults to expiring in one day if not specified. */
         public Date ExpirationTime;
         /** The region of virtual machine to create the remote user for. */
@@ -538,6 +657,8 @@ public class PlayFabMultiplayerModels {
 
     /** The server specifies all the members, their teams and their attributes, and the server details if applicable. */
     public static class CreateServerBackfillTicketRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** How long to attempt matching this ticket in seconds. */
         public Integer GiveUpAfterSeconds;
         /** The users who will be part of this ticket, along with their team assignments. */
@@ -557,6 +678,8 @@ public class PlayFabMultiplayerModels {
 
     /** The server specifies all the members and their attributes. */
     public static class CreateServerMatchmakingTicketRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** How long to attempt matching this ticket in seconds. */
         public Integer GiveUpAfterSeconds;
         /** The users who will be part of this ticket. */
@@ -580,6 +703,8 @@ public class PlayFabMultiplayerModels {
 
     /** Deletes a multiplayer server game asset for a title. */
     public static class DeleteAssetRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The filename of the asset to delete. */
         public String FileName;
         
@@ -589,6 +714,8 @@ public class PlayFabMultiplayerModels {
     public static class DeleteBuildAliasRequest {
         /** The guid string alias ID of the alias to perform the action on. */
         public String AliasId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 
@@ -596,6 +723,8 @@ public class PlayFabMultiplayerModels {
     public static class DeleteBuildRegionRequest {
         /** The guid string ID of the build we want to update regions for. */
         public String BuildId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The build region to delete. */
         public String Region;
         
@@ -605,11 +734,15 @@ public class PlayFabMultiplayerModels {
     public static class DeleteBuildRequest {
         /** The guid string build ID of the build to delete. */
         public String BuildId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 
     /** Deletes a multiplayer server game certificate. */
     public static class DeleteCertificateRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The name of the certificate. */
         public String Name;
         
@@ -620,6 +753,8 @@ public class PlayFabMultiplayerModels {
      * the specified image. Morever, ListContainerImages will not return the specified image.
      */
     public static class DeleteContainerImageRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The container image repository we want to delete. */
         public String ImageName;
         
@@ -632,6 +767,8 @@ public class PlayFabMultiplayerModels {
     public static class DeleteRemoteUserRequest {
         /** The guid string build ID of the multiplayer server where the remote user is to delete. */
         public String BuildId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The region of the multiplayer server where the remote user is to delete. */
         public String Region;
         /** The username of the remote user to delete. */
@@ -672,6 +809,8 @@ public class PlayFabMultiplayerModels {
      * average, it can take up to 20 minutes for the title to be enabled for the feature.
      */
     public static class EnableMultiplayerServersForTitleRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 
@@ -722,6 +861,8 @@ public class PlayFabMultiplayerModels {
 
     /** Gets the URL to upload assets to. */
     public static class GetAssetUploadUrlRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The asset's file name to get the upload URL for. */
         public String FileName;
         
@@ -739,6 +880,8 @@ public class PlayFabMultiplayerModels {
     public static class GetBuildAliasRequest {
         /** The guid string alias ID of the alias to perform the action on. */
         public String AliasId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 
@@ -746,6 +889,8 @@ public class PlayFabMultiplayerModels {
     public static class GetBuildRequest {
         /** The guid string build ID of the build to get. */
         public String BuildId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 
@@ -813,6 +958,8 @@ public class PlayFabMultiplayerModels {
      * new build.
      */
     public static class GetContainerRegistryCredentialsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 
@@ -831,6 +978,8 @@ public class PlayFabMultiplayerModels {
      * applicable, etc. Only servers, the ticket creator and the invited players can get the ticket.
      */
     public static class GetMatchmakingTicketRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /**
          * Determines whether the matchmaking attributes will be returned as an escaped JSON string or as an un-escaped JSON
          * object.
@@ -876,6 +1025,8 @@ public class PlayFabMultiplayerModels {
      * get the match.
      */
     public static class GetMatchRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /**
          * Determines whether the matchmaking attributes will be returned as an escaped JSON string or as an un-escaped JSON
          * object.
@@ -909,6 +1060,8 @@ public class PlayFabMultiplayerModels {
     public static class GetMultiplayerServerDetailsRequest {
         /** The guid string build ID of the multiplayer server to get details for. */
         public String BuildId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The region the multiplayer server is located in to get details for. */
         public String Region;
         /**
@@ -948,6 +1101,8 @@ public class PlayFabMultiplayerModels {
      * terminated.
      */
     public static class GetMultiplayerServerLogsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The server ID of multiplayer server to get logs for. */
         public String ServerId;
         
@@ -964,6 +1119,8 @@ public class PlayFabMultiplayerModels {
      * terminated.
      */
     public static class GetMultiplayerSessionLogsBySessionIdRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The server ID of multiplayer server to get logs for. */
         public String SessionId;
         
@@ -977,6 +1134,8 @@ public class PlayFabMultiplayerModels {
      * false.
      */
     public static class GetQueueStatisticsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The name of the queue. */
         public String QueueName;
         
@@ -994,6 +1153,8 @@ public class PlayFabMultiplayerModels {
     public static class GetRemoteLoginEndpointRequest {
         /** The guid string build ID of the multiplayer server to get remote login information for. */
         public String BuildId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The region of the multiplayer server to get remote login information for. */
         public String Region;
         /** The virtual machine ID the multiplayer server is located on. */
@@ -1014,6 +1175,8 @@ public class PlayFabMultiplayerModels {
      * when applicable, etc. Only servers can get the ticket.
      */
     public static class GetServerBackfillTicketRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /**
          * Determines whether the matchmaking attributes will be returned as an escaped JSON string or as an un-escaped JSON
          * object.
@@ -1053,6 +1216,8 @@ public class PlayFabMultiplayerModels {
      * Initializing, Enabled, and Disabled.
      */
     public static class GetTitleEnabledForMultiplayerServersStatusRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 
@@ -1064,6 +1229,8 @@ public class PlayFabMultiplayerModels {
 
     /** Gets the quotas for a title in relation to multiplayer servers. */
     public static class GetTitleMultiplayerServersQuotasRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 
@@ -1090,6 +1257,8 @@ public class PlayFabMultiplayerModels {
      * join a ticket once it has started matching.
      */
     public static class JoinMatchmakingTicketRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The User who wants to join the ticket. Their Id must be listed in PlayFabIdsToMatchWith. */
         public MatchmakingPlayer Member;
         /** The name of the queue to join. */
@@ -1105,6 +1274,8 @@ public class PlayFabMultiplayerModels {
 
     /** Returns a list of multiplayer server game asset summaries for a title. */
     public static class ListAssetSummariesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The page size for the request. */
         public Integer PageSize;
         /** The skip token for the paged request. */
@@ -1130,6 +1301,8 @@ public class PlayFabMultiplayerModels {
 
     /** Returns a list of summarized details of all multiplayer server builds for a title. */
     public static class ListBuildSummariesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The page size for the request. */
         public Integer PageSize;
         /** The skip token for the paged request. */
@@ -1149,6 +1322,8 @@ public class PlayFabMultiplayerModels {
 
     /** Returns a list of multiplayer server game certificates for a title. */
     public static class ListCertificateSummariesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The page size for the request. */
         public Integer PageSize;
         /** The skip token for the paged request. */
@@ -1168,6 +1343,8 @@ public class PlayFabMultiplayerModels {
 
     /** Returns a list of the container images that have been uploaded to the container registry for a title. */
     public static class ListContainerImagesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The page size for the request. */
         public Integer PageSize;
         /** The skip token for the paged request. */
@@ -1187,6 +1364,8 @@ public class PlayFabMultiplayerModels {
 
     /** Returns a list of the tags for a particular container image that exists in the container registry for a title. */
     public static class ListContainerImageTagsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The container images we want to list tags for. */
         public String ImageName;
         
@@ -1203,6 +1382,8 @@ public class PlayFabMultiplayerModels {
      * it is provided it must match the caller's entity.
      */
     public static class ListMatchmakingTicketsForPlayerRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity key for which to find the ticket Ids. */
         public EntityKey Entity;
         /** The name of the queue to find a match for. */
@@ -1220,6 +1401,8 @@ public class PlayFabMultiplayerModels {
     public static class ListMultiplayerServersRequest {
         /** The guid string build ID of the multiplayer servers to list. */
         public String BuildId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The page size for the request. */
         public Integer PageSize;
         /** The region the multiplayer servers to list. */
@@ -1241,6 +1424,8 @@ public class PlayFabMultiplayerModels {
 
     /** Returns a list of quality of service servers for party. */
     public static class ListPartyQosServersRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Qos servers version */
         public String Version;
         
@@ -1258,6 +1443,8 @@ public class PlayFabMultiplayerModels {
 
     /** Returns a list of quality of service servers for a title. */
     public static class ListQosServersForTitleRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 
@@ -1277,6 +1464,8 @@ public class PlayFabMultiplayerModels {
      */
     @Deprecated
     public static class ListQosServersRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 
@@ -1294,6 +1483,8 @@ public class PlayFabMultiplayerModels {
 
     /** List all server backfill ticket Ids the user is a member of. */
     public static class ListServerBackfillTicketsForPlayerRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity key for which to find the ticket Ids. */
         public EntityKey Entity;
         /** The name of the queue the tickets are in. */
@@ -1311,6 +1502,8 @@ public class PlayFabMultiplayerModels {
     public static class ListVirtualMachineSummariesRequest {
         /** The guid string build ID of the virtual machines to list. */
         public String BuildId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The page size for the request. */
         public Integer PageSize;
         /** The region of the virtual machines to list. */
@@ -1364,6 +1557,8 @@ public class PlayFabMultiplayerModels {
 
     /** Returns a list of summarized details of all multiplayer server builds for a title. */
     public static class MultiplayerEmptyRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 
@@ -1419,6 +1614,8 @@ public class PlayFabMultiplayerModels {
         public BuildAliasParams BuildAliasParams;
         /** The guid string build ID of the multiplayer server to request. */
         public String BuildId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /**
          * Initial list of players (potentially matchmade) allowed to connect to the game. This list is passed to the game server
          * when requested (via GSDK) and can be used to validate players connecting to it.
@@ -1468,6 +1665,8 @@ public class PlayFabMultiplayerModels {
      * creating a new build.
      */
     public static class RolloverContainerRegistryCredentialsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 
@@ -1504,6 +1703,8 @@ public class PlayFabMultiplayerModels {
     public static class ShutdownMultiplayerServerRequest {
         /** The guid string build ID of the multiplayer server to delete. */
         public String BuildId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The region of the multiplayer server to shut down. */
         public String Region;
         /** A guid string session ID of the multiplayer server to shut down. */
@@ -1540,6 +1741,8 @@ public class PlayFabMultiplayerModels {
      * tag combination. Morever, ListContainerImageTags will not return the specified tag.
      */
     public static class UntagContainerImageRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The container image which tag we want to remove. */
         public String ImageName;
         /** The tag we want to remove. */
@@ -1555,6 +1758,8 @@ public class PlayFabMultiplayerModels {
         public String AliasName;
         /** Array of build selection criteria. */
         public ArrayList<BuildSelectionCriterion> BuildSelectionCriteria;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 
@@ -1564,6 +1769,8 @@ public class PlayFabMultiplayerModels {
         public String BuildId;
         /** The updated region configuration that should be applied to the specified build. */
         public BuildRegionParams BuildRegion;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 
@@ -1573,11 +1780,15 @@ public class PlayFabMultiplayerModels {
         public String BuildId;
         /** The updated region configuration that should be applied to the specified build. */
         public ArrayList<BuildRegionParams> BuildRegions;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 
     /** Uploads a multiplayer server game certificate. */
     public static class UploadCertificateRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The game certificate to upload. */
         public Certificate GameCertificate;
         

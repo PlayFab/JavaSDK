@@ -17,6 +17,8 @@ public class PlayFabExperimentationModels {
 
     /** Given a title entity token and experiment details, will create a new experiment for the title. */
     public static class CreateExperimentRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Description of the experiment. */
         public String Description;
         /** The duration of the experiment, in days. */
@@ -50,6 +52,8 @@ public class PlayFabExperimentationModels {
      * it can be deleted.
      */
     public static class DeleteExperimentRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The ID of the experiment to delete. */
         public String ExperimentId;
         
@@ -112,6 +116,8 @@ public class PlayFabExperimentationModels {
      * completed experiments.
      */
     public static class GetExperimentsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 
@@ -123,6 +129,8 @@ public class PlayFabExperimentationModels {
 
     /** Given a title entity token and experiment details, will return the latest available scorecard. */
     public static class GetLatestScorecardRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The ID of the experiment. */
         public String ExperimentId;
         
@@ -139,6 +147,8 @@ public class PlayFabExperimentationModels {
      * all running experiments
      */
     public static class GetTreatmentAssignmentRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         
@@ -214,6 +224,8 @@ public class PlayFabExperimentationModels {
 
     /** Given a title entity token and an experiment ID, this API starts the experiment. */
     public static class StartExperimentRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The ID of the experiment to start. */
         public String ExperimentId;
         
@@ -221,6 +233,8 @@ public class PlayFabExperimentationModels {
 
     /** Given a title entity token and an experiment ID, this API stops the experiment if it is running. */
     public static class StopExperimentRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The ID of the experiment to stop. */
         public String ExperimentId;
         
@@ -239,6 +253,8 @@ public class PlayFabExperimentationModels {
      * only the description and duration properties can be updated.
      */
     public static class UpdateExperimentRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Description of the experiment. */
         public String Description;
         /** The duration of the experiment, in days. */
@@ -280,8 +296,8 @@ public class PlayFabExperimentationModels {
         public Boolean IsControl;
         /** Name of the variant. */
         public String Name;
-        /** Id of the TitleDataOverrideGroup to use with this variant. */
-        public String TitleDataOverrideId;
+        /** Id of the TitleDataOverride to use with this variant. */
+        public String TitleDataOverrideLabel;
         /** Percentage of target audience traffic that will see this variant. */
         public Long TrafficPercentage;
         /** Variables returned by this variant. */

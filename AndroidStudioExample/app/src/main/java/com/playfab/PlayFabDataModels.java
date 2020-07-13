@@ -7,6 +7,8 @@ public class PlayFabDataModels {
 
     /** Aborts the pending upload of the requested files. */
     public static class AbortFileUploadsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** Names of the files to have their pending uploads aborted. */
@@ -29,6 +31,8 @@ public class PlayFabDataModels {
 
     /** Deletes the requested files from the entity's profile. */
     public static class DeleteFilesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** Names of the files to be deleted. */
@@ -63,6 +67,8 @@ public class PlayFabDataModels {
      * pointers from pending to live.
      */
     public static class FinalizeFileUploadsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** Names of the files to be finalized. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
@@ -100,6 +106,8 @@ public class PlayFabDataModels {
      * nothing.
      */
     public static class GetFilesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         
@@ -117,6 +125,8 @@ public class PlayFabDataModels {
 
     /** Gets JSON objects from an entity profile and returns it. */
     public static class GetObjectsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /**
@@ -150,6 +160,8 @@ public class PlayFabDataModels {
      * FinalizeFileUploads must be called to move the file status from pending to live.
      */
     public static class InitiateFileUploadsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** Names of the files to be set. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
@@ -225,6 +237,8 @@ public class PlayFabDataModels {
      * to update the same profile.
      */
     public static class SetObjectsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /**

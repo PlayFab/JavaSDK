@@ -148,6 +148,8 @@ public class PlayFabProfilesModels {
      * any reader has.
      */
     public static class GetEntityProfileRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /**
          * Determines whether the objects will be returned as an escaped JSON string or as a un-escaped JSON object. Default is
          * JSON string.
@@ -169,6 +171,8 @@ public class PlayFabProfilesModels {
      * Profiles that the caller is not allowed to read will silently not be included in the results.
      */
     public static class GetEntityProfilesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /**
          * Determines whether the objects will be returned as an escaped JSON string or as a un-escaped JSON object. Default is
          * JSON string.
@@ -190,6 +194,8 @@ public class PlayFabProfilesModels {
      * customized this will return the default starter policy built by PlayFab.
      */
     public static class GetGlobalPolicyRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 
@@ -201,6 +207,8 @@ public class PlayFabProfilesModels {
 
     /** Given a master player account id (PlayFab ID), returns all title player accounts associated with it. */
     public static class GetTitlePlayersFromMasterPlayerAccountIdsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Master player account ids. */
         public ArrayList<String> MasterPlayerAccountIds;
         /** Id of title to get players from. */
@@ -228,6 +236,8 @@ public class PlayFabProfilesModels {
      * will be replaced with the statements in this request.
      */
     public static class SetEntityProfilePolicyRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The statements to include in the access policy. */
@@ -249,6 +259,8 @@ public class PlayFabProfilesModels {
      * compiled and cached for several minutes so an update here may not be reflected in behavior for a short time.
      */
     public static class SetGlobalPolicyRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The permissions that govern access to all entities under this title or namespace. */
         public ArrayList<EntityPermissionStatement> Permissions;
         
@@ -263,6 +275,8 @@ public class PlayFabProfilesModels {
      * passed in.
      */
     public static class SetProfileLanguageRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The expected version of a profile to perform this update on */

@@ -7,6 +7,8 @@ public class PlayFabAdminModels {
 
     /** If the task instance has already completed, there will be no-op. */
     public static class AbortTaskInstanceRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** ID of a task instance that is being aborted. */
         public String TaskInstanceId;
         
@@ -71,6 +73,8 @@ public class PlayFabAdminModels {
     public static class AddLocalizedNewsRequest {
         /** Localized body text of the news. */
         public String Body;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Language of the news item. */
         public String Language;
         /** Unique id of the updated news item. */
@@ -87,6 +91,8 @@ public class PlayFabAdminModels {
     public static class AddNewsRequest {
         /** Default body text of the news. */
         public String Body;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Time this news was published. If not set, defaults to now. */
         public Date Timestamp;
         /** Default title (headline) of the news item. */
@@ -106,6 +112,8 @@ public class PlayFabAdminModels {
      * number of tags a title can have.
      */
     public static class AddPlayerTagRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
         /** Unique tag for player profile. */
@@ -126,6 +134,8 @@ public class PlayFabAdminModels {
         public String CommandLineTemplate;
         /** developer comment(s) for this build */
         public String Comment;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** path to the game server executable. Defaults to gameserver.exe */
         public String ExecutablePath;
         /** maximum number of game server instances that can run on a single host machine */
@@ -174,6 +184,8 @@ public class PlayFabAdminModels {
          * Any increase over this value will be discarded.
          */
         public Integer Amount;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** PlayFab unique identifier of the user whose virtual currency balance is to be increased. */
         public String PlayFabId;
         /** Name of the virtual currency which is to be incremented. */
@@ -247,6 +259,8 @@ public class PlayFabAdminModels {
     public static class BanUsersRequest {
         /** List of ban requests to be applied. Maximum 100. */
         public ArrayList<BanRequest> Bans;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 
@@ -753,6 +767,8 @@ public class PlayFabAdminModels {
      * create-task requests within a short time will cause a create conflict error.
      */
     public static class CreateActionsOnPlayerSegmentTaskRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Description the task */
         public String Description;
         /** Whether the schedule is active. Inactive schedule will not trigger task execution. */
@@ -771,6 +787,8 @@ public class PlayFabAdminModels {
      * create-task requests within a short time will cause a create conflict error.
      */
     public static class CreateCloudScriptTaskRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Description the task */
         public String Description;
         /** Whether the schedule is active. Inactive schedule will not trigger task execution. */
@@ -789,6 +807,8 @@ public class PlayFabAdminModels {
      * create-task requests within a short time will cause a create conflict error.
      */
     public static class CreateInsightsScheduledScalingTaskRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Description the task */
         public String Description;
         /** Whether the schedule is active. Inactive schedule will not trigger task execution. */
@@ -854,6 +874,8 @@ public class PlayFabAdminModels {
     public static class CreatePlayerStatisticDefinitionRequest {
         /** the aggregation method to use in updating the statistic (defaults to last) */
         public StatisticAggregationMethod AggregationMethod;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** unique name of the statistic */
         public String StatisticName;
         /** interval at which the values of the statistic for all players are reset (resets begin at the next interval boundary) */
@@ -1117,6 +1139,8 @@ public class PlayFabAdminModels {
     public static class DeleteStoreRequest {
         /** catalog version of the store to delete. If null, uses the default catalog. */
         public String CatalogVersion;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** unqiue identifier for the store which is to be deleted */
         public String StoreId;
         
@@ -1759,6 +1783,7 @@ public class PlayFabAdminModels {
         RequestMultiplayerServersThrottledFromRateLimiter,
         TitleDataOverrideNotFound,
         DuplicateKeys,
+        WasNotCreatedWithCloudRoot,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -2068,6 +2093,8 @@ public class PlayFabAdminModels {
      * have accessed the title, the recommendation is to not store this data locally.
      */
     public static class GetPlayerProfileRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
         /**
@@ -2120,6 +2147,8 @@ public class PlayFabAdminModels {
     public static class GetPlayersInSegmentRequest {
         /** Continuation token if retrieving subsequent pages of results. */
         public String ContinuationToken;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Maximum number of profiles to load. Default is 1,000. Maximum is 10,000. */
         public Long MaxBatchSize;
         /**
@@ -2143,6 +2172,8 @@ public class PlayFabAdminModels {
     }
 
     public static class GetPlayersSegmentsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
         
@@ -2173,6 +2204,8 @@ public class PlayFabAdminModels {
     }
 
     public static class GetPlayerStatisticVersionsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** unique name of the statistic */
         public String StatisticName;
         
@@ -2198,6 +2231,8 @@ public class PlayFabAdminModels {
      * 128 characters.
      */
     public static class GetPlayerTagsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Optional namespace to filter results by */
         public String Namespace;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -2477,6 +2512,8 @@ public class PlayFabAdminModels {
      * user's current inventory, and so will not be not included.
      */
     public static class GetUserInventoryRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
         
@@ -2562,6 +2599,8 @@ public class PlayFabAdminModels {
     public static class GrantItemsToUsersRequest {
         /** Catalog version from which items are to be granted. */
         public String CatalogVersion;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Array of items to grant and the users to whom the items are to be granted. */
         @Unordered
         public ArrayList<ItemGrant> ItemGrants;
@@ -2584,6 +2623,8 @@ public class PlayFabAdminModels {
         public Integer Amount;
         /** Which catalog is being updated. If null, uses the default catalog. */
         public String CatalogVersion;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The item which needs more availability. */
         public String ItemId;
         
@@ -2606,6 +2647,8 @@ public class PlayFabAdminModels {
      * information (GetPlayerStatisticVersions).
      */
     public static class IncrementPlayerStatisticVersionRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** unique name of the statistic */
         public String StatisticName;
         
@@ -2857,6 +2900,8 @@ public class PlayFabAdminModels {
         public String CommandLineTemplate;
         /** developer comment(s) for this build */
         public String Comment;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** path to the game server executable. Defaults to gameserver.exe */
         public String ExecutablePath;
         /** maximum number of game server instances that can run on a single host machine */
@@ -3254,6 +3299,8 @@ public class PlayFabAdminModels {
      * corresponding player profile. TagName can be used for segmentation and it is limited to 256 characters
      */
     public static class RemovePlayerTagRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
         /** Unique tag for player profile. */
@@ -3293,6 +3340,8 @@ public class PlayFabAdminModels {
     public static class ResetCharacterStatisticsRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         public String CharacterId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
         
@@ -3307,6 +3356,8 @@ public class PlayFabAdminModels {
      * playerto their email. The token expires after 30 minutes.
      */
     public static class ResetPasswordRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The new password for the player. */
         public String Password;
         /** The token of the player requesting the password reset. */
@@ -3323,6 +3374,8 @@ public class PlayFabAdminModels {
      * leaderboards for the game.
      */
     public static class ResetUserStatisticsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
         
@@ -3464,6 +3517,8 @@ public class PlayFabAdminModels {
 
     /** The returned task instance ID can be used to query for task execution status. */
     public static class RunTaskRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Provide either the task ID or the task name to run a task. */
         public NameIdentifier Identifier;
         
@@ -3529,6 +3584,8 @@ public class PlayFabAdminModels {
      * able to receive a password reset email using this API.
      */
     public static class SendAccountRecoveryEmailRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** User email address attached to their account */
         public String Email;
         /** The email template id of the account recovery email template to send. */
@@ -3561,6 +3618,8 @@ public class PlayFabAdminModels {
     }
 
     public static class SetPublishedRevisionRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Revision to make the current published revision */
         public Integer Revision;
         /** Version number */
@@ -3777,6 +3836,8 @@ public class PlayFabAdminModels {
     public static class SubtractUserVirtualCurrencyRequest {
         /** Amount to be subtracted from the user balance of the specified virtual currency. */
         public Integer Amount;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** PlayFab unique identifier of the user whose virtual currency balance is to be decreased. */
         public String PlayFabId;
         /** Name of the virtual currency which is to be decremented. */
@@ -3879,6 +3940,8 @@ public class PlayFabAdminModels {
         public ArrayList<CatalogItem> Catalog;
         /** Which catalog is being updated. If null, uses the default catalog. */
         public String CatalogVersion;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /**
          * Should this catalog be set as the default catalog. Defaults to true. If there is currently no default catalog, this will
          * always set it.
@@ -3892,6 +3955,8 @@ public class PlayFabAdminModels {
     }
 
     public static class UpdateCloudScriptRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** PlayFab user ID of the developer initiating the request. */
         public String DeveloperPlayFabId;
         /** List of Cloud Script files to upload to create the new revision. Must have at least one file. */
@@ -4004,6 +4069,8 @@ public class PlayFabAdminModels {
     public static class UpdateRandomResultTablesRequest {
         /** which catalog is being updated. If null, update the current default catalog version */
         public String CatalogVersion;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /**
          * array of random result tables to make available (Note: specifying an existing TableId will result in overwriting that
          * table, while any others will be added to the available set)
@@ -4031,6 +4098,8 @@ public class PlayFabAdminModels {
     public static class UpdateStoreItemsRequest {
         /** Catalog version of the store to update. If null, uses the default catalog. */
         public String CatalogVersion;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Additional data about the store */
         public StoreMarketingModel MarketingData;
         /** Array of store items - references to catalog items, with specific pricing - to be added */
@@ -4051,6 +4120,8 @@ public class PlayFabAdminModels {
      * logics where the task name is used as an identifier.
      */
     public static class UpdateTaskRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Description the task */
         public String Description;
         /** Specify either the task ID or the name of the task to be updated. */
@@ -4074,6 +4145,8 @@ public class PlayFabAdminModels {
      * with null values will be removed. No other key-value pairs will be changed apart from those specified in the call.
      */
     public static class UpdateUserDataRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /**
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
@@ -4106,6 +4179,8 @@ public class PlayFabAdminModels {
      * null values will be removed. No other key-value pairs will be changed apart from those specified in the call.
      */
     public static class UpdateUserInternalDataRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /**
          * Key-value pairs to be written to the custom data. Note that keys are trimmed of whitespace, are limited in size, and may
          * not begin with a '!' character or be null.
@@ -4127,6 +4202,8 @@ public class PlayFabAdminModels {
      * This API enables changing that name, whether due to a customer request, an offensive name choice, etc.
      */
     public static class UpdateUserTitleDisplayNameRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** New title display name for the user - must be between 3 and 25 characters */
         public String DisplayName;
         /** PlayFab unique identifier of the user whose title specific display name is to be changed */

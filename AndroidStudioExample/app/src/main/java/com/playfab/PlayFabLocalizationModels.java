@@ -6,6 +6,8 @@ import com.playfab.PlayFabUtil.*;
 public class PlayFabLocalizationModels {
 
     public static class GetLanguageListRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 

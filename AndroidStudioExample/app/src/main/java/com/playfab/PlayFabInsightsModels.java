@@ -6,6 +6,8 @@ import com.playfab.PlayFabUtil.*;
 public class PlayFabInsightsModels {
 
     public static class InsightsEmptyRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 
@@ -41,6 +43,8 @@ public class PlayFabInsightsModels {
 
     /** Returns the current status for the requested operation id. */
     public static class InsightsGetOperationStatusRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Id of the Insights operation. */
         public String OperationId;
         
@@ -68,6 +72,8 @@ public class PlayFabInsightsModels {
 
     /** Returns a list of operations that are in the pending state for the requested operation type. */
     public static class InsightsGetPendingOperationsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The type of pending operations requested, or blank for all operation types. */
         public String OperationType;
         
@@ -111,6 +117,8 @@ public class PlayFabInsightsModels {
 
     /** Sets the performance level to the requested value. Use the GetLimits method to get the allowed values. */
     public static class InsightsSetPerformanceRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The Insights performance level to apply to the title. */
         public Integer PerformanceLevel;
         
@@ -118,6 +126,8 @@ public class PlayFabInsightsModels {
 
     /** Sets the data storage retention to the requested value. Use the GetLimits method to get the range of allowed values. */
     public static class InsightsSetStorageRetentionRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The Insights data storage retention value (in days) to apply to the title. */
         public Integer RetentionDays;
         

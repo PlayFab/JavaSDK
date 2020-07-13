@@ -10,6 +10,8 @@ public class PlayFabGroupsModels {
      * returned in the case of success.
      */
     public static class AcceptGroupApplicationRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /**
          * Optional. Type of the entity to accept as. If specified, must be the same entity as the claimant or an entity that is a
          * child of the claimant entity. Defaults to the claimant entity.
@@ -26,6 +28,8 @@ public class PlayFabGroupsModels {
      * returned in the case of success.
      */
     public static class AcceptGroupInvitationRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The identifier of the group */
@@ -39,6 +43,8 @@ public class PlayFabGroupsModels {
      * application or invite system to add new members to a group. Returns nothing if successful.
      */
     public static class AddMembersRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The identifier of the group */
         public EntityKey Group;
         /** List of entities to add to the group. Only entities of type title_player_account and character may be added to groups. */
@@ -61,6 +67,8 @@ public class PlayFabGroupsModels {
     public static class ApplyToGroupRequest {
         /** Optional, default true. Automatically accept an outstanding invitation if one exists instead of creating an application */
         public Boolean AutoAcceptOutstandingInvite;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The identifier of the group */
@@ -85,6 +93,8 @@ public class PlayFabGroupsModels {
      * applications or invitations to the group. No data is returned in the case of success.
      */
     public static class BlockEntityRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The identifier of the group */
@@ -98,6 +108,8 @@ public class PlayFabGroupsModels {
      * role. Returns nothing if successful.
      */
     public static class ChangeMemberRoleRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /**
          * The ID of the role that the entities will become a member of. This must be an existing role. Role IDs must be between 1
          * and 64 characters long.
@@ -120,6 +132,8 @@ public class PlayFabGroupsModels {
      * information about the group that was created.
      */
     public static class CreateGroupRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The name of the group. This is unique at the title level by default. */
@@ -151,6 +165,8 @@ public class PlayFabGroupsModels {
      * about the role that was created.
      */
     public static class CreateGroupRoleRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The identifier of the group */
         public EntityKey Group;
         /**
@@ -182,6 +198,8 @@ public class PlayFabGroupsModels {
      * abuse reports about the group will remain. No data is returned in the case of success.
      */
     public static class DeleteGroupRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** ID of the group or role to remove */
         public EntityKey Group;
         
@@ -189,6 +207,8 @@ public class PlayFabGroupsModels {
 
     /** Returns information about the role */
     public static class DeleteRoleRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The identifier of the group */
         public EntityKey Group;
         /** The ID of the role to delete. Role IDs must be between 1 and 64 characters long. */
@@ -230,6 +250,8 @@ public class PlayFabGroupsModels {
 
     /** Returns the ID, name, role list and other non-membership related information about a group. */
     public static class GetGroupRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The identifier of the group */
         public EntityKey Group;
         /** The full name of the group */
@@ -322,6 +344,8 @@ public class PlayFabGroupsModels {
     public static class InviteToGroupRequest {
         /** Optional, default true. Automatically accept an application if one exists instead of creating an invitation */
         public Boolean AutoAcceptOutstandingApplication;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The identifier of the group */
@@ -355,6 +379,8 @@ public class PlayFabGroupsModels {
      * list.
      */
     public static class IsMemberRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The identifier of the group */
@@ -378,6 +404,8 @@ public class PlayFabGroupsModels {
      * expire. To get the group applications for a specific entity, use ListMembershipOpportunities.
      */
     public static class ListGroupApplicationsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The identifier of the group */
         public EntityKey Group;
         
@@ -391,6 +419,8 @@ public class PlayFabGroupsModels {
 
     /** Lists all entities blocked from joining a group. A list of blocked entities is returned */
     public static class ListGroupBlocksRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The identifier of the group */
         public EntityKey Group;
         
@@ -407,6 +437,8 @@ public class PlayFabGroupsModels {
      * invitation will expire. To get the group invitations for a specific entity, use ListMembershipOpportunities.
      */
     public static class ListGroupInvitationsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The identifier of the group */
         public EntityKey Group;
         
@@ -424,6 +456,8 @@ public class PlayFabGroupsModels {
      * the group.
      */
     public static class ListGroupMembersRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** ID of the group to list the members and roles for */
         public EntityKey Group;
         
@@ -441,6 +475,8 @@ public class PlayFabGroupsModels {
      * check if a player is trying to join, use ListGroupInvitations and ListGroupApplications.
      */
     public static class ListMembershipOpportunitiesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         
@@ -460,6 +496,8 @@ public class PlayFabGroupsModels {
      * returned in the results, even if the caller otherwise has permission to see that the entity is a member of that group.
      */
     public static class ListMembershipRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         
@@ -484,6 +522,8 @@ public class PlayFabGroupsModels {
      * any caller with appropriate access in the group may reject an application. No data is returned in the case of success.
      */
     public static class RemoveGroupApplicationRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The identifier of the group */
@@ -498,6 +538,8 @@ public class PlayFabGroupsModels {
      * of success.
      */
     public static class RemoveGroupInvitationRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The identifier of the group */
@@ -510,6 +552,8 @@ public class PlayFabGroupsModels {
      * nothing if successful.
      */
     public static class RemoveMembersRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The identifier of the group */
         public EntityKey Group;
         /** List of entities to remove */
@@ -521,6 +565,8 @@ public class PlayFabGroupsModels {
 
     /** Unblocks a list of entities from joining a group. No data is returned in the case of success. */
     public static class UnblockEntityRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The identifier of the group */
@@ -535,6 +581,8 @@ public class PlayFabGroupsModels {
     public static class UpdateGroupRequest {
         /** Optional: the ID of an existing role to set as the new administrator role for the group */
         public String AdminRoleId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /**
          * Optional field used for concurrency control. By specifying the previously returned value of ProfileVersion from the
          * GetGroup API, you can ensure that the group data update will only be performed if the group has not been updated by any
@@ -562,6 +610,8 @@ public class PlayFabGroupsModels {
 
     /** Updates the role name. Returns information about whether the update was successful. */
     public static class UpdateGroupRoleRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /**
          * Optional field used for concurrency control. By specifying the previously returned value of ProfileVersion from the
          * GetGroup API, you can ensure that the group data update will only be performed if the group has not been updated by any
