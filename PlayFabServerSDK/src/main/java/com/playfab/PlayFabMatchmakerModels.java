@@ -77,6 +77,8 @@ public class PlayFabMatchmakerModels {
     }
 
     public static class PlayerJoinedRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /**
          * Unique identifier of the Game Server Instance the user is joining. This must be a Game Server Instance started with the
          * Matchmaker/StartGame API.
@@ -92,6 +94,8 @@ public class PlayFabMatchmakerModels {
     }
 
     public static class PlayerLeftRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /**
          * Unique identifier of the Game Server Instance the user is leaving. This must be a Game Server Instance started with the
          * Matchmaker/StartGame API.
@@ -121,6 +125,8 @@ public class PlayFabMatchmakerModels {
         public String Build;
         /** Custom command line argument when starting game server process. */
         public String CustomCommandLineData;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /**
          * HTTP endpoint URL for receiving game status events, if using an external matchmaker. When the game ends, PlayFab will
          * make a POST request to this URL with the X-SecretKey header set to the value of the game's secret and an
@@ -149,6 +155,8 @@ public class PlayFabMatchmakerModels {
     }
 
     public static class UserInfoRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /**
          * Minimum catalog version for which data is requested (filters the results to only contain inventory items which have a
          * catalog version of this or higher).

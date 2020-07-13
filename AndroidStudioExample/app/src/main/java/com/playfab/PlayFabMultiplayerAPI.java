@@ -448,6 +448,68 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * Creates a multiplayer server build with the server running as a process.
+     * @param request CreateBuildWithProcessBasedServerRequest
+     * @return Async Task will return CreateBuildWithProcessBasedServerResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<CreateBuildWithProcessBasedServerResponse>> CreateBuildWithProcessBasedServerAsync(final CreateBuildWithProcessBasedServerRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<CreateBuildWithProcessBasedServerResponse>>() {
+            public PlayFabResult<CreateBuildWithProcessBasedServerResponse> call() throws Exception {
+                return privateCreateBuildWithProcessBasedServerAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Creates a multiplayer server build with the server running as a process.
+     * @param request CreateBuildWithProcessBasedServerRequest
+     * @return CreateBuildWithProcessBasedServerResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<CreateBuildWithProcessBasedServerResponse> CreateBuildWithProcessBasedServer(final CreateBuildWithProcessBasedServerRequest request) {
+        FutureTask<PlayFabResult<CreateBuildWithProcessBasedServerResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateBuildWithProcessBasedServerResponse>>() {
+            public PlayFabResult<CreateBuildWithProcessBasedServerResponse> call() throws Exception {
+                return privateCreateBuildWithProcessBasedServerAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<CreateBuildWithProcessBasedServerResponse> exceptionResult = new PlayFabResult<CreateBuildWithProcessBasedServerResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
+        }
+    }
+
+    /** Creates a multiplayer server build with the server running as a process. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<CreateBuildWithProcessBasedServerResponse> privateCreateBuildWithProcessBasedServerAsync(final CreateBuildWithProcessBasedServerRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/CreateBuildWithProcessBasedServer"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<CreateBuildWithProcessBasedServerResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<CreateBuildWithProcessBasedServerResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<CreateBuildWithProcessBasedServerResponse>>(){}.getType());
+        CreateBuildWithProcessBasedServerResponse result = resultData.data;
+
+        PlayFabResult<CreateBuildWithProcessBasedServerResponse> pfResult = new PlayFabResult<CreateBuildWithProcessBasedServerResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Create a matchmaking ticket as a client.
      * @param request CreateMatchmakingTicketRequest
      * @return Async Task will return CreateMatchmakingTicketResult

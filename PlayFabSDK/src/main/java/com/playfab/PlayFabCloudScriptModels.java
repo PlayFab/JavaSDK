@@ -352,6 +352,8 @@ public class PlayFabCloudScriptModels {
 
     /** Executes CloudScript with the entity profile that is defined in the request. */
     public static class ExecuteEntityCloudScriptRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The name of the CloudScript function to execute */
@@ -376,6 +378,8 @@ public class PlayFabCloudScriptModels {
 
     /** Executes an Azure Function with the profile of the entity that is defined in the request. */
     public static class ExecuteFunctionRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The name of the CloudScript function to execute */
@@ -452,6 +456,8 @@ public class PlayFabCloudScriptModels {
      * functions for a given title.
      */
     public static class ListFunctionsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         
     }
 
@@ -613,6 +619,8 @@ public class PlayFabCloudScriptModels {
     }
 
     public static class PostFunctionResultForEntityTriggeredActionRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The result of the function execution. */
@@ -621,6 +629,8 @@ public class PlayFabCloudScriptModels {
     }
 
     public static class PostFunctionResultForFunctionExecutionRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The result of the function execution. */
@@ -629,6 +639,8 @@ public class PlayFabCloudScriptModels {
     }
 
     public static class PostFunctionResultForPlayerTriggeredActionRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The result of the function execution. */
@@ -641,6 +653,8 @@ public class PlayFabCloudScriptModels {
     }
 
     public static class PostFunctionResultForScheduledTaskRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The result of the function execution */
@@ -674,6 +688,8 @@ public class PlayFabCloudScriptModels {
     }
 
     public static class RegisterHttpFunctionRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The name of the function to register */
         public String FunctionName;
         /** Full URL for Azure Function that implements the function. */
@@ -688,6 +704,8 @@ public class PlayFabCloudScriptModels {
     public static class RegisterQueuedFunctionRequest {
         /** A connection string for the storage account that hosts the queue for the Azure Function. */
         public String ConnectionString;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The name of the function to register */
         public String FunctionName;
         /** The name of the queue for the Azure Function. */
@@ -759,6 +777,8 @@ public class PlayFabCloudScriptModels {
     }
 
     public static class UnregisterFunctionRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The name of the function to unregister */
         public String FunctionName;
         

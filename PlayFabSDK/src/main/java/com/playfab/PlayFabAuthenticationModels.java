@@ -38,6 +38,8 @@ public class PlayFabAuthenticationModels {
      * cannot be expired or revoked.
      */
     public static class GetEntityTokenRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         
@@ -79,6 +81,8 @@ public class PlayFabAuthenticationModels {
 
     /** Given an entity token, validates that it hasn't exipired or been revoked and will return details of the owner. */
     public static class ValidateEntityTokenRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /** Client EntityToken */
         public String EntityToken;
         
