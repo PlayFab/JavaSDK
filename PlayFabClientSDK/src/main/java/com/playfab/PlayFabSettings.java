@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.playfab.PlayFabErrors.ErrorCallback;
+import com.playfab.PlayFabClientModels.BaseClientRequest;
 
 public class PlayFabSettings {
     public static String SdkVersion = "0.114.200713";
@@ -34,6 +35,10 @@ public class PlayFabSettings {
     public static Boolean DisableAdvertising = false;
     public static final String AD_TYPE_IDFA = "Idfa";
     public static final String AD_TYPE_ANDROID_ID = "Adid";
+
+    public static String GetClientSessionTicket(BaseClientRequest request) {
+        return request.ClientSessionTicket != null ? request.ClientSessionTicket : ClientSessionTicket;
+    }
 
     public static String GetURL(String apiCall) {
         StringBuilder sb = new StringBuilder(1000);

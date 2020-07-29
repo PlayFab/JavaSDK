@@ -63,7 +63,7 @@ public class PlayFabAuthenticationAPI {
     private static PlayFabResult<GetEntityTokenResponse> privateGetEntityTokenAsync(final GetEntityTokenRequest request) throws Exception {
         String authKey = null, authValue = null;
         if (PlayFabSettings.EntityToken != null) { authKey = "X-EntityToken"; authValue = PlayFabSettings.EntityToken; }
-        else if (PlayFabSettings.ClientSessionTicket != null) { authKey = "X-Authorization"; authValue = PlayFabSettings.ClientSessionTicket; }
+        else if (PlayFabSettings.GetClientSessionTicket(request) != null) { authKey = "X-Authorization"; authValue = PlayFabSettings.GetClientSessionTicket(request); }
         else if (PlayFabSettings.DeveloperSecretKey != null) { authKey = "X-SecretKey"; authValue = PlayFabSettings.DeveloperSecretKey; }
 
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Authentication/GetEntityToken"), request, authKey, authValue);
