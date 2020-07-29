@@ -5,7 +5,11 @@ import com.playfab.PlayFabUtil.*;
 
 public class PlayFabClientModels {
 
-    public static class AcceptTradeRequest {
+    static abstract class BaseClientRequest {
+        public String ClientSessionTicket = null;
+    }
+
+    public static class AcceptTradeRequest extends BaseClientRequest {
         /**
          * Items from the accepting player's inventory in exchange for the offered items in the trade. In the case of a gift, this
          * will be null.
@@ -41,7 +45,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class AddFriendRequest {
+    public static class AddFriendRequest  extends BaseClientRequest {
         /** Email address of the user to attempt to add to the local user's friend list. */
         public String FriendEmail;
         /** PlayFab identifier of the user to attempt to add to the local user's friend list. */
@@ -59,7 +63,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class AddGenericIDRequest {
+    public static class AddGenericIDRequest extends BaseClientRequest {
         /** Generic service identifier to add to the player account. */
         public GenericServiceId GenericId;
         
@@ -73,7 +77,7 @@ public class PlayFabClientModels {
      * This API adds a contact email to the player's profile. If the player's profile already contains a contact email, it will
      * update the contact email to the email address specified.
      */
-    public static class AddOrUpdateContactEmailRequest {
+    public static class AddOrUpdateContactEmailRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The new contact email to associate with the player. */
@@ -85,7 +89,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class AddSharedGroupMembersRequest {
+    public static class AddSharedGroupMembersRequest extends BaseClientRequest {
         /** An array of unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public ArrayList<String> PlayFabIds;
         /** Unique identifier for the shared group. */
@@ -97,7 +101,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class AddUsernamePasswordRequest {
+    public static class AddUsernamePasswordRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** User email address attached to their account */
@@ -122,7 +126,7 @@ public class PlayFabClientModels {
     }
 
     /** This API must be enabled for use as an option in the game manager website. It is disabled by default. */
-    public static class AddUserVirtualCurrencyRequest {
+    public static class AddUserVirtualCurrencyRequest extends BaseClientRequest {
         /** Amount to be added to the user balance of the specified virtual currency. */
         public Integer Amount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -183,7 +187,7 @@ public class PlayFabClientModels {
      * Notifications is described in the PlayFab tutorials, here:
      * https://docs.microsoft.com/gaming/playfab/features/engagement/push-notifications/quickstart.
      */
-    public static class AndroidDevicePushNotificationRegistrationRequest {
+    public static class AndroidDevicePushNotificationRegistrationRequest extends BaseClientRequest {
         /** Message to display when confirming push notification. */
         public String ConfirmationMessage;
         /**
@@ -204,7 +208,7 @@ public class PlayFabClientModels {
      * If you have an ad attribution partner enabled, this will post an install to their service to track the device. It uses
      * the given device id to match based on clicks on ads.
      */
-    public static class AttributeInstallRequest {
+    public static class AttributeInstallRequest extends BaseClientRequest {
         /** The adid for this device. */
         public String Adid;
         /** The IdentifierForAdvertisers for iOS Devices. */
@@ -216,7 +220,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class CancelTradeRequest {
+    public static class CancelTradeRequest extends BaseClientRequest {
         /** Trade identifier. */
         public String TradeId;
         
@@ -438,7 +442,7 @@ public class PlayFabClientModels {
      * purchases increases fractionally the more items are in the inventory, and the more items are in the grant/purchase
      * operation.
      */
-    public static class ConfirmPurchaseRequest {
+    public static class ConfirmPurchaseRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Purchase order identifier returned from StartPurchase. */
@@ -461,7 +465,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class ConsumeItemRequest {
+    public static class ConsumeItemRequest extends BaseClientRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         public String CharacterId;
         /** Number of uses to consume from the item. */
@@ -481,7 +485,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class ConsumePSNEntitlementsRequest {
+    public static class ConsumePSNEntitlementsRequest extends BaseClientRequest {
         /** Which catalog to match granted entitlements against. If null, defaults to title default catalog */
         public String CatalogVersion;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -498,7 +502,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class ConsumeXboxEntitlementsRequest {
+    public static class ConsumeXboxEntitlementsRequest extends BaseClientRequest {
         /** Catalog version to use */
         public String CatalogVersion;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -797,7 +801,7 @@ public class PlayFabClientModels {
      * If SharedGroupId is specified, the service will attempt to create a group with that identifier, and will return an error
      * if it is already in use. If no SharedGroupId is specified, a random identifier will be assigned.
      */
-    public static class CreateSharedGroupRequest {
+    public static class CreateSharedGroupRequest extends BaseClientRequest {
         /** Unique identifier for the shared group (a random identifier will be assigned, if one is not specified). */
         public String SharedGroupId;
         
@@ -974,7 +978,7 @@ public class PlayFabClientModels {
         ZWD
     }
 
-    public static class CurrentGamesRequest {
+    public static class CurrentGamesRequest extends BaseClientRequest {
         /** Build to match against. */
         public String BuildVersion;
         /** Game mode to look for. */
@@ -999,7 +1003,7 @@ public class PlayFabClientModels {
     }
 
     /** Any arbitrary information collected by the device */
-    public static class DeviceInfoRequest {
+    public static class DeviceInfoRequest extends BaseClientRequest {
         /** Information posted to the PlayStream Event. Currently arbitrary, and specific to the environment sending it. */
         public Map<String,Object> Info;
         
@@ -1038,7 +1042,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class ExecuteCloudScriptRequest {
+    public static class ExecuteCloudScriptRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The name of the CloudScript function to execute */
@@ -1188,7 +1192,7 @@ public class PlayFabClientModels {
         Closed
     }
 
-    public static class GameServerRegionsRequest {
+    public static class GameServerRegionsRequest extends BaseClientRequest {
         /** version of game server for which stats are being requested */
         public String BuildVersion;
         /**
@@ -1221,7 +1225,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetAccountInfoRequest {
+    public static class GetAccountInfoRequest extends BaseClientRequest {
         /** User email address for the account to find (if no Username is specified). */
         public String Email;
         /**
@@ -1253,7 +1257,7 @@ public class PlayFabClientModels {
     }
 
     /** Using an AppId to return a list of valid ad placements for a player. */
-    public static class GetAdPlacementsRequest {
+    public static class GetAdPlacementsRequest extends BaseClientRequest {
         /** The current AppId to use */
         public String AppId;
         /** Using the name or unique identifier, filter the result for get a specific placement. */
@@ -1268,7 +1272,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetCatalogItemsRequest {
+    public static class GetCatalogItemsRequest extends BaseClientRequest {
         /** Which catalog is being requested. If null, uses the default catalog. */
         public String CatalogVersion;
         
@@ -1289,7 +1293,7 @@ public class PlayFabClientModels {
      * Data is stored as JSON key-value pairs. If the Keys parameter is provided, the data object returned will only contain
      * the data specific to the indicated Keys. Otherwise, the full set of custom character data will be returned.
      */
-    public static class GetCharacterDataRequest {
+    public static class GetCharacterDataRequest extends BaseClientRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         public String CharacterId;
         /**
@@ -1322,7 +1326,7 @@ public class PlayFabClientModels {
      * grants, coupons, etc.). Items that are expired, fully consumed, or are no longer valid are not considered to be in the
      * user's current inventory, and so will not be not included. Also returns their virtual currency balances.
      */
-    public static class GetCharacterInventoryRequest {
+    public static class GetCharacterInventoryRequest extends BaseClientRequest {
         /** Used to limit results to only those from a specific catalog version. */
         public String CatalogVersion;
         /** Unique PlayFab assigned ID for a specific character owned by a user */
@@ -1345,7 +1349,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetCharacterLeaderboardRequest {
+    public static class GetCharacterLeaderboardRequest extends BaseClientRequest {
         /** Optional character type on which to filter the leaderboard entries. */
         public String CharacterType;
         /** Maximum number of entries to retrieve. Default 10, maximum 100. */
@@ -1364,7 +1368,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetCharacterStatisticsRequest {
+    public static class GetCharacterStatisticsRequest extends BaseClientRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         public String CharacterId;
         
@@ -1377,7 +1381,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetContentDownloadUrlRequest {
+    public static class GetContentDownloadUrlRequest extends BaseClientRequest {
         /** HTTP method to fetch item - GET or HEAD. Use HEAD when only fetching metadata. Default is GET. */
         public String HttpMethod;
         /** Key of the content item to fetch, usually formatted as a path, e.g. images/a.png */
@@ -1396,7 +1400,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetFriendLeaderboardAroundPlayerRequest {
+    public static class GetFriendLeaderboardAroundPlayerRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Indicates whether Facebook friends should be included in the response. Default is true. */
@@ -1438,7 +1442,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetFriendLeaderboardRequest {
+    public static class GetFriendLeaderboardRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Indicates whether Facebook friends should be included in the response. Default is true. */
@@ -1464,7 +1468,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetFriendsListRequest {
+    public static class GetFriendsListRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Indicates whether Facebook friends should be included in the response. Default is true. */
@@ -1494,7 +1498,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetLeaderboardAroundCharacterRequest {
+    public static class GetLeaderboardAroundCharacterRequest extends BaseClientRequest {
         /** Unique PlayFab assigned ID for a specific character on which to center the leaderboard. */
         public String CharacterId;
         /** Optional character type on which to filter the leaderboard entries. */
@@ -1516,7 +1520,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetLeaderboardAroundPlayerRequest {
+    public static class GetLeaderboardAroundPlayerRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Maximum number of entries to retrieve. Default 10, maximum 100. */
@@ -1550,7 +1554,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetLeaderboardForUsersCharactersRequest {
+    public static class GetLeaderboardForUsersCharactersRequest extends BaseClientRequest {
         /** Maximum number of entries to retrieve. */
         public Integer MaxResultsCount;
         /** Unique identifier for the title-specific statistic for the leaderboard. */
@@ -1569,7 +1573,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetLeaderboardRequest {
+    public static class GetLeaderboardRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Maximum number of entries to retrieve. Default 10, maximum 100. */
@@ -1600,7 +1604,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetPaymentTokenRequest {
+    public static class GetPaymentTokenRequest extends BaseClientRequest {
         /** The name of service to provide the payment token. Allowed Values are: xsolla */
         public String TokenProvider;
         
@@ -1614,7 +1618,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetPhotonAuthenticationTokenRequest {
+    public static class GetPhotonAuthenticationTokenRequest extends BaseClientRequest {
         /** The Photon applicationId for the game you wish to log into. */
         public String PhotonApplicationId;
         
@@ -1626,7 +1630,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetPlayerCombinedInfoRequest {
+    public static class GetPlayerCombinedInfoRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Flags for which pieces of info to return for the user. */
@@ -1726,7 +1730,7 @@ public class PlayFabClientModels {
      * taken in how this data is stored and managed. Since this call will always return the relevant information for users who
      * have accessed the title, the recommendation is to not store this data locally.
      */
-    public static class GetPlayerProfileRequest {
+    public static class GetPlayerProfileRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -1749,7 +1753,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetPlayerSegmentsRequest {
+    public static class GetPlayerSegmentsRequest extends BaseClientRequest {
         
     }
 
@@ -1759,7 +1763,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetPlayerStatisticsRequest {
+    public static class GetPlayerStatisticsRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** statistics to return (current version will be returned for each) */
@@ -1779,7 +1783,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetPlayerStatisticVersionsRequest {
+    public static class GetPlayerStatisticVersionsRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** unique name of the statistic */
@@ -1798,7 +1802,7 @@ public class PlayFabClientModels {
      * provided, the result is a list of all canonical tags. TagName can be used for segmentation and Namespace is limited to
      * 128 characters.
      */
-    public static class GetPlayerTagsRequest {
+    public static class GetPlayerTagsRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Optional namespace to filter results by */
@@ -1816,7 +1820,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetPlayerTradesRequest {
+    public static class GetPlayerTradesRequest extends BaseClientRequest {
         /** Returns only trades with the given status. If null, returns all trades. */
         public TradeStatus StatusFilter;
         
@@ -1830,7 +1834,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetPlayFabIDsFromFacebookIDsRequest {
+    public static class GetPlayFabIDsFromFacebookIDsRequest extends BaseClientRequest {
         /** Array of unique Facebook identifiers for which the title needs to get PlayFab identifiers. */
         public ArrayList<String> FacebookIDs;
         
@@ -1843,7 +1847,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetPlayFabIDsFromFacebookInstantGamesIdsRequest {
+    public static class GetPlayFabIDsFromFacebookInstantGamesIdsRequest extends BaseClientRequest {
         /** Array of unique Facebook Instant Games identifiers for which the title needs to get PlayFab identifiers. */
         public ArrayList<String> FacebookInstantGamesIds;
         
@@ -1856,7 +1860,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetPlayFabIDsFromGameCenterIDsRequest {
+    public static class GetPlayFabIDsFromGameCenterIDsRequest extends BaseClientRequest {
         /** Array of unique Game Center identifiers (the Player Identifier) for which the title needs to get PlayFab identifiers. */
         public ArrayList<String> GameCenterIDs;
         
@@ -1869,7 +1873,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetPlayFabIDsFromGenericIDsRequest {
+    public static class GetPlayFabIDsFromGenericIDsRequest extends BaseClientRequest {
         /**
          * Array of unique generic service identifiers for which the title needs to get PlayFab identifiers. Currently limited to a
          * maximum of 10 in a single request.
@@ -1885,7 +1889,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetPlayFabIDsFromGoogleIDsRequest {
+    public static class GetPlayFabIDsFromGoogleIDsRequest extends BaseClientRequest {
         /** Array of unique Google identifiers (Google+ user IDs) for which the title needs to get PlayFab identifiers. */
         public ArrayList<String> GoogleIDs;
         
@@ -1898,7 +1902,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetPlayFabIDsFromKongregateIDsRequest {
+    public static class GetPlayFabIDsFromKongregateIDsRequest extends BaseClientRequest {
         /** Array of unique Kongregate identifiers (Kongregate's user_id) for which the title needs to get PlayFab identifiers. */
         public ArrayList<String> KongregateIDs;
         
@@ -1911,7 +1915,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest {
+    public static class GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest extends BaseClientRequest {
         /** Array of unique Nintendo Switch Device identifiers for which the title needs to get PlayFab identifiers. */
         public ArrayList<String> NintendoSwitchDeviceIds;
         
@@ -1924,7 +1928,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetPlayFabIDsFromPSNAccountIDsRequest {
+    public static class GetPlayFabIDsFromPSNAccountIDsRequest extends BaseClientRequest {
         /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
         public Integer IssuerId;
         /** Array of unique PlayStation Network identifiers for which the title needs to get PlayFab identifiers. */
@@ -1939,7 +1943,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetPlayFabIDsFromSteamIDsRequest {
+    public static class GetPlayFabIDsFromSteamIDsRequest extends BaseClientRequest {
         /** Array of unique Steam identifiers (Steam profile IDs) for which the title needs to get PlayFab identifiers. */
         public ArrayList<String> SteamStringIDs;
         
@@ -1952,7 +1956,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetPlayFabIDsFromTwitchIDsRequest {
+    public static class GetPlayFabIDsFromTwitchIDsRequest extends BaseClientRequest {
         /** Array of unique Twitch identifiers (Twitch's _id) for which the title needs to get PlayFab identifiers. */
         public ArrayList<String> TwitchIds;
         
@@ -1965,7 +1969,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetPlayFabIDsFromXboxLiveIDsRequest {
+    public static class GetPlayFabIDsFromXboxLiveIDsRequest extends BaseClientRequest {
         /** The ID of Xbox Live sandbox. */
         public String Sandbox;
         /** Array of unique Xbox Live account identifiers for which the title needs to get PlayFab identifiers. */
@@ -1986,7 +1990,7 @@ public class PlayFabClientModels {
      * assigned to a publisher can use this API. For more information email helloplayfab@microsoft.com. Note that there may up
      * to a minute delay in between updating title data and this API call returning the newest value.
      */
-    public static class GetPublisherDataRequest {
+    public static class GetPublisherDataRequest extends BaseClientRequest {
         /** array of keys to get back data from the Publisher data blob, set by the admin tools */
         public ArrayList<String> Keys;
         
@@ -1998,7 +2002,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetPurchaseRequest {
+    public static class GetPurchaseRequest extends BaseClientRequest {
         /** Purchase order identifier. */
         public String OrderId;
         
@@ -2028,7 +2032,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetSharedGroupDataRequest {
+    public static class GetSharedGroupDataRequest extends BaseClientRequest {
         /** If true, return the list of all members of the shared group. */
         public Boolean GetMembers;
         /**
@@ -2060,7 +2064,7 @@ public class PlayFabClientModels {
      * these definitions. If no price is specified in the store for an item, the price set in the catalog should be displayed
      * to the user.
      */
-    public static class GetStoreItemsRequest {
+    public static class GetStoreItemsRequest extends BaseClientRequest {
         /** Catalog version to store items from. Use default catalog version if null */
         public String CatalogVersion;
         /** Unqiue identifier for the store which is being requested. */
@@ -2087,7 +2091,7 @@ public class PlayFabClientModels {
      * This query retrieves the current time from one of the servers in PlayFab. Please note that due to clock drift between
      * servers, there is a potential variance of up to 5 seconds.
      */
-    public static class GetTimeRequest {
+    public static class GetTimeRequest extends BaseClientRequest {
         
     }
 
@@ -2105,7 +2109,7 @@ public class PlayFabClientModels {
      * build. Note that there may up to a minute delay in between updating title data and this API call returning the newest
      * value.
      */
-    public static class GetTitleDataRequest {
+    public static class GetTitleDataRequest extends BaseClientRequest {
         /** Specific keys to search for in the title data (leave null to get all keys) */
         public ArrayList<String> Keys;
         /** Name of the override. */
@@ -2119,7 +2123,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetTitleNewsRequest {
+    public static class GetTitleNewsRequest extends BaseClientRequest {
         /** Limits the results to the last n entries. Defaults to 10 if not set. */
         public Integer Count;
         
@@ -2140,7 +2144,7 @@ public class PlayFabClientModels {
      * fields can be left empty when performing the API request. 4) Client receives authentication token as normal. Future
      * requests to LoginWithCustomId will require the X-PlayFab-Signature header.
      */
-    public static class GetTitlePublicKeyRequest {
+    public static class GetTitlePublicKeyRequest extends BaseClientRequest {
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
          * title has been selected.
@@ -2157,7 +2161,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetTradeStatusRequest {
+    public static class GetTradeStatusRequest extends BaseClientRequest {
         /** Player who opened trade. */
         public String OfferingPlayerId;
         /** Trade identifier as returned by OpenTradeOffer. */
@@ -2177,7 +2181,7 @@ public class PlayFabClientModels {
      * system is greater than the value provided. If the Keys parameter is provided, the data object returned will only contain
      * the data specific to the indicated Keys. Otherwise, the full set of custom user data will be returned.
      */
-    public static class GetUserDataRequest {
+    public static class GetUserDataRequest extends BaseClientRequest {
         /**
          * The version that currently exists according to the caller. The call will return the data for all of the keys if the
          * version in the system is greater than this.
@@ -2204,7 +2208,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class GetUserInventoryRequest {
+    public static class GetUserInventoryRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         
@@ -2227,7 +2231,7 @@ public class PlayFabClientModels {
     }
 
     /** Requires the SHA256 hash of the user's public key. */
-    public static class GetWindowsHelloChallengeRequest {
+    public static class GetWindowsHelloChallengeRequest extends BaseClientRequest {
         /** SHA256 hash of the PublicKey generated by Windows Hello. */
         public String PublicKeyHint;
         /**
@@ -2257,7 +2261,7 @@ public class PlayFabClientModels {
      * in their inventory in order to allow character creation. This item can come from a purchase or grant, which must be done
      * before calling to create the character.
      */
-    public static class GrantCharacterToUserRequest {
+    public static class GrantCharacterToUserRequest extends BaseClientRequest {
         /** Catalog version from which items are to be granted. */
         public String CatalogVersion;
         /** Non-unique display name of the character being granted (1-40 characters in length). */
@@ -2334,7 +2338,7 @@ public class PlayFabClientModels {
         }
     }
 
-    public static class ItemPurchaseRequest {
+    public static class ItemPurchaseRequest extends BaseClientRequest {
         /** Title-specific text concerning this purchase. */
         public String Annotation;
         /** Unique ItemId of the item to purchase. */
@@ -2354,7 +2358,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LinkAndroidDeviceIDRequest {
+    public static class LinkAndroidDeviceIDRequest extends BaseClientRequest {
         /** Specific model of the user's device. */
         public String AndroidDevice;
         /** Android device identifier for the user's device. */
@@ -2372,7 +2376,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LinkAppleRequest {
+    public static class LinkAppleRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** If another user is already linked to a specific Apple account, unlink the other user and re-link. */
@@ -2385,7 +2389,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LinkCustomIDRequest {
+    public static class LinkCustomIDRequest extends BaseClientRequest {
         /** Custom unique identifier for the user, generated by the title. */
         public String CustomId;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -2420,7 +2424,7 @@ public class PlayFabClientModels {
      * re-use an application in a new PlayFab Title ID, please be sure to first unlink all accounts from Facebook, or delete
      * all users in the first Title ID.
      */
-    public static class LinkFacebookAccountRequest {
+    public static class LinkFacebookAccountRequest extends BaseClientRequest {
         /** Unique identifier from Facebook for the user. */
         public String AccessToken;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -2434,7 +2438,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LinkFacebookInstantGamesIdRequest {
+    public static class LinkFacebookInstantGamesIdRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Facebook Instant Games signature for the user. */
@@ -2448,7 +2452,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LinkGameCenterAccountRequest {
+    public static class LinkGameCenterAccountRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** If another user is already linked to the account, unlink the other user and re-link. */
@@ -2477,7 +2481,7 @@ public class PlayFabClientModels {
      * Google sign-in is accomplished by obtaining a Google OAuth 2.0 credential using the Google sign-in for Android APIs on
      * the device and passing it to this API.
      */
-    public static class LinkGoogleAccountRequest {
+    public static class LinkGoogleAccountRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** If another user is already linked to the account, unlink the other user and re-link. */
@@ -2494,7 +2498,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LinkIOSDeviceIDRequest {
+    public static class LinkIOSDeviceIDRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Vendor-specific iOS identifier for the user's device. */
@@ -2512,7 +2516,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LinkKongregateAccountRequest {
+    public static class LinkKongregateAccountRequest extends BaseClientRequest {
         /** Valid session auth ticket issued by Kongregate */
         public String AuthTicket;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -2528,7 +2532,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LinkNintendoServiceAccountRequest {
+    public static class LinkNintendoServiceAccountRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** If another user is already linked to a specific Nintendo Switch account, unlink the other user and re-link. */
@@ -2541,7 +2545,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LinkNintendoSwitchDeviceIdRequest {
+    public static class LinkNintendoSwitchDeviceIdRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** If another user is already linked to the Nintendo Switch Device ID, unlink the other user and re-link. */
@@ -2555,7 +2559,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LinkOpenIdConnectRequest {
+    public static class LinkOpenIdConnectRequest extends BaseClientRequest {
         /** A name that identifies which configured OpenID Connect provider relationship to use. Maximum 100 characters. */
         public String ConnectionId;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -2570,7 +2574,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LinkPSNAccountRequest {
+    public static class LinkPSNAccountRequest extends BaseClientRequest {
         /** Authentication code provided by the PlayStation Network. */
         public String AuthCode;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -2595,7 +2599,7 @@ public class PlayFabClientModels {
      * Manager (under Properties). Information on creating a Publisher Key (referred to as the Secret Key in PlayFab) for your
      * title can be found here: https://partner.steamgames.com/documentation/webapi#publisherkey.
      */
-    public static class LinkSteamAccountRequest {
+    public static class LinkSteamAccountRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** If another user is already linked to the account, unlink the other user and re-link. */
@@ -2612,7 +2616,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LinkTwitchAccountRequest {
+    public static class LinkTwitchAccountRequest extends BaseClientRequest {
         /** Valid token issued by Twitch */
         public String AccessToken;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -2627,7 +2631,7 @@ public class PlayFabClientModels {
     }
 
     /** PublicKey must be generated using the Windows Hello Passport service. */
-    public static class LinkWindowsHelloAccountRequest {
+    public static class LinkWindowsHelloAccountRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Device name. */
@@ -2645,7 +2649,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LinkXboxAccountRequest {
+    public static class LinkXboxAccountRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** If another user is already linked to the account, unlink the other user and re-link. */
@@ -2660,7 +2664,7 @@ public class PlayFabClientModels {
     }
 
     /** Returns a list of every character that currently belongs to a user. */
-    public static class ListUsersCharactersRequest {
+    public static class ListUsersCharactersRequest extends BaseClientRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
         
@@ -2745,7 +2749,7 @@ public class PlayFabClientModels {
      * single user account, only the one most recently used to login (or most recently linked) will be reflected in the user's
      * account information. We will be updating to show all linked devices in a future release.
      */
-    public static class LoginWithAndroidDeviceIDRequest {
+    public static class LoginWithAndroidDeviceIDRequest extends BaseClientRequest {
         /** Specific model of the user's device. */
         public String AndroidDevice;
         /** Android device identifier for the user's device. */
@@ -2770,7 +2774,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LoginWithAppleRequest {
+    public static class LoginWithAppleRequest extends BaseClientRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -2801,7 +2805,7 @@ public class PlayFabClientModels {
      * or username will be associated with the PlayFab account. Otherwise, if no PlayFab account is linked to the Custom ID, an
      * error indicating this will be returned, so that the title can guide the user through creation of a PlayFab account.
      */
-    public static class LoginWithCustomIDRequest {
+    public static class LoginWithCustomIDRequest extends BaseClientRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         public Boolean CreateAccount;
         /** Custom unique identifier for the user, generated by the title. */
@@ -2827,7 +2831,7 @@ public class PlayFabClientModels {
      * conforms to the field definition and report errors appropriately. It is recommended that developers not perform this
      * validation locally, so that future updates do not require client updates.
      */
-    public static class LoginWithEmailAddressRequest {
+    public static class LoginWithEmailAddressRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Email address for the account. */
@@ -2844,7 +2848,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LoginWithFacebookInstantGamesIdRequest {
+    public static class LoginWithFacebookInstantGamesIdRequest extends BaseClientRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -2878,7 +2882,7 @@ public class PlayFabClientModels {
      * application in a new PlayFab Title ID, please be sure to first unlink all accounts from Facebook, or delete all users in
      * the first Title ID.
      */
-    public static class LoginWithFacebookRequest {
+    public static class LoginWithFacebookRequest extends BaseClientRequest {
         /** Unique identifier from Facebook for the user. */
         public String AccessToken;
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
@@ -2909,7 +2913,7 @@ public class PlayFabClientModels {
      * PlayFab account. Otherwise, if no PlayFab account is linked to the Game Center account, an error indicating this will be
      * returned, so that the title can guide the user through creation of a PlayFab account.
      */
-    public static class LoginWithGameCenterRequest {
+    public static class LoginWithGameCenterRequest extends BaseClientRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -2957,7 +2961,7 @@ public class PlayFabClientModels {
      * for the with the Google OAuth 2.0 Access Token. More information on this change can be found in the Google developer
      * documentation (https://android-developers.googleblog.com/2016/01/play-games-permissions-are-changing-in.html).
      */
-    public static class LoginWithGoogleAccountRequest {
+    public static class LoginWithGoogleAccountRequest extends BaseClientRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -2993,7 +2997,7 @@ public class PlayFabClientModels {
      * type can be linked to a single user account, only the one most recently used to login (or most recently linked) will be
      * reflected in the user's account information. We will be updating to show all linked devices in a future release.
      */
-    public static class LoginWithIOSDeviceIDRequest {
+    public static class LoginWithIOSDeviceIDRequest extends BaseClientRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -3027,7 +3031,7 @@ public class PlayFabClientModels {
      * ID. In this case, no email or username will be associated with the PlayFab account. If there is already a different
      * PlayFab user linked with this account, then an error will be returned.
      */
-    public static class LoginWithKongregateRequest {
+    public static class LoginWithKongregateRequest extends BaseClientRequest {
         /** Token issued by Kongregate's client API for the user. */
         public String AuthTicket;
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
@@ -3050,7 +3054,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LoginWithNintendoServiceAccountRequest {
+    public static class LoginWithNintendoServiceAccountRequest extends BaseClientRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -3071,7 +3075,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LoginWithNintendoSwitchDeviceIdRequest {
+    public static class LoginWithNintendoSwitchDeviceIdRequest extends BaseClientRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -3092,7 +3096,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LoginWithOpenIdConnectRequest {
+    public static class LoginWithOpenIdConnectRequest extends BaseClientRequest {
         /** A name that identifies which configured OpenID Connect provider relationship to use. Maximum 100 characters. */
         public String ConnectionId;
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
@@ -3123,7 +3127,7 @@ public class PlayFabClientModels {
      * conforms to the field definition and report errors appropriately. It is recommended that developers not perform this
      * validation locally, so that future updates to the username or password do not require client updates.
      */
-    public static class LoginWithPlayFabRequest {
+    public static class LoginWithPlayFabRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Flags for which pieces of info to return for the user. */
@@ -3146,7 +3150,7 @@ public class PlayFabClientModels {
      * with the PlayFab account. Otherwise, if no PlayFab account is linked to the PSN account, an error indicating this will
      * be returned, so that the title can guide the user through creation of a PlayFab account.
      */
-    public static class LoginWithPSNRequest {
+    public static class LoginWithPSNRequest extends BaseClientRequest {
         /** Auth code provided by the PSN OAuth provider. */
         public String AuthCode;
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
@@ -3182,7 +3186,7 @@ public class PlayFabClientModels {
      * account is linked to the Steam account, an error indicating this will be returned, so that the title can guide the user
      * through creation of a PlayFab account.
      */
-    public static class LoginWithSteamRequest {
+    public static class LoginWithSteamRequest extends BaseClientRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -3215,7 +3219,7 @@ public class PlayFabClientModels {
      * the ID. In this case, no email or username will be associated with the PlayFab account. If there is already a different
      * PlayFab user linked with this account, then an error will be returned.
      */
-    public static class LoginWithTwitchRequest {
+    public static class LoginWithTwitchRequest extends BaseClientRequest {
         /** Token issued by Twitch's API for the user. */
         public String AccessToken;
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
@@ -3237,7 +3241,7 @@ public class PlayFabClientModels {
     }
 
     /** Requires both the SHA256 hash of the user's public key as well as the signed response from GetWindowsHelloChallenge */
-    public static class LoginWithWindowsHelloRequest {
+    public static class LoginWithWindowsHelloRequest extends BaseClientRequest {
         /** The signed response from the user for the Challenge. */
         public String ChallengeSignature;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -3260,7 +3264,7 @@ public class PlayFabClientModels {
      * associated with the PlayFab account. Otherwise, if no PlayFab account is linked to the Xbox Live account, an error
      * indicating this will be returned, so that the title can guide the user through creation of a PlayFab account.
      */
-    public static class LoginWithXboxRequest {
+    public static class LoginWithXboxRequest extends BaseClientRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -3290,7 +3294,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class MatchmakeRequest {
+    public static class MatchmakeRequest extends BaseClientRequest {
         /** Build version to match against. [Note: Required if LobbyId is not specified] */
         public String BuildVersion;
         /** Character to use for stats based matching. Leave null to use account stats. */
@@ -3394,7 +3398,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class OpenTradeRequest {
+    public static class OpenTradeRequest extends BaseClientRequest {
         /**
          * Players who are allowed to accept the trade. If null, the trade may be accepted by any player. If empty, the trade may
          * not be accepted by any player.
@@ -3419,7 +3423,7 @@ public class PlayFabClientModels {
      * for payment. Once the player has completed the payment with the provider, the title should call ConfirmPurchase
      * tofinalize the process and add the appropriate items to the player inventory.
      */
-    public static class PayForPurchaseRequest {
+    public static class PayForPurchaseRequest extends BaseClientRequest {
         /** Currency to use to fund the purchase. */
         public String Currency;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -3600,7 +3604,7 @@ public class PlayFabClientModels {
      * Please note that the processing time for inventory grants and purchases increases fractionally the more items are in the
      * inventory, and the more items are in the grant/purchase operation (with each item in a bundle being a distinct add).
      */
-    public static class PurchaseItemRequest {
+    public static class PurchaseItemRequest extends BaseClientRequest {
         /** Catalog version for the items to be purchased (defaults to most recent version. */
         public String CatalogVersion;
         /** Unique PlayFab assigned ID for a specific character owned by a user */
@@ -3659,7 +3663,7 @@ public class PlayFabClientModels {
      * coupon to be consumed, and the specific items to be awarded to the user. Attempting to re-use an already consumed code,
      * or a code which has not yet been created in the service, will result in an error.
      */
-    public static class RedeemCouponRequest {
+    public static class RedeemCouponRequest extends BaseClientRequest {
         /** Catalog version of the coupon. If null, uses the default catalog */
         public String CatalogVersion;
         /** Optional identifier for the Character that should receive the item. If null, item is added to the player */
@@ -3677,7 +3681,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class RefreshPSNAuthTokenRequest {
+    public static class RefreshPSNAuthTokenRequest extends BaseClientRequest {
         /** Auth code returned by PSN OAuth system. */
         public String AuthCode;
         /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
@@ -3713,7 +3717,7 @@ public class PlayFabClientModels {
      * The steps to configure and send Push Notifications is described in the PlayFab tutorials, here:
      * https://docs.microsoft.com/gaming/playfab/features/engagement/push-notifications/quickstart
      */
-    public static class RegisterForIOSPushNotificationRequest {
+    public static class RegisterForIOSPushNotificationRequest extends BaseClientRequest {
         /** Message to display when confirming push notification. */
         public String ConfirmationMessage;
         /** Unique token generated by the Apple Push Notification service when the title registered to receive push notifications. */
@@ -3727,7 +3731,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class RegisterPlayFabUserRequest {
+    public static class RegisterPlayFabUserRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** An optional parameter for setting the display name for this title (3-25 characters). */
@@ -3781,7 +3785,7 @@ public class PlayFabClientModels {
     }
 
     /** PublicKey must be generated using the Windows Hello Passport service. */
-    public static class RegisterWithWindowsHelloRequest {
+    public static class RegisterWithWindowsHelloRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Device name. */
@@ -3805,7 +3809,7 @@ public class PlayFabClientModels {
     }
 
     /** This API removes an existing contact email from the player's profile. */
-    public static class RemoveContactEmailRequest {
+    public static class RemoveContactEmailRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         
@@ -3815,7 +3819,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class RemoveFriendRequest {
+    public static class RemoveFriendRequest extends BaseClientRequest {
         /** PlayFab identifier of the friend account which is to be removed. */
         public String FriendPlayFabId;
         
@@ -3825,7 +3829,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class RemoveGenericIDRequest {
+    public static class RemoveGenericIDRequest extends BaseClientRequest {
         /** Generic service identifier to be removed from the player. */
         public GenericServiceId GenericId;
         
@@ -3835,7 +3839,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class RemoveSharedGroupMembersRequest {
+    public static class RemoveSharedGroupMembersRequest extends BaseClientRequest {
         /** An array of unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public ArrayList<String> PlayFabIds;
         /** Unique identifier for the shared group. */
@@ -3848,7 +3852,7 @@ public class PlayFabClientModels {
     }
 
     /** Report ad activity */
-    public static class ReportAdActivityRequest {
+    public static class ReportAdActivityRequest extends BaseClientRequest {
         /** Type of activity, may be Opened, Closed, Start or End */
         public AdActivity Activity;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -3865,7 +3869,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class ReportPlayerClientRequest {
+    public static class ReportPlayerClientRequest extends BaseClientRequest {
         /** Optional additional comment by reporting player. */
         public String Comment;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -3891,7 +3895,7 @@ public class PlayFabClientModels {
      * previously purchased by the user. This API call iterates through every purchase in the receipt and restores the items if
      * they still exist in the catalog and can be validated.
      */
-    public static class RestoreIOSPurchasesRequest {
+    public static class RestoreIOSPurchasesRequest extends BaseClientRequest {
         /** Catalog version of the restored items. If null, defaults to primary catalog. */
         public String CatalogVersion;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -3909,7 +3913,7 @@ public class PlayFabClientModels {
     }
 
     /** Details on which placement and reward to perform a grant on */
-    public static class RewardAdActivityRequest {
+    public static class RewardAdActivityRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Placement unique ID */
@@ -3956,7 +3960,7 @@ public class PlayFabClientModels {
      * LoginFromIOSDeviceID), thisfunction will have no effect. Only PlayFab accounts which have valid email addresses will be
      * able to receive a password reset email using this API.
      */
-    public static class SendAccountRecoveryEmailRequest {
+    public static class SendAccountRecoveryEmailRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** User email address attached to their account */
@@ -3980,7 +3984,7 @@ public class PlayFabClientModels {
      * users in the PlayFab friends list can be assigned tags. Attempting to set a tag on a friend only included in the friends
      * list from a social site integration (such as Facebook or Steam) will return the AccountNotFound error.
      */
-    public static class SetFriendTagsRequest {
+    public static class SetFriendTagsRequest extends BaseClientRequest {
         /** PlayFab identifier of the friend account to which the tag(s) should be applied. */
         public String FriendPlayFabId;
         /** Array of tags to set on the friend account. */
@@ -4000,7 +4004,7 @@ public class PlayFabClientModels {
      * hash into the header X-PlayFab-Signature, along with a header X-PlayFab-Timestamp of the same UTC timestamp used in the
      * signature.
      */
-    public static class SetPlayerSecretRequest {
+    public static class SetPlayerSecretRequest extends BaseClientRequest {
         /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
         public String EncryptedRequest;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
@@ -4035,7 +4039,7 @@ public class PlayFabClientModels {
     }
 
     /** This API must be enabled for use as an option in the game manager website. It is disabled by default. */
-    public static class StartGameRequest {
+    public static class StartGameRequest extends BaseClientRequest {
         /** version information for the build of the game server which is to be started */
         public String BuildVersion;
         /** character to use for stats based matching. Leave null to use account stats */
@@ -4078,7 +4082,7 @@ public class PlayFabClientModels {
      * additional inventory objects may no longer be added. In addition, inventory objects will be locked to the current
      * prices, regardless of any subsequent changes at the catalog level which may occur during the next two steps.
      */
-    public static class StartPurchaseRequest {
+    public static class StartPurchaseRequest extends BaseClientRequest {
         /** Catalog version for the items to be purchased. Defaults to most recent catalog. */
         public String CatalogVersion;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -4215,7 +4219,7 @@ public class PlayFabClientModels {
     }
 
     /** This API must be enabled for use as an option in the game manager website. It is disabled by default. */
-    public static class SubtractUserVirtualCurrencyRequest {
+    public static class SubtractUserVirtualCurrencyRequest extends BaseClientRequest {
         /** Amount to be subtracted from the user balance of the specified virtual currency. */
         public Integer Amount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -4330,7 +4334,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class UnlinkAndroidDeviceIDRequest {
+    public static class UnlinkAndroidDeviceIDRequest extends BaseClientRequest {
         /**
          * Android device identifier for the user's device. If not specified, the most recently signed in Android Device ID will be
          * used.
@@ -4345,13 +4349,13 @@ public class PlayFabClientModels {
         
     }
 
-    public static class UnlinkAppleRequest {
+    public static class UnlinkAppleRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         
     }
 
-    public static class UnlinkCustomIDRequest {
+    public static class UnlinkCustomIDRequest extends BaseClientRequest {
         /**
          * Custom unique identifier for the user, generated by the title. If not specified, the most recently signed in Custom ID
          * will be used.
@@ -4366,7 +4370,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class UnlinkFacebookAccountRequest {
+    public static class UnlinkFacebookAccountRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         
@@ -4376,7 +4380,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class UnlinkFacebookInstantGamesIdRequest {
+    public static class UnlinkFacebookInstantGamesIdRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Facebook Instant Games identifier for the user. If not specified, the most recently signed in ID will be used. */
@@ -4388,7 +4392,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class UnlinkGameCenterAccountRequest {
+    public static class UnlinkGameCenterAccountRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         
@@ -4398,7 +4402,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class UnlinkGoogleAccountRequest {
+    public static class UnlinkGoogleAccountRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         
@@ -4408,7 +4412,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class UnlinkIOSDeviceIDRequest {
+    public static class UnlinkIOSDeviceIDRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /**
@@ -4423,7 +4427,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class UnlinkKongregateAccountRequest {
+    public static class UnlinkKongregateAccountRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         
@@ -4433,13 +4437,13 @@ public class PlayFabClientModels {
         
     }
 
-    public static class UnlinkNintendoServiceAccountRequest {
+    public static class UnlinkNintendoServiceAccountRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         
     }
 
-    public static class UnlinkNintendoSwitchDeviceIdRequest {
+    public static class UnlinkNintendoSwitchDeviceIdRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Nintendo Switch Device identifier for the user. If not specified, the most recently signed in device ID will be used. */
@@ -4451,7 +4455,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class UnlinkOpenIdConnectRequest {
+    public static class UnlinkOpenIdConnectRequest extends BaseClientRequest {
         /** A name that identifies which configured OpenID Connect provider relationship to use. Maximum 100 characters. */
         public String ConnectionId;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -4459,7 +4463,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class UnlinkPSNAccountRequest {
+    public static class UnlinkPSNAccountRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         
@@ -4469,7 +4473,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class UnlinkSteamAccountRequest {
+    public static class UnlinkSteamAccountRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         
@@ -4479,7 +4483,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class UnlinkTwitchAccountRequest {
+    public static class UnlinkTwitchAccountRequest extends BaseClientRequest {
         /**
          * Valid token issued by Twitch. Used to specify which twitch account to unlink from the profile. By default it uses the
          * one that is present on the profile.
@@ -4495,7 +4499,7 @@ public class PlayFabClientModels {
     }
 
     /** Must include the Public Key Hint */
-    public static class UnlinkWindowsHelloAccountRequest {
+    public static class UnlinkWindowsHelloAccountRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** SHA256 hash of the PublicKey generated by Windows Hello. */
@@ -4507,7 +4511,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class UnlinkXboxAccountRequest {
+    public static class UnlinkXboxAccountRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         
@@ -4518,7 +4522,7 @@ public class PlayFabClientModels {
     }
 
     /** Specify the container and optionally the catalogVersion for the container to open */
-    public static class UnlockContainerInstanceRequest {
+    public static class UnlockContainerInstanceRequest extends BaseClientRequest {
         /**
          * Specifies the catalog version that should be used to determine container contents. If unspecified, uses catalog
          * associated with the item instance.
@@ -4539,7 +4543,7 @@ public class PlayFabClientModels {
     }
 
     /** Specify the type of container to open and optionally the catalogVersion for the container to open */
-    public static class UnlockContainerItemRequest {
+    public static class UnlockContainerItemRequest extends BaseClientRequest {
         /**
          * Specifies the catalog version that should be used to determine container contents. If unspecified, uses default/primary
          * catalog.
@@ -4567,7 +4571,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class UpdateAvatarUrlRequest {
+    public static class UpdateAvatarUrlRequest extends BaseClientRequest {
         /** URL of the avatar image. If empty, it removes the existing avatar URL. */
         public String ImageUrl;
         
@@ -4579,7 +4583,7 @@ public class PlayFabClientModels {
      * with null values will be removed. New keys will be added, with the given values. No other key-value pairs will be
      * changed apart from those specified in the call.
      */
-    public static class UpdateCharacterDataRequest {
+    public static class UpdateCharacterDataRequest extends BaseClientRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         public String CharacterId;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -4615,7 +4619,7 @@ public class PlayFabClientModels {
      * given values. All other user statistics will remain unchanged. Character statistics are used by the
      * character-leaderboard apis, and accessible for custom game-logic.
      */
-    public static class UpdateCharacterStatisticsRequest {
+    public static class UpdateCharacterStatisticsRequest extends BaseClientRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         public String CharacterId;
         /** Statistics to be updated with the provided values, in the Key(string), Value(int) pattern. */
@@ -4638,7 +4642,7 @@ public class PlayFabClientModels {
      * versioned (reset), the now-previous version can still be written to for up a short, pre-defined period (currently 10
      * seconds), using the Version parameter in this call.
      */
-    public static class UpdatePlayerStatisticsRequest {
+    public static class UpdatePlayerStatisticsRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Statistics to be updated with the provided values */
@@ -4656,7 +4660,7 @@ public class PlayFabClientModels {
      * of data updates, it is recommended that titles make use of user data with read permission set to public, or a
      * combination of user data and shared group data.
      */
-    public static class UpdateSharedGroupDataRequest {
+    public static class UpdateSharedGroupDataRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /**
@@ -4686,7 +4690,7 @@ public class PlayFabClientModels {
      * values will be removed. New keys will be added, with the given values. No other key-value pairs will be changed apart
      * from those specified in the call.
      */
-    public static class UpdateUserDataRequest {
+    public static class UpdateUserDataRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /**
@@ -4720,7 +4724,7 @@ public class PlayFabClientModels {
      * In addition to the PlayFab username, titles can make use of a DisplayName which is also a unique identifier, but
      * specific to the title. This allows for unique names which more closely match the theme or genre of a title, for example.
      */
-    public static class UpdateUserTitleDisplayNameRequest {
+    public static class UpdateUserTitleDisplayNameRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** New title display name for the user - must be between 3 and 25 characters. */
@@ -5005,7 +5009,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class ValidateAmazonReceiptRequest {
+    public static class ValidateAmazonReceiptRequest extends BaseClientRequest {
         /** Catalog version of the fulfilled items. If null, defaults to the primary catalog. */
         public String CatalogVersion;
         /** Currency used to pay for the purchase (ISO 4217 currency code). */
@@ -5035,7 +5039,7 @@ public class PlayFabClientModels {
      * receipt for a 99-cent purchase as being for a $19.99 purchase, for example). Each receipt may be validated only once to
      * avoid granting the same item over and over from a single purchase.
      */
-    public static class ValidateGooglePlayPurchaseRequest {
+    public static class ValidateGooglePlayPurchaseRequest extends BaseClientRequest {
         /** Catalog version of the fulfilled items. If null, defaults to the primary catalog. */
         public String CatalogVersion;
         /** Currency used to pay for the purchase (ISO 4217 currency code). */
@@ -5068,7 +5072,7 @@ public class PlayFabClientModels {
      * from passing valid receipts as being for more expensive items (passing a receipt for a 99-cent purchase as being for a
      * $19.99 purchase, for example).
      */
-    public static class ValidateIOSReceiptRequest {
+    public static class ValidateIOSReceiptRequest extends BaseClientRequest {
         /** Catalog version of the fulfilled items. If null, defaults to the primary catalog. */
         public String CatalogVersion;
         /** Currency used to pay for the purchase (ISO 4217 currency code). */
@@ -5089,7 +5093,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class ValidateWindowsReceiptRequest {
+    public static class ValidateWindowsReceiptRequest extends BaseClientRequest {
         /** Catalog version of the fulfilled items. If null, defaults to the primary catalog. */
         public String CatalogVersion;
         /** Currency used to pay for the purchase (ISO 4217 currency code). */
@@ -5153,7 +5157,7 @@ public class PlayFabClientModels {
      * JSON schema, which allowsfor arbitrary key-value pairs to describe any character-based event. The created event will be
      * locked to the authenticated title and player.
      */
-    public static class WriteClientCharacterEventRequest {
+    public static class WriteClientCharacterEventRequest extends BaseClientRequest {
         /** Custom event properties. Each property consists of a name (string) and a value (JSON object). */
         public Map<String,Object> Body;
         /** Unique PlayFab assigned ID for a specific character owned by a user */
@@ -5175,7 +5179,7 @@ public class PlayFabClientModels {
      * which allowsfor arbitrary key-value pairs to describe any player-based event. The created event will be locked to the
      * authenticated title and player.
      */
-    public static class WriteClientPlayerEventRequest {
+    public static class WriteClientPlayerEventRequest extends BaseClientRequest {
         /** Custom data properties associated with the event. Each property consists of a name (string) and a value (JSON object). */
         public Map<String,Object> Body;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -5204,7 +5208,7 @@ public class PlayFabClientModels {
      * JSON schema, which allowsfor arbitrary key-value pairs to describe any title-based event. The created event will be
      * locked to the authenticated title.
      */
-    public static class WriteTitleEventRequest {
+    public static class WriteTitleEventRequest extends BaseClientRequest {
         /** Custom event properties. Each property consists of a name (string) and a value (JSON object). */
         public Map<String,Object> Body;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
