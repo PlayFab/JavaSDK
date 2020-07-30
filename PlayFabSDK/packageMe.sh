@@ -7,4 +7,4 @@ mkdir -p ./builds
 popd
 
 cd target
-cp  combo-sdk-0.114.200713.jar ../../builds/combo-sdk-0.114.200713.jar
+cp  combo-sdk-0.115.200730.jar ../../builds/combo-sdk-0.115.200730.jar

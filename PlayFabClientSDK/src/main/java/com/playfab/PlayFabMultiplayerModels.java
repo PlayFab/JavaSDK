@@ -47,7 +47,8 @@ public class PlayFabMultiplayerModels {
         WestUs,
         ChinaEast2,
         ChinaNorth2,
-        SouthAfricaNorth
+        SouthAfricaNorth,
+        CentralUsEuap
     }
 
     public static enum AzureVmFamily {
@@ -342,6 +343,8 @@ public class PlayFabMultiplayerModels {
         public ArrayList<AssetReferenceParams> GameAssetReferences;
         /** The game certificates for the build. */
         public ArrayList<GameCertificateReferenceParams> GameCertificateReferences;
+        /** The Linux instrumentation configuration for the build. */
+        public LinuxInstrumentationConfiguration LinuxInstrumentationConfiguration;
         /**
          * Metadata to tag the build. The keys are case insensitive. The build metadata is made available to the server through
          * Game Server SDK (GSDK).Constraints: Maximum number of keys: 30, Maximum key length: 50, Maximum value length: 100
@@ -385,6 +388,8 @@ public class PlayFabMultiplayerModels {
         public ArrayList<AssetReference> GameAssetReferences;
         /** The game certificates for the build. */
         public ArrayList<GameCertificateReference> GameCertificateReferences;
+        /** The Linux instrumentation configuration for this build. */
+        public LinuxInstrumentationConfiguration LinuxInstrumentationConfiguration;
         /** The metadata of the build. */
         public Map<String,String> Metadata;
         /** The number of multiplayer servers to host on a single VM of the build. */
@@ -526,6 +531,8 @@ public class PlayFabMultiplayerModels {
          * mount path of the game server executable.
          */
         public String GameWorkingDirectory;
+        /** The instrumentation configuration for the build. */
+        public InstrumentationConfiguration InstrumentationConfiguration;
         /**
          * Metadata to tag the build. The keys are case insensitive. The build metadata is made available to the server through
          * Game Server SDK (GSDK).Constraints: Maximum number of keys: 30, Maximum key length: 50, Maximum value length: 100
@@ -577,6 +584,8 @@ public class PlayFabMultiplayerModels {
          * mount path of the game server executable.
          */
         public String GameWorkingDirectory;
+        /** The instrumentation configuration for this build. */
+        public InstrumentationConfiguration InstrumentationConfiguration;
         /** The metadata of the build. */
         public Map<String,String> Metadata;
         /** The number of multiplayer servers to host on a single VM of the build. */
@@ -1272,6 +1281,12 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    public static class LinuxInstrumentationConfiguration {
+        /** Designates whether Linux instrumentation configuration will be enabled for this Build */
+        public Boolean IsEnabled;
+        
+    }
+
     /** Returns a list of multiplayer server game asset summaries for a title. */
     public static class ListAssetSummariesRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -1426,7 +1441,11 @@ public class PlayFabMultiplayerModels {
     public static class ListPartyQosServersRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Qos servers version */
+        /**
+         * Qos servers version
+         * @deprecated Do not use
+         */
+        @Deprecated
         public String Version;
         
     }
