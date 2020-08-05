@@ -1161,6 +1161,17 @@ public class PlayFabAdminModels {
         
     }
 
+    /** Will delete all the title data associated with the given override label. */
+    public static class DeleteTitleDataOverrideRequest {
+        /** Name of the override. */
+        public String OverrideLabel;
+        
+    }
+
+    public static class DeleteTitleDataOverrideResult {
+        
+    }
+
     /**
      * Deletes all data associated with the title, including catalog, virtual currencies, leaderboard statistics, Cloud Script
      * revisions, segment definitions, event rules, tasks, add-ons, secret keys, data encryption keys, and permission policies.
@@ -1864,7 +1875,6 @@ public class PlayFabAdminModels {
         ExperimentationInvalidDuration,
         ExperimentationMaxExperimentsReached,
         ExperimentationExperimentSchedulingInProgress,
-        ExperimentationExistingCodelessScheduled,
         MaxActionDepthExceeded,
         TitleNotOnUpdatedPricingPlan,
         SnapshotNotFound
@@ -3658,6 +3668,25 @@ public class PlayFabAdminModels {
     }
 
     /**
+     * Will set the given key values in the specified override or the primary title data based on whether the label is provided
+     * or not.
+     */
+    public static class SetTitleDataAndOverridesRequest {
+        /**
+         * List of titleData key-value pairs to set/delete. Use an empty value to delete an existing key; use a non-empty value to
+         * create/update a key.
+         */
+        public ArrayList<TitleDataKeyValue> KeyValues;
+        /** Name of the override. */
+        public String OverrideLabel;
+        
+    }
+
+    public static class SetTitleDataAndOverridesResult {
+        
+    }
+
+    /**
      * This API method is designed to store title specific values which can be read by the client. For example, a developer
      * could choose to store values which modify the user experience, such as enemy spawn rates, weapon strengths, movement
      * speeds, etc. This allows a developer to update the title without the need to create, test, and ship a new build. This
@@ -3894,6 +3923,17 @@ public class PlayFabAdminModels {
         PendingSteam,
         ActivatedSteam,
         RevokedSteam
+    }
+
+    public static class TitleDataKeyValue {
+        /**
+         * Key we want to set a value on (note, this is additive - will only replace an existing key's value if they are the same
+         * name.) Keys are trimmed of whitespace. Keys may not begin with the '!' character.
+         */
+        public String Key;
+        /** New value to set. Set to null to remove a value */
+        public String Value;
+        
     }
 
     /** Represents a single update ban request. */

@@ -1465,6 +1465,68 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Deletes a specified set of title data overrides.
+     * @param request DeleteTitleDataOverrideRequest
+     * @return Async Task will return DeleteTitleDataOverrideResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<DeleteTitleDataOverrideResult>> DeleteTitleDataOverrideAsync(final DeleteTitleDataOverrideRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<DeleteTitleDataOverrideResult>>() {
+            public PlayFabResult<DeleteTitleDataOverrideResult> call() throws Exception {
+                return privateDeleteTitleDataOverrideAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Deletes a specified set of title data overrides.
+     * @param request DeleteTitleDataOverrideRequest
+     * @return DeleteTitleDataOverrideResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<DeleteTitleDataOverrideResult> DeleteTitleDataOverride(final DeleteTitleDataOverrideRequest request) {
+        FutureTask<PlayFabResult<DeleteTitleDataOverrideResult>> task = new FutureTask(new Callable<PlayFabResult<DeleteTitleDataOverrideResult>>() {
+            public PlayFabResult<DeleteTitleDataOverrideResult> call() throws Exception {
+                return privateDeleteTitleDataOverrideAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<DeleteTitleDataOverrideResult> exceptionResult = new PlayFabResult<DeleteTitleDataOverrideResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
+        }
+    }
+
+    /** Deletes a specified set of title data overrides. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<DeleteTitleDataOverrideResult> privateDeleteTitleDataOverrideAsync(final DeleteTitleDataOverrideRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/DeleteTitleDataOverride"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<DeleteTitleDataOverrideResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<DeleteTitleDataOverrideResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<DeleteTitleDataOverrideResult>>(){}.getType());
+        DeleteTitleDataOverrideResult result = resultData.data;
+
+        PlayFabResult<DeleteTitleDataOverrideResult> pfResult = new PlayFabResult<DeleteTitleDataOverrideResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Exports all associated data of a master player account
      * @param request ExportMasterPlayerDataRequest
      * @return Async Task will return ExportMasterPlayerDataResult
@@ -5731,6 +5793,68 @@ public class PlayFabAdminAPI {
         SetTitleDataResult result = resultData.data;
 
         PlayFabResult<SetTitleDataResult> pfResult = new PlayFabResult<SetTitleDataResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Set and delete key-value pairs in a title data override instance.
+     * @param request SetTitleDataAndOverridesRequest
+     * @return Async Task will return SetTitleDataAndOverridesResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<SetTitleDataAndOverridesResult>> SetTitleDataAndOverridesAsync(final SetTitleDataAndOverridesRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<SetTitleDataAndOverridesResult>>() {
+            public PlayFabResult<SetTitleDataAndOverridesResult> call() throws Exception {
+                return privateSetTitleDataAndOverridesAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Set and delete key-value pairs in a title data override instance.
+     * @param request SetTitleDataAndOverridesRequest
+     * @return SetTitleDataAndOverridesResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<SetTitleDataAndOverridesResult> SetTitleDataAndOverrides(final SetTitleDataAndOverridesRequest request) {
+        FutureTask<PlayFabResult<SetTitleDataAndOverridesResult>> task = new FutureTask(new Callable<PlayFabResult<SetTitleDataAndOverridesResult>>() {
+            public PlayFabResult<SetTitleDataAndOverridesResult> call() throws Exception {
+                return privateSetTitleDataAndOverridesAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<SetTitleDataAndOverridesResult> exceptionResult = new PlayFabResult<SetTitleDataAndOverridesResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
+        }
+    }
+
+    /** Set and delete key-value pairs in a title data override instance. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<SetTitleDataAndOverridesResult> privateSetTitleDataAndOverridesAsync(final SetTitleDataAndOverridesRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/SetTitleDataAndOverrides"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<SetTitleDataAndOverridesResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<SetTitleDataAndOverridesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetTitleDataAndOverridesResult>>(){}.getType());
+        SetTitleDataAndOverridesResult result = resultData.data;
+
+        PlayFabResult<SetTitleDataAndOverridesResult> pfResult = new PlayFabResult<SetTitleDataAndOverridesResult>();
         pfResult.Result = result;
         return pfResult;
     }
