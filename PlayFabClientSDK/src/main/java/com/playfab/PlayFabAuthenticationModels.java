@@ -55,6 +55,12 @@ public class PlayFabAuthenticationModels {
         
     }
 
+    public static enum IdentifiedDeviceType {
+        Unknown,
+        XboxOne,
+        Scarlett
+    }
+
     public static enum LoginIdentityProvider {
         Unknown,
         PlayFab,
@@ -79,7 +85,7 @@ public class PlayFabAuthenticationModels {
         NintendoSwitchAccount
     }
 
-    /** Given an entity token, validates that it hasn't exipired or been revoked and will return details of the owner. */
+    /** Given an entity token, validates that it hasn't expired or been revoked and will return details of the owner. */
     public static class ValidateEntityTokenRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
@@ -91,6 +97,8 @@ public class PlayFabAuthenticationModels {
     public static class ValidateEntityTokenResponse {
         /** The entity id and type. */
         public EntityKey Entity;
+        /** The authenticated device for this entity, for the given login */
+        public IdentifiedDeviceType IdentifiedDeviceType;
         /** The identity provider for this entity, for the given login */
         public LoginIdentityProvider IdentityProvider;
         /** The lineage of this profile. */
