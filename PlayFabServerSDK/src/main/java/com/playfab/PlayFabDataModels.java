@@ -6,7 +6,7 @@ import com.playfab.PlayFabUtil.*;
 public class PlayFabDataModels {
 
     /** Aborts the pending upload of the requested files. */
-    public static class AbortFileUploadsRequest {
+    public static class AbortFileUploadsRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
@@ -18,7 +18,13 @@ public class PlayFabDataModels {
          * be performed.
          */
         public Integer ProfileVersion;
-        
+
+        public AbortFileUploadsRequest() {
+        }
+
+        public AbortFileUploadsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class AbortFileUploadsResponse {
@@ -30,7 +36,7 @@ public class PlayFabDataModels {
     }
 
     /** Deletes the requested files from the entity's profile. */
-    public static class DeleteFilesRequest {
+    public static class DeleteFilesRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
@@ -42,7 +48,13 @@ public class PlayFabDataModels {
          * be performed.
          */
         public Integer ProfileVersion;
-        
+
+        public DeleteFilesRequest() {
+        }
+
+        public DeleteFilesRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class DeleteFilesResponse {
@@ -66,14 +78,20 @@ public class PlayFabDataModels {
      * Finalizes the upload of the requested files. Verifies that the files have been successfully uploaded and moves the file
      * pointers from pending to live.
      */
-    public static class FinalizeFileUploadsRequest {
+    public static class FinalizeFileUploadsRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** Names of the files to be finalized. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
         public ArrayList<String> FileNames;
-        
+
+        public FinalizeFileUploadsRequest() {
+        }
+
+        public FinalizeFileUploadsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class FinalizeFileUploadsResponse {
@@ -105,12 +123,18 @@ public class PlayFabDataModels {
      * have been successfully uploaded, files that are still pending will either return the old value, if it exists, or
      * nothing.
      */
-    public static class GetFilesRequest {
+    public static class GetFilesRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
-        
+
+        public GetFilesRequest() {
+        }
+
+        public GetFilesRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetFilesResponse {
@@ -124,7 +148,7 @@ public class PlayFabDataModels {
     }
 
     /** Gets JSON objects from an entity profile and returns it. */
-    public static class GetObjectsRequest {
+    public static class GetObjectsRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
@@ -134,7 +158,13 @@ public class PlayFabDataModels {
          * object.
          */
         public Boolean EscapeObject;
-        
+
+        public GetObjectsRequest() {
+        }
+
+        public GetObjectsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetObjectsResponse {
@@ -159,7 +189,7 @@ public class PlayFabDataModels {
      * Returns URLs that may be used to upload the files for a profile 5 minutes. After using the upload calls
      * FinalizeFileUploads must be called to move the file status from pending to live.
      */
-    public static class InitiateFileUploadsRequest {
+    public static class InitiateFileUploadsRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
@@ -171,7 +201,13 @@ public class PlayFabDataModels {
          * be performed.
          */
         public Integer ProfileVersion;
-        
+
+        public InitiateFileUploadsRequest() {
+        }
+
+        public InitiateFileUploadsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class InitiateFileUploadsResponse {
@@ -236,7 +272,7 @@ public class PlayFabDataModels {
      * version value does not guarantee a write though, ConcurrentEditError may still occur if multiple clients are attempting
      * to update the same profile.
      */
-    public static class SetObjectsRequest {
+    public static class SetObjectsRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
@@ -249,7 +285,13 @@ public class PlayFabDataModels {
         public Integer ExpectedProfileVersion;
         /** Collection of objects to set on the profile. */
         public ArrayList<SetObject> Objects;
-        
+
+        public SetObjectsRequest() {
+        }
+
+        public SetObjectsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class SetObjectsResponse {

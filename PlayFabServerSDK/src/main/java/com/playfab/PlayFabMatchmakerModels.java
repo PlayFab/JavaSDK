@@ -10,10 +10,16 @@ public class PlayFabMatchmakerModels {
      * order to securely enable match-making. The client passes the user's Session Ticket to the external match-making service,
      * which then passes the Session Ticket in as the AuthorizationTicket in this call.
      */
-    public static class AuthUserRequest {
+    public static class AuthUserRequest extends PlayFabRequestSettingsModel {
         /** Session Ticket provided by the client. */
         public String AuthorizationTicket;
-        
+
+        public AuthUserRequest() {
+        }
+
+        public AuthUserRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class AuthUserResponse {
@@ -76,7 +82,7 @@ public class PlayFabMatchmakerModels {
         }
     }
 
-    public static class PlayerJoinedRequest {
+    public static class PlayerJoinedRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /**
@@ -86,14 +92,20 @@ public class PlayFabMatchmakerModels {
         public String LobbyId;
         /** PlayFab unique identifier for the player joining. */
         public String PlayFabId;
-        
+
+        public PlayerJoinedRequest() {
+        }
+
+        public PlayerJoinedRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class PlayerJoinedResponse {
         
     }
 
-    public static class PlayerLeftRequest {
+    public static class PlayerLeftRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /**
@@ -103,7 +115,13 @@ public class PlayFabMatchmakerModels {
         public String LobbyId;
         /** PlayFab unique identifier for the player leaving. */
         public String PlayFabId;
-        
+
+        public PlayerLeftRequest() {
+        }
+
+        public PlayerLeftRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class PlayerLeftResponse {
@@ -120,7 +138,7 @@ public class PlayFabMatchmakerModels {
         Australia
     }
 
-    public static class StartGameRequest {
+    public static class StartGameRequest extends PlayFabRequestSettingsModel {
         /** Unique identifier of the previously uploaded build executable which is to be started. */
         public String Build;
         /** Custom command line argument when starting game server process. */
@@ -137,7 +155,13 @@ public class PlayFabMatchmakerModels {
         public String GameMode;
         /** Region with which to associate the server, for filtering. */
         public Region Region;
-        
+
+        public StartGameRequest() {
+        }
+
+        public StartGameRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class StartGameResponse {
@@ -154,7 +178,7 @@ public class PlayFabMatchmakerModels {
         
     }
 
-    public static class UserInfoRequest {
+    public static class UserInfoRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /**
@@ -164,7 +188,13 @@ public class PlayFabMatchmakerModels {
         public Integer MinCatalogVersion;
         /** PlayFab unique identifier of the user whose information is being requested. */
         public String PlayFabId;
-        
+
+        public UserInfoRequest() {
+        }
+
+        public UserInfoRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class UserInfoResponse {

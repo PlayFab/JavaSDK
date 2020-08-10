@@ -351,7 +351,7 @@ public class PlayFabCloudScriptModels {
     }
 
     /** Executes CloudScript with the entity profile that is defined in the request. */
-    public static class ExecuteEntityCloudScriptRequest {
+    public static class ExecuteEntityCloudScriptRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
@@ -373,11 +373,17 @@ public class PlayFabCloudScriptModels {
         public CloudScriptRevisionOption RevisionSelection;
         /** The specific revision to execute, when RevisionSelection is set to 'Specific' */
         public Integer SpecificRevision;
-        
+
+        public ExecuteEntityCloudScriptRequest() {
+        }
+
+        public ExecuteEntityCloudScriptRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /** Executes an Azure Function with the profile of the entity that is defined in the request. */
-    public static class ExecuteFunctionRequest {
+    public static class ExecuteFunctionRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
@@ -391,7 +397,13 @@ public class PlayFabCloudScriptModels {
          * other contextual information. This event will show up in the PlayStream debugger console for the player in Game Manager.
          */
         public Boolean GeneratePlayStreamEvent;
-        
+
+        public ExecuteFunctionRequest() {
+        }
+
+        public ExecuteFunctionRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ExecuteFunctionResult {
@@ -455,10 +467,16 @@ public class PlayFabCloudScriptModels {
      * A title can have many functions, ListHttpFunctions will return a list of all the currently registered HTTP triggered
      * functions for a given title.
      */
-    public static class ListFunctionsRequest {
+    public static class ListFunctionsRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        
+
+        public ListFunctionsRequest() {
+        }
+
+        public ListFunctionsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ListFunctionsResult {
@@ -618,27 +636,39 @@ public class PlayFabCloudScriptModels {
         
     }
 
-    public static class PostFunctionResultForEntityTriggeredActionRequest {
+    public static class PostFunctionResultForEntityTriggeredActionRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The result of the function execution. */
         public ExecuteFunctionResult FunctionResult;
-        
+
+        public PostFunctionResultForEntityTriggeredActionRequest() {
+        }
+
+        public PostFunctionResultForEntityTriggeredActionRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
-    public static class PostFunctionResultForFunctionExecutionRequest {
+    public static class PostFunctionResultForFunctionExecutionRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The result of the function execution. */
         public ExecuteFunctionResult FunctionResult;
-        
+
+        public PostFunctionResultForFunctionExecutionRequest() {
+        }
+
+        public PostFunctionResultForFunctionExecutionRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
-    public static class PostFunctionResultForPlayerTriggeredActionRequest {
+    public static class PostFunctionResultForPlayerTriggeredActionRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
@@ -649,10 +679,16 @@ public class PlayFabCloudScriptModels {
         public PlayerProfileModel PlayerProfile;
         /** The triggering PlayStream event, if any, that caused the function to be invoked. */
         public PlayStreamEventEnvelopeModel PlayStreamEventEnvelope;
-        
+
+        public PostFunctionResultForPlayerTriggeredActionRequest() {
+        }
+
+        public PostFunctionResultForPlayerTriggeredActionRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
-    public static class PostFunctionResultForScheduledTaskRequest {
+    public static class PostFunctionResultForScheduledTaskRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
@@ -661,7 +697,13 @@ public class PlayFabCloudScriptModels {
         public ExecuteFunctionResult FunctionResult;
         /** The id of the scheduled task that invoked the function. */
         public NameIdentifier ScheduledTaskId;
-        
+
+        public PostFunctionResultForScheduledTaskRequest() {
+        }
+
+        public PostFunctionResultForScheduledTaskRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static enum PushNotificationPlatform {
@@ -687,21 +729,27 @@ public class PlayFabCloudScriptModels {
         
     }
 
-    public static class RegisterHttpFunctionRequest {
+    public static class RegisterHttpFunctionRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The name of the function to register */
         public String FunctionName;
         /** Full URL for Azure Function that implements the function. */
         public String FunctionUrl;
-        
+
+        public RegisterHttpFunctionRequest() {
+        }
+
+        public RegisterHttpFunctionRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
      * A title can have many functions, RegisterQueuedFunction associates a function name with a queue name and connection
      * string.
      */
-    public static class RegisterQueuedFunctionRequest {
+    public static class RegisterQueuedFunctionRequest extends PlayFabRequestSettingsModel {
         /** A connection string for the storage account that hosts the queue for the Azure Function. */
         public String ConnectionString;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -710,7 +758,13 @@ public class PlayFabCloudScriptModels {
         public String FunctionName;
         /** The name of the queue for the Azure Function. */
         public String QueueName;
-        
+
+        public RegisterQueuedFunctionRequest() {
+        }
+
+        public RegisterQueuedFunctionRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ScriptExecutionError {
@@ -776,12 +830,18 @@ public class PlayFabCloudScriptModels {
         Queue
     }
 
-    public static class UnregisterFunctionRequest {
+    public static class UnregisterFunctionRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The name of the function to unregister */
         public String FunctionName;
-        
+
+        public UnregisterFunctionRequest() {
+        }
+
+        public UnregisterFunctionRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ValueToDateModel {

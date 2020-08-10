@@ -64,9 +64,10 @@ public class PlayFabAuthenticationAPI {
         String authKey = null, authValue = null;
         if (PlayFabSettings.EntityToken != null) { authKey = "X-EntityToken"; authValue = PlayFabSettings.EntityToken; }
         else if (PlayFabSettings.ClientSessionTicket != null) { authKey = "X-Authorization"; authValue = PlayFabSettings.ClientSessionTicket; }
+        else if (request.developerSecretKey != null) { authKey = "X-SecretKey"; authValue = request.developerSecretKey; }
         else if (PlayFabSettings.DeveloperSecretKey != null) { authKey = "X-SecretKey"; authValue = PlayFabSettings.DeveloperSecretKey; }
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Authentication/GetEntityToken"), request, authKey, authValue);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Authentication/GetEntityToken", request), request, authKey, authValue);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -129,7 +130,7 @@ public class PlayFabAuthenticationAPI {
     private static PlayFabResult<ValidateEntityTokenResponse> privateValidateEntityTokenAsync(final ValidateEntityTokenRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Authentication/ValidateEntityToken"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Authentication/ValidateEntityToken", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {

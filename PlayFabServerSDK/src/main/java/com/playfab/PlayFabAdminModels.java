@@ -4,14 +4,19 @@ import java.util.*;
 import com.playfab.PlayFabUtil.*;
 
 public class PlayFabAdminModels {
-
     /** If the task instance has already completed, there will be no-op. */
-    public static class AbortTaskInstanceRequest {
+    public static class AbortTaskInstanceRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** ID of a task instance that is being aborted. */
         public String TaskInstanceId;
-        
+
+        public AbortTaskInstanceRequest() {
+        }
+
+        public AbortTaskInstanceRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ActionsOnPlayersInSegmentTaskParameter {
@@ -70,7 +75,7 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class AddLocalizedNewsRequest {
+    public static class AddLocalizedNewsRequest extends PlayFabRequestSettingsModel {
         /** Localized body text of the news. */
         public String Body;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -81,14 +86,20 @@ public class PlayFabAdminModels {
         public String NewsId;
         /** Localized title (headline) of the news item. */
         public String Title;
-        
+
+        public AddLocalizedNewsRequest() {
+        }
+
+        public AddLocalizedNewsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class AddLocalizedNewsResult {
         
     }
 
-    public static class AddNewsRequest {
+    public static class AddNewsRequest extends PlayFabRequestSettingsModel {
         /** Default body text of the news. */
         public String Body;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -97,7 +108,13 @@ public class PlayFabAdminModels {
         public Date Timestamp;
         /** Default title (headline) of the news item. */
         public String Title;
-        
+
+        public AddNewsRequest() {
+        }
+
+        public AddNewsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class AddNewsResult {
@@ -111,21 +128,27 @@ public class PlayFabAdminModels {
      * player profile. TagName can be used for segmentation and it is limited to 256 characters. Also there is a limit on the
      * number of tags a title can have.
      */
-    public static class AddPlayerTagRequest {
+    public static class AddPlayerTagRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
         /** Unique tag for player profile. */
         public String TagName;
-        
+
+        public AddPlayerTagRequest() {
+        }
+
+        public AddPlayerTagRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class AddPlayerTagResult {
         
     }
 
-    public static class AddServerBuildRequest {
+    public static class AddServerBuildRequest extends PlayFabRequestSettingsModel {
         /** server host regions in which this build should be running and available */
         public ArrayList<Region> ActiveRegions;
         /** unique identifier for the build executable */
@@ -145,7 +168,13 @@ public class PlayFabAdminModels {
          * machines (given the number of current running host machines and game server instances)
          */
         public Integer MinFreeGameSlots;
-        
+
+        public AddServerBuildRequest() {
+        }
+
+        public AddServerBuildRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class AddServerBuildResult {
@@ -178,7 +207,7 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class AddUserVirtualCurrencyRequest {
+    public static class AddUserVirtualCurrencyRequest extends PlayFabRequestSettingsModel {
         /**
          * Amount to be added to the user balance of the specified virtual currency. Maximum VC balance is Int32 (2,147,483,647).
          * Any increase over this value will be discarded.
@@ -190,20 +219,32 @@ public class PlayFabAdminModels {
         public String PlayFabId;
         /** Name of the virtual currency which is to be incremented. */
         public String VirtualCurrency;
-        
+
+        public AddUserVirtualCurrencyRequest() {
+        }
+
+        public AddUserVirtualCurrencyRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
      * This operation is additive. Any new currencies defined in the array will be added to the set of those available for the
      * title, while any CurrencyCode identifiers matching existing ones in the game will be overwritten with the new values.
      */
-    public static class AddVirtualCurrencyTypesRequest {
+    public static class AddVirtualCurrencyTypesRequest extends PlayFabRequestSettingsModel {
         /**
          * List of virtual currencies and their initial deposits (the amount a user is granted when signing in for the first time)
          * to the title
          */
         public ArrayList<VirtualCurrencyData> VirtualCurrencies;
-        
+
+        public AddVirtualCurrencyTypesRequest() {
+        }
+
+        public AddVirtualCurrencyTypesRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ApiCondition {
@@ -238,7 +279,7 @@ public class PlayFabAdminModels {
     }
 
     /** Represents a single ban request. */
-    public static class BanRequest {
+    public static class BanRequest extends PlayFabRequestSettingsModel {
         /** The duration in hours for the ban. Leave this blank for a permanent ban. */
         public Long DurationInHours;
         /** IP address to be banned. May affect multiple players. */
@@ -249,19 +290,31 @@ public class PlayFabAdminModels {
         public String PlayFabId;
         /** The reason for this ban. Maximum 140 characters. */
         public String Reason;
-        
+
+        public BanRequest() {
+        }
+
+        public BanRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
      * The existence of each user will not be verified. When banning by IP or MAC address, multiple players may be affected, so
      * use this feature with caution. Returns information about the new bans.
      */
-    public static class BanUsersRequest {
+    public static class BanUsersRequest extends PlayFabRequestSettingsModel {
         /** List of ban requests to be applied. Maximum 100. */
         public ArrayList<BanRequest> Bans;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        
+
+        public BanUsersRequest() {
+        }
+
+        public BanUsersRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class BanUsersResult {
@@ -399,12 +452,18 @@ public class PlayFabAdminModels {
     }
 
     /** This returns the total number of these items available. */
-    public static class CheckLimitedEditionItemAvailabilityRequest {
+    public static class CheckLimitedEditionItemAvailabilityRequest extends PlayFabRequestSettingsModel {
         /** Which catalog is being updated. If null, uses the default catalog. */
         public String CatalogVersion;
         /** The item to check for. */
         public String ItemId;
-        
+
+        public CheckLimitedEditionItemAvailabilityRequest() {
+        }
+
+        public CheckLimitedEditionItemAvailabilityRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class CheckLimitedEditionItemAvailabilityResult {
@@ -766,7 +825,7 @@ public class PlayFabAdminModels {
      * Task name is unique within a title. Using a task name that's already taken will cause a name conflict error. Too many
      * create-task requests within a short time will cause a create conflict error.
      */
-    public static class CreateActionsOnPlayerSegmentTaskRequest {
+    public static class CreateActionsOnPlayerSegmentTaskRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Description the task */
@@ -779,14 +838,20 @@ public class PlayFabAdminModels {
         public ActionsOnPlayersInSegmentTaskParameter Parameter;
         /** Cron expression for the run schedule of the task. The expression should be in UTC. */
         public String Schedule;
-        
+
+        public CreateActionsOnPlayerSegmentTaskRequest() {
+        }
+
+        public CreateActionsOnPlayerSegmentTaskRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
      * Task name is unique within a title. Using a task name that's already taken will cause a name conflict error. Too many
      * create-task requests within a short time will cause a create conflict error.
      */
-    public static class CreateCloudScriptTaskRequest {
+    public static class CreateCloudScriptTaskRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Description the task */
@@ -799,14 +864,20 @@ public class PlayFabAdminModels {
         public CloudScriptTaskParameter Parameter;
         /** Cron expression for the run schedule of the task. The expression should be in UTC. */
         public String Schedule;
-        
+
+        public CreateCloudScriptTaskRequest() {
+        }
+
+        public CreateCloudScriptTaskRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
      * Task name is unique within a title. Using a task name that's already taken will cause a name conflict error. Too many
      * create-task requests within a short time will cause a create conflict error.
      */
-    public static class CreateInsightsScheduledScalingTaskRequest {
+    public static class CreateInsightsScheduledScalingTaskRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Description the task */
@@ -819,10 +890,16 @@ public class PlayFabAdminModels {
         public InsightsScalingTaskParameter Parameter;
         /** Cron expression for the run schedule of the task. The expression should be in UTC. */
         public String Schedule;
-        
+
+        public CreateInsightsScheduledScalingTaskRequest() {
+        }
+
+        public CreateInsightsScheduledScalingTaskRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
-    public static class CreateOpenIdConnectionRequest {
+    public static class CreateOpenIdConnectionRequest extends PlayFabRequestSettingsModel {
         /** The client ID given by the ID provider. */
         public String ClientId;
         /** The client secret given by the ID provider. */
@@ -838,17 +915,29 @@ public class PlayFabAdminModels {
         public String IssuerDiscoveryUrl;
         /** Manually specified information for an OpenID Connect issuer. */
         public OpenIdIssuerInformation IssuerInformation;
-        
+
+        public CreateOpenIdConnectionRequest() {
+        }
+
+        public CreateOpenIdConnectionRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
      * Player Shared Secret Keys are used for the call to Client/GetTitlePublicKey, which exchanges the shared secret for an
      * RSA CSP blob to be used to encrypt the payload of account creation requests when that API requires a signature header.
      */
-    public static class CreatePlayerSharedSecretRequest {
+    public static class CreatePlayerSharedSecretRequest extends PlayFabRequestSettingsModel {
         /** Friendly name for this key */
         public String FriendlyName;
-        
+
+        public CreatePlayerSharedSecretRequest() {
+        }
+
+        public CreatePlayerSharedSecretRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class CreatePlayerSharedSecretResult {
@@ -871,7 +960,7 @@ public class PlayFabAdminModels {
      * value is submitted - always update with the new value (Last), use the highest of the old and new values (Max), use the
      * smallest (Min), or add them together (Sum).
      */
-    public static class CreatePlayerStatisticDefinitionRequest {
+    public static class CreatePlayerStatisticDefinitionRequest extends PlayFabRequestSettingsModel {
         /** the aggregation method to use in updating the statistic (defaults to last) */
         public StatisticAggregationMethod AggregationMethod;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -880,7 +969,13 @@ public class PlayFabAdminModels {
         public String StatisticName;
         /** interval at which the values of the statistic for all players are reset (resets begin at the next interval boundary) */
         public StatisticResetIntervalOption VersionChangeInterval;
-        
+
+        public CreatePlayerStatisticDefinitionRequest() {
+        }
+
+        public CreatePlayerStatisticDefinitionRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class CreatePlayerStatisticDefinitionResult {
@@ -1060,10 +1155,16 @@ public class PlayFabAdminModels {
         ZWD
     }
 
-    public static class DeleteContentRequest {
+    public static class DeleteContentRequest extends PlayFabRequestSettingsModel {
         /** Key of the content item to be deleted */
         public String Key;
-        
+
+        public DeleteContentRequest() {
+        }
+
+        public DeleteContentRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
@@ -1077,12 +1178,18 @@ public class PlayFabAdminModels {
      * same title will fail with the 'AccountDeleted' error. It is highly recommended to know the impact of the deletion by
      * calling GetPlayedTitleList, before calling this API.
      */
-    public static class DeleteMasterPlayerAccountRequest {
+    public static class DeleteMasterPlayerAccountRequest extends PlayFabRequestSettingsModel {
         /** Developer created string to identify a user without PlayFab ID */
         public String MetaData;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
-        
+
+        public DeleteMasterPlayerAccountRequest() {
+        }
+
+        public DeleteMasterPlayerAccountRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class DeleteMasterPlayerAccountResult {
@@ -1096,10 +1203,16 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class DeleteOpenIdConnectionRequest {
+    public static class DeleteOpenIdConnectionRequest extends PlayFabRequestSettingsModel {
         /** unique name of the connection */
         public String ConnectionId;
-        
+
+        public DeleteOpenIdConnectionRequest() {
+        }
+
+        public DeleteOpenIdConnectionRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
@@ -1111,10 +1224,16 @@ public class PlayFabAdminModels {
      * before all player data is fully deleted. Until the player data is fully deleted, attempts to recreate the player with
      * the same user account in the same title will fail with the 'AccountDeleted' error.
      */
-    public static class DeletePlayerRequest {
+    public static class DeletePlayerRequest extends PlayFabRequestSettingsModel {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
-        
+
+        public DeletePlayerRequest() {
+        }
+
+        public DeletePlayerRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class DeletePlayerResult {
@@ -1125,10 +1244,16 @@ public class PlayFabAdminModels {
      * Player Shared Secret Keys are used for the call to Client/GetTitlePublicKey, which exchanges the shared secret for an
      * RSA CSP blob to be used to encrypt the payload of account creation requests when that API requires a signature header.
      */
-    public static class DeletePlayerSharedSecretRequest {
+    public static class DeletePlayerSharedSecretRequest extends PlayFabRequestSettingsModel {
         /** The shared secret key to delete */
         public String SecretKey;
-        
+
+        public DeletePlayerSharedSecretRequest() {
+        }
+
+        public DeletePlayerSharedSecretRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class DeletePlayerSharedSecretResult {
@@ -1136,14 +1261,20 @@ public class PlayFabAdminModels {
     }
 
     /** This non-reversible operation will permanently delete the requested store. */
-    public static class DeleteStoreRequest {
+    public static class DeleteStoreRequest extends PlayFabRequestSettingsModel {
         /** catalog version of the store to delete. If null, uses the default catalog. */
         public String CatalogVersion;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** unqiue identifier for the store which is to be deleted */
         public String StoreId;
-        
+
+        public DeleteStoreRequest() {
+        }
+
+        public DeleteStoreRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class DeleteStoreResult {
@@ -1155,17 +1286,29 @@ public class PlayFabAdminModels {
      * become orphaned and does not belongs to any task. Executions of any in-progress task instances will continue. If the
      * task specified does not exist, the deletion is considered a success.
      */
-    public static class DeleteTaskRequest {
+    public static class DeleteTaskRequest extends PlayFabRequestSettingsModel {
         /** Specify either the task ID or the name of task to be deleted. */
         public NameIdentifier Identifier;
-        
+
+        public DeleteTaskRequest() {
+        }
+
+        public DeleteTaskRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /** Will delete all the title data associated with the given override label. */
-    public static class DeleteTitleDataOverrideRequest {
+    public static class DeleteTitleDataOverrideRequest extends PlayFabRequestSettingsModel {
         /** Name of the override. */
         public String OverrideLabel;
-        
+
+        public DeleteTitleDataOverrideRequest() {
+        }
+
+        public DeleteTitleDataOverrideRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class DeleteTitleDataOverrideResult {
@@ -1181,8 +1324,13 @@ public class PlayFabAdminModels {
      * before deleting the title. If any player accounts exist, the API will return a 'TitleContainsUserAccounts' error. Until
      * the title data is fully deleted, attempts to call APIs with the title will fail with the 'TitleDeleted' error.
      */
-    public static class DeleteTitleRequest {
-        
+    public static class DeleteTitleRequest extends PlayFabRequestSettingsModel {
+        public DeleteTitleRequest() {
+        }
+
+        public DeleteTitleRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class DeleteTitleResult {
@@ -1259,10 +1407,16 @@ public class PlayFabAdminModels {
      * export is available for download. Upon completion of the export, an email containing the URL to download the export dump
      * will be sent to the notification email address configured for the title.
      */
-    public static class ExportMasterPlayerDataRequest {
+    public static class ExportMasterPlayerDataRequest extends PlayFabRequestSettingsModel {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
-        
+
+        public ExportMasterPlayerDataRequest() {
+        }
+
+        public ExportMasterPlayerDataRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ExportMasterPlayerDataResult {
@@ -1889,8 +2043,13 @@ public class PlayFabAdminModels {
     }
 
     /** Request has no paramaters. */
-    public static class GetAllSegmentsRequest {
-        
+    public static class GetAllSegmentsRequest extends PlayFabRequestSettingsModel {
+        public GetAllSegmentsRequest() {
+        }
+
+        public GetAllSegmentsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetAllSegmentsResult {
@@ -1899,10 +2058,16 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class GetCatalogItemsRequest {
+    public static class GetCatalogItemsRequest extends PlayFabRequestSettingsModel {
         /** Which catalog is being requested. If null, uses the default catalog. */
         public String CatalogVersion;
-        
+
+        public GetCatalogItemsRequest() {
+        }
+
+        public GetCatalogItemsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetCatalogItemsResult {
@@ -1912,12 +2077,18 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class GetCloudScriptRevisionRequest {
+    public static class GetCloudScriptRevisionRequest extends PlayFabRequestSettingsModel {
         /** Revision number. If left null, defaults to the latest revision */
         public Integer Revision;
         /** Version number. If left null, defaults to the latest version */
         public Integer Version;
-        
+
+        public GetCloudScriptRevisionRequest() {
+        }
+
+        public GetCloudScriptRevisionRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetCloudScriptRevisionResult {
@@ -1942,8 +2113,13 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class GetCloudScriptVersionsRequest {
-        
+    public static class GetCloudScriptVersionsRequest extends PlayFabRequestSettingsModel {
+        public GetCloudScriptVersionsRequest() {
+        }
+
+        public GetCloudScriptVersionsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetCloudScriptVersionsResult {
@@ -1952,13 +2128,19 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class GetContentListRequest {
+    public static class GetContentListRequest extends PlayFabRequestSettingsModel {
         /**
          * Limits the response to keys that begin with the specified prefix. You can use prefixes to list contents under a folder,
          * or for a specified version, etc.
          */
         public String Prefix;
-        
+
+        public GetContentListRequest() {
+        }
+
+        public GetContentListRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetContentListResult {
@@ -1971,7 +2153,7 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class GetContentUploadUrlRequest {
+    public static class GetContentUploadUrlRequest extends PlayFabRequestSettingsModel {
         /**
          * A standard MIME type describing the format of the contents. The same MIME type has to be set in the header when
          * uploading the content. If not specified, the MIME type is 'binary/octet-stream' by default.
@@ -1979,7 +2161,13 @@ public class PlayFabAdminModels {
         public String ContentType;
         /** Key of the content item to upload, usually formatted as a path, e.g. images/a.png */
         public String Key;
-        
+
+        public GetContentUploadUrlRequest() {
+        }
+
+        public GetContentUploadUrlRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetContentUploadUrlResult {
@@ -1992,7 +2180,7 @@ public class PlayFabAdminModels {
      * Gets the download URL for the requested report data (in CSV form). The reports available through this API call are those
      * available in the Game Manager, in the Analytics-&gt;Reports tab.
      */
-    public static class GetDataReportRequest {
+    public static class GetDataReportRequest extends PlayFabRequestSettingsModel {
         /** Reporting year (UTC) */
         public Integer Day;
         /** Reporting month (UTC) */
@@ -2001,7 +2189,13 @@ public class PlayFabAdminModels {
         public String ReportName;
         /** Reporting year (UTC) */
         public Integer Year;
-        
+
+        public GetDataReportRequest() {
+        }
+
+        public GetDataReportRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetDataReportResult {
@@ -2013,10 +2207,16 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class GetMatchmakerGameInfoRequest {
+    public static class GetMatchmakerGameInfoRequest extends PlayFabRequestSettingsModel {
         /** unique identifier of the lobby for which info is being requested */
         public String LobbyId;
-        
+
+        public GetMatchmakerGameInfoRequest() {
+        }
+
+        public GetMatchmakerGameInfoRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetMatchmakerGameInfoResult {
@@ -2053,10 +2253,16 @@ public class PlayFabAdminModels {
      * additional users, and by the PlayFab game server management service to determine when a new Game Server Host should be
      * created in order to prevent excess load on existing Hosts.
      */
-    public static class GetMatchmakerGameModesRequest {
+    public static class GetMatchmakerGameModesRequest extends PlayFabRequestSettingsModel {
         /** previously uploaded build version for which game modes are being requested */
         public String BuildVersion;
-        
+
+        public GetMatchmakerGameModesRequest() {
+        }
+
+        public GetMatchmakerGameModesRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetMatchmakerGameModesResult {
@@ -2066,10 +2272,16 @@ public class PlayFabAdminModels {
     }
 
     /** Useful for identifying titles of which the player's data will be deleted by DeleteMasterPlayer. */
-    public static class GetPlayedTitleListRequest {
+    public static class GetPlayedTitleListRequest extends PlayFabRequestSettingsModel {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
-        
+
+        public GetPlayedTitleListRequest() {
+        }
+
+        public GetPlayedTitleListRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetPlayedTitleListResult {
@@ -2082,12 +2294,18 @@ public class PlayFabAdminModels {
      * Gets a player ID from an auth token. The token expires after 30 minutes and cannot be used to look up a player when
      * expired.
      */
-    public static class GetPlayerIdFromAuthTokenRequest {
+    public static class GetPlayerIdFromAuthTokenRequest extends PlayFabRequestSettingsModel {
         /** The auth token of the player requesting the password reset. */
         public String Token;
         /** The type of auth token of the player requesting the password reset. */
         public AuthTokenType TokenType;
-        
+
+        public GetPlayerIdFromAuthTokenRequest() {
+        }
+
+        public GetPlayerIdFromAuthTokenRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetPlayerIdFromAuthTokenResult {
@@ -2102,7 +2320,7 @@ public class PlayFabAdminModels {
      * taken in how this data is stored and managed. Since this call will always return the relevant information for users who
      * have accessed the title, the recommendation is to not store this data locally.
      */
-    public static class GetPlayerProfileRequest {
+    public static class GetPlayerProfileRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -2113,7 +2331,13 @@ public class PlayFabAdminModels {
          * the Game Manager "Client Profile Options" tab in the "Settings" section.
          */
         public PlayerProfileViewConstraints ProfileConstraints;
-        
+
+        public GetPlayerProfileRequest() {
+        }
+
+        public GetPlayerProfileRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetPlayerProfileResult {
@@ -2135,8 +2359,13 @@ public class PlayFabAdminModels {
      * Player Shared Secret Keys are used for the call to Client/GetTitlePublicKey, which exchanges the shared secret for an
      * RSA CSP blob to be used to encrypt the payload of account creation requests when that API requires a signature header.
      */
-    public static class GetPlayerSharedSecretsRequest {
-        
+    public static class GetPlayerSharedSecretsRequest extends PlayFabRequestSettingsModel {
+        public GetPlayerSharedSecretsRequest() {
+        }
+
+        public GetPlayerSharedSecretsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetPlayerSharedSecretsResult {
@@ -2154,7 +2383,7 @@ public class PlayFabAdminModels {
      * generate high request volumes. Only one request to this API at a time should be made per title. Concurrent requests to
      * the API may be rejected with the APIConcurrentRequestLimitExceeded error.
      */
-    public static class GetPlayersInSegmentRequest {
+    public static class GetPlayersInSegmentRequest extends PlayFabRequestSettingsModel {
         /** Continuation token if retrieving subsequent pages of results. */
         public String ContinuationToken;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -2168,7 +2397,13 @@ public class PlayFabAdminModels {
         public Long SecondsToLive;
         /** Unique identifier for this segment. */
         public String SegmentId;
-        
+
+        public GetPlayersInSegmentRequest() {
+        }
+
+        public GetPlayersInSegmentRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetPlayersInSegmentResult {
@@ -2181,16 +2416,27 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class GetPlayersSegmentsRequest {
+    public static class GetPlayersSegmentsRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
-        
+
+        public GetPlayersSegmentsRequest() {
+        }
+
+        public GetPlayersSegmentsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
-    public static class GetPlayerStatisticDefinitionsRequest {
-        
+    public static class GetPlayerStatisticDefinitionsRequest extends PlayFabRequestSettingsModel {
+        public GetPlayerStatisticDefinitionsRequest() {
+        }
+
+        public GetPlayerStatisticDefinitionsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
@@ -2213,12 +2459,18 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class GetPlayerStatisticVersionsRequest {
+    public static class GetPlayerStatisticVersionsRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** unique name of the statistic */
         public String StatisticName;
-        
+
+        public GetPlayerStatisticVersionsRequest() {
+        }
+
+        public GetPlayerStatisticVersionsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
@@ -2240,14 +2492,20 @@ public class PlayFabAdminModels {
      * provided, the result is a list of all canonical tags. TagName can be used for segmentation and Namespace is limited to
      * 128 characters.
      */
-    public static class GetPlayerTagsRequest {
+    public static class GetPlayerTagsRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Optional namespace to filter results by */
         public String Namespace;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
-        
+
+        public GetPlayerTagsRequest() {
+        }
+
+        public GetPlayerTagsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetPlayerTagsResult {
@@ -2259,10 +2517,16 @@ public class PlayFabAdminModels {
     }
 
     /** Views the requested policy. Today, the only supported policy is 'ApiPolicy'. */
-    public static class GetPolicyRequest {
+    public static class GetPolicyRequest extends PlayFabRequestSettingsModel {
         /** The name of the policy to read. Only supported name is 'ApiPolicy'. */
         public String PolicyName;
-        
+
+        public GetPolicyRequest() {
+        }
+
+        public GetPolicyRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetPolicyResponse {
@@ -2279,10 +2543,16 @@ public class PlayFabAdminModels {
      * assigned to a publisher can use this API. For more information email helloplayfab@microsoft.com. This AdminAPI call for
      * getting title data guarantees no delay in between update and retrieval of newly set data.
      */
-    public static class GetPublisherDataRequest {
+    public static class GetPublisherDataRequest extends PlayFabRequestSettingsModel {
         /** array of keys to get back data from the Publisher data blob, set by the admin tools */
         public ArrayList<String> Keys;
-        
+
+        public GetPublisherDataRequest() {
+        }
+
+        public GetPublisherDataRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetPublisherDataResult {
@@ -2291,10 +2561,16 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class GetRandomResultTablesRequest {
+    public static class GetRandomResultTablesRequest extends PlayFabRequestSettingsModel {
         /** catalog version to fetch tables from. Use default catalog version if null */
         public String CatalogVersion;
-        
+
+        public GetRandomResultTablesRequest() {
+        }
+
+        public GetRandomResultTablesRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetRandomResultTablesResult {
@@ -2313,10 +2589,16 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class GetServerBuildInfoRequest {
+    public static class GetServerBuildInfoRequest extends PlayFabRequestSettingsModel {
         /** unique identifier of the previously uploaded build executable for which information is being requested */
         public String BuildId;
-        
+
+        public GetServerBuildInfoRequest() {
+        }
+
+        public GetServerBuildInfoRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /** Information about a particular server build */
@@ -2354,10 +2636,16 @@ public class PlayFabAdminModels {
         }
     }
 
-    public static class GetServerBuildUploadURLRequest {
+    public static class GetServerBuildUploadURLRequest extends PlayFabRequestSettingsModel {
         /** unique identifier of the game server build to upload */
         public String BuildId;
-        
+
+        public GetServerBuildUploadURLRequest() {
+        }
+
+        public GetServerBuildUploadURLRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetServerBuildUploadURLResult {
@@ -2376,12 +2664,18 @@ public class PlayFabAdminModels {
      * compromised client can be made to send a request for an item based upon any of these definitions. If no price is
      * specified in the store for an item, the price set in the catalog should be displayed to the user.
      */
-    public static class GetStoreItemsRequest {
+    public static class GetStoreItemsRequest extends PlayFabRequestSettingsModel {
         /** Catalog version to store items from. Use default catalog version if null */
         public String CatalogVersion;
         /** Unqiue identifier for the store which is being requested. */
         public String StoreId;
-        
+
+        public GetStoreItemsRequest() {
+        }
+
+        public GetStoreItemsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetStoreItemsResult {
@@ -2404,10 +2698,16 @@ public class PlayFabAdminModels {
      * Cloud Script function once" will be retrieved. To get a list of task instances by task, status, or time range, use
      * GetTaskInstances.
      */
-    public static class GetTaskInstanceRequest {
+    public static class GetTaskInstanceRequest extends PlayFabRequestSettingsModel {
         /** ID of the requested task instance. */
         public String TaskInstanceId;
-        
+
+        public GetTaskInstanceRequest() {
+        }
+
+        public GetTaskInstanceRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
@@ -2415,7 +2715,7 @@ public class PlayFabAdminModels {
      * information for task instances. To get detail information specific to each task type, use Get*TaskInstance based on its
      * corresponding task type.
      */
-    public static class GetTaskInstancesRequest {
+    public static class GetTaskInstancesRequest extends PlayFabRequestSettingsModel {
         /** Optional range-from filter for task instances' StartedAt timestamp. */
         public Date StartedAtRangeFrom;
         /** Optional range-to filter for task instances' StartedAt timestamp. */
@@ -2427,7 +2727,13 @@ public class PlayFabAdminModels {
          * conditions set by other filters.
          */
         public NameIdentifier TaskIdentifier;
-        
+
+        public GetTaskInstancesRequest() {
+        }
+
+        public GetTaskInstancesRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetTaskInstancesResult {
@@ -2440,10 +2746,16 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class GetTasksRequest {
+    public static class GetTasksRequest extends PlayFabRequestSettingsModel {
         /** Provide either the task ID or the task name to get a specific task. If not specified, return all defined tasks. */
         public NameIdentifier Identifier;
-        
+
+        public GetTasksRequest() {
+        }
+
+        public GetTasksRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetTasksResult {
@@ -2460,7 +2772,7 @@ public class PlayFabAdminModels {
      * Note that due to caching, there may up to a minute delay in between updating title data and a query returning the newest
      * value.
      */
-    public static class GetTitleDataRequest {
+    public static class GetTitleDataRequest extends PlayFabRequestSettingsModel {
         /** Specific keys to search for in the title data (leave null to get all keys) */
         public ArrayList<String> Keys;
         /**
@@ -2468,7 +2780,13 @@ public class PlayFabAdminModels {
          * automatically to the title data.
          */
         public String OverrideLabel;
-        
+
+        public GetTitleDataRequest() {
+        }
+
+        public GetTitleDataRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetTitleDataResult {
@@ -2478,10 +2796,16 @@ public class PlayFabAdminModels {
     }
 
     /** Get all bans for a user, including inactive and expired bans. */
-    public static class GetUserBansRequest {
+    public static class GetUserBansRequest extends PlayFabRequestSettingsModel {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
-        
+
+        public GetUserBansRequest() {
+        }
+
+        public GetUserBansRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetUserBansResult {
@@ -2494,7 +2818,7 @@ public class PlayFabAdminModels {
      * Data is stored as JSON key-value pairs. If the Keys parameter is provided, the data object returned will only contain
      * the data specific to the indicated Keys. Otherwise, the full set of custom user data will be returned.
      */
-    public static class GetUserDataRequest {
+    public static class GetUserDataRequest extends PlayFabRequestSettingsModel {
         /**
          * The version that currently exists according to the caller. The call will return the data for all of the keys if the
          * version in the system is greater than this.
@@ -2504,7 +2828,13 @@ public class PlayFabAdminModels {
         public ArrayList<String> Keys;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
-        
+
+        public GetUserDataRequest() {
+        }
+
+        public GetUserDataRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetUserDataResult {
@@ -2525,12 +2855,18 @@ public class PlayFabAdminModels {
      * grants, coupons, etc.). Items that are expired, fully consumed, or are no longer valid are not considered to be in the
      * user's current inventory, and so will not be not included.
      */
-    public static class GetUserInventoryRequest {
+    public static class GetUserInventoryRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
-        
+
+        public GetUserInventoryRequest() {
+        }
+
+        public GetUserInventoryRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetUserInventoryResult {
@@ -2610,7 +2946,7 @@ public class PlayFabAdminModels {
      * for inventory grants and purchases increases fractionally the more items are in the inventory, and the more items are in
      * the grant/purchase operation.
      */
-    public static class GrantItemsToUsersRequest {
+    public static class GrantItemsToUsersRequest extends PlayFabRequestSettingsModel {
         /** Catalog version from which items are to be granted. */
         public String CatalogVersion;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -2618,7 +2954,13 @@ public class PlayFabAdminModels {
         /** Array of items to grant and the users to whom the items are to be granted. */
         @Unordered
         public ArrayList<ItemGrant> ItemGrants;
-        
+
+        public GrantItemsToUsersRequest() {
+        }
+
+        public GrantItemsToUsersRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /** Please note that the order of the items in the response may not match the order of items in the request. */
@@ -2632,7 +2974,7 @@ public class PlayFabAdminModels {
      * This operation will increment the global counter for the number of these items available. This number cannot be
      * decremented, except by actual grants.
      */
-    public static class IncrementLimitedEditionItemAvailabilityRequest {
+    public static class IncrementLimitedEditionItemAvailabilityRequest extends PlayFabRequestSettingsModel {
         /** Amount to increase availability by. */
         public Integer Amount;
         /** Which catalog is being updated. If null, uses the default catalog. */
@@ -2641,7 +2983,13 @@ public class PlayFabAdminModels {
         public Map<String,String> CustomTags;
         /** The item which needs more availability. */
         public String ItemId;
-        
+
+        public IncrementLimitedEditionItemAvailabilityRequest() {
+        }
+
+        public IncrementLimitedEditionItemAvailabilityRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class IncrementLimitedEditionItemAvailabilityResult {
@@ -2660,12 +3008,18 @@ public class PlayFabAdminModels {
      * once reset, the historical statistics for players in the title may be retrieved using the URL specified in the version
      * information (GetPlayerStatisticVersions).
      */
-    public static class IncrementPlayerStatisticVersionRequest {
+    public static class IncrementPlayerStatisticVersionRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** unique name of the statistic */
         public String StatisticName;
-        
+
+        public IncrementPlayerStatisticVersionRequest() {
+        }
+
+        public IncrementPlayerStatisticVersionRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class IncrementPlayerStatisticVersionResult {
@@ -2766,8 +3120,13 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class ListBuildsRequest {
-        
+    public static class ListBuildsRequest extends PlayFabRequestSettingsModel {
+        public ListBuildsRequest() {
+        }
+
+        public ListBuildsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ListBuildsResult {
@@ -2777,8 +3136,13 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class ListOpenIdConnectionRequest {
-        
+    public static class ListOpenIdConnectionRequest extends PlayFabRequestSettingsModel {
+        public ListOpenIdConnectionRequest() {
+        }
+
+        public ListOpenIdConnectionRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ListOpenIdConnectionResponse {
@@ -2787,8 +3151,13 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class ListVirtualCurrencyTypesRequest {
-        
+    public static class ListVirtualCurrencyTypesRequest extends PlayFabRequestSettingsModel {
+        public ListVirtualCurrencyTypesRequest() {
+        }
+
+        public ListVirtualCurrencyTypesRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ListVirtualCurrencyTypesResult {
@@ -2851,7 +3220,7 @@ public class PlayFabAdminModels {
      * taken in how this data is stored and managed. Since this call will always return the relevant information for users who
      * have accessed the title, the recommendation is to not store this data locally.
      */
-    public static class LookupUserAccountInfoRequest {
+    public static class LookupUserAccountInfoRequest extends PlayFabRequestSettingsModel {
         /** User email address attached to their account */
         public String Email;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -2860,7 +3229,13 @@ public class PlayFabAdminModels {
         public String TitleDisplayName;
         /** PlayFab username for the account (3-20 characters) */
         public String Username;
-        
+
+        public LookupUserAccountInfoRequest() {
+        }
+
+        public LookupUserAccountInfoRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class LookupUserAccountInfoResult {
@@ -2893,19 +3268,25 @@ public class PlayFabAdminModels {
      * mode definition for the game server executable in question to be created from scratch. If there is an existing game
      * server mode definition for the given BuildVersion, it will be deleted and replaced with the data specified in this call.
      */
-    public static class ModifyMatchmakerGameModesRequest {
+    public static class ModifyMatchmakerGameModesRequest extends PlayFabRequestSettingsModel {
         /** previously uploaded build version for which game modes are being specified */
         public String BuildVersion;
         /** array of game modes (Note: this will replace all game modes for the indicated build version) */
         public ArrayList<GameModeInfo> GameModes;
-        
+
+        public ModifyMatchmakerGameModesRequest() {
+        }
+
+        public ModifyMatchmakerGameModesRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ModifyMatchmakerGameModesResult {
         
     }
 
-    public static class ModifyServerBuildRequest {
+    public static class ModifyServerBuildRequest extends PlayFabRequestSettingsModel {
         /** array of regions where this build can used, when it is active */
         public ArrayList<Region> ActiveRegions;
         /** unique identifier of the previously uploaded build executable to be updated */
@@ -2927,7 +3308,13 @@ public class PlayFabAdminModels {
         public Integer MinFreeGameSlots;
         /** new timestamp */
         public Date Timestamp;
-        
+
+        public ModifyServerBuildRequest() {
+        }
+
+        public ModifyServerBuildRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ModifyServerBuildResult {
@@ -3278,7 +3665,7 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class RefundPurchaseRequest {
+    public static class RefundPurchaseRequest extends PlayFabRequestSettingsModel {
         /** Unique order ID for the purchase in question. */
         public String OrderId;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -3289,7 +3676,13 @@ public class PlayFabAdminModels {
          * https://developers.facebook.com/docs/payments/implementation-guide/handling-disputes-refunds)
          */
         public String Reason;
-        
+
+        public RefundPurchaseRequest() {
+        }
+
+        public RefundPurchaseRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class RefundPurchaseResponse {
@@ -3312,24 +3705,36 @@ public class PlayFabAdminModels {
      * This API will trigger a player_tag_removed event and remove a tag with the given TagName and PlayFabID from the
      * corresponding player profile. TagName can be used for segmentation and it is limited to 256 characters
      */
-    public static class RemovePlayerTagRequest {
+    public static class RemovePlayerTagRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
         /** Unique tag for player profile. */
         public String TagName;
-        
+
+        public RemovePlayerTagRequest() {
+        }
+
+        public RemovePlayerTagRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class RemovePlayerTagResult {
         
     }
 
-    public static class RemoveServerBuildRequest {
+    public static class RemoveServerBuildRequest extends PlayFabRequestSettingsModel {
         /** unique identifier of the previously uploaded build executable to be removed */
         public String BuildId;
-        
+
+        public RemoveServerBuildRequest() {
+        }
+
+        public RemoveServerBuildRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class RemoveServerBuildResult {
@@ -3341,24 +3746,36 @@ public class PlayFabAdminModels {
      * will not remove player balances for the removed currencies; if a deleted currency is recreated at any point, user
      * balances will be in an undefined state.
      */
-    public static class RemoveVirtualCurrencyTypesRequest {
+    public static class RemoveVirtualCurrencyTypesRequest extends PlayFabRequestSettingsModel {
         /** List of virtual currencies to delete */
         public ArrayList<VirtualCurrencyData> VirtualCurrencies;
-        
+
+        public RemoveVirtualCurrencyTypesRequest() {
+        }
+
+        public RemoveVirtualCurrencyTypesRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
      * Note that this action cannot be un-done. All statistics for this character will be deleted, removing the user from all
      * leaderboards for the game.
      */
-    public static class ResetCharacterStatisticsRequest {
+    public static class ResetCharacterStatisticsRequest extends PlayFabRequestSettingsModel {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         public String CharacterId;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
-        
+
+        public ResetCharacterStatisticsRequest() {
+        }
+
+        public ResetCharacterStatisticsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ResetCharacterStatisticsResult {
@@ -3369,14 +3786,20 @@ public class PlayFabAdminModels {
      * Resets a player's password taking in a new password based and validating the user based off of a token sent to the
      * playerto their email. The token expires after 30 minutes.
      */
-    public static class ResetPasswordRequest {
+    public static class ResetPasswordRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The new password for the player. */
         public String Password;
         /** The token of the player requesting the password reset. */
         public String Token;
-        
+
+        public ResetPasswordRequest() {
+        }
+
+        public ResetPasswordRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ResetPasswordResult {
@@ -3387,12 +3810,18 @@ public class PlayFabAdminModels {
      * Note that this action cannot be un-done. All statistics for this user will be deleted, removing the user from all
      * leaderboards for the game.
      */
-    public static class ResetUserStatisticsRequest {
+    public static class ResetUserStatisticsRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
-        
+
+        public ResetUserStatisticsRequest() {
+        }
+
+        public ResetUserStatisticsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ResetUserStatisticsResult {
@@ -3405,7 +3834,7 @@ public class PlayFabAdminModels {
         Manual
     }
 
-    public static class ResolvePurchaseDisputeRequest {
+    public static class ResolvePurchaseDisputeRequest extends PlayFabRequestSettingsModel {
         /** Unique order ID for the purchase in question. */
         public String OrderId;
         /**
@@ -3421,7 +3850,13 @@ public class PlayFabAdminModels {
          * https://developers.facebook.com/docs/payments/implementation-guide/handling-disputes-refunds)
          */
         public String Reason;
-        
+
+        public ResolvePurchaseDisputeRequest() {
+        }
+
+        public ResolvePurchaseDisputeRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ResolvePurchaseDisputeResponse {
@@ -3449,10 +3884,16 @@ public class PlayFabAdminModels {
      * Setting the active state of all non-expired bans for a user to Inactive. Expired bans with an Active state will be
      * ignored, however. Returns information about applied updates only.
      */
-    public static class RevokeAllBansForUserRequest {
+    public static class RevokeAllBansForUserRequest extends PlayFabRequestSettingsModel {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
-        
+
+        public RevokeAllBansForUserRequest() {
+        }
+
+        public RevokeAllBansForUserRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class RevokeAllBansForUserResult {
@@ -3465,10 +3906,16 @@ public class PlayFabAdminModels {
      * Setting the active state of all bans requested to Inactive regardless of whether that ban has already expired. BanIds
      * that do not exist will be skipped. Returns information about applied updates only.
      */
-    public static class RevokeBansRequest {
+    public static class RevokeBansRequest extends PlayFabRequestSettingsModel {
         /** Ids of the bans to be revoked. Maximum 100. */
         public ArrayList<String> BanIds;
-        
+
+        public RevokeBansRequest() {
+        }
+
+        public RevokeBansRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class RevokeBansResult {
@@ -3491,24 +3938,36 @@ public class PlayFabAdminModels {
      * In cases where the inventory item in question is a "crate", and the items it contained have already been dispensed, this
      * will not revoke access or otherwise remove the items which were dispensed.
      */
-    public static class RevokeInventoryItemRequest {
+    public static class RevokeInventoryItemRequest extends PlayFabRequestSettingsModel {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         public String CharacterId;
         /** Unique PlayFab assigned instance identifier of the item */
         public String ItemInstanceId;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
-        
+
+        public RevokeInventoryItemRequest() {
+        }
+
+        public RevokeInventoryItemRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
      * In cases where the inventory item in question is a "crate", and the items it contained have already been dispensed, this
      * will not revoke access or otherwise remove the items which were dispensed.
      */
-    public static class RevokeInventoryItemsRequest {
+    public static class RevokeInventoryItemsRequest extends PlayFabRequestSettingsModel {
         /** Array of player items to revoke, between 1 and 25 items. */
         public ArrayList<RevokeInventoryItem> Items;
-        
+
+        public RevokeInventoryItemsRequest() {
+        }
+
+        public RevokeInventoryItemsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class RevokeInventoryItemsResult {
@@ -3530,12 +3989,18 @@ public class PlayFabAdminModels {
     }
 
     /** The returned task instance ID can be used to query for task execution status. */
-    public static class RunTaskRequest {
+    public static class RunTaskRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Provide either the task ID or the task name to run a task. */
         public NameIdentifier Identifier;
-        
+
+        public RunTaskRequest() {
+        }
+
+        public RunTaskRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class RunTaskResult {
@@ -3597,14 +4062,20 @@ public class PlayFabAdminModels {
      * LoginFromIOSDeviceID), thisfunction will have no effect. Only PlayFab accounts which have valid email addresses will be
      * able to receive a password reset email using this API.
      */
-    public static class SendAccountRecoveryEmailRequest {
+    public static class SendAccountRecoveryEmailRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** User email address attached to their account */
         public String Email;
         /** The email template id of the account recovery email template to send. */
         public String EmailTemplateId;
-        
+
+        public SendAccountRecoveryEmailRequest() {
+        }
+
+        public SendAccountRecoveryEmailRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class SendAccountRecoveryEmailResult {
@@ -3619,26 +4090,38 @@ public class PlayFabAdminModels {
      * hash into the header X-PlayFab-Signature, along with a header X-PlayFab-Timestamp of the same UTC timestamp used in the
      * signature.
      */
-    public static class SetPlayerSecretRequest {
+    public static class SetPlayerSecretRequest extends PlayFabRequestSettingsModel {
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
-        
+
+        public SetPlayerSecretRequest() {
+        }
+
+        public SetPlayerSecretRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class SetPlayerSecretResult {
         
     }
 
-    public static class SetPublishedRevisionRequest {
+    public static class SetPublishedRevisionRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Revision to make the current published revision */
         public Integer Revision;
         /** Version number */
         public Integer Version;
-        
+
+        public SetPublishedRevisionRequest() {
+        }
+
+        public SetPublishedRevisionRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class SetPublishedRevisionResult {
@@ -3652,7 +4135,7 @@ public class PlayFabAdminModels {
      * will be added with the specified Value. If it already exists, the Value for that key will be overwritten with the new
      * Value. For more information email helloplayfab@microsoft.com
      */
-    public static class SetPublisherDataRequest {
+    public static class SetPublisherDataRequest extends PlayFabRequestSettingsModel {
         /**
          * key we want to set a value on (note, this is additive - will only replace an existing key's value if they are the same
          * name.) Keys are trimmed of whitespace. Keys may not begin with the '!' character.
@@ -3660,7 +4143,13 @@ public class PlayFabAdminModels {
         public String Key;
         /** new value to set. Set to null to remove a value */
         public String Value;
-        
+
+        public SetPublisherDataRequest() {
+        }
+
+        public SetPublisherDataRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class SetPublisherDataResult {
@@ -3671,7 +4160,7 @@ public class PlayFabAdminModels {
      * Will set the given key values in the specified override or the primary title data based on whether the label is provided
      * or not.
      */
-    public static class SetTitleDataAndOverridesRequest {
+    public static class SetTitleDataAndOverridesRequest extends PlayFabRequestSettingsModel {
         /**
          * List of titleData key-value pairs to set/delete. Use an empty value to delete an existing key; use a non-empty value to
          * create/update a key.
@@ -3679,7 +4168,13 @@ public class PlayFabAdminModels {
         public ArrayList<TitleDataKeyValue> KeyValues;
         /** Name of the override. */
         public String OverrideLabel;
-        
+
+        public SetTitleDataAndOverridesRequest() {
+        }
+
+        public SetTitleDataAndOverridesRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class SetTitleDataAndOverridesResult {
@@ -3693,7 +4188,7 @@ public class PlayFabAdminModels {
      * operation is additive. If a Key does not exist in the current dataset, it will be added with the specified Value. If it
      * already exists, the Value for that key will be overwritten with the new Value.
      */
-    public static class SetTitleDataRequest {
+    public static class SetTitleDataRequest extends PlayFabRequestSettingsModel {
         /**
          * key we want to set a value on (note, this is additive - will only replace an existing key's value if they are the same
          * name.) Keys are trimmed of whitespace. Keys may not begin with the '!' character.
@@ -3701,7 +4196,13 @@ public class PlayFabAdminModels {
         public String Key;
         /** new value to set. Set to null to remove a value */
         public String Value;
-        
+
+        public SetTitleDataRequest() {
+        }
+
+        public SetTitleDataRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class SetTitleDataResult {
@@ -3713,7 +4214,7 @@ public class PlayFabAdminModels {
      * should be used as the Credential in this call. With Google Cloud Messaging (GCM), the Android API Key should be used.
      * The current ARN (if one exists) can be overwritten by setting the OverwriteOldARN boolean to true.
      */
-    public static class SetupPushNotificationRequest {
+    public static class SetupPushNotificationRequest extends PlayFabRequestSettingsModel {
         /** Credential is the Private Key for APNS/APNS_SANDBOX, and the API Key for GCM */
         public String Credential;
         /** for APNS, this is the PlatformPrincipal (SSL Certificate) */
@@ -3733,7 +4234,13 @@ public class PlayFabAdminModels {
          * Messaging (GCM) for Android
          */
         public PushSetupPlatform Platform;
-        
+
+        public SetupPushNotificationRequest() {
+        }
+
+        public SetupPushNotificationRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class SetupPushNotificationResult {
@@ -3866,7 +4373,7 @@ public class PlayFabAdminModels {
         PaymentPending
     }
 
-    public static class SubtractUserVirtualCurrencyRequest {
+    public static class SubtractUserVirtualCurrencyRequest extends PlayFabRequestSettingsModel {
         /** Amount to be subtracted from the user balance of the specified virtual currency. */
         public Integer Amount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -3875,7 +4382,13 @@ public class PlayFabAdminModels {
         public String PlayFabId;
         /** Name of the virtual currency which is to be decremented. */
         public String VirtualCurrency;
-        
+
+        public SubtractUserVirtualCurrencyRequest() {
+        }
+
+        public SubtractUserVirtualCurrencyRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class TagModel {
@@ -3937,7 +4450,7 @@ public class PlayFabAdminModels {
     }
 
     /** Represents a single update ban request. */
-    public static class UpdateBanRequest {
+    public static class UpdateBanRequest extends PlayFabRequestSettingsModel {
         /** The updated active state for the ban. Null for no change. */
         public Boolean Active;
         /** The id of the ban to be updated. */
@@ -3952,17 +4465,29 @@ public class PlayFabAdminModels {
         public Boolean Permanent;
         /** The updated reason for the ban to be updated. Maximum 140 characters. Null for no change. */
         public String Reason;
-        
+
+        public UpdateBanRequest() {
+        }
+
+        public UpdateBanRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
      * For each ban, only updates the values that are set. Leave any value to null for no change. If a ban could not be found,
      * the rest are still applied. Returns information about applied updates only.
      */
-    public static class UpdateBansRequest {
+    public static class UpdateBansRequest extends PlayFabRequestSettingsModel {
         /** List of bans to be updated. Maximum 100. */
         public ArrayList<UpdateBanRequest> Bans;
-        
+
+        public UpdateBansRequest() {
+        }
+
+        public UpdateBansRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class UpdateBansResult {
@@ -3976,7 +4501,7 @@ public class PlayFabAdminModels {
      * is an existing catalog with the version number in question, it will be deleted and replaced with only the items
      * specified in this call.
      */
-    public static class UpdateCatalogItemsRequest {
+    public static class UpdateCatalogItemsRequest extends PlayFabRequestSettingsModel {
         /**
          * Array of catalog items to be submitted. Note that while CatalogItem has a parameter for CatalogVersion, it is not
          * required and ignored in this call.
@@ -3991,14 +4516,20 @@ public class PlayFabAdminModels {
          * always set it.
          */
         public Boolean SetAsDefaultCatalog;
-        
+
+        public UpdateCatalogItemsRequest() {
+        }
+
+        public UpdateCatalogItemsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class UpdateCatalogItemsResult {
         
     }
 
-    public static class UpdateCloudScriptRequest {
+    public static class UpdateCloudScriptRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** PlayFab user ID of the developer initiating the request. */
@@ -4007,7 +4538,13 @@ public class PlayFabAdminModels {
         public ArrayList<CloudScriptFile> Files;
         /** Immediately publish the new revision */
         public Boolean Publish;
-        
+
+        public UpdateCloudScriptRequest() {
+        }
+
+        public UpdateCloudScriptRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class UpdateCloudScriptResult {
@@ -4018,7 +4555,7 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class UpdateOpenIdConnectionRequest {
+    public static class UpdateOpenIdConnectionRequest extends PlayFabRequestSettingsModel {
         /** The client ID given by the ID provider. */
         public String ClientId;
         /** The client secret given by the ID provider. */
@@ -4029,21 +4566,33 @@ public class PlayFabAdminModels {
         public String IssuerDiscoveryUrl;
         /** Manually specified information for an OpenID Connect issuer. */
         public OpenIdIssuerInformation IssuerInformation;
-        
+
+        public UpdateOpenIdConnectionRequest() {
+        }
+
+        public UpdateOpenIdConnectionRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
      * Player Shared Secret Keys are used for the call to Client/GetTitlePublicKey, which exchanges the shared secret for an
      * RSA CSP blob to be used to encrypt the payload of account creation requests when that API requires a signature header.
      */
-    public static class UpdatePlayerSharedSecretRequest {
+    public static class UpdatePlayerSharedSecretRequest extends PlayFabRequestSettingsModel {
         /** Disable or Enable this key */
         public Boolean Disabled;
         /** Friendly name for this key */
         public String FriendlyName;
         /** The shared secret key to update */
         public String SecretKey;
-        
+
+        public UpdatePlayerSharedSecretRequest() {
+        }
+
+        public UpdatePlayerSharedSecretRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class UpdatePlayerSharedSecretResult {
@@ -4064,7 +4613,7 @@ public class PlayFabAdminModels {
      * value is submitted - always update with the new value (Last), use the highest of the old and new values (Max), use the
      * smallest (Min), or add them together (Sum).
      */
-    public static class UpdatePlayerStatisticDefinitionRequest {
+    public static class UpdatePlayerStatisticDefinitionRequest extends PlayFabRequestSettingsModel {
         /** the aggregation method to use in updating the statistic (defaults to last) */
         public StatisticAggregationMethod AggregationMethod;
         /** unique name of the statistic */
@@ -4074,7 +4623,13 @@ public class PlayFabAdminModels {
          * the new interval boundary)
          */
         public StatisticResetIntervalOption VersionChangeInterval;
-        
+
+        public UpdatePlayerStatisticDefinitionRequest() {
+        }
+
+        public UpdatePlayerStatisticDefinitionRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class UpdatePlayerStatisticDefinitionResult {
@@ -4088,14 +4643,20 @@ public class PlayFabAdminModels {
      * of statements that, together, govern particular area for your title. Today, the only allowed policy is called
      * 'ApiPolicy' and it governs what calls players are allowed to make.
      */
-    public static class UpdatePolicyRequest {
+    public static class UpdatePolicyRequest extends PlayFabRequestSettingsModel {
         /** Whether to overwrite or append to the existing policy. */
         public Boolean OverwritePolicy;
         /** The name of the policy being updated. Only supported name is 'ApiPolicy' */
         public String PolicyName;
         /** The new statements to include in the policy. */
         public ArrayList<PermissionStatement> Statements;
-        
+
+        public UpdatePolicyRequest() {
+        }
+
+        public UpdatePolicyRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class UpdatePolicyResponse {
@@ -4110,7 +4671,7 @@ public class PlayFabAdminModels {
      * This operation is additive. Tables with TableId values not currently defined will be added, while those with TableId
      * values matching Tables currently in the catalog will be overwritten with the given values.
      */
-    public static class UpdateRandomResultTablesRequest {
+    public static class UpdateRandomResultTablesRequest extends PlayFabRequestSettingsModel {
         /** which catalog is being updated. If null, update the current default catalog version */
         public String CatalogVersion;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -4120,7 +4681,13 @@ public class PlayFabAdminModels {
          * table, while any others will be added to the available set)
          */
         public ArrayList<RandomResultTable> Tables;
-        
+
+        public UpdateRandomResultTablesRequest() {
+        }
+
+        public UpdateRandomResultTablesRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class UpdateRandomResultTablesResult {
@@ -4139,7 +4706,7 @@ public class PlayFabAdminModels {
      * compromised client can be made to send a request for an item based upon any of these definitions. If no price is
      * specified in the store for an item, the price set in the catalog should be displayed to the user.
      */
-    public static class UpdateStoreItemsRequest {
+    public static class UpdateStoreItemsRequest extends PlayFabRequestSettingsModel {
         /** Catalog version of the store to update. If null, uses the default catalog. */
         public String CatalogVersion;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -4150,7 +4717,13 @@ public class PlayFabAdminModels {
         public ArrayList<StoreItem> Store;
         /** Unique identifier for the store which is to be updated */
         public String StoreId;
-        
+
+        public UpdateStoreItemsRequest() {
+        }
+
+        public UpdateStoreItemsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class UpdateStoreItemsResult {
@@ -4163,7 +4736,7 @@ public class PlayFabAdminModels {
      * task rename operation will be executed before updating other fields of the task. WARNING: Renaming of a task may break
      * logics where the task name is used as an identifier.
      */
-    public static class UpdateTaskRequest {
+    public static class UpdateTaskRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Description the task */
@@ -4180,7 +4753,13 @@ public class PlayFabAdminModels {
         public String Schedule;
         /** Task type. */
         public ScheduledTaskType Type;
-        
+
+        public UpdateTaskRequest() {
+        }
+
+        public UpdateTaskRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
@@ -4188,7 +4767,7 @@ public class PlayFabAdminModels {
      * updating the custom data object, keys which already exist in the object will have their values overwritten, while keys
      * with null values will be removed. No other key-value pairs will be changed apart from those specified in the call.
      */
-    public static class UpdateUserDataRequest {
+    public static class UpdateUserDataRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /**
@@ -4205,7 +4784,13 @@ public class PlayFabAdminModels {
         public UserDataPermission Permission;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
-        
+
+        public UpdateUserDataRequest() {
+        }
+
+        public UpdateUserDataRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class UpdateUserDataResult {
@@ -4222,7 +4807,7 @@ public class PlayFabAdminModels {
      * updating the custom data object, keys which already exist in the object will have their values overwritten, keys with
      * null values will be removed. No other key-value pairs will be changed apart from those specified in the call.
      */
-    public static class UpdateUserInternalDataRequest {
+    public static class UpdateUserInternalDataRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /**
@@ -4237,7 +4822,13 @@ public class PlayFabAdminModels {
         public ArrayList<String> KeysToRemove;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
-        
+
+        public UpdateUserInternalDataRequest() {
+        }
+
+        public UpdateUserInternalDataRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
@@ -4245,14 +4836,20 @@ public class PlayFabAdminModels {
      * specific to the title. This allows for unique names which more closely match the theme or genre of a title, for example.
      * This API enables changing that name, whether due to a customer request, an offensive name choice, etc.
      */
-    public static class UpdateUserTitleDisplayNameRequest {
+    public static class UpdateUserTitleDisplayNameRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** New title display name for the user - must be between 3 and 25 characters */
         public String DisplayName;
         /** PlayFab unique identifier of the user whose title specific display name is to be changed */
         public String PlayFabId;
-        
+
+        public UpdateUserTitleDisplayNameRequest() {
+        }
+
+        public UpdateUserTitleDisplayNameRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class UpdateUserTitleDisplayNameResult {

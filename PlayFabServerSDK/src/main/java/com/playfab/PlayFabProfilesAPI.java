@@ -57,7 +57,7 @@ public class PlayFabProfilesAPI {
     private static PlayFabResult<GetGlobalPolicyResponse> privateGetGlobalPolicyAsync(final GetGlobalPolicyRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Profile/GetGlobalPolicy"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Profile/GetGlobalPolicy", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -119,7 +119,7 @@ public class PlayFabProfilesAPI {
     private static PlayFabResult<GetEntityProfileResponse> privateGetProfileAsync(final GetEntityProfileRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Profile/GetProfile"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Profile/GetProfile", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -181,7 +181,7 @@ public class PlayFabProfilesAPI {
     private static PlayFabResult<GetEntityProfilesResponse> privateGetProfilesAsync(final GetEntityProfilesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Profile/GetProfiles"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Profile/GetProfiles", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -243,7 +243,7 @@ public class PlayFabProfilesAPI {
     private static PlayFabResult<GetTitlePlayersFromMasterPlayerAccountIdsResponse> privateGetTitlePlayersFromMasterPlayerAccountIdsAsync(final GetTitlePlayersFromMasterPlayerAccountIdsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Profile/GetTitlePlayersFromMasterPlayerAccountIds"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Profile/GetTitlePlayersFromMasterPlayerAccountIds", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -305,7 +305,7 @@ public class PlayFabProfilesAPI {
     private static PlayFabResult<SetGlobalPolicyResponse> privateSetGlobalPolicyAsync(final SetGlobalPolicyRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Profile/SetGlobalPolicy"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Profile/SetGlobalPolicy", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -372,7 +372,7 @@ public class PlayFabProfilesAPI {
     private static PlayFabResult<SetProfileLanguageResponse> privateSetProfileLanguageAsync(final SetProfileLanguageRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Profile/SetProfileLanguage"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Profile/SetProfileLanguage", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -434,7 +434,7 @@ public class PlayFabProfilesAPI {
     private static PlayFabResult<SetEntityProfilePolicyResponse> privateSetProfilePolicyAsync(final SetEntityProfilePolicyRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Profile/SetProfilePolicy"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Profile/SetProfilePolicy", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {

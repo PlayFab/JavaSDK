@@ -9,7 +9,7 @@ public class PlayFabGroupsModels {
      * Accepts an outstanding invitation to to join a group if the invited entity is not blocked by the group. Nothing is
      * returned in the case of success.
      */
-    public static class AcceptGroupApplicationRequest {
+    public static class AcceptGroupApplicationRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /**
@@ -19,7 +19,13 @@ public class PlayFabGroupsModels {
         public EntityKey Entity;
         /** The identifier of the group */
         public EntityKey Group;
-        
+
+        public AcceptGroupApplicationRequest() {
+        }
+
+        public AcceptGroupApplicationRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
@@ -27,14 +33,20 @@ public class PlayFabGroupsModels {
      * entity or a parent in its chain (e.g. title) may accept the invitation on the invited entity's behalf. Nothing is
      * returned in the case of success.
      */
-    public static class AcceptGroupInvitationRequest {
+    public static class AcceptGroupInvitationRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The identifier of the group */
         public EntityKey Group;
-        
+
+        public AcceptGroupInvitationRequest() {
+        }
+
+        public AcceptGroupInvitationRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
@@ -42,7 +54,7 @@ public class PlayFabGroupsModels {
      * not already a member of the group, only title claimants may add them to the group, and others must use the group
      * application or invite system to add new members to a group. Returns nothing if successful.
      */
-    public static class AddMembersRequest {
+    public static class AddMembersRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The identifier of the group */
@@ -54,7 +66,13 @@ public class PlayFabGroupsModels {
          * group will be used. Role IDs must be between 1 and 64 characters long.
          */
         public String RoleId;
-        
+
+        public AddMembersRequest() {
+        }
+
+        public AddMembersRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
@@ -64,7 +82,7 @@ public class PlayFabGroupsModels {
      * error indicating such, rather than creating a duplicate application to join that will need to be cleaned up later.
      * Returns information about the application or an error indicating an invitation was accepted instead.
      */
-    public static class ApplyToGroupRequest {
+    public static class ApplyToGroupRequest extends PlayFabRequestSettingsModel {
         /** Optional, default true. Automatically accept an outstanding invitation if one exists instead of creating an application */
         public Boolean AutoAcceptOutstandingInvite;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -73,7 +91,13 @@ public class PlayFabGroupsModels {
         public EntityKey Entity;
         /** The identifier of the group */
         public EntityKey Group;
-        
+
+        public ApplyToGroupRequest() {
+        }
+
+        public ApplyToGroupRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /** Describes an application to join a group */
@@ -92,14 +116,20 @@ public class PlayFabGroupsModels {
      * join, accept an invitation, or have an application accepted. Failure due to being blocked does not clean up existing
      * applications or invitations to the group. No data is returned in the case of success.
      */
-    public static class BlockEntityRequest {
+    public static class BlockEntityRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The identifier of the group */
         public EntityKey Group;
-        
+
+        public BlockEntityRequest() {
+        }
+
+        public BlockEntityRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
@@ -107,7 +137,7 @@ public class PlayFabGroupsModels {
      * role must already exist. This is equivalent to adding the entities to the destination role and removing from the origin
      * role. Returns nothing if successful.
      */
-    public static class ChangeMemberRoleRequest {
+    public static class ChangeMemberRoleRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /**
@@ -124,21 +154,33 @@ public class PlayFabGroupsModels {
         public ArrayList<EntityKey> Members;
         /** The ID of the role that the entities currently are a member of. Role IDs must be between 1 and 64 characters long. */
         public String OriginRoleId;
-        
+
+        public ChangeMemberRoleRequest() {
+        }
+
+        public ChangeMemberRoleRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
      * Creates a new group, as well as administration and member roles, based off of a title's group template. Returns
      * information about the group that was created.
      */
-    public static class CreateGroupRequest {
+    public static class CreateGroupRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The name of the group. This is unique at the title level by default. */
         public String GroupName;
-        
+
+        public CreateGroupRequest() {
+        }
+
+        public CreateGroupRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class CreateGroupResponse {
@@ -164,7 +206,7 @@ public class PlayFabGroupsModels {
      * group, but the name can be the same as the ID. The role ID is set at creation and cannot be changed. Returns information
      * about the role that was created.
      */
-    public static class CreateGroupRoleRequest {
+    public static class CreateGroupRoleRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The identifier of the group */
@@ -179,7 +221,13 @@ public class PlayFabGroupsModels {
          * 100 characters long
          */
         public String RoleName;
-        
+
+        public CreateGroupRoleRequest() {
+        }
+
+        public CreateGroupRoleRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class CreateGroupRoleResponse {
@@ -197,23 +245,35 @@ public class PlayFabGroupsModels {
      * required the group itself to execute this action. The group and data cannot be cannot be recovered once removed, but any
      * abuse reports about the group will remain. No data is returned in the case of success.
      */
-    public static class DeleteGroupRequest {
+    public static class DeleteGroupRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** ID of the group or role to remove */
         public EntityKey Group;
-        
+
+        public DeleteGroupRequest() {
+        }
+
+        public DeleteGroupRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /** Returns information about the role */
-    public static class DeleteRoleRequest {
+    public static class DeleteRoleRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The identifier of the group */
         public EntityKey Group;
         /** The ID of the role to delete. Role IDs must be between 1 and 64 characters long. */
         public String RoleId;
-        
+
+        public DeleteRoleRequest() {
+        }
+
+        public DeleteRoleRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class EmptyResponse {
@@ -249,14 +309,20 @@ public class PlayFabGroupsModels {
     }
 
     /** Returns the ID, name, role list and other non-membership related information about a group. */
-    public static class GetGroupRequest {
+    public static class GetGroupRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The identifier of the group */
         public EntityKey Group;
         /** The full name of the group */
         public String GroupName;
-        
+
+        public GetGroupRequest() {
+        }
+
+        public GetGroupRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetGroupResponse {
@@ -341,7 +407,7 @@ public class PlayFabGroupsModels {
      * creating a duplicate invitation to join that will need to be cleaned up later. Returns information about the new
      * invitation or an error indicating an existing application to join was accepted.
      */
-    public static class InviteToGroupRequest {
+    public static class InviteToGroupRequest extends PlayFabRequestSettingsModel {
         /** Optional, default true. Automatically accept an application if one exists instead of creating an invitation */
         public Boolean AutoAcceptOutstandingApplication;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -355,7 +421,13 @@ public class PlayFabGroupsModels {
          * is not specified. Role IDs must be between 1 and 64 characters long.
          */
         public String RoleId;
-        
+
+        public InviteToGroupRequest() {
+        }
+
+        public InviteToGroupRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /** Describes an invitation to a group. */
@@ -378,7 +450,7 @@ public class PlayFabGroupsModels {
      * member of the group is returned, or a permission error if the caller does not have permission to read the group's member
      * list.
      */
-    public static class IsMemberRequest {
+    public static class IsMemberRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
@@ -390,7 +462,13 @@ public class PlayFabGroupsModels {
          * of the group in any capacity) if not specified.
          */
         public String RoleId;
-        
+
+        public IsMemberRequest() {
+        }
+
+        public IsMemberRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class IsMemberResponse {
@@ -403,12 +481,18 @@ public class PlayFabGroupsModels {
      * Lists all outstanding requests to join a group. Returns a list of all requests to join, as well as when the request will
      * expire. To get the group applications for a specific entity, use ListMembershipOpportunities.
      */
-    public static class ListGroupApplicationsRequest {
+    public static class ListGroupApplicationsRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The identifier of the group */
         public EntityKey Group;
-        
+
+        public ListGroupApplicationsRequest() {
+        }
+
+        public ListGroupApplicationsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ListGroupApplicationsResponse {
@@ -418,12 +502,18 @@ public class PlayFabGroupsModels {
     }
 
     /** Lists all entities blocked from joining a group. A list of blocked entities is returned */
-    public static class ListGroupBlocksRequest {
+    public static class ListGroupBlocksRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The identifier of the group */
         public EntityKey Group;
-        
+
+        public ListGroupBlocksRequest() {
+        }
+
+        public ListGroupBlocksRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ListGroupBlocksResponse {
@@ -436,12 +526,18 @@ public class PlayFabGroupsModels {
      * Lists all outstanding invitations for a group. Returns a list of entities that have been invited, as well as when the
      * invitation will expire. To get the group invitations for a specific entity, use ListMembershipOpportunities.
      */
-    public static class ListGroupInvitationsRequest {
+    public static class ListGroupInvitationsRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The identifier of the group */
         public EntityKey Group;
-        
+
+        public ListGroupInvitationsRequest() {
+        }
+
+        public ListGroupInvitationsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ListGroupInvitationsResponse {
@@ -455,12 +551,18 @@ public class PlayFabGroupsModels {
      * role, and the member is in no other role, the member is not displayed. Returns a list of entities that are members of
      * the group.
      */
-    public static class ListGroupMembersRequest {
+    public static class ListGroupMembersRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** ID of the group to list the members and roles for */
         public EntityKey Group;
-        
+
+        public ListGroupMembersRequest() {
+        }
+
+        public ListGroupMembersRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ListGroupMembersResponse {
@@ -474,12 +576,18 @@ public class PlayFabGroupsModels {
      * will only be returned for the entity or a parent of that entity. To list invitations or applications for a group to
      * check if a player is trying to join, use ListGroupInvitations and ListGroupApplications.
      */
-    public static class ListMembershipOpportunitiesRequest {
+    public static class ListMembershipOpportunitiesRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
-        
+
+        public ListMembershipOpportunitiesRequest() {
+        }
+
+        public ListMembershipOpportunitiesRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ListMembershipOpportunitiesResponse {
@@ -495,12 +603,18 @@ public class PlayFabGroupsModels {
      * should be visible to the caller. If the entity is not in any roles that are visible to the caller, the group is not
      * returned in the results, even if the caller otherwise has permission to see that the entity is a member of that group.
      */
-    public static class ListMembershipRequest {
+    public static class ListMembershipRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
-        
+
+        public ListMembershipRequest() {
+        }
+
+        public ListMembershipRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ListMembershipResponse {
@@ -521,14 +635,20 @@ public class PlayFabGroupsModels {
      * withdrawing an application. The applying entity or a parent in its chain (e.g. title) may withdraw the application, and
      * any caller with appropriate access in the group may reject an application. No data is returned in the case of success.
      */
-    public static class RemoveGroupApplicationRequest {
+    public static class RemoveGroupApplicationRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The identifier of the group */
         public EntityKey Group;
-        
+
+        public RemoveGroupApplicationRequest() {
+        }
+
+        public RemoveGroupApplicationRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
@@ -537,21 +657,27 @@ public class PlayFabGroupsModels {
      * method, and any caller with appropriate access in the group may rescind an invitation. No data is returned in the case
      * of success.
      */
-    public static class RemoveGroupInvitationRequest {
+    public static class RemoveGroupInvitationRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The identifier of the group */
         public EntityKey Group;
-        
+
+        public RemoveGroupInvitationRequest() {
+        }
+
+        public RemoveGroupInvitationRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
      * Removes members from a group. A member can always remove themselves from a group, regardless of permissions. Returns
      * nothing if successful.
      */
-    public static class RemoveMembersRequest {
+    public static class RemoveMembersRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The identifier of the group */
@@ -560,25 +686,37 @@ public class PlayFabGroupsModels {
         public ArrayList<EntityKey> Members;
         /** The ID of the role to remove the entities from. */
         public String RoleId;
-        
+
+        public RemoveMembersRequest() {
+        }
+
+        public RemoveMembersRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /** Unblocks a list of entities from joining a group. No data is returned in the case of success. */
-    public static class UnblockEntityRequest {
+    public static class UnblockEntityRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The identifier of the group */
         public EntityKey Group;
-        
+
+        public UnblockEntityRequest() {
+        }
+
+        public UnblockEntityRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     /**
      * Updates data about a group, such as the name or default member role. Returns information about whether the update was
      * successful. Only title claimants may modify the administration role for a group.
      */
-    public static class UpdateGroupRequest {
+    public static class UpdateGroupRequest extends PlayFabRequestSettingsModel {
         /** Optional: the ID of an existing role to set as the new administrator role for the group */
         public String AdminRoleId;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -595,7 +733,13 @@ public class PlayFabGroupsModels {
         public String GroupName;
         /** Optional: the ID of an existing role to set as the new member role for the group */
         public String MemberRoleId;
-        
+
+        public UpdateGroupRequest() {
+        }
+
+        public UpdateGroupRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class UpdateGroupResponse {
@@ -609,7 +753,7 @@ public class PlayFabGroupsModels {
     }
 
     /** Updates the role name. Returns information about whether the update was successful. */
-    public static class UpdateGroupRoleRequest {
+    public static class UpdateGroupRoleRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /**
@@ -624,7 +768,13 @@ public class PlayFabGroupsModels {
         public String RoleId;
         /** The new name of the role */
         public String RoleName;
-        
+
+        public UpdateGroupRoleRequest() {
+        }
+
+        public UpdateGroupRoleRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class UpdateGroupRoleResponse {

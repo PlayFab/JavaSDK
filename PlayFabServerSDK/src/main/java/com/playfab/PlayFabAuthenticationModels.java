@@ -37,12 +37,18 @@ public class PlayFabAuthenticationModels {
      * logged in and will issue a new token. If using X-Authentication or X-EntityToken the header must still be valid and
      * cannot be expired or revoked.
      */
-    public static class GetEntityTokenRequest {
+    public static class GetEntityTokenRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
-        
+
+        public GetEntityTokenRequest() {
+        }
+
+        public GetEntityTokenRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetEntityTokenResponse {
@@ -86,12 +92,18 @@ public class PlayFabAuthenticationModels {
     }
 
     /** Given an entity token, validates that it hasn't expired or been revoked and will return details of the owner. */
-    public static class ValidateEntityTokenRequest {
+    public static class ValidateEntityTokenRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Client EntityToken */
         public String EntityToken;
-        
+
+        public ValidateEntityTokenRequest() {
+        }
+
+        public ValidateEntityTokenRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class ValidateEntityTokenResponse {

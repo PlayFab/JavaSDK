@@ -54,7 +54,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<CancelAllMatchmakingTicketsForPlayerResult> privateCancelAllMatchmakingTicketsForPlayerAsync(final CancelAllMatchmakingTicketsForPlayerRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/CancelAllMatchmakingTicketsForPlayer"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/CancelAllMatchmakingTicketsForPlayer", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -116,7 +116,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<CancelAllServerBackfillTicketsForPlayerResult> privateCancelAllServerBackfillTicketsForPlayerAsync(final CancelAllServerBackfillTicketsForPlayerRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/CancelAllServerBackfillTicketsForPlayer"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/CancelAllServerBackfillTicketsForPlayer", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -178,7 +178,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<CancelMatchmakingTicketResult> privateCancelMatchmakingTicketAsync(final CancelMatchmakingTicketRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/CancelMatchmakingTicket"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/CancelMatchmakingTicket", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -240,7 +240,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<CancelServerBackfillTicketResult> privateCancelServerBackfillTicketAsync(final CancelServerBackfillTicketRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/CancelServerBackfillTicket"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/CancelServerBackfillTicket", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -302,7 +302,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<BuildAliasDetailsResponse> privateCreateBuildAliasAsync(final CreateBuildAliasRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/CreateBuildAlias"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/CreateBuildAlias", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -364,7 +364,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<CreateBuildWithCustomContainerResponse> privateCreateBuildWithCustomContainerAsync(final CreateBuildWithCustomContainerRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/CreateBuildWithCustomContainer"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/CreateBuildWithCustomContainer", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -426,7 +426,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<CreateBuildWithManagedContainerResponse> privateCreateBuildWithManagedContainerAsync(final CreateBuildWithManagedContainerRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/CreateBuildWithManagedContainer"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/CreateBuildWithManagedContainer", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -488,7 +488,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<CreateBuildWithProcessBasedServerResponse> privateCreateBuildWithProcessBasedServerAsync(final CreateBuildWithProcessBasedServerRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/CreateBuildWithProcessBasedServer"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/CreateBuildWithProcessBasedServer", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -550,7 +550,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<CreateMatchmakingTicketResult> privateCreateMatchmakingTicketAsync(final CreateMatchmakingTicketRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/CreateMatchmakingTicket"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/CreateMatchmakingTicket", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -612,7 +612,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<CreateRemoteUserResponse> privateCreateRemoteUserAsync(final CreateRemoteUserRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/CreateRemoteUser"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/CreateRemoteUser", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -682,7 +682,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<CreateServerBackfillTicketResult> privateCreateServerBackfillTicketAsync(final CreateServerBackfillTicketRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/CreateServerBackfillTicket"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/CreateServerBackfillTicket", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -749,7 +749,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<CreateMatchmakingTicketResult> privateCreateServerMatchmakingTicketAsync(final CreateServerMatchmakingTicketRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/CreateServerMatchmakingTicket"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/CreateServerMatchmakingTicket", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -811,7 +811,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<EmptyResponse> privateDeleteAssetAsync(final DeleteAssetRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/DeleteAsset"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/DeleteAsset", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -873,7 +873,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<EmptyResponse> privateDeleteBuildAsync(final DeleteBuildRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/DeleteBuild"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/DeleteBuild", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -935,7 +935,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<EmptyResponse> privateDeleteBuildAliasAsync(final DeleteBuildAliasRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/DeleteBuildAlias"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/DeleteBuildAlias", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -997,7 +997,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<EmptyResponse> privateDeleteBuildRegionAsync(final DeleteBuildRegionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/DeleteBuildRegion"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/DeleteBuildRegion", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1059,7 +1059,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<EmptyResponse> privateDeleteCertificateAsync(final DeleteCertificateRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/DeleteCertificate"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/DeleteCertificate", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1121,7 +1121,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<EmptyResponse> privateDeleteContainerImageRepositoryAsync(final DeleteContainerImageRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/DeleteContainerImageRepository"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/DeleteContainerImageRepository", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1183,7 +1183,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<EmptyResponse> privateDeleteRemoteUserAsync(final DeleteRemoteUserRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/DeleteRemoteUser"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/DeleteRemoteUser", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1245,7 +1245,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<EnableMultiplayerServersForTitleResponse> privateEnableMultiplayerServersForTitleAsync(final EnableMultiplayerServersForTitleRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/EnableMultiplayerServersForTitle"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/EnableMultiplayerServersForTitle", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1307,7 +1307,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<GetAssetUploadUrlResponse> privateGetAssetUploadUrlAsync(final GetAssetUploadUrlRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetAssetUploadUrl"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetAssetUploadUrl", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1369,7 +1369,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<GetBuildResponse> privateGetBuildAsync(final GetBuildRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetBuild"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetBuild", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1431,7 +1431,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<BuildAliasDetailsResponse> privateGetBuildAliasAsync(final GetBuildAliasRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetBuildAlias"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetBuildAlias", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1493,7 +1493,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<GetContainerRegistryCredentialsResponse> privateGetContainerRegistryCredentialsAsync(final GetContainerRegistryCredentialsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetContainerRegistryCredentials"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetContainerRegistryCredentials", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1555,7 +1555,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<GetMatchResult> privateGetMatchAsync(final GetMatchRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/GetMatch"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/GetMatch", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1617,7 +1617,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<GetMatchmakingTicketResult> privateGetMatchmakingTicketAsync(final GetMatchmakingTicketRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/GetMatchmakingTicket"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/GetMatchmakingTicket", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1679,7 +1679,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<GetMultiplayerServerDetailsResponse> privateGetMultiplayerServerDetailsAsync(final GetMultiplayerServerDetailsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetMultiplayerServerDetails"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetMultiplayerServerDetails", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1741,7 +1741,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<GetMultiplayerServerLogsResponse> privateGetMultiplayerServerLogsAsync(final GetMultiplayerServerLogsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetMultiplayerServerLogs"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetMultiplayerServerLogs", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1803,7 +1803,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<GetMultiplayerServerLogsResponse> privateGetMultiplayerSessionLogsBySessionIdAsync(final GetMultiplayerSessionLogsBySessionIdRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetMultiplayerSessionLogsBySessionId"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetMultiplayerSessionLogsBySessionId", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1865,7 +1865,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<GetQueueStatisticsResult> privateGetQueueStatisticsAsync(final GetQueueStatisticsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/GetQueueStatistics"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/GetQueueStatistics", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1927,7 +1927,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<GetRemoteLoginEndpointResponse> privateGetRemoteLoginEndpointAsync(final GetRemoteLoginEndpointRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetRemoteLoginEndpoint"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetRemoteLoginEndpoint", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -1989,7 +1989,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<GetServerBackfillTicketResult> privateGetServerBackfillTicketAsync(final GetServerBackfillTicketRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/GetServerBackfillTicket"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/GetServerBackfillTicket", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2051,7 +2051,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<GetTitleEnabledForMultiplayerServersStatusResponse> privateGetTitleEnabledForMultiplayerServersStatusAsync(final GetTitleEnabledForMultiplayerServersStatusRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetTitleEnabledForMultiplayerServersStatus"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetTitleEnabledForMultiplayerServersStatus", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2113,7 +2113,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<GetTitleMultiplayerServersQuotasResponse> privateGetTitleMultiplayerServersQuotasAsync(final GetTitleMultiplayerServersQuotasRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetTitleMultiplayerServersQuotas"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetTitleMultiplayerServersQuotas", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2175,7 +2175,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<JoinMatchmakingTicketResult> privateJoinMatchmakingTicketAsync(final JoinMatchmakingTicketRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/JoinMatchmakingTicket"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/JoinMatchmakingTicket", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2237,7 +2237,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<ListMultiplayerServersResponse> privateListArchivedMultiplayerServersAsync(final ListMultiplayerServersRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListArchivedMultiplayerServers"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListArchivedMultiplayerServers", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2299,7 +2299,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<ListAssetSummariesResponse> privateListAssetSummariesAsync(final ListAssetSummariesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListAssetSummaries"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListAssetSummaries", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2366,7 +2366,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<ListBuildAliasesForTitleResponse> privateListBuildAliasesAsync(final MultiplayerEmptyRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListBuildAliases"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListBuildAliases", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2433,7 +2433,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<ListBuildSummariesResponse> privateListBuildSummariesAsync(final ListBuildSummariesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListBuildSummaries"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListBuildSummaries", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2495,7 +2495,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<ListCertificateSummariesResponse> privateListCertificateSummariesAsync(final ListCertificateSummariesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListCertificateSummaries"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListCertificateSummaries", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2557,7 +2557,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<ListContainerImagesResponse> privateListContainerImagesAsync(final ListContainerImagesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListContainerImages"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListContainerImages", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2619,7 +2619,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<ListContainerImageTagsResponse> privateListContainerImageTagsAsync(final ListContainerImageTagsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListContainerImageTags"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListContainerImageTags", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2681,7 +2681,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<ListMatchmakingTicketsForPlayerResult> privateListMatchmakingTicketsForPlayerAsync(final ListMatchmakingTicketsForPlayerRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/ListMatchmakingTicketsForPlayer"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/ListMatchmakingTicketsForPlayer", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2743,7 +2743,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<ListMultiplayerServersResponse> privateListMultiplayerServersAsync(final ListMultiplayerServersRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListMultiplayerServers"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListMultiplayerServers", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2804,7 +2804,7 @@ public class PlayFabMultiplayerAPI {
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListPartyQosServersResponse> privateListPartyQosServersAsync(final ListPartyQosServersRequest request) throws Exception {
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListPartyQosServers"), request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListPartyQosServers", request), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2873,7 +2873,7 @@ public class PlayFabMultiplayerAPI {
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListQosServersResponse> privateListQosServersAsync(final ListQosServersRequest request) throws Exception {
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListQosServers"), request, null, null);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListQosServers", request), request, null, null);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2935,7 +2935,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<ListQosServersForTitleResponse> privateListQosServersForTitleAsync(final ListQosServersForTitleRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListQosServersForTitle"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListQosServersForTitle", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -2997,7 +2997,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<ListServerBackfillTicketsForPlayerResult> privateListServerBackfillTicketsForPlayerAsync(final ListServerBackfillTicketsForPlayerRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/ListServerBackfillTicketsForPlayer"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Match/ListServerBackfillTicketsForPlayer", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3059,7 +3059,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<ListVirtualMachineSummariesResponse> privateListVirtualMachineSummariesAsync(final ListVirtualMachineSummariesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListVirtualMachineSummaries"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListVirtualMachineSummaries", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3126,7 +3126,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<RequestMultiplayerServerResponse> privateRequestMultiplayerServerAsync(final RequestMultiplayerServerRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/RequestMultiplayerServer"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/RequestMultiplayerServer", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3188,7 +3188,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<RolloverContainerRegistryCredentialsResponse> privateRolloverContainerRegistryCredentialsAsync(final RolloverContainerRegistryCredentialsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/RolloverContainerRegistryCredentials"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/RolloverContainerRegistryCredentials", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3250,7 +3250,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<EmptyResponse> privateShutdownMultiplayerServerAsync(final ShutdownMultiplayerServerRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ShutdownMultiplayerServer"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ShutdownMultiplayerServer", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3312,7 +3312,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<EmptyResponse> privateUntagContainerImageAsync(final UntagContainerImageRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/UntagContainerImage"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/UntagContainerImage", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3374,7 +3374,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<BuildAliasDetailsResponse> privateUpdateBuildAliasAsync(final UpdateBuildAliasRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/UpdateBuildAlias"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/UpdateBuildAlias", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3436,7 +3436,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<EmptyResponse> privateUpdateBuildRegionAsync(final UpdateBuildRegionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/UpdateBuildRegion"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/UpdateBuildRegion", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3498,7 +3498,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<EmptyResponse> privateUpdateBuildRegionsAsync(final UpdateBuildRegionsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/UpdateBuildRegions"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/UpdateBuildRegions", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -3560,7 +3560,7 @@ public class PlayFabMultiplayerAPI {
     private static PlayFabResult<EmptyResponse> privateUploadCertificateAsync(final UploadCertificateRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/UploadCertificate"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/UploadCertificate", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {

@@ -27,13 +27,15 @@ public class PlayFabSettings {
     public static String DeveloperSecretKey = null; // You must set this value for PlayFabSdk to work properly (Found in the Game Manager for your title, at the PlayFab Website)
     public static String ClientSessionTicket = null; // Set by any Client Login Call
 
-    public static String GetURL(String apiCall) {
+    public static String GetURL(String apiCall, PlayFabRequestSettingsModel request) {
         StringBuilder sb = new StringBuilder(1000);
 
         String baseUrl = ProductionEnvironmentUrl;
         if (!baseUrl.startsWith("http")) {
             if (VerticalName != null) {
                 sb.append("https://").append(VerticalName);
+            } else if (request.titleId != null){
+                sb.append("https://").append(request.titleId);
             } else {
                 sb.append("https://").append(TitleId);
             }
@@ -53,5 +55,9 @@ public class PlayFabSettings {
         }
 
         return sb.toString();
+    }
+
+    public static String getDeveloperSecretKey(PlayFabRequestSettingsModel request) {
+        return request.developerSecretKey != null ? request.developerSecretKey : DeveloperSecretKey;
     }
 }

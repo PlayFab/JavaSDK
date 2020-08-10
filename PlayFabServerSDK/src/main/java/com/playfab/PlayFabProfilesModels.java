@@ -147,7 +147,7 @@ public class PlayFabProfilesModels {
      * read. If consistency is important the Version Number on the result can be used to compare which version of the profile
      * any reader has.
      */
-    public static class GetEntityProfileRequest {
+    public static class GetEntityProfileRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /**
@@ -157,7 +157,13 @@ public class PlayFabProfilesModels {
         public Boolean DataAsObject;
         /** The entity to perform this action on. */
         public EntityKey Entity;
-        
+
+        public GetEntityProfileRequest() {
+        }
+
+        public GetEntityProfileRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetEntityProfileResponse {
@@ -170,7 +176,7 @@ public class PlayFabProfilesModels {
      * Given a set of entity types and entity identifiers will retrieve all readable profiles properties for the caller.
      * Profiles that the caller is not allowed to read will silently not be included in the results.
      */
-    public static class GetEntityProfilesRequest {
+    public static class GetEntityProfilesRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /**
@@ -180,7 +186,13 @@ public class PlayFabProfilesModels {
         public Boolean DataAsObject;
         /** Entity keys of the profiles to load. Must be between 1 and 25 */
         public ArrayList<EntityKey> Entities;
-        
+
+        public GetEntityProfilesRequest() {
+        }
+
+        public GetEntityProfilesRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetEntityProfilesResponse {
@@ -193,10 +205,16 @@ public class PlayFabProfilesModels {
      * Retrieves the title access policy that is used before the profile's policy is inspected during a request. If never
      * customized this will return the default starter policy built by PlayFab.
      */
-    public static class GetGlobalPolicyRequest {
+    public static class GetGlobalPolicyRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        
+
+        public GetGlobalPolicyRequest() {
+        }
+
+        public GetGlobalPolicyRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetGlobalPolicyResponse {
@@ -206,14 +224,20 @@ public class PlayFabProfilesModels {
     }
 
     /** Given a master player account id (PlayFab ID), returns all title player accounts associated with it. */
-    public static class GetTitlePlayersFromMasterPlayerAccountIdsRequest {
+    public static class GetTitlePlayersFromMasterPlayerAccountIdsRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Master player account ids. */
         public ArrayList<String> MasterPlayerAccountIds;
         /** Id of title to get players from. */
         public String TitleId;
-        
+
+        public GetTitlePlayersFromMasterPlayerAccountIdsRequest() {
+        }
+
+        public GetTitlePlayersFromMasterPlayerAccountIdsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class GetTitlePlayersFromMasterPlayerAccountIdsResponse {
@@ -235,14 +259,20 @@ public class PlayFabProfilesModels {
      * This will set the access policy statements on the given entity profile. This is not additive, any existing statements
      * will be replaced with the statements in this request.
      */
-    public static class SetEntityProfilePolicyRequest {
+    public static class SetEntityProfilePolicyRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The statements to include in the access policy. */
         public ArrayList<EntityPermissionStatement> Statements;
-        
+
+        public SetEntityProfilePolicyRequest() {
+        }
+
+        public SetEntityProfilePolicyRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class SetEntityProfilePolicyResponse {
@@ -258,12 +288,18 @@ public class PlayFabProfilesModels {
      * Updates the title access policy that is used before the profile's policy is inspected during a request. Policies are
      * compiled and cached for several minutes so an update here may not be reflected in behavior for a short time.
      */
-    public static class SetGlobalPolicyRequest {
+    public static class SetGlobalPolicyRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The permissions that govern access to all entities under this title or namespace. */
         public ArrayList<EntityPermissionStatement> Permissions;
-        
+
+        public SetGlobalPolicyRequest() {
+        }
+
+        public SetGlobalPolicyRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class SetGlobalPolicyResponse {
@@ -274,7 +310,7 @@ public class PlayFabProfilesModels {
      * Given an entity profile, will update its language to the one passed in if the profile's version is equal to the one
      * passed in.
      */
-    public static class SetProfileLanguageRequest {
+    public static class SetProfileLanguageRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
@@ -283,7 +319,13 @@ public class PlayFabProfilesModels {
         public Integer ExpectedVersion;
         /** The language to set on the given entity. Deletes the profile's language if passed in a null string. */
         public String Language;
-        
+
+        public SetProfileLanguageRequest() {
+        }
+
+        public SetProfileLanguageRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class SetProfileLanguageResponse {

@@ -59,7 +59,7 @@ public class PlayFabCloudScriptAPI {
     private static PlayFabResult<ExecuteCloudScriptResult> privateExecuteEntityCloudScriptAsync(final ExecuteEntityCloudScriptRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/ExecuteEntityCloudScript"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/ExecuteEntityCloudScript", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -126,7 +126,7 @@ public class PlayFabCloudScriptAPI {
     private static PlayFabResult<ExecuteFunctionResult> privateExecuteFunctionAsync(final ExecuteFunctionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/ExecuteFunction"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/ExecuteFunction", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -188,7 +188,7 @@ public class PlayFabCloudScriptAPI {
     private static PlayFabResult<ListFunctionsResult> privateListFunctionsAsync(final ListFunctionsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/ListFunctions"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/ListFunctions", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -250,7 +250,7 @@ public class PlayFabCloudScriptAPI {
     private static PlayFabResult<ListHttpFunctionsResult> privateListHttpFunctionsAsync(final ListFunctionsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/ListHttpFunctions"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/ListHttpFunctions", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -312,7 +312,7 @@ public class PlayFabCloudScriptAPI {
     private static PlayFabResult<ListQueuedFunctionsResult> privateListQueuedFunctionsAsync(final ListFunctionsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/ListQueuedFunctions"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/ListQueuedFunctions", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -374,7 +374,7 @@ public class PlayFabCloudScriptAPI {
     private static PlayFabResult<EmptyResult> privatePostFunctionResultForEntityTriggeredActionAsync(final PostFunctionResultForEntityTriggeredActionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/PostFunctionResultForEntityTriggeredAction"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/PostFunctionResultForEntityTriggeredAction", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -436,7 +436,7 @@ public class PlayFabCloudScriptAPI {
     private static PlayFabResult<EmptyResult> privatePostFunctionResultForFunctionExecutionAsync(final PostFunctionResultForFunctionExecutionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/PostFunctionResultForFunctionExecution"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/PostFunctionResultForFunctionExecution", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -498,7 +498,7 @@ public class PlayFabCloudScriptAPI {
     private static PlayFabResult<EmptyResult> privatePostFunctionResultForPlayerTriggeredActionAsync(final PostFunctionResultForPlayerTriggeredActionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/PostFunctionResultForPlayerTriggeredAction"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/PostFunctionResultForPlayerTriggeredAction", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -560,7 +560,7 @@ public class PlayFabCloudScriptAPI {
     private static PlayFabResult<EmptyResult> privatePostFunctionResultForScheduledTaskAsync(final PostFunctionResultForScheduledTaskRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/PostFunctionResultForScheduledTask"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/PostFunctionResultForScheduledTask", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -622,7 +622,7 @@ public class PlayFabCloudScriptAPI {
     private static PlayFabResult<EmptyResult> privateRegisterHttpFunctionAsync(final RegisterHttpFunctionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/RegisterHttpFunction"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/RegisterHttpFunction", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -684,7 +684,7 @@ public class PlayFabCloudScriptAPI {
     private static PlayFabResult<EmptyResult> privateRegisterQueuedFunctionAsync(final RegisterQueuedFunctionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/RegisterQueuedFunction"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/RegisterQueuedFunction", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -746,7 +746,7 @@ public class PlayFabCloudScriptAPI {
     private static PlayFabResult<EmptyResult> privateUnregisterFunctionAsync(final UnregisterFunctionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/UnregisterFunction"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/UnregisterFunction", request), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {

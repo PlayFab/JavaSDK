@@ -47,12 +47,18 @@ public class PlayFabEventsModels {
         
     }
 
-    public static class WriteEventsRequest {
+    public static class WriteEventsRequest extends PlayFabRequestSettingsModel {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Collection of events to write to PlayStream. */
         public ArrayList<EventContents> Events;
-        
+
+        public WriteEventsRequest() {
+        }
+
+        public WriteEventsRequest(String titleId, String developerSecretKey) {
+            super(titleId, developerSecretKey);
+        }
     }
 
     public static class WriteEventsResponse {
