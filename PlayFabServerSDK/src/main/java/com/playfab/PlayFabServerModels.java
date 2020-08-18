@@ -130,6 +130,8 @@ public class PlayFabServerModels {
     }
 
     public static class AuthenticateSessionTicketResult {
+        /** Indicates if token was expired at request time. */
+        public Boolean IsSessionTicketExpired;
         /** Account info for the user whose session ticket was supplied. */
         public UserAccountInfo UserInfo;
         
@@ -1598,6 +1600,7 @@ public class PlayFabServerModels {
         TitleDataOverrideNotFound,
         DuplicateKeys,
         WasNotCreatedWithCloudRoot,
+        LegacyMultiplayerServersDeprecated,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,

@@ -48,7 +48,8 @@ public class PlayFabMultiplayerModels {
         ChinaEast2,
         ChinaNorth2,
         SouthAfricaNorth,
-        CentralUsEuap
+        CentralUsEuap,
+        WestCentralUs
     }
 
     public static enum AzureVmFamily {
@@ -1441,12 +1442,6 @@ public class PlayFabMultiplayerModels {
     public static class ListPartyQosServersRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /**
-         * Qos servers version
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public String Version;
         
     }
 
@@ -1464,33 +1459,15 @@ public class PlayFabMultiplayerModels {
     public static class ListQosServersForTitleRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
+        /**
+         * Indicates that the response should contain Qos servers for all regions, including those where there are no builds
+         * deployed for the title.
+         */
+        public Boolean IncludeAllRegions;
         
     }
 
     public static class ListQosServersForTitleResponse {
-        /** The page size on the response. */
-        public Integer PageSize;
-        /** The list of QoS servers. */
-        public ArrayList<QosServer> QosServers;
-        /** The skip token for the paged response. */
-        public String SkipToken;
-        
-    }
-
-    /**
-     * Returns a list of quality of service servers.
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class ListQosServersRequest {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        public Map<String,String> CustomTags;
-        
-    }
-
-    /** @deprecated Do not use */
-    @Deprecated
-    public static class ListQosServersResponse {
         /** The page size on the response. */
         public Integer PageSize;
         /** The list of QoS servers. */
