@@ -2826,76 +2826,8 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
-     * Lists quality of service servers.
-     * @deprecated Please use ListQosServersForTitle instead.
-     * @param request ListQosServersRequest
-     * @return Async Task will return ListQosServersResponse
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<ListQosServersResponse>> ListQosServersAsync(final ListQosServersRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<ListQosServersResponse>>() {
-            public PlayFabResult<ListQosServersResponse> call() throws Exception {
-                return privateListQosServersAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Lists quality of service servers.
-     * @deprecated Please use ListQosServersForTitle instead.
-     * @param request ListQosServersRequest
-     * @return ListQosServersResponse
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<ListQosServersResponse> ListQosServers(final ListQosServersRequest request) {
-        FutureTask<PlayFabResult<ListQosServersResponse>> task = new FutureTask(new Callable<PlayFabResult<ListQosServersResponse>>() {
-            public PlayFabResult<ListQosServersResponse> call() throws Exception {
-                return privateListQosServersAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            PlayFabResult<ListQosServersResponse> exceptionResult = new PlayFabResult<ListQosServersResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
-            return exceptionResult;
-        }
-    }
-
-    /**
-     * Lists quality of service servers.
-     * @deprecated Please use ListQosServersForTitle instead.
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<ListQosServersResponse> privateListQosServersAsync(final ListQosServersRequest request) throws Exception {
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListQosServers"), request, null, null);
-        task.run();
-        Object httpResult = task.get();
-        if (httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<ListQosServersResponse>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<ListQosServersResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListQosServersResponse>>(){}.getType());
-        ListQosServersResponse result = resultData.data;
-
-        PlayFabResult<ListQosServersResponse> pfResult = new PlayFabResult<ListQosServersResponse>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
-     * Lists quality of service servers.
+     * Lists quality of service servers for the title. By default, servers are only returned for regions where a Multiplayer
+     * Servers build has been deployed.
      * @param request ListQosServersForTitleRequest
      * @return Async Task will return ListQosServersForTitleResponse
      */
@@ -2909,7 +2841,8 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
-     * Lists quality of service servers.
+     * Lists quality of service servers for the title. By default, servers are only returned for regions where a Multiplayer
+     * Servers build has been deployed.
      * @param request ListQosServersForTitleRequest
      * @return ListQosServersForTitleResponse
      */
@@ -2930,7 +2863,10 @@ public class PlayFabMultiplayerAPI {
         }
     }
 
-    /** Lists quality of service servers. */
+    /**
+     * Lists quality of service servers for the title. By default, servers are only returned for regions where a Multiplayer
+     * Servers build has been deployed.
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListQosServersForTitleResponse> privateListQosServersForTitleAsync(final ListQosServersForTitleRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");

@@ -1795,6 +1795,7 @@ public class PlayFabAdminModels {
         TitleDataOverrideNotFound,
         DuplicateKeys,
         WasNotCreatedWithCloudRoot,
+        LegacyMultiplayerServersDeprecated,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
