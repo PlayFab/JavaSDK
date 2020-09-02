@@ -1683,6 +1683,10 @@ public class PlayFabServerModels {
         ExperimentationExperimentSchedulingInProgress,
         MaxActionDepthExceeded,
         TitleNotOnUpdatedPricingPlan,
+        SegmentManagementTitleNotInFlight,
+        SegmentManagementNoExpressionTree,
+        SegmentManagementTriggerActionCountOverLimit,
+        SegmentManagementSegmentCountOverLimit,
         SnapshotNotFound
     }
 
