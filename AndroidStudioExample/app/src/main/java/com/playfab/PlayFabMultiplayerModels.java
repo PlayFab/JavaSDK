@@ -124,6 +124,8 @@ public class PlayFabMultiplayerModels {
         public Integer MaxServers;
         /** The build region. */
         public String Region;
+        /** Optional settings to set the standby target to specified values during the supplied schedules */
+        public ScheduledStandbySettings ScheduledStandbySettings;
         /** The target number of standby multiplayer servers for the region. */
         public Integer StandbyServers;
         /**
@@ -141,6 +143,8 @@ public class PlayFabMultiplayerModels {
         public Integer MaxServers;
         /** The build region. */
         public String Region;
+        /** Optional settings to set the standby target to specified values during the supplied schedules */
+        public ScheduledStandbySettings ScheduledStandbySettings;
         /** The number of standby multiplayer servers for the region. */
         public Integer StandbyServers;
         
@@ -1673,6 +1677,33 @@ public class PlayFabMultiplayerModels {
         public String Password;
         /** The username for accessing the container registry. */
         public String Username;
+        
+    }
+
+    public static class Schedule {
+        /** A short description about this schedule. For example, "Game launch on July 15th". */
+        public String Description;
+        /**
+         * The date and time in UTC at which the schedule ends. If IsRecurringWeekly is true, this schedule will keep renewing for
+         * future weeks until disabled or removed.
+         */
+        public Date EndTime;
+        /** Disables the schedule. */
+        public Boolean IsDisabled;
+        /** If true, the StartTime and EndTime will get renewed every week. */
+        public Boolean IsRecurringWeekly;
+        /** The date and time in UTC at which the schedule starts. */
+        public Date StartTime;
+        /** The standby target to maintain for the duration of the schedule. */
+        public Integer TargetStandby;
+        
+    }
+
+    public static class ScheduledStandbySettings {
+        /** When true, scheduled standby will be enabled */
+        public Boolean IsEnabled;
+        /** A list of non-overlapping schedules */
+        public ArrayList<Schedule> ScheduleList;
         
     }
 

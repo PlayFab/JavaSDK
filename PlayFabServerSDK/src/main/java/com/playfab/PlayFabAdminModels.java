@@ -1878,6 +1878,10 @@ public class PlayFabAdminModels {
         ExperimentationExperimentSchedulingInProgress,
         MaxActionDepthExceeded,
         TitleNotOnUpdatedPricingPlan,
+        SegmentManagementTitleNotInFlight,
+        SegmentManagementNoExpressionTree,
+        SegmentManagementTriggerActionCountOverLimit,
+        SegmentManagementSegmentCountOverLimit,
         SnapshotNotFound
     }
 
