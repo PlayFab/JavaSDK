@@ -1687,6 +1687,7 @@ public class PlayFabServerModels {
         SegmentManagementNoExpressionTree,
         SegmentManagementTriggerActionCountOverLimit,
         SegmentManagementSegmentCountOverLimit,
+        SegmentManagementInvalidSegmentId,
         SnapshotNotFound
     }
 

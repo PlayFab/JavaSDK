@@ -1882,6 +1882,7 @@ public class PlayFabAdminModels {
         SegmentManagementNoExpressionTree,
         SegmentManagementTriggerActionCountOverLimit,
         SegmentManagementSegmentCountOverLimit,
+        SegmentManagementInvalidSegmentId,
         SnapshotNotFound
     }
 
