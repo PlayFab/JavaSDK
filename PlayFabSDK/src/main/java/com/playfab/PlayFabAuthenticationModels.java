@@ -2,6 +2,7 @@ package com.playfab;
 
 import java.util.*;
 import com.playfab.PlayFabUtil.*;
+import com.playfab.PlayFabClientModels.BaseClientRequest;
 
 public class PlayFabAuthenticationModels {
 
@@ -37,7 +38,7 @@ public class PlayFabAuthenticationModels {
      * logged in and will issue a new token. If using X-Authentication or X-EntityToken the header must still be valid and
      * cannot be expired or revoked.
      */
-    public static class GetEntityTokenRequest {
+    public static class GetEntityTokenRequest extends BaseClientRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
