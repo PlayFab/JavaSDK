@@ -73,6 +73,8 @@ public class PlayFabDataModels {
         public EntityKey Entity;
         /** Names of the files to be finalized. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
         public ArrayList<String> FileNames;
+        /** The current version of the profile, can be used for concurrency control during updates. */
+        public Integer ProfileVersion;
         
     }
 

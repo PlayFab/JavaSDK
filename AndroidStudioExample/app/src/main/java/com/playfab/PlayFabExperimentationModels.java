@@ -15,14 +15,41 @@ public class PlayFabExperimentationModels {
         Canceled
     }
 
+    /** Given a title entity token and exclusion group details, will create a new exclusion group for the title. */
+    public static class CreateExclusionGroupRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Description of the exclusion group. */
+        public String Description;
+        /** Friendly name of the exclusion group. */
+        public String Name;
+        
+    }
+
+    public static class CreateExclusionGroupResult {
+        /** Identifier of the exclusion group. */
+        public String ExclusionGroupId;
+        
+    }
+
     /** Given a title entity token and experiment details, will create a new experiment for the title. */
     public static class CreateExperimentRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** Description of the experiment. */
         public String Description;
-        /** The duration of the experiment, in days. */
+        /**
+         * The duration of the experiment, in days.
+         * @deprecated Please use EndDate instead.
+         */
+        @Deprecated
         public Long Duration;
+        /** When experiment should end. */
+        public Date EndDate;
+        /** Id of the exclusion group. */
+        public String ExclusionGroupId;
+        /** Percentage of exclusion group traffic that will see this experiment. */
+        public Long ExclusionGroupTrafficAllocation;
         /** Type of experiment. */
         public ExperimentType ExperimentType;
         /** Friendly name of the experiment. */
@@ -44,6 +71,15 @@ public class PlayFabExperimentationModels {
     public static class CreateExperimentResult {
         /** The ID of the new experiment. */
         public String ExperimentId;
+        
+    }
+
+    /** Given an entity token and an exclusion group ID this API deletes the exclusion group. */
+    public static class DeleteExclusionGroupRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The ID of the exclusion group to delete. */
+        public String ExclusionGroupId;
         
     }
 
@@ -72,11 +108,29 @@ public class PlayFabExperimentationModels {
         
     }
 
+    public static class ExclusionGroupTrafficAllocation {
+        /** Id of the experiment. */
+        public String ExperimentId;
+        /** Percentage of exclusion group traffic that will see this experiment. */
+        public Long TrafficAllocation;
+        
+    }
+
     public static class Experiment {
         /** Description of the experiment. */
         public String Description;
-        /** The duration of the experiment, in days. */
+        /**
+         * The duration of the experiment, in days.
+         * @deprecated Please use EndDate instead.
+         */
+        @Deprecated
         public Long Duration;
+        /** When experiment should end/was ended. */
+        public Date EndDate;
+        /** Id of the exclusion group for this experiment. */
+        public String ExclusionGroupId;
+        /** Percentage of exclusion group traffic that will see this experiment. */
+        public Long ExclusionGroupTrafficAllocation;
         /** Type of experiment. */
         public ExperimentType ExperimentType;
         /** Id of the experiment. */
@@ -99,6 +153,16 @@ public class PlayFabExperimentationModels {
         
     }
 
+    public static class ExperimentExclusionGroup {
+        /** Description of the exclusion group. */
+        public String Description;
+        /** Id of the exclusion group. */
+        public String ExclusionGroupId;
+        /** Friendly name of the exclusion group. */
+        public String Name;
+        
+    }
+
     public static enum ExperimentState {
         New,
         Started,
@@ -109,6 +173,37 @@ public class PlayFabExperimentationModels {
     public static enum ExperimentType {
         Active,
         Snapshot
+    }
+
+    /** Given a title entity token will return the list of all exclusion groups for a title. */
+    public static class GetExclusionGroupsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        
+    }
+
+    public static class GetExclusionGroupsResult {
+        /** List of exclusion groups for the title. */
+        public ArrayList<ExperimentExclusionGroup> ExclusionGroups;
+        
+    }
+
+    /**
+     * Given a title entity token and an exclusion group ID, will return the list of traffic allocations for the exclusion
+     * group.
+     */
+    public static class GetExclusionGroupTrafficRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The ID of the exclusion group. */
+        public String ExclusionGroupId;
+        
+    }
+
+    public static class GetExclusionGroupTrafficResult {
+        /** List of traffic allocations for the exclusion group. */
+        public ArrayList<ExclusionGroupTrafficAllocation> TrafficAllocations;
+        
     }
 
     /**
@@ -248,6 +343,19 @@ public class PlayFabExperimentationModels {
         
     }
 
+    /** Given an entity token and exclusion group details this API updates the exclusion group. */
+    public static class UpdateExclusionGroupRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Description of the exclusion group. */
+        public String Description;
+        /** The ID of the exclusion group to update. */
+        public String ExclusionGroupId;
+        /** Friendly name of the exclusion group. */
+        public String Name;
+        
+    }
+
     /**
      * Given a title entity token and experiment details, this API updates the experiment. If an experiment is already running,
      * only the description and duration properties can be updated.
@@ -257,8 +365,18 @@ public class PlayFabExperimentationModels {
         public Map<String,String> CustomTags;
         /** Description of the experiment. */
         public String Description;
-        /** The duration of the experiment, in days. */
+        /**
+         * The duration of the experiment, in days.
+         * @deprecated Please use EndDate instead.
+         */
+        @Deprecated
         public Long Duration;
+        /** When experiment should end. */
+        public Date EndDate;
+        /** Id of the exclusion group. */
+        public String ExclusionGroupId;
+        /** Percentage of exclusion group traffic that will see this experiment. */
+        public Long ExclusionGroupTrafficAllocation;
         /** Type of experiment. */
         public ExperimentType ExperimentType;
         /** Id of the experiment. */

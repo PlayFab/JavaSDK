@@ -1589,7 +1589,11 @@ public class PlayFabClientModels {
         
     }
 
-    /** Note: the user's Position is relative to the overall leaderboard. */
+    /**
+     * Note that the Position of the user in the results is for the overall leaderboard. If Facebook friends are included, make
+     * sure the access token from previous LoginWithFacebook call is still valid and not expired. If Xbox Live friends are
+     * included, make sure the access token from the previous LoginWithXbox call is still valid and not expired.
+     */
     public static class GetLeaderboardResult {
         /** Ordered listing of users and their positions in the requested leaderboard. */
         public ArrayList<PlayerLeaderboardEntry> Leaderboard;
@@ -2110,8 +2114,8 @@ public class PlayFabClientModels {
         /** Specific keys to search for in the title data (leave null to get all keys) */
         public ArrayList<String> Keys;
         /**
-         * Name of the override. This value is ignored when used by the game client; otherwise, the overrides are applied
-         * automatically to the title data.
+         * Optional field that specifies the name of an override. This value is ignored when used by the game client; otherwise,
+         * the overrides are applied automatically to the title data.
          */
         public String OverrideLabel;
         
