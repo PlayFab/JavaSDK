@@ -1876,6 +1876,13 @@ public class PlayFabAdminModels {
         ExperimentationInvalidDuration,
         ExperimentationMaxExperimentsReached,
         ExperimentationExperimentSchedulingInProgress,
+        ExperimentationInvalidEndDate,
+        ExperimentationInvalidStartDate,
+        ExperimentationMaxDurationExceeded,
+        ExperimentationExclusionGroupNotFound,
+        ExperimentationExclusionGroupInsufficientCapacity,
+        ExperimentationExclusionGroupCannotDelete,
+        ExperimentationExclusionGroupInvalidTrafficAllocation,
         MaxActionDepthExceeded,
         TitleNotOnUpdatedPricingPlan,
         SegmentManagementTitleNotInFlight,
@@ -1883,6 +1890,8 @@ public class PlayFabAdminModels {
         SegmentManagementTriggerActionCountOverLimit,
         SegmentManagementSegmentCountOverLimit,
         SegmentManagementInvalidSegmentId,
+        SegmentManagementInvalidInput,
+        SegmentManagementInvalidSegmentName,
         SnapshotNotFound
     }
 
@@ -1989,7 +1998,10 @@ public class PlayFabAdminModels {
     }
 
     public static class GetContentUploadUrlResult {
-        /** URL for uploading content via HTTP PUT method. The URL will expire in approximately one hour. */
+        /**
+         * URL for uploading content via HTTP PUT method. The URL requires the 'x-ms-blob-type' header to have the value
+         * 'BlockBlob'. The URL will expire in approximately one hour.
+         */
         public String URL;
         
     }
@@ -2470,8 +2482,8 @@ public class PlayFabAdminModels {
         /** Specific keys to search for in the title data (leave null to get all keys) */
         public ArrayList<String> Keys;
         /**
-         * Name of the override. This value is ignored when used by the game client; otherwise, the overrides are applied
-         * automatically to the title data.
+         * Optional field that specifies the name of an override. This value is ignored when used by the game client; otherwise,
+         * the overrides are applied automatically to the title data.
          */
         public String OverrideLabel;
         
@@ -4092,7 +4104,7 @@ public class PlayFabAdminModels {
     /**
      * Updates permissions for your title. Policies affect what is allowed to happen on your title. Your policy is a collection
      * of statements that, together, govern particular area for your title. Today, the only allowed policy is called
-     * 'ApiPolicy' and it governs what calls players are allowed to make.
+     * 'ApiPolicy' and it governs what api calls are allowed.
      */
     public static class UpdatePolicyRequest {
         /** Whether to overwrite or append to the existing policy. */

@@ -14,6 +14,68 @@ public class PlayFabExperimentationAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 
     /**
+     * Creates a new experiment exclusion group for a title.
+     * @param request CreateExclusionGroupRequest
+     * @return Async Task will return CreateExclusionGroupResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<CreateExclusionGroupResult>> CreateExclusionGroupAsync(final CreateExclusionGroupRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<CreateExclusionGroupResult>>() {
+            public PlayFabResult<CreateExclusionGroupResult> call() throws Exception {
+                return privateCreateExclusionGroupAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Creates a new experiment exclusion group for a title.
+     * @param request CreateExclusionGroupRequest
+     * @return CreateExclusionGroupResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<CreateExclusionGroupResult> CreateExclusionGroup(final CreateExclusionGroupRequest request) {
+        FutureTask<PlayFabResult<CreateExclusionGroupResult>> task = new FutureTask(new Callable<PlayFabResult<CreateExclusionGroupResult>>() {
+            public PlayFabResult<CreateExclusionGroupResult> call() throws Exception {
+                return privateCreateExclusionGroupAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<CreateExclusionGroupResult> exceptionResult = new PlayFabResult<CreateExclusionGroupResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
+        }
+    }
+
+    /** Creates a new experiment exclusion group for a title. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<CreateExclusionGroupResult> privateCreateExclusionGroupAsync(final CreateExclusionGroupRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Experimentation/CreateExclusionGroup"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<CreateExclusionGroupResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<CreateExclusionGroupResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<CreateExclusionGroupResult>>(){}.getType());
+        CreateExclusionGroupResult result = resultData.data;
+
+        PlayFabResult<CreateExclusionGroupResult> pfResult = new PlayFabResult<CreateExclusionGroupResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Creates a new experiment for a title.
      * @param request CreateExperimentRequest
      * @return Async Task will return CreateExperimentResult
@@ -76,6 +138,68 @@ public class PlayFabExperimentationAPI {
     }
 
     /**
+     * Deletes an existing exclusion group for a title.
+     * @param request DeleteExclusionGroupRequest
+     * @return Async Task will return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResponse>> DeleteExclusionGroupAsync(final DeleteExclusionGroupRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateDeleteExclusionGroupAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Deletes an existing exclusion group for a title.
+     * @param request DeleteExclusionGroupRequest
+     * @return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResponse> DeleteExclusionGroup(final DeleteExclusionGroupRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateDeleteExclusionGroupAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
+        }
+    }
+
+    /** Deletes an existing exclusion group for a title. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResponse> privateDeleteExclusionGroupAsync(final DeleteExclusionGroupRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Experimentation/DeleteExclusionGroup"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
+
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Deletes an existing experiment for a title.
      * @param request DeleteExperimentRequest
      * @return Async Task will return EmptyResponse
@@ -133,6 +257,130 @@ public class PlayFabExperimentationAPI {
         EmptyResponse result = resultData.data;
 
         PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Gets the details of all exclusion groups for a title.
+     * @param request GetExclusionGroupsRequest
+     * @return Async Task will return GetExclusionGroupsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetExclusionGroupsResult>> GetExclusionGroupsAsync(final GetExclusionGroupsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetExclusionGroupsResult>>() {
+            public PlayFabResult<GetExclusionGroupsResult> call() throws Exception {
+                return privateGetExclusionGroupsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Gets the details of all exclusion groups for a title.
+     * @param request GetExclusionGroupsRequest
+     * @return GetExclusionGroupsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetExclusionGroupsResult> GetExclusionGroups(final GetExclusionGroupsRequest request) {
+        FutureTask<PlayFabResult<GetExclusionGroupsResult>> task = new FutureTask(new Callable<PlayFabResult<GetExclusionGroupsResult>>() {
+            public PlayFabResult<GetExclusionGroupsResult> call() throws Exception {
+                return privateGetExclusionGroupsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetExclusionGroupsResult> exceptionResult = new PlayFabResult<GetExclusionGroupsResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
+        }
+    }
+
+    /** Gets the details of all exclusion groups for a title. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetExclusionGroupsResult> privateGetExclusionGroupsAsync(final GetExclusionGroupsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Experimentation/GetExclusionGroups"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetExclusionGroupsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetExclusionGroupsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetExclusionGroupsResult>>(){}.getType());
+        GetExclusionGroupsResult result = resultData.data;
+
+        PlayFabResult<GetExclusionGroupsResult> pfResult = new PlayFabResult<GetExclusionGroupsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Gets the details of all exclusion groups for a title.
+     * @param request GetExclusionGroupTrafficRequest
+     * @return Async Task will return GetExclusionGroupTrafficResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetExclusionGroupTrafficResult>> GetExclusionGroupTrafficAsync(final GetExclusionGroupTrafficRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetExclusionGroupTrafficResult>>() {
+            public PlayFabResult<GetExclusionGroupTrafficResult> call() throws Exception {
+                return privateGetExclusionGroupTrafficAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Gets the details of all exclusion groups for a title.
+     * @param request GetExclusionGroupTrafficRequest
+     * @return GetExclusionGroupTrafficResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetExclusionGroupTrafficResult> GetExclusionGroupTraffic(final GetExclusionGroupTrafficRequest request) {
+        FutureTask<PlayFabResult<GetExclusionGroupTrafficResult>> task = new FutureTask(new Callable<PlayFabResult<GetExclusionGroupTrafficResult>>() {
+            public PlayFabResult<GetExclusionGroupTrafficResult> call() throws Exception {
+                return privateGetExclusionGroupTrafficAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetExclusionGroupTrafficResult> exceptionResult = new PlayFabResult<GetExclusionGroupTrafficResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
+        }
+    }
+
+    /** Gets the details of all exclusion groups for a title. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetExclusionGroupTrafficResult> privateGetExclusionGroupTrafficAsync(final GetExclusionGroupTrafficRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Experimentation/GetExclusionGroupTraffic"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetExclusionGroupTrafficResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetExclusionGroupTrafficResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetExclusionGroupTrafficResult>>(){}.getType());
+        GetExclusionGroupTrafficResult result = resultData.data;
+
+        PlayFabResult<GetExclusionGroupTrafficResult> pfResult = new PlayFabResult<GetExclusionGroupTrafficResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -427,6 +675,68 @@ public class PlayFabExperimentationAPI {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Experimentation/StopExperiment"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
+
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Updates an existing exclusion group for a title.
+     * @param request UpdateExclusionGroupRequest
+     * @return Async Task will return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResponse>> UpdateExclusionGroupAsync(final UpdateExclusionGroupRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateUpdateExclusionGroupAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Updates an existing exclusion group for a title.
+     * @param request UpdateExclusionGroupRequest
+     * @return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResponse> UpdateExclusionGroup(final UpdateExclusionGroupRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateUpdateExclusionGroupAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
+        }
+    }
+
+    /** Updates an existing exclusion group for a title. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResponse> privateUpdateExclusionGroupAsync(final UpdateExclusionGroupRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Experimentation/UpdateExclusionGroup"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {

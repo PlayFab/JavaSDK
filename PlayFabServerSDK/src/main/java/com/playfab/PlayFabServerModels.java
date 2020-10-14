@@ -111,6 +111,11 @@ public class PlayFabServerModels {
     }
 
     public static class AdvancedPushPlatformMsg {
+        /**
+         * Stops GoogleCloudMessaging notifications from including both notification and data properties and instead only sends the
+         * data property.
+         */
+        public Boolean GCMDataOnly;
         /** The Json the platform should receive. */
         public String Json;
         /** The platform that should receive the Json. */
@@ -1681,6 +1686,13 @@ public class PlayFabServerModels {
         ExperimentationInvalidDuration,
         ExperimentationMaxExperimentsReached,
         ExperimentationExperimentSchedulingInProgress,
+        ExperimentationInvalidEndDate,
+        ExperimentationInvalidStartDate,
+        ExperimentationMaxDurationExceeded,
+        ExperimentationExclusionGroupNotFound,
+        ExperimentationExclusionGroupInsufficientCapacity,
+        ExperimentationExclusionGroupCannotDelete,
+        ExperimentationExclusionGroupInvalidTrafficAllocation,
         MaxActionDepthExceeded,
         TitleNotOnUpdatedPricingPlan,
         SegmentManagementTitleNotInFlight,
@@ -1688,6 +1700,8 @@ public class PlayFabServerModels {
         SegmentManagementTriggerActionCountOverLimit,
         SegmentManagementSegmentCountOverLimit,
         SegmentManagementInvalidSegmentId,
+        SegmentManagementInvalidInput,
+        SegmentManagementInvalidSegmentName,
         SnapshotNotFound
     }
 
@@ -2509,8 +2523,8 @@ public class PlayFabServerModels {
         /** Specific keys to search for in the title data (leave null to get all keys) */
         public ArrayList<String> Keys;
         /**
-         * Name of the override. This value is ignored when used by the game client; otherwise, the overrides are applied
-         * automatically to the title data.
+         * Optional field that specifies the name of an override. This value is ignored when used by the game client; otherwise,
+         * the overrides are applied automatically to the title data.
          */
         public String OverrideLabel;
         
