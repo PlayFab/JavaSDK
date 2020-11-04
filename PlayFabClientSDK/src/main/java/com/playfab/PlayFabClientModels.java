@@ -481,6 +481,22 @@ public class PlayFabClientModels {
         
     }
 
+    public static class ConsumeMicrosoftStoreEntitlementsRequest {
+        /** Catalog version to use */
+        public String CatalogVersion;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Marketplace specific payload containing details to fetch in app purchase transactions */
+        public MicrosoftStorePayload MarketplaceSpecificData;
+        
+    }
+
+    public static class ConsumeMicrosoftStoreEntitlementsResponse {
+        /** Details for the items purchased. */
+        public ArrayList<ItemInstance> Items;
+        
+    }
+
     public static class ConsumePSNEntitlementsRequest {
         /** Which catalog to match granted entitlements against. If null, defaults to title default catalog */
         public String CatalogVersion;
@@ -1589,11 +1605,7 @@ public class PlayFabClientModels {
         
     }
 
-    /**
-     * Note that the Position of the user in the results is for the overall leaderboard. If Facebook friends are included, make
-     * sure the access token from previous LoginWithFacebook call is still valid and not expired. If Xbox Live friends are
-     * included, make sure the access token from the previous LoginWithXbox call is still valid and not expired.
-     */
+    /** Note: the user's Position is relative to the overall leaderboard. */
     public static class GetLeaderboardResult {
         /** Ordered listing of users and their positions in the requested leaderboard. */
         public ArrayList<PlayerLeaderboardEntry> Leaderboard;
@@ -3364,6 +3376,19 @@ public class PlayFabClientModels {
         public Date OverrideExpiration;
         /** The list of subscriptions that this player has for this membership */
         public ArrayList<SubscriptionModel> Subscriptions;
+        
+    }
+
+    public static class MicrosoftStorePayload {
+        /** Microsoft store ID key. This is optional. Alternatively you can use XboxToken */
+        public String CollectionsMsIdKey;
+        /** If collectionsMsIdKey is provided, this will verify the user id in the collectionsMsIdKey is the same. */
+        public String UserId;
+        /**
+         * Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). This is
+         * optional. Alternatively can use CollectionsMsIdKey
+         */
+        public String XboxToken;
         
     }
 
