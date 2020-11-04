@@ -810,6 +810,68 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Grants the player's current entitlements from Microsoft Store's Collection API
+     * @param request ConsumeMicrosoftStoreEntitlementsRequest
+     * @return Async Task will return ConsumeMicrosoftStoreEntitlementsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ConsumeMicrosoftStoreEntitlementsResponse>> ConsumeMicrosoftStoreEntitlementsAsync(final ConsumeMicrosoftStoreEntitlementsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ConsumeMicrosoftStoreEntitlementsResponse>>() {
+            public PlayFabResult<ConsumeMicrosoftStoreEntitlementsResponse> call() throws Exception {
+                return privateConsumeMicrosoftStoreEntitlementsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Grants the player's current entitlements from Microsoft Store's Collection API
+     * @param request ConsumeMicrosoftStoreEntitlementsRequest
+     * @return ConsumeMicrosoftStoreEntitlementsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ConsumeMicrosoftStoreEntitlementsResponse> ConsumeMicrosoftStoreEntitlements(final ConsumeMicrosoftStoreEntitlementsRequest request) {
+        FutureTask<PlayFabResult<ConsumeMicrosoftStoreEntitlementsResponse>> task = new FutureTask(new Callable<PlayFabResult<ConsumeMicrosoftStoreEntitlementsResponse>>() {
+            public PlayFabResult<ConsumeMicrosoftStoreEntitlementsResponse> call() throws Exception {
+                return privateConsumeMicrosoftStoreEntitlementsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<ConsumeMicrosoftStoreEntitlementsResponse> exceptionResult = new PlayFabResult<ConsumeMicrosoftStoreEntitlementsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
+        }
+    }
+
+    /** Grants the player's current entitlements from Microsoft Store's Collection API */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ConsumeMicrosoftStoreEntitlementsResponse> privateConsumeMicrosoftStoreEntitlementsAsync(final ConsumeMicrosoftStoreEntitlementsRequest request) throws Exception {
+        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/ConsumeMicrosoftStoreEntitlements"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ConsumeMicrosoftStoreEntitlementsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ConsumeMicrosoftStoreEntitlementsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ConsumeMicrosoftStoreEntitlementsResponse>>(){}.getType());
+        ConsumeMicrosoftStoreEntitlementsResponse result = resultData.data;
+
+        PlayFabResult<ConsumeMicrosoftStoreEntitlementsResponse> pfResult = new PlayFabResult<ConsumeMicrosoftStoreEntitlementsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Checks for any new consumable entitlements. If any are found, they are consumed and added as PlayFab items
      * @param request ConsumePSNEntitlementsRequest
      * @return Async Task will return ConsumePSNEntitlementsResult

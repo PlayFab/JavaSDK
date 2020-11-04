@@ -1830,7 +1830,6 @@ public class PlayFabAdminModels {
         CatalogSearchParameterInvalid,
         CatalogFeatureDisabled,
         CatalogConfigInvalid,
-        CatalogUnauthorized,
         CatalogItemTypeInvalid,
         CatalogBadRequest,
         CatalogTooManyRequests,
@@ -1892,6 +1891,10 @@ public class PlayFabAdminModels {
         SegmentManagementInvalidSegmentId,
         SegmentManagementInvalidInput,
         SegmentManagementInvalidSegmentName,
+        DeleteSegmentRateLimitExceeded,
+        CreateSegmentRateLimitExceeded,
+        UpdateSegmentRateLimitExceeded,
+        GetSegmentsRateLimitExceeded,
         SnapshotNotFound
     }
 
