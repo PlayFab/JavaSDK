@@ -964,6 +964,73 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Creates a new player segment by defining the conditions on player properties. Also, create actions to target the player
+     * segments for a title.
+     * @param request CreateSegmentRequest
+     * @return Async Task will return CreateSegmentResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<CreateSegmentResponse>> CreateSegmentAsync(final CreateSegmentRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<CreateSegmentResponse>>() {
+            public PlayFabResult<CreateSegmentResponse> call() throws Exception {
+                return privateCreateSegmentAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Creates a new player segment by defining the conditions on player properties. Also, create actions to target the player
+     * segments for a title.
+     * @param request CreateSegmentRequest
+     * @return CreateSegmentResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<CreateSegmentResponse> CreateSegment(final CreateSegmentRequest request) {
+        FutureTask<PlayFabResult<CreateSegmentResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateSegmentResponse>>() {
+            public PlayFabResult<CreateSegmentResponse> call() throws Exception {
+                return privateCreateSegmentAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<CreateSegmentResponse> exceptionResult = new PlayFabResult<CreateSegmentResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
+        }
+    }
+
+    /**
+     * Creates a new player segment by defining the conditions on player properties. Also, create actions to target the player
+     * segments for a title.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<CreateSegmentResponse> privateCreateSegmentAsync(final CreateSegmentRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/CreateSegment"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<CreateSegmentResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<CreateSegmentResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<CreateSegmentResponse>>(){}.getType());
+        CreateSegmentResponse result = resultData.data;
+
+        PlayFabResult<CreateSegmentResponse> pfResult = new PlayFabResult<CreateSegmentResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Delete a content file from the title. When deleting a file that does not exist, it returns success.
      * @param request DeleteContentRequest
      * @return Async Task will return BlankResult
@@ -1274,6 +1341,68 @@ public class PlayFabAdminAPI {
         DeletePlayerSharedSecretResult result = resultData.data;
 
         PlayFabResult<DeletePlayerSharedSecretResult> pfResult = new PlayFabResult<DeletePlayerSharedSecretResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Deletes an existing player segment and its associated action(s) for a title.
+     * @param request DeleteSegmentRequest
+     * @return Async Task will return DeleteSegmentsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<DeleteSegmentsResponse>> DeleteSegmentAsync(final DeleteSegmentRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<DeleteSegmentsResponse>>() {
+            public PlayFabResult<DeleteSegmentsResponse> call() throws Exception {
+                return privateDeleteSegmentAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Deletes an existing player segment and its associated action(s) for a title.
+     * @param request DeleteSegmentRequest
+     * @return DeleteSegmentsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<DeleteSegmentsResponse> DeleteSegment(final DeleteSegmentRequest request) {
+        FutureTask<PlayFabResult<DeleteSegmentsResponse>> task = new FutureTask(new Callable<PlayFabResult<DeleteSegmentsResponse>>() {
+            public PlayFabResult<DeleteSegmentsResponse> call() throws Exception {
+                return privateDeleteSegmentAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<DeleteSegmentsResponse> exceptionResult = new PlayFabResult<DeleteSegmentsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
+        }
+    }
+
+    /** Deletes an existing player segment and its associated action(s) for a title. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<DeleteSegmentsResponse> privateDeleteSegmentAsync(final DeleteSegmentRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/DeleteSegment"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<DeleteSegmentsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<DeleteSegmentsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<DeleteSegmentsResponse>>(){}.getType());
+        DeleteSegmentsResponse result = resultData.data;
+
+        PlayFabResult<DeleteSegmentsResponse> pfResult = new PlayFabResult<DeleteSegmentsResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -3047,6 +3176,68 @@ public class PlayFabAdminAPI {
         GetRandomResultTablesResult result = resultData.data;
 
         PlayFabResult<GetRandomResultTablesResult> pfResult = new PlayFabResult<GetRandomResultTablesResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Get detail information of a segment and its associated definition(s) and action(s) for a title.
+     * @param request GetSegmentsRequest
+     * @return Async Task will return GetSegmentsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetSegmentsResponse>> GetSegmentsAsync(final GetSegmentsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetSegmentsResponse>>() {
+            public PlayFabResult<GetSegmentsResponse> call() throws Exception {
+                return privateGetSegmentsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Get detail information of a segment and its associated definition(s) and action(s) for a title.
+     * @param request GetSegmentsRequest
+     * @return GetSegmentsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetSegmentsResponse> GetSegments(final GetSegmentsRequest request) {
+        FutureTask<PlayFabResult<GetSegmentsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetSegmentsResponse>>() {
+            public PlayFabResult<GetSegmentsResponse> call() throws Exception {
+                return privateGetSegmentsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetSegmentsResponse> exceptionResult = new PlayFabResult<GetSegmentsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
+        }
+    }
+
+    /** Get detail information of a segment and its associated definition(s) and action(s) for a title. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetSegmentsResponse> privateGetSegmentsAsync(final GetSegmentsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/GetSegments"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetSegmentsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetSegmentsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetSegmentsResponse>>(){}.getType());
+        GetSegmentsResponse result = resultData.data;
+
+        PlayFabResult<GetSegmentsResponse> pfResult = new PlayFabResult<GetSegmentsResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -6555,6 +6746,68 @@ public class PlayFabAdminAPI {
         UpdateRandomResultTablesResult result = resultData.data;
 
         PlayFabResult<UpdateRandomResultTablesResult> pfResult = new PlayFabResult<UpdateRandomResultTablesResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Updates an existing player segment and its associated definition(s) and action(s) for a title.
+     * @param request UpdateSegmentRequest
+     * @return Async Task will return UpdateSegmentResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<UpdateSegmentResponse>> UpdateSegmentAsync(final UpdateSegmentRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<UpdateSegmentResponse>>() {
+            public PlayFabResult<UpdateSegmentResponse> call() throws Exception {
+                return privateUpdateSegmentAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Updates an existing player segment and its associated definition(s) and action(s) for a title.
+     * @param request UpdateSegmentRequest
+     * @return UpdateSegmentResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<UpdateSegmentResponse> UpdateSegment(final UpdateSegmentRequest request) {
+        FutureTask<PlayFabResult<UpdateSegmentResponse>> task = new FutureTask(new Callable<PlayFabResult<UpdateSegmentResponse>>() {
+            public PlayFabResult<UpdateSegmentResponse> call() throws Exception {
+                return privateUpdateSegmentAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<UpdateSegmentResponse> exceptionResult = new PlayFabResult<UpdateSegmentResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
+        }
+    }
+
+    /** Updates an existing player segment and its associated definition(s) and action(s) for a title. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<UpdateSegmentResponse> privateUpdateSegmentAsync(final UpdateSegmentRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/UpdateSegment"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<UpdateSegmentResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<UpdateSegmentResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateSegmentResponse>>(){}.getType());
+        UpdateSegmentResponse result = resultData.data;
+
+        PlayFabResult<UpdateSegmentResponse> pfResult = new PlayFabResult<UpdateSegmentResponse>();
         pfResult.Result = result;
         return pfResult;
     }

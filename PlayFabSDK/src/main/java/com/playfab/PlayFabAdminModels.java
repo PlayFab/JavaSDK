@@ -70,6 +70,16 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class AdCampaignSegmentFilter {
+        /** Campaign id. */
+        public String CampaignId;
+        /** Campaign source. */
+        public String CampaignSource;
+        /** Campaign comparison. */
+        public SegmentFilterComparison Comparison;
+        
+    }
+
     public static class AddLocalizedNewsRequest {
         /** Localized body text of the news. */
         public String Body;
@@ -206,6 +216,10 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class AllPlayersSegmentFilter {
+        
+    }
+
     public static class ApiCondition {
         /** Require that API calls contain an RSA encrypted payload or signed headers. */
         public Conditionals HasSignatureOrEncryption;
@@ -234,6 +248,14 @@ public class PlayFabAdminModels {
         public String PlayFabId;
         /** The reason why this ban was applied. */
         public String Reason;
+        
+    }
+
+    public static class BanPlayerSegmentAction {
+        /** Ban hours duration. */
+        public Long BanHours;
+        /** Reason for ban. */
+        public String ReasonForBan;
         
     }
 
@@ -829,6 +851,8 @@ public class PlayFabAdminModels {
         public String ClientSecret;
         /** A name for the connection that identifies it within the title. */
         public String ConnectionId;
+        /** Ignore 'nonce' claim in identity tokens. */
+        public Boolean IgnoreNonce;
         /**
          * The discovery document URL to read issuer information from. This must be the absolute URL to the JSON OpenId
          * Configuration document and must be accessible from the internet. If you don't know it, try your issuer URL followed by
@@ -886,6 +910,21 @@ public class PlayFabAdminModels {
     public static class CreatePlayerStatisticDefinitionResult {
         /** created statistic definition */
         public PlayerStatisticDefinition Statistic;
+        
+    }
+
+    /** Send all the segment details part of CreateSegmentRequest */
+    public static class CreateSegmentRequest {
+        /** Segment model with all of the segment properties data. */
+        public SegmentModel SegmentModel;
+        
+    }
+
+    public static class CreateSegmentResponse {
+        /** Error message. */
+        public String ErrorMessage;
+        /** Segment id. */
+        public String SegmentId;
         
     }
 
@@ -1121,6 +1160,10 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class DeletePlayerSegmentAction {
+        
+    }
+
     /**
      * Player Shared Secret Keys are used for the call to Client/GetTitlePublicKey, which exchanges the shared secret for an
      * RSA CSP blob to be used to encrypt the payload of account creation requests when that API requires a signature header.
@@ -1132,6 +1175,25 @@ public class PlayFabAdminModels {
     }
 
     public static class DeletePlayerSharedSecretResult {
+        
+    }
+
+    public static class DeletePlayerStatisticSegmentAction {
+        /** Statistic name. */
+        public String StatisticName;
+        
+    }
+
+    /** Send segment id planning to delete part of DeleteSegmentRequest object */
+    public static class DeleteSegmentRequest {
+        /** Segment id. */
+        public String SegmentId;
+        
+    }
+
+    public static class DeleteSegmentsResponse {
+        /** Error message. */
+        public String ErrorMessage;
         
     }
 
@@ -1194,6 +1256,14 @@ public class PlayFabAdminModels {
         Deny
     }
 
+    public static class EmailNotificationSegmentAction {
+        /** Email template id. */
+        public String EmailTemplateId;
+        /** Email template name. */
+        public String EmailTemplateName;
+        
+    }
+
     public static enum EmailVerificationStatus {
         Unverified,
         Pending,
@@ -1210,6 +1280,16 @@ public class PlayFabAdminModels {
         public String Id;
         /** Entity type. See https://docs.microsoft.com/gaming/playfab/features/data/entities/available-built-in-entity-types */
         public String Type;
+        
+    }
+
+    public static class ExecuteAzureFunctionSegmentAction {
+        /** Azure function. */
+        public String AzureFunction;
+        /** Azure function parameter. */
+        public Object FunctionParameter;
+        /** Generate play stream event. */
+        public Boolean GenerateFunctionExecutedEvents;
         
     }
 
@@ -1251,6 +1331,18 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class ExecuteCloudScriptSegmentAction {
+        /** Cloud script function. */
+        public String CloudScriptFunction;
+        /** Generate play stream event. */
+        public Boolean CloudScriptPublishResultsToPlayStream;
+        /** Cloud script function parameter. */
+        public Object FunctionParameter;
+        /** Cloud script function parameter json text. */
+        public String FunctionParameterJson;
+        
+    }
+
     /**
      * Exports all data associated with the master player account, including data from all titles the player has played, such
      * as statistics, custom data, inventory, purchases, virtual currency balances, characters, group memberships, publisher
@@ -1271,6 +1363,22 @@ public class PlayFabAdminModels {
          * address when the export is complete.
          */
         public String JobReceiptId;
+        
+    }
+
+    public static class FirstLoginDateSegmentFilter {
+        /** First player login date comparison. */
+        public SegmentFilterComparison Comparison;
+        /** First player login date. */
+        public Date LogInDate;
+        
+    }
+
+    public static class FirstLoginTimespanSegmentFilter {
+        /** First player login duration comparison. */
+        public SegmentFilterComparison Comparison;
+        /** First player login duration. */
+        public Double DurationInMinutes;
         
     }
 
@@ -1796,6 +1904,7 @@ public class PlayFabAdminModels {
         DuplicateKeys,
         WasNotCreatedWithCloudRoot,
         LegacyMultiplayerServersDeprecated,
+        VirtualCurrencyCurrentlyUnavailable,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1857,6 +1966,20 @@ public class PlayFabAdminModels {
         ExportCannotParseQuery,
         ExportControlCommandsNotAllowed,
         ExportQueryMissingTableReference,
+        ExplorerBasicInvalidQueryName,
+        ExplorerBasicInvalidQueryDescription,
+        ExplorerBasicInvalidQueryConditions,
+        ExplorerBasicInvalidQueryStartDate,
+        ExplorerBasicInvalidQueryEndDate,
+        ExplorerBasicInvalidQueryGroupBy,
+        ExplorerBasicInvalidQueryAggregateType,
+        ExplorerBasicInvalidQueryAggregateProperty,
+        ExplorerBasicLoadQueriesError,
+        ExplorerBasicLoadQueryError,
+        ExplorerBasicCreateQueryError,
+        ExplorerBasicDeleteQueryError,
+        ExplorerBasicUpdateQueryError,
+        ExplorerBasicSavedQueriesLimit,
         TitleNotEnabledForParty,
         PartyVersionNotFound,
         MultiplayerServerBuildReferencedByMatchmakingQueue,
@@ -2334,6 +2457,21 @@ public class PlayFabAdminModels {
         
     }
 
+    /** Given input segment ids, return list of segments. */
+    public static class GetSegmentsRequest {
+        /** Segment ids to filter title segments. */
+        public ArrayList<String> SegmentIds;
+        
+    }
+
+    public static class GetSegmentsResponse {
+        /** Error message. */
+        public String ErrorMessage;
+        /** List of title segments. */
+        public ArrayList<SegmentModel> Segments;
+        
+    }
+
     public static class GetServerBuildInfoRequest {
         /** unique identifier of the previously uploaded build executable for which information is being requested */
         public String BuildId;
@@ -2625,6 +2763,16 @@ public class PlayFabAdminModels {
         }
     }
 
+    public static class GrantItemSegmentAction {
+        /** Item catalog id. */
+        public String CatelogId;
+        /** Item id. */
+        public String ItemId;
+        /** Item quantity. */
+        public Long Quantity;
+        
+    }
+
     /**
      * This function directly adds inventory items to user inventories. As a result of this operations, the user will not be
      * charged any transaction fee, regardless of the inventory item catalog definition. Please note that the processing time
@@ -2649,6 +2797,14 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class GrantVirtualCurrencySegmentAction {
+        /** Virtual currency amount. */
+        public Integer Amount;
+        /** Virtual currency code. */
+        public String CurrencyCode;
+        
+    }
+
     /**
      * This operation will increment the global counter for the number of these items available. This number cannot be
      * decremented, except by actual grants.
@@ -2666,6 +2822,14 @@ public class PlayFabAdminModels {
     }
 
     public static class IncrementLimitedEditionItemAvailabilityResult {
+        
+    }
+
+    public static class IncrementPlayerStatisticSegmentAction {
+        /** Increment value. */
+        public Integer IncrementValue;
+        /** Statistic name. */
+        public String StatisticName;
         
     }
 
@@ -2775,6 +2939,22 @@ public class PlayFabAdminModels {
         }
     }
 
+    public static class LastLoginDateSegmentFilter {
+        /** Last player login date comparison. */
+        public SegmentFilterComparison Comparison;
+        /** Last player login date. */
+        public Date LogInDate;
+        
+    }
+
+    public static class LastLoginTimespanSegmentFilter {
+        /** Last player login duration comparison. */
+        public SegmentFilterComparison Comparison;
+        /** Last player login duration. */
+        public Double DurationInMinutes;
+        
+    }
+
     public static class LinkedPlatformAccountModel {
         /** Linked account email of the user on the platform, if available */
         public String Email;
@@ -2784,6 +2964,22 @@ public class PlayFabAdminModels {
         public String PlatformUserId;
         /** Linked account username of the user on the platform, if available */
         public String Username;
+        
+    }
+
+    public static class LinkedUserAccountHasEmailSegmentFilter {
+        /** Login provider comparison. */
+        public SegmentFilterComparison Comparison;
+        /** Login provider. */
+        public SegmentLoginIdentityProvider LoginProvider;
+        
+    }
+
+    public static class LinkedUserAccountSegmentFilter {
+        /** Login provider comparison. */
+        public SegmentFilterComparison Comparison;
+        /** Login provider. */
+        public SegmentLoginIdentityProvider LoginProvider;
         
     }
 
@@ -2830,6 +3026,12 @@ public class PlayFabAdminModels {
         public Double Latitude;
         /** Longitude coordinate of the geographic location. */
         public Double Longitude;
+        
+    }
+
+    public static class LocationSegmentFilter {
+        /** Segment country code. */
+        public SegmentCountryCode CountryCode;
         
     }
 
@@ -3275,6 +3477,18 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class PushNotificationSegmentAction {
+        /** Push notification template id. */
+        public String PushNotificationTemplateId;
+        
+    }
+
+    public static class PushNotificationSegmentFilter {
+        /** Push notification device platform. */
+        public SegmentPushNotificationDevicePlatform PushNotificationDevicePlatform;
+        
+    }
+
     public static enum PushSetupPlatform {
         GCM,
         APNS,
@@ -3613,6 +3827,548 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class SegmentAndDefinition {
+        /** Filter property for ad campaign filter. */
+        public AdCampaignSegmentFilter AdCampaignFilter;
+        /** property for all player filter. */
+        public AllPlayersSegmentFilter AllPlayersFilter;
+        /** Filter property for first login date. */
+        public FirstLoginDateSegmentFilter FirstLoginDateFilter;
+        /** Filter property for first login timespan. */
+        public FirstLoginTimespanSegmentFilter FirstLoginFilter;
+        /** Filter property for last login date. */
+        public LastLoginDateSegmentFilter LastLoginDateFilter;
+        /** Filter property for last login timespan. */
+        public LastLoginTimespanSegmentFilter LastLoginFilter;
+        /** Filter property for linked in user account. */
+        public LinkedUserAccountSegmentFilter LinkedUserAccountFilter;
+        /** Filter property for linked in user account has email. */
+        public LinkedUserAccountHasEmailSegmentFilter LinkedUserAccountHasEmailFilter;
+        /** Filter property for location. */
+        public LocationSegmentFilter LocationFilter;
+        /** Filter property for push notification. */
+        public PushNotificationSegmentFilter PushNotificationFilter;
+        /** Filter property for statistics. */
+        public StatisticSegmentFilter StatisticFilter;
+        /** Filter property for tags. */
+        public TagSegmentFilter TagFilter;
+        /** Filter property for total value to date in USD. */
+        public TotalValueToDateInUSDSegmentFilter TotalValueToDateInUSDFilter;
+        /** Filter property for user origination. */
+        public UserOriginationSegmentFilter UserOriginationFilter;
+        /** Filter property for value to date. */
+        public ValueToDateSegmentFilter ValueToDateFilter;
+        /** Filter property for virtual currency. */
+        public VirtualCurrencyBalanceSegmentFilter VirtualCurrencyBalanceFilter;
+        
+    }
+
+    public static enum SegmentCountryCode {
+        AF,
+        AX,
+        AL,
+        DZ,
+        AS,
+        AD,
+        AO,
+        AI,
+        AQ,
+        AG,
+        AR,
+        AM,
+        AW,
+        AU,
+        AT,
+        AZ,
+        BS,
+        BH,
+        BD,
+        BB,
+        BY,
+        BE,
+        BZ,
+        BJ,
+        BM,
+        BT,
+        BO,
+        BQ,
+        BA,
+        BW,
+        BV,
+        BR,
+        IO,
+        BN,
+        BG,
+        BF,
+        BI,
+        KH,
+        CM,
+        CA,
+        CV,
+        KY,
+        CF,
+        TD,
+        CL,
+        CN,
+        CX,
+        CC,
+        CO,
+        KM,
+        CG,
+        CD,
+        CK,
+        CR,
+        CI,
+        HR,
+        CU,
+        CW,
+        CY,
+        CZ,
+        DK,
+        DJ,
+        DM,
+        DO,
+        EC,
+        EG,
+        SV,
+        GQ,
+        ER,
+        EE,
+        ET,
+        FK,
+        FO,
+        FJ,
+        FI,
+        FR,
+        GF,
+        PF,
+        TF,
+        GA,
+        GM,
+        GE,
+        DE,
+        GH,
+        GI,
+        GR,
+        GL,
+        GD,
+        GP,
+        GU,
+        GT,
+        GG,
+        GN,
+        GW,
+        GY,
+        HT,
+        HM,
+        VA,
+        HN,
+        HK,
+        HU,
+        IS,
+        IN,
+        ID,
+        IR,
+        IQ,
+        IE,
+        IM,
+        IL,
+        IT,
+        JM,
+        JP,
+        JE,
+        JO,
+        KZ,
+        KE,
+        KI,
+        KP,
+        KR,
+        KW,
+        KG,
+        LA,
+        LV,
+        LB,
+        LS,
+        LR,
+        LY,
+        LI,
+        LT,
+        LU,
+        MO,
+        MK,
+        MG,
+        MW,
+        MY,
+        MV,
+        ML,
+        MT,
+        MH,
+        MQ,
+        MR,
+        MU,
+        YT,
+        MX,
+        FM,
+        MD,
+        MC,
+        MN,
+        ME,
+        MS,
+        MA,
+        MZ,
+        MM,
+        NA,
+        NR,
+        NP,
+        NL,
+        NC,
+        NZ,
+        NI,
+        NE,
+        NG,
+        NU,
+        NF,
+        MP,
+        NO,
+        OM,
+        PK,
+        PW,
+        PS,
+        PA,
+        PG,
+        PY,
+        PE,
+        PH,
+        PN,
+        PL,
+        PT,
+        PR,
+        QA,
+        RE,
+        RO,
+        RU,
+        RW,
+        BL,
+        SH,
+        KN,
+        LC,
+        MF,
+        PM,
+        VC,
+        WS,
+        SM,
+        ST,
+        SA,
+        SN,
+        RS,
+        SC,
+        SL,
+        SG,
+        SX,
+        SK,
+        SI,
+        SB,
+        SO,
+        ZA,
+        GS,
+        SS,
+        ES,
+        LK,
+        SD,
+        SR,
+        SJ,
+        SZ,
+        SE,
+        CH,
+        SY,
+        TW,
+        TJ,
+        TZ,
+        TH,
+        TL,
+        TG,
+        TK,
+        TO,
+        TT,
+        TN,
+        TR,
+        TM,
+        TC,
+        TV,
+        UG,
+        UA,
+        AE,
+        GB,
+        US,
+        UM,
+        UY,
+        UZ,
+        VU,
+        VE,
+        VN,
+        VG,
+        VI,
+        WF,
+        EH,
+        YE,
+        ZM,
+        ZW
+    }
+
+    public static enum SegmentCurrency {
+        AED,
+        AFN,
+        ALL,
+        AMD,
+        ANG,
+        AOA,
+        ARS,
+        AUD,
+        AWG,
+        AZN,
+        BAM,
+        BBD,
+        BDT,
+        BGN,
+        BHD,
+        BIF,
+        BMD,
+        BND,
+        BOB,
+        BRL,
+        BSD,
+        BTN,
+        BWP,
+        BYR,
+        BZD,
+        CAD,
+        CDF,
+        CHF,
+        CLP,
+        CNY,
+        COP,
+        CRC,
+        CUC,
+        CUP,
+        CVE,
+        CZK,
+        DJF,
+        DKK,
+        DOP,
+        DZD,
+        EGP,
+        ERN,
+        ETB,
+        EUR,
+        FJD,
+        FKP,
+        GBP,
+        GEL,
+        GGP,
+        GHS,
+        GIP,
+        GMD,
+        GNF,
+        GTQ,
+        GYD,
+        HKD,
+        HNL,
+        HRK,
+        HTG,
+        HUF,
+        IDR,
+        ILS,
+        IMP,
+        INR,
+        IQD,
+        IRR,
+        ISK,
+        JEP,
+        JMD,
+        JOD,
+        JPY,
+        KES,
+        KGS,
+        KHR,
+        KMF,
+        KPW,
+        KRW,
+        KWD,
+        KYD,
+        KZT,
+        LAK,
+        LBP,
+        LKR,
+        LRD,
+        LSL,
+        LYD,
+        MAD,
+        MDL,
+        MGA,
+        MKD,
+        MMK,
+        MNT,
+        MOP,
+        MRO,
+        MUR,
+        MVR,
+        MWK,
+        MXN,
+        MYR,
+        MZN,
+        NAD,
+        NGN,
+        NIO,
+        NOK,
+        NPR,
+        NZD,
+        OMR,
+        PAB,
+        PEN,
+        PGK,
+        PHP,
+        PKR,
+        PLN,
+        PYG,
+        QAR,
+        RON,
+        RSD,
+        RUB,
+        RWF,
+        SAR,
+        SBD,
+        SCR,
+        SDG,
+        SEK,
+        SGD,
+        SHP,
+        SLL,
+        SOS,
+        SPL,
+        SRD,
+        STD,
+        SVC,
+        SYP,
+        SZL,
+        THB,
+        TJS,
+        TMT,
+        TND,
+        TOP,
+        TRY,
+        TTD,
+        TVD,
+        TWD,
+        TZS,
+        UAH,
+        UGX,
+        USD,
+        UYU,
+        UZS,
+        VEF,
+        VND,
+        VUV,
+        WST,
+        XAF,
+        XCD,
+        XDR,
+        XOF,
+        XPF,
+        YER,
+        ZAR,
+        ZMW,
+        ZWD
+    }
+
+    public static enum SegmentFilterComparison {
+        GreaterThan,
+        LessThan,
+        EqualTo,
+        NotEqualTo,
+        GreaterThanOrEqual,
+        LessThanOrEqual,
+        Exists,
+        Contains,
+        NotContains
+    }
+
+    public static enum SegmentLoginIdentityProvider {
+        Unknown,
+        PlayFab,
+        Custom,
+        GameCenter,
+        GooglePlay,
+        Steam,
+        XBoxLive,
+        PSN,
+        Kongregate,
+        Facebook,
+        IOSDevice,
+        AndroidDevice,
+        Twitch,
+        WindowsHello,
+        GameServer,
+        CustomServer,
+        NintendoSwitch,
+        FacebookInstantGames,
+        OpenIdConnect,
+        Apple,
+        NintendoSwitchAccount
+    }
+
+    public static class SegmentModel {
+        /** Segment description. */
+        public String Description;
+        /** Segment actions for current entered segment players. */
+        public ArrayList<SegmentTrigger> EnteredSegmentActions;
+        /** Segment last updated date time. */
+        public Date LastUpdateTime;
+        /** Segment actions for current left segment players. */
+        public ArrayList<SegmentTrigger> LeftSegmentActions;
+        /** Segment name. */
+        public String Name;
+        /** Segment id in hex. */
+        public String SegmentId;
+        /** Segment or definitions. This includes segment and definitions and filters. */
+        public ArrayList<SegmentOrDefinition> SegmentOrDefinitions;
+        
+    }
+
+    public static class SegmentOrDefinition {
+        /** List of segment and definitions. */
+        public ArrayList<SegmentAndDefinition> SegmentAndDefinitions;
+        
+    }
+
+    public static enum SegmentPushNotificationDevicePlatform {
+        ApplePushNotificationService,
+        GoogleCloudMessaging
+    }
+
+    public static class SegmentTrigger {
+        /** Ban player segment trigger action. */
+        public BanPlayerSegmentAction BanPlayerAction;
+        /** Delete player segment trigger action. */
+        public DeletePlayerSegmentAction DeletePlayerAction;
+        /** Delete player statistic segment trigger action. */
+        public DeletePlayerStatisticSegmentAction DeletePlayerStatisticAction;
+        /** Email notification segment trigger action. */
+        public EmailNotificationSegmentAction EmailNotificationAction;
+        /** Execute azure function segment trigger action. */
+        public ExecuteAzureFunctionSegmentAction ExecuteAzureFunctionAction;
+        /** Execute cloud script segment trigger action. */
+        public ExecuteCloudScriptSegmentAction ExecuteCloudScriptAction;
+        /** Grant item segment trigger action. */
+        public GrantItemSegmentAction GrantItemAction;
+        /** Grant virtual currency segment trigger action. */
+        public GrantVirtualCurrencySegmentAction GrantVirtualCurrencyAction;
+        /** Increment player statistic segment trigger action. */
+        public IncrementPlayerStatisticSegmentAction IncrementPlayerStatisticAction;
+        /** Push notification segment trigger action. */
+        public PushNotificationSegmentAction PushNotificationAction;
+        
+    }
+
     /**
      * If the account in question is a "temporary" account (for example, one that was created via a call to
      * LoginFromIOSDeviceID), thisfunction will have no effect. Only PlayFab accounts which have valid email addresses will be
@@ -3808,6 +4564,20 @@ public class PlayFabAdminModels {
         Month
     }
 
+    public static class StatisticSegmentFilter {
+        /** Statistic filter comparison. */
+        public SegmentFilterComparison Comparison;
+        /** Statistic filter value. */
+        public String FilterValue;
+        /** Statistic name. */
+        public String Name;
+        /** Use current version of statistic? */
+        public Boolean UseCurrentVersion;
+        /** Statistic version. */
+        public Integer Version;
+        
+    }
+
     public static enum StatisticVersionArchivalStatus {
         NotScheduled,
         Scheduled,
@@ -3905,6 +4675,14 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class TagSegmentFilter {
+        /** Tag comparison. */
+        public SegmentFilterComparison Comparison;
+        /** Tag value. */
+        public String TagValue;
+        
+    }
+
     public static class TaskInstanceBasicSummary {
         /** UTC timestamp when the task completed. */
         public Date CompletedAt;
@@ -3954,6 +4732,14 @@ public class PlayFabAdminModels {
         public String Key;
         /** New value to set. Set to null to remove a value */
         public String Value;
+        
+    }
+
+    public static class TotalValueToDateInUSDSegmentFilter {
+        /** Total value to date USD amount. */
+        public String Amount;
+        /** Total value to date USD comparison. */
+        public SegmentFilterComparison Comparison;
         
     }
 
@@ -4145,6 +4931,21 @@ public class PlayFabAdminModels {
     }
 
     public static class UpdateRandomResultTablesResult {
+        
+    }
+
+    /** Update segment properties data which are planning to update */
+    public static class UpdateSegmentRequest {
+        /** Segment model with all of the segment properties data. */
+        public SegmentModel SegmentModel;
+        
+    }
+
+    public static class UpdateSegmentResponse {
+        /** Error message. */
+        public String ErrorMessage;
+        /** Segment id. */
+        public String SegmentId;
         
     }
 
@@ -4467,6 +5268,12 @@ public class PlayFabAdminModels {
         NintendoSwitchAccount
     }
 
+    public static class UserOriginationSegmentFilter {
+        /** User login provider. */
+        public SegmentLoginIdentityProvider LoginProvider;
+        
+    }
+
     public static class UserPrivateAccountInfo {
         /** user email address */
         public String Email;
@@ -4556,6 +5363,26 @@ public class PlayFabAdminModels {
          * dollars and ninety-nine cents when Currency is 'USD'.
          */
         public String TotalValueAsDecimal;
+        
+    }
+
+    public static class ValueToDateSegmentFilter {
+        /** Value to date amount. */
+        public String Amount;
+        /** Value to date comparison. */
+        public SegmentFilterComparison Comparison;
+        /** Currency using for filter. */
+        public SegmentCurrency Currency;
+        
+    }
+
+    public static class VirtualCurrencyBalanceSegmentFilter {
+        /** Total amount. */
+        public Integer Amount;
+        /** Amount comparison. */
+        public SegmentFilterComparison Comparison;
+        /** Currency code. */
+        public String CurrencyCode;
         
     }
 
