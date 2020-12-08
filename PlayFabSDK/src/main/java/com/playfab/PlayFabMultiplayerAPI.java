@@ -2390,9 +2390,11 @@ public class PlayFabMultiplayerAPI {
     /**
      * Lists summarized details of all multiplayer server builds for a title. Accepts tokens for title and if game client
      * access is enabled, allows game client to request list of builds with player entity token.
+     * @deprecated Please use ListBuildSummariesV2 instead.
      * @param request ListBuildSummariesRequest
      * @return Async Task will return ListBuildSummariesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListBuildSummariesResponse>> ListBuildSummariesAsync(final ListBuildSummariesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListBuildSummariesResponse>>() {
@@ -2405,9 +2407,11 @@ public class PlayFabMultiplayerAPI {
     /**
      * Lists summarized details of all multiplayer server builds for a title. Accepts tokens for title and if game client
      * access is enabled, allows game client to request list of builds with player entity token.
+     * @deprecated Please use ListBuildSummariesV2 instead.
      * @param request ListBuildSummariesRequest
      * @return ListBuildSummariesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListBuildSummariesResponse> ListBuildSummaries(final ListBuildSummariesRequest request) {
         FutureTask<PlayFabResult<ListBuildSummariesResponse>> task = new FutureTask(new Callable<PlayFabResult<ListBuildSummariesResponse>>() {
@@ -2428,12 +2432,81 @@ public class PlayFabMultiplayerAPI {
     /**
      * Lists summarized details of all multiplayer server builds for a title. Accepts tokens for title and if game client
      * access is enabled, allows game client to request list of builds with player entity token.
+     * @deprecated Please use ListBuildSummariesV2 instead.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListBuildSummariesResponse> privateListBuildSummariesAsync(final ListBuildSummariesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListBuildSummaries"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ListBuildSummariesResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ListBuildSummariesResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListBuildSummariesResponse>>(){}.getType());
+        ListBuildSummariesResponse result = resultData.data;
+
+        PlayFabResult<ListBuildSummariesResponse> pfResult = new PlayFabResult<ListBuildSummariesResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Lists summarized details of all multiplayer server builds for a title. Accepts tokens for title and if game client
+     * access is enabled, allows game client to request list of builds with player entity token.
+     * @param request ListBuildSummariesRequest
+     * @return Async Task will return ListBuildSummariesResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ListBuildSummariesResponse>> ListBuildSummariesV2Async(final ListBuildSummariesRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ListBuildSummariesResponse>>() {
+            public PlayFabResult<ListBuildSummariesResponse> call() throws Exception {
+                return privateListBuildSummariesV2Async(request);
+            }
+        });
+    }
+
+    /**
+     * Lists summarized details of all multiplayer server builds for a title. Accepts tokens for title and if game client
+     * access is enabled, allows game client to request list of builds with player entity token.
+     * @param request ListBuildSummariesRequest
+     * @return ListBuildSummariesResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ListBuildSummariesResponse> ListBuildSummariesV2(final ListBuildSummariesRequest request) {
+        FutureTask<PlayFabResult<ListBuildSummariesResponse>> task = new FutureTask(new Callable<PlayFabResult<ListBuildSummariesResponse>>() {
+            public PlayFabResult<ListBuildSummariesResponse> call() throws Exception {
+                return privateListBuildSummariesV2Async(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<ListBuildSummariesResponse> exceptionResult = new PlayFabResult<ListBuildSummariesResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
+        }
+    }
+
+    /**
+     * Lists summarized details of all multiplayer server builds for a title. Accepts tokens for title and if game client
+     * access is enabled, allows game client to request list of builds with player entity token.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ListBuildSummariesResponse> privateListBuildSummariesV2Async(final ListBuildSummariesRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListBuildSummariesV2"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
