@@ -58,7 +58,7 @@ steps:
   persistCredentials: true
 - bash: |
     set -e
-    
+
     echo alias the ADO variables into local variables
     ApiSpecSource="${{ parameters.ApiSpecSource }}"
     CommitMessage="${{ parameters.CommitMessage }}"
@@ -68,35 +68,34 @@ steps:
     WORKSPACE=$(pwd -W)
     # Hack attempt to get WORKSPACE into a sub-environment
     export WORKSPACE="$WORKSPACE"
-    
+
     cd "$WORKSPACE/sdks/$SdkName"
-    
+
     . "$WORKSPACE/JenkinsSdkSetupScripts/JenkinsScripts/Pipeline/testInit.sh"
-    
+
     echo === Delete previous builds ===
-    if [-d "$WORKSPACE\\sdks\\$SdkName\\builds" ]; then
-      cd "$WORKSPACE\\sdks\\$SdkName\\builds"
+    if [-d "$WORKSPACE/sdks/$SdkName/builds" ]; then
+      cd "$WORKSPACE/sdks/$SdkName/builds"
       rm *.jar /F /Q || true
     fi
 
     cd "$WORKSPACE/SDKGenerator/SDKBuildScripts"
-    export PF_TEST_TITLE_DATA_JSON="$WORKSPACE\JenkinsSdkSetupScripts\Creds\testTitleData.json"
     . ./shared_build.sh
 
     echo === Build the Java Project ===
-    cd "$WORKSPACE\sdks\\"$SdkName"\PlayFabSDK"
+    cd "$WORKSPACE/sdks/"$SdkName"/PlayFabSDK"
     ./packageMe.sh
 
-    cd "$WORKSPACE\sdks\\"$SdkName"\PlayFabClientSDK"
+    cd "$WORKSPACE/sdks/$SdkName/PlayFabClientSDK"
     ./packageMe.sh
 
-    if [ $TestServer = true ]; then
+    if [ "$TestServer" = "true" ]; then
       echo === testing server ===
       cd "$WORKSPACE/sdks/$SdkName/PlayFabServerSDK"
       ./deploy.sh
     fi
 
-    if [ $isVersioned = true ]; then
+    if [ "$isVersioned" = "true" ]; then
       echo === publish to maven ===
       cd "$WORKSPACE/sdks/$SdkName/"
 
