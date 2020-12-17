@@ -42,7 +42,7 @@ parameters:
   default: self
 
 jobs:
-- job: JavatJobTemplate
+- job: JavaJobTemplate
   steps:
   - bash: echo JavaJobTemplate
 - job: JavaTemplate

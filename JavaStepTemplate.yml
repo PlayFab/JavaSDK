@@ -84,7 +84,7 @@ steps:
     
     echo === Delete previous builds ===
     cd "$WORKSPACE\sdks\$SdkName\builds"
-    rm *.jar /F /Q
+    rm *.jar /F /Q || true
 
     cd "$WORKSPACE/SDKGenerator/SDKBuildScripts"
     targetSrc="java"
