@@ -57,5 +57,5 @@ jobs:
       GitJSetupBranch: ${{ parameters.GitJSetupBranch }}
       GitSdkGenBranch: ${{ parameters.GitSdkGenBranch }}
       isVersioned: ${{ parameters.isVersioned }}
-      expectedNumApiGroups: ${{ parameters.expectedNumApiGroups }}
+      TestServer: ${{ parameters.TestServer }}
       SelfTemplateResource: ${{ parameters.SelfTemplateResource }}
