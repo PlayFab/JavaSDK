@@ -51,7 +51,7 @@ steps:
 - checkout: SdkGenerator
   clean: true
   path: s/SdkGenerator
-- checkout: JavaSdk
+- checkout: self
   clean: true
   submodules: true
   path: s/sdks/JavaSDK
@@ -69,15 +69,6 @@ steps:
     # Hack attempt to get WORKSPACE into a sub-environment
     export WORKSPACE="$WORKSPACE"
     
-    echo === load util.sh to find msbuild ===
-    if [ -f "util.sh" ]; then
-      . "./util.sh" 2> /dev/null
-    elif [ ! -z "$WORKSPACE" ]; then
-      . "$WORKSPACE/JenkinsSdkSetupScripts/JenkinsScripts/Pipeline/util.sh" 2> /dev/null
-    fi
-    
-    Find2019MsBuild || Find2017MsBuild
-    
     cd "$WORKSPACE/sdks/$SdkName"
     
     . "$WORKSPACE/JenkinsSdkSetupScripts/JenkinsScripts/Pipeline/testInit.sh"
@@ -87,7 +78,6 @@ steps:
     rm *.jar /F /Q || true
 
     cd "$WORKSPACE/SDKGenerator/SDKBuildScripts"
-    targetSrc="java"
     export PF_TEST_TITLE_DATA_JSON="$WORKSPACE\JenkinsSdkSetupScripts\Creds\testTitleData.json"
     . ./shared_build.sh
 
@@ -98,15 +88,13 @@ steps:
     cd "$WORKSPACE\sdks\\"$SdkName"\PlayFabClientSDK"
     ./packageMe.sh
 
-    if [ $TestServer = true ] ;
-    then
+    if [ $TestServer = true ]; then
       echo === testing server ===
       cd "$WORKSPACE/sdks/$SdkName/PlayFabServerSDK"
       ./deploy.sh
     fi
 
-    if [ $isVersioned = true ] ;
-    then
+    if [ $isVersioned = true ]; then
       echo === publish to maven ===
       cd "$WORKSPACE/sdks/$SdkName/"
 
@@ -135,7 +123,6 @@ steps:
       mvn clean deploy -e -X -P release && mvn nexus-staging:release
       popd
     fi
-
   displayName: 'Build/Test/Report'
 - task: PublishTestResults@2
   inputs:
