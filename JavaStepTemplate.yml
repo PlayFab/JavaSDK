@@ -84,6 +84,7 @@ steps:
 
     echo === Build the Java Project ===
     cd "$WORKSPACE/sdks/"$SdkName"/PlayFabSDK"
+    export PF_TEST_TITLE_DATA_JSON="$WORKSPACE\JenkinsSdkSetupScripts\Creds\testTitleData.json"
     ./packageMe.sh
 
     cd "$WORKSPACE/sdks/$SdkName/PlayFabClientSDK"
