@@ -42,14 +42,14 @@ parameters:
   default: self
 
 jobs:
-- job: JavaScriptJobTemplate
+- job: JavatJobTemplate
   steps:
-  - bash: echo JavaScriptJobTemplate
-- job: JavaScriptTemplate
+  - bash: echo JavaJobTemplate
+- job: JavaTemplate
   pool:
     vmImage: 'windows-latest'
   steps:
-  - template: JavaScriptStepTemplate.yml
+  - template: JavaStepTemplate.yml
     parameters:
       ApiSpecSource: ${{ parameters.ApiSpecSource }}
       CommitMessage: ${{ parameters.CommitMessage }}
