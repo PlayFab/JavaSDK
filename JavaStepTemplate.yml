@@ -74,8 +74,10 @@ steps:
     . "$WORKSPACE/JenkinsSdkSetupScripts/JenkinsScripts/Pipeline/testInit.sh"
     
     echo === Delete previous builds ===
-    cd "$WORKSPACE\sdks\$SdkName\builds"
-    rm *.jar /F /Q || true
+    if [-d "$WORKSPACE\\sdks\\$SdkName\\builds" ]; then
+      cd "$WORKSPACE\\sdks\\$SdkName\\builds"
+      rm *.jar /F /Q || true
+    fi
 
     cd "$WORKSPACE/SDKGenerator/SDKBuildScripts"
     export PF_TEST_TITLE_DATA_JSON="$WORKSPACE\JenkinsSdkSetupScripts\Creds\testTitleData.json"
