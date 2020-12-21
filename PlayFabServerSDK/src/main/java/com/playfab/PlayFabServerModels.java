@@ -1682,6 +1682,7 @@ public class PlayFabServerModels {
         ExplorerBasicDeleteQueryError,
         ExplorerBasicUpdateQueryError,
         ExplorerBasicSavedQueriesLimit,
+        ExplorerBasicSavedQueryNotFound,
         TitleNotEnabledForParty,
         PartyVersionNotFound,
         MultiplayerServerBuildReferencedByMatchmakingQueue,
