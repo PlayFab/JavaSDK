@@ -588,6 +588,7 @@ public class PlayFabErrors {
         ExplorerBasicDeleteQueryError(5111),
         ExplorerBasicUpdateQueryError(5112),
         ExplorerBasicSavedQueriesLimit(5113),
+        ExplorerBasicSavedQueryNotFound(5114),
         TitleNotEnabledForParty(6000),
         PartyVersionNotFound(6001),
         MultiplayerServerBuildReferencedByMatchmakingQueue(6002),

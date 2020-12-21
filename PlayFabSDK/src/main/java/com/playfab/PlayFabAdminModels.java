@@ -1980,6 +1980,7 @@ public class PlayFabAdminModels {
         ExplorerBasicDeleteQueryError,
         ExplorerBasicUpdateQueryError,
         ExplorerBasicSavedQueriesLimit,
+        ExplorerBasicSavedQueryNotFound,
         TitleNotEnabledForParty,
         PartyVersionNotFound,
         MultiplayerServerBuildReferencedByMatchmakingQueue,
