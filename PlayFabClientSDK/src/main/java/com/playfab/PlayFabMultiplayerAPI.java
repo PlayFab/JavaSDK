@@ -3405,6 +3405,68 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * Updates a multiplayer server build's name.
+     * @param request UpdateBuildNameRequest
+     * @return Async Task will return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResponse>> UpdateBuildNameAsync(final UpdateBuildNameRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateUpdateBuildNameAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Updates a multiplayer server build's name.
+     * @param request UpdateBuildNameRequest
+     * @return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResponse> UpdateBuildName(final UpdateBuildNameRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateUpdateBuildNameAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
+        }
+    }
+
+    /** Updates a multiplayer server build's name. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResponse> privateUpdateBuildNameAsync(final UpdateBuildNameRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/UpdateBuildName"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
+
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Updates a multiplayer server build's region. If the region is not yet created, it will be created
      * @param request UpdateBuildRegionRequest
      * @return Async Task will return EmptyResponse
