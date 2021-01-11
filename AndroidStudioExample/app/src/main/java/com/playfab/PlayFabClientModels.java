@@ -497,6 +497,22 @@ public class PlayFabClientModels {
         
     }
 
+    public static class ConsumePS5EntitlementsRequest {
+        /** Catalog version to use */
+        public String CatalogVersion;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Marketplace specific payload containing details to fetch in app purchase transactions */
+        public PlayStation5Payload MarketplaceSpecificData;
+        
+    }
+
+    public static class ConsumePS5EntitlementsResult {
+        /** Details for the items purchased. */
+        public ArrayList<ItemInstance> Items;
+        
+    }
+
     public static class ConsumePSNEntitlementsRequest {
         /** Which catalog to match granted entitlements against. If null, defaults to title default catalog */
         public String CatalogVersion;
@@ -3618,6 +3634,14 @@ public class PlayFabClientModels {
         public String StatisticName;
         /** version of the statistic */
         public Long Version;
+        
+    }
+
+    public static class PlayStation5Payload {
+        /** An optional list of entitlement ids to query against PSN */
+        public ArrayList<String> Ids;
+        /** Id of the PSN service label to consume entitlements from */
+        public String ServiceLabel;
         
     }
 

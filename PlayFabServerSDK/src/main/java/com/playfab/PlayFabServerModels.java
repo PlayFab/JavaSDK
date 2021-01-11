@@ -1708,6 +1708,7 @@ public class PlayFabServerModels {
         ExperimentationExclusionGroupInsufficientCapacity,
         ExperimentationExclusionGroupCannotDelete,
         ExperimentationExclusionGroupInvalidTrafficAllocation,
+        ExperimentationExclusionGroupInvalidName,
         MaxActionDepthExceeded,
         TitleNotOnUpdatedPricingPlan,
         SegmentManagementTitleNotInFlight,

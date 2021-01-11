@@ -1809,6 +1809,17 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Updates a multiplayer server build's name. */
+    public static class UpdateBuildNameRequest {
+        /** The guid string ID of the build we want to update the name of. */
+        public String BuildId;
+        /** The build name. */
+        public String BuildName;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        
+    }
+
     /** Updates a multiplayer server build's region. */
     public static class UpdateBuildRegionRequest {
         /** The guid string ID of the build we want to update regions for. */

@@ -872,6 +872,73 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Checks for any new PS5 entitlements. If any are found, they are consumed (if they're consumables) and added as PlayFab
+     * items
+     * @param request ConsumePS5EntitlementsRequest
+     * @return Async Task will return ConsumePS5EntitlementsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ConsumePS5EntitlementsResult>> ConsumePS5EntitlementsAsync(final ConsumePS5EntitlementsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ConsumePS5EntitlementsResult>>() {
+            public PlayFabResult<ConsumePS5EntitlementsResult> call() throws Exception {
+                return privateConsumePS5EntitlementsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Checks for any new PS5 entitlements. If any are found, they are consumed (if they're consumables) and added as PlayFab
+     * items
+     * @param request ConsumePS5EntitlementsRequest
+     * @return ConsumePS5EntitlementsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ConsumePS5EntitlementsResult> ConsumePS5Entitlements(final ConsumePS5EntitlementsRequest request) {
+        FutureTask<PlayFabResult<ConsumePS5EntitlementsResult>> task = new FutureTask(new Callable<PlayFabResult<ConsumePS5EntitlementsResult>>() {
+            public PlayFabResult<ConsumePS5EntitlementsResult> call() throws Exception {
+                return privateConsumePS5EntitlementsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<ConsumePS5EntitlementsResult> exceptionResult = new PlayFabResult<ConsumePS5EntitlementsResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
+        }
+    }
+
+    /**
+     * Checks for any new PS5 entitlements. If any are found, they are consumed (if they're consumables) and added as PlayFab
+     * items
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ConsumePS5EntitlementsResult> privateConsumePS5EntitlementsAsync(final ConsumePS5EntitlementsRequest request) throws Exception {
+        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/ConsumePS5Entitlements"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ConsumePS5EntitlementsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ConsumePS5EntitlementsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ConsumePS5EntitlementsResult>>(){}.getType());
+        ConsumePS5EntitlementsResult result = resultData.data;
+
+        PlayFabResult<ConsumePS5EntitlementsResult> pfResult = new PlayFabResult<ConsumePS5EntitlementsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Checks for any new consumable entitlements. If any are found, they are consumed and added as PlayFab items
      * @param request ConsumePSNEntitlementsRequest
      * @return Async Task will return ConsumePSNEntitlementsResult

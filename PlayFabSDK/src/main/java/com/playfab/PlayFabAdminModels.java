@@ -2006,6 +2006,7 @@ public class PlayFabAdminModels {
         ExperimentationExclusionGroupInsufficientCapacity,
         ExperimentationExclusionGroupCannotDelete,
         ExperimentationExclusionGroupInvalidTrafficAllocation,
+        ExperimentationExclusionGroupInvalidName,
         MaxActionDepthExceeded,
         TitleNotOnUpdatedPricingPlan,
         SegmentManagementTitleNotInFlight,
@@ -2977,8 +2978,6 @@ public class PlayFabAdminModels {
     }
 
     public static class LinkedUserAccountSegmentFilter {
-        /** Login provider comparison. */
-        public SegmentFilterComparison Comparison;
         /** Login provider. */
         public SegmentLoginIdentityProvider LoginProvider;
         
