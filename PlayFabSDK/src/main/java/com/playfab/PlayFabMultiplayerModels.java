@@ -49,7 +49,12 @@ public class PlayFabMultiplayerModels {
         ChinaNorth2,
         SouthAfricaNorth,
         CentralUsEuap,
-        WestCentralUs
+        WestCentralUs,
+        KoreaCentral,
+        FranceCentral,
+        WestUs2,
+        CentralIndia,
+        UaeNorth
     }
 
     public static enum AzureVmFamily {
@@ -64,7 +69,9 @@ public class PlayFabMultiplayerModels {
         Eav4,
         Easv4,
         Ev4,
-        Esv4
+        Esv4,
+        Dsv3,
+        Dsv2
     }
 
     public static enum AzureVmSize {
@@ -101,7 +108,24 @@ public class PlayFabMultiplayerModels {
         Standard_D2a_v4,
         Standard_D4a_v4,
         Standard_D8a_v4,
-        Standard_D16a_v4
+        Standard_D16a_v4,
+        Standard_E2a_v4,
+        Standard_E4a_v4,
+        Standard_E8a_v4,
+        Standard_E16a_v4,
+        Standard_E2as_v4,
+        Standard_E4as_v4,
+        Standard_E8as_v4,
+        Standard_E16as_v4,
+        Standard_D2s_v3,
+        Standard_D4s_v3,
+        Standard_D8s_v3,
+        Standard_D16s_v3,
+        Standard_DS1_v2,
+        Standard_DS2_v2,
+        Standard_DS3_v2,
+        Standard_DS4_v2,
+        Standard_DS5_v2
     }
 
     public static class BuildAliasDetailsResponse {
@@ -321,6 +345,16 @@ public class PlayFabMultiplayerModels {
         /** The total core capacity for the (Region, VmFamily) */
         public Integer Total;
         /** The AzureVmFamily */
+        public AzureVmFamily VmFamily;
+        
+    }
+
+    public static class CoreCapacityChange {
+        /** New quota core limit for the given vm family/region. */
+        public Integer NewCoreLimit;
+        /** Region to change. */
+        public String Region;
+        /** Virtual machine family to change. */
         public AzureVmFamily VmFamily;
         
     }
@@ -719,6 +753,31 @@ public class PlayFabMultiplayerModels {
         public ArrayList<MatchmakingPlayer> Members;
         /** The Id of a match queue. */
         public String QueueName;
+        
+    }
+
+    /** Creates a request to change a title's multiplayer server quotas. */
+    public static class CreateTitleMultiplayerServersQuotaChangeRequest {
+        /** A brief description of the requested changes. */
+        public String ChangeDescription;
+        /** Changes to make to the titles cores quota. */
+        public ArrayList<CoreCapacityChange> Changes;
+        /** Email to be contacted by our team about this request. Only required when a request is not approved. */
+        public String ContactEmail;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Additional information about this request that our team can use to better understand the requirements. */
+        public String Notes;
+        /** When these changes would need to be in effect. Only required when a request is not approved. */
+        public Date StartDate;
+        
+    }
+
+    public static class CreateTitleMultiplayerServersQuotaChangeResponse {
+        /** Id of the change request that was created. */
+        public String RequestId;
+        /** Determines if the request was approved or not. When false, our team is reviewing and may respond within 2 business days. */
+        public Boolean WasApproved;
         
     }
 
@@ -1260,6 +1319,21 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Gets a title's server quota change request. */
+    public static class GetTitleMultiplayerServersQuotaChangeRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Id of the change request to get. */
+        public String RequestId;
+        
+    }
+
+    public static class GetTitleMultiplayerServersQuotaChangeResponse {
+        /** The change request for this title. */
+        public QuotaChange Change;
+        
+    }
+
     /** Gets the quotas for a title in relation to multiplayer servers. */
     public static class GetTitleMultiplayerServersQuotasRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -1517,6 +1591,19 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** List all server quota change requests for a title. */
+    public static class ListTitleMultiplayerServersQuotaChangesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        
+    }
+
+    public static class ListTitleMultiplayerServersQuotaChangesResponse {
+        /** All change requests for this title. */
+        public ArrayList<QuotaChange> Changes;
+        
+    }
+
     /** Returns a list of virtual machines for a title. */
     public static class ListVirtualMachineSummariesRequest {
         /** The guid string build ID of the virtual machines to list. */
@@ -1624,6 +1711,24 @@ public class PlayFabMultiplayerModels {
         public String Region;
         /** The QoS server URL. */
         public String ServerUrl;
+        
+    }
+
+    public static class QuotaChange {
+        /** A brief description of the requested changes. */
+        public String ChangeDescription;
+        /** Requested changes to make to the titles cores quota. */
+        public ArrayList<CoreCapacityChange> Changes;
+        /** Whether or not this request is pending a review. */
+        public Boolean IsPendingReview;
+        /** Additional information about this request that our team can use to better understand the requirements. */
+        public String Notes;
+        /** Id of the change request. */
+        public String RequestId;
+        /** Comments by our team when a request is reviewed. */
+        public String ReviewComments;
+        /** Whether or not this request was approved. */
+        public Boolean WasApproved;
         
     }
 

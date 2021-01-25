@@ -1957,7 +1957,7 @@ public class PlayFabClientModels {
     }
 
     public static class GetPlayFabIDsFromPSNAccountIDsRequest {
-        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        /** Id of the PSN issuer environment. If null, defaults to production environment. */
         public Integer IssuerId;
         /** Array of unique PlayStation Network identifiers for which the title needs to get PlayFab identifiers. */
         public ArrayList<String> PSNAccountIDs;
@@ -2613,7 +2613,7 @@ public class PlayFabClientModels {
         public Map<String,String> CustomTags;
         /** If another user is already linked to the account, unlink the other user and re-link. */
         public Boolean ForceLink;
-        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        /** Id of the PSN issuer environment. If null, defaults to production environment. */
         public Integer IssuerId;
         /** Redirect URI supplied to PSN when requesting an auth code */
         public String RedirectUri;
@@ -3193,7 +3193,7 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        /** Id of the PSN issuer environment. If null, defaults to production environment. */
         public Integer IssuerId;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
@@ -3737,7 +3737,7 @@ public class PlayFabClientModels {
     public static class RefreshPSNAuthTokenRequest {
         /** Auth code returned by PSN OAuth system. */
         public String AuthCode;
-        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        /** Id of the PSN issuer environment. If null, defaults to production environment. */
         public Integer IssuerId;
         /** Redirect URI supplied to PSN when requesting an auth code */
         public String RedirectUri;

@@ -771,6 +771,68 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * Creates a request to change a title's multiplayer server quotas.
+     * @param request CreateTitleMultiplayerServersQuotaChangeRequest
+     * @return Async Task will return CreateTitleMultiplayerServersQuotaChangeResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<CreateTitleMultiplayerServersQuotaChangeResponse>> CreateTitleMultiplayerServersQuotaChangeAsync(final CreateTitleMultiplayerServersQuotaChangeRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<CreateTitleMultiplayerServersQuotaChangeResponse>>() {
+            public PlayFabResult<CreateTitleMultiplayerServersQuotaChangeResponse> call() throws Exception {
+                return privateCreateTitleMultiplayerServersQuotaChangeAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Creates a request to change a title's multiplayer server quotas.
+     * @param request CreateTitleMultiplayerServersQuotaChangeRequest
+     * @return CreateTitleMultiplayerServersQuotaChangeResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<CreateTitleMultiplayerServersQuotaChangeResponse> CreateTitleMultiplayerServersQuotaChange(final CreateTitleMultiplayerServersQuotaChangeRequest request) {
+        FutureTask<PlayFabResult<CreateTitleMultiplayerServersQuotaChangeResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateTitleMultiplayerServersQuotaChangeResponse>>() {
+            public PlayFabResult<CreateTitleMultiplayerServersQuotaChangeResponse> call() throws Exception {
+                return privateCreateTitleMultiplayerServersQuotaChangeAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<CreateTitleMultiplayerServersQuotaChangeResponse> exceptionResult = new PlayFabResult<CreateTitleMultiplayerServersQuotaChangeResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
+        }
+    }
+
+    /** Creates a request to change a title's multiplayer server quotas. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<CreateTitleMultiplayerServersQuotaChangeResponse> privateCreateTitleMultiplayerServersQuotaChangeAsync(final CreateTitleMultiplayerServersQuotaChangeRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/CreateTitleMultiplayerServersQuotaChange"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<CreateTitleMultiplayerServersQuotaChangeResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<CreateTitleMultiplayerServersQuotaChangeResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<CreateTitleMultiplayerServersQuotaChangeResponse>>(){}.getType());
+        CreateTitleMultiplayerServersQuotaChangeResponse result = resultData.data;
+
+        PlayFabResult<CreateTitleMultiplayerServersQuotaChangeResponse> pfResult = new PlayFabResult<CreateTitleMultiplayerServersQuotaChangeResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Deletes a multiplayer server game asset for a title.
      * @param request DeleteAssetRequest
      * @return Async Task will return EmptyResponse
@@ -2073,6 +2135,68 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * Gets a title's server quota change request.
+     * @param request GetTitleMultiplayerServersQuotaChangeRequest
+     * @return Async Task will return GetTitleMultiplayerServersQuotaChangeResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetTitleMultiplayerServersQuotaChangeResponse>> GetTitleMultiplayerServersQuotaChangeAsync(final GetTitleMultiplayerServersQuotaChangeRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetTitleMultiplayerServersQuotaChangeResponse>>() {
+            public PlayFabResult<GetTitleMultiplayerServersQuotaChangeResponse> call() throws Exception {
+                return privateGetTitleMultiplayerServersQuotaChangeAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Gets a title's server quota change request.
+     * @param request GetTitleMultiplayerServersQuotaChangeRequest
+     * @return GetTitleMultiplayerServersQuotaChangeResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetTitleMultiplayerServersQuotaChangeResponse> GetTitleMultiplayerServersQuotaChange(final GetTitleMultiplayerServersQuotaChangeRequest request) {
+        FutureTask<PlayFabResult<GetTitleMultiplayerServersQuotaChangeResponse>> task = new FutureTask(new Callable<PlayFabResult<GetTitleMultiplayerServersQuotaChangeResponse>>() {
+            public PlayFabResult<GetTitleMultiplayerServersQuotaChangeResponse> call() throws Exception {
+                return privateGetTitleMultiplayerServersQuotaChangeAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetTitleMultiplayerServersQuotaChangeResponse> exceptionResult = new PlayFabResult<GetTitleMultiplayerServersQuotaChangeResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
+        }
+    }
+
+    /** Gets a title's server quota change request. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetTitleMultiplayerServersQuotaChangeResponse> privateGetTitleMultiplayerServersQuotaChangeAsync(final GetTitleMultiplayerServersQuotaChangeRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetTitleMultiplayerServersQuotaChange"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetTitleMultiplayerServersQuotaChangeResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetTitleMultiplayerServersQuotaChangeResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetTitleMultiplayerServersQuotaChangeResponse>>(){}.getType());
+        GetTitleMultiplayerServersQuotaChangeResponse result = resultData.data;
+
+        PlayFabResult<GetTitleMultiplayerServersQuotaChangeResponse> pfResult = new PlayFabResult<GetTitleMultiplayerServersQuotaChangeResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Gets the quotas for a title in relation to multiplayer servers.
      * @param request GetTitleMultiplayerServersQuotasRequest
      * @return Async Task will return GetTitleMultiplayerServersQuotasResponse
@@ -2383,79 +2507,6 @@ public class PlayFabMultiplayerAPI {
         ListBuildAliasesForTitleResponse result = resultData.data;
 
         PlayFabResult<ListBuildAliasesForTitleResponse> pfResult = new PlayFabResult<ListBuildAliasesForTitleResponse>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
-     * Lists summarized details of all multiplayer server builds for a title. Accepts tokens for title and if game client
-     * access is enabled, allows game client to request list of builds with player entity token.
-     * @deprecated Please use ListBuildSummariesV2 instead.
-     * @param request ListBuildSummariesRequest
-     * @return Async Task will return ListBuildSummariesResponse
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<ListBuildSummariesResponse>> ListBuildSummariesAsync(final ListBuildSummariesRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<ListBuildSummariesResponse>>() {
-            public PlayFabResult<ListBuildSummariesResponse> call() throws Exception {
-                return privateListBuildSummariesAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Lists summarized details of all multiplayer server builds for a title. Accepts tokens for title and if game client
-     * access is enabled, allows game client to request list of builds with player entity token.
-     * @deprecated Please use ListBuildSummariesV2 instead.
-     * @param request ListBuildSummariesRequest
-     * @return ListBuildSummariesResponse
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<ListBuildSummariesResponse> ListBuildSummaries(final ListBuildSummariesRequest request) {
-        FutureTask<PlayFabResult<ListBuildSummariesResponse>> task = new FutureTask(new Callable<PlayFabResult<ListBuildSummariesResponse>>() {
-            public PlayFabResult<ListBuildSummariesResponse> call() throws Exception {
-                return privateListBuildSummariesAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            PlayFabResult<ListBuildSummariesResponse> exceptionResult = new PlayFabResult<ListBuildSummariesResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
-            return exceptionResult;
-        }
-    }
-
-    /**
-     * Lists summarized details of all multiplayer server builds for a title. Accepts tokens for title and if game client
-     * access is enabled, allows game client to request list of builds with player entity token.
-     * @deprecated Please use ListBuildSummariesV2 instead.
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<ListBuildSummariesResponse> privateListBuildSummariesAsync(final ListBuildSummariesRequest request) throws Exception {
-        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListBuildSummaries"), request, "X-EntityToken", PlayFabSettings.EntityToken);
-        task.run();
-        Object httpResult = task.get();
-        if (httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<ListBuildSummariesResponse>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<ListBuildSummariesResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListBuildSummariesResponse>>(){}.getType());
-        ListBuildSummariesResponse result = resultData.data;
-
-        PlayFabResult<ListBuildSummariesResponse> pfResult = new PlayFabResult<ListBuildSummariesResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -3023,6 +3074,68 @@ public class PlayFabMultiplayerAPI {
         ListServerBackfillTicketsForPlayerResult result = resultData.data;
 
         PlayFabResult<ListServerBackfillTicketsForPlayerResult> pfResult = new PlayFabResult<ListServerBackfillTicketsForPlayerResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * List all server quota change requests for a title.
+     * @param request ListTitleMultiplayerServersQuotaChangesRequest
+     * @return Async Task will return ListTitleMultiplayerServersQuotaChangesResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ListTitleMultiplayerServersQuotaChangesResponse>> ListTitleMultiplayerServersQuotaChangesAsync(final ListTitleMultiplayerServersQuotaChangesRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ListTitleMultiplayerServersQuotaChangesResponse>>() {
+            public PlayFabResult<ListTitleMultiplayerServersQuotaChangesResponse> call() throws Exception {
+                return privateListTitleMultiplayerServersQuotaChangesAsync(request);
+            }
+        });
+    }
+
+    /**
+     * List all server quota change requests for a title.
+     * @param request ListTitleMultiplayerServersQuotaChangesRequest
+     * @return ListTitleMultiplayerServersQuotaChangesResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ListTitleMultiplayerServersQuotaChangesResponse> ListTitleMultiplayerServersQuotaChanges(final ListTitleMultiplayerServersQuotaChangesRequest request) {
+        FutureTask<PlayFabResult<ListTitleMultiplayerServersQuotaChangesResponse>> task = new FutureTask(new Callable<PlayFabResult<ListTitleMultiplayerServersQuotaChangesResponse>>() {
+            public PlayFabResult<ListTitleMultiplayerServersQuotaChangesResponse> call() throws Exception {
+                return privateListTitleMultiplayerServersQuotaChangesAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<ListTitleMultiplayerServersQuotaChangesResponse> exceptionResult = new PlayFabResult<ListTitleMultiplayerServersQuotaChangesResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
+        }
+    }
+
+    /** List all server quota change requests for a title. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ListTitleMultiplayerServersQuotaChangesResponse> privateListTitleMultiplayerServersQuotaChangesAsync(final ListTitleMultiplayerServersQuotaChangesRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListTitleMultiplayerServersQuotaChanges"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ListTitleMultiplayerServersQuotaChangesResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ListTitleMultiplayerServersQuotaChangesResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListTitleMultiplayerServersQuotaChangesResponse>>(){}.getType());
+        ListTitleMultiplayerServersQuotaChangesResponse result = resultData.data;
+
+        PlayFabResult<ListTitleMultiplayerServersQuotaChangesResponse> pfResult = new PlayFabResult<ListTitleMultiplayerServersQuotaChangesResponse>();
         pfResult.Result = result;
         return pfResult;
     }
