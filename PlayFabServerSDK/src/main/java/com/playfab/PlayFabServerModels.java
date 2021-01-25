@@ -2347,7 +2347,7 @@ public class PlayFabServerModels {
     }
 
     public static class GetPlayFabIDsFromPSNAccountIDsRequest {
-        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        /** Id of the PSN issuer environment. If null, defaults to production environment. */
         public Integer IssuerId;
         /** Array of unique PlayStation Network identifiers for which the title needs to get PlayFab identifiers. */
         public ArrayList<String> PSNAccountIDs;
@@ -2904,7 +2904,7 @@ public class PlayFabServerModels {
         public Map<String,String> CustomTags;
         /** If another user is already linked to the account, unlink the other user and re-link. */
         public Boolean ForceLink;
-        /** Id of the PSN issuer environment. If null, defaults to 256 (production) */
+        /** Id of the PSN issuer environment. If null, defaults to production environment. */
         public Integer IssuerId;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
