@@ -4745,6 +4745,73 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Signs the user in using an Steam ID, returning a session identifier that can subsequently be used for API calls which
+     * require an authenticated user
+     * @param request LoginWithSteamIdRequest
+     * @return Async Task will return ServerLoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ServerLoginResult>> LoginWithSteamIdAsync(final LoginWithSteamIdRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ServerLoginResult>>() {
+            public PlayFabResult<ServerLoginResult> call() throws Exception {
+                return privateLoginWithSteamIdAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Signs the user in using an Steam ID, returning a session identifier that can subsequently be used for API calls which
+     * require an authenticated user
+     * @param request LoginWithSteamIdRequest
+     * @return ServerLoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ServerLoginResult> LoginWithSteamId(final LoginWithSteamIdRequest request) {
+        FutureTask<PlayFabResult<ServerLoginResult>> task = new FutureTask(new Callable<PlayFabResult<ServerLoginResult>>() {
+            public PlayFabResult<ServerLoginResult> call() throws Exception {
+                return privateLoginWithSteamIdAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<ServerLoginResult> exceptionResult = new PlayFabResult<ServerLoginResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            return exceptionResult;
+        }
+    }
+
+    /**
+     * Signs the user in using an Steam ID, returning a session identifier that can subsequently be used for API calls which
+     * require an authenticated user
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ServerLoginResult> privateLoginWithSteamIdAsync(final LoginWithSteamIdRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/LoginWithSteamId"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ServerLoginResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ServerLoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ServerLoginResult>>(){}.getType());
+        ServerLoginResult result = resultData.data;
+
+        PlayFabResult<ServerLoginResult> pfResult = new PlayFabResult<ServerLoginResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Signs the user in using a Xbox Live Token from an external server backend, returning a session identifier that can
      * subsequently be used for API calls which require an authenticated user
      * @param request LoginWithXboxRequest

@@ -513,6 +513,8 @@ public class PlayFabErrors {
         WasNotCreatedWithCloudRoot(1510),
         LegacyMultiplayerServersDeprecated(1511),
         VirtualCurrencyCurrentlyUnavailable(1512),
+        SteamUserNotFound(1513),
+        ElasticSearchOperationFailed(1514),
         MatchmakingEntityInvalid(2001),
         MatchmakingPlayerAttributesInvalid(2002),
         MatchmakingQueueNotFound(2016),
@@ -537,6 +539,7 @@ public class PlayFabErrors {
         TitleConfigNotFound(3001),
         TitleConfigUpdateConflict(3002),
         TitleConfigSerializationError(3003),
+        CatalogApiNotImplemented(4000),
         CatalogEntityInvalid(4001),
         CatalogTitleIdMissing(4002),
         CatalogPlayerIdMissing(4003),
@@ -628,7 +631,8 @@ public class PlayFabErrors {
         CreateSegmentRateLimitExceeded(10008),
         UpdateSegmentRateLimitExceeded(10009),
         GetSegmentsRateLimitExceeded(10010),
-        SnapshotNotFound(11000);
+        SnapshotNotFound(11000),
+        InventoryApiNotImplemented(12000);
 
         public int id;
 

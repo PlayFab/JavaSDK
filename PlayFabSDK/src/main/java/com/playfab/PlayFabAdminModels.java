@@ -1905,6 +1905,8 @@ public class PlayFabAdminModels {
         WasNotCreatedWithCloudRoot,
         LegacyMultiplayerServersDeprecated,
         VirtualCurrencyCurrentlyUnavailable,
+        SteamUserNotFound,
+        ElasticSearchOperationFailed,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1929,6 +1931,7 @@ public class PlayFabAdminModels {
         TitleConfigNotFound,
         TitleConfigUpdateConflict,
         TitleConfigSerializationError,
+        CatalogApiNotImplemented,
         CatalogEntityInvalid,
         CatalogTitleIdMissing,
         CatalogPlayerIdMissing,
@@ -2020,7 +2023,8 @@ public class PlayFabAdminModels {
         CreateSegmentRateLimitExceeded,
         UpdateSegmentRateLimitExceeded,
         GetSegmentsRateLimitExceeded,
-        SnapshotNotFound
+        SnapshotNotFound,
+        InventoryApiNotImplemented
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {
