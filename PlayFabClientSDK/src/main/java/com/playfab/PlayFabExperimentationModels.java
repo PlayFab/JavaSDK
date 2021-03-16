@@ -38,12 +38,6 @@ public class PlayFabExperimentationModels {
         public Map<String,String> CustomTags;
         /** Description of the experiment. */
         public String Description;
-        /**
-         * The duration of the experiment, in days.
-         * @deprecated Please use EndDate instead.
-         */
-        @Deprecated
-        public Long Duration;
         /** When experiment should end. */
         public Date EndDate;
         /** Id of the exclusion group. */
@@ -119,12 +113,6 @@ public class PlayFabExperimentationModels {
     public static class Experiment {
         /** Description of the experiment. */
         public String Description;
-        /**
-         * The duration of the experiment, in days.
-         * @deprecated Please use EndDate instead.
-         */
-        @Deprecated
-        public Long Duration;
         /** When experiment should end/was ended. */
         public Date EndDate;
         /** Id of the exclusion group for this experiment. */
@@ -365,12 +353,6 @@ public class PlayFabExperimentationModels {
         public Map<String,String> CustomTags;
         /** Description of the experiment. */
         public String Description;
-        /**
-         * The duration of the experiment, in days.
-         * @deprecated Please use EndDate instead.
-         */
-        @Deprecated
-        public Long Duration;
         /** When experiment should end. */
         public Date EndDate;
         /** Id of the exclusion group. */

@@ -54,7 +54,8 @@ public class PlayFabMultiplayerModels {
         FranceCentral,
         WestUs2,
         CentralIndia,
-        UaeNorth
+        UaeNorth,
+        UkSouth
     }
 
     public static enum AzureVmFamily {
