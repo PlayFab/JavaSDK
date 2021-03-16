@@ -4604,9 +4604,11 @@ public class PlayFabClientAPI {
 
     /**
      * Requests a challenge from the server to be signed by Windows Hello Passport service to authenticate.
+     * @deprecated Do not use
      * @param request GetWindowsHelloChallengeRequest
      * @return Async Task will return GetWindowsHelloChallengeResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetWindowsHelloChallengeResponse>> GetWindowsHelloChallengeAsync(final GetWindowsHelloChallengeRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetWindowsHelloChallengeResponse>>() {
@@ -4618,9 +4620,11 @@ public class PlayFabClientAPI {
 
     /**
      * Requests a challenge from the server to be signed by Windows Hello Passport service to authenticate.
+     * @deprecated Do not use
      * @param request GetWindowsHelloChallengeRequest
      * @return GetWindowsHelloChallengeResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetWindowsHelloChallengeResponse> GetWindowsHelloChallenge(final GetWindowsHelloChallengeRequest request) {
         FutureTask<PlayFabResult<GetWindowsHelloChallengeResponse>> task = new FutureTask(new Callable<PlayFabResult<GetWindowsHelloChallengeResponse>>() {
@@ -4638,7 +4642,11 @@ public class PlayFabClientAPI {
         }
     }
 
-    /** Requests a challenge from the server to be signed by Windows Hello Passport service to authenticate. */
+    /**
+     * Requests a challenge from the server to be signed by Windows Hello Passport service to authenticate.
+     * @deprecated Do not use
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetWindowsHelloChallengeResponse> privateGetWindowsHelloChallengeAsync(final GetWindowsHelloChallengeRequest request) throws Exception {
 
@@ -5667,9 +5675,11 @@ public class PlayFabClientAPI {
 
     /**
      * Link Windows Hello authentication to the current PlayFab Account
+     * @deprecated Do not use
      * @param request LinkWindowsHelloAccountRequest
      * @return Async Task will return LinkWindowsHelloAccountResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<LinkWindowsHelloAccountResponse>> LinkWindowsHelloAsync(final LinkWindowsHelloAccountRequest request) {
         return new FutureTask(new Callable<PlayFabResult<LinkWindowsHelloAccountResponse>>() {
@@ -5681,9 +5691,11 @@ public class PlayFabClientAPI {
 
     /**
      * Link Windows Hello authentication to the current PlayFab Account
+     * @deprecated Do not use
      * @param request LinkWindowsHelloAccountRequest
      * @return LinkWindowsHelloAccountResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<LinkWindowsHelloAccountResponse> LinkWindowsHello(final LinkWindowsHelloAccountRequest request) {
         FutureTask<PlayFabResult<LinkWindowsHelloAccountResponse>> task = new FutureTask(new Callable<PlayFabResult<LinkWindowsHelloAccountResponse>>() {
@@ -5701,7 +5713,11 @@ public class PlayFabClientAPI {
         }
     }
 
-    /** Link Windows Hello authentication to the current PlayFab Account */
+    /**
+     * Link Windows Hello authentication to the current PlayFab Account
+     * @deprecated Do not use
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LinkWindowsHelloAccountResponse> privateLinkWindowsHelloAsync(final LinkWindowsHelloAccountRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
@@ -6988,9 +7004,11 @@ public class PlayFabClientAPI {
      * Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge
      * string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the
      * server.
+     * @deprecated Do not use
      * @param request LoginWithWindowsHelloRequest
      * @return Async Task will return LoginResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<LoginResult>> LoginWithWindowsHelloAsync(final LoginWithWindowsHelloRequest request) {
         return new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
@@ -7005,9 +7023,11 @@ public class PlayFabClientAPI {
      * Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge
      * string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the
      * server.
+     * @deprecated Do not use
      * @param request LoginWithWindowsHelloRequest
      * @return LoginResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<LoginResult> LoginWithWindowsHello(final LoginWithWindowsHelloRequest request) {
         FutureTask<PlayFabResult<LoginResult>> task = new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
@@ -7030,7 +7050,9 @@ public class PlayFabClientAPI {
      * Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge
      * string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the
      * server.
+     * @deprecated Do not use
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LoginResult> privateLoginWithWindowsHelloAsync(final LoginWithWindowsHelloRequest request) throws Exception {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
@@ -7665,9 +7687,11 @@ public class PlayFabClientAPI {
     /**
      * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket that can
      * subsequently be used for API calls which require an authenticated user
+     * @deprecated Do not use
      * @param request RegisterWithWindowsHelloRequest
      * @return Async Task will return LoginResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<LoginResult>> RegisterWithWindowsHelloAsync(final RegisterWithWindowsHelloRequest request) {
         return new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
@@ -7680,9 +7704,11 @@ public class PlayFabClientAPI {
     /**
      * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket that can
      * subsequently be used for API calls which require an authenticated user
+     * @deprecated Do not use
      * @param request RegisterWithWindowsHelloRequest
      * @return LoginResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<LoginResult> RegisterWithWindowsHello(final RegisterWithWindowsHelloRequest request) {
         FutureTask<PlayFabResult<LoginResult>> task = new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
@@ -7703,7 +7729,9 @@ public class PlayFabClientAPI {
     /**
      * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket that can
      * subsequently be used for API calls which require an authenticated user
+     * @deprecated Do not use
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LoginResult> privateRegisterWithWindowsHelloAsync(final RegisterWithWindowsHelloRequest request) throws Exception {
         request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
@@ -9643,9 +9671,11 @@ public class PlayFabClientAPI {
 
     /**
      * Unlink Windows Hello authentication from the current PlayFab Account
+     * @deprecated Do not use
      * @param request UnlinkWindowsHelloAccountRequest
      * @return Async Task will return UnlinkWindowsHelloAccountResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UnlinkWindowsHelloAccountResponse>> UnlinkWindowsHelloAsync(final UnlinkWindowsHelloAccountRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UnlinkWindowsHelloAccountResponse>>() {
@@ -9657,9 +9687,11 @@ public class PlayFabClientAPI {
 
     /**
      * Unlink Windows Hello authentication from the current PlayFab Account
+     * @deprecated Do not use
      * @param request UnlinkWindowsHelloAccountRequest
      * @return UnlinkWindowsHelloAccountResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<UnlinkWindowsHelloAccountResponse> UnlinkWindowsHello(final UnlinkWindowsHelloAccountRequest request) {
         FutureTask<PlayFabResult<UnlinkWindowsHelloAccountResponse>> task = new FutureTask(new Callable<PlayFabResult<UnlinkWindowsHelloAccountResponse>>() {
@@ -9677,7 +9709,11 @@ public class PlayFabClientAPI {
         }
     }
 
-    /** Unlink Windows Hello authentication from the current PlayFab Account */
+    /**
+     * Unlink Windows Hello authentication from the current PlayFab Account
+     * @deprecated Do not use
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UnlinkWindowsHelloAccountResponse> privateUnlinkWindowsHelloAsync(final UnlinkWindowsHelloAccountRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");

@@ -515,6 +515,7 @@ public class PlayFabErrors {
         VirtualCurrencyCurrentlyUnavailable(1512),
         SteamUserNotFound(1513),
         ElasticSearchOperationFailed(1514),
+        NotImplemented(1515),
         MatchmakingEntityInvalid(2001),
         MatchmakingPlayerAttributesInvalid(2002),
         MatchmakingQueueNotFound(2016),

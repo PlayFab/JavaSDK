@@ -89,7 +89,7 @@ public class PlayFabDataModels {
     }
 
     public static class GetFileMetadata {
-        /** Checksum value for the file */
+        /** Checksum value for the file, can be used to check if the file on the server has changed. */
         public String Checksum;
         /** Download URL where the file can be retrieved */
         public String DownloadUrl;

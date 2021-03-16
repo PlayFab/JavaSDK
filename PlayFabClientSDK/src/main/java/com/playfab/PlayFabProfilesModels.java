@@ -105,7 +105,7 @@ public class PlayFabProfilesModels {
 
     /** An entity file's meta data. To get a download URL call File/GetFiles API. */
     public static class EntityProfileFileMetadata {
-        /** Checksum value for the file */
+        /** Checksum value for the file, can be used to check if the file on the server has changed. */
         public String Checksum;
         /** Name of the file */
         public String FileName;

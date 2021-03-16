@@ -1609,6 +1609,7 @@ public class PlayFabServerModels {
         VirtualCurrencyCurrentlyUnavailable,
         SteamUserNotFound,
         ElasticSearchOperationFailed,
+        NotImplemented,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
