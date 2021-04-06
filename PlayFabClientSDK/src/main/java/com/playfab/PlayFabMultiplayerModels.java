@@ -136,10 +136,6 @@ public class PlayFabMultiplayerModels {
         public String AliasName;
         /** Array of build selection criteria. */
         public ArrayList<BuildSelectionCriterion> BuildSelectionCriteria;
-        /** The page size on the response. */
-        public Integer PageSize;
-        /** The skip token for the paged response. */
-        public String SkipToken;
         
     }
 
@@ -1166,6 +1162,8 @@ public class PlayFabMultiplayerModels {
     }
 
     public static class GetMultiplayerServerDetailsResponse {
+        /** The identity of the build in which the server was allocated. */
+        public String BuildId;
         /** The connected players in the multiplayer server. */
         public ArrayList<ConnectedPlayer> ConnectedPlayers;
         /** The fully qualified domain name of the virtual machine that is hosting this multiplayer server. */
@@ -1407,9 +1405,24 @@ public class PlayFabMultiplayerModels {
         
     }
 
-    public static class ListBuildAliasesForTitleResponse {
+    /** Returns a list of summarized details of all multiplayer server builds for a title. */
+    public static class ListBuildAliasesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The page size for the request. */
+        public Integer PageSize;
+        /** The skip token for the paged request. */
+        public String SkipToken;
+        
+    }
+
+    public static class ListBuildAliasesResponse {
         /** The list of build aliases for the title */
         public ArrayList<BuildAliasDetailsResponse> BuildAliases;
+        /** The page size on the response. */
+        public Integer PageSize;
+        /** The skip token for the paged response. */
+        public String SkipToken;
         
     }
 
@@ -1662,13 +1675,6 @@ public class PlayFabMultiplayerModels {
         
     }
 
-    /** Returns a list of summarized details of all multiplayer server builds for a title. */
-    public static class MultiplayerEmptyRequest {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        public Map<String,String> CustomTags;
-        
-    }
-
     public static class MultiplayerServerSummary {
         /** The connected players in the multiplayer server. */
         public ArrayList<ConnectedPlayer> ConnectedPlayers;
@@ -1762,6 +1768,8 @@ public class PlayFabMultiplayerModels {
     }
 
     public static class RequestMultiplayerServerResponse {
+        /** The identity of the build in which the server was allocated. */
+        public String BuildId;
         /** The connected players in the multiplayer server. */
         public ArrayList<ConnectedPlayer> ConnectedPlayers;
         /** The fully qualified domain name of the virtual machine that is hosting this multiplayer server. */
@@ -1833,6 +1841,8 @@ public class PlayFabMultiplayerModels {
     }
 
     public static class ServerDetails {
+        /** The fully qualified domain name of the virtual machine that is hosting this multiplayer server. */
+        public String Fqdn;
         /** The IPv4 address of the virtual machine that is hosting this multiplayer server. */
         public String IPV4Address;
         /** The ports the multiplayer server uses. */

@@ -2447,13 +2447,13 @@ public class PlayFabMultiplayerAPI {
     /**
      * Lists details of all build aliases for a title. Accepts tokens for title and if game client access is enabled, allows
      * game client to request list of builds with player entity token.
-     * @param request MultiplayerEmptyRequest
-     * @return Async Task will return ListBuildAliasesForTitleResponse
+     * @param request ListBuildAliasesRequest
+     * @return Async Task will return ListBuildAliasesResponse
      */
     @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<ListBuildAliasesForTitleResponse>> ListBuildAliasesAsync(final MultiplayerEmptyRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<ListBuildAliasesForTitleResponse>>() {
-            public PlayFabResult<ListBuildAliasesForTitleResponse> call() throws Exception {
+    public static FutureTask<PlayFabResult<ListBuildAliasesResponse>> ListBuildAliasesAsync(final ListBuildAliasesRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ListBuildAliasesResponse>>() {
+            public PlayFabResult<ListBuildAliasesResponse> call() throws Exception {
                 return privateListBuildAliasesAsync(request);
             }
         });
@@ -2462,13 +2462,13 @@ public class PlayFabMultiplayerAPI {
     /**
      * Lists details of all build aliases for a title. Accepts tokens for title and if game client access is enabled, allows
      * game client to request list of builds with player entity token.
-     * @param request MultiplayerEmptyRequest
-     * @return ListBuildAliasesForTitleResponse
+     * @param request ListBuildAliasesRequest
+     * @return ListBuildAliasesResponse
      */
     @SuppressWarnings("unchecked")
-    public static PlayFabResult<ListBuildAliasesForTitleResponse> ListBuildAliases(final MultiplayerEmptyRequest request) {
-        FutureTask<PlayFabResult<ListBuildAliasesForTitleResponse>> task = new FutureTask(new Callable<PlayFabResult<ListBuildAliasesForTitleResponse>>() {
-            public PlayFabResult<ListBuildAliasesForTitleResponse> call() throws Exception {
+    public static PlayFabResult<ListBuildAliasesResponse> ListBuildAliases(final ListBuildAliasesRequest request) {
+        FutureTask<PlayFabResult<ListBuildAliasesResponse>> task = new FutureTask(new Callable<PlayFabResult<ListBuildAliasesResponse>>() {
+            public PlayFabResult<ListBuildAliasesResponse> call() throws Exception {
                 return privateListBuildAliasesAsync(request);
             }
         });
@@ -2476,7 +2476,7 @@ public class PlayFabMultiplayerAPI {
             task.run();
             return task.get();
         } catch(Exception e) {
-            PlayFabResult<ListBuildAliasesForTitleResponse> exceptionResult = new PlayFabResult<ListBuildAliasesForTitleResponse>();
+            PlayFabResult<ListBuildAliasesResponse> exceptionResult = new PlayFabResult<ListBuildAliasesResponse>();
             exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
             return exceptionResult;
         }
@@ -2487,7 +2487,7 @@ public class PlayFabMultiplayerAPI {
      * game client to request list of builds with player entity token.
      */
     @SuppressWarnings("unchecked")
-    private static PlayFabResult<ListBuildAliasesForTitleResponse> privateListBuildAliasesAsync(final MultiplayerEmptyRequest request) throws Exception {
+    private static PlayFabResult<ListBuildAliasesResponse> privateListBuildAliasesAsync(final ListBuildAliasesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListBuildAliases"), request, "X-EntityToken", PlayFabSettings.EntityToken);
@@ -2497,16 +2497,16 @@ public class PlayFabMultiplayerAPI {
             PlayFabError error = (PlayFabError)httpResult;
             if (PlayFabSettings.GlobalErrorHandler != null)
                 PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<ListBuildAliasesForTitleResponse>();
+            PlayFabResult result = new PlayFabResult<ListBuildAliasesResponse>();
             result.Error = error;
             return result;
         }
         String resultRawJson = (String) httpResult;
 
-        PlayFabJsonSuccess<ListBuildAliasesForTitleResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListBuildAliasesForTitleResponse>>(){}.getType());
-        ListBuildAliasesForTitleResponse result = resultData.data;
+        PlayFabJsonSuccess<ListBuildAliasesResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListBuildAliasesResponse>>(){}.getType());
+        ListBuildAliasesResponse result = resultData.data;
 
-        PlayFabResult<ListBuildAliasesForTitleResponse> pfResult = new PlayFabResult<ListBuildAliasesForTitleResponse>();
+        PlayFabResult<ListBuildAliasesResponse> pfResult = new PlayFabResult<ListBuildAliasesResponse>();
         pfResult.Result = result;
         return pfResult;
     }

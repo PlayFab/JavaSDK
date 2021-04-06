@@ -1587,7 +1587,7 @@ public class PlayFabServerModels {
         EvaluationModePlayerCountExceeded,
         GetPlayersInSegmentRateLimitExceeded,
         CloudScriptFunctionNameSizeExceeded,
-        InsightsManagementTitleInEvaluationMode,
+        PaidInsightsFeaturesNotEnabled,
         CloudScriptAzureFunctionsQueueRequestError,
         EvaluationModeTitleCountExceeded,
         InsightsManagementTitleNotInFlight,
@@ -1726,6 +1726,7 @@ public class PlayFabServerModels {
         CreateSegmentRateLimitExceeded,
         UpdateSegmentRateLimitExceeded,
         GetSegmentsRateLimitExceeded,
+        AsyncExportNotInFlight,
         SnapshotNotFound,
         InventoryApiNotImplemented
     }
