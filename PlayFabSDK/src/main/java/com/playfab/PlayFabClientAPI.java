@@ -5049,7 +5049,10 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Links the Game Center account associated with the provided Game Center ID to the user's PlayFab account
+     * Links the Game Center account associated with the provided Game Center ID to the user's PlayFab account. Logging in with
+     * a Game Center ID is insecure if you do not include the optional PublicKeyUrl, Salt, Signature, and Timestamp parameters
+     * in this request. It is recommended you require these parameters on all Game Center calls by going to the Apple Add-ons
+     * page in the PlayFab Game Manager and enabling the 'Require secure authentication only for this app' option.
      * @param request LinkGameCenterAccountRequest
      * @return Async Task will return LinkGameCenterAccountResult
      */
@@ -5063,7 +5066,10 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Links the Game Center account associated with the provided Game Center ID to the user's PlayFab account
+     * Links the Game Center account associated with the provided Game Center ID to the user's PlayFab account. Logging in with
+     * a Game Center ID is insecure if you do not include the optional PublicKeyUrl, Salt, Signature, and Timestamp parameters
+     * in this request. It is recommended you require these parameters on all Game Center calls by going to the Apple Add-ons
+     * page in the PlayFab Game Manager and enabling the 'Require secure authentication only for this app' option.
      * @param request LinkGameCenterAccountRequest
      * @return LinkGameCenterAccountResult
      */
@@ -5084,7 +5090,12 @@ public class PlayFabClientAPI {
         }
     }
 
-    /** Links the Game Center account associated with the provided Game Center ID to the user's PlayFab account */
+    /**
+     * Links the Game Center account associated with the provided Game Center ID to the user's PlayFab account. Logging in with
+     * a Game Center ID is insecure if you do not include the optional PublicKeyUrl, Salt, Signature, and Timestamp parameters
+     * in this request. It is recommended you require these parameters on all Game Center calls by going to the Apple Add-ons
+     * page in the PlayFab Game Manager and enabling the 'Require secure authentication only for this app' option.
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LinkGameCenterAccountResult> privateLinkGameCenterAccountAsync(final LinkGameCenterAccountRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
@@ -6234,7 +6245,10 @@ public class PlayFabClientAPI {
 
     /**
      * Signs the user in using an iOS Game Center player identifier, returning a session identifier that can subsequently be
-     * used for API calls which require an authenticated user
+     * used for API calls which require an authenticated user. Logging in with a Game Center ID is insecure if you do not
+     * include the optional PublicKeyUrl, Salt, Signature, and Timestamp parameters in this request. It is recommended you
+     * require these parameters on all Game Center calls by going to the Apple Add-ons page in the PlayFab Game Manager and
+     * enabling the 'Require secure authentication only for this app' option.
      * @param request LoginWithGameCenterRequest
      * @return Async Task will return LoginResult
      */
@@ -6249,7 +6263,10 @@ public class PlayFabClientAPI {
 
     /**
      * Signs the user in using an iOS Game Center player identifier, returning a session identifier that can subsequently be
-     * used for API calls which require an authenticated user
+     * used for API calls which require an authenticated user. Logging in with a Game Center ID is insecure if you do not
+     * include the optional PublicKeyUrl, Salt, Signature, and Timestamp parameters in this request. It is recommended you
+     * require these parameters on all Game Center calls by going to the Apple Add-ons page in the PlayFab Game Manager and
+     * enabling the 'Require secure authentication only for this app' option.
      * @param request LoginWithGameCenterRequest
      * @return LoginResult
      */
@@ -6272,7 +6289,10 @@ public class PlayFabClientAPI {
 
     /**
      * Signs the user in using an iOS Game Center player identifier, returning a session identifier that can subsequently be
-     * used for API calls which require an authenticated user
+     * used for API calls which require an authenticated user. Logging in with a Game Center ID is insecure if you do not
+     * include the optional PublicKeyUrl, Salt, Signature, and Timestamp parameters in this request. It is recommended you
+     * require these parameters on all Game Center calls by going to the Apple Add-ons page in the PlayFab Game Manager and
+     * enabling the 'Require secure authentication only for this app' option.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LoginResult> privateLoginWithGameCenterAsync(final LoginWithGameCenterRequest request) throws Exception {

@@ -493,7 +493,7 @@ public class PlayFabErrors {
         EvaluationModePlayerCountExceeded(1490),
         GetPlayersInSegmentRateLimitExceeded(1491),
         CloudScriptFunctionNameSizeExceeded(1492),
-        InsightsManagementTitleInEvaluationMode(1493),
+        PaidInsightsFeaturesNotEnabled(1493),
         CloudScriptAzureFunctionsQueueRequestError(1494),
         EvaluationModeTitleCountExceeded(1495),
         InsightsManagementTitleNotInFlight(1496),
@@ -632,6 +632,7 @@ public class PlayFabErrors {
         CreateSegmentRateLimitExceeded(10008),
         UpdateSegmentRateLimitExceeded(10009),
         GetSegmentsRateLimitExceeded(10010),
+        AsyncExportNotInFlight(10011),
         SnapshotNotFound(11000),
         InventoryApiNotImplemented(12000);
 
