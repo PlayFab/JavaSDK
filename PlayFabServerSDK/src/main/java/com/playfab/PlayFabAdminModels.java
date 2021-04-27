@@ -518,7 +518,7 @@ public class PlayFabAdminModels {
         /** Last modified time */
         public Date LastModified;
         /** Size of the content in bytes */
-        public Long Size;
+        public Double Size;
         
     }
 
