@@ -69,7 +69,8 @@ public class PlayFabMultiplayerModels {
         Ev4,
         Esv4,
         Dsv3,
-        Dsv2
+        Dsv2,
+        NCasT4_v3
     }
 
     public static enum AzureVmSize {
@@ -123,7 +124,8 @@ public class PlayFabMultiplayerModels {
         Standard_DS2_v2,
         Standard_DS3_v2,
         Standard_DS4_v2,
-        Standard_DS5_v2
+        Standard_DS5_v2,
+        Standard_NC4as_T4_v3
     }
 
     public static class BuildAliasDetailsResponse {

@@ -176,7 +176,7 @@ public class PlayFabApiTest
         request.CreateAccount = true;
         PlayFabResult<PlayFabClientModels.LoginResult> result = PlayFabClientAPI.LoginWithCustomID(request);
 
-        assertEquals(PlayFabSettings.AD_TYPE_ANDROID_ID + "_Successful", PlayFabSettings.AdvertisingIdType);
+        assertEquals(PlayFabSettings.AD_TYPE_ANDROID_ID, PlayFabSettings.AdvertisingIdType);
     }
 
     /**
