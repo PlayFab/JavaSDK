@@ -634,6 +634,8 @@ public class PlayFabErrors {
         UpdateSegmentRateLimitExceeded(10009),
         GetSegmentsRateLimitExceeded(10010),
         AsyncExportNotInFlight(10011),
+        AsyncExportNotFound(10012),
+        AsyncExportRateLimitExceeded(10013),
         SnapshotNotFound(11000),
         InventoryApiNotImplemented(12000);
 

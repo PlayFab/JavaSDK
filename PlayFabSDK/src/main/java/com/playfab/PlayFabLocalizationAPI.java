@@ -74,4 +74,5 @@ public class PlayFabLocalizationAPI {
         pfResult.Result = result;
         return pfResult;
     }
+
 }

@@ -766,4 +766,5 @@ public class PlayFabCloudScriptAPI {
         pfResult.Result = result;
         return pfResult;
     }
+
 }

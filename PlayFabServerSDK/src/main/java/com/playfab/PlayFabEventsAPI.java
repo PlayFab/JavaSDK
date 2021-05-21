@@ -144,4 +144,5 @@ public class PlayFabEventsAPI {
         pfResult.Result = result;
         return pfResult;
     }
+
 }

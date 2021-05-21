@@ -602,8 +602,6 @@ public class PlayFabClientAPI {
 
         PlayFabJsonSuccess<AttributeInstallResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AttributeInstallResult>>(){}.getType());
         AttributeInstallResult result = resultData.data;
-        // Modify AdvertisingIdType:  Prevents us from sending the id multiple times, and allows automated tests to determine id was sent successfully
-        PlayFabSettings.AdvertisingIdType += "_Successful";
 
         PlayFabResult<AttributeInstallResult> pfResult = new PlayFabResult<AttributeInstallResult>();
         pfResult.Result = result;
@@ -4603,75 +4601,6 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Requests a challenge from the server to be signed by Windows Hello Passport service to authenticate.
-     * @deprecated Do not use
-     * @param request GetWindowsHelloChallengeRequest
-     * @return Async Task will return GetWindowsHelloChallengeResponse
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<GetWindowsHelloChallengeResponse>> GetWindowsHelloChallengeAsync(final GetWindowsHelloChallengeRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<GetWindowsHelloChallengeResponse>>() {
-            public PlayFabResult<GetWindowsHelloChallengeResponse> call() throws Exception {
-                return privateGetWindowsHelloChallengeAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Requests a challenge from the server to be signed by Windows Hello Passport service to authenticate.
-     * @deprecated Do not use
-     * @param request GetWindowsHelloChallengeRequest
-     * @return GetWindowsHelloChallengeResponse
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<GetWindowsHelloChallengeResponse> GetWindowsHelloChallenge(final GetWindowsHelloChallengeRequest request) {
-        FutureTask<PlayFabResult<GetWindowsHelloChallengeResponse>> task = new FutureTask(new Callable<PlayFabResult<GetWindowsHelloChallengeResponse>>() {
-            public PlayFabResult<GetWindowsHelloChallengeResponse> call() throws Exception {
-                return privateGetWindowsHelloChallengeAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            PlayFabResult<GetWindowsHelloChallengeResponse> exceptionResult = new PlayFabResult<GetWindowsHelloChallengeResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
-            return exceptionResult;
-        }
-    }
-
-    /**
-     * Requests a challenge from the server to be signed by Windows Hello Passport service to authenticate.
-     * @deprecated Do not use
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<GetWindowsHelloChallengeResponse> privateGetWindowsHelloChallengeAsync(final GetWindowsHelloChallengeRequest request) throws Exception {
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetWindowsHelloChallenge"), request, null, null);
-        task.run();
-        Object httpResult = task.get();
-        if (httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<GetWindowsHelloChallengeResponse>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<GetWindowsHelloChallengeResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetWindowsHelloChallengeResponse>>(){}.getType());
-        GetWindowsHelloChallengeResponse result = resultData.data;
-
-        PlayFabResult<GetWindowsHelloChallengeResponse> pfResult = new PlayFabResult<GetWindowsHelloChallengeResponse>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
      * Grants the specified character type to the user. CharacterIds are not globally unique; characterId must be evaluated
      * with the parent PlayFabId to guarantee uniqueness.
      * @param request GrantCharacterToUserRequest
@@ -5685,76 +5614,6 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Link Windows Hello authentication to the current PlayFab Account
-     * @deprecated Do not use
-     * @param request LinkWindowsHelloAccountRequest
-     * @return Async Task will return LinkWindowsHelloAccountResponse
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<LinkWindowsHelloAccountResponse>> LinkWindowsHelloAsync(final LinkWindowsHelloAccountRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<LinkWindowsHelloAccountResponse>>() {
-            public PlayFabResult<LinkWindowsHelloAccountResponse> call() throws Exception {
-                return privateLinkWindowsHelloAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Link Windows Hello authentication to the current PlayFab Account
-     * @deprecated Do not use
-     * @param request LinkWindowsHelloAccountRequest
-     * @return LinkWindowsHelloAccountResponse
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<LinkWindowsHelloAccountResponse> LinkWindowsHello(final LinkWindowsHelloAccountRequest request) {
-        FutureTask<PlayFabResult<LinkWindowsHelloAccountResponse>> task = new FutureTask(new Callable<PlayFabResult<LinkWindowsHelloAccountResponse>>() {
-            public PlayFabResult<LinkWindowsHelloAccountResponse> call() throws Exception {
-                return privateLinkWindowsHelloAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            PlayFabResult<LinkWindowsHelloAccountResponse> exceptionResult = new PlayFabResult<LinkWindowsHelloAccountResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
-            return exceptionResult;
-        }
-    }
-
-    /**
-     * Link Windows Hello authentication to the current PlayFab Account
-     * @deprecated Do not use
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<LinkWindowsHelloAccountResponse> privateLinkWindowsHelloAsync(final LinkWindowsHelloAccountRequest request) throws Exception {
-        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LinkWindowsHello"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
-        task.run();
-        Object httpResult = task.get();
-        if (httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<LinkWindowsHelloAccountResponse>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<LinkWindowsHelloAccountResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LinkWindowsHelloAccountResponse>>(){}.getType());
-        LinkWindowsHelloAccountResponse result = resultData.data;
-
-        PlayFabResult<LinkWindowsHelloAccountResponse> pfResult = new PlayFabResult<LinkWindowsHelloAccountResponse>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
      * Links the Xbox Live account associated with the provided access code to the user's PlayFab account
      * @param request LinkXboxAccountRequest
      * @return Async Task will return LinkXboxAccountResult
@@ -5880,7 +5739,6 @@ public class PlayFabClientAPI {
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
         if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
-        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
         pfResult.Result = result;
@@ -5946,7 +5804,6 @@ public class PlayFabClientAPI {
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
         if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
-        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
         pfResult.Result = result;
@@ -6017,7 +5874,6 @@ public class PlayFabClientAPI {
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
         if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
-        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
         pfResult.Result = result;
@@ -6094,7 +5950,6 @@ public class PlayFabClientAPI {
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
         if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
-        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
         pfResult.Result = result;
@@ -6165,7 +6020,6 @@ public class PlayFabClientAPI {
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
         if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
-        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
         pfResult.Result = result;
@@ -6236,7 +6090,6 @@ public class PlayFabClientAPI {
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
         if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
-        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
         pfResult.Result = result;
@@ -6316,7 +6169,6 @@ public class PlayFabClientAPI {
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
         if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
-        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
         pfResult.Result = result;
@@ -6382,7 +6234,6 @@ public class PlayFabClientAPI {
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
         if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
-        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
         pfResult.Result = result;
@@ -6453,7 +6304,6 @@ public class PlayFabClientAPI {
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
         if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
-        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
         pfResult.Result = result;
@@ -6519,7 +6369,6 @@ public class PlayFabClientAPI {
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
         if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
-        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
         pfResult.Result = result;
@@ -6585,7 +6434,6 @@ public class PlayFabClientAPI {
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
         if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
-        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
         pfResult.Result = result;
@@ -6656,7 +6504,6 @@ public class PlayFabClientAPI {
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
         if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
-        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
         pfResult.Result = result;
@@ -6727,7 +6574,6 @@ public class PlayFabClientAPI {
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
         if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
-        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
         pfResult.Result = result;
@@ -6804,7 +6650,6 @@ public class PlayFabClientAPI {
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
         if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
-        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
         pfResult.Result = result;
@@ -6875,7 +6720,6 @@ public class PlayFabClientAPI {
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
         if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
-        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
         pfResult.Result = result;
@@ -6946,7 +6790,6 @@ public class PlayFabClientAPI {
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
         if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
-        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
         pfResult.Result = result;
@@ -7012,90 +6855,6 @@ public class PlayFabClientAPI {
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
         if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
-        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
-
-        PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
-     * Completes the Windows Hello login flow by returning the signed value of the challange from GetWindowsHelloChallenge.
-     * Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge
-     * string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the
-     * server.
-     * @deprecated Do not use
-     * @param request LoginWithWindowsHelloRequest
-     * @return Async Task will return LoginResult
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<LoginResult>> LoginWithWindowsHelloAsync(final LoginWithWindowsHelloRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
-            public PlayFabResult<LoginResult> call() throws Exception {
-                return privateLoginWithWindowsHelloAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Completes the Windows Hello login flow by returning the signed value of the challange from GetWindowsHelloChallenge.
-     * Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge
-     * string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the
-     * server.
-     * @deprecated Do not use
-     * @param request LoginWithWindowsHelloRequest
-     * @return LoginResult
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<LoginResult> LoginWithWindowsHello(final LoginWithWindowsHelloRequest request) {
-        FutureTask<PlayFabResult<LoginResult>> task = new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
-            public PlayFabResult<LoginResult> call() throws Exception {
-                return privateLoginWithWindowsHelloAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            PlayFabResult<LoginResult> exceptionResult = new PlayFabResult<LoginResult>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
-            return exceptionResult;
-        }
-    }
-
-    /**
-     * Completes the Windows Hello login flow by returning the signed value of the challange from GetWindowsHelloChallenge.
-     * Windows Hello has a 2 step client to server authentication scheme. Step one is to request from the server a challenge
-     * string. Step two is to request the user sign the string via Windows Hello and then send the signed value back to the
-     * server.
-     * @deprecated Do not use
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<LoginResult> privateLoginWithWindowsHelloAsync(final LoginWithWindowsHelloRequest request) throws Exception {
-        request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
-        if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithWindowsHello"), request, null, null);
-        task.run();
-        Object httpResult = task.get();
-        if (httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<LoginResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
-        LoginResult result = resultData.data;
-        PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
-        if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
-        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
         pfResult.Result = result;
@@ -7166,7 +6925,6 @@ public class PlayFabClientAPI {
         LoginResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
         if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
-        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
         pfResult.Result = result;
@@ -7697,86 +7455,8 @@ public class PlayFabClientAPI {
         PlayFabJsonSuccess<RegisterPlayFabUserResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RegisterPlayFabUserResult>>(){}.getType());
         RegisterPlayFabUserResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
-        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
 
         PlayFabResult<RegisterPlayFabUserResult> pfResult = new PlayFabResult<RegisterPlayFabUserResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
-     * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket that can
-     * subsequently be used for API calls which require an authenticated user
-     * @deprecated Do not use
-     * @param request RegisterWithWindowsHelloRequest
-     * @return Async Task will return LoginResult
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<LoginResult>> RegisterWithWindowsHelloAsync(final RegisterWithWindowsHelloRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
-            public PlayFabResult<LoginResult> call() throws Exception {
-                return privateRegisterWithWindowsHelloAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket that can
-     * subsequently be used for API calls which require an authenticated user
-     * @deprecated Do not use
-     * @param request RegisterWithWindowsHelloRequest
-     * @return LoginResult
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<LoginResult> RegisterWithWindowsHello(final RegisterWithWindowsHelloRequest request) {
-        FutureTask<PlayFabResult<LoginResult>> task = new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
-            public PlayFabResult<LoginResult> call() throws Exception {
-                return privateRegisterWithWindowsHelloAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            PlayFabResult<LoginResult> exceptionResult = new PlayFabResult<LoginResult>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
-            return exceptionResult;
-        }
-    }
-
-    /**
-     * Registers a new PlayFab user account using Windows Hello authentication, returning a session ticket that can
-     * subsequently be used for API calls which require an authenticated user
-     * @deprecated Do not use
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<LoginResult> privateRegisterWithWindowsHelloAsync(final RegisterWithWindowsHelloRequest request) throws Exception {
-        request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
-        if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/RegisterWithWindowsHello"), request, null, null);
-        task.run();
-        Object httpResult = task.get();
-        if (httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<LoginResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
-        LoginResult result = resultData.data;
-        PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
-        if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
-        MultiStepClientLogin(resultData.data.SettingsForUser.NeedsAttribution);
-
-        PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -9690,76 +9370,6 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Unlink Windows Hello authentication from the current PlayFab Account
-     * @deprecated Do not use
-     * @param request UnlinkWindowsHelloAccountRequest
-     * @return Async Task will return UnlinkWindowsHelloAccountResponse
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<UnlinkWindowsHelloAccountResponse>> UnlinkWindowsHelloAsync(final UnlinkWindowsHelloAccountRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<UnlinkWindowsHelloAccountResponse>>() {
-            public PlayFabResult<UnlinkWindowsHelloAccountResponse> call() throws Exception {
-                return privateUnlinkWindowsHelloAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Unlink Windows Hello authentication from the current PlayFab Account
-     * @deprecated Do not use
-     * @param request UnlinkWindowsHelloAccountRequest
-     * @return UnlinkWindowsHelloAccountResponse
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<UnlinkWindowsHelloAccountResponse> UnlinkWindowsHello(final UnlinkWindowsHelloAccountRequest request) {
-        FutureTask<PlayFabResult<UnlinkWindowsHelloAccountResponse>> task = new FutureTask(new Callable<PlayFabResult<UnlinkWindowsHelloAccountResponse>>() {
-            public PlayFabResult<UnlinkWindowsHelloAccountResponse> call() throws Exception {
-                return privateUnlinkWindowsHelloAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            PlayFabResult<UnlinkWindowsHelloAccountResponse> exceptionResult = new PlayFabResult<UnlinkWindowsHelloAccountResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
-            return exceptionResult;
-        }
-    }
-
-    /**
-     * Unlink Windows Hello authentication from the current PlayFab Account
-     * @deprecated Do not use
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<UnlinkWindowsHelloAccountResponse> privateUnlinkWindowsHelloAsync(final UnlinkWindowsHelloAccountRequest request) throws Exception {
-        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UnlinkWindowsHello"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
-        task.run();
-        Object httpResult = task.get();
-        if (httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<UnlinkWindowsHelloAccountResponse>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<UnlinkWindowsHelloAccountResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UnlinkWindowsHelloAccountResponse>>(){}.getType());
-        UnlinkWindowsHelloAccountResponse result = resultData.data;
-
-        PlayFabResult<UnlinkWindowsHelloAccountResponse> pfResult = new PlayFabResult<UnlinkWindowsHelloAccountResponse>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
      * Unlinks the related Xbox Live account from the user's PlayFab account
      * @param request UnlinkXboxAccountRequest
      * @return Async Task will return UnlinkXboxAccountResult
@@ -10930,17 +10540,4 @@ public class PlayFabClientAPI {
         return pfResult;
     }
 
-    public static void MultiStepClientLogin(Boolean needsAttribution) {
-        if (needsAttribution && !PlayFabSettings.DisableAdvertising && PlayFabSettings.AdvertisingIdType != null && PlayFabSettings.AdvertisingIdValue != null) {
-            PlayFabClientModels.AttributeInstallRequest request = new PlayFabClientModels.AttributeInstallRequest();
-            if (PlayFabSettings.AdvertisingIdType == PlayFabSettings.AD_TYPE_IDFA)
-                request.Idfa = PlayFabSettings.AdvertisingIdValue;
-            else if (PlayFabSettings.AdvertisingIdType == PlayFabSettings.AD_TYPE_ANDROID_ID)
-                request.Adid = PlayFabSettings.AdvertisingIdValue;
-            else
-                return;
-            FutureTask<PlayFabResult<AttributeInstallResult>> task = AttributeInstallAsync(request);
-            task.run();
-        }
-    }
 }
