@@ -149,4 +149,5 @@ public class PlayFabAuthenticationAPI {
         pfResult.Result = result;
         return pfResult;
     }
+
 }

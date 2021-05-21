@@ -2026,6 +2026,8 @@ public class PlayFabAdminModels {
         UpdateSegmentRateLimitExceeded,
         GetSegmentsRateLimitExceeded,
         AsyncExportNotInFlight,
+        AsyncExportNotFound,
+        AsyncExportRateLimitExceeded,
         SnapshotNotFound,
         InventoryApiNotImplemented
     }
