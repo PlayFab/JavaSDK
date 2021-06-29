@@ -48,7 +48,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -110,7 +110,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -172,7 +172,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -234,7 +234,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<ApplyToGroupResponse> exceptionResult = new PlayFabResult<ApplyToGroupResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -296,7 +296,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -358,7 +358,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -420,7 +420,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<CreateGroupResponse> exceptionResult = new PlayFabResult<CreateGroupResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -482,7 +482,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<CreateGroupRoleResponse> exceptionResult = new PlayFabResult<CreateGroupRoleResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -544,7 +544,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -606,7 +606,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -668,7 +668,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<GetGroupResponse> exceptionResult = new PlayFabResult<GetGroupResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -730,7 +730,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<InviteToGroupResponse> exceptionResult = new PlayFabResult<InviteToGroupResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -792,7 +792,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<IsMemberResponse> exceptionResult = new PlayFabResult<IsMemberResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -854,7 +854,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<ListGroupApplicationsResponse> exceptionResult = new PlayFabResult<ListGroupApplicationsResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -916,7 +916,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<ListGroupBlocksResponse> exceptionResult = new PlayFabResult<ListGroupBlocksResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -978,7 +978,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<ListGroupInvitationsResponse> exceptionResult = new PlayFabResult<ListGroupInvitationsResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1040,7 +1040,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<ListGroupMembersResponse> exceptionResult = new PlayFabResult<ListGroupMembersResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1102,7 +1102,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<ListMembershipResponse> exceptionResult = new PlayFabResult<ListMembershipResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1164,7 +1164,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<ListMembershipOpportunitiesResponse> exceptionResult = new PlayFabResult<ListMembershipOpportunitiesResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1226,7 +1226,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1288,7 +1288,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1350,7 +1350,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1412,7 +1412,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1474,7 +1474,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<UpdateGroupResponse> exceptionResult = new PlayFabResult<UpdateGroupResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1536,7 +1536,7 @@ public class PlayFabGroupsAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<UpdateGroupRoleResponse> exceptionResult = new PlayFabResult<UpdateGroupRoleResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }

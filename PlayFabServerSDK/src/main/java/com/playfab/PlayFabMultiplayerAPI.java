@@ -44,7 +44,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<CancelAllMatchmakingTicketsForPlayerResult> exceptionResult = new PlayFabResult<CancelAllMatchmakingTicketsForPlayerResult>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -106,7 +106,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<CancelAllServerBackfillTicketsForPlayerResult> exceptionResult = new PlayFabResult<CancelAllServerBackfillTicketsForPlayerResult>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -168,7 +168,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<CancelMatchmakingTicketResult> exceptionResult = new PlayFabResult<CancelMatchmakingTicketResult>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -230,7 +230,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<CancelServerBackfillTicketResult> exceptionResult = new PlayFabResult<CancelServerBackfillTicketResult>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -292,7 +292,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<BuildAliasDetailsResponse> exceptionResult = new PlayFabResult<BuildAliasDetailsResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -354,7 +354,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<CreateBuildWithCustomContainerResponse> exceptionResult = new PlayFabResult<CreateBuildWithCustomContainerResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -416,7 +416,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<CreateBuildWithManagedContainerResponse> exceptionResult = new PlayFabResult<CreateBuildWithManagedContainerResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -478,7 +478,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<CreateBuildWithProcessBasedServerResponse> exceptionResult = new PlayFabResult<CreateBuildWithProcessBasedServerResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -540,7 +540,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<CreateMatchmakingTicketResult> exceptionResult = new PlayFabResult<CreateMatchmakingTicketResult>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -602,7 +602,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<CreateRemoteUserResponse> exceptionResult = new PlayFabResult<CreateRemoteUserResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -668,7 +668,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<CreateServerBackfillTicketResult> exceptionResult = new PlayFabResult<CreateServerBackfillTicketResult>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -736,7 +736,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<CreateMatchmakingTicketResult> exceptionResult = new PlayFabResult<CreateMatchmakingTicketResult>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -801,7 +801,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<CreateTitleMultiplayerServersQuotaChangeResponse> exceptionResult = new PlayFabResult<CreateTitleMultiplayerServersQuotaChangeResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -863,7 +863,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -925,7 +925,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -987,7 +987,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1049,7 +1049,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1111,7 +1111,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1173,7 +1173,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1235,7 +1235,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1297,7 +1297,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EnableMultiplayerServersForTitleResponse> exceptionResult = new PlayFabResult<EnableMultiplayerServersForTitleResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1329,7 +1329,75 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
-     * Gets the URL to upload assets to.
+     * Gets a URL that can be used to download the specified asset. A sample pre-authenticated url -
+     * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&amp;ss=b&amp;srt=sco&amp;sp=rw&amp;st=&lt;startDate&gt;&amp;se=&lt;endDate&gt;&amp;spr=https&amp;sig=&lt;sampleSig&gt;&amp;api-version=2017-07-29
+     * @param request GetAssetDownloadUrlRequest
+     * @return Async Task will return GetAssetDownloadUrlResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetAssetDownloadUrlResponse>> GetAssetDownloadUrlAsync(final GetAssetDownloadUrlRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetAssetDownloadUrlResponse>>() {
+            public PlayFabResult<GetAssetDownloadUrlResponse> call() throws Exception {
+                return privateGetAssetDownloadUrlAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Gets a URL that can be used to download the specified asset. A sample pre-authenticated url -
+     * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&amp;ss=b&amp;srt=sco&amp;sp=rw&amp;st=&lt;startDate&gt;&amp;se=&lt;endDate&gt;&amp;spr=https&amp;sig=&lt;sampleSig&gt;&amp;api-version=2017-07-29
+     * @param request GetAssetDownloadUrlRequest
+     * @return GetAssetDownloadUrlResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetAssetDownloadUrlResponse> GetAssetDownloadUrl(final GetAssetDownloadUrlRequest request) {
+        FutureTask<PlayFabResult<GetAssetDownloadUrlResponse>> task = new FutureTask(new Callable<PlayFabResult<GetAssetDownloadUrlResponse>>() {
+            public PlayFabResult<GetAssetDownloadUrlResponse> call() throws Exception {
+                return privateGetAssetDownloadUrlAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetAssetDownloadUrlResponse> exceptionResult = new PlayFabResult<GetAssetDownloadUrlResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /**
+     * Gets a URL that can be used to download the specified asset. A sample pre-authenticated url -
+     * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&amp;ss=b&amp;srt=sco&amp;sp=rw&amp;st=&lt;startDate&gt;&amp;se=&lt;endDate&gt;&amp;spr=https&amp;sig=&lt;sampleSig&gt;&amp;api-version=2017-07-29
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetAssetDownloadUrlResponse> privateGetAssetDownloadUrlAsync(final GetAssetDownloadUrlRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/GetAssetDownloadUrl"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetAssetDownloadUrlResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetAssetDownloadUrlResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetAssetDownloadUrlResponse>>(){}.getType());
+        GetAssetDownloadUrlResponse result = resultData.data;
+
+        PlayFabResult<GetAssetDownloadUrlResponse> pfResult = new PlayFabResult<GetAssetDownloadUrlResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Gets the URL to upload assets to. A sample pre-authenticated url -
+     * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&amp;ss=b&amp;srt=sco&amp;sp=rw&amp;st=&lt;startDate&gt;&amp;se=&lt;endDate&gt;&amp;spr=https&amp;sig=&lt;sampleSig&gt;&amp;api-version=2017-07-29
      * @param request GetAssetUploadUrlRequest
      * @return Async Task will return GetAssetUploadUrlResponse
      */
@@ -1343,7 +1411,8 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
-     * Gets the URL to upload assets to.
+     * Gets the URL to upload assets to. A sample pre-authenticated url -
+     * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&amp;ss=b&amp;srt=sco&amp;sp=rw&amp;st=&lt;startDate&gt;&amp;se=&lt;endDate&gt;&amp;spr=https&amp;sig=&lt;sampleSig&gt;&amp;api-version=2017-07-29
      * @param request GetAssetUploadUrlRequest
      * @return GetAssetUploadUrlResponse
      */
@@ -1359,12 +1428,15 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<GetAssetUploadUrlResponse> exceptionResult = new PlayFabResult<GetAssetUploadUrlResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
 
-    /** Gets the URL to upload assets to. */
+    /**
+     * Gets the URL to upload assets to. A sample pre-authenticated url -
+     * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&amp;ss=b&amp;srt=sco&amp;sp=rw&amp;st=&lt;startDate&gt;&amp;se=&lt;endDate&gt;&amp;spr=https&amp;sig=&lt;sampleSig&gt;&amp;api-version=2017-07-29
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetAssetUploadUrlResponse> privateGetAssetUploadUrlAsync(final GetAssetUploadUrlRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1421,7 +1493,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<GetBuildResponse> exceptionResult = new PlayFabResult<GetBuildResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1483,7 +1555,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<BuildAliasDetailsResponse> exceptionResult = new PlayFabResult<BuildAliasDetailsResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1545,7 +1617,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<GetContainerRegistryCredentialsResponse> exceptionResult = new PlayFabResult<GetContainerRegistryCredentialsResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1607,7 +1679,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<GetMatchResult> exceptionResult = new PlayFabResult<GetMatchResult>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1669,7 +1741,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<GetMatchmakingTicketResult> exceptionResult = new PlayFabResult<GetMatchmakingTicketResult>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1731,7 +1803,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<GetMultiplayerServerDetailsResponse> exceptionResult = new PlayFabResult<GetMultiplayerServerDetailsResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1793,7 +1865,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<GetMultiplayerServerLogsResponse> exceptionResult = new PlayFabResult<GetMultiplayerServerLogsResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1855,7 +1927,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<GetMultiplayerServerLogsResponse> exceptionResult = new PlayFabResult<GetMultiplayerServerLogsResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1917,7 +1989,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<GetQueueStatisticsResult> exceptionResult = new PlayFabResult<GetQueueStatisticsResult>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -1979,7 +2051,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<GetRemoteLoginEndpointResponse> exceptionResult = new PlayFabResult<GetRemoteLoginEndpointResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -2041,7 +2113,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<GetServerBackfillTicketResult> exceptionResult = new PlayFabResult<GetServerBackfillTicketResult>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -2103,7 +2175,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<GetTitleEnabledForMultiplayerServersStatusResponse> exceptionResult = new PlayFabResult<GetTitleEnabledForMultiplayerServersStatusResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -2165,7 +2237,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<GetTitleMultiplayerServersQuotaChangeResponse> exceptionResult = new PlayFabResult<GetTitleMultiplayerServersQuotaChangeResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -2227,7 +2299,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<GetTitleMultiplayerServersQuotasResponse> exceptionResult = new PlayFabResult<GetTitleMultiplayerServersQuotasResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -2289,7 +2361,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<JoinMatchmakingTicketResult> exceptionResult = new PlayFabResult<JoinMatchmakingTicketResult>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -2351,7 +2423,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<ListMultiplayerServersResponse> exceptionResult = new PlayFabResult<ListMultiplayerServersResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -2413,7 +2485,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<ListAssetSummariesResponse> exceptionResult = new PlayFabResult<ListAssetSummariesResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -2477,7 +2549,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<ListBuildAliasesResponse> exceptionResult = new PlayFabResult<ListBuildAliasesResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -2544,7 +2616,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<ListBuildSummariesResponse> exceptionResult = new PlayFabResult<ListBuildSummariesResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -2609,7 +2681,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<ListCertificateSummariesResponse> exceptionResult = new PlayFabResult<ListCertificateSummariesResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -2671,7 +2743,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<ListContainerImagesResponse> exceptionResult = new PlayFabResult<ListContainerImagesResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -2733,7 +2805,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<ListContainerImageTagsResponse> exceptionResult = new PlayFabResult<ListContainerImageTagsResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -2795,7 +2867,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<ListMatchmakingTicketsForPlayerResult> exceptionResult = new PlayFabResult<ListMatchmakingTicketsForPlayerResult>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -2857,7 +2929,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<ListMultiplayerServersResponse> exceptionResult = new PlayFabResult<ListMultiplayerServersResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -2919,7 +2991,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<ListPartyQosServersResponse> exceptionResult = new PlayFabResult<ListPartyQosServersResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -2982,7 +3054,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<ListQosServersForTitleResponse> exceptionResult = new PlayFabResult<ListQosServersForTitleResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -3047,7 +3119,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<ListServerBackfillTicketsForPlayerResult> exceptionResult = new PlayFabResult<ListServerBackfillTicketsForPlayerResult>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -3109,7 +3181,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<ListTitleMultiplayerServersQuotaChangesResponse> exceptionResult = new PlayFabResult<ListTitleMultiplayerServersQuotaChangesResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -3171,7 +3243,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<ListVirtualMachineSummariesResponse> exceptionResult = new PlayFabResult<ListVirtualMachineSummariesResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -3235,7 +3307,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<RequestMultiplayerServerResponse> exceptionResult = new PlayFabResult<RequestMultiplayerServerResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -3300,7 +3372,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<RolloverContainerRegistryCredentialsResponse> exceptionResult = new PlayFabResult<RolloverContainerRegistryCredentialsResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -3362,7 +3434,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -3424,7 +3496,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -3486,7 +3558,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<BuildAliasDetailsResponse> exceptionResult = new PlayFabResult<BuildAliasDetailsResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -3548,7 +3620,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -3610,7 +3682,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -3672,7 +3744,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -3734,7 +3806,7 @@ public class PlayFabMultiplayerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }

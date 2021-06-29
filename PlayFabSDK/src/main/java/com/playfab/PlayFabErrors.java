@@ -593,6 +593,7 @@ public class PlayFabErrors {
         ExplorerBasicUpdateQueryError(5112),
         ExplorerBasicSavedQueriesLimit(5113),
         ExplorerBasicSavedQueryNotFound(5114),
+        TenantShardMapperShardNotFound(5500),
         TitleNotEnabledForParty(6000),
         PartyVersionNotFound(6001),
         MultiplayerServerBuildReferencedByMatchmakingQueue(6002),
@@ -671,6 +672,7 @@ public class PlayFabErrors {
         public PlayFabErrorCode pfErrorCode;
         public String errorMessage;
         public Map<String, List<String>> errorDetails;
+        public Integer retryAfterSeconds;
     }
 
     // This is the internal definition of an error, that matches the json we receive
@@ -681,6 +683,7 @@ public class PlayFabErrors {
         public int errorCode;
         public String errorMessage;
         public Map<String, List<String>> errorDetails;
+        public Integer retryAfterSeconds;
     }
 
     public static class PlayFabJsonSuccess<E> {

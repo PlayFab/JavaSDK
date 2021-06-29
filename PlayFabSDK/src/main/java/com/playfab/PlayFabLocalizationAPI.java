@@ -44,7 +44,7 @@ public class PlayFabLocalizationAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<GetLanguageListResponse> exceptionResult = new PlayFabResult<GetLanguageListResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
