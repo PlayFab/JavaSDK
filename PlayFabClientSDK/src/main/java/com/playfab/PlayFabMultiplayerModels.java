@@ -947,6 +947,23 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Gets a URL that can be used to download the specified asset. */
+    public static class GetAssetDownloadUrlRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The asset's file name to get the download URL for. */
+        public String FileName;
+        
+    }
+
+    public static class GetAssetDownloadUrlResponse {
+        /** The asset's download URL. */
+        public String AssetDownloadUrl;
+        /** The asset's file name to get the download URL for. */
+        public String FileName;
+        
+    }
+
     /** Gets the URL to upload assets to. */
     public static class GetAssetUploadUrlRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */

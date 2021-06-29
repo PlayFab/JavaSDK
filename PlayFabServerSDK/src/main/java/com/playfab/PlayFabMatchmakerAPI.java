@@ -44,7 +44,7 @@ public class PlayFabMatchmakerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<AuthUserResponse> exceptionResult = new PlayFabResult<AuthUserResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -106,7 +106,7 @@ public class PlayFabMatchmakerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<PlayerJoinedResponse> exceptionResult = new PlayFabResult<PlayerJoinedResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -168,7 +168,7 @@ public class PlayFabMatchmakerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<PlayerLeftResponse> exceptionResult = new PlayFabResult<PlayerLeftResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -230,7 +230,7 @@ public class PlayFabMatchmakerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<StartGameResponse> exceptionResult = new PlayFabResult<StartGameResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }
@@ -294,7 +294,7 @@ public class PlayFabMatchmakerAPI {
             return task.get();
         } catch(Exception e) {
             PlayFabResult<UserInfoResponse> exceptionResult = new PlayFabResult<UserInfoResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null);
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
             return exceptionResult;
         }
     }

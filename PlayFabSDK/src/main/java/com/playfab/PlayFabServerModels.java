@@ -1687,6 +1687,7 @@ public class PlayFabServerModels {
         ExplorerBasicUpdateQueryError,
         ExplorerBasicSavedQueriesLimit,
         ExplorerBasicSavedQueryNotFound,
+        TenantShardMapperShardNotFound,
         TitleNotEnabledForParty,
         PartyVersionNotFound,
         MultiplayerServerBuildReferencedByMatchmakingQueue,
