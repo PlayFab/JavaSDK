@@ -2030,7 +2030,22 @@ public class PlayFabAdminModels {
         AsyncExportNotFound,
         AsyncExportRateLimitExceeded,
         SnapshotNotFound,
-        InventoryApiNotImplemented
+        InventoryApiNotImplemented,
+        LobbyDoesNotExist,
+        LobbyRateLimitExceeded,
+        LobbyPlayerAlreadyJoined,
+        LobbyNotJoinable,
+        LobbyMemberCannotRejoin,
+        LobbyCurrentPlayersMoreThanMaxPlayers,
+        LobbyPlayerNotPresent,
+        LobbyBadRequest,
+        LobbyPlayerMaxLobbyLimitExceeded,
+        LobbyNewOwnerMustBeConnected,
+        LobbyCurrentOwnerStillConnected,
+        LobbyMemberIsNotOwner,
+        EventSamplingInvalidRatio,
+        EventSamplingInvalidEventName,
+        EventSamplingRatioNotFound
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {
@@ -3352,7 +3367,11 @@ public class PlayFabAdminModels {
         public Date Created;
         /** Player display name */
         public String DisplayName;
-        /** List of experiment variants for the player. */
+        /**
+         * List of experiment variants for the player. Note that these variants are not guaranteed to be up-to-date when returned
+         * during login because the player profile is updated only after login. Instead, use the LoginResult.TreatmentAssignment
+         * property during login to get the correct variants and variables.
+         */
         public ArrayList<String> ExperimentVariants;
         /** UTC time when the player most recently logged in to the title */
         public Date LastLogin;
@@ -5138,8 +5157,6 @@ public class PlayFabAdminModels {
         public UserTwitchInfo TwitchInfo;
         /** User account name in the PlayFab service */
         public String Username;
-        /** Windows Hello account information, if a Windows Hello account has been linked */
-        public UserWindowsHelloInfo WindowsHelloInfo;
         /** User XBox account information, if a XBox account has been linked */
         public UserXboxInfo XboxInfo;
         
@@ -5273,7 +5290,6 @@ public class PlayFabAdminModels {
         XboxLive,
         Parse,
         Twitch,
-        WindowsHello,
         ServerCustomId,
         NintendoSwitchDeviceId,
         FacebookInstantGamesId,
@@ -5347,14 +5363,6 @@ public class PlayFabAdminModels {
         public String TwitchId;
         /** Twitch Username */
         public String TwitchUserName;
-        
-    }
-
-    public static class UserWindowsHelloInfo {
-        /** Windows Hello Device Name */
-        public String WindowsHelloDeviceName;
-        /** Windows Hello Public Key Hash */
-        public String WindowsHelloPublicKeyHash;
         
     }
 
