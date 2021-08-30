@@ -1910,6 +1910,8 @@ public class PlayFabAdminModels {
         NotImplemented,
         PublisherNotFound,
         PublisherDeleted,
+        ApiDisabledForMigration,
+        ResourceNameUpdateNotAllowed,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -2048,6 +2050,7 @@ public class PlayFabAdminModels {
         LobbyCurrentOwnerStillConnected,
         LobbyMemberIsNotOwner,
         EventSamplingInvalidRatio,
+        EventSamplingInvalidEventNamespace,
         EventSamplingInvalidEventName,
         EventSamplingRatioNotFound
     }
