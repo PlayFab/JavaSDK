@@ -1612,6 +1612,8 @@ public class PlayFabServerModels {
         NotImplemented,
         PublisherNotFound,
         PublisherDeleted,
+        ApiDisabledForMigration,
+        ResourceNameUpdateNotAllowed,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1750,6 +1752,7 @@ public class PlayFabServerModels {
         LobbyCurrentOwnerStillConnected,
         LobbyMemberIsNotOwner,
         EventSamplingInvalidRatio,
+        EventSamplingInvalidEventNamespace,
         EventSamplingInvalidEventName,
         EventSamplingRatioNotFound
     }
@@ -2040,12 +2043,6 @@ public class PlayFabServerModels {
     }
 
     public static class GetLeaderboardForUsersCharactersRequest {
-        /**
-         * Maximum number of entries to retrieve.
-         * @deprecated Please use  instead.
-         */
-        @Deprecated
-        public Integer MaxResultsCount;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
         /** Unique identifier for the title-specific statistic for the leaderboard. */

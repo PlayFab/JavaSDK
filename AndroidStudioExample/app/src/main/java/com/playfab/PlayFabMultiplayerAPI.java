@@ -1330,7 +1330,7 @@ public class PlayFabMultiplayerAPI {
 
     /**
      * Gets a URL that can be used to download the specified asset. A sample pre-authenticated url -
-     * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&amp;ss=b&amp;srt=sco&amp;sp=rw&amp;st=&lt;startDate&gt;&amp;se=&lt;endDate&gt;&amp;spr=https&amp;sig=&lt;sampleSig&gt;&amp;api-version=2017-07-29
+     * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&amp;ss=b&amp;srt=sco&amp;sp=rw&amp;st=startDate&amp;se=endDate&amp;spr=https&amp;sig=sampleSig&amp;api-version=2017-07-29
      * @param request GetAssetDownloadUrlRequest
      * @return Async Task will return GetAssetDownloadUrlResponse
      */
@@ -1345,7 +1345,7 @@ public class PlayFabMultiplayerAPI {
 
     /**
      * Gets a URL that can be used to download the specified asset. A sample pre-authenticated url -
-     * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&amp;ss=b&amp;srt=sco&amp;sp=rw&amp;st=&lt;startDate&gt;&amp;se=&lt;endDate&gt;&amp;spr=https&amp;sig=&lt;sampleSig&gt;&amp;api-version=2017-07-29
+     * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&amp;ss=b&amp;srt=sco&amp;sp=rw&amp;st=startDate&amp;se=endDate&amp;spr=https&amp;sig=sampleSig&amp;api-version=2017-07-29
      * @param request GetAssetDownloadUrlRequest
      * @return GetAssetDownloadUrlResponse
      */
@@ -1368,7 +1368,7 @@ public class PlayFabMultiplayerAPI {
 
     /**
      * Gets a URL that can be used to download the specified asset. A sample pre-authenticated url -
-     * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&amp;ss=b&amp;srt=sco&amp;sp=rw&amp;st=&lt;startDate&gt;&amp;se=&lt;endDate&gt;&amp;spr=https&amp;sig=&lt;sampleSig&gt;&amp;api-version=2017-07-29
+     * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&amp;ss=b&amp;srt=sco&amp;sp=rw&amp;st=startDate&amp;se=endDate&amp;spr=https&amp;sig=sampleSig&amp;api-version=2017-07-29
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetAssetDownloadUrlResponse> privateGetAssetDownloadUrlAsync(final GetAssetDownloadUrlRequest request) throws Exception {
@@ -1397,7 +1397,7 @@ public class PlayFabMultiplayerAPI {
 
     /**
      * Gets the URL to upload assets to. A sample pre-authenticated url -
-     * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&amp;ss=b&amp;srt=sco&amp;sp=rw&amp;st=&lt;startDate&gt;&amp;se=&lt;endDate&gt;&amp;spr=https&amp;sig=&lt;sampleSig&gt;&amp;api-version=2017-07-29
+     * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&amp;ss=b&amp;srt=sco&amp;sp=rw&amp;st=startDate&amp;se=endDate&amp;spr=https&amp;sig=sampleSig&amp;api-version=2017-07-29
      * @param request GetAssetUploadUrlRequest
      * @return Async Task will return GetAssetUploadUrlResponse
      */
@@ -1412,7 +1412,7 @@ public class PlayFabMultiplayerAPI {
 
     /**
      * Gets the URL to upload assets to. A sample pre-authenticated url -
-     * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&amp;ss=b&amp;srt=sco&amp;sp=rw&amp;st=&lt;startDate&gt;&amp;se=&lt;endDate&gt;&amp;spr=https&amp;sig=&lt;sampleSig&gt;&amp;api-version=2017-07-29
+     * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&amp;ss=b&amp;srt=sco&amp;sp=rw&amp;st=startDate&amp;se=endDate&amp;spr=https&amp;sig=sampleSig&amp;api-version=2017-07-29
      * @param request GetAssetUploadUrlRequest
      * @return GetAssetUploadUrlResponse
      */
@@ -1435,7 +1435,7 @@ public class PlayFabMultiplayerAPI {
 
     /**
      * Gets the URL to upload assets to. A sample pre-authenticated url -
-     * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&amp;ss=b&amp;srt=sco&amp;sp=rw&amp;st=&lt;startDate&gt;&amp;se=&lt;endDate&gt;&amp;spr=https&amp;sig=&lt;sampleSig&gt;&amp;api-version=2017-07-29
+     * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&amp;ss=b&amp;srt=sco&amp;sp=rw&amp;st=startDate&amp;se=endDate&amp;spr=https&amp;sig=sampleSig&amp;api-version=2017-07-29
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetAssetUploadUrlResponse> privateGetAssetUploadUrlAsync(final GetAssetUploadUrlRequest request) throws Exception {
