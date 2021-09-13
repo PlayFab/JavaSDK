@@ -167,6 +167,8 @@ public class PlayFabMultiplayerModels {
         public DynamicStandbySettings DynamicStandbySettings;
         /** The maximum number of multiplayer servers for the region. */
         public Integer MaxServers;
+        /** Regional override for the number of multiplayer servers to host on a single VM of the build. */
+        public Integer MultiplayerServerCountPerVm;
         /** The build region. */
         public String Region;
         /** Optional settings to set the standby target to specified values during the supplied schedules */
@@ -178,6 +180,8 @@ public class PlayFabMultiplayerModels {
          * Unhealthy, Deleting, Deleted.
          */
         public String Status;
+        /** Regional override for the VM size the build was created on. */
+        public AzureVmSize VmSize;
         
     }
 
@@ -186,12 +190,16 @@ public class PlayFabMultiplayerModels {
         public DynamicStandbySettings DynamicStandbySettings;
         /** The maximum number of multiplayer servers for the region. */
         public Integer MaxServers;
+        /** Regional override for the number of multiplayer servers to host on a single VM of the build. */
+        public Integer MultiplayerServerCountPerVm;
         /** The build region. */
         public String Region;
         /** Optional settings to set the standby target to specified values during the supplied schedules */
         public ScheduledStandbySettings ScheduledStandbySettings;
         /** The number of standby multiplayer servers for the region. */
         public Integer StandbyServers;
+        /** Regional override for the VM size the build was created on. */
+        public AzureVmSize VmSize;
         
     }
 
