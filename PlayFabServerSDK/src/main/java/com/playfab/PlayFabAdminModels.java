@@ -1916,6 +1916,7 @@ public class PlayFabAdminModels {
         DuplicateTitleNameForPublisher,
         AzureTitleCreationInProgress,
         DuplicateAzureResourceId,
+        TitleContraintsPublisherDeletion,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
