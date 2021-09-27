@@ -1905,20 +1905,8 @@ public class PlayFabMultiplayerModels {
      * have elapsed, the multiplayer server session will be forcefully terminated on it's own.
      */
     public static class ShutdownMultiplayerServerRequest {
-        /**
-         * The guid string build ID of the multiplayer server to delete.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public String BuildId;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /**
-         * The region of the multiplayer server to shut down.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public String Region;
         /** A guid string session ID of the multiplayer server to shut down. */
         public String SessionId;
         
