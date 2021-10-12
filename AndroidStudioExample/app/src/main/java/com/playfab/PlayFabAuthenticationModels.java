@@ -101,6 +101,8 @@ public class PlayFabAuthenticationModels {
         public IdentifiedDeviceType IdentifiedDeviceType;
         /** The identity provider for this entity, for the given login */
         public LoginIdentityProvider IdentityProvider;
+        /** The ID issued by the identity provider, e.g. a XUID on Xbox Live */
+        public String IdentityProviderIssuedId;
         /** The lineage of this profile. */
         public EntityLineage Lineage;
         

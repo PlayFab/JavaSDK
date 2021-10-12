@@ -1155,6 +1155,68 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Deletes a player's subscription
+     * @param request DeleteMembershipSubscriptionRequest
+     * @return Async Task will return DeleteMembershipSubscriptionResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<DeleteMembershipSubscriptionResult>> DeleteMembershipSubscriptionAsync(final DeleteMembershipSubscriptionRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<DeleteMembershipSubscriptionResult>>() {
+            public PlayFabResult<DeleteMembershipSubscriptionResult> call() throws Exception {
+                return privateDeleteMembershipSubscriptionAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Deletes a player's subscription
+     * @param request DeleteMembershipSubscriptionRequest
+     * @return DeleteMembershipSubscriptionResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<DeleteMembershipSubscriptionResult> DeleteMembershipSubscription(final DeleteMembershipSubscriptionRequest request) {
+        FutureTask<PlayFabResult<DeleteMembershipSubscriptionResult>> task = new FutureTask(new Callable<PlayFabResult<DeleteMembershipSubscriptionResult>>() {
+            public PlayFabResult<DeleteMembershipSubscriptionResult> call() throws Exception {
+                return privateDeleteMembershipSubscriptionAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<DeleteMembershipSubscriptionResult> exceptionResult = new PlayFabResult<DeleteMembershipSubscriptionResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Deletes a player's subscription */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<DeleteMembershipSubscriptionResult> privateDeleteMembershipSubscriptionAsync(final DeleteMembershipSubscriptionRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/DeleteMembershipSubscription"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<DeleteMembershipSubscriptionResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<DeleteMembershipSubscriptionResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<DeleteMembershipSubscriptionResult>>(){}.getType());
+        DeleteMembershipSubscriptionResult result = resultData.data;
+
+        PlayFabResult<DeleteMembershipSubscriptionResult> pfResult = new PlayFabResult<DeleteMembershipSubscriptionResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Removes a relationship between a title and an OpenID Connect provider.
      * @param request DeleteOpenIdConnectionRequest
      * @return Async Task will return EmptyResponse
@@ -5674,6 +5736,68 @@ public class PlayFabAdminAPI {
         UpdateCatalogItemsResult result = resultData.data;
 
         PlayFabResult<UpdateCatalogItemsResult> pfResult = new PlayFabResult<UpdateCatalogItemsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Sets the override expiration for a membership subscription
+     * @param request SetMembershipOverrideRequest
+     * @return Async Task will return SetMembershipOverrideResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<SetMembershipOverrideResult>> SetMembershipOverrideAsync(final SetMembershipOverrideRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<SetMembershipOverrideResult>>() {
+            public PlayFabResult<SetMembershipOverrideResult> call() throws Exception {
+                return privateSetMembershipOverrideAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Sets the override expiration for a membership subscription
+     * @param request SetMembershipOverrideRequest
+     * @return SetMembershipOverrideResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<SetMembershipOverrideResult> SetMembershipOverride(final SetMembershipOverrideRequest request) {
+        FutureTask<PlayFabResult<SetMembershipOverrideResult>> task = new FutureTask(new Callable<PlayFabResult<SetMembershipOverrideResult>>() {
+            public PlayFabResult<SetMembershipOverrideResult> call() throws Exception {
+                return privateSetMembershipOverrideAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<SetMembershipOverrideResult> exceptionResult = new PlayFabResult<SetMembershipOverrideResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Sets the override expiration for a membership subscription */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<SetMembershipOverrideResult> privateSetMembershipOverrideAsync(final SetMembershipOverrideRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/SetMembershipOverride"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<SetMembershipOverrideResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<SetMembershipOverrideResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetMembershipOverrideResult>>(){}.getType());
+        SetMembershipOverrideResult result = resultData.data;
+
+        PlayFabResult<SetMembershipOverrideResult> pfResult = new PlayFabResult<SetMembershipOverrideResult>();
         pfResult.Result = result;
         return pfResult;
     }
