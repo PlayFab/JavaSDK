@@ -1135,6 +1135,23 @@ public class PlayFabAdminModels {
         
     }
 
+    /** This API lets developers delete a membership subscription. */
+    public static class DeleteMembershipSubscriptionRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Id of the membership to apply the override expiration date to. */
+        public String MembershipId;
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        public String PlayFabId;
+        /** Id of the subscription that should be deleted from the membership. */
+        public String SubscriptionId;
+        
+    }
+
+    public static class DeleteMembershipSubscriptionResult {
+        
+    }
+
     public static class DeleteOpenIdConnectionRequest {
         /** unique name of the connection */
         public String ConnectionId;
@@ -1917,6 +1934,7 @@ public class PlayFabAdminModels {
         AzureTitleCreationInProgress,
         DuplicateAzureResourceId,
         TitleContraintsPublisherDeletion,
+        InvalidPlayerAccountPoolId,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1940,6 +1958,9 @@ public class PlayFabAdminModels {
         MatchmakingBadRequest,
         PubSubFeatureNotEnabledForTitle,
         PubSubTooManyRequests,
+        PubSubConnectionHandleAccessDenied,
+        PubSubConnectionHandleInvalid,
+        PubSubSubscriptionLimitExceeded,
         TitleConfigNotFound,
         TitleConfigUpdateConflict,
         TitleConfigSerializationError,
@@ -2057,7 +2078,11 @@ public class PlayFabAdminModels {
         EventSamplingInvalidRatio,
         EventSamplingInvalidEventNamespace,
         EventSamplingInvalidEventName,
-        EventSamplingRatioNotFound
+        EventSamplingRatioNotFound,
+        EventSinkConnectionInvalid,
+        EventSinkConnectionUnauthorized,
+        EventSinkRegionInvalid,
+        OperationCanceled
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {
@@ -4360,6 +4385,8 @@ public class PlayFabAdminModels {
     }
 
     public static class SegmentModel {
+        /** ResourceId of Segment resource */
+        public String AzureResourceId;
         /** Segment description. */
         public String Description;
         /** Segment actions for current entered segment players. */
@@ -4428,6 +4455,23 @@ public class PlayFabAdminModels {
     }
 
     public static class SendAccountRecoveryEmailResult {
+        
+    }
+
+    /** This API lets developers set overrides for membership expirations, independent of any subscriptions setting it. */
+    public static class SetMembershipOverrideRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Expiration time for the membership in DateTime format, will override any subscription expirations. */
+        public Date ExpirationTime;
+        /** Id of the membership to apply the override expiration date to. */
+        public String MembershipId;
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        public String PlayFabId;
+        
+    }
+
+    public static class SetMembershipOverrideResult {
         
     }
 
@@ -4514,17 +4558,28 @@ public class PlayFabAdminModels {
      * already exists, the Value for that key will be overwritten with the new Value.
      */
     public static class SetTitleDataRequest {
+        /** Id of azure resource */
+        public String AzureResourceId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /**
          * key we want to set a value on (note, this is additive - will only replace an existing key's value if they are the same
          * name.) Keys are trimmed of whitespace. Keys may not begin with the '!' character.
          */
         public String Key;
+        /**
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
+         * title has been selected.
+         */
+        public String TitleId;
         /** new value to set. Set to null to remove a value */
         public String Value;
         
     }
 
     public static class SetTitleDataResult {
+        /** Id of azure resource */
+        public String AzureResourceId;
         
     }
 

@@ -431,6 +431,28 @@ public class PlayFabCloudScriptModels {
         
     }
 
+    public static class GetFunctionRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The name of the function to register */
+        public String FunctionName;
+        /** The Id of the parent Title */
+        public String TitleId;
+        
+    }
+
+    public static class GetFunctionResult {
+        /** The connection string for the storage account containing the queue for a queue trigger Azure Function. */
+        public String ConnectionString;
+        /** The URL to be invoked to execute an HTTP triggered function. */
+        public String FunctionUrl;
+        /** The name of the queue for a queue trigger Azure Function. */
+        public String QueueName;
+        /** The trigger type for the function. */
+        public String TriggerType;
+        
+    }
+
     public static class HttpFunctionModel {
         /** The name the function was registered under. */
         public String FunctionName;
@@ -692,12 +714,16 @@ public class PlayFabCloudScriptModels {
     }
 
     public static class RegisterHttpFunctionRequest {
+        /** The Id of the Azure Resource */
+        public String AzureResourceId;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The name of the function to register */
         public String FunctionName;
         /** Full URL for Azure Function that implements the function. */
         public String FunctionUrl;
+        /** The Id of the parent Title */
+        public String TitleId;
         
     }
 
@@ -706,6 +732,8 @@ public class PlayFabCloudScriptModels {
      * string.
      */
     public static class RegisterQueuedFunctionRequest {
+        /** The Id of the Azure Resource */
+        public String AzureResourceId;
         /** A connection string for the storage account that hosts the queue for the Azure Function. */
         public String ConnectionString;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -714,6 +742,8 @@ public class PlayFabCloudScriptModels {
         public String FunctionName;
         /** The name of the queue for the Azure Function. */
         public String QueueName;
+        /** The Id of the parent Title */
+        public String TitleId;
         
     }
 
@@ -783,8 +813,10 @@ public class PlayFabCloudScriptModels {
     public static class UnregisterFunctionRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** The name of the function to unregister */
+        /** The name of the function to register */
         public String FunctionName;
+        /** The Id of the parent Title */
+        public String TitleId;
         
     }
 

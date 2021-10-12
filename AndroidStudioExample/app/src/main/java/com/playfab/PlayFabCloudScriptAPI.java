@@ -148,6 +148,68 @@ public class PlayFabCloudScriptAPI {
     }
 
     /**
+     * Gets registered Azure Functions for a given title id and function name.
+     * @param request GetFunctionRequest
+     * @return Async Task will return GetFunctionResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetFunctionResult>> GetFunctionAsync(final GetFunctionRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetFunctionResult>>() {
+            public PlayFabResult<GetFunctionResult> call() throws Exception {
+                return privateGetFunctionAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Gets registered Azure Functions for a given title id and function name.
+     * @param request GetFunctionRequest
+     * @return GetFunctionResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetFunctionResult> GetFunction(final GetFunctionRequest request) {
+        FutureTask<PlayFabResult<GetFunctionResult>> task = new FutureTask(new Callable<PlayFabResult<GetFunctionResult>>() {
+            public PlayFabResult<GetFunctionResult> call() throws Exception {
+                return privateGetFunctionAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetFunctionResult> exceptionResult = new PlayFabResult<GetFunctionResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Gets registered Azure Functions for a given title id and function name. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetFunctionResult> privateGetFunctionAsync(final GetFunctionRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/GetFunction"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetFunctionResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetFunctionResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetFunctionResult>>(){}.getType());
+        GetFunctionResult result = resultData.data;
+
+        PlayFabResult<GetFunctionResult> pfResult = new PlayFabResult<GetFunctionResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Lists all currently registered Azure Functions for a given title.
      * @param request ListFunctionsRequest
      * @return Async Task will return ListFunctionsResult
