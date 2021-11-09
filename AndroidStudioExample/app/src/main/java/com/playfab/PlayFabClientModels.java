@@ -2471,7 +2471,10 @@ public class PlayFabClientModels {
     public static class LinkGameCenterAccountRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** If another user is already linked to the account, unlink the other user and re-link. */
+        /**
+         * If another user is already linked to the account, unlink the other user and re-link. If the current user is already
+         * linked, link both accounts
+         */
         public Boolean ForceLink;
         /** Game Center identifier for the player account to be linked. */
         public String GameCenterId;
@@ -2500,7 +2503,10 @@ public class PlayFabClientModels {
     public static class LinkGoogleAccountRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** If another user is already linked to the account, unlink the other user and re-link. */
+        /**
+         * If another user is already linked to the account, unlink the other user and re-link. If the current user is already
+         * linked, link both accounts
+         */
         public Boolean ForceLink;
         /**
          * Server authentication code obtained on the client by calling getServerAuthCode()
@@ -4018,7 +4024,11 @@ public class PlayFabClientModels {
         API
     }
 
-    /** This API must be enabled for use as an option in the game manager website. It is disabled by default. */
+    /**
+     * This API must be enabled for use as an option in the game manager website. It is disabled by default.
+     * @deprecated Do not use
+     */
+    @Deprecated
     public static class StartGameRequest {
         /** version information for the build of the game server which is to be started */
         public String BuildVersion;
@@ -4037,6 +4047,8 @@ public class PlayFabClientModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class StartGameResult {
         /** timestamp for when the server should expire, if applicable */
         public String Expires;

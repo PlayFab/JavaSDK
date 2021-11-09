@@ -15,6 +15,22 @@ public class PlayFabCloudScriptModels {
         
     }
 
+    public static class AzureResourceSystemData {
+        /** The timestamp of resource creation (UTC) */
+        public Date CreatedAt;
+        /** The identity that created the resource */
+        public String CreatedBy;
+        /** The type of identity that created the resource */
+        public String CreatedByType;
+        /** The type of identity that last modified the resource */
+        public Date LastModifiedAt;
+        /** The identity that last modified the resource */
+        public String LastModifiedBy;
+        /** The type of identity that last modified the resource */
+        public String LastModifiedByType;
+        
+    }
+
     public static enum CloudScriptRevisionOption {
         Live,
         Latest,
@@ -448,6 +464,8 @@ public class PlayFabCloudScriptModels {
         public String FunctionUrl;
         /** The name of the queue for a queue trigger Azure Function. */
         public String QueueName;
+        /** System Data of the Azure Resource */
+        public AzureResourceSystemData SystemData;
         /** The trigger type for the function. */
         public String TriggerType;
         
@@ -458,6 +476,8 @@ public class PlayFabCloudScriptModels {
         public String FunctionName;
         /** The URL of the function. */
         public String FunctionUrl;
+        /** The System data of the Azure Resource */
+        public AzureResourceSystemData SystemData;
         
     }
 
@@ -480,6 +500,8 @@ public class PlayFabCloudScriptModels {
     public static class ListFunctionsRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
+        /** The Id of the parent Title */
+        public String TitleId;
         
     }
 
@@ -710,6 +732,8 @@ public class PlayFabCloudScriptModels {
         public String FunctionName;
         /** The name of the queue that triggers the Azure Function. */
         public String QueueName;
+        /** The System data of the Azure Resource */
+        public AzureResourceSystemData SystemData;
         
     }
 
@@ -722,6 +746,8 @@ public class PlayFabCloudScriptModels {
         public String FunctionName;
         /** Full URL for Azure Function that implements the function. */
         public String FunctionUrl;
+        /** System Data of the Azure Resource */
+        public AzureResourceSystemData SystemData;
         /** The Id of the parent Title */
         public String TitleId;
         
@@ -742,6 +768,8 @@ public class PlayFabCloudScriptModels {
         public String FunctionName;
         /** The name of the queue for the Azure Function. */
         public String QueueName;
+        /** System Data of the Azure Resource */
+        public AzureResourceSystemData SystemData;
         /** The Id of the parent Title */
         public String TitleId;
         

@@ -1618,7 +1618,12 @@ public class PlayFabServerModels {
         DuplicateTitleNameForPublisher,
         AzureTitleCreationInProgress,
         DuplicateAzureResourceId,
-        TitleContraintsPublisherDeletion,
+        TitleConstraintsPublisherDeletion,
+        InvalidPlayerAccountPoolId,
+        PlayerAccountPoolNotFound,
+        PlayerAccountPoolDeleted,
+        TitleCleanupInProgress,
+        AzureResourceManagerNotSupportedInStamp,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1642,6 +1647,9 @@ public class PlayFabServerModels {
         MatchmakingBadRequest,
         PubSubFeatureNotEnabledForTitle,
         PubSubTooManyRequests,
+        PubSubConnectionHandleAccessDenied,
+        PubSubConnectionHandleInvalid,
+        PubSubSubscriptionLimitExceeded,
         TitleConfigNotFound,
         TitleConfigUpdateConflict,
         TitleConfigSerializationError,
@@ -1759,7 +1767,11 @@ public class PlayFabServerModels {
         EventSamplingInvalidRatio,
         EventSamplingInvalidEventNamespace,
         EventSamplingInvalidEventName,
-        EventSamplingRatioNotFound
+        EventSamplingRatioNotFound,
+        EventSinkConnectionInvalid,
+        EventSinkConnectionUnauthorized,
+        EventSinkRegionInvalid,
+        OperationCanceled
     }
 
     public static class GenericPlayFabIdPair {
@@ -3599,6 +3611,8 @@ public class PlayFabServerModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static enum Region {
         USCentral,
         USEast,
@@ -3609,6 +3623,8 @@ public class PlayFabServerModels {
         Australia
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class RegisterGameRequest {
         /** Unique identifier of the build running on the Game Server Instance. */
         public String Build;
@@ -3639,6 +3655,8 @@ public class PlayFabServerModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class RegisterGameResponse {
         /**
          * Unique identifier generated for the Game Server Instance that is registered. If LobbyId is specified in request and the
@@ -4062,17 +4080,28 @@ public class PlayFabServerModels {
      * Value. If it already exists, the Value for that key will be overwritten with the new Value.
      */
     public static class SetTitleDataRequest {
+        /** Id of azure resource */
+        public String AzureResourceId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
         /**
          * key we want to set a value on (note, this is additive - will only replace an existing key's value if they are the same
          * name.) Keys are trimmed of whitespace. Keys may not begin with the '!' character.
          */
         public String Key;
+        /**
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
+         * title has been selected.
+         */
+        public String TitleId;
         /** new value to set. Set to null to remove a value */
         public String Value;
         
     }
 
     public static class SetTitleDataResult {
+        /** Id of azure resource */
+        public String AzureResourceId;
         
     }
 

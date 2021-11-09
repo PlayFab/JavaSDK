@@ -8240,9 +8240,11 @@ public class PlayFabClientAPI {
 
     /**
      * Start a new game server with a given configuration, add the current player and return the connection information.
+     * @deprecated Do not use
      * @param request StartGameRequest
      * @return Async Task will return StartGameResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<StartGameResult>> StartGameAsync(final StartGameRequest request) {
         return new FutureTask(new Callable<PlayFabResult<StartGameResult>>() {
@@ -8254,9 +8256,11 @@ public class PlayFabClientAPI {
 
     /**
      * Start a new game server with a given configuration, add the current player and return the connection information.
+     * @deprecated Do not use
      * @param request StartGameRequest
      * @return StartGameResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<StartGameResult> StartGame(final StartGameRequest request) {
         FutureTask<PlayFabResult<StartGameResult>> task = new FutureTask(new Callable<PlayFabResult<StartGameResult>>() {
@@ -8274,7 +8278,11 @@ public class PlayFabClientAPI {
         }
     }
 
-    /** Start a new game server with a given configuration, add the current player and return the connection information. */
+    /**
+     * Start a new game server with a given configuration, add the current player and return the connection information.
+     * @deprecated Do not use
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<StartGameResult> privateStartGameAsync(final StartGameRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
