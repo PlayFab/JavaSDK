@@ -135,6 +135,8 @@ public class PlayFabAdminModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class AddServerBuildRequest {
         /** server host regions in which this build should be running and available */
         public ArrayList<Region> ActiveRegions;
@@ -158,6 +160,8 @@ public class PlayFabAdminModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class AddServerBuildResult {
         /** array of regions where this build can used, when it is active */
         public ArrayList<Region> ActiveRegions;
@@ -1933,8 +1937,12 @@ public class PlayFabAdminModels {
         DuplicateTitleNameForPublisher,
         AzureTitleCreationInProgress,
         DuplicateAzureResourceId,
-        TitleContraintsPublisherDeletion,
+        TitleConstraintsPublisherDeletion,
         InvalidPlayerAccountPoolId,
+        PlayerAccountPoolNotFound,
+        PlayerAccountPoolDeleted,
+        TitleCleanupInProgress,
+        AzureResourceManagerNotSupportedInStamp,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -2579,12 +2587,16 @@ public class PlayFabAdminModels {
         }
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class GetServerBuildUploadURLRequest {
         /** unique identifier of the game server build to upload */
         public String BuildId;
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class GetServerBuildUploadURLResult {
         /** pre-authorized URL for uploading the game server build package */
         public String URL;
@@ -3179,7 +3191,9 @@ public class PlayFabAdminModels {
      * created in order to prevent excess load on existing Hosts. This operation is not additive. Using it will cause the game
      * mode definition for the game server executable in question to be created from scratch. If there is an existing game
      * server mode definition for the given BuildVersion, it will be deleted and replaced with the data specified in this call.
+     * @deprecated Do not use
      */
+    @Deprecated
     public static class ModifyMatchmakerGameModesRequest {
         /** previously uploaded build version for which game modes are being specified */
         public String BuildVersion;
@@ -3188,6 +3202,8 @@ public class PlayFabAdminModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class ModifyMatchmakerGameModesResult {
         
     }

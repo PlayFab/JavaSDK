@@ -264,9 +264,11 @@ public class PlayFabAdminAPI {
     /**
      * Adds the game server executable specified (previously uploaded - see GetServerBuildUploadUrl) to the set of those a
      * client is permitted to request in a call to StartGame
+     * @deprecated Do not use
      * @param request AddServerBuildRequest
      * @return Async Task will return AddServerBuildResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<AddServerBuildResult>> AddServerBuildAsync(final AddServerBuildRequest request) {
         return new FutureTask(new Callable<PlayFabResult<AddServerBuildResult>>() {
@@ -279,9 +281,11 @@ public class PlayFabAdminAPI {
     /**
      * Adds the game server executable specified (previously uploaded - see GetServerBuildUploadUrl) to the set of those a
      * client is permitted to request in a call to StartGame
+     * @deprecated Do not use
      * @param request AddServerBuildRequest
      * @return AddServerBuildResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<AddServerBuildResult> AddServerBuild(final AddServerBuildRequest request) {
         FutureTask<PlayFabResult<AddServerBuildResult>> task = new FutureTask(new Callable<PlayFabResult<AddServerBuildResult>>() {
@@ -302,7 +306,9 @@ public class PlayFabAdminAPI {
     /**
      * Adds the game server executable specified (previously uploaded - see GetServerBuildUploadUrl) to the set of those a
      * client is permitted to request in a call to StartGame
+     * @deprecated Do not use
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AddServerBuildResult> privateAddServerBuildAsync(final AddServerBuildRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3369,9 +3375,11 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the pre-authorized URL for uploading a game server package containing a build (does not enable the build for
      * use - see AddServerBuild)
+     * @deprecated Do not use
      * @param request GetServerBuildUploadURLRequest
      * @return Async Task will return GetServerBuildUploadURLResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetServerBuildUploadURLResult>> GetServerBuildUploadUrlAsync(final GetServerBuildUploadURLRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetServerBuildUploadURLResult>>() {
@@ -3384,9 +3392,11 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the pre-authorized URL for uploading a game server package containing a build (does not enable the build for
      * use - see AddServerBuild)
+     * @deprecated Do not use
      * @param request GetServerBuildUploadURLRequest
      * @return GetServerBuildUploadURLResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetServerBuildUploadURLResult> GetServerBuildUploadUrl(final GetServerBuildUploadURLRequest request) {
         FutureTask<PlayFabResult<GetServerBuildUploadURLResult>> task = new FutureTask(new Callable<PlayFabResult<GetServerBuildUploadURLResult>>() {
@@ -3407,7 +3417,9 @@ public class PlayFabAdminAPI {
     /**
      * Retrieves the pre-authorized URL for uploading a game server package containing a build (does not enable the build for
      * use - see AddServerBuild)
+     * @deprecated Do not use
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetServerBuildUploadURLResult> privateGetServerBuildUploadUrlAsync(final GetServerBuildUploadURLRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4675,9 +4687,11 @@ public class PlayFabAdminAPI {
 
     /**
      * Updates the game server mode details for the specified game server executable
+     * @deprecated Do not use
      * @param request ModifyMatchmakerGameModesRequest
      * @return Async Task will return ModifyMatchmakerGameModesResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ModifyMatchmakerGameModesResult>> ModifyMatchmakerGameModesAsync(final ModifyMatchmakerGameModesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ModifyMatchmakerGameModesResult>>() {
@@ -4689,9 +4703,11 @@ public class PlayFabAdminAPI {
 
     /**
      * Updates the game server mode details for the specified game server executable
+     * @deprecated Do not use
      * @param request ModifyMatchmakerGameModesRequest
      * @return ModifyMatchmakerGameModesResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ModifyMatchmakerGameModesResult> ModifyMatchmakerGameModes(final ModifyMatchmakerGameModesRequest request) {
         FutureTask<PlayFabResult<ModifyMatchmakerGameModesResult>> task = new FutureTask(new Callable<PlayFabResult<ModifyMatchmakerGameModesResult>>() {
@@ -4709,7 +4725,11 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /** Updates the game server mode details for the specified game server executable */
+    /**
+     * Updates the game server mode details for the specified game server executable
+     * @deprecated Do not use
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyMatchmakerGameModesResult> privateModifyMatchmakerGameModesAsync(final ModifyMatchmakerGameModesRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");

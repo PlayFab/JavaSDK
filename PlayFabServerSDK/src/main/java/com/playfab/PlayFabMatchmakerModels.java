@@ -110,6 +110,8 @@ public class PlayFabMatchmakerModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static enum Region {
         USCentral,
         USEast,
@@ -120,6 +122,8 @@ public class PlayFabMatchmakerModels {
         Australia
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class StartGameRequest {
         /** Unique identifier of the previously uploaded build executable which is to be started. */
         public String Build;
@@ -140,6 +144,8 @@ public class PlayFabMatchmakerModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class StartGameResponse {
         /** Unique identifier for the game/lobby in the new Game Server Instance. */
         public String GameID;

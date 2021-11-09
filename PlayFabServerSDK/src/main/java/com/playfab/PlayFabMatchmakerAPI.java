@@ -201,9 +201,11 @@ public class PlayFabMatchmakerAPI {
 
     /**
      * Instructs the PlayFab game server hosting service to instantiate a new Game Server Instance
+     * @deprecated Do not use
      * @param request StartGameRequest
      * @return Async Task will return StartGameResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<StartGameResponse>> StartGameAsync(final StartGameRequest request) {
         return new FutureTask(new Callable<PlayFabResult<StartGameResponse>>() {
@@ -215,9 +217,11 @@ public class PlayFabMatchmakerAPI {
 
     /**
      * Instructs the PlayFab game server hosting service to instantiate a new Game Server Instance
+     * @deprecated Do not use
      * @param request StartGameRequest
      * @return StartGameResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<StartGameResponse> StartGame(final StartGameRequest request) {
         FutureTask<PlayFabResult<StartGameResponse>> task = new FutureTask(new Callable<PlayFabResult<StartGameResponse>>() {
@@ -235,7 +239,11 @@ public class PlayFabMatchmakerAPI {
         }
     }
 
-    /** Instructs the PlayFab game server hosting service to instantiate a new Game Server Instance */
+    /**
+     * Instructs the PlayFab game server hosting service to instantiate a new Game Server Instance
+     * @deprecated Do not use
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<StartGameResponse> privateStartGameAsync(final StartGameRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");

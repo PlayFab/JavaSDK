@@ -5448,9 +5448,11 @@ public class PlayFabServerAPI {
 
     /**
      * Inform the matchmaker that a new Game Server Instance is added.
+     * @deprecated Do not use
      * @param request RegisterGameRequest
      * @return Async Task will return RegisterGameResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<RegisterGameResponse>> RegisterGameAsync(final RegisterGameRequest request) {
         return new FutureTask(new Callable<PlayFabResult<RegisterGameResponse>>() {
@@ -5462,9 +5464,11 @@ public class PlayFabServerAPI {
 
     /**
      * Inform the matchmaker that a new Game Server Instance is added.
+     * @deprecated Do not use
      * @param request RegisterGameRequest
      * @return RegisterGameResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<RegisterGameResponse> RegisterGame(final RegisterGameRequest request) {
         FutureTask<PlayFabResult<RegisterGameResponse>> task = new FutureTask(new Callable<PlayFabResult<RegisterGameResponse>>() {
@@ -5482,7 +5486,11 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Inform the matchmaker that a new Game Server Instance is added. */
+    /**
+     * Inform the matchmaker that a new Game Server Instance is added.
+     * @deprecated Do not use
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RegisterGameResponse> privateRegisterGameAsync(final RegisterGameRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
