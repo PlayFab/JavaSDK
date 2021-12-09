@@ -387,6 +387,24 @@ public class PlayFabEconomyModels {
         
     }
 
+    public static class GetItemsRequest {
+        /** List of item alternate IDs. */
+        public ArrayList<CatalogAlternateId> AlternateIds;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The entity to perform this action on. */
+        public EntityKey Entity;
+        /** List of Item Ids. */
+        public ArrayList<String> Ids;
+        
+    }
+
+    public static class GetItemsResponse {
+        /** Metadata of set of items. */
+        public ArrayList<CatalogItem> Items;
+        
+    }
+
     public static enum HelpfulnessVote {
         None,
         UnHelpful,
