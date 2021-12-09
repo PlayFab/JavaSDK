@@ -882,6 +882,68 @@ public class PlayFabEconomyAPI {
     }
 
     /**
+     * Retrieves items from the public catalog.
+     * @param request GetItemsRequest
+     * @return Async Task will return GetItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetItemsResponse>> GetItemsAsync(final GetItemsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetItemsResponse>>() {
+            public PlayFabResult<GetItemsResponse> call() throws Exception {
+                return privateGetItemsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves items from the public catalog.
+     * @param request GetItemsRequest
+     * @return GetItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetItemsResponse> GetItems(final GetItemsRequest request) {
+        FutureTask<PlayFabResult<GetItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetItemsResponse>>() {
+            public PlayFabResult<GetItemsResponse> call() throws Exception {
+                return privateGetItemsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetItemsResponse> exceptionResult = new PlayFabResult<GetItemsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Retrieves items from the public catalog. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetItemsResponse> privateGetItemsAsync(final GetItemsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Catalog/GetItems"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetItemsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetItemsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetItemsResponse>>(){}.getType());
+        GetItemsResponse result = resultData.data;
+
+        PlayFabResult<GetItemsResponse> pfResult = new PlayFabResult<GetItemsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Initiates a publish of an item from the working catalog to the public catalog.
      * @param request PublishDraftItemRequest
      * @return Async Task will return PublishDraftItemResponse

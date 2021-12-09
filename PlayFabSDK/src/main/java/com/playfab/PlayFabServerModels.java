@@ -164,6 +164,22 @@ public class PlayFabServerModels {
         
     }
 
+    public static class AzureResourceSystemData {
+        /** The timestamp of resource creation (UTC) */
+        public Date CreatedAt;
+        /** The identity that created the resource */
+        public String CreatedBy;
+        /** The type of identity that created the resource */
+        public String CreatedByType;
+        /** The type of identity that last modified the resource */
+        public Date LastModifiedAt;
+        /** The identity that last modified the resource */
+        public String LastModifiedBy;
+        /** The type of identity that last modified the resource */
+        public String LastModifiedByType;
+        
+    }
+
     /** Contains information for a ban. */
     public static class BanInfo {
         /** The active state of this ban. Expired bans may still have this value set to true but they will have no effect. */
@@ -1623,7 +1639,13 @@ public class PlayFabServerModels {
         PlayerAccountPoolNotFound,
         PlayerAccountPoolDeleted,
         TitleCleanupInProgress,
+        AzureResourceConcurrentOperationInProgress,
+        TitlePublisherUpdateNotAllowed,
         AzureResourceManagerNotSupportedInStamp,
+        ApiNotIncludedInAzurePlayFabFeatureSet,
+        GoogleServiceAccountFailedAuth,
+        GoogleAPIServiceUnavailable,
+        GoogleAPIServiceUnknownError,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -4089,6 +4111,8 @@ public class PlayFabServerModels {
          * name.) Keys are trimmed of whitespace. Keys may not begin with the '!' character.
          */
         public String Key;
+        /** System Data of the Azure Resource */
+        public AzureResourceSystemData SystemData;
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
          * title has been selected.
