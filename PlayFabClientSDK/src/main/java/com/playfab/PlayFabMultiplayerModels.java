@@ -530,6 +530,8 @@ public class PlayFabMultiplayerModels {
         public Boolean UseStreamingForAssetDownloads;
         /** The VM size to create the build on. */
         public AzureVmSize VmSize;
+        /** The crash dump configuration for the build. */
+        public WindowsCrashDumpConfiguration WindowsCrashDumpConfiguration;
         
     }
 
@@ -2048,6 +2050,16 @@ public class PlayFabMultiplayerModels {
         public String State;
         /** The virtual machine ID. */
         public String VmId;
+        
+    }
+
+    public static class WindowsCrashDumpConfiguration {
+        /** See https://docs.microsoft.com/en-us/windows/win32/wer/collecting-user-mode-dumps for valid values. */
+        public Integer CustomDumpFlags;
+        /** See https://docs.microsoft.com/en-us/windows/win32/wer/collecting-user-mode-dumps for valid values. */
+        public Integer DumpType;
+        /** Designates whether automatic crash dump capturing will be enabled for this Build. */
+        public Boolean IsEnabled;
         
     }
 
