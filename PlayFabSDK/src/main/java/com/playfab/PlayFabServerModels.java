@@ -192,8 +192,6 @@ public class PlayFabServerModels {
         public Date Expires;
         /** The IP address on which the ban was applied. May affect multiple players. */
         public String IPAddress;
-        /** The MAC address on which the ban was applied. May affect multiple players. */
-        public String MACAddress;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
         /** The reason why this ban was applied. */
@@ -1633,7 +1631,6 @@ public class PlayFabServerModels {
         ApiNotEnabledForTitle,
         DuplicateTitleNameForPublisher,
         AzureTitleCreationInProgress,
-        DuplicateAzureResourceId,
         TitleConstraintsPublisherDeletion,
         InvalidPlayerAccountPoolId,
         PlayerAccountPoolNotFound,
@@ -1669,7 +1666,7 @@ public class PlayFabServerModels {
         MatchmakingBadRequest,
         PubSubFeatureNotEnabledForTitle,
         PubSubTooManyRequests,
-        PubSubConnectionHandleAccessDenied,
+        PubSubConnectionNotFoundForEntity,
         PubSubConnectionHandleInvalid,
         PubSubSubscriptionLimitExceeded,
         TitleConfigNotFound,
@@ -1793,7 +1790,9 @@ public class PlayFabServerModels {
         EventSinkConnectionInvalid,
         EventSinkConnectionUnauthorized,
         EventSinkRegionInvalid,
-        OperationCanceled
+        OperationCanceled,
+        InvalidDisplayNameRandomSuffixLength,
+        AllowNonUniquePlayerDisplayNamesDisableNotAllowed
     }
 
     public static class GenericPlayFabIdPair {
