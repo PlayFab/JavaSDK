@@ -212,6 +212,8 @@ public class PlayFabEconomyModels {
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
+        /** Whether to fetch metadata of the scan status. */
+        public Boolean ExpandScanningStatus;
         /** The unique ID of the item. */
         public String Id;
         
