@@ -453,6 +453,13 @@ public class PlayFabAdminModels {
         
     }
 
+    public static enum ChurnRiskLevel {
+        NoData,
+        LowRisk,
+        MediumRisk,
+        HighRisk
+    }
+
     public static class CloudScriptFile {
         /** Contents of the Cloud Script javascript. Must be string-escaped javascript. */
         public String FileContents;
@@ -3359,6 +3366,30 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class PlayerChurnPredictionSegmentFilter {
+        /** Comparison */
+        public SegmentFilterComparison Comparison;
+        /** RiskLevel */
+        public ChurnRiskLevel RiskLevel;
+        
+    }
+
+    public static class PlayerChurnPredictionTimeSegmentFilter {
+        /** Comparison */
+        public SegmentFilterComparison Comparison;
+        /** DurationInDays */
+        public Double DurationInDays;
+        
+    }
+
+    public static class PlayerChurnPreviousPredictionSegmentFilter {
+        /** Comparison */
+        public SegmentFilterComparison Comparison;
+        /** RiskLevel */
+        public ChurnRiskLevel RiskLevel;
+        
+    }
+
     public static class PlayerLinkedAccount {
         /** Linked account's email */
         public String Email;
@@ -3954,6 +3985,12 @@ public class PlayFabAdminModels {
         public LinkedUserAccountHasEmailSegmentFilter LinkedUserAccountHasEmailFilter;
         /** Filter property for location. */
         public LocationSegmentFilter LocationFilter;
+        /** Filter property for current player churn value. */
+        public PlayerChurnPredictionSegmentFilter PlayerChurnPredictionFilter;
+        /** Filter property for player churn timespan. */
+        public PlayerChurnPredictionTimeSegmentFilter PlayerChurnPredictionTimeFilter;
+        /** Filter property for previous player churn value. */
+        public PlayerChurnPreviousPredictionSegmentFilter PlayerChurnPreviousPredictionFilter;
         /** Filter property for push notification. */
         public PushNotificationSegmentFilter PushNotificationFilter;
         /** Filter property for statistics. */
@@ -4425,8 +4462,6 @@ public class PlayFabAdminModels {
     }
 
     public static class SegmentModel {
-        /** ResourceId of Segment resource */
-        public String AzureResourceId;
         /** Segment description. */
         public String Description;
         /** Segment actions for current entered segment players. */
@@ -4598,8 +4633,6 @@ public class PlayFabAdminModels {
      * already exists, the Value for that key will be overwritten with the new Value.
      */
     public static class SetTitleDataRequest {
-        /** Id of azure resource */
-        public String AzureResourceId;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /**
@@ -4607,8 +4640,6 @@ public class PlayFabAdminModels {
          * name.) Keys are trimmed of whitespace. Keys may not begin with the '!' character.
          */
         public String Key;
-        /** System Data of the Azure Resource */
-        public AzureResourceSystemData SystemData;
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
          * title has been selected.
@@ -4620,8 +4651,6 @@ public class PlayFabAdminModels {
     }
 
     public static class SetTitleDataResult {
-        /** Id of azure resource */
-        public String AzureResourceId;
         
     }
 

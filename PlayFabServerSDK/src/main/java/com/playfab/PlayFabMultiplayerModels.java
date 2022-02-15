@@ -165,6 +165,8 @@ public class PlayFabMultiplayerModels {
         public CurrentServerStats CurrentServerStats;
         /** Optional settings to control dynamic adjustment of standby target */
         public DynamicStandbySettings DynamicStandbySettings;
+        /** Whether the game assets provided for the build have been replicated to this region. */
+        public Boolean IsAssetReplicationComplete;
         /** The maximum number of multiplayer servers for the region. */
         public Integer MaxServers;
         /** Regional override for the number of multiplayer servers to host on a single VM of the build. */
@@ -1089,7 +1091,9 @@ public class PlayFabMultiplayerModels {
         /**
          * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
          * disc.
+         * @deprecated Do not use
          */
+        @Deprecated
         public Boolean UseStreamingForAssetDownloads;
         /** The VM size the build was created on. */
         public AzureVmSize VmSize;
