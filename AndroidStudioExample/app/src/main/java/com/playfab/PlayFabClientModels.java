@@ -4028,51 +4028,6 @@ public class PlayFabClientModels {
     }
 
     /**
-     * This API must be enabled for use as an option in the game manager website. It is disabled by default.
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class StartGameRequest {
-        /** version information for the build of the game server which is to be started */
-        public String BuildVersion;
-        /** character to use for stats based matching. Leave null to use account stats */
-        public String CharacterId;
-        /** custom command line argument when starting game server process */
-        public String CustomCommandLineData;
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        public Map<String,String> CustomTags;
-        /** the title-defined game mode this server is to be running (defaults to 0 if there is only one mode) */
-        public String GameMode;
-        /** the region to associate this server with for match filtering */
-        public Region Region;
-        /** player statistic for others to use in finding this game. May be null for no stat-based matching */
-        public String StatisticName;
-        
-    }
-
-    /** @deprecated Do not use */
-    @Deprecated
-    public static class StartGameResult {
-        /** timestamp for when the server should expire, if applicable */
-        public String Expires;
-        /** unique identifier for the lobby of the server started */
-        public String LobbyID;
-        /** password required to log into the server */
-        public String Password;
-        /** server IPV4 address */
-        public String ServerIPV4Address;
-        /** server IPV6 address */
-        public String ServerIPV6Address;
-        /** port on the server to be used for communication */
-        public Integer ServerPort;
-        /** server public DNS name */
-        public String ServerPublicDNSName;
-        /** unique identifier for the server */
-        public String Ticket;
-        
-    }
-
-    /**
      * This is the first step in the purchasing process. For security purposes, once the order (or "cart") has been created,
      * additional inventory objects may no longer be added. In addition, inventory objects will be locked to the current
      * prices, regardless of any subsequent changes at the catalog level which may occur during the next two steps.

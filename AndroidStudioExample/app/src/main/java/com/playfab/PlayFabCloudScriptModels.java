@@ -15,22 +15,6 @@ public class PlayFabCloudScriptModels {
         
     }
 
-    public static class AzureResourceSystemData {
-        /** The timestamp of resource creation (UTC) */
-        public Date CreatedAt;
-        /** The identity that created the resource */
-        public String CreatedBy;
-        /** The type of identity that created the resource */
-        public String CreatedByType;
-        /** The type of identity that last modified the resource */
-        public Date LastModifiedAt;
-        /** The identity that last modified the resource */
-        public String LastModifiedBy;
-        /** The type of identity that last modified the resource */
-        public String LastModifiedByType;
-        
-    }
-
     public static enum CloudScriptRevisionOption {
         Live,
         Latest,

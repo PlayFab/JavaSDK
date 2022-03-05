@@ -110,56 +110,6 @@ public class PlayFabMatchmakerModels {
         
     }
 
-    /** @deprecated Do not use */
-    @Deprecated
-    public static enum Region {
-        USCentral,
-        USEast,
-        EUWest,
-        Singapore,
-        Japan,
-        Brazil,
-        Australia
-    }
-
-    /** @deprecated Do not use */
-    @Deprecated
-    public static class StartGameRequest {
-        /** Unique identifier of the previously uploaded build executable which is to be started. */
-        public String Build;
-        /** Custom command line argument when starting game server process. */
-        public String CustomCommandLineData;
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        public Map<String,String> CustomTags;
-        /**
-         * HTTP endpoint URL for receiving game status events, if using an external matchmaker. When the game ends, PlayFab will
-         * make a POST request to this URL with the X-SecretKey header set to the value of the game's secret and an
-         * application/json body of { "EventName": "game_ended", "GameID": "&lt;gameid&gt;" }.
-         */
-        public String ExternalMatchmakerEventEndpoint;
-        /** Game mode for this Game Server Instance. */
-        public String GameMode;
-        /** Region with which to associate the server, for filtering. */
-        public Region Region;
-        
-    }
-
-    /** @deprecated Do not use */
-    @Deprecated
-    public static class StartGameResponse {
-        /** Unique identifier for the game/lobby in the new Game Server Instance. */
-        public String GameID;
-        /** IPV4 address of the server */
-        public String ServerIPV4Address;
-        /** IPV6 address of the new Game Server Instance. */
-        public String ServerIPV6Address;
-        /** Port number for communication with the Game Server Instance. */
-        public Long ServerPort;
-        /** Public DNS name (if any) of the server */
-        public String ServerPublicDNSName;
-        
-    }
-
     public static class UserInfoRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;

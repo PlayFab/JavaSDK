@@ -18,6 +18,10 @@ public class PlayFabEconomyModels {
         public ArrayList<EntityKey> AdminEntities;
         /** A list of display properties to index. */
         public ArrayList<DisplayPropertyIndexInfo> DisplayPropertyIndexInfos;
+        /** The set of configuration that only applies to Files. */
+        public FileConfig File;
+        /** The set of configuration that only applies to Images. */
+        public ImageConfig Image;
         /** Flag defining whether catalog is enabled. */
         public Boolean IsCatalogEnabled;
         /** A set of player entity keys that are allowed to review content. */
@@ -99,6 +103,10 @@ public class PlayFabEconomyModels {
         public String MaxClientVersion;
         /** The minimum client version that this content is compatible with. */
         public String MinClientVersion;
+        /** The list of tags that are associated with this content. */
+        public ArrayList<String> Tags;
+        /** The client-defined type of the content. */
+        public String Type;
         /** The Azure CDN URL for retrieval of the catalog item binary content. */
         public String Url;
         
@@ -190,6 +198,14 @@ public class PlayFabEconomyModels {
         public String Id;
         /** Entity type. See https://docs.microsoft.com/gaming/playfab/features/data/entities/available-built-in-entity-types */
         public String Type;
+        
+    }
+
+    public static class FileConfig {
+        /** The set of content types that will be used for validation. */
+        public ArrayList<String> ContentTypes;
+        /** The set of tags that will be used for validation. */
+        public ArrayList<String> Tags;
         
     }
 
@@ -416,10 +432,18 @@ public class PlayFabEconomyModels {
     public static class Image {
         /** The image unique ID. */
         public String Id;
+        /** The client-defined tag associated with this image. */
+        public String Tag;
         /** The client-defined type of this image. */
         public String Type;
         /** The URL for retrieval of the image. */
         public String Url;
+        
+    }
+
+    public static class ImageConfig {
+        /** The set of tags that will be used for validation. */
+        public ArrayList<String> Tags;
         
     }
 
@@ -735,9 +759,9 @@ public class PlayFabEconomyModels {
     }
 
     public static class UserGeneratedContentSpecificConfig {
-        /** The set of content types that will be used for validation and if no values are provided then anything is allowed. */
+        /** The set of content types that will be used for validation. */
         public ArrayList<String> ContentTypes;
-        /** The set of tags that will be used for validation and if no values are provided then anything is allowed. */
+        /** The set of tags that will be used for validation. */
         public ArrayList<String> Tags;
         
     }
