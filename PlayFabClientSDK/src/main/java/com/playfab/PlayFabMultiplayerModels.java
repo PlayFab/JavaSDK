@@ -5,6 +5,12 @@ import com.playfab.PlayFabUtil.*;
 
 public class PlayFabMultiplayerModels {
 
+    public static enum AccessPolicy {
+        Public,
+        Friends,
+        Private
+    }
+
     public static class AssetReference {
         /** The asset's file name. This is a filename with the .zip, .tar, or .tar.gz extension. */
         public String FileName;
@@ -707,6 +713,69 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Request to create a lobby. A Server or client can create a lobby. */
+    public static class CreateLobbyRequest {
+        /**
+         * The policy indicating who is allowed to join the lobby, and the visibility to queries. May be 'Public', 'Friends' or
+         * 'Private'. Public means the lobby is both visible in queries and any player may join, including invited players. Friends
+         * means that users who are bidirectional friends of members in the lobby may search to find friend lobbies, to retrieve
+         * its connection string. Private means the lobby is not visible in queries, and a player must receive an invitation to
+         * join. Defaults to 'Public' on creation. Can only be changed by the lobby owner.
+         */
+        public AccessPolicy AccessPolicy;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /**
+         * The private key-value pairs which are only visible to members of the lobby. At most 30 key-value pairs may be stored
+         * here, keys are limited to 30 characters and values to 1000. The total size of all lobbyData values may not exceed 4096
+         * bytes. Keys are case sensitive.
+         */
+        public Map<String,String> LobbyData;
+        /** The maximum number of players allowed in the lobby. The value must be between 2 and 128. */
+        public Long MaxPlayers;
+        /**
+         * The member initially added to the lobby. Client must specify exactly one member, which is the creator's entity and
+         * member data. Member PubSubConnectionHandle must be null or empty. Game servers must not specify any members.
+         */
+        public ArrayList<Member> Members;
+        /** The lobby owner. Must be the calling entity. */
+        public EntityKey Owner;
+        /**
+         * The policy for how a new owner is chosen. May be 'Automatic', 'Manual' or 'None'. Can only be specified by clients. If
+         * client-owned and 'Automatic' - The Lobby service will automatically assign another connected owner when the current
+         * owner leaves or disconnects. The useConnections property must be true. If client - owned and 'Manual' - Ownership is
+         * protected as long as the current owner is connected. If the current owner leaves or disconnects any member may set
+         * themselves as the current owner. The useConnections property must be true. If client-owned and 'None' - Any member can
+         * set ownership. The useConnections property can be either true or false.
+         */
+        public OwnerMigrationPolicy OwnerMigrationPolicy;
+        /**
+         * The public key-value pairs which allow queries to differentiate between lobbies. Queries will refer to these key-value
+         * pairs in their filter and order by clauses to retrieve lobbies fitting the specified criteria. At most 30 key-value
+         * pairs may be stored here. Keys are of the format string_key1, string_key2 ... string_key30 for string values, or
+         * number_key1, number_key2, ... number_key30 for numeric values.Numeric values are floats. Values can be at most 256
+         * characters long. The total size of all searchData values may not exceed 1024 bytes.
+         */
+        public Map<String,String> SearchData;
+        /**
+         * A setting to control whether connections are used. Defaults to true. When true, notifications are sent to subscribed
+         * players, disconnect detection removes connectionHandles, only owner migration policies using connections are allowed,
+         * and lobbies must have at least one connected member to be searchable or be a server hosted lobby with a connected
+         * server. If false, then notifications are not sent, connections are not allowed, and lobbies do not need connections to
+         * be searchable.
+         */
+        public Boolean UseConnections;
+        
+    }
+
+    public static class CreateLobbyResult {
+        /** A field which indicates which lobby the user will be joining. */
+        public String ConnectionString;
+        /** Id to uniquely identify a lobby. */
+        public String LobbyId;
+        
+    }
+
     /** The client specifies the creator's attributes and optionally a list of other users to match with. */
     public static class CreateMatchmakingTicketRequest {
         /** The User who created this ticket. */
@@ -888,6 +957,15 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Request to delete a lobby. Only servers can delete lobbies. */
+    public static class DeleteLobbyRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The id of the lobby. */
+        public String LobbyId;
+        
+    }
+
     /**
      * Deletes a remote user to log on to a VM for a multiplayer server build in a specific region. Returns user credential
      * information necessary to log on.
@@ -954,6 +1032,83 @@ public class PlayFabMultiplayerModels {
         public String Id;
         /** Entity type. See https://docs.microsoft.com/gaming/playfab/features/data/entities/available-built-in-entity-types */
         public String Type;
+        
+    }
+
+    /** Request to find friends lobbies. Only a client can find friend lobbies. */
+    public static class FindFriendLobbiesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Controls whether this query should link to friends made on the Facebook network. Defaults to false */
+        public Boolean ExcludeFacebookFriends;
+        /** Controls whether this query should link to friends made on the Steam network. Defaults to false */
+        public Boolean ExcludeSteamFriends;
+        /** OData style string that contains one or more filters. The OR and grouping operators are not allowed. */
+        public String Filter;
+        /**
+         * OData style string that contains sorting for this query. To sort by closest, a moniker `distance{number_key1 = 5}` can
+         * be used to sort by distance from the given number. This field only supports either one sort clause or one distance
+         * clause.
+         */
+        public String OrderBy;
+        /** Request pagination information. */
+        public PaginationRequest Pagination;
+        /** Xbox token if Xbox friends should be included. Requires Xbox be configured on PlayFab. */
+        public String XboxToken;
+        
+    }
+
+    public static class FindFriendLobbiesResult {
+        /** Array of lobbies found that matched FindFriendLobbies request. */
+        public ArrayList<FriendLobbySummary> Lobbies;
+        /** Pagination response for FindFriendLobbies request. */
+        public PaginationResponse Pagination;
+        
+    }
+
+    /** Request to find lobbies. */
+    public static class FindLobbiesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** OData style string that contains one or more filters. The OR and grouping operators are not allowed. */
+        public String Filter;
+        /**
+         * OData style string that contains sorting for this query. To sort by closest, a moniker `distance{number_key1 = 5}` can
+         * be used to sort by distance from the given number. This field only supports either one sort clause or one distance
+         * clause.
+         */
+        public String OrderBy;
+        /** Request pagination information. */
+        public PaginationRequest Pagination;
+        
+    }
+
+    public static class FindLobbiesResult {
+        /** Array of lobbies found that matched FindLobbies request. */
+        public ArrayList<LobbySummary> Lobbies;
+        /** Pagination response for FindLobbies request. */
+        public PaginationResponse Pagination;
+        
+    }
+
+    public static class FriendLobbySummary {
+        /**
+         * A string used to join the lobby.This field is populated by the Lobby service.Invites are performed by communicating this
+         * connectionString to other players.
+         */
+        public String ConnectionString;
+        /** The current number of players in the lobby. */
+        public Long CurrentPlayers;
+        /** Friends in Lobby. */
+        public ArrayList<EntityKey> Friends;
+        /** Id to uniquely identify a lobby. */
+        public String LobbyId;
+        /** The maximum number of players allowed in the lobby. */
+        public Long MaxPlayers;
+        /** The client or server entity which owns this lobby. */
+        public EntityKey Owner;
+        /** Search data. */
+        public Map<String,String> SearchData;
         
     }
 
@@ -1117,6 +1272,21 @@ public class PlayFabMultiplayerModels {
         public String Password;
         /** The username for accessing the container registry. */
         public String Username;
+        
+    }
+
+    /** Request to get a lobby. */
+    public static class GetLobbyRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The id of the lobby. */
+        public String LobbyId;
+        
+    }
+
+    public static class GetLobbyResult {
+        /** The information pertaining to the requested lobby. */
+        public Lobby Lobby;
         
     }
 
@@ -1417,6 +1587,93 @@ public class PlayFabMultiplayerModels {
     }
 
     /**
+     * Request to invite a player to a lobby the caller is already a member of. Only a client can invite another player to a
+     * lobby.
+     */
+    public static class InviteToLobbyRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The entity invited to the lobby. */
+        public EntityKey InviteeEntity;
+        /** The id of the lobby. */
+        public String LobbyId;
+        /** The member entity sending the invite. Must be a member of the lobby. */
+        public EntityKey MemberEntity;
+        
+    }
+
+    /** Request to join an arranged lobby. Only a client can join an arranged lobby. */
+    public static class JoinArrangedLobbyRequest {
+        /**
+         * The policy indicating who is allowed to join the lobby, and the visibility to queries. May be 'Public', 'Friends' or
+         * 'Private'. Public means the lobby is both visible in queries and any player may join, including invited players. Friends
+         * means that users who are bidirectional friends of members in the lobby may search to find friend lobbies, to retrieve
+         * its connection string. Private means the lobby is not visible in queries, and a player must receive an invitation to
+         * join. Defaults to 'Public' on creation. Can only be changed by the lobby owner.
+         */
+        public AccessPolicy AccessPolicy;
+        /**
+         * A field which indicates which lobby the user will be joining. This field is opaque to everyone except the Lobby service
+         * and the creator of the arrangementString (Matchmaking). This string defines a unique identifier for the arranged lobby
+         * as well as the title and member the string is valid for. Arrangement strings have an expiration.
+         */
+        public String ArrangementString;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The maximum number of players allowed in the lobby. The value must be between 2 and 128. */
+        public Long MaxPlayers;
+        /**
+         * The private key-value pairs used by the member to communicate information to other members and the owner. Visible to all
+         * members of the lobby. At most 30 key-value pairs may be stored here, keys are limited to 30 characters and values to
+         * 1000. The total size of all memberData values may not exceed 4096 bytes. Keys are case sensitive.
+         */
+        public Map<String,String> MemberData;
+        /** The member entity who is joining the lobby. The first member to join will be the lobby owner. */
+        public EntityKey MemberEntity;
+        /**
+         * The policy for how a new owner is chosen. May be 'Automatic', 'Manual' or 'None'. Can only be specified by clients. If
+         * client-owned and 'Automatic' - The Lobby service will automatically assign another connected owner when the current
+         * owner leaves or disconnects. The useConnections property must be true. If client - owned and 'Manual' - Ownership is
+         * protected as long as the current owner is connected. If the current owner leaves or disconnects any member may set
+         * themselves as the current owner. The useConnections property must be true. If client-owned and 'None' - Any member can
+         * set ownership. The useConnections property can be either true or false.
+         */
+        public OwnerMigrationPolicy OwnerMigrationPolicy;
+        /**
+         * A setting to control whether connections are used. Defaults to true. When true, notifications are sent to subscribed
+         * players, disconnect detection removes connectionHandles, only owner migration policies using connections are allowed,
+         * and lobbies must have at least one connected member to be searchable or be a server hosted lobby with a connected
+         * server. If false, then notifications are not sent, connections are not allowed, and lobbies do not need connections to
+         * be searchable.
+         */
+        public Boolean UseConnections;
+        
+    }
+
+    /** Request to join a lobby. Only a client can join a lobby. */
+    public static class JoinLobbyRequest {
+        /** A field which indicates which lobby the user will be joining. This field is opaque to everyone except the Lobby service. */
+        public String ConnectionString;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /**
+         * The private key-value pairs used by the member to communicate information to other members and the owner. Visible to all
+         * members of the lobby. At most 30 key-value pairs may be stored here, keys are limited to 30 characters and values to
+         * 1000. The total size of all memberData values may not exceed 4096 bytes.Keys are case sensitive.
+         */
+        public Map<String,String> MemberData;
+        /** The member entity who is joining the lobby. */
+        public EntityKey MemberEntity;
+        
+    }
+
+    public static class JoinLobbyResult {
+        /** Successfully joined lobby's id. */
+        public String LobbyId;
+        
+    }
+
+    /**
      * Add the player to a matchmaking ticket and specify all of its matchmaking attributes. Players can join a ticket if and
      * only if their EntityKeys are already listed in the ticket's Members list. The matchmaking service automatically starts
      * matching the ticket against other matchmaking tickets once all players have joined the ticket. It is not possible to
@@ -1435,6 +1692,17 @@ public class PlayFabMultiplayerModels {
     }
 
     public static class JoinMatchmakingTicketResult {
+        
+    }
+
+    /** Request to leave a lobby. Only a client can leave a lobby. */
+    public static class LeaveLobbyRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The id of the lobby. */
+        public String LobbyId;
+        /** The member entity leaving the lobby. */
+        public EntityKey MemberEntity;
         
     }
 
@@ -1703,6 +1971,65 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    public static class Lobby {
+        /** A setting indicating who is allowed to join this lobby, as well as see it in queries. */
+        public AccessPolicy AccessPolicy;
+        /** A number that increments once for each request that modifies the lobby. */
+        public Long ChangeNumber;
+        /**
+         * A string used to join the lobby. This field is populated by the Lobby service. Invites are performed by communicating
+         * this connectionString to other players.
+         */
+        public String ConnectionString;
+        /** Lobby data. */
+        public Map<String,String> LobbyData;
+        /** Id to uniquely identify a lobby. */
+        public String LobbyId;
+        /** The maximum number of players allowed in the lobby. */
+        public Long MaxPlayers;
+        /** Array of all lobby members. */
+        public ArrayList<Member> Members;
+        /** A setting indicating whether members are allowed to join this lobby. When Locked new members are prevented from joining. */
+        public MembershipLock MembershipLock;
+        /** The client or server entity which owns this lobby. */
+        public EntityKey Owner;
+        /** A setting indicating the owner migration policy. If server owned, this field is not present. */
+        public OwnerMigrationPolicy OwnerMigrationPolicy;
+        /**
+         * An opaque string stored on a SubscribeToLobbyResource call, which indicates the connection an owner or member has with
+         * PubSub.
+         */
+        public String PubSubConnectionHandle;
+        /** Search data. */
+        public Map<String,String> SearchData;
+        /** A flag which determines if connections are used. Defaults to true. Only set on create. */
+        public Boolean UseConnections;
+        
+    }
+
+    public static class LobbyEmptyResult {
+        
+    }
+
+    public static class LobbySummary {
+        /**
+         * A string used to join the lobby.This field is populated by the Lobby service.Invites are performed by communicating this
+         * connectionString to other players.
+         */
+        public String ConnectionString;
+        /** The current number of players in the lobby. */
+        public Long CurrentPlayers;
+        /** Id to uniquely identify a lobby. */
+        public String LobbyId;
+        /** The maximum number of players allowed in the lobby. */
+        public Long MaxPlayers;
+        /** The client or server entity which owns this lobby. */
+        public EntityKey Owner;
+        /** Search data. */
+        public Map<String,String> SearchData;
+        
+    }
+
     /** A user in a matchmaking ticket. */
     public static class MatchmakingPlayer {
         /** The user's attributes custom to the title. */
@@ -1733,6 +2060,21 @@ public class PlayFabMultiplayerModels {
         /** The Id of the team the User is assigned to. */
         public String TeamId;
         
+    }
+
+    public static class Member {
+        /** Key-value pairs specific to member. */
+        public Map<String,String> MemberData;
+        /** The member entity key. */
+        public EntityKey MemberEntity;
+        /** Opaque string, stored on a Subscribe call, which indicates the connection an owner or member has with PubSub. */
+        public String PubSubConnectionHandle;
+        
+    }
+
+    public static enum MembershipLock {
+        Unlocked,
+        Locked
     }
 
     public static class MonitoringApplicationConfiguration {
@@ -1782,6 +2124,29 @@ public class PlayFabMultiplayerModels {
         Linux
     }
 
+    public static enum OwnerMigrationPolicy {
+        None,
+        Automatic,
+        Manual,
+        Server
+    }
+
+    public static class PaginationRequest {
+        /** Continuation token returned as a result in a previous FindLobbies call. Cannot be specified by clients. */
+        public String ContinuationToken;
+        /** The number of lobbies that should be retrieved. Cannot be specified by servers, clients may specify any value up to 50 */
+        public Long PageSizeRequested;
+        
+    }
+
+    public static class PaginationResponse {
+        /** Continuation token returned by server call. Not returned for clients */
+        public String ContinuationToken;
+        /** The number of lobbies that matched the search request. */
+        public Long TotalMatchedLobbyCount;
+        
+    }
+
     public static class Port {
         /** The name for the port. */
         public String Name;
@@ -1820,6 +2185,22 @@ public class PlayFabMultiplayerModels {
         public String ReviewComments;
         /** Whether or not this request was approved. */
         public Boolean WasApproved;
+        
+    }
+
+    /**
+     * Request to remove a member from a lobby. Owners may remove other members from a lobby. Members cannot remove themselves
+     * (use LeaveLobby instead).
+     */
+    public static class RemoveMemberFromLobbyRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The id of the lobby. */
+        public String LobbyId;
+        /** The member entity to be removed from the lobby. */
+        public EntityKey MemberEntity;
+        /** If true, removed member can never rejoin this lobby. */
+        public Boolean PreventRejoin;
         
     }
 
@@ -1966,6 +2347,34 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Request to subscribe to lobby resource notifications. */
+    public static class SubscribeToLobbyResourceRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The entity performing the subscription. */
+        public EntityKey EntityKey;
+        /** Opaque string, given to a client upon creating a connection with PubSub. */
+        public String PubSubConnectionHandle;
+        /** The name of the resource to subscribe to. */
+        public String ResourceId;
+        /** Version number for the subscription of this resource. */
+        public Long SubscriptionVersion;
+        /** Subscription type. */
+        public SubscriptionType Type;
+        
+    }
+
+    public static class SubscribeToLobbyResourceResult {
+        /** Topic will be returned in all notifications that are the result of this subscription. */
+        public String Topic;
+        
+    }
+
+    public static enum SubscriptionType {
+        LobbyChange,
+        LobbyInvite
+    }
+
     public static enum TitleMultiplayerServerEnabledStatus {
         Initializing,
         Enabled,
@@ -1975,6 +2384,23 @@ public class PlayFabMultiplayerModels {
     public static class TitleMultiplayerServersQuotas {
         /** The core capacity for the various regions and VM Family */
         public ArrayList<CoreCapacity> CoreCapacities;
+        
+    }
+
+    /** Request to unsubscribe from lobby notifications. Only a client can unsubscribe from notifications. */
+    public static class UnsubscribeFromLobbyResourceRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The entity which performed the subscription. */
+        public EntityKey EntityKey;
+        /** Opaque string, given to a client upon creating a connection with PubSub. */
+        public String PubSubConnectionHandle;
+        /** The name of the resource to unsubscribe from. */
+        public String ResourceId;
+        /** Version number passed for the subscription of this resource. */
+        public Long SubscriptionVersion;
+        /** Subscription type. */
+        public SubscriptionType Type;
         
     }
 
@@ -2035,6 +2461,86 @@ public class PlayFabMultiplayerModels {
         public ArrayList<BuildRegionParams> BuildRegions;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
+        
+    }
+
+    /** Request to update a lobby. */
+    public static class UpdateLobbyRequest {
+        /**
+         * The policy indicating who is allowed to join the lobby, and the visibility to queries. May be 'Public', 'Friends' or
+         * 'Private'. Public means the lobby is both visible in queries and any player may join, including invited players. Friends
+         * means that users who are bidirectional friends of members in the lobby may search to find friend lobbies, to retrieve
+         * its connection string. Private means the lobby is not visible in queries, and a player must receive an invitation to
+         * join. Defaults to 'Public' on creation. Can only be changed by the lobby owner.
+         */
+        public AccessPolicy AccessPolicy;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /**
+         * The private key-value pairs which are only visible to members of the lobby. Optional. Sets or updates key-value pairs on
+         * the lobby. Only the current lobby owner can set lobby data. Keys may be an arbitrary string of at most 30 characters.
+         * The total size of all lobbyData values may not exceed 4096 bytes. Values are not individually limited. There can be up
+         * to 30 key-value pairs stored here. Keys are case sensitive.
+         */
+        public Map<String,String> LobbyData;
+        /** The keys to delete from the lobby LobbyData. Optional. Behaves similar to searchDataToDelete, but applies to lobbyData. */
+        public ArrayList<String> LobbyDataToDelete;
+        /** The id of the lobby. */
+        public String LobbyId;
+        /**
+         * The maximum number of players allowed in the lobby. Updates the maximum allowed number of players in the lobby. Only the
+         * current lobby owner can set this. If set, the value must be greater than or equal to the number of members currently in
+         * the lobby.
+         */
+        public Long MaxPlayers;
+        /**
+         * The private key-value pairs used by the member to communicate information to other members and the owner. Optional. Sets
+         * or updates new key-value pairs on the caller's member data. New keys will be added with their values and existing keys
+         * will be updated with the new values. Visible to all members of the lobby. At most 30 key-value pairs may be stored here,
+         * keys are limited to 30 characters and values to 1000. The total size of all memberData values may not exceed 4096 bytes.
+         * Keys are case sensitive. Servers cannot specifiy this.
+         */
+        public Map<String,String> MemberData;
+        /**
+         * The keys to delete from the lobby MemberData. Optional. Deletes key-value pairs on the caller's member data. All the
+         * specified keys will be removed from the caller's member data. Keys that do not exist are a no-op. If the key to delete
+         * exists in the memberData (same request) it will result in a bad request. Servers cannot specifiy this.
+         */
+        public ArrayList<String> MemberDataToDelete;
+        /** The member entity whose data is being modified. Servers cannot specify this. */
+        public EntityKey MemberEntity;
+        /**
+         * A setting indicating whether the lobby is locked. May be 'Unlocked' or 'Locked'. When Locked new members are not allowed
+         * to join. Defaults to 'Unlocked' on creation. Can only be changed by the lobby owner.
+         */
+        public MembershipLock MembershipLock;
+        /**
+         * The lobby owner. Optional. Set to transfer ownership of the lobby. If client - owned and 'Automatic' - The Lobby service
+         * will automatically assign another connected owner when the current owner leaves or disconnects. useConnections must be
+         * true. If client - owned and 'Manual' - Ownership is protected as long as the current owner is connected. If the current
+         * owner leaves or disconnects any member may set themselves as the current owner. The useConnections property must be
+         * true. If client-owned and 'None' - Any member can set ownership. The useConnections property can be either true or
+         * false. For all client-owned lobbies when the owner leaves and a new owner can not be automatically selected - The owner
+         * field is set to null. For all client-owned lobbies when the owner disconnects and a new owner can not be automatically
+         * selected - The owner field remains unchanged and the current owner retains all owner abilities for the lobby. If
+         * server-owned (must be 'Server') - Any server can set ownership. The useConnections property must be true.
+         */
+        public EntityKey Owner;
+        /**
+         * The public key-value pairs which allow queries to differentiate between lobbies. Optional. Sets or updates key-value
+         * pairs on the lobby for use with queries. Only the current lobby owner can set search data. New keys will be added with
+         * their values and existing keys will be updated with the new values. There can be up to 30 key-value pairs stored here.
+         * Keys are of the format string_key1, string_key2... string_key30 for string values, or number_key1, number_key2, ...
+         * number_key30 for numeric values. Numeric values are floats. Values can be at most 256 characters long. The total size of
+         * all searchData values may not exceed 1024 bytes.Keys are case sensitive.
+         */
+        public Map<String,String> SearchData;
+        /**
+         * The keys to delete from the lobby SearchData. Optional. Deletes key-value pairs on the lobby. Only the current lobby
+         * owner can delete search data. All the specified keys will be removed from the search data. Keys that do not exist in the
+         * lobby are a no-op.If the key to delete exists in the searchData (same request) it will result in a bad request.
+         */
+        public ArrayList<String> SearchDataToDelete;
         
     }
 
