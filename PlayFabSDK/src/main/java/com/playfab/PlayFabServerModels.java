@@ -1777,6 +1777,10 @@ public class PlayFabServerModels {
         EventSinkConnectionInvalid,
         EventSinkConnectionUnauthorized,
         EventSinkRegionInvalid,
+        EventSinkLimitExceeded,
+        EventSinkSasTokenInvalid,
+        EventSinkNotFound,
+        EventSinkNameInvalid,
         OperationCanceled,
         InvalidDisplayNameRandomSuffixLength,
         AllowNonUniquePlayerDisplayNamesDisableNotAllowed
@@ -3616,6 +3620,55 @@ public class PlayFabServerModels {
     }
 
     public static class RefreshGameServerInstanceHeartbeatResult {
+        
+    }
+
+    public static enum Region {
+        USCentral,
+        USEast,
+        EUWest,
+        Singapore,
+        Japan,
+        Brazil,
+        Australia
+    }
+
+    public static class RegisterGameRequest {
+        /** Unique identifier of the build running on the Game Server Instance. */
+        public String Build;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /**
+         * Game Mode the Game Server instance is running. Note that this must be defined in the Game Modes tab in the PlayFab Game
+         * Manager, along with the Build ID (the same Game Mode can be defined for multiple Build IDs).
+         */
+        public String GameMode;
+        /** Previous lobby id if re-registering an existing game. */
+        public String LobbyId;
+        /**
+         * Region in which the Game Server Instance is running. For matchmaking using non-AWS region names, set this to any AWS
+         * region and use Tags (below) to specify your custom region.
+         */
+        public Region Region;
+        /** IPV4 address of the game server instance. */
+        public String ServerIPV4Address;
+        /** IPV6 address (if any) of the game server instance. */
+        public String ServerIPV6Address;
+        /** Port number for communication with the Game Server Instance. */
+        public String ServerPort;
+        /** Public DNS name (if any) of the server */
+        public String ServerPublicDNSName;
+        /** Tags for the Game Server Instance */
+        public Map<String,String> Tags;
+        
+    }
+
+    public static class RegisterGameResponse {
+        /**
+         * Unique identifier generated for the Game Server Instance that is registered. If LobbyId is specified in request and the
+         * game still exists in PlayFab, the LobbyId in request is returned. Otherwise a new lobby id will be returned.
+         */
+        public String LobbyId;
         
     }
 

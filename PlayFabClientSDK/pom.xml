@@ -14,7 +14,7 @@
     <!-- GAV & Meta -->
     <groupId>com.playfab</groupId>
     <artifactId>client-sdk</artifactId>
-    <version>0.148.220305</version>
+    <version>0.149.220316</version>
     <name>PlayFab Client API</name>
     <description>PlayFab is the unified backend platform for games — everything you need to build and operate your game, all in one place, so you can focus on creating and delivering a great player experience. </description>
     <url>https://docs.microsoft.com/gaming/playfab/</url>

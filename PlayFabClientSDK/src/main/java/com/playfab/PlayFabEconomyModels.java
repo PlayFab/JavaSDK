@@ -24,6 +24,8 @@ public class PlayFabEconomyModels {
         public ImageConfig Image;
         /** Flag defining whether catalog is enabled. */
         public Boolean IsCatalogEnabled;
+        /** A list of Platforms that can be applied to catalog items. */
+        public ArrayList<String> Platforms;
         /** A set of player entity keys that are allowed to review content. */
         public ArrayList<EntityKey> ReviewerEntities;
         /** The set of configuration that only applies to user generated contents. */
@@ -80,6 +82,48 @@ public class PlayFabEconomyModels {
         public Map<String,String> Title;
         /** The high-level type of the item. */
         public String Type;
+        
+    }
+
+    public static class CatalogItemReference {
+        /** The amount of the catalog item. */
+        public Integer Amount;
+        /** The unique ID of the catalog item. */
+        public String Id;
+        /** The price of the catalog item. */
+        public CatalogPrice Price;
+        
+    }
+
+    public static class CatalogPrice {
+        /** Prices of the catalog item. */
+        public ArrayList<CatalogPriceInstance> Prices;
+        /** Real prices of the catalog item. */
+        public ArrayList<CatalogPriceInstance> RealPrices;
+        /** A standardized sorting key to allow proper sorting between items with prices in different currencies. */
+        public Integer Sort;
+        
+    }
+
+    public static class CatalogPriceAmount {
+        /** The amount of the catalog price. */
+        public Integer Amount;
+        /** The Item ID of the price. */
+        public String Id;
+        
+    }
+
+    public static class CatalogPriceInstance {
+        /** The amounts of the catalog item price. */
+        public ArrayList<CatalogPriceAmount> Amounts;
+        
+    }
+
+    public static class CatalogSpecificConfig {
+        /** The set of content types that will be used for validation. */
+        public ArrayList<String> ContentTypes;
+        /** The set of tags that will be used for validation. */
+        public ArrayList<String> Tags;
         
     }
 
@@ -145,6 +189,14 @@ public class PlayFabEconomyModels {
     public static class CreateUploadUrlsResponse {
         /** List of URLs metadata for the files to be uploaded by the client. */
         public ArrayList<UploadUrlMetadata> UploadUrls;
+        
+    }
+
+    public static class DeepLinkFormat {
+        /** The format of the deep link to return. The format should contain '{id}' to represent where the item ID should be placed. */
+        public String Format;
+        /** The target platform for the deep link. */
+        public String Platform;
         
     }
 
@@ -228,8 +280,6 @@ public class PlayFabEconomyModels {
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
-        /** Whether to fetch metadata of the scan status. */
-        public Boolean ExpandScanningStatus;
         /** The unique ID of the item. */
         public String Id;
         
@@ -331,8 +381,6 @@ public class PlayFabEconomyModels {
     }
 
     public static class GetItemPublishStatusResponse {
-        /** Scan results for any items that failed content scans. */
-        public ArrayList<ScanResult> FailedScanResults;
         /** High level status of the published item. */
         public PublishResult Result;
         /** Descriptive message about the current status of the publish. */
@@ -470,6 +518,16 @@ public class PlayFabEconomyModels {
         Rejected
     }
 
+    public static class PayoutDetails {
+        /** The Dev Center account ID of the payee. */
+        public String AccountSellerId;
+        /** The tax code for payout calculations. */
+        public String TaxCode;
+        /** The Universal account ID of the payee. */
+        public String Uaid;
+        
+    }
+
     /**
      * The call kicks off a workflow to publish the item to the public catalog. The Publish Status API should be used to
      * monitor the publish job.
@@ -568,8 +626,6 @@ public class PlayFabEconomyModels {
     public static class Review {
         /** The number of negative helpfulness votes for this review. */
         public Integer HelpfulNegative;
-        /** Total number of helpfulness votes for this review. */
-        public Integer HelpfulnessVotes;
         /** The number of positive helpfulness votes for this review. */
         public Integer HelpfulPositive;
         /** Indicates whether the review author has the item installed. */
@@ -678,6 +734,14 @@ public class PlayFabEconomyModels {
         
     }
 
+    public static class StoreInfo {
+        /** An alternate ID of the store. */
+        public CatalogAlternateId AlternateId;
+        /** The unique ID of the store. */
+        public String Id;
+        
+    }
+
     public static class SubmitItemReviewVoteRequest {
         /** An alternate ID of the item associated with the review. */
         public CatalogAlternateId AlternateId;
@@ -695,6 +759,12 @@ public class PlayFabEconomyModels {
     }
 
     public static class SubmitItemReviewVoteResponse {
+        
+    }
+
+    public static class SubscriptionDetails {
+        /** The length of time that the subscription will last in seconds. */
+        public Double DurationInSeconds;
         
     }
 

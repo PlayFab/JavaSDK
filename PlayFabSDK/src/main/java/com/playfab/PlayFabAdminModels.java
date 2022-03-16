@@ -2046,6 +2046,10 @@ public class PlayFabAdminModels {
         EventSinkConnectionInvalid,
         EventSinkConnectionUnauthorized,
         EventSinkRegionInvalid,
+        EventSinkLimitExceeded,
+        EventSinkSasTokenInvalid,
+        EventSinkNotFound,
+        EventSinkNameInvalid,
         OperationCanceled,
         InvalidDisplayNameRandomSuffixLength,
         AllowNonUniquePlayerDisplayNamesDisableNotAllowed
@@ -2504,47 +2508,6 @@ public class PlayFabAdminModels {
         
     }
 
-    public static class GetServerBuildInfoRequest {
-        /** unique identifier of the previously uploaded build executable for which information is being requested */
-        public String BuildId;
-        
-    }
-
-    /** Information about a particular server build */
-    public static class GetServerBuildInfoResult implements Comparable<GetServerBuildInfoResult> {
-        /** array of regions where this build can used, when it is active */
-        @Unordered
-        public ArrayList<Region> ActiveRegions;
-        /** unique identifier for this build executable */
-        public String BuildId;
-        /** developer comment(s) for this build */
-        public String Comment;
-        /** error message, if any, about this build */
-        public String ErrorMessage;
-        /** maximum number of game server instances that can run on a single host machine */
-        public Integer MaxGamesPerHost;
-        /**
-         * minimum capacity of additional game server instances that can be started before the autoscaling service starts new host
-         * machines (given the number of current running host machines and game server instances)
-         */
-        public Integer MinFreeGameSlots;
-        /** the current status of the build validation and processing steps */
-        public GameBuildStatus Status;
-        /** time this build was last modified (or uploaded, if this build has never been modified) */
-        public Date Timestamp;
-        /**
-         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
-         * title has been selected.
-         */
-        public String TitleId;
-        
-        public int compareTo(GetServerBuildInfoResult other) {
-            if (other == null || other.BuildId == null) return 1;
-            if (BuildId == null) return -1;
-            return BuildId.compareTo(other.BuildId);
-        }
-    }
-
     /**
      * A store contains an array of references to items defined in the catalog, along with the prices for the item, in both
      * real world and virtual currencies. These prices act as an override to any prices defined in the catalog. In this way,
@@ -2999,17 +2962,6 @@ public class PlayFabAdminModels {
     public static class LinkedUserAccountSegmentFilter {
         /** Login provider. */
         public SegmentLoginIdentityProvider LoginProvider;
-        
-    }
-
-    public static class ListBuildsRequest {
-        
-    }
-
-    public static class ListBuildsResult {
-        /** array of uploaded game server builds */
-        @Unordered("BuildId")
-        public ArrayList<GetServerBuildInfoResult> Builds;
         
     }
 
@@ -3586,16 +3538,6 @@ public class PlayFabAdminModels {
     }
 
     public static class RemovePlayerTagResult {
-        
-    }
-
-    public static class RemoveServerBuildRequest {
-        /** unique identifier of the previously uploaded build executable to be removed */
-        public String BuildId;
-        
-    }
-
-    public static class RemoveServerBuildResult {
         
     }
 
@@ -4515,11 +4457,10 @@ public class PlayFabAdminModels {
     }
 
     /**
-     * This API method is designed to store title specific values which can be read by the client. For example, a developer
-     * could choose to store values which modify the user experience, such as enemy spawn rates, weapon strengths, movement
-     * speeds, etc. This allows a developer to update the title without the need to create, test, and ship a new build. This
-     * operation is additive. If a Key does not exist in the current dataset, it will be added with the specified Value. If it
-     * already exists, the Value for that key will be overwritten with the new Value.
+     * This API method is designed to store title specific values which are accessible only by the server. These values can be
+     * used to tweak settings used by game servers and Cloud Scripts without the need to update and re-deploy. This operation
+     * is additive. If a Key does not exist in the current dataset, it will be added with the specified Value. If it already
+     * exists, the Value for that key will be overwritten with the new Value.
      */
     public static class SetTitleDataRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
