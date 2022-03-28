@@ -261,6 +261,10 @@ public class PlayFabEconomyModels {
         
     }
 
+    public static class FilterOptions {
+        
+    }
+
     public static class GetCatalogConfigRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
@@ -528,6 +532,14 @@ public class PlayFabEconomyModels {
         
     }
 
+    public static class PriceOverride {
+        
+    }
+
+    public static class PricesOverride {
+        
+    }
+
     /**
      * The call kicks off a workflow to publish the item to the public catalog. The Publish Status API should be used to
      * monitor the publish job.
@@ -560,6 +572,10 @@ public class PlayFabEconomyModels {
         Succeeded,
         Failed,
         Canceled
+    }
+
+    public static class PurchaseOverride {
+        
     }
 
     public static class Rating {
@@ -731,6 +747,10 @@ public class PlayFabEconomyModels {
     }
 
     public static class SetItemModerationStateResponse {
+        
+    }
+
+    public static class StoreDetails {
         
     }
 

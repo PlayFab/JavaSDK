@@ -1899,6 +1899,7 @@ public class PlayFabAdminModels {
         NoValidIdentityForAad,
         PlayerIdentityLinkNotFound,
         PhotonApplicationIdAlreadyInUse,
+        CloudScriptUnableToDeleteProductionRevision,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,

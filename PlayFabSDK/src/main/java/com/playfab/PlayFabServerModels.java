@@ -1630,6 +1630,7 @@ public class PlayFabServerModels {
         NoValidIdentityForAad,
         PlayerIdentityLinkNotFound,
         PhotonApplicationIdAlreadyInUse,
+        CloudScriptUnableToDeleteProductionRevision,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
