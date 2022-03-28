@@ -1243,13 +1243,6 @@ public class PlayFabMultiplayerModels {
          * builds. If the build is a custom build, this field will be null.
          */
         public String StartMultiplayerServerCommand;
-        /**
-         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
-         * disc.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public Boolean UseStreamingForAssetDownloads;
         /** The VM size the build was created on. */
         public AzureVmSize VmSize;
         
@@ -1312,6 +1305,8 @@ public class PlayFabMultiplayerModels {
     public static class GetMatchmakingTicketResult {
         /** The reason why the current ticket was canceled. This field is only set if the ticket is in canceled state. */
         public String CancellationReasonString;
+        /** Change number used for differentiating older matchmaking status updates from newer ones. */
+        public Long ChangeNumber;
         /** The server date and time at which ticket was created. */
         public Date Created;
         /** The Creator's entity key. */
@@ -1359,6 +1354,8 @@ public class PlayFabMultiplayerModels {
     }
 
     public static class GetMatchResult {
+        /** A string that is used by players that are matched together to join an arranged lobby. */
+        public String ArrangementString;
         /** The Id of a match. */
         public String MatchId;
         /** A list of Users that are matched together, along with their team assignments. */
