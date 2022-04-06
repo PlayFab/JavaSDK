@@ -155,7 +155,7 @@ public class PlayFabProfilesModels {
          * JSON string.
          */
         public Boolean DataAsObject;
-        /** The entity to perform this action on. */
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         public EntityKey Entity;
         
     }
@@ -196,6 +196,8 @@ public class PlayFabProfilesModels {
     public static class GetGlobalPolicyRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
+        public EntityKey Entity;
         
     }
 
@@ -277,7 +279,7 @@ public class PlayFabProfilesModels {
     public static class SetProfileLanguageRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** The entity to perform this action on. */
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         public EntityKey Entity;
         /** The expected version of a profile to perform this update on */
         public Integer ExpectedVersion;
