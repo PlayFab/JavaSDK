@@ -40,7 +40,7 @@ public class PlayFabAuthenticationModels {
     public static class GetEntityTokenRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** The entity to perform this action on. */
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         public EntityKey Entity;
         
     }

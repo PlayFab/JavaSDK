@@ -354,7 +354,7 @@ public class PlayFabCloudScriptModels {
     public static class ExecuteEntityCloudScriptRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** The entity to perform this action on. */
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         public EntityKey Entity;
         /** The name of the CloudScript function to execute */
         public String FunctionName;
@@ -380,7 +380,7 @@ public class PlayFabCloudScriptModels {
     public static class ExecuteFunctionRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** The entity to perform this action on. */
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         public EntityKey Entity;
         /** The name of the CloudScript function to execute */
         public String FunctionName;
@@ -669,7 +669,7 @@ public class PlayFabCloudScriptModels {
     public static class PostFunctionResultForPlayerTriggeredActionRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** The entity to perform this action on. */
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         public EntityKey Entity;
         /** The result of the function execution. */
         public ExecuteFunctionResult FunctionResult;
