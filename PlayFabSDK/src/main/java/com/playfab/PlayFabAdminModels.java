@@ -1335,6 +1335,21 @@ public class PlayFabAdminModels {
         
     }
 
+    /** Request must contain the Segment ID */
+    public static class ExportPlayersInSegmentRequest {
+        /** Unique identifier of the requested segment. */
+        public String SegmentId;
+        
+    }
+
+    public static class ExportPlayersInSegmentResult {
+        /** Unique identifier of the export for the requested Segment. */
+        public String ExportId;
+        /** Unique identifier of the requested Segment. */
+        public String SegmentId;
+        
+    }
+
     public static class FirstLoginDateSegmentFilter {
         /** First player login date comparison. */
         public SegmentFilterComparison Comparison;
@@ -2052,6 +2067,8 @@ public class PlayFabAdminModels {
         EventSinkSasTokenInvalid,
         EventSinkNotFound,
         EventSinkNameInvalid,
+        EventSinkSasTokenPermissionInvalid,
+        EventSinkSecretInvalid,
         OperationCanceled,
         InvalidDisplayNameRandomSuffixLength,
         AllowNonUniquePlayerDisplayNamesDisableNotAllowed
@@ -2322,6 +2339,21 @@ public class PlayFabAdminModels {
     public static class GetPlayerSharedSecretsResult {
         /** The player shared secret to use when calling Client/GetTitlePublicKey */
         public ArrayList<SharedSecret> SharedSecrets;
+        
+    }
+
+    /** Request must contain the ExportId */
+    public static class GetPlayersInSegmentExportRequest {
+        /** Unique identifier of the export for the requested Segment. */
+        public String ExportId;
+        
+    }
+
+    public static class GetPlayersInSegmentExportResponse {
+        /** Url from which the index file can be downloaded. */
+        public String IndexUrl;
+        /** Shows the current status of the export */
+        public String State;
         
     }
 
@@ -4459,10 +4491,11 @@ public class PlayFabAdminModels {
     }
 
     /**
-     * This API method is designed to store title specific values which are accessible only by the server. These values can be
-     * used to tweak settings used by game servers and Cloud Scripts without the need to update and re-deploy. This operation
-     * is additive. If a Key does not exist in the current dataset, it will be added with the specified Value. If it already
-     * exists, the Value for that key will be overwritten with the new Value.
+     * This API method is designed to store title specific values which can be read by the client. For example, a developer
+     * could choose to store values which modify the user experience, such as enemy spawn rates, weapon strengths, movement
+     * speeds, etc. This allows a developer to update the title without the need to create, test, and ship a new build. This
+     * operation is additive. If a Key does not exist in the current dataset, it will be added with the specified Value. If it
+     * already exists, the Value for that key will be overwritten with the new Value.
      */
     public static class SetTitleDataRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -5339,6 +5372,8 @@ public class PlayFabAdminModels {
     public static class UserXboxInfo {
         /** XBox user ID */
         public String XboxUserId;
+        /** XBox user sandbox */
+        public String XboxUserSandbox;
         
     }
 

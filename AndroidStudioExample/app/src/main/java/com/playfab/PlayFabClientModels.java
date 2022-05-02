@@ -1945,6 +1945,19 @@ public class PlayFabClientModels {
         
     }
 
+    public static class GetPlayFabIDsFromNintendoServiceAccountIdsRequest {
+        /** Array of unique Nintendo Switch Account identifiers for which the title needs to get PlayFab identifiers. */
+        public ArrayList<String> NintendoAccountIds;
+        
+    }
+
+    /** For Nintendo Service Account identifiers which have not been linked to PlayFab accounts, null will be returned. */
+    public static class GetPlayFabIDsFromNintendoServiceAccountIdsResult {
+        /** Mapping of Nintendo Switch Service Account identifiers to PlayFab identifiers. */
+        public ArrayList<NintendoServiceAccountPlayFabIdPair> Data;
+        
+    }
+
     public static class GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest {
         /** Array of unique Nintendo Switch Device identifiers for which the title needs to get PlayFab identifiers. */
         public ArrayList<String> NintendoSwitchDeviceIds;
@@ -3385,6 +3398,17 @@ public class PlayFabClientModels {
         public String Id;
         /** Name Identifier, if present */
         public String Name;
+        
+    }
+
+    public static class NintendoServiceAccountPlayFabIdPair {
+        /** Unique Nintendo Switch Service Account identifier for a user. */
+        public String NintendoServiceAccountId;
+        /**
+         * Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Nintendo Switch Service Account
+         * identifier.
+         */
+        public String PlayFabId;
         
     }
 
@@ -4932,6 +4956,8 @@ public class PlayFabClientModels {
     public static class UserXboxInfo {
         /** XBox user ID */
         public String XboxUserId;
+        /** XBox user sandbox */
+        public String XboxUserSandbox;
         
     }
 

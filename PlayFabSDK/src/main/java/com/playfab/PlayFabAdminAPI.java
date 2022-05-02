@@ -1713,6 +1713,76 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Starts an export for the player profiles in a segment. This API creates a snapshot of all the player profiles which
+     * match the segment definition at the time of the API call. Profiles which change while an export is in progress will not
+     * be reflected in the results.
+     * @param request ExportPlayersInSegmentRequest
+     * @return Async Task will return ExportPlayersInSegmentResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ExportPlayersInSegmentResult>> ExportPlayersInSegmentAsync(final ExportPlayersInSegmentRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ExportPlayersInSegmentResult>>() {
+            public PlayFabResult<ExportPlayersInSegmentResult> call() throws Exception {
+                return privateExportPlayersInSegmentAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Starts an export for the player profiles in a segment. This API creates a snapshot of all the player profiles which
+     * match the segment definition at the time of the API call. Profiles which change while an export is in progress will not
+     * be reflected in the results.
+     * @param request ExportPlayersInSegmentRequest
+     * @return ExportPlayersInSegmentResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ExportPlayersInSegmentResult> ExportPlayersInSegment(final ExportPlayersInSegmentRequest request) {
+        FutureTask<PlayFabResult<ExportPlayersInSegmentResult>> task = new FutureTask(new Callable<PlayFabResult<ExportPlayersInSegmentResult>>() {
+            public PlayFabResult<ExportPlayersInSegmentResult> call() throws Exception {
+                return privateExportPlayersInSegmentAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<ExportPlayersInSegmentResult> exceptionResult = new PlayFabResult<ExportPlayersInSegmentResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /**
+     * Starts an export for the player profiles in a segment. This API creates a snapshot of all the player profiles which
+     * match the segment definition at the time of the API call. Profiles which change while an export is in progress will not
+     * be reflected in the results.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ExportPlayersInSegmentResult> privateExportPlayersInSegmentAsync(final ExportPlayersInSegmentRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/ExportPlayersInSegment"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ExportPlayersInSegmentResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ExportPlayersInSegmentResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ExportPlayersInSegmentResult>>(){}.getType());
+        ExportPlayersInSegmentResult result = resultData.data;
+
+        PlayFabResult<ExportPlayersInSegmentResult> pfResult = new PlayFabResult<ExportPlayersInSegmentResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Get information about a ActionsOnPlayersInSegment task instance.
      * @param request GetTaskInstanceRequest
      * @return Async Task will return GetActionsOnPlayersInSegmentTaskInstanceResult
@@ -3171,6 +3241,79 @@ public class PlayFabAdminAPI {
         GetRandomResultTablesResult result = resultData.data;
 
         PlayFabResult<GetRandomResultTablesResult> pfResult = new PlayFabResult<GetRandomResultTablesResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Retrieves the result of an export started by ExportPlayersInSegment API. If the ExportPlayersInSegment is successful and
+     * complete, this API returns the IndexUrl from which the index file can be downloaded. The index file has a list of urls
+     * from which the files containing the player profile data can be downloaded. Otherwise, it returns the current 'State' of
+     * the export
+     * @param request GetPlayersInSegmentExportRequest
+     * @return Async Task will return GetPlayersInSegmentExportResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayersInSegmentExportResponse>> GetSegmentExportAsync(final GetPlayersInSegmentExportRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayersInSegmentExportResponse>>() {
+            public PlayFabResult<GetPlayersInSegmentExportResponse> call() throws Exception {
+                return privateGetSegmentExportAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the result of an export started by ExportPlayersInSegment API. If the ExportPlayersInSegment is successful and
+     * complete, this API returns the IndexUrl from which the index file can be downloaded. The index file has a list of urls
+     * from which the files containing the player profile data can be downloaded. Otherwise, it returns the current 'State' of
+     * the export
+     * @param request GetPlayersInSegmentExportRequest
+     * @return GetPlayersInSegmentExportResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayersInSegmentExportResponse> GetSegmentExport(final GetPlayersInSegmentExportRequest request) {
+        FutureTask<PlayFabResult<GetPlayersInSegmentExportResponse>> task = new FutureTask(new Callable<PlayFabResult<GetPlayersInSegmentExportResponse>>() {
+            public PlayFabResult<GetPlayersInSegmentExportResponse> call() throws Exception {
+                return privateGetSegmentExportAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetPlayersInSegmentExportResponse> exceptionResult = new PlayFabResult<GetPlayersInSegmentExportResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /**
+     * Retrieves the result of an export started by ExportPlayersInSegment API. If the ExportPlayersInSegment is successful and
+     * complete, this API returns the IndexUrl from which the index file can be downloaded. The index file has a list of urls
+     * from which the files containing the player profile data can be downloaded. Otherwise, it returns the current 'State' of
+     * the export
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayersInSegmentExportResponse> privateGetSegmentExportAsync(final GetPlayersInSegmentExportRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/GetSegmentExport"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayersInSegmentExportResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayersInSegmentExportResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayersInSegmentExportResponse>>(){}.getType());
+        GetPlayersInSegmentExportResponse result = resultData.data;
+
+        PlayFabResult<GetPlayersInSegmentExportResponse> pfResult = new PlayFabResult<GetPlayersInSegmentExportResponse>();
         pfResult.Result = result;
         return pfResult;
     }
