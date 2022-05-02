@@ -11,7 +11,7 @@ import com.google.gson.reflect.*;
 
     /**
      * All PlayFab entities have profiles, which hold top-level properties about the entity. These APIs give you the tools
-     * needed to manage entity profiles.
+     * needed to manage entity profiles. The Master Player APIs allow you to perform operations on a master player account
      */
 public class PlayFabProfilesAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();

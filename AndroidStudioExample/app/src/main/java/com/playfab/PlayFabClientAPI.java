@@ -1139,7 +1139,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Executes a CloudScript function, with the 'currentPlayerId' set to the PlayFab ID of the authenticated player.
+     * Executes a CloudScript function, with the 'currentPlayerId' set to the PlayFab ID of the authenticated player. The
+     * PlayFab ID is the entity ID of the player's master_player_account entity.
      * @param request ExecuteCloudScriptRequest
      * @return Async Task will return ExecuteCloudScriptResult
      */
@@ -1153,7 +1154,8 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Executes a CloudScript function, with the 'currentPlayerId' set to the PlayFab ID of the authenticated player.
+     * Executes a CloudScript function, with the 'currentPlayerId' set to the PlayFab ID of the authenticated player. The
+     * PlayFab ID is the entity ID of the player's master_player_account entity.
      * @param request ExecuteCloudScriptRequest
      * @return ExecuteCloudScriptResult
      */
@@ -1174,7 +1176,10 @@ public class PlayFabClientAPI {
         }
     }
 
-    /** Executes a CloudScript function, with the 'currentPlayerId' set to the PlayFab ID of the authenticated player. */
+    /**
+     * Executes a CloudScript function, with the 'currentPlayerId' set to the PlayFab ID of the authenticated player. The
+     * PlayFab ID is the entity ID of the player's master_player_account entity.
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ExecuteCloudScriptResult> privateExecuteCloudScriptAsync(final ExecuteCloudScriptRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
@@ -3395,7 +3400,69 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Nintendo Switch identifiers.
+     * Retrieves the unique PlayFab identifiers for the given set of Nintendo Service Account identifiers.
+     * @param request GetPlayFabIDsFromNintendoServiceAccountIdsRequest
+     * @return Async Task will return GetPlayFabIDsFromNintendoServiceAccountIdsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult>> GetPlayFabIDsFromNintendoServiceAccountIdsAsync(final GetPlayFabIDsFromNintendoServiceAccountIdsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromNintendoServiceAccountIdsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of Nintendo Service Account identifiers.
+     * @param request GetPlayFabIDsFromNintendoServiceAccountIdsRequest
+     * @return GetPlayFabIDsFromNintendoServiceAccountIdsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult> GetPlayFabIDsFromNintendoServiceAccountIds(final GetPlayFabIDsFromNintendoServiceAccountIdsRequest request) {
+        FutureTask<PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromNintendoServiceAccountIdsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult> exceptionResult = new PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Retrieves the unique PlayFab identifiers for the given set of Nintendo Service Account identifiers. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult> privateGetPlayFabIDsFromNintendoServiceAccountIdsAsync(final GetPlayFabIDsFromNintendoServiceAccountIdsRequest request) throws Exception {
+        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayFabIDsFromNintendoServiceAccountIds"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayFabIDsFromNintendoServiceAccountIdsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayFabIDsFromNintendoServiceAccountIdsResult>>(){}.getType());
+        GetPlayFabIDsFromNintendoServiceAccountIdsResult result = resultData.data;
+
+        PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of Nintendo Switch Device identifiers.
      * @param request GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest
      * @return Async Task will return GetPlayFabIDsFromNintendoSwitchDeviceIdsResult
      */
@@ -3409,7 +3476,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of Nintendo Switch identifiers.
+     * Retrieves the unique PlayFab identifiers for the given set of Nintendo Switch Device identifiers.
      * @param request GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest
      * @return GetPlayFabIDsFromNintendoSwitchDeviceIdsResult
      */
@@ -3430,7 +3497,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /** Retrieves the unique PlayFab identifiers for the given set of Nintendo Switch identifiers. */
+    /** Retrieves the unique PlayFab identifiers for the given set of Nintendo Switch Device identifiers. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayFabIDsFromNintendoSwitchDeviceIdsResult> privateGetPlayFabIDsFromNintendoSwitchDeviceIdsAsync(final GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");

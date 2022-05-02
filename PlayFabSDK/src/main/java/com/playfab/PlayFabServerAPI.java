@@ -1119,7 +1119,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Executes a CloudScript function, with the 'currentPlayerId' variable set to the specified PlayFabId parameter value.
+     * Executes a CloudScript function, with the 'currentPlayerId' set to the PlayFab ID of the authenticated player. The
+     * PlayFab ID is the entity ID of the player's master_player_account entity.
      * @param request ExecuteCloudScriptServerRequest
      * @return Async Task will return ExecuteCloudScriptResult
      */
@@ -1133,7 +1134,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Executes a CloudScript function, with the 'currentPlayerId' variable set to the specified PlayFabId parameter value.
+     * Executes a CloudScript function, with the 'currentPlayerId' set to the PlayFab ID of the authenticated player. The
+     * PlayFab ID is the entity ID of the player's master_player_account entity.
      * @param request ExecuteCloudScriptServerRequest
      * @return ExecuteCloudScriptResult
      */
@@ -1154,7 +1156,10 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Executes a CloudScript function, with the 'currentPlayerId' variable set to the specified PlayFabId parameter value. */
+    /**
+     * Executes a CloudScript function, with the 'currentPlayerId' set to the PlayFab ID of the authenticated player. The
+     * PlayFab ID is the entity ID of the player's master_player_account entity.
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ExecuteCloudScriptResult> privateExecuteCloudScriptAsync(final ExecuteCloudScriptServerRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2852,6 +2857,68 @@ public class PlayFabServerAPI {
         GetPlayFabIDsFromGenericIDsResult result = resultData.data;
 
         PlayFabResult<GetPlayFabIDsFromGenericIDsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromGenericIDsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of Nintendo Service Account identifiers.
+     * @param request GetPlayFabIDsFromNintendoServiceAccountIdsRequest
+     * @return Async Task will return GetPlayFabIDsFromNintendoServiceAccountIdsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult>> GetPlayFabIDsFromNintendoServiceAccountIdsAsync(final GetPlayFabIDsFromNintendoServiceAccountIdsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromNintendoServiceAccountIdsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of Nintendo Service Account identifiers.
+     * @param request GetPlayFabIDsFromNintendoServiceAccountIdsRequest
+     * @return GetPlayFabIDsFromNintendoServiceAccountIdsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult> GetPlayFabIDsFromNintendoServiceAccountIds(final GetPlayFabIDsFromNintendoServiceAccountIdsRequest request) {
+        FutureTask<PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromNintendoServiceAccountIdsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult> exceptionResult = new PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Retrieves the unique PlayFab identifiers for the given set of Nintendo Service Account identifiers. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult> privateGetPlayFabIDsFromNintendoServiceAccountIdsAsync(final GetPlayFabIDsFromNintendoServiceAccountIdsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/GetPlayFabIDsFromNintendoServiceAccountIds"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayFabIDsFromNintendoServiceAccountIdsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayFabIDsFromNintendoServiceAccountIdsResult>>(){}.getType());
+        GetPlayFabIDsFromNintendoServiceAccountIdsResult result = resultData.data;
+
+        PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromNintendoServiceAccountIdsResult>();
         pfResult.Result = result;
         return pfResult;
     }

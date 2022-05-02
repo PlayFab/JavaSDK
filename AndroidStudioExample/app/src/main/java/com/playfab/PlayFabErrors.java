@@ -691,6 +691,8 @@ public class PlayFabErrors {
         EventSinkSasTokenInvalid(15004),
         EventSinkNotFound(15005),
         EventSinkNameInvalid(15006),
+        EventSinkSasTokenPermissionInvalid(15007),
+        EventSinkSecretInvalid(15008),
         OperationCanceled(16000),
         InvalidDisplayNameRandomSuffixLength(17000),
         AllowNonUniquePlayerDisplayNamesDisableNotAllowed(17001);
