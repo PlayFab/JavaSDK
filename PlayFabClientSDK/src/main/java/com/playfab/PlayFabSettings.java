@@ -8,9 +8,9 @@ import java.util.Map;
 import com.playfab.PlayFabErrors.ErrorCallback;
 
 public class PlayFabSettings {
-    public static String SdkVersion = "0.159.220523";
-    public static String BuildIdentifier = "adobuild_javasdk_8";
-    public static String SdkVersionString = "JavaSDK-0.159.220523";
+    public static String SdkVersion = "0.160.220607";
+    public static String BuildIdentifier = "adobuild_javasdk_116";
+    public static String SdkVersionString = "JavaSDK-0.160.220607";
 
     public static Map<String, String> RequestGetParams;
     static {
