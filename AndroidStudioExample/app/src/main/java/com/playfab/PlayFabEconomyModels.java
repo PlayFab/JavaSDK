@@ -156,6 +156,10 @@ public class PlayFabEconomyModels {
         
     }
 
+    public static class ContentFeed {
+        
+    }
+
     /** The item will not be published to the public catalog until the PublishItem API is called for the item. */
     public static class CreateDraftItemRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */

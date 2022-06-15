@@ -607,6 +607,7 @@ public class PlayFabErrors {
         ExportCannotParseQuery(5024),
         ExportControlCommandsNotAllowed(5025),
         ExportQueryMissingTableReference(5026),
+        ExportInsightsV1Deprecated(5027),
         ExplorerBasicInvalidQueryName(5100),
         ExplorerBasicInvalidQueryDescription(5101),
         ExplorerBasicInvalidQueryConditions(5102),
