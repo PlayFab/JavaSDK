@@ -5993,67 +5993,6 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Set and delete key-value pairs in a title internal data override instance.
-     * @param request SetTitleDataAndOverridesRequest
-     * @return Async Task will return SetTitleDataAndOverridesResult
-     */
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<SetTitleDataAndOverridesResult>> SetTitleInternalDataAndOverridesAsync(final SetTitleDataAndOverridesRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<SetTitleDataAndOverridesResult>>() {
-            public PlayFabResult<SetTitleDataAndOverridesResult> call() throws Exception {
-                return privateSetTitleInternalDataAndOverridesAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Set and delete key-value pairs in a title internal data override instance.
-     * @param request SetTitleDataAndOverridesRequest
-     * @return SetTitleDataAndOverridesResult
-     */
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<SetTitleDataAndOverridesResult> SetTitleInternalDataAndOverrides(final SetTitleDataAndOverridesRequest request) {
-        FutureTask<PlayFabResult<SetTitleDataAndOverridesResult>> task = new FutureTask(new Callable<PlayFabResult<SetTitleDataAndOverridesResult>>() {
-            public PlayFabResult<SetTitleDataAndOverridesResult> call() throws Exception {
-                return privateSetTitleInternalDataAndOverridesAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            PlayFabResult<SetTitleDataAndOverridesResult> exceptionResult = new PlayFabResult<SetTitleDataAndOverridesResult>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
-            return exceptionResult;
-        }
-    }
-
-    /** Set and delete key-value pairs in a title internal data override instance. */
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<SetTitleDataAndOverridesResult> privateSetTitleInternalDataAndOverridesAsync(final SetTitleDataAndOverridesRequest request) throws Exception {
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/SetTitleInternalDataAndOverrides"), request, null, null);
-        task.run();
-        Object httpResult = task.get();
-        if (httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<SetTitleDataAndOverridesResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<SetTitleDataAndOverridesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetTitleDataAndOverridesResult>>(){}.getType());
-        SetTitleDataAndOverridesResult result = resultData.data;
-
-        PlayFabResult<SetTitleDataAndOverridesResult> pfResult = new PlayFabResult<SetTitleDataAndOverridesResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
      * Sets the Amazon Resource Name (ARN) for iOS and Android push notifications. Documentation on the exact restrictions can
      * be found at: http://docs.aws.amazon.com/sns/latest/api/API_CreatePlatformApplication.html. Currently, Amazon device
      * Messaging is not supported.
