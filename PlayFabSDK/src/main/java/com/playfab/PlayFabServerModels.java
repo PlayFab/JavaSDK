@@ -1635,6 +1635,7 @@ public class PlayFabServerModels {
         AutomationInvalidInput,
         AutomationInvalidRuleName,
         AutomationRuleAlreadyExists,
+        AutomationRuleLimitExceeded,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -4128,11 +4129,6 @@ public class PlayFabServerModels {
          * name.) Keys are trimmed of whitespace. Keys may not begin with the '!' character.
          */
         public String Key;
-        /**
-         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
-         * title has been selected.
-         */
-        public String TitleId;
         /** new value to set. Set to null to remove a value */
         public String Value;
         
