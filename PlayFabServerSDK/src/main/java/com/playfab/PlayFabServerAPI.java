@@ -2986,7 +2986,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of PlayStation Network identifiers.
+     * Retrieves the unique PlayFab identifiers for the given set of PlayStation :tm: Network identifiers.
      * @param request GetPlayFabIDsFromPSNAccountIDsRequest
      * @return Async Task will return GetPlayFabIDsFromPSNAccountIDsResult
      */
@@ -3000,7 +3000,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the unique PlayFab identifiers for the given set of PlayStation Network identifiers.
+     * Retrieves the unique PlayFab identifiers for the given set of PlayStation :tm: Network identifiers.
      * @param request GetPlayFabIDsFromPSNAccountIDsRequest
      * @return GetPlayFabIDsFromPSNAccountIDsResult
      */
@@ -3021,7 +3021,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Retrieves the unique PlayFab identifiers for the given set of PlayStation Network identifiers. */
+    /** Retrieves the unique PlayFab identifiers for the given set of PlayStation :tm: Network identifiers. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayFabIDsFromPSNAccountIDsResult> privateGetPlayFabIDsFromPSNAccountIDsAsync(final GetPlayFabIDsFromPSNAccountIDsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3110,6 +3110,76 @@ public class PlayFabServerAPI {
         GetPlayFabIDsFromSteamIDsResult result = resultData.data;
 
         PlayFabResult<GetPlayFabIDsFromSteamIDsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromSteamIDsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of Twitch identifiers. The Twitch identifiers are the IDs for
+     * the user accounts, available as "_id" from the Twitch API methods (ex:
+     * https://github.com/justintv/Twitch-API/blob/master/v3_resources/users.md#get-usersuser).
+     * @param request GetPlayFabIDsFromTwitchIDsRequest
+     * @return Async Task will return GetPlayFabIDsFromTwitchIDsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayFabIDsFromTwitchIDsResult>> GetPlayFabIDsFromTwitchIDsAsync(final GetPlayFabIDsFromTwitchIDsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromTwitchIDsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromTwitchIDsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromTwitchIDsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of Twitch identifiers. The Twitch identifiers are the IDs for
+     * the user accounts, available as "_id" from the Twitch API methods (ex:
+     * https://github.com/justintv/Twitch-API/blob/master/v3_resources/users.md#get-usersuser).
+     * @param request GetPlayFabIDsFromTwitchIDsRequest
+     * @return GetPlayFabIDsFromTwitchIDsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayFabIDsFromTwitchIDsResult> GetPlayFabIDsFromTwitchIDs(final GetPlayFabIDsFromTwitchIDsRequest request) {
+        FutureTask<PlayFabResult<GetPlayFabIDsFromTwitchIDsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromTwitchIDsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromTwitchIDsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromTwitchIDsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetPlayFabIDsFromTwitchIDsResult> exceptionResult = new PlayFabResult<GetPlayFabIDsFromTwitchIDsResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of Twitch identifiers. The Twitch identifiers are the IDs for
+     * the user accounts, available as "_id" from the Twitch API methods (ex:
+     * https://github.com/justintv/Twitch-API/blob/master/v3_resources/users.md#get-usersuser).
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayFabIDsFromTwitchIDsResult> privateGetPlayFabIDsFromTwitchIDsAsync(final GetPlayFabIDsFromTwitchIDsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/GetPlayFabIDsFromTwitchIDs"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayFabIDsFromTwitchIDsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayFabIDsFromTwitchIDsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayFabIDsFromTwitchIDsResult>>(){}.getType());
+        GetPlayFabIDsFromTwitchIDsResult result = resultData.data;
+
+        PlayFabResult<GetPlayFabIDsFromTwitchIDsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromTwitchIDsResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -4559,7 +4629,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Links the PlayStation Network account associated with the provided access code to the user's PlayFab account
+     * Links the PlayStation :tm: Network account associated with the provided access code to the user's PlayFab account
      * @param request LinkPSNAccountRequest
      * @return Async Task will return LinkPSNAccountResult
      */
@@ -4573,7 +4643,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Links the PlayStation Network account associated with the provided access code to the user's PlayFab account
+     * Links the PlayStation :tm: Network account associated with the provided access code to the user's PlayFab account
      * @param request LinkPSNAccountRequest
      * @return LinkPSNAccountResult
      */
@@ -4594,7 +4664,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Links the PlayStation Network account associated with the provided access code to the user's PlayFab account */
+    /** Links the PlayStation :tm: Network account associated with the provided access code to the user's PlayFab account */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LinkPSNAccountResult> privateLinkPSNAccountAsync(final LinkPSNAccountRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
