@@ -2458,6 +2458,19 @@ public class PlayFabServerModels {
         
     }
 
+    public static class GetPlayFabIDsFromTwitchIDsRequest {
+        /** Array of unique Twitch identifiers (Twitch's _id) for which the title needs to get PlayFab identifiers. */
+        public ArrayList<String> TwitchIds;
+        
+    }
+
+    /** For Twitch identifiers which have not been linked to PlayFab accounts, null will be returned. */
+    public static class GetPlayFabIDsFromTwitchIDsResult {
+        /** Mapping of Twitch identifiers to PlayFab identifiers. */
+        public ArrayList<TwitchPlayFabIdPair> Data;
+        
+    }
+
     public static class GetPlayFabIDsFromXboxLiveIDsRequest {
         /** The ID of Xbox Live sandbox. */
         public String Sandbox;
@@ -4329,6 +4342,14 @@ public class PlayFabServerModels {
         public ArrayList<Variable> Variables;
         /** List of the experiment variants. */
         public ArrayList<String> Variants;
+        
+    }
+
+    public static class TwitchPlayFabIdPair {
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Twitch identifier. */
+        public String PlayFabId;
+        /** Unique Twitch identifier for a user. */
+        public String TwitchId;
         
     }
 

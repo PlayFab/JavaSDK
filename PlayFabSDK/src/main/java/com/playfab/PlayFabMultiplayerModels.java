@@ -1388,11 +1388,19 @@ public class PlayFabMultiplayerModels {
 
     /** Gets multiplayer server session details for a build in a specific region. */
     public static class GetMultiplayerServerDetailsRequest {
-        /** The guid string build ID of the multiplayer server to get details for. */
+        /**
+         * The guid string build ID of the multiplayer server to get details for.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public String BuildId;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** The region the multiplayer server is located in to get details for. */
+        /**
+         * The region the multiplayer server is located in to get details for.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public String Region;
         /**
          * The title generated guid string session ID of the multiplayer server to get details for. This is to keep track of
