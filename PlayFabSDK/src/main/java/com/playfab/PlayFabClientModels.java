@@ -2727,7 +2727,8 @@ public class PlayFabClientModels {
         FacebookInstantGames,
         OpenIdConnect,
         Apple,
-        NintendoSwitchAccount
+        NintendoSwitchAccount,
+        GooglePlayGames
     }
 
     public static class LoginResult {
@@ -2991,6 +2992,43 @@ public class PlayFabClientModels {
         /**
          * OAuth 2.0 server authentication code obtained on the client by calling the getServerAuthCode()
          * (https://developers.google.com/identity/sign-in/android/offline-access) Google client API.
+         */
+        public String ServerAuthCode;
+        /**
+         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
+         * title has been selected.
+         */
+        public String TitleId;
+        
+    }
+
+    /**
+     * Google Play Games sign-in is accomplished by obtaining a Google OAuth 2.0 credential using the Google Play Games sign-in
+     * for Android APIs on the device and passing it to this API. If this is the first time a user has signed in with the
+     * Google Play Games account and CreateAccount is set to true, a new PlayFab account will be created and linked to the
+     * Google Play Games account. Otherwise, if no PlayFab account is linked to the Google Play Games account, an error
+     * indicating this will be returned, so that the title can guide the user through creation of a PlayFab account. The
+     * current (recommended) method for obtaining a Google Play Games account credential in an Android application is to call
+     * GamesSignInClient.requestServerSideAccess() and send the auth code as the ServerAuthCode parameter of this API. Before
+     * doing this, you must create an OAuth 2.0 web application client ID in the Google API Console and configure its client ID
+     * and secret in the PlayFab Game Manager Google Add-on for your title. This method does not require prompting of the user
+     * for additional Google account permissions, resulting in a user experience with the least possible friction. For more
+     * information about obtaining the server auth code, see https://developers.google.com/games/services/android/signin.
+     */
+    public static class LoginWithGooglePlayGamesServicesRequest {
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        public Boolean CreateAccount;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        public String EncryptedRequest;
+        /** Flags for which pieces of info to return for the user. */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        public String PlayerSecret;
+        /**
+         * OAuth 2.0 server authentication code obtained on the client by calling the requestServerSideAccess()
+         * (https://developers.google.com/games/services/android/signin) Google Play Games client API.
          */
         public String ServerAuthCode;
         /**
@@ -4716,6 +4754,8 @@ public class PlayFabClientModels {
         public UserGameCenterInfo GameCenterInfo;
         /** User Google account information, if a Google account has been linked */
         public UserGoogleInfo GoogleInfo;
+        /** User Google Play Games account information, if a Google Play Games account has been linked */
+        public UserGooglePlayGamesInfo GooglePlayGamesInfo;
         /** User iOS device information, if an iOS device has been linked */
         public UserIosDeviceInfo IosDeviceInfo;
         /** User Kongregate account information, if a Kongregate account has been linked */
@@ -4819,6 +4859,16 @@ public class PlayFabClientModels {
         
     }
 
+    public static class UserGooglePlayGamesInfo {
+        /** Avatar image url of the Google Play Games player */
+        public String GooglePlayGamesPlayerAvatarImageUrl;
+        /** Display name of the Google Play Games player */
+        public String GooglePlayGamesPlayerDisplayName;
+        /** Google Play Games player ID */
+        public String GooglePlayGamesPlayerId;
+        
+    }
+
     public static class UserIosDeviceInfo {
         /** iOS device ID */
         public String IosDeviceId;
@@ -4878,7 +4928,8 @@ public class PlayFabClientModels {
         FacebookInstantGamesId,
         OpenIdConnect,
         Apple,
-        NintendoSwitchAccount
+        NintendoSwitchAccount,
+        GooglePlayGames
     }
 
     public static class UserPrivateAccountInfo {
