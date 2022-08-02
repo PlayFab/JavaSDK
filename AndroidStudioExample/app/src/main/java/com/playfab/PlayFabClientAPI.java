@@ -6308,6 +6308,71 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Signs the user in using their Google Play Games account credentials
+     * @param request LoginWithGooglePlayGamesServicesRequest
+     * @return Async Task will return LoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<LoginResult>> LoginWithGooglePlayGamesServicesAsync(final LoginWithGooglePlayGamesServicesRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
+            public PlayFabResult<LoginResult> call() throws Exception {
+                return privateLoginWithGooglePlayGamesServicesAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Signs the user in using their Google Play Games account credentials
+     * @param request LoginWithGooglePlayGamesServicesRequest
+     * @return LoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<LoginResult> LoginWithGooglePlayGamesServices(final LoginWithGooglePlayGamesServicesRequest request) {
+        FutureTask<PlayFabResult<LoginResult>> task = new FutureTask(new Callable<PlayFabResult<LoginResult>>() {
+            public PlayFabResult<LoginResult> call() throws Exception {
+                return privateLoginWithGooglePlayGamesServicesAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<LoginResult> exceptionResult = new PlayFabResult<LoginResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Signs the user in using their Google Play Games account credentials */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<LoginResult> privateLoginWithGooglePlayGamesServicesAsync(final LoginWithGooglePlayGamesServicesRequest request) throws Exception {
+        request.TitleId = PlayFabSettings.TitleId != null ? PlayFabSettings.TitleId : request.TitleId;
+        if (request.TitleId == null) throw new Exception ("Must be have PlayFabSettings.TitleId set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LoginWithGooglePlayGamesServices"), request, null, null);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<LoginResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<LoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LoginResult>>(){}.getType());
+        LoginResult result = resultData.data;
+        PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
+        if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
+
+        PlayFabResult<LoginResult> pfResult = new PlayFabResult<LoginResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Signs the user in using the vendor-specific iOS device identifier, returning a session identifier that can subsequently
      * be used for API calls which require an authenticated user
      * @param request LoginWithIOSDeviceIDRequest

@@ -1636,6 +1636,7 @@ public class PlayFabServerModels {
         AutomationInvalidRuleName,
         AutomationRuleAlreadyExists,
         AutomationRuleLimitExceeded,
+        InvalidGooglePlayGamesServerAuthCode,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -3103,7 +3104,8 @@ public class PlayFabServerModels {
         FacebookInstantGames,
         OpenIdConnect,
         Apple,
-        NintendoSwitchAccount
+        NintendoSwitchAccount,
+        GooglePlayGames
     }
 
     public static class LoginWithServerCustomIdRequest {
@@ -4700,6 +4702,8 @@ public class PlayFabServerModels {
         public UserGameCenterInfo GameCenterInfo;
         /** User Google account information, if a Google account has been linked */
         public UserGoogleInfo GoogleInfo;
+        /** User Google Play Games account information, if a Google Play Games account has been linked */
+        public UserGooglePlayGamesInfo GooglePlayGamesInfo;
         /** User iOS device information, if an iOS device has been linked */
         public UserIosDeviceInfo IosDeviceInfo;
         /** User Kongregate account information, if a Kongregate account has been linked */
@@ -4803,6 +4807,16 @@ public class PlayFabServerModels {
         
     }
 
+    public static class UserGooglePlayGamesInfo {
+        /** Avatar image url of the Google Play Games player */
+        public String GooglePlayGamesPlayerAvatarImageUrl;
+        /** Display name of the Google Play Games player */
+        public String GooglePlayGamesPlayerDisplayName;
+        /** Google Play Games player ID */
+        public String GooglePlayGamesPlayerId;
+        
+    }
+
     public static class UserIosDeviceInfo {
         /** iOS device ID */
         public String IosDeviceId;
@@ -4862,7 +4876,8 @@ public class PlayFabServerModels {
         FacebookInstantGamesId,
         OpenIdConnect,
         Apple,
-        NintendoSwitchAccount
+        NintendoSwitchAccount,
+        GooglePlayGames
     }
 
     public static class UserPrivateAccountInfo {
