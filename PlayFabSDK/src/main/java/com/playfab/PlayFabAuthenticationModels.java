@@ -5,6 +5,22 @@ import com.playfab.PlayFabUtil.*;
 
 public class PlayFabAuthenticationModels {
 
+    /**
+     * Delete a game_server entity. The caller can be the game_server entity attempting to delete itself. Or a title entity
+     * attempting to delete game_server entities for this title.
+     */
+    public static class DeleteRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The game_server entity to be removed. */
+        public EntityKey Entity;
+        
+    }
+
+    public static class EmptyResponse {
+        
+    }
+
     /** Combined entity type and ID structure which uniquely identifies a single entity. */
     public static class EntityKey {
         /** Unique ID of the entity. */
