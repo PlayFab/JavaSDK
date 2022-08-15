@@ -434,6 +434,8 @@ public class PlayFabMultiplayerModels {
         public ArrayList<Port> Ports;
         /** The region configurations for the build. */
         public ArrayList<BuildRegionParams> RegionConfigurations;
+        /** The resource constraints to apply to each server on the VM (EXPERIMENTAL API) */
+        public ServerResourceConstraintParams ServerResourceConstraints;
         /**
          * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
          * disc.
@@ -480,6 +482,8 @@ public class PlayFabMultiplayerModels {
         public ArrayList<Port> Ports;
         /** The region configuration for the build. */
         public ArrayList<BuildRegion> RegionConfigurations;
+        /** The resource constraints to apply to each server on the VM (EXPERIMENTAL API) */
+        public ServerResourceConstraintParams ServerResourceConstraints;
         /** The type of game server being hosted. */
         public String ServerType;
         /**
@@ -529,6 +533,8 @@ public class PlayFabMultiplayerModels {
         public ArrayList<Port> Ports;
         /** The region configurations for the build. */
         public ArrayList<BuildRegionParams> RegionConfigurations;
+        /** The resource constraints to apply to each server on the VM (EXPERIMENTAL API) */
+        public ServerResourceConstraintParams ServerResourceConstraints;
         /** The command to run when the multiplayer server is started, including any arguments. */
         public String StartMultiplayerServerCommand;
         /**
@@ -580,6 +586,8 @@ public class PlayFabMultiplayerModels {
         public ArrayList<Port> Ports;
         /** The region configuration for the build. */
         public ArrayList<BuildRegion> RegionConfigurations;
+        /** The resource constraints to apply to each server on the VM (EXPERIMENTAL API) */
+        public ServerResourceConstraintParams ServerResourceConstraints;
         /** The type of game server being hosted. */
         public String ServerType;
         /** The command to run when the multiplayer server has been allocated, including any arguments. */
@@ -1256,6 +1264,8 @@ public class PlayFabMultiplayerModels {
         public ArrayList<Port> Ports;
         /** The region configuration for the build. */
         public ArrayList<BuildRegion> RegionConfigurations;
+        /** The resource constraints to apply to each server on the VM. */
+        public ServerResourceConstraintParams ServerResourceConstraints;
         /** The type of game server being hosted. */
         public String ServerType;
         /**
@@ -2344,6 +2354,17 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    public static class ServerResourceConstraintParams {
+        /** The maximum number of cores that each server is allowed to use. */
+        public Double CpuLimit;
+        /**
+         * The maximum number of GiB of memory that each server is allowed to use. WARNING: After exceeding this limit, the server
+         * will be killed
+         */
+        public Double MemoryLimitGB;
+        
+    }
+
     public static enum ServerType {
         Container,
         Process
@@ -2414,7 +2435,7 @@ public class PlayFabMultiplayerModels {
         
     }
 
-    /** Request to unsubscribe from lobby notifications. Only a client can unsubscribe from notifications. */
+    /** Request to unsubscribe from lobby notifications. */
     public static class UnsubscribeFromLobbyResourceRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;

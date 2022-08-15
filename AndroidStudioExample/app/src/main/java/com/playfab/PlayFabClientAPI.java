@@ -3330,6 +3330,76 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Retrieves the unique PlayFab identifiers for the given set of Google Play Games identifiers. The Google Play Games
+     * identifiers are the IDs for the user accounts, available as "playerId" in the Google Play Games Services - Players API
+     * calls.
+     * @param request GetPlayFabIDsFromGooglePlayGamesPlayerIDsRequest
+     * @return Async Task will return GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult>> GetPlayFabIDsFromGooglePlayGamesPlayerIDsAsync(final GetPlayFabIDsFromGooglePlayGamesPlayerIDsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromGooglePlayGamesPlayerIDsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of Google Play Games identifiers. The Google Play Games
+     * identifiers are the IDs for the user accounts, available as "playerId" in the Google Play Games Services - Players API
+     * calls.
+     * @param request GetPlayFabIDsFromGooglePlayGamesPlayerIDsRequest
+     * @return GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult> GetPlayFabIDsFromGooglePlayGamesPlayerIDs(final GetPlayFabIDsFromGooglePlayGamesPlayerIDsRequest request) {
+        FutureTask<PlayFabResult<GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromGooglePlayGamesPlayerIDsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult> exceptionResult = new PlayFabResult<GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of Google Play Games identifiers. The Google Play Games
+     * identifiers are the IDs for the user accounts, available as "playerId" in the Google Play Games Services - Players API
+     * calls.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult> privateGetPlayFabIDsFromGooglePlayGamesPlayerIDsAsync(final GetPlayFabIDsFromGooglePlayGamesPlayerIDsRequest request) throws Exception {
+        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayFabIDsFromGooglePlayGamesPlayerIDs"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult>>(){}.getType());
+        GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult result = resultData.data;
+
+        PlayFabResult<GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the unique PlayFab identifiers for the given set of Kongregate identifiers. The Kongregate identifiers are the
      * IDs for the user accounts, available as "user_id" from the Kongregate API methods(ex:
      * http://developers.kongregate.com/docs/client/getUserId).
@@ -5175,6 +5245,73 @@ public class PlayFabClientAPI {
         LinkGoogleAccountResult result = resultData.data;
 
         PlayFabResult<LinkGoogleAccountResult> pfResult = new PlayFabResult<LinkGoogleAccountResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Links the currently signed-in user account to their Google Play Games account, using their Google Play Games account
+     * credentials
+     * @param request LinkGooglePlayGamesServicesAccountRequest
+     * @return Async Task will return LinkGooglePlayGamesServicesAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<LinkGooglePlayGamesServicesAccountResult>> LinkGooglePlayGamesServicesAccountAsync(final LinkGooglePlayGamesServicesAccountRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<LinkGooglePlayGamesServicesAccountResult>>() {
+            public PlayFabResult<LinkGooglePlayGamesServicesAccountResult> call() throws Exception {
+                return privateLinkGooglePlayGamesServicesAccountAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Links the currently signed-in user account to their Google Play Games account, using their Google Play Games account
+     * credentials
+     * @param request LinkGooglePlayGamesServicesAccountRequest
+     * @return LinkGooglePlayGamesServicesAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<LinkGooglePlayGamesServicesAccountResult> LinkGooglePlayGamesServicesAccount(final LinkGooglePlayGamesServicesAccountRequest request) {
+        FutureTask<PlayFabResult<LinkGooglePlayGamesServicesAccountResult>> task = new FutureTask(new Callable<PlayFabResult<LinkGooglePlayGamesServicesAccountResult>>() {
+            public PlayFabResult<LinkGooglePlayGamesServicesAccountResult> call() throws Exception {
+                return privateLinkGooglePlayGamesServicesAccountAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<LinkGooglePlayGamesServicesAccountResult> exceptionResult = new PlayFabResult<LinkGooglePlayGamesServicesAccountResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /**
+     * Links the currently signed-in user account to their Google Play Games account, using their Google Play Games account
+     * credentials
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<LinkGooglePlayGamesServicesAccountResult> privateLinkGooglePlayGamesServicesAccountAsync(final LinkGooglePlayGamesServicesAccountRequest request) throws Exception {
+        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/LinkGooglePlayGamesServicesAccount"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<LinkGooglePlayGamesServicesAccountResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<LinkGooglePlayGamesServicesAccountResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LinkGooglePlayGamesServicesAccountResult>>(){}.getType());
+        LinkGooglePlayGamesServicesAccountResult result = resultData.data;
+
+        PlayFabResult<LinkGooglePlayGamesServicesAccountResult> pfResult = new PlayFabResult<LinkGooglePlayGamesServicesAccountResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -8934,6 +9071,68 @@ public class PlayFabClientAPI {
         UnlinkGoogleAccountResult result = resultData.data;
 
         PlayFabResult<UnlinkGoogleAccountResult> pfResult = new PlayFabResult<UnlinkGoogleAccountResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Unlinks the related Google Play Games account from the user's PlayFab account.
+     * @param request UnlinkGooglePlayGamesServicesAccountRequest
+     * @return Async Task will return UnlinkGooglePlayGamesServicesAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<UnlinkGooglePlayGamesServicesAccountResult>> UnlinkGooglePlayGamesServicesAccountAsync(final UnlinkGooglePlayGamesServicesAccountRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<UnlinkGooglePlayGamesServicesAccountResult>>() {
+            public PlayFabResult<UnlinkGooglePlayGamesServicesAccountResult> call() throws Exception {
+                return privateUnlinkGooglePlayGamesServicesAccountAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Unlinks the related Google Play Games account from the user's PlayFab account.
+     * @param request UnlinkGooglePlayGamesServicesAccountRequest
+     * @return UnlinkGooglePlayGamesServicesAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<UnlinkGooglePlayGamesServicesAccountResult> UnlinkGooglePlayGamesServicesAccount(final UnlinkGooglePlayGamesServicesAccountRequest request) {
+        FutureTask<PlayFabResult<UnlinkGooglePlayGamesServicesAccountResult>> task = new FutureTask(new Callable<PlayFabResult<UnlinkGooglePlayGamesServicesAccountResult>>() {
+            public PlayFabResult<UnlinkGooglePlayGamesServicesAccountResult> call() throws Exception {
+                return privateUnlinkGooglePlayGamesServicesAccountAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<UnlinkGooglePlayGamesServicesAccountResult> exceptionResult = new PlayFabResult<UnlinkGooglePlayGamesServicesAccountResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Unlinks the related Google Play Games account from the user's PlayFab account. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<UnlinkGooglePlayGamesServicesAccountResult> privateUnlinkGooglePlayGamesServicesAccountAsync(final UnlinkGooglePlayGamesServicesAccountRequest request) throws Exception {
+        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/UnlinkGooglePlayGamesServicesAccount"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<UnlinkGooglePlayGamesServicesAccountResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<UnlinkGooglePlayGamesServicesAccountResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UnlinkGooglePlayGamesServicesAccountResult>>(){}.getType());
+        UnlinkGooglePlayGamesServicesAccountResult result = resultData.data;
+
+        PlayFabResult<UnlinkGooglePlayGamesServicesAccountResult> pfResult = new PlayFabResult<UnlinkGooglePlayGamesServicesAccountResult>();
         pfResult.Result = result;
         return pfResult;
     }

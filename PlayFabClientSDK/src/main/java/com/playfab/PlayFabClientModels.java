@@ -1619,11 +1619,7 @@ public class PlayFabClientModels {
         
     }
 
-    /**
-     * Note that the Position of the user in the results is for the overall leaderboard. If Facebook friends are included, make
-     * sure the access token from previous LoginWithFacebook call is still valid and not expired. If Xbox Live friends are
-     * included, make sure the access token from the previous LoginWithXbox call is still valid and not expired.
-     */
+    /** Note: the user's Position is relative to the overall leaderboard. */
     public static class GetLeaderboardResult {
         /** Ordered listing of users and their positions in the requested leaderboard. */
         public ArrayList<PlayerLeaderboardEntry> Leaderboard;
@@ -1929,6 +1925,19 @@ public class PlayFabClientModels {
     public static class GetPlayFabIDsFromGoogleIDsResult {
         /** Mapping of Google identifiers to PlayFab identifiers. */
         public ArrayList<GooglePlayFabIdPair> Data;
+        
+    }
+
+    public static class GetPlayFabIDsFromGooglePlayGamesPlayerIDsRequest {
+        /** Array of unique Google Play Games identifiers (Google+ user IDs) for which the title needs to get PlayFab identifiers. */
+        public ArrayList<String> GooglePlayGamesPlayerIDs;
+        
+    }
+
+    /** For Google Play Games identifiers which have not been linked to PlayFab accounts, null will be returned. */
+    public static class GetPlayFabIDsFromGooglePlayGamesPlayerIDsResult {
+        /** Mapping of Google Play Games identifiers to PlayFab identifiers. */
+        public ArrayList<GooglePlayGamesPlayFabIdPair> Data;
         
     }
 
@@ -2285,6 +2294,14 @@ public class PlayFabClientModels {
         
     }
 
+    public static class GooglePlayGamesPlayFabIdPair {
+        /** Unique Google Play Games identifier for a user. */
+        public String GooglePlayGamesPlayerId;
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Google Play Games identifier. */
+        public String PlayFabId;
+        
+    }
+
     /**
      * Grants a character to the user of the type specified by the item ID. The user must already have an instance of this item
      * in their inventory in order to allow character creation. This item can come from a purchase or grant, which must be done
@@ -2530,6 +2547,30 @@ public class PlayFabClientModels {
     }
 
     public static class LinkGoogleAccountResult {
+        
+    }
+
+    /**
+     * Google Play Games sign-in is accomplished by obtaining a Google OAuth 2.0 credential using the Google Play Games sign-in
+     * for Android APIs on the device and passing it to this API.
+     */
+    public static class LinkGooglePlayGamesServicesAccountRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /**
+         * If another user is already linked to the account, unlink the other user and re-link. If the current user is already
+         * linked, link both accounts
+         */
+        public Boolean ForceLink;
+        /**
+         * OAuth 2.0 server authentication code obtained on the client by calling the requestServerSideAccess()
+         * (https://developers.google.com/games/services/android/signin) Google Play Games client API.
+         */
+        public String ServerAuthCode;
+        
+    }
+
+    public static class LinkGooglePlayGamesServicesAccountResult {
         
     }
 
@@ -4421,6 +4462,16 @@ public class PlayFabClientModels {
     }
 
     public static class UnlinkGoogleAccountResult {
+        
+    }
+
+    public static class UnlinkGooglePlayGamesServicesAccountRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        
+    }
+
+    public static class UnlinkGooglePlayGamesServicesAccountResult {
         
     }
 
