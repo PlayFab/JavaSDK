@@ -7538,7 +7538,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Uses the supplied OAuth code to refresh the internally cached player PSN :tm: auth token
+     * Uses the supplied OAuth code to refresh the internally cached player PlayStation :tm: Network auth token
      * @param request RefreshPSNAuthTokenRequest
      * @return Async Task will return EmptyResponse
      */
@@ -7552,7 +7552,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Uses the supplied OAuth code to refresh the internally cached player PSN :tm: auth token
+     * Uses the supplied OAuth code to refresh the internally cached player PlayStation :tm: Network auth token
      * @param request RefreshPSNAuthTokenRequest
      * @return EmptyResponse
      */
@@ -7573,7 +7573,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /** Uses the supplied OAuth code to refresh the internally cached player PSN :tm: auth token */
+    /** Uses the supplied OAuth code to refresh the internally cached player PlayStation :tm: Network auth token */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateRefreshPSNAuthTokenAsync(final RefreshPSNAuthTokenRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
@@ -9453,7 +9453,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Unlinks the related PSN :tm: account from the user's PlayFab account
+     * Unlinks the related PlayStation :tm: Network account from the user's PlayFab account
      * @param request UnlinkPSNAccountRequest
      * @return Async Task will return UnlinkPSNAccountResult
      */
@@ -9467,7 +9467,7 @@ public class PlayFabClientAPI {
     }
 
     /**
-     * Unlinks the related PSN :tm: account from the user's PlayFab account
+     * Unlinks the related PlayStation :tm: Network account from the user's PlayFab account
      * @param request UnlinkPSNAccountRequest
      * @return UnlinkPSNAccountResult
      */
@@ -9488,7 +9488,7 @@ public class PlayFabClientAPI {
         }
     }
 
-    /** Unlinks the related PSN :tm: account from the user's PlayFab account */
+    /** Unlinks the related PlayStation :tm: Network account from the user's PlayFab account */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UnlinkPSNAccountResult> privateUnlinkPSNAccountAsync(final UnlinkPSNAccountRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");

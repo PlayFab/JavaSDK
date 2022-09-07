@@ -518,7 +518,7 @@ public class PlayFabClientModels {
         public String CatalogVersion;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Id of the PSN service label to consume entitlements from */
+        /** Id of the PlayStation :tm: Network service label to consume entitlements from */
         public Integer ServiceLabel;
         
     }
@@ -1156,7 +1156,10 @@ public class PlayFabClientModels {
         public UserGameCenterInfo GameCenterInfo;
         /** The profile of the user, if requested. */
         public PlayerProfileModel Profile;
-        /** Available PSN information, if the user and PlayFab friend are both connected to PSN. */
+        /**
+         * Available PlayStation :tm: Network information, if the user and PlayFab friend are both connected to PlayStation :tm:
+         * Network.
+         */
         public UserPsnInfo PSNInfo;
         /** Available Steam information (if the user and PlayFab friend are also connected in Steam). */
         public UserSteamInfo SteamInfo;
@@ -1378,7 +1381,11 @@ public class PlayFabClientModels {
     }
 
     public static class GetCharacterLeaderboardRequest {
-        /** Optional character type on which to filter the leaderboard entries. */
+        /**
+         * Optional character type on which to filter the leaderboard entries.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public String CharacterType;
         /** Maximum number of entries to retrieve. Default 10, maximum 100. */
         public Integer MaxResultsCount;
@@ -1529,7 +1536,11 @@ public class PlayFabClientModels {
     public static class GetLeaderboardAroundCharacterRequest {
         /** Unique PlayFab assigned ID for a specific character on which to center the leaderboard. */
         public String CharacterId;
-        /** Optional character type on which to filter the leaderboard entries. */
+        /**
+         * Optional character type on which to filter the leaderboard entries.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public String CharacterType;
         /** Maximum number of entries to retrieve. Default 10, maximum 100. */
         public Integer MaxResultsCount;
@@ -1981,16 +1992,16 @@ public class PlayFabClientModels {
     }
 
     public static class GetPlayFabIDsFromPSNAccountIDsRequest {
-        /** Id of the PSN issuer environment. If null, defaults to production environment. */
+        /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
         public Integer IssuerId;
-        /** Array of unique PlayStation Network identifiers for which the title needs to get PlayFab identifiers. */
+        /** Array of unique PlayStation :tm: Network identifiers for which the title needs to get PlayFab identifiers. */
         public ArrayList<String> PSNAccountIDs;
         
     }
 
-    /** For PlayStation Network identifiers which have not been linked to PlayFab accounts, null will be returned. */
+    /** For PlayStation :tm: Network identifiers which have not been linked to PlayFab accounts, null will be returned. */
     public static class GetPlayFabIDsFromPSNAccountIDsResult {
-        /** Mapping of PlayStation Network identifiers to PlayFab identifiers. */
+        /** Mapping of PlayStation :tm: Network identifiers to PlayFab identifiers. */
         public ArrayList<PSNAccountPlayFabIdPair> Data;
         
     }
@@ -2031,7 +2042,7 @@ public class PlayFabClientModels {
 
     /** For XboxLive identifiers which have not been linked to PlayFab accounts, null will be returned. */
     public static class GetPlayFabIDsFromXboxLiveIDsResult {
-        /** Mapping of PlayStation Network identifiers to PlayFab identifiers. */
+        /** Mapping of Xbox Live identifiers to PlayFab identifiers. */
         public ArrayList<XboxLiveAccountPlayFabIdPair> Data;
         
     }
@@ -2651,15 +2662,15 @@ public class PlayFabClientModels {
     }
 
     public static class LinkPSNAccountRequest {
-        /** Authentication code provided by the PlayStation Network. */
+        /** Authentication code provided by the PlayStation :tm: Network. */
         public String AuthCode;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** If another user is already linked to the account, unlink the other user and re-link. */
         public Boolean ForceLink;
-        /** Id of the PSN issuer environment. If null, defaults to production environment. */
+        /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
         public Integer IssuerId;
-        /** Redirect URI supplied to PSN when requesting an auth code */
+        /** Redirect URI supplied to PlayStation :tm: Network when requesting an auth code */
         public String RedirectUri;
         
     }
@@ -2841,7 +2852,8 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /**
          * The JSON Web token (JWT) returned by Apple after login. Represented as the identityToken field in the authorization
-         * credential payload.
+         * credential payload. If you choose to ignore the expiration date for identity tokens, you will receive an NotAuthorized
+         * error if Apple rotates the signing key. In this case, users have to login to provide a fresh identity token.
          */
         public String IdentityToken;
         /** Flags for which pieces of info to return for the user. */
@@ -3240,13 +3252,14 @@ public class PlayFabClientModels {
     }
 
     /**
-     * If this is the first time a user has signed in with the PlayStation Network account and CreateAccount is set to true, a
-     * new PlayFab account will be created and linked to the PSN account. In this case, no email or username will be associated
-     * with the PlayFab account. Otherwise, if no PlayFab account is linked to the PSN account, an error indicating this will
-     * be returned, so that the title can guide the user through creation of a PlayFab account.
+     * If this is the first time a user has signed in with the PlayStation :tm: Network account and CreateAccount is set to
+     * true, a new PlayFab account will be created and linked to the PlayStation :tm: Network account. In this case, no email
+     * or username will be associated with the PlayFab account. Otherwise, if no PlayFab account is linked to the PlayStation
+     * :tm: Network account, an error indicating this will be returned, so that the title can guide the user through creation
+     * of a PlayFab account.
      */
     public static class LoginWithPSNRequest {
-        /** Auth code provided by the PSN OAuth provider. */
+        /** Auth code provided by the PlayStation :tm: Network OAuth provider. */
         public String AuthCode;
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         public Boolean CreateAccount;
@@ -3256,11 +3269,11 @@ public class PlayFabClientModels {
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Id of the PSN issuer environment. If null, defaults to production environment. */
+        /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
         public Integer IssuerId;
         /** Player secret that is used to verify API request signatures (Enterprise Only). */
         public String PlayerSecret;
-        /** Redirect URI supplied to PSN when requesting an auth code */
+        /** Redirect URI supplied to PlayStation :tm: Network when requesting an auth code */
         public String RedirectUri;
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
@@ -3698,17 +3711,20 @@ public class PlayFabClientModels {
     }
 
     public static class PlayStation5Payload {
-        /** An optional list of entitlement ids to query against PSN */
+        /** An optional list of entitlement ids to query against PlayStation :tm: Network */
         public ArrayList<String> Ids;
-        /** Id of the PSN service label to consume entitlements from */
+        /** Id of the PlayStation :tm: Network service label to consume entitlements from */
         public String ServiceLabel;
         
     }
 
     public static class PSNAccountPlayFabIdPair {
-        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the PlayStation Network identifier. */
+        /**
+         * Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the PlayStation :tm: Network
+         * identifier.
+         */
         public String PlayFabId;
-        /** Unique PlayStation Network identifier for a user. */
+        /** Unique PlayStation :tm: Network identifier for a user. */
         public String PSNAccountId;
         
     }
@@ -3795,11 +3811,11 @@ public class PlayFabClientModels {
     }
 
     public static class RefreshPSNAuthTokenRequest {
-        /** Auth code returned by PSN OAuth system. */
+        /** Auth code returned by PlayStation :tm: Network OAuth system. */
         public String AuthCode;
-        /** Id of the PSN issuer environment. If null, defaults to production environment. */
+        /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
         public Integer IssuerId;
-        /** Redirect URI supplied to PSN when requesting an auth code */
+        /** Redirect URI supplied to PlayStation :tm: Network when requesting an auth code */
         public String RedirectUri;
         
     }
@@ -4821,7 +4837,7 @@ public class PlayFabClientModels {
         public String PlayFabId;
         /** Personal information for the user which is considered more sensitive */
         public UserPrivateAccountInfo PrivateInfo;
-        /** User PSN account information, if a PSN account has been linked */
+        /** User PlayStation :tm: Network account information, if a PlayStation :tm: Network account has been linked */
         public UserPsnInfo PsnInfo;
         /** User Steam information, if a Steam account has been linked */
         public UserSteamInfo SteamInfo;
@@ -4990,9 +5006,9 @@ public class PlayFabClientModels {
     }
 
     public static class UserPsnInfo {
-        /** PSN account ID */
+        /** PlayStation :tm: Network account ID */
         public String PsnAccountId;
-        /** PSN online ID */
+        /** PlayStation :tm: Network online ID */
         public String PsnOnlineId;
         
     }

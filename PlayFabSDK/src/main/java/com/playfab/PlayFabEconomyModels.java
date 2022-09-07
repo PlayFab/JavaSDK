@@ -5,6 +5,64 @@ import com.playfab.PlayFabUtil.*;
 
 public class PlayFabEconomyModels {
 
+    public static class AddInventoryItemsOperation {
+        /** The amount to add to the current item amount. */
+        public Integer Amount;
+        /** The inventory item the operation applies to. */
+        public InventoryItemReference Item;
+        
+    }
+
+    /** Given an entity type, entity identifier and container details, will add the specified inventory items. */
+    public static class AddInventoryItemsRequest {
+        /** The amount to add for the current item. */
+        public Integer Amount;
+        /** The id of the entity's collection to perform this action on. (Default="default") */
+        public String CollectionId;
+        /** The currency code of the real money transaction. */
+        public String CurrencyCode;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The entity to perform this action on. */
+        public EntityKey Entity;
+        /** The Idempotency ID for this request. */
+        public String IdempotencyId;
+        /** The inventory item the request applies to. */
+        public InventoryItemReference Item;
+        /** A list of Items to modify. */
+        public ArrayList<InventoryItem> Items;
+        /** Purchase price of the offer. */
+        public Integer PurchasePrice;
+        /** Indicates if the full inventory should be returned. */
+        public Boolean ReturnInventory;
+        
+    }
+
+    public static class AddInventoryItemsResponse {
+        /** The idempotency id used in the request. */
+        public String IdempotencyId;
+        /**
+         * Details of the current inventory items. Null if ReturnInventory was set to false in request or InventoryTooLarge is set
+         * to true in response.
+         */
+        public ArrayList<InventoryItem> InventoryItems;
+        /** Whether the number of inventory items is too large to be returned. */
+        public Boolean InventoryTooLarge;
+        /** The ids of transactions that occurred as a result of the request. */
+        public ArrayList<String> TransactionIds;
+        /** The updated items for this request. */
+        public ArrayList<InventoryItem> UpdatedItems;
+        
+    }
+
+    public static class AlternateId {
+        /** Type of the alternate ID. */
+        public String Type;
+        /** Value of the alternate ID. */
+        public String Value;
+        
+    }
+
     public static class CatalogAlternateId {
         /** Type of the alternate ID. */
         public String Type;
@@ -16,6 +74,10 @@ public class PlayFabEconomyModels {
     public static class CatalogConfig {
         /** A list of player entity keys that will have admin permissions. */
         public ArrayList<EntityKey> AdminEntities;
+        /** The set of configuration that only applies to catalog items. */
+        public CatalogSpecificConfig Catalog;
+        /** A list of deep link formats. */
+        public ArrayList<DeepLinkFormat> DeepLinkFormats;
         /** A list of display properties to index. */
         public ArrayList<DisplayPropertyIndexInfo> DisplayPropertyIndexInfos;
         /** The set of configuration that only applies to Files. */
@@ -44,6 +106,8 @@ public class PlayFabEconomyModels {
         public Date CreationDate;
         /** The ID of the creator of this catalog item. */
         public EntityKey CreatorEntity;
+        /** The set of platform specific deep links for this item. */
+        public ArrayList<DeepLink> DeepLinks;
         /**
          * A dictionary of localized descriptions. Key is language code and localized string is the value. The neutral locale is
          * required.
@@ -63,16 +127,24 @@ public class PlayFabEconomyModels {
         public ArrayList<Image> Images;
         /** Indicates if the item is hidden. */
         public Boolean IsHidden;
+        /** The item references associated with this item. */
+        public ArrayList<CatalogItemReference> ItemReferences;
         /** A dictionary of localized keywords. Key is language code and localized list of keywords is the value. */
         public Map<String,KeywordSet> Keywords;
         /** The date and time this item was last updated. */
         public Date LastModifiedDate;
         /** The moderation state for this item. */
         public ModerationState Moderation;
+        /** The platforms supported by this item. */
+        public ArrayList<String> Platforms;
+        /** The base price of this item. */
+        public CatalogPriceOptions PriceOptions;
         /** Rating summary for this item. */
         public Rating Rating;
         /** The date of when the item will be available. If not provided then the product will appear immediately. */
         public Date StartDate;
+        /** Optional details for stores items. */
+        public StoreDetails StoreDetails;
         /** The list of tags that are associated with this item. */
         public ArrayList<String> Tags;
         /**
@@ -80,7 +152,7 @@ public class PlayFabEconomyModels {
          * required.
          */
         public Map<String,String> Title;
-        /** The high-level type of the item. */
+        /** The high-level type of the item. The following item types are supported: bundle, catalogItem, currency, store, ugc. */
         public String Type;
         
     }
@@ -90,32 +162,53 @@ public class PlayFabEconomyModels {
         public Integer Amount;
         /** The unique ID of the catalog item. */
         public String Id;
-        /** The price of the catalog item. */
-        public CatalogPrice Price;
+        /** The prices the catalog item can be purchased for. */
+        public CatalogPriceOptions PriceOptions;
         
     }
 
     public static class CatalogPrice {
-        /** Prices of the catalog item. */
-        public ArrayList<CatalogPriceInstance> Prices;
-        /** Real prices of the catalog item. */
-        public ArrayList<CatalogPriceInstance> RealPrices;
-        /** A standardized sorting key to allow proper sorting between items with prices in different currencies. */
-        public Integer Sort;
+        /** The amounts of the catalog item price. */
+        public ArrayList<CatalogPriceAmount> Amounts;
         
     }
 
     public static class CatalogPriceAmount {
-        /** The amount of the catalog price. */
+        /** The amount of the price. */
         public Integer Amount;
-        /** The Item ID of the price. */
-        public String Id;
+        /** The Item Id of the price. */
+        public String ItemId;
         
     }
 
-    public static class CatalogPriceInstance {
-        /** The amounts of the catalog item price. */
-        public ArrayList<CatalogPriceAmount> Amounts;
+    public static class CatalogPriceAmountOverride {
+        /** The exact value that should be utilized in the override. */
+        public Integer FixedValue;
+        /** The id of the item this override should utilize. */
+        public String ItemId;
+        /**
+         * The multiplier that will be applied to the base Catalog value to determine what value should be utilized in the
+         * override.
+         */
+        public Double Multiplier;
+        
+    }
+
+    public static class CatalogPriceOptions {
+        /** Prices of the catalog item. */
+        public ArrayList<CatalogPrice> Prices;
+        
+    }
+
+    public static class CatalogPriceOptionsOverride {
+        /** The prices utilized in the override. */
+        public ArrayList<CatalogPriceOverride> Prices;
+        
+    }
+
+    public static class CatalogPriceOverride {
+        /** The currency amounts utilized in the override for a singular price. */
+        public ArrayList<CatalogPriceAmountOverride> Amounts;
         
     }
 
@@ -160,6 +253,258 @@ public class PlayFabEconomyModels {
         
     }
 
+    public static enum CountryCode {
+        AF,
+        AX,
+        AL,
+        DZ,
+        AS,
+        AD,
+        AO,
+        AI,
+        AQ,
+        AG,
+        AR,
+        AM,
+        AW,
+        AU,
+        AT,
+        AZ,
+        BS,
+        BH,
+        BD,
+        BB,
+        BY,
+        BE,
+        BZ,
+        BJ,
+        BM,
+        BT,
+        BO,
+        BQ,
+        BA,
+        BW,
+        BV,
+        BR,
+        IO,
+        BN,
+        BG,
+        BF,
+        BI,
+        KH,
+        CM,
+        CA,
+        CV,
+        KY,
+        CF,
+        TD,
+        CL,
+        CN,
+        CX,
+        CC,
+        CO,
+        KM,
+        CG,
+        CD,
+        CK,
+        CR,
+        CI,
+        HR,
+        CU,
+        CW,
+        CY,
+        CZ,
+        DK,
+        DJ,
+        DM,
+        DO,
+        EC,
+        EG,
+        SV,
+        GQ,
+        ER,
+        EE,
+        ET,
+        FK,
+        FO,
+        FJ,
+        FI,
+        FR,
+        GF,
+        PF,
+        TF,
+        GA,
+        GM,
+        GE,
+        DE,
+        GH,
+        GI,
+        GR,
+        GL,
+        GD,
+        GP,
+        GU,
+        GT,
+        GG,
+        GN,
+        GW,
+        GY,
+        HT,
+        HM,
+        VA,
+        HN,
+        HK,
+        HU,
+        IS,
+        IN,
+        ID,
+        IR,
+        IQ,
+        IE,
+        IM,
+        IL,
+        IT,
+        JM,
+        JP,
+        JE,
+        JO,
+        KZ,
+        KE,
+        KI,
+        KP,
+        KR,
+        KW,
+        KG,
+        LA,
+        LV,
+        LB,
+        LS,
+        LR,
+        LY,
+        LI,
+        LT,
+        LU,
+        MO,
+        MK,
+        MG,
+        MW,
+        MY,
+        MV,
+        ML,
+        MT,
+        MH,
+        MQ,
+        MR,
+        MU,
+        YT,
+        MX,
+        FM,
+        MD,
+        MC,
+        MN,
+        ME,
+        MS,
+        MA,
+        MZ,
+        MM,
+        NA,
+        NR,
+        NP,
+        NL,
+        NC,
+        NZ,
+        NI,
+        NE,
+        NG,
+        NU,
+        NF,
+        MP,
+        NO,
+        OM,
+        PK,
+        PW,
+        PS,
+        PA,
+        PG,
+        PY,
+        PE,
+        PH,
+        PN,
+        PL,
+        PT,
+        PR,
+        QA,
+        RE,
+        RO,
+        RU,
+        RW,
+        BL,
+        SH,
+        KN,
+        LC,
+        MF,
+        PM,
+        VC,
+        WS,
+        SM,
+        ST,
+        SA,
+        SN,
+        RS,
+        SC,
+        SL,
+        SG,
+        SX,
+        SK,
+        SI,
+        SB,
+        SO,
+        ZA,
+        GS,
+        SS,
+        ES,
+        LK,
+        SD,
+        SR,
+        SJ,
+        SZ,
+        SE,
+        CH,
+        SY,
+        TW,
+        TJ,
+        TZ,
+        TH,
+        TL,
+        TG,
+        TK,
+        TO,
+        TT,
+        TN,
+        TR,
+        TM,
+        TC,
+        TV,
+        UG,
+        UA,
+        AE,
+        GB,
+        US,
+        UM,
+        UY,
+        UZ,
+        VU,
+        VE,
+        VN,
+        VG,
+        VI,
+        WF,
+        EH,
+        YE,
+        ZM,
+        ZW
+    }
+
     /** The item will not be published to the public catalog until the PublishItem API is called for the item. */
     public static class CreateDraftItemRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -196,6 +541,14 @@ public class PlayFabEconomyModels {
         
     }
 
+    public static class DeepLink {
+        /** Target platform for this deep link. */
+        public String Platform;
+        /** The deep link for this platform. */
+        public String Url;
+        
+    }
+
     public static class DeepLinkFormat {
         /** The format of the deep link to return. The format should contain '{id}' to represent where the item ID should be placed. */
         public String Format;
@@ -213,6 +566,50 @@ public class PlayFabEconomyModels {
     }
 
     public static class DeleteEntityItemReviewsResponse {
+        
+    }
+
+    /** Delete an Inventory Collection by the specified Id for an Entity */
+    public static class DeleteInventoryCollectionRequest {
+        /** The inventory collection id the request applies to. */
+        public String CollectionId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The entity the request is about. Set to the caller by default. */
+        public EntityKey Entity;
+        
+    }
+
+    public static class DeleteInventoryCollectionResponse {
+        
+    }
+
+    public static class DeleteInventoryItemsOperation {
+        /** The inventory item the operation applies to. */
+        public InventoryItemReference Item;
+        
+    }
+
+    /** Given an entity type, entity identifier and container details, will delete the entity's inventory items */
+    public static class DeleteInventoryItemsRequest {
+        /** The id of the entity's collection to perform this action on. (Default="default") */
+        public String CollectionId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The entity to perform this action on. */
+        public EntityKey Entity;
+        /** The Idempotency ID for this request. */
+        public String IdempotencyId;
+        /** The inventory item the request applies to. */
+        public InventoryItemReference Item;
+        
+    }
+
+    public static class DeleteInventoryItemsResponse {
+        /** The idempotency id used in the request. */
+        public String IdempotencyId;
+        /** The ids of transactions that occurred as a result of the request. */
+        public ArrayList<String> TransactionIds;
         
     }
 
@@ -257,6 +654,32 @@ public class PlayFabEconomyModels {
         
     }
 
+    /** Execute a list of Inventory Operations for an Entity */
+    public static class ExecuteInventoryOperationsRequest {
+        /** The id of the entity's collection to perform this action on. (Default="default") */
+        public String CollectionId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The entity to perform this action on. */
+        public EntityKey Entity;
+        /** The Idempotency ID for this request. */
+        public String IdempotencyId;
+        /**
+         * The operations to run transactionally. The operations will be executed in-order sequentially and will succeed or fail as
+         * a batch.
+         */
+        public ArrayList<InventoryOperation> Operations;
+        
+    }
+
+    public static class ExecuteInventoryOperationsResponse {
+        /** The idempotency id used in the request. */
+        public String IdempotencyId;
+        /** The ids of the transactions that occurred as a result of the request. */
+        public ArrayList<String> TransactionIds;
+        
+    }
+
     public static class FileConfig {
         /** The set of content types that will be used for validation. */
         public ArrayList<String> ContentTypes;
@@ -266,6 +689,10 @@ public class PlayFabEconomyModels {
     }
 
     public static class FilterOptions {
+        /** The OData filter utilized. Mutually exclusive with 'IncludeAllItems'. */
+        public String Filter;
+        /** The flag that overrides the filter and allows for returning all catalog items. Mutually exclusive with 'Filter'. */
+        public Boolean IncludeAllItems;
         
     }
 
@@ -331,6 +758,8 @@ public class PlayFabEconomyModels {
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
+        /** OData Filter to specify ItemType. */
+        public String Filter;
         
     }
 
@@ -357,6 +786,83 @@ public class PlayFabEconomyModels {
     public static class GetEntityItemReviewResponse {
         /** The review the entity submitted for the requested item. */
         public Review Review;
+        
+    }
+
+    /** Get a list of Inventory Collection Ids for the specified Entity */
+    public static class GetInventoryCollectionIdsRequest {
+        /** An opaque token used to retrieve the next page of collection ids, if any are available. */
+        public String ContinuationToken;
+        /** Number of items to retrieve. (Default = 10) */
+        public Integer Count;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The entity the request is about. Set to the caller by default. */
+        public EntityKey Entity;
+        
+    }
+
+    public static class GetInventoryCollectionIdsResponse {
+        /** The requested inventory collection ids. */
+        public ArrayList<String> CollectionIds;
+        /** An opaque token used to retrieve the next page of collection ids, if any are available. */
+        public String ContinuationToken;
+        
+    }
+
+    /** Given an entity type, entity identifier and container details, will get the entity's inventory items. */
+    public static class GetInventoryItemsRequest {
+        /** The id of the entity's collection to perform this action on. (Default="default") */
+        public String CollectionId;
+        /**
+         * An opaque token used to retrieve the next page of items in the inventory, if any are available. Should be null on
+         * initial request.
+         */
+        public String ContinuationToken;
+        /** Number of items to retrieve. Maximum page size is 50. (Default=10) */
+        public Integer Count;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The entity to perform this action on. */
+        public EntityKey Entity;
+        /** The filters to limit what is returned to the client. */
+        public String Filter;
+        
+    }
+
+    public static class GetInventoryItemsResponse {
+        /** An opaque token used to retrieve the next page of items, if any are available. */
+        public String ContinuationToken;
+        /** The requested inventory items. */
+        public ArrayList<InventoryItem> Items;
+        
+    }
+
+    /** Given an item, return a set of bundles and stores containing the item. */
+    public static class GetItemContainersRequest {
+        /** An alternate ID associated with this item. */
+        public CatalogAlternateId AlternateId;
+        /**
+         * An opaque token used to retrieve the next page of items in the inventory, if any are available. Should be null on
+         * initial request.
+         */
+        public String ContinuationToken;
+        /** Number of items to retrieve. Maximum page size is 25. */
+        public Integer Count;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The entity to perform this action on. */
+        public EntityKey Entity;
+        /** The unique ID of the item. */
+        public String Id;
+        
+    }
+
+    public static class GetItemContainersResponse {
+        /** List of Bundles and Stores containing the requested items. */
+        public ArrayList<CatalogItem> Containers;
+        /** An opaque token used to retrieve the next page of items, if any are available. */
+        public String ContinuationToken;
         
     }
 
@@ -479,6 +985,32 @@ public class PlayFabEconomyModels {
         
     }
 
+    /** Gets the access tokens for Microsoft Store authentication. */
+    public static class GetMicrosoftStoreAccessTokensRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        
+    }
+
+    public static class GetMicrosoftStoreAccessTokensResponse {
+        /**
+         * The collections access token for calling https://onestore.microsoft.com/b2b/keys/create/collections to obtain a
+         * CollectionsIdKey for the user
+         */
+        public String CollectionsAccessToken;
+        /** The date the collections access token expires */
+        public Date CollectionsAccessTokenExpirationDate;
+        
+    }
+
+    public static class GooglePlayProductPurchase {
+        /** The Product ID (SKU) of the InApp product purchased from the Google Play store. */
+        public String ProductId;
+        /** The token provided to the player's device when the product was purchased */
+        public String Token;
+        
+    }
+
     public static enum HelpfulnessVote {
         None,
         UnHelpful,
@@ -500,6 +1032,44 @@ public class PlayFabEconomyModels {
     public static class ImageConfig {
         /** The set of tags that will be used for validation. */
         public ArrayList<String> Tags;
+        
+    }
+
+    public static class InventoryItem {
+        /** The amount of the item. */
+        public Integer Amount;
+        /** The id of the item. This should correspond to the item id in the catalog. */
+        public String Id;
+        /** The stack id of the item. */
+        public String StackId;
+        /** The type of the item. This should correspond to the item type in the catalog. */
+        public String Type;
+        
+    }
+
+    public static class InventoryItemReference {
+        /** The inventory item alternate id the request applies to. */
+        public AlternateId AlternateId;
+        /** The inventory item id the request applies to. */
+        public String Id;
+        /** The inventory stack id the request should redeem to. (Default="default") */
+        public String StackId;
+        
+    }
+
+    public static class InventoryOperation {
+        /** The add operation. */
+        public AddInventoryItemsOperation Add;
+        /** The delete operation. */
+        public DeleteInventoryItemsOperation Delete;
+        /** The purchase operation. */
+        public PurchaseInventoryItemsOperation Purchase;
+        /** The subtract operation. */
+        public SubtractInventoryItemsOperation Subtract;
+        /** The transfer operation. */
+        public TransferInventoryItemsOperation Transfer;
+        /** The update operation. */
+        public UpdateInventoryItemsOperation Update;
         
     }
 
@@ -533,14 +1103,6 @@ public class PlayFabEconomyModels {
         public String TaxCode;
         /** The Universal account ID of the payee. */
         public String Uaid;
-        
-    }
-
-    public static class PriceOverride {
-        
-    }
-
-    public static class PricesOverride {
         
     }
 
@@ -578,7 +1140,74 @@ public class PlayFabEconomyModels {
         Canceled
     }
 
+    public static class PurchaseInventoryItemsOperation {
+        /** The amount to purchase. */
+        public Integer Amount;
+        /**
+         * Indicates whether stacks reduced to an amount of 0 during the operation should be deleted from the inventory. (Default =
+         * false)
+         */
+        public Boolean DeleteEmptyStacks;
+        /** The inventory item the operation applies to. */
+        public InventoryItemReference Item;
+        /**
+         * The per-item price the item is expected to be purchased at. This must match a value configured in the Catalog or
+         * specified Store.
+         */
+        public ArrayList<PurchasePriceAmount> PriceAmounts;
+        /** The id of the Store to purchase the item from. */
+        public String StoreId;
+        
+    }
+
+    /** Purchase a single item or bundle, paying the associated price. */
+    public static class PurchaseInventoryItemsRequest {
+        /** The amount to purchase. */
+        public Integer Amount;
+        /** The id of the entity's collection to perform this action on. (Default="default") */
+        public String CollectionId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /**
+         * Indicates whether stacks reduced to an amount of 0 during the request should be deleted from the inventory.
+         * (Default=false)
+         */
+        public Boolean DeleteEmptyStacks;
+        /** The entity to perform this action on. */
+        public EntityKey Entity;
+        /** The Idempotency ID for this request. */
+        public String IdempotencyId;
+        /** The inventory item the request applies to. */
+        public InventoryItemReference Item;
+        /**
+         * The per-item price the item is expected to be purchased at. This must match a value configured in the Catalog or
+         * specified Store.
+         */
+        public ArrayList<PurchasePriceAmount> PriceAmounts;
+        /** The id of the Store to purchase the item from. */
+        public String StoreId;
+        
+    }
+
+    public static class PurchaseInventoryItemsResponse {
+        /** The idempotency id used in the request. */
+        public String IdempotencyId;
+        /** The ids of transactions that occurred as a result of the request. */
+        public ArrayList<String> TransactionIds;
+        
+    }
+
     public static class PurchaseOverride {
+        
+    }
+
+    public static class PurchasePriceAmount {
+        /** The amount of the inventory item to use in the purchase . */
+        public Integer Amount;
+        /** The inventory item id to use in the purchase . */
+        public String ItemId;
+        /** The inventory stack id the to use in the purchase. Set to "default" by default */
+        public String StackId;
         
     }
 
@@ -597,6 +1226,180 @@ public class PlayFabEconomyModels {
         public Integer Count5Star;
         /** The total count of ratings for this item. */
         public Integer TotalCount;
+        
+    }
+
+    /** Redeem items from the Apple App Store. */
+    public static class RedeemAppleAppStoreInventoryItemsRequest {
+        /** The id of the entity's collection to perform this action on. (Default="default") */
+        public String CollectionId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The entity to perform this action on. */
+        public EntityKey Entity;
+        /** The Idempotency ID for this request. */
+        public String IdempotencyId;
+        /** The receipt provided by the Apple marketplace upon successful purchase. */
+        public String Receipt;
+        
+    }
+
+    public static class RedeemAppleAppStoreInventoryItemsResponse {
+        /** The list of failed redemptions from the external marketplace. */
+        public ArrayList<RedemptionFailure> Failed;
+        /** The list of successful redemptions from the external marketplace. */
+        public ArrayList<RedemptionSuccess> Succeeded;
+        /** The Transaction IDs associated with the inventory modifications */
+        public ArrayList<String> TransactionIds;
+        
+    }
+
+    /** Redeem items from the Google Play Store. */
+    public static class RedeemGooglePlayInventoryItemsRequest {
+        /** The id of the entity's collection to perform this action on. (Default="default") */
+        public String CollectionId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The entity to perform this action on. */
+        public EntityKey Entity;
+        /** The Idempotency ID for this request. */
+        public String IdempotencyId;
+        /** The list of purchases to redeem */
+        public ArrayList<GooglePlayProductPurchase> Purchases;
+        
+    }
+
+    public static class RedeemGooglePlayInventoryItemsResponse {
+        /** The list of failed redemptions from the external marketplace. */
+        public ArrayList<RedemptionFailure> Failed;
+        /** The list of successful redemptions from the external marketplace. */
+        public ArrayList<RedemptionSuccess> Succeeded;
+        /** The Transaction IDs associated with the inventory modifications */
+        public ArrayList<String> TransactionIds;
+        
+    }
+
+    /** Redeem items from the Microsoft Store. */
+    public static class RedeemMicrosoftStoreInventoryItemsRequest {
+        /** The id of the entity's collection to perform this action on. (Default="default") */
+        public String CollectionId;
+        /** The OneStore Collections Id Key used for AAD authentication. */
+        public String CollectionsIdKey;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The entity to perform this action on. */
+        public EntityKey Entity;
+        /** The Idempotency ID for this request. */
+        public String IdempotencyId;
+        /** Xbox Token used for delegated business partner authentication. */
+        public String XboxToken;
+        
+    }
+
+    public static class RedeemMicrosoftStoreInventoryItemsResponse {
+        /** The list of failed redemptions from the external marketplace. */
+        public ArrayList<RedemptionFailure> Failed;
+        /** The list of successful redemptions from the external marketplace. */
+        public ArrayList<RedemptionSuccess> Succeeded;
+        /** The Transaction IDs associated with the inventory modifications */
+        public ArrayList<String> TransactionIds;
+        
+    }
+
+    /** Redeem items from the Nintendo EShop. */
+    public static class RedeemNintendoEShopInventoryItemsRequest {
+        /** The id of the entity's collection to perform this action on. (Default="default") */
+        public String CollectionId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The entity to perform this action on. */
+        public EntityKey Entity;
+        /** The Idempotency ID for this request. */
+        public String IdempotencyId;
+        /** The Nintendo provided token authorizing redemption */
+        public String NintendoServiceAccountIdToken;
+        
+    }
+
+    public static class RedeemNintendoEShopInventoryItemsResponse {
+        /** The list of failed redemptions from the external marketplace. */
+        public ArrayList<RedemptionFailure> Failed;
+        /** The list of successful redemptions from the external marketplace. */
+        public ArrayList<RedemptionSuccess> Succeeded;
+        /** The Transaction IDs associated with the inventory modifications */
+        public ArrayList<String> TransactionIds;
+        
+    }
+
+    /** Redeem items from the PlayStation Store. */
+    public static class RedeemPlayStationStoreInventoryItemsRequest {
+        /** Authorization code provided by the PlayStation OAuth provider. */
+        public String AuthorizationCode;
+        /** The id of the entity's collection to perform this action on. (Default="default") */
+        public String CollectionId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The entity to perform this action on. */
+        public EntityKey Entity;
+        /** The Idempotency ID for this request. */
+        public String IdempotencyId;
+        /** Optional Service Label to pass into the request. */
+        public String ServiceLabel;
+        
+    }
+
+    public static class RedeemPlayStationStoreInventoryItemsResponse {
+        /** The list of failed redemptions from the external marketplace. */
+        public ArrayList<RedemptionFailure> Failed;
+        /** The list of successful redemptions from the external marketplace. */
+        public ArrayList<RedemptionSuccess> Succeeded;
+        /** The Transaction IDs associated with the inventory modifications */
+        public ArrayList<String> TransactionIds;
+        
+    }
+
+    /** Redeem inventory items from Steam. */
+    public static class RedeemSteamInventoryItemsRequest {
+        /** The id of the entity's collection to perform this action on. (Default="default") */
+        public String CollectionId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The entity to perform this action on. */
+        public EntityKey Entity;
+        /** The Idempotency ID for this request. */
+        public String IdempotencyId;
+        
+    }
+
+    public static class RedeemSteamInventoryItemsResponse {
+        /** The list of failed redemptions from the external marketplace. */
+        public ArrayList<RedemptionFailure> Failed;
+        /** The list of successful redemptions from the external marketplace. */
+        public ArrayList<RedemptionSuccess> Succeeded;
+        /** The Transaction IDs associated with the inventory modifications */
+        public ArrayList<String> TransactionIds;
+        
+    }
+
+    public static class RedemptionFailure {
+        /** The marketplace failure code. */
+        public String FailureCode;
+        /** The marketplace error details explaining why the offer failed to redeem. */
+        public String FailureDetails;
+        /** The transaction id in the external marketplace. */
+        public String MarketplaceTransactionId;
+        /** The ID of the offer being redeemed. */
+        public String OfferId;
+        
+    }
+
+    public static class RedemptionSuccess {
+        /** The transaction id in the external marketplace. */
+        public String MarketplaceTransactionId;
+        /** The ID of the offer being redeemed. */
+        public String OfferId;
+        /** The timestamp for when the redeem was completed. */
+        public Date SuccessTimestamp;
         
     }
 
@@ -659,6 +1462,8 @@ public class PlayFabEconomyModels {
         /** Star rating associated with this review. */
         public Integer Rating;
         /** The ID of the author of the review. */
+        public EntityKey ReviewerEntity;
+        /** Deprecated. Use ReviewerEntity instead. This property will be removed in a future release. */
         public String ReviewerId;
         /** The ID of the review. */
         public String ReviewId;
@@ -725,6 +1530,8 @@ public class PlayFabEconomyModels {
          * be returned.
          */
         public String Select;
+        /** The store to restrict the search request to. */
+        public StoreReference Store;
         
     }
 
@@ -755,10 +1562,14 @@ public class PlayFabEconomyModels {
     }
 
     public static class StoreDetails {
+        /** The options for the filter in filter-based stores. These options are mutually exclusive with item references. */
+        public FilterOptions FilterOptions;
+        /** The global prices utilized in the store. These options are mutually exclusive with price options in item references. */
+        public CatalogPriceOptionsOverride PriceOptionsOverride;
         
     }
 
-    public static class StoreInfo {
+    public static class StoreReference {
         /** An alternate ID of the store. */
         public CatalogAlternateId AlternateId;
         /** The unique ID of the store. */
@@ -792,6 +1603,62 @@ public class PlayFabEconomyModels {
         
     }
 
+    public static class SubtractInventoryItemsOperation {
+        /** The amount to subtract from the current item amount. */
+        public Integer Amount;
+        /**
+         * Indicates whether stacks reduced to an amount of 0 during the request should be deleted from the inventory. (Default =
+         * false).
+         */
+        public Boolean DeleteEmptyStacks;
+        /** The inventory item the operation applies to. */
+        public InventoryItemReference Item;
+        
+    }
+
+    /** Given an entity type, entity identifier and container details, will subtract the specified inventory items. */
+    public static class SubtractInventoryItemsRequest {
+        /** The amount to add for the current item. */
+        public Integer Amount;
+        /** The id of the entity's collection to perform this action on. (Default="default") */
+        public String CollectionId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /**
+         * Indicates whether stacks reduced to an amount of 0 during the request should be deleted from the inventory.
+         * (Default=false)
+         */
+        public Boolean DeleteEmptyStacks;
+        /** The entity to perform this action on. */
+        public EntityKey Entity;
+        /** The Idempotency ID for this request. */
+        public String IdempotencyId;
+        /** The inventory item the request applies to. */
+        public InventoryItemReference Item;
+        /** A list of Items to modify. */
+        public ArrayList<InventoryItem> Items;
+        /** Indicates if the full inventory should be returned. */
+        public Boolean ReturnInventory;
+        
+    }
+
+    public static class SubtractInventoryItemsResponse {
+        /** The idempotency id used in the request. */
+        public String IdempotencyId;
+        /**
+         * Details of the current inventory items. Null if ReturnInventory was set to false in request or InventoryTooLarge is set
+         * to true in response.
+         */
+        public ArrayList<InventoryItem> InventoryItems;
+        /** Whether the number of inventory items is too large to be returned. */
+        public Boolean InventoryTooLarge;
+        /** The ids of transactions that occurred as a result of the request. */
+        public ArrayList<String> TransactionIds;
+        /** The updated items for this request. */
+        public ArrayList<InventoryItem> UpdatedItems;
+        
+    }
+
     /**
      * Submit a request to takedown one or more reviews, removing them from public view. Authors will still be able to see
      * their reviews after being taken down.
@@ -805,6 +1672,59 @@ public class PlayFabEconomyModels {
     }
 
     public static class TakedownItemReviewsResponse {
+        
+    }
+
+    public static class TransferInventoryItemsOperation {
+        /** The amount to transfer. */
+        public Integer Amount;
+        /**
+         * Indicates whether stacks reduced to an amount of 0 during the operation should be deleted from the inventory. (Default =
+         * false)
+         */
+        public Boolean DeleteEmptyStacks;
+        /** The inventory item the operation is transferring from. */
+        public InventoryItemReference GivingItem;
+        /** The inventory item the operation is transferring to. */
+        public InventoryItemReference ReceivingItem;
+        
+    }
+
+    /** Transfer the specified inventory items of an entity's container Id to another entity's container Id. */
+    public static class TransferInventoryItemsRequest {
+        /** The amount to transfer . */
+        public Integer Amount;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /**
+         * Indicates whether stacks reduced to an amount of 0 during the request should be deleted from the inventory. (Default =
+         * false)
+         */
+        public Boolean DeleteEmptyStacks;
+        /** The inventory collection id the request is transferring from. (Default="default") */
+        public String GivingCollectionId;
+        /** The entity the request is transferring from. Set to the caller by default. */
+        public EntityKey GivingEntity;
+        /** The inventory item the request is transferring from. */
+        public InventoryItemReference GivingItem;
+        /** The idempotency id for the request. */
+        public String IdempotencyId;
+        /** The inventory collection id the request is transferring to. (Default="default") */
+        public String ReceivingCollectionId;
+        /** The entity the request is transferring to. Set to the caller by default. */
+        public EntityKey ReceivingEntity;
+        /** The inventory item the request is transferring to. */
+        public InventoryItemReference ReceivingItem;
+        
+    }
+
+    public static class TransferInventoryItemsResponse {
+        /** The ids of transactions that occurred as a result of the request's giving action. */
+        public ArrayList<String> GivingTransactionIds;
+        /** The idempotency id for the request. */
+        public String IdempotencyId;
+        /** The ids of transactions that occurred as a result of the request's receiving action. */
+        public ArrayList<String> ReceivingTransactionIds;
         
     }
 
@@ -833,6 +1753,48 @@ public class PlayFabEconomyModels {
     public static class UpdateDraftItemResponse {
         /** Updated metadata describing the catalog item just updated. */
         public CatalogItem Item;
+        
+    }
+
+    public static class UpdateInventoryItemsOperation {
+        /** The inventory item to update with the specified values. */
+        public InventoryItem Item;
+        
+    }
+
+    /** Given an entity type, entity identifier and container details, will update the entity's inventory items */
+    public static class UpdateInventoryItemsRequest {
+        /** The id of the entity's collection to perform this action on. (Default="default") */
+        public String CollectionId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The entity to perform this action on. */
+        public EntityKey Entity;
+        /** The Idempotency ID for this request. */
+        public String IdempotencyId;
+        /** The inventory item to update with the specified values. */
+        public InventoryItem Item;
+        /** A list of Items to modify. */
+        public ArrayList<InventoryItem> Items;
+        /** Indicates if the full inventory should be returned. */
+        public Boolean ReturnInventory;
+        
+    }
+
+    public static class UpdateInventoryItemsResponse {
+        /** The idempotency id used in the request. */
+        public String IdempotencyId;
+        /**
+         * Details of the current inventory items. Null if ReturnInventory was set to false in request or InventoryTooLarge is set
+         * to true in response.
+         */
+        public ArrayList<InventoryItem> InventoryItems;
+        /** Whether the number of inventory items is too large to be returned. */
+        public Boolean InventoryTooLarge;
+        /** The ids of transactions that occurred as a result of the request. */
+        public ArrayList<String> TransactionIds;
+        /** The updated items for this request. */
+        public ArrayList<InventoryItem> UpdatedItems;
         
     }
 
