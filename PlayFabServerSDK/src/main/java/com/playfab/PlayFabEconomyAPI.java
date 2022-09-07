@@ -14,6 +14,68 @@ public class PlayFabEconomyAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 
     /**
+     * Add inventory items.
+     * @param request AddInventoryItemsRequest
+     * @return Async Task will return AddInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<AddInventoryItemsResponse>> AddInventoryItemsAsync(final AddInventoryItemsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<AddInventoryItemsResponse>>() {
+            public PlayFabResult<AddInventoryItemsResponse> call() throws Exception {
+                return privateAddInventoryItemsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Add inventory items.
+     * @param request AddInventoryItemsRequest
+     * @return AddInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<AddInventoryItemsResponse> AddInventoryItems(final AddInventoryItemsRequest request) {
+        FutureTask<PlayFabResult<AddInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<AddInventoryItemsResponse>>() {
+            public PlayFabResult<AddInventoryItemsResponse> call() throws Exception {
+                return privateAddInventoryItemsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<AddInventoryItemsResponse> exceptionResult = new PlayFabResult<AddInventoryItemsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Add inventory items. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<AddInventoryItemsResponse> privateAddInventoryItemsAsync(final AddInventoryItemsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/AddInventoryItems"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<AddInventoryItemsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<AddInventoryItemsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AddInventoryItemsResponse>>(){}.getType());
+        AddInventoryItemsResponse result = resultData.data;
+
+        PlayFabResult<AddInventoryItemsResponse> pfResult = new PlayFabResult<AddInventoryItemsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Creates a new item in the working catalog using provided metadata.
      * @param request CreateDraftItemRequest
      * @return Async Task will return CreateDraftItemResponse
@@ -200,6 +262,130 @@ public class PlayFabEconomyAPI {
     }
 
     /**
+     * Delete an Inventory Collection
+     * @param request DeleteInventoryCollectionRequest
+     * @return Async Task will return DeleteInventoryCollectionResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<DeleteInventoryCollectionResponse>> DeleteInventoryCollectionAsync(final DeleteInventoryCollectionRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<DeleteInventoryCollectionResponse>>() {
+            public PlayFabResult<DeleteInventoryCollectionResponse> call() throws Exception {
+                return privateDeleteInventoryCollectionAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Delete an Inventory Collection
+     * @param request DeleteInventoryCollectionRequest
+     * @return DeleteInventoryCollectionResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<DeleteInventoryCollectionResponse> DeleteInventoryCollection(final DeleteInventoryCollectionRequest request) {
+        FutureTask<PlayFabResult<DeleteInventoryCollectionResponse>> task = new FutureTask(new Callable<PlayFabResult<DeleteInventoryCollectionResponse>>() {
+            public PlayFabResult<DeleteInventoryCollectionResponse> call() throws Exception {
+                return privateDeleteInventoryCollectionAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<DeleteInventoryCollectionResponse> exceptionResult = new PlayFabResult<DeleteInventoryCollectionResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Delete an Inventory Collection */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<DeleteInventoryCollectionResponse> privateDeleteInventoryCollectionAsync(final DeleteInventoryCollectionRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/DeleteInventoryCollection"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<DeleteInventoryCollectionResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<DeleteInventoryCollectionResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<DeleteInventoryCollectionResponse>>(){}.getType());
+        DeleteInventoryCollectionResponse result = resultData.data;
+
+        PlayFabResult<DeleteInventoryCollectionResponse> pfResult = new PlayFabResult<DeleteInventoryCollectionResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Delete inventory items
+     * @param request DeleteInventoryItemsRequest
+     * @return Async Task will return DeleteInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<DeleteInventoryItemsResponse>> DeleteInventoryItemsAsync(final DeleteInventoryItemsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<DeleteInventoryItemsResponse>>() {
+            public PlayFabResult<DeleteInventoryItemsResponse> call() throws Exception {
+                return privateDeleteInventoryItemsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Delete inventory items
+     * @param request DeleteInventoryItemsRequest
+     * @return DeleteInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<DeleteInventoryItemsResponse> DeleteInventoryItems(final DeleteInventoryItemsRequest request) {
+        FutureTask<PlayFabResult<DeleteInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<DeleteInventoryItemsResponse>>() {
+            public PlayFabResult<DeleteInventoryItemsResponse> call() throws Exception {
+                return privateDeleteInventoryItemsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<DeleteInventoryItemsResponse> exceptionResult = new PlayFabResult<DeleteInventoryItemsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Delete inventory items */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<DeleteInventoryItemsResponse> privateDeleteInventoryItemsAsync(final DeleteInventoryItemsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/DeleteInventoryItems"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<DeleteInventoryItemsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<DeleteInventoryItemsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<DeleteInventoryItemsResponse>>(){}.getType());
+        DeleteInventoryItemsResponse result = resultData.data;
+
+        PlayFabResult<DeleteInventoryItemsResponse> pfResult = new PlayFabResult<DeleteInventoryItemsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Removes an item from working catalog and all published versions from the public catalog.
      * @param request DeleteItemRequest
      * @return Async Task will return DeleteItemResponse
@@ -257,6 +443,68 @@ public class PlayFabEconomyAPI {
         DeleteItemResponse result = resultData.data;
 
         PlayFabResult<DeleteItemResponse> pfResult = new PlayFabResult<DeleteItemResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Execute a list of Inventory Operations
+     * @param request ExecuteInventoryOperationsRequest
+     * @return Async Task will return ExecuteInventoryOperationsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ExecuteInventoryOperationsResponse>> ExecuteInventoryOperationsAsync(final ExecuteInventoryOperationsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ExecuteInventoryOperationsResponse>>() {
+            public PlayFabResult<ExecuteInventoryOperationsResponse> call() throws Exception {
+                return privateExecuteInventoryOperationsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Execute a list of Inventory Operations
+     * @param request ExecuteInventoryOperationsRequest
+     * @return ExecuteInventoryOperationsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ExecuteInventoryOperationsResponse> ExecuteInventoryOperations(final ExecuteInventoryOperationsRequest request) {
+        FutureTask<PlayFabResult<ExecuteInventoryOperationsResponse>> task = new FutureTask(new Callable<PlayFabResult<ExecuteInventoryOperationsResponse>>() {
+            public PlayFabResult<ExecuteInventoryOperationsResponse> call() throws Exception {
+                return privateExecuteInventoryOperationsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<ExecuteInventoryOperationsResponse> exceptionResult = new PlayFabResult<ExecuteInventoryOperationsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Execute a list of Inventory Operations */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ExecuteInventoryOperationsResponse> privateExecuteInventoryOperationsAsync(final ExecuteInventoryOperationsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/ExecuteInventoryOperations"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ExecuteInventoryOperationsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ExecuteInventoryOperationsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ExecuteInventoryOperationsResponse>>(){}.getType());
+        ExecuteInventoryOperationsResponse result = resultData.data;
+
+        PlayFabResult<ExecuteInventoryOperationsResponse> pfResult = new PlayFabResult<ExecuteInventoryOperationsResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -572,6 +820,130 @@ public class PlayFabEconomyAPI {
     }
 
     /**
+     * Get Inventory Collection Ids
+     * @param request GetInventoryCollectionIdsRequest
+     * @return Async Task will return GetInventoryCollectionIdsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetInventoryCollectionIdsResponse>> GetInventoryCollectionIdsAsync(final GetInventoryCollectionIdsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetInventoryCollectionIdsResponse>>() {
+            public PlayFabResult<GetInventoryCollectionIdsResponse> call() throws Exception {
+                return privateGetInventoryCollectionIdsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Get Inventory Collection Ids
+     * @param request GetInventoryCollectionIdsRequest
+     * @return GetInventoryCollectionIdsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetInventoryCollectionIdsResponse> GetInventoryCollectionIds(final GetInventoryCollectionIdsRequest request) {
+        FutureTask<PlayFabResult<GetInventoryCollectionIdsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetInventoryCollectionIdsResponse>>() {
+            public PlayFabResult<GetInventoryCollectionIdsResponse> call() throws Exception {
+                return privateGetInventoryCollectionIdsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetInventoryCollectionIdsResponse> exceptionResult = new PlayFabResult<GetInventoryCollectionIdsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Get Inventory Collection Ids */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetInventoryCollectionIdsResponse> privateGetInventoryCollectionIdsAsync(final GetInventoryCollectionIdsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/GetInventoryCollectionIds"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetInventoryCollectionIdsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetInventoryCollectionIdsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetInventoryCollectionIdsResponse>>(){}.getType());
+        GetInventoryCollectionIdsResponse result = resultData.data;
+
+        PlayFabResult<GetInventoryCollectionIdsResponse> pfResult = new PlayFabResult<GetInventoryCollectionIdsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Get current inventory items.
+     * @param request GetInventoryItemsRequest
+     * @return Async Task will return GetInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetInventoryItemsResponse>> GetInventoryItemsAsync(final GetInventoryItemsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetInventoryItemsResponse>>() {
+            public PlayFabResult<GetInventoryItemsResponse> call() throws Exception {
+                return privateGetInventoryItemsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Get current inventory items.
+     * @param request GetInventoryItemsRequest
+     * @return GetInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetInventoryItemsResponse> GetInventoryItems(final GetInventoryItemsRequest request) {
+        FutureTask<PlayFabResult<GetInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetInventoryItemsResponse>>() {
+            public PlayFabResult<GetInventoryItemsResponse> call() throws Exception {
+                return privateGetInventoryItemsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetInventoryItemsResponse> exceptionResult = new PlayFabResult<GetInventoryItemsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Get current inventory items. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetInventoryItemsResponse> privateGetInventoryItemsAsync(final GetInventoryItemsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/GetInventoryItems"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetInventoryItemsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetInventoryItemsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetInventoryItemsResponse>>(){}.getType());
+        GetInventoryItemsResponse result = resultData.data;
+
+        PlayFabResult<GetInventoryItemsResponse> pfResult = new PlayFabResult<GetInventoryItemsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves an item from the public catalog.
      * @param request GetItemRequest
      * @return Async Task will return GetItemResponse
@@ -629,6 +1001,68 @@ public class PlayFabEconomyAPI {
         GetItemResponse result = resultData.data;
 
         PlayFabResult<GetItemResponse> pfResult = new PlayFabResult<GetItemResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Search for a given item and return a set of bundles and stores containing the item
+     * @param request GetItemContainersRequest
+     * @return Async Task will return GetItemContainersResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetItemContainersResponse>> GetItemContainersAsync(final GetItemContainersRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetItemContainersResponse>>() {
+            public PlayFabResult<GetItemContainersResponse> call() throws Exception {
+                return privateGetItemContainersAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Search for a given item and return a set of bundles and stores containing the item
+     * @param request GetItemContainersRequest
+     * @return GetItemContainersResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetItemContainersResponse> GetItemContainers(final GetItemContainersRequest request) {
+        FutureTask<PlayFabResult<GetItemContainersResponse>> task = new FutureTask(new Callable<PlayFabResult<GetItemContainersResponse>>() {
+            public PlayFabResult<GetItemContainersResponse> call() throws Exception {
+                return privateGetItemContainersAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetItemContainersResponse> exceptionResult = new PlayFabResult<GetItemContainersResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Search for a given item and return a set of bundles and stores containing the item */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetItemContainersResponse> privateGetItemContainersAsync(final GetItemContainersRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Catalog/GetItemContainers"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetItemContainersResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetItemContainersResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetItemContainersResponse>>(){}.getType());
+        GetItemContainersResponse result = resultData.data;
+
+        PlayFabResult<GetItemContainersResponse> pfResult = new PlayFabResult<GetItemContainersResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -944,6 +1378,68 @@ public class PlayFabEconomyAPI {
     }
 
     /**
+     * Gets the access tokens.
+     * @param request GetMicrosoftStoreAccessTokensRequest
+     * @return Async Task will return GetMicrosoftStoreAccessTokensResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetMicrosoftStoreAccessTokensResponse>> GetMicrosoftStoreAccessTokensAsync(final GetMicrosoftStoreAccessTokensRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetMicrosoftStoreAccessTokensResponse>>() {
+            public PlayFabResult<GetMicrosoftStoreAccessTokensResponse> call() throws Exception {
+                return privateGetMicrosoftStoreAccessTokensAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Gets the access tokens.
+     * @param request GetMicrosoftStoreAccessTokensRequest
+     * @return GetMicrosoftStoreAccessTokensResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetMicrosoftStoreAccessTokensResponse> GetMicrosoftStoreAccessTokens(final GetMicrosoftStoreAccessTokensRequest request) {
+        FutureTask<PlayFabResult<GetMicrosoftStoreAccessTokensResponse>> task = new FutureTask(new Callable<PlayFabResult<GetMicrosoftStoreAccessTokensResponse>>() {
+            public PlayFabResult<GetMicrosoftStoreAccessTokensResponse> call() throws Exception {
+                return privateGetMicrosoftStoreAccessTokensAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetMicrosoftStoreAccessTokensResponse> exceptionResult = new PlayFabResult<GetMicrosoftStoreAccessTokensResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Gets the access tokens. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetMicrosoftStoreAccessTokensResponse> privateGetMicrosoftStoreAccessTokensAsync(final GetMicrosoftStoreAccessTokensRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/GetMicrosoftStoreAccessTokens"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetMicrosoftStoreAccessTokensResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetMicrosoftStoreAccessTokensResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetMicrosoftStoreAccessTokensResponse>>(){}.getType());
+        GetMicrosoftStoreAccessTokensResponse result = resultData.data;
+
+        PlayFabResult<GetMicrosoftStoreAccessTokensResponse> pfResult = new PlayFabResult<GetMicrosoftStoreAccessTokensResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Initiates a publish of an item from the working catalog to the public catalog.
      * @param request PublishDraftItemRequest
      * @return Async Task will return PublishDraftItemResponse
@@ -1001,6 +1497,440 @@ public class PlayFabEconomyAPI {
         PublishDraftItemResponse result = resultData.data;
 
         PlayFabResult<PublishDraftItemResponse> pfResult = new PlayFabResult<PublishDraftItemResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Purchase an item or bundle
+     * @param request PurchaseInventoryItemsRequest
+     * @return Async Task will return PurchaseInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<PurchaseInventoryItemsResponse>> PurchaseInventoryItemsAsync(final PurchaseInventoryItemsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<PurchaseInventoryItemsResponse>>() {
+            public PlayFabResult<PurchaseInventoryItemsResponse> call() throws Exception {
+                return privatePurchaseInventoryItemsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Purchase an item or bundle
+     * @param request PurchaseInventoryItemsRequest
+     * @return PurchaseInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<PurchaseInventoryItemsResponse> PurchaseInventoryItems(final PurchaseInventoryItemsRequest request) {
+        FutureTask<PlayFabResult<PurchaseInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<PurchaseInventoryItemsResponse>>() {
+            public PlayFabResult<PurchaseInventoryItemsResponse> call() throws Exception {
+                return privatePurchaseInventoryItemsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<PurchaseInventoryItemsResponse> exceptionResult = new PlayFabResult<PurchaseInventoryItemsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Purchase an item or bundle */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<PurchaseInventoryItemsResponse> privatePurchaseInventoryItemsAsync(final PurchaseInventoryItemsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/PurchaseInventoryItems"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<PurchaseInventoryItemsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<PurchaseInventoryItemsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<PurchaseInventoryItemsResponse>>(){}.getType());
+        PurchaseInventoryItemsResponse result = resultData.data;
+
+        PlayFabResult<PurchaseInventoryItemsResponse> pfResult = new PlayFabResult<PurchaseInventoryItemsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Redeem items.
+     * @param request RedeemAppleAppStoreInventoryItemsRequest
+     * @return Async Task will return RedeemAppleAppStoreInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RedeemAppleAppStoreInventoryItemsResponse>> RedeemAppleAppStoreInventoryItemsAsync(final RedeemAppleAppStoreInventoryItemsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RedeemAppleAppStoreInventoryItemsResponse>>() {
+            public PlayFabResult<RedeemAppleAppStoreInventoryItemsResponse> call() throws Exception {
+                return privateRedeemAppleAppStoreInventoryItemsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Redeem items.
+     * @param request RedeemAppleAppStoreInventoryItemsRequest
+     * @return RedeemAppleAppStoreInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RedeemAppleAppStoreInventoryItemsResponse> RedeemAppleAppStoreInventoryItems(final RedeemAppleAppStoreInventoryItemsRequest request) {
+        FutureTask<PlayFabResult<RedeemAppleAppStoreInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<RedeemAppleAppStoreInventoryItemsResponse>>() {
+            public PlayFabResult<RedeemAppleAppStoreInventoryItemsResponse> call() throws Exception {
+                return privateRedeemAppleAppStoreInventoryItemsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<RedeemAppleAppStoreInventoryItemsResponse> exceptionResult = new PlayFabResult<RedeemAppleAppStoreInventoryItemsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Redeem items. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RedeemAppleAppStoreInventoryItemsResponse> privateRedeemAppleAppStoreInventoryItemsAsync(final RedeemAppleAppStoreInventoryItemsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/RedeemAppleAppStoreInventoryItems"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RedeemAppleAppStoreInventoryItemsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RedeemAppleAppStoreInventoryItemsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RedeemAppleAppStoreInventoryItemsResponse>>(){}.getType());
+        RedeemAppleAppStoreInventoryItemsResponse result = resultData.data;
+
+        PlayFabResult<RedeemAppleAppStoreInventoryItemsResponse> pfResult = new PlayFabResult<RedeemAppleAppStoreInventoryItemsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Redeem items.
+     * @param request RedeemGooglePlayInventoryItemsRequest
+     * @return Async Task will return RedeemGooglePlayInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RedeemGooglePlayInventoryItemsResponse>> RedeemGooglePlayInventoryItemsAsync(final RedeemGooglePlayInventoryItemsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RedeemGooglePlayInventoryItemsResponse>>() {
+            public PlayFabResult<RedeemGooglePlayInventoryItemsResponse> call() throws Exception {
+                return privateRedeemGooglePlayInventoryItemsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Redeem items.
+     * @param request RedeemGooglePlayInventoryItemsRequest
+     * @return RedeemGooglePlayInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RedeemGooglePlayInventoryItemsResponse> RedeemGooglePlayInventoryItems(final RedeemGooglePlayInventoryItemsRequest request) {
+        FutureTask<PlayFabResult<RedeemGooglePlayInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<RedeemGooglePlayInventoryItemsResponse>>() {
+            public PlayFabResult<RedeemGooglePlayInventoryItemsResponse> call() throws Exception {
+                return privateRedeemGooglePlayInventoryItemsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<RedeemGooglePlayInventoryItemsResponse> exceptionResult = new PlayFabResult<RedeemGooglePlayInventoryItemsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Redeem items. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RedeemGooglePlayInventoryItemsResponse> privateRedeemGooglePlayInventoryItemsAsync(final RedeemGooglePlayInventoryItemsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/RedeemGooglePlayInventoryItems"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RedeemGooglePlayInventoryItemsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RedeemGooglePlayInventoryItemsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RedeemGooglePlayInventoryItemsResponse>>(){}.getType());
+        RedeemGooglePlayInventoryItemsResponse result = resultData.data;
+
+        PlayFabResult<RedeemGooglePlayInventoryItemsResponse> pfResult = new PlayFabResult<RedeemGooglePlayInventoryItemsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Redeem items.
+     * @param request RedeemMicrosoftStoreInventoryItemsRequest
+     * @return Async Task will return RedeemMicrosoftStoreInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RedeemMicrosoftStoreInventoryItemsResponse>> RedeemMicrosoftStoreInventoryItemsAsync(final RedeemMicrosoftStoreInventoryItemsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RedeemMicrosoftStoreInventoryItemsResponse>>() {
+            public PlayFabResult<RedeemMicrosoftStoreInventoryItemsResponse> call() throws Exception {
+                return privateRedeemMicrosoftStoreInventoryItemsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Redeem items.
+     * @param request RedeemMicrosoftStoreInventoryItemsRequest
+     * @return RedeemMicrosoftStoreInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RedeemMicrosoftStoreInventoryItemsResponse> RedeemMicrosoftStoreInventoryItems(final RedeemMicrosoftStoreInventoryItemsRequest request) {
+        FutureTask<PlayFabResult<RedeemMicrosoftStoreInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<RedeemMicrosoftStoreInventoryItemsResponse>>() {
+            public PlayFabResult<RedeemMicrosoftStoreInventoryItemsResponse> call() throws Exception {
+                return privateRedeemMicrosoftStoreInventoryItemsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<RedeemMicrosoftStoreInventoryItemsResponse> exceptionResult = new PlayFabResult<RedeemMicrosoftStoreInventoryItemsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Redeem items. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RedeemMicrosoftStoreInventoryItemsResponse> privateRedeemMicrosoftStoreInventoryItemsAsync(final RedeemMicrosoftStoreInventoryItemsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/RedeemMicrosoftStoreInventoryItems"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RedeemMicrosoftStoreInventoryItemsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RedeemMicrosoftStoreInventoryItemsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RedeemMicrosoftStoreInventoryItemsResponse>>(){}.getType());
+        RedeemMicrosoftStoreInventoryItemsResponse result = resultData.data;
+
+        PlayFabResult<RedeemMicrosoftStoreInventoryItemsResponse> pfResult = new PlayFabResult<RedeemMicrosoftStoreInventoryItemsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Redeem items.
+     * @param request RedeemNintendoEShopInventoryItemsRequest
+     * @return Async Task will return RedeemNintendoEShopInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RedeemNintendoEShopInventoryItemsResponse>> RedeemNintendoEShopInventoryItemsAsync(final RedeemNintendoEShopInventoryItemsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RedeemNintendoEShopInventoryItemsResponse>>() {
+            public PlayFabResult<RedeemNintendoEShopInventoryItemsResponse> call() throws Exception {
+                return privateRedeemNintendoEShopInventoryItemsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Redeem items.
+     * @param request RedeemNintendoEShopInventoryItemsRequest
+     * @return RedeemNintendoEShopInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RedeemNintendoEShopInventoryItemsResponse> RedeemNintendoEShopInventoryItems(final RedeemNintendoEShopInventoryItemsRequest request) {
+        FutureTask<PlayFabResult<RedeemNintendoEShopInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<RedeemNintendoEShopInventoryItemsResponse>>() {
+            public PlayFabResult<RedeemNintendoEShopInventoryItemsResponse> call() throws Exception {
+                return privateRedeemNintendoEShopInventoryItemsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<RedeemNintendoEShopInventoryItemsResponse> exceptionResult = new PlayFabResult<RedeemNintendoEShopInventoryItemsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Redeem items. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RedeemNintendoEShopInventoryItemsResponse> privateRedeemNintendoEShopInventoryItemsAsync(final RedeemNintendoEShopInventoryItemsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/RedeemNintendoEShopInventoryItems"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RedeemNintendoEShopInventoryItemsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RedeemNintendoEShopInventoryItemsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RedeemNintendoEShopInventoryItemsResponse>>(){}.getType());
+        RedeemNintendoEShopInventoryItemsResponse result = resultData.data;
+
+        PlayFabResult<RedeemNintendoEShopInventoryItemsResponse> pfResult = new PlayFabResult<RedeemNintendoEShopInventoryItemsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Redeem items.
+     * @param request RedeemPlayStationStoreInventoryItemsRequest
+     * @return Async Task will return RedeemPlayStationStoreInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RedeemPlayStationStoreInventoryItemsResponse>> RedeemPlayStationStoreInventoryItemsAsync(final RedeemPlayStationStoreInventoryItemsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RedeemPlayStationStoreInventoryItemsResponse>>() {
+            public PlayFabResult<RedeemPlayStationStoreInventoryItemsResponse> call() throws Exception {
+                return privateRedeemPlayStationStoreInventoryItemsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Redeem items.
+     * @param request RedeemPlayStationStoreInventoryItemsRequest
+     * @return RedeemPlayStationStoreInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RedeemPlayStationStoreInventoryItemsResponse> RedeemPlayStationStoreInventoryItems(final RedeemPlayStationStoreInventoryItemsRequest request) {
+        FutureTask<PlayFabResult<RedeemPlayStationStoreInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<RedeemPlayStationStoreInventoryItemsResponse>>() {
+            public PlayFabResult<RedeemPlayStationStoreInventoryItemsResponse> call() throws Exception {
+                return privateRedeemPlayStationStoreInventoryItemsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<RedeemPlayStationStoreInventoryItemsResponse> exceptionResult = new PlayFabResult<RedeemPlayStationStoreInventoryItemsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Redeem items. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RedeemPlayStationStoreInventoryItemsResponse> privateRedeemPlayStationStoreInventoryItemsAsync(final RedeemPlayStationStoreInventoryItemsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/RedeemPlayStationStoreInventoryItems"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RedeemPlayStationStoreInventoryItemsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RedeemPlayStationStoreInventoryItemsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RedeemPlayStationStoreInventoryItemsResponse>>(){}.getType());
+        RedeemPlayStationStoreInventoryItemsResponse result = resultData.data;
+
+        PlayFabResult<RedeemPlayStationStoreInventoryItemsResponse> pfResult = new PlayFabResult<RedeemPlayStationStoreInventoryItemsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Redeem items.
+     * @param request RedeemSteamInventoryItemsRequest
+     * @return Async Task will return RedeemSteamInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RedeemSteamInventoryItemsResponse>> RedeemSteamInventoryItemsAsync(final RedeemSteamInventoryItemsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RedeemSteamInventoryItemsResponse>>() {
+            public PlayFabResult<RedeemSteamInventoryItemsResponse> call() throws Exception {
+                return privateRedeemSteamInventoryItemsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Redeem items.
+     * @param request RedeemSteamInventoryItemsRequest
+     * @return RedeemSteamInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RedeemSteamInventoryItemsResponse> RedeemSteamInventoryItems(final RedeemSteamInventoryItemsRequest request) {
+        FutureTask<PlayFabResult<RedeemSteamInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<RedeemSteamInventoryItemsResponse>>() {
+            public PlayFabResult<RedeemSteamInventoryItemsResponse> call() throws Exception {
+                return privateRedeemSteamInventoryItemsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<RedeemSteamInventoryItemsResponse> exceptionResult = new PlayFabResult<RedeemSteamInventoryItemsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Redeem items. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RedeemSteamInventoryItemsResponse> privateRedeemSteamInventoryItemsAsync(final RedeemSteamInventoryItemsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/RedeemSteamInventoryItems"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RedeemSteamInventoryItemsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RedeemSteamInventoryItemsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RedeemSteamInventoryItemsResponse>>(){}.getType());
+        RedeemSteamInventoryItemsResponse result = resultData.data;
+
+        PlayFabResult<RedeemSteamInventoryItemsResponse> pfResult = new PlayFabResult<RedeemSteamInventoryItemsResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -1383,6 +2313,68 @@ public class PlayFabEconomyAPI {
     }
 
     /**
+     * Subtract inventory items.
+     * @param request SubtractInventoryItemsRequest
+     * @return Async Task will return SubtractInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<SubtractInventoryItemsResponse>> SubtractInventoryItemsAsync(final SubtractInventoryItemsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<SubtractInventoryItemsResponse>>() {
+            public PlayFabResult<SubtractInventoryItemsResponse> call() throws Exception {
+                return privateSubtractInventoryItemsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Subtract inventory items.
+     * @param request SubtractInventoryItemsRequest
+     * @return SubtractInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<SubtractInventoryItemsResponse> SubtractInventoryItems(final SubtractInventoryItemsRequest request) {
+        FutureTask<PlayFabResult<SubtractInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<SubtractInventoryItemsResponse>>() {
+            public PlayFabResult<SubtractInventoryItemsResponse> call() throws Exception {
+                return privateSubtractInventoryItemsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<SubtractInventoryItemsResponse> exceptionResult = new PlayFabResult<SubtractInventoryItemsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Subtract inventory items. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<SubtractInventoryItemsResponse> privateSubtractInventoryItemsAsync(final SubtractInventoryItemsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/SubtractInventoryItems"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<SubtractInventoryItemsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<SubtractInventoryItemsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SubtractInventoryItemsResponse>>(){}.getType());
+        SubtractInventoryItemsResponse result = resultData.data;
+
+        PlayFabResult<SubtractInventoryItemsResponse> pfResult = new PlayFabResult<SubtractInventoryItemsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Submit a request to takedown one or more reviews.
      * @param request TakedownItemReviewsRequest
      * @return Async Task will return TakedownItemReviewsResponse
@@ -1440,6 +2432,68 @@ public class PlayFabEconomyAPI {
         TakedownItemReviewsResponse result = resultData.data;
 
         PlayFabResult<TakedownItemReviewsResponse> pfResult = new PlayFabResult<TakedownItemReviewsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Transfer inventory items.
+     * @param request TransferInventoryItemsRequest
+     * @return Async Task will return TransferInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<TransferInventoryItemsResponse>> TransferInventoryItemsAsync(final TransferInventoryItemsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<TransferInventoryItemsResponse>>() {
+            public PlayFabResult<TransferInventoryItemsResponse> call() throws Exception {
+                return privateTransferInventoryItemsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Transfer inventory items.
+     * @param request TransferInventoryItemsRequest
+     * @return TransferInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<TransferInventoryItemsResponse> TransferInventoryItems(final TransferInventoryItemsRequest request) {
+        FutureTask<PlayFabResult<TransferInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<TransferInventoryItemsResponse>>() {
+            public PlayFabResult<TransferInventoryItemsResponse> call() throws Exception {
+                return privateTransferInventoryItemsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<TransferInventoryItemsResponse> exceptionResult = new PlayFabResult<TransferInventoryItemsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Transfer inventory items. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<TransferInventoryItemsResponse> privateTransferInventoryItemsAsync(final TransferInventoryItemsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/TransferInventoryItems"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<TransferInventoryItemsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<TransferInventoryItemsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<TransferInventoryItemsResponse>>(){}.getType());
+        TransferInventoryItemsResponse result = resultData.data;
+
+        PlayFabResult<TransferInventoryItemsResponse> pfResult = new PlayFabResult<TransferInventoryItemsResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -1564,6 +2618,68 @@ public class PlayFabEconomyAPI {
         UpdateDraftItemResponse result = resultData.data;
 
         PlayFabResult<UpdateDraftItemResponse> pfResult = new PlayFabResult<UpdateDraftItemResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Update inventory items
+     * @param request UpdateInventoryItemsRequest
+     * @return Async Task will return UpdateInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<UpdateInventoryItemsResponse>> UpdateInventoryItemsAsync(final UpdateInventoryItemsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<UpdateInventoryItemsResponse>>() {
+            public PlayFabResult<UpdateInventoryItemsResponse> call() throws Exception {
+                return privateUpdateInventoryItemsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Update inventory items
+     * @param request UpdateInventoryItemsRequest
+     * @return UpdateInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<UpdateInventoryItemsResponse> UpdateInventoryItems(final UpdateInventoryItemsRequest request) {
+        FutureTask<PlayFabResult<UpdateInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<UpdateInventoryItemsResponse>>() {
+            public PlayFabResult<UpdateInventoryItemsResponse> call() throws Exception {
+                return privateUpdateInventoryItemsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<UpdateInventoryItemsResponse> exceptionResult = new PlayFabResult<UpdateInventoryItemsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Update inventory items */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<UpdateInventoryItemsResponse> privateUpdateInventoryItemsAsync(final UpdateInventoryItemsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/UpdateInventoryItems"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<UpdateInventoryItemsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<UpdateInventoryItemsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateInventoryItemsResponse>>(){}.getType());
+        UpdateInventoryItemsResponse result = resultData.data;
+
+        PlayFabResult<UpdateInventoryItemsResponse> pfResult = new PlayFabResult<UpdateInventoryItemsResponse>();
         pfResult.Result = result;
         return pfResult;
     }

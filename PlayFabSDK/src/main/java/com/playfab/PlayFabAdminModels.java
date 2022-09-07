@@ -210,8 +210,6 @@ public class PlayFabAdminModels {
         public Long DurationInHours;
         /** IP address to be banned. May affect multiple players. */
         public String IPAddress;
-        /** MAC address to be banned. May affect multiple players. */
-        public String MACAddress;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
         /** The reason for this ban. Maximum 140 characters. */
@@ -2010,6 +2008,7 @@ public class PlayFabAdminModels {
         PartyVersionNotFound,
         MultiplayerServerBuildReferencedByMatchmakingQueue,
         MultiplayerServerBuildReferencedByBuildAlias,
+        MultiplayerServerBuildAliasReferencedByMatchmakingQueue,
         ExperimentationExperimentStopped,
         ExperimentationExperimentRunning,
         ExperimentationExperimentNotFound,
@@ -4792,8 +4791,6 @@ public class PlayFabAdminModels {
         public Date Expires;
         /** The updated IP address for the ban. Null for no change. */
         public String IPAddress;
-        /** The updated MAC address for the ban. Null for no change. */
-        public String MACAddress;
         /** Whether to make this ban permanent. Set to true to make this ban permanent. This will not modify Active state. */
         public Boolean Permanent;
         /** The updated reason for the ban to be updated. Maximum 140 characters. Null for no change. */
@@ -5165,7 +5162,7 @@ public class PlayFabAdminModels {
         public String PlayFabId;
         /** Personal information for the user which is considered more sensitive */
         public UserPrivateAccountInfo PrivateInfo;
-        /** User PSN account information, if a PSN account has been linked */
+        /** User PlayStation :tm: Network account information, if a PlayStation :tm: Network account has been linked */
         public UserPsnInfo PsnInfo;
         /** User Steam information, if a Steam account has been linked */
         public UserSteamInfo SteamInfo;
@@ -5340,9 +5337,9 @@ public class PlayFabAdminModels {
     }
 
     public static class UserPsnInfo {
-        /** PSN account ID */
+        /** PlayStation :tm: Network account ID */
         public String PsnAccountId;
-        /** PSN online ID */
+        /** PlayStation :tm: Network online ID */
         public String PsnOnlineId;
         
     }
