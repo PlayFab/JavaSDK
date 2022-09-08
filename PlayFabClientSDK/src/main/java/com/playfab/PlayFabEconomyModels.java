@@ -19,8 +19,6 @@ public class PlayFabEconomyModels {
         public Integer Amount;
         /** The id of the entity's collection to perform this action on. (Default="default") */
         public String CollectionId;
-        /** The currency code of the real money transaction. */
-        public String CurrencyCode;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
@@ -29,29 +27,14 @@ public class PlayFabEconomyModels {
         public String IdempotencyId;
         /** The inventory item the request applies to. */
         public InventoryItemReference Item;
-        /** A list of Items to modify. */
-        public ArrayList<InventoryItem> Items;
-        /** Purchase price of the offer. */
-        public Integer PurchasePrice;
-        /** Indicates if the full inventory should be returned. */
-        public Boolean ReturnInventory;
         
     }
 
     public static class AddInventoryItemsResponse {
         /** The idempotency id used in the request. */
         public String IdempotencyId;
-        /**
-         * Details of the current inventory items. Null if ReturnInventory was set to false in request or InventoryTooLarge is set
-         * to true in response.
-         */
-        public ArrayList<InventoryItem> InventoryItems;
-        /** Whether the number of inventory items is too large to be returned. */
-        public Boolean InventoryTooLarge;
         /** The ids of transactions that occurred as a result of the request. */
         public ArrayList<String> TransactionIds;
-        /** The updated items for this request. */
-        public ArrayList<InventoryItem> UpdatedItems;
         
     }
 
@@ -1097,12 +1080,6 @@ public class PlayFabEconomyModels {
     }
 
     public static class PayoutDetails {
-        /** The Dev Center account ID of the payee. */
-        public String AccountSellerId;
-        /** The tax code for payout calculations. */
-        public String TaxCode;
-        /** The Universal account ID of the payee. */
-        public String Uaid;
         
     }
 
@@ -1237,8 +1214,6 @@ public class PlayFabEconomyModels {
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
-        /** The Idempotency ID for this request. */
-        public String IdempotencyId;
         /** The receipt provided by the Apple marketplace upon successful purchase. */
         public String Receipt;
         
@@ -1262,8 +1237,6 @@ public class PlayFabEconomyModels {
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
-        /** The Idempotency ID for this request. */
-        public String IdempotencyId;
         /** The list of purchases to redeem */
         public ArrayList<GooglePlayProductPurchase> Purchases;
         
@@ -1289,8 +1262,6 @@ public class PlayFabEconomyModels {
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
-        /** The Idempotency ID for this request. */
-        public String IdempotencyId;
         /** Xbox Token used for delegated business partner authentication. */
         public String XboxToken;
         
@@ -1314,8 +1285,6 @@ public class PlayFabEconomyModels {
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
-        /** The Idempotency ID for this request. */
-        public String IdempotencyId;
         /** The Nintendo provided token authorizing redemption */
         public String NintendoServiceAccountIdToken;
         
@@ -1341,8 +1310,6 @@ public class PlayFabEconomyModels {
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
-        /** The Idempotency ID for this request. */
-        public String IdempotencyId;
         /** Optional Service Label to pass into the request. */
         public String ServiceLabel;
         
@@ -1366,8 +1333,6 @@ public class PlayFabEconomyModels {
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
-        /** The Idempotency ID for this request. */
-        public String IdempotencyId;
         
     }
 
@@ -1635,27 +1600,14 @@ public class PlayFabEconomyModels {
         public String IdempotencyId;
         /** The inventory item the request applies to. */
         public InventoryItemReference Item;
-        /** A list of Items to modify. */
-        public ArrayList<InventoryItem> Items;
-        /** Indicates if the full inventory should be returned. */
-        public Boolean ReturnInventory;
         
     }
 
     public static class SubtractInventoryItemsResponse {
         /** The idempotency id used in the request. */
         public String IdempotencyId;
-        /**
-         * Details of the current inventory items. Null if ReturnInventory was set to false in request or InventoryTooLarge is set
-         * to true in response.
-         */
-        public ArrayList<InventoryItem> InventoryItems;
-        /** Whether the number of inventory items is too large to be returned. */
-        public Boolean InventoryTooLarge;
         /** The ids of transactions that occurred as a result of the request. */
         public ArrayList<String> TransactionIds;
-        /** The updated items for this request. */
-        public ArrayList<InventoryItem> UpdatedItems;
         
     }
 
@@ -1774,27 +1726,14 @@ public class PlayFabEconomyModels {
         public String IdempotencyId;
         /** The inventory item to update with the specified values. */
         public InventoryItem Item;
-        /** A list of Items to modify. */
-        public ArrayList<InventoryItem> Items;
-        /** Indicates if the full inventory should be returned. */
-        public Boolean ReturnInventory;
         
     }
 
     public static class UpdateInventoryItemsResponse {
         /** The idempotency id used in the request. */
         public String IdempotencyId;
-        /**
-         * Details of the current inventory items. Null if ReturnInventory was set to false in request or InventoryTooLarge is set
-         * to true in response.
-         */
-        public ArrayList<InventoryItem> InventoryItems;
-        /** Whether the number of inventory items is too large to be returned. */
-        public Boolean InventoryTooLarge;
         /** The ids of transactions that occurred as a result of the request. */
         public ArrayList<String> TransactionIds;
-        /** The updated items for this request. */
-        public ArrayList<InventoryItem> UpdatedItems;
         
     }
 
