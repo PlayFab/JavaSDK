@@ -1909,7 +1909,11 @@ public class PlayFabServerModels {
     }
 
     public static class GetCharacterLeaderboardRequest {
-        /** Optional character type on which to filter the leaderboard entries. */
+        /**
+         * Optional character type on which to filter the leaderboard entries.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public String CharacterType;
         /** Maximum number of entries to retrieve. */
         public Integer MaxResultsCount;
@@ -2032,7 +2036,11 @@ public class PlayFabServerModels {
     public static class GetLeaderboardAroundCharacterRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         public String CharacterId;
-        /** Optional character type on which to filter the leaderboard entries. */
+        /**
+         * Optional character type on which to filter the leaderboard entries.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public String CharacterType;
         /** Maximum number of entries to retrieve. */
         public Integer MaxResultsCount;

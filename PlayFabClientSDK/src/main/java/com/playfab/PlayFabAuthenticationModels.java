@@ -5,6 +5,26 @@ import com.playfab.PlayFabUtil.*;
 
 public class PlayFabAuthenticationModels {
 
+    /** Create or return a game_server entity token. Caller must be a title entity. */
+    public static class AuthenticateCustomIdRequest {
+        /**
+         * The customId used to create and retrieve game_server entity tokens. This is unique at the title level. CustomId must be
+         * between 32 and 100 characters.
+         */
+        public String CustomId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        
+    }
+
+    public static class AuthenticateCustomIdResult {
+        /** The token generated used to set X-EntityToken for game_server calls. */
+        public EntityTokenResponse EntityToken;
+        /** True if the account was newly created on this authentication. */
+        public Boolean NewlyCreated;
+        
+    }
+
     /**
      * Delete a game_server entity. The caller can be the game_server entity attempting to delete itself. Or a title entity
      * attempting to delete game_server entities for this title.
@@ -43,6 +63,16 @@ public class PlayFabAuthenticationModels {
         public String TitleId;
         /** The Title Player Account Id of the associated entity. */
         public String TitlePlayerAccountId;
+        
+    }
+
+    public static class EntityTokenResponse {
+        /** The entity id and type. */
+        public EntityKey Entity;
+        /** The token used to set X-EntityToken for all entity based API calls. */
+        public String EntityToken;
+        /** The time the token will expire, if it is an expiring token, in UTC. */
+        public Date TokenExpiration;
         
     }
 
