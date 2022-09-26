@@ -19,6 +19,68 @@ public class PlayFabAuthenticationAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 
     /**
+     * Create a game_server entity token and return a new or existing game_server entity.
+     * @param request AuthenticateCustomIdRequest
+     * @return Async Task will return AuthenticateCustomIdResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<AuthenticateCustomIdResult>> AuthenticateGameServerWithCustomIdAsync(final AuthenticateCustomIdRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<AuthenticateCustomIdResult>>() {
+            public PlayFabResult<AuthenticateCustomIdResult> call() throws Exception {
+                return privateAuthenticateGameServerWithCustomIdAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Create a game_server entity token and return a new or existing game_server entity.
+     * @param request AuthenticateCustomIdRequest
+     * @return AuthenticateCustomIdResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<AuthenticateCustomIdResult> AuthenticateGameServerWithCustomId(final AuthenticateCustomIdRequest request) {
+        FutureTask<PlayFabResult<AuthenticateCustomIdResult>> task = new FutureTask(new Callable<PlayFabResult<AuthenticateCustomIdResult>>() {
+            public PlayFabResult<AuthenticateCustomIdResult> call() throws Exception {
+                return privateAuthenticateGameServerWithCustomIdAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<AuthenticateCustomIdResult> exceptionResult = new PlayFabResult<AuthenticateCustomIdResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Create a game_server entity token and return a new or existing game_server entity. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<AuthenticateCustomIdResult> privateAuthenticateGameServerWithCustomIdAsync(final AuthenticateCustomIdRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/GameServerIdentity/AuthenticateGameServerWithCustomId"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<AuthenticateCustomIdResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<AuthenticateCustomIdResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AuthenticateCustomIdResult>>(){}.getType());
+        AuthenticateCustomIdResult result = resultData.data;
+
+        PlayFabResult<AuthenticateCustomIdResult> pfResult = new PlayFabResult<AuthenticateCustomIdResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Delete a game_server entity.
      * @param request DeleteRequest
      * @return Async Task will return EmptyResponse
