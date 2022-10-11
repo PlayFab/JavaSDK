@@ -1639,6 +1639,8 @@ public class PlayFabServerModels {
         AutomationRuleLimitExceeded,
         InvalidGooglePlayGamesServerAuthCode,
         StorageAccountNotFound,
+        PlayStreamConnectionFailed,
+        InvalidEventContents,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -4182,8 +4184,6 @@ public class PlayFabServerModels {
      * Value. If it already exists, the Value for that key will be overwritten with the new Value.
      */
     public static class SetTitleDataRequest {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        public Map<String,String> CustomTags;
         /**
          * key we want to set a value on (note, this is additive - will only replace an existing key's value if they are the same
          * name.) Keys are trimmed of whitespace. Keys may not begin with the '!' character.

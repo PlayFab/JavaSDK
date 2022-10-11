@@ -1478,7 +1478,7 @@ public class PlayFabEconomyModels {
     public static class SearchItemsRequest {
         /** An opaque token used to retrieve the next page of items, if any are available. */
         public String ContinuationToken;
-        /** Number of items to retrieve. Maximum page size is 225. Default value is 10. */
+        /** Number of items to retrieve. Maximum page size is 50. Default value is 10. */
         public Integer Count;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
