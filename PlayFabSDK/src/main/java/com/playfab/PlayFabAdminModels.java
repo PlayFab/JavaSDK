@@ -1920,6 +1920,8 @@ public class PlayFabAdminModels {
         AutomationRuleLimitExceeded,
         InvalidGooglePlayGamesServerAuthCode,
         StorageAccountNotFound,
+        PlayStreamConnectionFailed,
+        InvalidEventContents,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -4486,8 +4488,6 @@ public class PlayFabAdminModels {
      * or not.
      */
     public static class SetTitleDataAndOverridesRequest {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        public Map<String,String> CustomTags;
         /**
          * List of titleData key-value pairs to set/delete. Use an empty value to delete an existing key; use a non-empty value to
          * create/update a key.
@@ -4510,8 +4510,6 @@ public class PlayFabAdminModels {
      * already exists, the Value for that key will be overwritten with the new Value.
      */
     public static class SetTitleDataRequest {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        public Map<String,String> CustomTags;
         /**
          * key we want to set a value on (note, this is additive - will only replace an existing key's value if they are the same
          * name.) Keys are trimmed of whitespace. Keys may not begin with the '!' character.

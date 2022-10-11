@@ -74,6 +74,7 @@ public class PlayFabAuthenticationAPI {
 
         PlayFabJsonSuccess<AuthenticateCustomIdResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AuthenticateCustomIdResult>>(){}.getType());
         AuthenticateCustomIdResult result = resultData.data;
+        PlayFabSettings.EntityToken = (result.EntityToken != null && result.EntityToken.EntityToken != null) ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
 
         PlayFabResult<AuthenticateCustomIdResult> pfResult = new PlayFabResult<AuthenticateCustomIdResult>();
         pfResult.Result = result;
