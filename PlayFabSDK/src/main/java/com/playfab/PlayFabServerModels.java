@@ -2285,7 +2285,16 @@ public class PlayFabServerModels {
         public String ContinuationToken;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Maximum number of profiles to load. Default is 1,000. Maximum is 10,000. */
+        /**
+         * If set to true, the profiles are loaded asynchronously and the response will include a continuation token and
+         * approximate profile count until the first batch of profiles is loaded. Use this parameter to help avoid network
+         * timeouts.
+         */
+        public Boolean GetProfilesAsync;
+        /**
+         * Maximum is 10,000. The value 0 will prevent loading any profiles and return only the count of profiles matching this
+         * segment.
+         */
         public Long MaxBatchSize;
         /**
          * Number of seconds to keep the continuation token active. After token expiration it is not possible to continue paging
