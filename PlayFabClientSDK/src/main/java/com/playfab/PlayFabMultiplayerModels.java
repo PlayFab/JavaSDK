@@ -1043,14 +1043,44 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    public static enum ExternalFriendSources {
+        None,
+        Steam,
+        Facebook,
+        SteamOrFacebook,
+        Xbox,
+        SteamOrXbox,
+        FacebookOrXbox,
+        SteamOrFacebookOrXbox,
+        Psn,
+        SteamOrPsn,
+        FacebookOrPsn,
+        SteamOrFacebookOrPsn,
+        XboxOrPsn,
+        SteamOrXboxOrPsn,
+        FacebookOrXboxOrPsn,
+        SteamOrFacebookOrXboxOrPsn,
+        All
+    }
+
     /** Request to find friends lobbies. Only a client can find friend lobbies. */
     public static class FindFriendLobbiesRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Controls whether this query should link to friends made on the Facebook network. Defaults to false */
+        /**
+         * Controls whether this query should link to friends made on the Facebook network. Defaults to false
+         * @deprecated Please use ExternalPlatformFriends instead.
+         */
+        @Deprecated
         public Boolean ExcludeFacebookFriends;
-        /** Controls whether this query should link to friends made on the Steam network. Defaults to false */
+        /**
+         * Controls whether this query should link to friends made on the Steam network. Defaults to false
+         * @deprecated Please use ExternalPlatformFriends instead.
+         */
+        @Deprecated
         public Boolean ExcludeSteamFriends;
+        /** Indicates which other platforms' friends this query should link to. */
+        public ExternalFriendSources ExternalPlatformFriends;
         /**
          * OData style string that contains one or more filters. Only the following operators are supported: "and" (logical and),
          * "eq" (equal), "ne" (not equals), "ge" (greater than or equal), "gt" (greater than), "le" (less than or equal), and "lt"
