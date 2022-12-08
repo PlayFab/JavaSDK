@@ -10,6 +10,8 @@ public class PlayFabEconomyModels {
         public Integer Amount;
         /** The inventory item the operation applies to. */
         public InventoryItemReference Item;
+        /** The values to apply to a stack newly created by this operation. */
+        public InitialValues NewStackValues;
         
     }
 
@@ -23,14 +25,20 @@ public class PlayFabEconomyModels {
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
+        /** ETags are used for concurrency checking when updating resources. */
+        public String ETag;
         /** The Idempotency ID for this request. */
         public String IdempotencyId;
         /** The inventory item the request applies to. */
         public InventoryItemReference Item;
+        /** The values to apply to a stack newly created by this request. */
+        public InitialValues NewStackValues;
         
     }
 
     public static class AddInventoryItemsResponse {
+        /** ETags are used for concurrency checking when updating resources. */
+        public String ETag;
         /** The idempotency id used in the request. */
         public String IdempotencyId;
         /** The ids of transactions that occurred as a result of the request. */
@@ -560,6 +568,8 @@ public class PlayFabEconomyModels {
         public Map<String,String> CustomTags;
         /** The entity the request is about. Set to the caller by default. */
         public EntityKey Entity;
+        /** ETags are used for concurrency checking when updating resources. */
+        public String ETag;
         
     }
 
@@ -581,6 +591,8 @@ public class PlayFabEconomyModels {
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
+        /** ETags are used for concurrency checking when updating resources. */
+        public String ETag;
         /** The Idempotency ID for this request. */
         public String IdempotencyId;
         /** The inventory item the request applies to. */
@@ -589,6 +601,8 @@ public class PlayFabEconomyModels {
     }
 
     public static class DeleteInventoryItemsResponse {
+        /** ETags are used for concurrency checking when updating resources. */
+        public String ETag;
         /** The idempotency id used in the request. */
         public String IdempotencyId;
         /** The ids of transactions that occurred as a result of the request. */
@@ -645,6 +659,8 @@ public class PlayFabEconomyModels {
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
+        /** ETags are used for concurrency checking when updating resources. */
+        public String ETag;
         /** The Idempotency ID for this request. */
         public String IdempotencyId;
         /**
@@ -656,6 +672,8 @@ public class PlayFabEconomyModels {
     }
 
     public static class ExecuteInventoryOperationsResponse {
+        /** ETags are used for concurrency checking when updating resources. */
+        public String ETag;
         /** The idempotency id used in the request. */
         public String IdempotencyId;
         /** The ids of the transactions that occurred as a result of the request. */
@@ -816,6 +834,8 @@ public class PlayFabEconomyModels {
     public static class GetInventoryItemsResponse {
         /** An opaque token used to retrieve the next page of items, if any are available. */
         public String ContinuationToken;
+        /** ETags are used for concurrency checking when updating resources. */
+        public String ETag;
         /** The requested inventory items. */
         public ArrayList<InventoryItem> Items;
         
@@ -986,6 +1006,31 @@ public class PlayFabEconomyModels {
         
     }
 
+    /** Get transaction history for specified entity and collection. */
+    public static class GetTransactionHistoryRequest {
+        /** The id of the entity's collection to perform this action on. (Default="default") */
+        public String CollectionId;
+        /** An opaque token used to retrieve the next page of items, if any are available. Should be null on initial request. */
+        public String ContinuationToken;
+        /** Number of items to retrieve. (Default = 10) */
+        public Integer Count;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The entity to perform this action on. */
+        public EntityKey Entity;
+        /** An OData filter used to refine the query. */
+        public String Filter;
+        
+    }
+
+    public static class GetTransactionHistoryResponse {
+        /** An opaque token used to retrieve the next page of items, if any are available. Should be null on initial request. */
+        public String ContinuationToken;
+        /** The requested inventory transactions. */
+        public ArrayList<Transaction> Transactions;
+        
+    }
+
     public static class GooglePlayProductPurchase {
         /** The Product ID (SKU) of the InApp product purchased from the Google Play store. */
         public String ProductId;
@@ -1018,9 +1063,17 @@ public class PlayFabEconomyModels {
         
     }
 
+    public static class InitialValues {
+        /** Game specific properties for display purposes. */
+        public Object DisplayProperties;
+        
+    }
+
     public static class InventoryItem {
         /** The amount of the item. */
         public Integer Amount;
+        /** Game specific properties for display purposes. This is an arbitrary JSON blob. */
+        public Object DisplayProperties;
         /** The id of the item. This should correspond to the item id in the catalog. */
         public String Id;
         /** The stack id of the item. */
@@ -1127,6 +1180,8 @@ public class PlayFabEconomyModels {
         public Boolean DeleteEmptyStacks;
         /** The inventory item the operation applies to. */
         public InventoryItemReference Item;
+        /** The values to apply to a stack newly created by this operation. */
+        public InitialValues NewStackValues;
         /**
          * The per-item price the item is expected to be purchased at. This must match a value configured in the Catalog or
          * specified Store.
@@ -1152,10 +1207,14 @@ public class PlayFabEconomyModels {
         public Boolean DeleteEmptyStacks;
         /** The entity to perform this action on. */
         public EntityKey Entity;
+        /** ETags are used for concurrency checking when updating resources. */
+        public String ETag;
         /** The Idempotency ID for this request. */
         public String IdempotencyId;
         /** The inventory item the request applies to. */
         public InventoryItemReference Item;
+        /** The values to apply to a stack newly created by this request. */
+        public InitialValues NewStackValues;
         /**
          * The per-item price the item is expected to be purchased at. This must match a value configured in the Catalog or
          * specified Store.
@@ -1167,6 +1226,8 @@ public class PlayFabEconomyModels {
     }
 
     public static class PurchaseInventoryItemsResponse {
+        /** ETags are used for concurrency checking when updating resources. */
+        public String ETag;
         /** The idempotency id used in the request. */
         public String IdempotencyId;
         /** The ids of transactions that occurred as a result of the request. */
@@ -1596,6 +1657,8 @@ public class PlayFabEconomyModels {
         public Boolean DeleteEmptyStacks;
         /** The entity to perform this action on. */
         public EntityKey Entity;
+        /** ETags are used for concurrency checking when updating resources. */
+        public String ETag;
         /** The Idempotency ID for this request. */
         public String IdempotencyId;
         /** The inventory item the request applies to. */
@@ -1604,6 +1667,8 @@ public class PlayFabEconomyModels {
     }
 
     public static class SubtractInventoryItemsResponse {
+        /** ETags are used for concurrency checking when updating resources. */
+        public String ETag;
         /** The idempotency id used in the request. */
         public String IdempotencyId;
         /** The ids of transactions that occurred as a result of the request. */
@@ -1627,6 +1692,72 @@ public class PlayFabEconomyModels {
         
     }
 
+    public static class Transaction {
+        /** The API call that caused this transaction. */
+        public String ApiName;
+        /** The type of item that the the operation occurred on. */
+        public String ItemType;
+        /** The operations that occurred. */
+        public ArrayList<TransactionOperation> Operations;
+        /** The type of operation that was run. */
+        public String OperationType;
+        /** Additional details about the transaction. Null if it was not a purchase operation. */
+        public TransactionPurchaseDetails PurchaseDetails;
+        /** Additional details about the transaction. Null if it was not a redeem operation. */
+        public TransactionRedeemDetails RedeemDetails;
+        /** The time this transaction occurred in UTC. */
+        public Date Timestamp;
+        /** The id of the transaction. This should be treated like an opaque token. */
+        public String TransactionId;
+        /** Additional details about the transaction. Null if it was not a transfer operation. */
+        public TransactionTransferDetails TransferDetails;
+        
+    }
+
+    public static class TransactionOperation {
+        /** The amount of items in this transaction. */
+        public Integer Amount;
+        /** The item id of the items in this transaction. */
+        public String ItemId;
+        /** The type of item that the operation occurred on. */
+        public String ItemType;
+        /** The stack id of the items in this transaction. */
+        public String StackId;
+        /** The type of the operation that occurred. */
+        public String Type;
+        
+    }
+
+    public static class TransactionPurchaseDetails {
+        /** The id of the Store the item was purchased from or null. */
+        public String StoreId;
+        
+    }
+
+    public static class TransactionRedeemDetails {
+        /** The marketplace that the offer is being redeemed from. */
+        public String Marketplace;
+        /** The transaction Id returned from the marketplace. */
+        public String MarketplaceTransactionId;
+        /** The offer Id of the item being redeemed. */
+        public String OfferId;
+        
+    }
+
+    public static class TransactionTransferDetails {
+        /** The collection id the items were transferred from or null if it was the current collection. */
+        public String GivingCollectionId;
+        /** The entity the items were transferred from or null if it was the current entity. */
+        public EntityKey GivingEntity;
+        /** The collection id the items were transferred to or null if it was the current collection. */
+        public String ReceivingCollectionId;
+        /** The entity the items were transferred to or null if it was the current entity. */
+        public EntityKey ReceivingEntity;
+        /** The id of the transfer that occurred. */
+        public String TransferId;
+        
+    }
+
     public static class TransferInventoryItemsOperation {
         /** The amount to transfer. */
         public Integer Amount;
@@ -1637,6 +1768,8 @@ public class PlayFabEconomyModels {
         public Boolean DeleteEmptyStacks;
         /** The inventory item the operation is transferring from. */
         public InventoryItemReference GivingItem;
+        /** The values to apply to a stack newly created by this operation. */
+        public InitialValues NewStackValues;
         /** The inventory item the operation is transferring to. */
         public InventoryItemReference ReceivingItem;
         
@@ -1657,10 +1790,14 @@ public class PlayFabEconomyModels {
         public String GivingCollectionId;
         /** The entity the request is transferring from. Set to the caller by default. */
         public EntityKey GivingEntity;
+        /** ETags are used for concurrency checking when updating resources (before transferring from). */
+        public String GivingETag;
         /** The inventory item the request is transferring from. */
         public InventoryItemReference GivingItem;
         /** The idempotency id for the request. */
         public String IdempotencyId;
+        /** The values to apply to a stack newly created by this request. */
+        public InitialValues NewStackValues;
         /** The inventory collection id the request is transferring to. (Default="default") */
         public String ReceivingCollectionId;
         /** The entity the request is transferring to. Set to the caller by default. */
@@ -1671,6 +1808,8 @@ public class PlayFabEconomyModels {
     }
 
     public static class TransferInventoryItemsResponse {
+        /** ETags are used for concurrency checking when updating resources (after transferring from). */
+        public String GivingETag;
         /** The ids of transactions that occurred as a result of the request's giving action. */
         public ArrayList<String> GivingTransactionIds;
         /** The idempotency id for the request. */
@@ -1722,6 +1861,8 @@ public class PlayFabEconomyModels {
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
+        /** ETags are used for concurrency checking when updating resources. */
+        public String ETag;
         /** The Idempotency ID for this request. */
         public String IdempotencyId;
         /** The inventory item to update with the specified values. */
@@ -1730,6 +1871,8 @@ public class PlayFabEconomyModels {
     }
 
     public static class UpdateInventoryItemsResponse {
+        /** ETags are used for concurrency checking when updating resources. */
+        public String ETag;
         /** The idempotency id used in the request. */
         public String IdempotencyId;
         /** The ids of transactions that occurred as a result of the request. */

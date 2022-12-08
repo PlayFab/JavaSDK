@@ -1135,19 +1135,8 @@ public class PlayFabClientModels {
         None,
         Steam,
         Facebook,
-        SteamOrFacebook,
         Xbox,
-        SteamOrXbox,
-        FacebookOrXbox,
-        SteamOrFacebookOrXbox,
         Psn,
-        SteamOrPsn,
-        FacebookOrPsn,
-        SteamOrFacebookOrPsn,
-        XboxOrPsn,
-        SteamOrXboxOrPsn,
-        FacebookOrXboxOrPsn,
-        SteamOrFacebookOrXboxOrPsn,
         All
     }
 
@@ -1452,7 +1441,10 @@ public class PlayFabClientModels {
     public static class GetFriendLeaderboardAroundPlayerRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Indicates which other platforms' friends should be included in the response. */
+        /**
+         * Indicates which other platforms' friends should be included in the response. In HTTP, it is represented as a
+         * comma-separated list of platforms.
+         */
         public ExternalFriendSources ExternalPlatformFriends;
         /**
          * Indicates whether Facebook friends should be included in the response. Default is true.
@@ -1504,7 +1496,10 @@ public class PlayFabClientModels {
     public static class GetFriendLeaderboardRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Indicates which other platforms' friends should be included in the response. */
+        /**
+         * Indicates which other platforms' friends should be included in the response. In HTTP, it is represented as a
+         * comma-separated list of platforms.
+         */
         public ExternalFriendSources ExternalPlatformFriends;
         /**
          * Indicates whether Facebook friends should be included in the response. Default is true.
@@ -1540,7 +1535,10 @@ public class PlayFabClientModels {
     public static class GetFriendsListRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Indicates which other platforms' friends should be included in the response. */
+        /**
+         * Indicates which other platforms' friends should be included in the response. In HTTP, it is represented as a
+         * comma-separated list of platforms.
+         */
         public ExternalFriendSources ExternalPlatformFriends;
         /**
          * Indicates whether Facebook friends should be included in the response. Default is true.
