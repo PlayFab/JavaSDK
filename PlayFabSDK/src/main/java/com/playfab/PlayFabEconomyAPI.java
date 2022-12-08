@@ -1440,6 +1440,68 @@ public class PlayFabEconomyAPI {
     }
 
     /**
+     * Get transaction history.
+     * @param request GetTransactionHistoryRequest
+     * @return Async Task will return GetTransactionHistoryResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetTransactionHistoryResponse>> GetTransactionHistoryAsync(final GetTransactionHistoryRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetTransactionHistoryResponse>>() {
+            public PlayFabResult<GetTransactionHistoryResponse> call() throws Exception {
+                return privateGetTransactionHistoryAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Get transaction history.
+     * @param request GetTransactionHistoryRequest
+     * @return GetTransactionHistoryResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetTransactionHistoryResponse> GetTransactionHistory(final GetTransactionHistoryRequest request) {
+        FutureTask<PlayFabResult<GetTransactionHistoryResponse>> task = new FutureTask(new Callable<PlayFabResult<GetTransactionHistoryResponse>>() {
+            public PlayFabResult<GetTransactionHistoryResponse> call() throws Exception {
+                return privateGetTransactionHistoryAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetTransactionHistoryResponse> exceptionResult = new PlayFabResult<GetTransactionHistoryResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Get transaction history. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetTransactionHistoryResponse> privateGetTransactionHistoryAsync(final GetTransactionHistoryRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/GetTransactionHistory"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetTransactionHistoryResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetTransactionHistoryResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetTransactionHistoryResponse>>(){}.getType());
+        GetTransactionHistoryResponse result = resultData.data;
+
+        PlayFabResult<GetTransactionHistoryResponse> pfResult = new PlayFabResult<GetTransactionHistoryResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Initiates a publish of an item from the working catalog to the public catalog.
      * @param request PublishDraftItemRequest
      * @return Async Task will return PublishDraftItemResponse

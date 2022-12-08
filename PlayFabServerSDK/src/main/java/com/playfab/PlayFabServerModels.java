@@ -374,6 +374,13 @@ public class PlayFabServerModels {
         
     }
 
+    public static enum ChurnRiskLevel {
+        NoData,
+        LowRisk,
+        MediumRisk,
+        HighRisk
+    }
+
     public static enum CloudScriptRevisionOption {
         Live,
         Latest,
@@ -1059,19 +1066,8 @@ public class PlayFabServerModels {
         None,
         Steam,
         Facebook,
-        SteamOrFacebook,
         Xbox,
-        SteamOrXbox,
-        FacebookOrXbox,
-        SteamOrFacebookOrXbox,
         Psn,
-        SteamOrPsn,
-        FacebookOrPsn,
-        SteamOrFacebookOrPsn,
-        XboxOrPsn,
-        SteamOrXboxOrPsn,
-        FacebookOrXboxOrPsn,
-        SteamOrFacebookOrXboxOrPsn,
         All
     }
 
@@ -1658,9 +1654,9 @@ public class PlayFabServerModels {
         AutomationRuleAlreadyExists,
         AutomationRuleLimitExceeded,
         InvalidGooglePlayGamesServerAuthCode,
-        StorageAccountNotFound,
         PlayStreamConnectionFailed,
         InvalidEventContents,
+        InsightsV1Deprecated,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1931,12 +1927,6 @@ public class PlayFabServerModels {
     }
 
     public static class GetCharacterLeaderboardRequest {
-        /**
-         * Optional character type on which to filter the leaderboard entries.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public String CharacterType;
         /** Maximum number of entries to retrieve. */
         public Integer MaxResultsCount;
         /** First entry in the leaderboard to be retrieved. */
@@ -1998,7 +1988,10 @@ public class PlayFabServerModels {
     public static class GetFriendLeaderboardRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Indicates which other platforms' friends should be included in the response. */
+        /**
+         * Indicates which other platforms' friends should be included in the response. In HTTP, it is represented as a
+         * comma-separated list of platforms.
+         */
         public ExternalFriendSources ExternalPlatformFriends;
         /**
          * Indicates whether Facebook friends should be included in the response. Default is true.
@@ -2036,7 +2029,10 @@ public class PlayFabServerModels {
     public static class GetFriendsListRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Indicates which other platforms' friends should be included in the response. */
+        /**
+         * Indicates which other platforms' friends should be included in the response. In HTTP, it is represented as a
+         * comma-separated list of platforms.
+         */
         public ExternalFriendSources ExternalPlatformFriends;
         /**
          * Indicates whether Facebook friends should be included in the response. Default is true.
@@ -2078,12 +2074,6 @@ public class PlayFabServerModels {
     public static class GetLeaderboardAroundCharacterRequest {
         /** Unique PlayFab assigned ID for a specific character owned by a user */
         public String CharacterId;
-        /**
-         * Optional character type on which to filter the leaderboard entries.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public String CharacterType;
         /** Maximum number of entries to retrieve. */
         public Integer MaxResultsCount;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -3516,6 +3506,8 @@ public class PlayFabServerModels {
         public String AvatarUrl;
         /** Banned until UTC Date. If permanent ban this is set for 20 years after the original ban date. */
         public Date BannedUntil;
+        /** The prediction of the player to churn within the next seven days. */
+        public ChurnRiskLevel ChurnPrediction;
         /** Array of contact email addresses associated with the player */
         public ArrayList<ContactEmailInfo> ContactEmailAddresses;
         /** Player record created */

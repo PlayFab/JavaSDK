@@ -1919,9 +1919,9 @@ public class PlayFabAdminModels {
         AutomationRuleAlreadyExists,
         AutomationRuleLimitExceeded,
         InvalidGooglePlayGamesServerAuthCode,
-        StorageAccountNotFound,
         PlayStreamConnectionFailed,
         InvalidEventContents,
+        InsightsV1Deprecated,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -3319,6 +3319,8 @@ public class PlayFabAdminModels {
         public String AvatarUrl;
         /** Banned until UTC Date. If permanent ban this is set for 20 years after the original ban date. */
         public Date BannedUntil;
+        /** The prediction of the player to churn within the next seven days. */
+        public ChurnRiskLevel ChurnPrediction;
         /** Array of contact email addresses associated with the player */
         public ArrayList<ContactEmailInfo> ContactEmailAddresses;
         /** Player record created */
