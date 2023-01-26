@@ -5,6 +5,7 @@ import org.junit.*;
 
 import java.util.*;
 import java.io.*;
+import java.lang.Thread;
 import java.util.Properties;
 
 import com.google.gson.*;
@@ -38,6 +39,7 @@ public class PlayFabApiTest
     private static String entityId = null;
     private static String entityType = null;
 
+    private static Random rand = new Random(); 
     // Helpers
     private <RT> void VerifyResult(PlayFabResult<RT> result, boolean expectSuccess)
     {
@@ -52,6 +54,16 @@ public class PlayFabApiTest
         {
             assertNull(errorMessage, result.Result);
             assertNotNull(errorMessage, result.Error);
+        }
+
+        // Add a rest to the tests so they don't throttle themselves. 
+        try
+        {
+            Thread.sleep(rand.nextInt(1000));
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
         }
     }
 

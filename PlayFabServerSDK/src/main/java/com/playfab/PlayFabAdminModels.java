@@ -378,6 +378,14 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class ChurnPredictionSegmentFilter {
+        /** Comparison */
+        public SegmentFilterComparison Comparison;
+        /** RiskLevel */
+        public ChurnRiskLevel RiskLevel;
+        
+    }
+
     public static enum ChurnRiskLevel {
         NoData,
         LowRisk,
@@ -3859,6 +3867,8 @@ public class PlayFabAdminModels {
         public AdCampaignSegmentFilter AdCampaignFilter;
         /** property for all player filter. */
         public AllPlayersSegmentFilter AllPlayersFilter;
+        /** Filter property for player churn risk level. */
+        public ChurnPredictionSegmentFilter ChurnPredictionFilter;
         /** Filter property for first login date. */
         public FirstLoginDateSegmentFilter FirstLoginDateFilter;
         /** Filter property for first login timespan. */
@@ -4514,11 +4524,8 @@ public class PlayFabAdminModels {
     }
 
     /**
-     * This API method is designed to store title specific values which can be read by the client. For example, a developer
-     * could choose to store values which modify the user experience, such as enemy spawn rates, weapon strengths, movement
-     * speeds, etc. This allows a developer to update the title without the need to create, test, and ship a new build. This
-     * operation is additive. If a Key does not exist in the current dataset, it will be added with the specified Value. If it
-     * already exists, the Value for that key will be overwritten with the new Value.
+     * This operation is additive. If a Key does not exist in the current dataset, it will be added with the specified Value.
+     * If it already exists, the Value for that key will be overwritten with the new Value.
      */
     public static class SetTitleDataRequest {
         /**
