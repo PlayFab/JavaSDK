@@ -5807,7 +5807,10 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Creates and updates the key-value store of custom title settings which can be read by the client
+     * Creates and updates the key-value store of custom title settings which can be read by the client. For example, a
+     * developer could choose to store values which modify the user experience, such as enemy spawn rates, weapon strengths,
+     * movement speeds, etc. This allows a developer to update the title without the need to create, test, and ship a new
+     * build.
      * @param request SetTitleDataRequest
      * @return Async Task will return SetTitleDataResult
      */
@@ -5821,7 +5824,10 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Creates and updates the key-value store of custom title settings which can be read by the client
+     * Creates and updates the key-value store of custom title settings which can be read by the client. For example, a
+     * developer could choose to store values which modify the user experience, such as enemy spawn rates, weapon strengths,
+     * movement speeds, etc. This allows a developer to update the title without the need to create, test, and ship a new
+     * build.
      * @param request SetTitleDataRequest
      * @return SetTitleDataResult
      */
@@ -5842,7 +5848,12 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /** Creates and updates the key-value store of custom title settings which can be read by the client */
+    /**
+     * Creates and updates the key-value store of custom title settings which can be read by the client. For example, a
+     * developer could choose to store values which modify the user experience, such as enemy spawn rates, weapon strengths,
+     * movement speeds, etc. This allows a developer to update the title without the need to create, test, and ship a new
+     * build.
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetTitleDataResult> privateSetTitleDataAsync(final SetTitleDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5931,7 +5942,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Updates the key-value store of custom title settings which cannot be read by the client
+     * Updates the key-value store of custom title settings which cannot be read by the client. These values can be used to
+     * tweak settings used by game servers and Cloud Scripts without the need to update and re-deploy.
      * @param request SetTitleDataRequest
      * @return Async Task will return SetTitleDataResult
      */
@@ -5945,7 +5957,8 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Updates the key-value store of custom title settings which cannot be read by the client
+     * Updates the key-value store of custom title settings which cannot be read by the client. These values can be used to
+     * tweak settings used by game servers and Cloud Scripts without the need to update and re-deploy.
      * @param request SetTitleDataRequest
      * @return SetTitleDataResult
      */
@@ -5966,7 +5979,10 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /** Updates the key-value store of custom title settings which cannot be read by the client */
+    /**
+     * Updates the key-value store of custom title settings which cannot be read by the client. These values can be used to
+     * tweak settings used by game servers and Cloud Scripts without the need to update and re-deploy.
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetTitleDataResult> privateSetTitleInternalDataAsync(final SetTitleDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");

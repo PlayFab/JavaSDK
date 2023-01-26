@@ -666,12 +666,6 @@ public class PlayFabCloudScriptModels {
     public static class PostFunctionResultForPlayerTriggeredActionRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /**
-         * The optional entity to perform this action on. Defaults to the currently logged in entity.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public EntityKey Entity;
         /** The result of the function execution. */
         public ExecuteFunctionResult FunctionResult;
         /** The player profile the function was invoked with. */
@@ -684,12 +678,6 @@ public class PlayFabCloudScriptModels {
     public static class PostFunctionResultForScheduledTaskRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /**
-         * The entity to perform this action on.
-         * @deprecated Do not use
-         */
-        @Deprecated
-        public EntityKey Entity;
         /** The result of the function execution */
         public ExecuteFunctionResult FunctionResult;
         /** The id of the scheduled task that invoked the function. */
