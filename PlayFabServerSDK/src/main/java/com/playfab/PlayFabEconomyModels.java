@@ -1644,7 +1644,7 @@ public class PlayFabEconomyModels {
 
     /** Given an entity type, entity identifier and container details, will subtract the specified inventory items. */
     public static class SubtractInventoryItemsRequest {
-        /** The amount to add for the current item. */
+        /** The amount to subtract for the current item. */
         public Integer Amount;
         /** The id of the entity's collection to perform this action on. (Default="default") */
         public String CollectionId;
