@@ -1662,6 +1662,7 @@ public class PlayFabServerModels {
         AnalysisSubscriptionFoundAlready,
         AnalysisSubscriptionManagementInvalidInput,
         InvalidGameCenterId,
+        InvalidNintendoSwitchAccountId,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,

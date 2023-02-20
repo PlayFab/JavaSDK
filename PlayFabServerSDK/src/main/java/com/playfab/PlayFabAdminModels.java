@@ -1935,6 +1935,7 @@ public class PlayFabAdminModels {
         AnalysisSubscriptionFoundAlready,
         AnalysisSubscriptionManagementInvalidInput,
         InvalidGameCenterId,
+        InvalidNintendoSwitchAccountId,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
