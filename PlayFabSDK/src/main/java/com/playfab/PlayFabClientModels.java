@@ -3120,6 +3120,8 @@ public class PlayFabClientModels {
          * (https://developers.google.com/identity/sign-in/android/offline-access) Google client API.
          */
         public String ServerAuthCode;
+        /** Optional boolean to opt out of setting the MPA email when creating a Google account, defaults to true. */
+        public Boolean SetEmail;
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
          * title has been selected.

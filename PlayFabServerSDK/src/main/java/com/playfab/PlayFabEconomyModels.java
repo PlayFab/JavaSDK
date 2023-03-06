@@ -23,6 +23,8 @@ public class PlayFabEconomyModels {
         public String CollectionId;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
+        /** The duration to add to the current item expiration date. */
+        public Double DurationInSeconds;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** ETags are used for concurrency checking when updating resources. */
@@ -100,6 +102,12 @@ public class PlayFabEconomyModels {
         /** The set of platform specific deep links for this item. */
         public ArrayList<DeepLink> DeepLinks;
         /**
+         * The Stack Id that will be used as default for this item in Inventory when an explicit one is not provided. This
+         * DefaultStackId can be a static stack id or '{guid}', which will generate a unique stack id for the item. If null,
+         * Inventory's default stack id will be used.
+         */
+        public String DefaultStackId;
+        /**
          * A dictionary of localized descriptions. Key is language code and localized string is the value. The neutral locale is
          * required.
          */
@@ -161,6 +169,8 @@ public class PlayFabEconomyModels {
     public static class CatalogPrice {
         /** The amounts of the catalog item price. */
         public ArrayList<CatalogPriceAmount> Amounts;
+        /** The per-unit duration this price can be used to purchase. */
+        public Double UnitDurationInSeconds;
         
     }
 
@@ -1074,6 +1084,11 @@ public class PlayFabEconomyModels {
         public Integer Amount;
         /** Game specific properties for display purposes. This is an arbitrary JSON blob. */
         public Object DisplayProperties;
+        /**
+         * Only used for subscriptions. The date of when the item will expire in UTC. If not provided then the product will be
+         * available indefinitely.
+         */
+        public Date ExpirationDate;
         /** The id of the item. This should correspond to the item id in the catalog. */
         public String Id;
         /** The stack id of the item. */
@@ -1178,6 +1193,8 @@ public class PlayFabEconomyModels {
          * false)
          */
         public Boolean DeleteEmptyStacks;
+        /** The duration to purchase. */
+        public Double DurationInSeconds;
         /** The inventory item the operation applies to. */
         public InventoryItemReference Item;
         /** The values to apply to a stack newly created by this operation. */
@@ -1205,6 +1222,8 @@ public class PlayFabEconomyModels {
          * (Default=false)
          */
         public Boolean DeleteEmptyStacks;
+        /** The duration to purchase. */
+        public Double DurationInSeconds;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** ETags are used for concurrency checking when updating resources. */
@@ -1637,6 +1656,8 @@ public class PlayFabEconomyModels {
          * false).
          */
         public Boolean DeleteEmptyStacks;
+        /** The duration to subtract from the current item expiration date. */
+        public Double DurationInSeconds;
         /** The inventory item the operation applies to. */
         public InventoryItemReference Item;
         
@@ -1655,6 +1676,8 @@ public class PlayFabEconomyModels {
          * (Default=false)
          */
         public Boolean DeleteEmptyStacks;
+        /** The duration to subtract from the current item expiration date. */
+        public Double DurationInSeconds;
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /** ETags are used for concurrency checking when updating resources. */
@@ -1717,6 +1740,8 @@ public class PlayFabEconomyModels {
     public static class TransactionOperation {
         /** The amount of items in this transaction. */
         public Integer Amount;
+        /** The duration modified in this transaction. */
+        public Double DurationInSeconds;
         /** The item id of the items in this transaction. */
         public String ItemId;
         /** The type of item that the operation occurred on. */
