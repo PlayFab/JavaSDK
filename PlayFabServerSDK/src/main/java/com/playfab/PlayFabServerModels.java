@@ -1663,6 +1663,12 @@ public class PlayFabServerModels {
         AnalysisSubscriptionManagementInvalidInput,
         InvalidGameCenterId,
         InvalidNintendoSwitchAccountId,
+        EntityAPIKeysNotSupported,
+        IpAddressBanned,
+        EntityLineageBanned,
+        NamespaceMismatch,
+        InvalidServiceConfiguration,
+        InvalidNamespaceMismatch,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1809,6 +1815,11 @@ public class PlayFabServerModels {
         EventSamplingInvalidEventNamespace,
         EventSamplingInvalidEventName,
         EventSamplingRatioNotFound,
+        TelemetryKeyNotFound,
+        TelemetryKeyInvalidName,
+        TelemetryKeyAlreadyExists,
+        TelemetryKeyInvalid,
+        TelemetryKeyCountOverLimit,
         EventSinkConnectionInvalid,
         EventSinkConnectionUnauthorized,
         EventSinkRegionInvalid,
@@ -2334,7 +2345,7 @@ public class PlayFabServerModels {
         public Long MaxBatchSize;
         /**
          * Number of seconds to keep the continuation token active. After token expiration it is not possible to continue paging
-         * results. Default is 300 (5 minutes). Maximum is 1,800 (30 minutes).
+         * results. Default is 300 (5 minutes). Maximum is 5,400 (90 minutes).
          */
         public Long SecondsToLive;
         /** Unique identifier for this segment. */
