@@ -1849,9 +1849,11 @@ public class PlayFabClientAPI {
 
     /**
      * Get details about all current running game servers matching the given parameters.
+     * @deprecated Please use MultiplayerServer/ListMultiplayerServers instead.
      * @param request CurrentGamesRequest
      * @return Async Task will return CurrentGamesResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CurrentGamesResult>> GetCurrentGamesAsync(final CurrentGamesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CurrentGamesResult>>() {
@@ -1863,9 +1865,11 @@ public class PlayFabClientAPI {
 
     /**
      * Get details about all current running game servers matching the given parameters.
+     * @deprecated Please use MultiplayerServer/ListMultiplayerServers instead.
      * @param request CurrentGamesRequest
      * @return CurrentGamesResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CurrentGamesResult> GetCurrentGames(final CurrentGamesRequest request) {
         FutureTask<PlayFabResult<CurrentGamesResult>> task = new FutureTask(new Callable<PlayFabResult<CurrentGamesResult>>() {
@@ -1883,7 +1887,11 @@ public class PlayFabClientAPI {
         }
     }
 
-    /** Get details about all current running game servers matching the given parameters. */
+    /**
+     * Get details about all current running game servers matching the given parameters.
+     * @deprecated Please use MultiplayerServer/ListMultiplayerServers instead.
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CurrentGamesResult> privateGetCurrentGamesAsync(final CurrentGamesRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
@@ -2112,9 +2120,11 @@ public class PlayFabClientAPI {
 
     /**
      * Get details about the regions hosting game servers matching the given parameters.
+     * @deprecated Please use MultiplayerServer/ListMultiplayerServers instead.
      * @param request GameServerRegionsRequest
      * @return Async Task will return GameServerRegionsResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GameServerRegionsResult>> GetGameServerRegionsAsync(final GameServerRegionsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GameServerRegionsResult>>() {
@@ -2126,9 +2136,11 @@ public class PlayFabClientAPI {
 
     /**
      * Get details about the regions hosting game servers matching the given parameters.
+     * @deprecated Please use MultiplayerServer/ListMultiplayerServers instead.
      * @param request GameServerRegionsRequest
      * @return GameServerRegionsResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GameServerRegionsResult> GetGameServerRegions(final GameServerRegionsRequest request) {
         FutureTask<PlayFabResult<GameServerRegionsResult>> task = new FutureTask(new Callable<PlayFabResult<GameServerRegionsResult>>() {
@@ -2146,7 +2158,11 @@ public class PlayFabClientAPI {
         }
     }
 
-    /** Get details about the regions hosting game servers matching the given parameters. */
+    /**
+     * Get details about the regions hosting game servers matching the given parameters.
+     * @deprecated Please use MultiplayerServer/ListMultiplayerServers instead.
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GameServerRegionsResult> privateGetGameServerRegionsAsync(final GameServerRegionsRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
@@ -7207,9 +7223,11 @@ public class PlayFabClientAPI {
      * found in a server instance matching the parameters, the slot will be assigned to that player, removing it from the
      * availabe set. In that case, the information on the game session will be returned, otherwise the Status returned will be
      * GameNotFound.
+     * @deprecated Please use Match/CreateMatchmakingTicket instead.
      * @param request MatchmakeRequest
      * @return Async Task will return MatchmakeResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<MatchmakeResult>> MatchmakeAsync(final MatchmakeRequest request) {
         return new FutureTask(new Callable<PlayFabResult<MatchmakeResult>>() {
@@ -7226,9 +7244,11 @@ public class PlayFabClientAPI {
      * found in a server instance matching the parameters, the slot will be assigned to that player, removing it from the
      * availabe set. In that case, the information on the game session will be returned, otherwise the Status returned will be
      * GameNotFound.
+     * @deprecated Please use Match/CreateMatchmakingTicket instead.
      * @param request MatchmakeRequest
      * @return MatchmakeResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<MatchmakeResult> Matchmake(final MatchmakeRequest request) {
         FutureTask<PlayFabResult<MatchmakeResult>> task = new FutureTask(new Callable<PlayFabResult<MatchmakeResult>>() {
@@ -7253,7 +7273,9 @@ public class PlayFabClientAPI {
      * found in a server instance matching the parameters, the slot will be assigned to that player, removing it from the
      * availabe set. In that case, the information on the game session will be returned, otherwise the Status returned will be
      * GameNotFound.
+     * @deprecated Please use Match/CreateMatchmakingTicket instead.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<MatchmakeResult> privateMatchmakeAsync(final MatchmakeRequest request) throws Exception {
         if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");

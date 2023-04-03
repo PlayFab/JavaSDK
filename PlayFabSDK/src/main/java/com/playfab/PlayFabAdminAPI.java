@@ -2360,9 +2360,11 @@ public class PlayFabAdminAPI {
 
     /**
      * Retrieves the details for a specific completed session, including links to standard out and standard error logs
+     * @deprecated Please use MultiplayerServer/GetMultiplayerSessionLogsBySessionId instead.
      * @param request GetMatchmakerGameInfoRequest
      * @return Async Task will return GetMatchmakerGameInfoResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetMatchmakerGameInfoResult>> GetMatchmakerGameInfoAsync(final GetMatchmakerGameInfoRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetMatchmakerGameInfoResult>>() {
@@ -2374,9 +2376,11 @@ public class PlayFabAdminAPI {
 
     /**
      * Retrieves the details for a specific completed session, including links to standard out and standard error logs
+     * @deprecated Please use MultiplayerServer/GetMultiplayerSessionLogsBySessionId instead.
      * @param request GetMatchmakerGameInfoRequest
      * @return GetMatchmakerGameInfoResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetMatchmakerGameInfoResult> GetMatchmakerGameInfo(final GetMatchmakerGameInfoRequest request) {
         FutureTask<PlayFabResult<GetMatchmakerGameInfoResult>> task = new FutureTask(new Callable<PlayFabResult<GetMatchmakerGameInfoResult>>() {
@@ -2394,7 +2398,11 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /** Retrieves the details for a specific completed session, including links to standard out and standard error logs */
+    /**
+     * Retrieves the details for a specific completed session, including links to standard out and standard error logs
+     * @deprecated Please use MultiplayerServer/GetMultiplayerSessionLogsBySessionId instead.
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetMatchmakerGameInfoResult> privateGetMatchmakerGameInfoAsync(final GetMatchmakerGameInfoRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -2422,9 +2430,11 @@ public class PlayFabAdminAPI {
 
     /**
      * Retrieves the details of defined game modes for the specified game server executable
+     * @deprecated Do not use
      * @param request GetMatchmakerGameModesRequest
      * @return Async Task will return GetMatchmakerGameModesResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetMatchmakerGameModesResult>> GetMatchmakerGameModesAsync(final GetMatchmakerGameModesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetMatchmakerGameModesResult>>() {
@@ -2436,9 +2446,11 @@ public class PlayFabAdminAPI {
 
     /**
      * Retrieves the details of defined game modes for the specified game server executable
+     * @deprecated Do not use
      * @param request GetMatchmakerGameModesRequest
      * @return GetMatchmakerGameModesResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetMatchmakerGameModesResult> GetMatchmakerGameModes(final GetMatchmakerGameModesRequest request) {
         FutureTask<PlayFabResult<GetMatchmakerGameModesResult>> task = new FutureTask(new Callable<PlayFabResult<GetMatchmakerGameModesResult>>() {
@@ -2456,7 +2468,11 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /** Retrieves the details of defined game modes for the specified game server executable */
+    /**
+     * Retrieves the details of defined game modes for the specified game server executable
+     * @deprecated Do not use
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetMatchmakerGameModesResult> privateGetMatchmakerGameModesAsync(final GetMatchmakerGameModesRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4560,9 +4576,11 @@ public class PlayFabAdminAPI {
 
     /**
      * Updates the build details for the specified game server executable
+     * @deprecated Do not use
      * @param request ModifyServerBuildRequest
      * @return Async Task will return ModifyServerBuildResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ModifyServerBuildResult>> ModifyServerBuildAsync(final ModifyServerBuildRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ModifyServerBuildResult>>() {
@@ -4574,9 +4592,11 @@ public class PlayFabAdminAPI {
 
     /**
      * Updates the build details for the specified game server executable
+     * @deprecated Do not use
      * @param request ModifyServerBuildRequest
      * @return ModifyServerBuildResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ModifyServerBuildResult> ModifyServerBuild(final ModifyServerBuildRequest request) {
         FutureTask<PlayFabResult<ModifyServerBuildResult>> task = new FutureTask(new Callable<PlayFabResult<ModifyServerBuildResult>>() {
@@ -4594,7 +4614,11 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /** Updates the build details for the specified game server executable */
+    /**
+     * Updates the build details for the specified game server executable
+     * @deprecated Do not use
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyServerBuildResult> privateModifyServerBuildAsync(final ModifyServerBuildRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");

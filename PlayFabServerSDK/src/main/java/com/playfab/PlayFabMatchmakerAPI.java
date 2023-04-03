@@ -15,9 +15,11 @@ public class PlayFabMatchmakerAPI {
 
     /**
      * Validates a user with the PlayFab service
+     * @deprecated Do not use
      * @param request AuthUserRequest
      * @return Async Task will return AuthUserResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<AuthUserResponse>> AuthUserAsync(final AuthUserRequest request) {
         return new FutureTask(new Callable<PlayFabResult<AuthUserResponse>>() {
@@ -29,9 +31,11 @@ public class PlayFabMatchmakerAPI {
 
     /**
      * Validates a user with the PlayFab service
+     * @deprecated Do not use
      * @param request AuthUserRequest
      * @return AuthUserResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<AuthUserResponse> AuthUser(final AuthUserRequest request) {
         FutureTask<PlayFabResult<AuthUserResponse>> task = new FutureTask(new Callable<PlayFabResult<AuthUserResponse>>() {
@@ -49,7 +53,11 @@ public class PlayFabMatchmakerAPI {
         }
     }
 
-    /** Validates a user with the PlayFab service */
+    /**
+     * Validates a user with the PlayFab service
+     * @deprecated Do not use
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AuthUserResponse> privateAuthUserAsync(final AuthUserRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -77,9 +85,11 @@ public class PlayFabMatchmakerAPI {
 
     /**
      * Informs the PlayFab game server hosting service that the indicated user has joined the Game Server Instance specified
+     * @deprecated Do not use
      * @param request PlayerJoinedRequest
      * @return Async Task will return PlayerJoinedResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<PlayerJoinedResponse>> PlayerJoinedAsync(final PlayerJoinedRequest request) {
         return new FutureTask(new Callable<PlayFabResult<PlayerJoinedResponse>>() {
@@ -91,9 +101,11 @@ public class PlayFabMatchmakerAPI {
 
     /**
      * Informs the PlayFab game server hosting service that the indicated user has joined the Game Server Instance specified
+     * @deprecated Do not use
      * @param request PlayerJoinedRequest
      * @return PlayerJoinedResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<PlayerJoinedResponse> PlayerJoined(final PlayerJoinedRequest request) {
         FutureTask<PlayFabResult<PlayerJoinedResponse>> task = new FutureTask(new Callable<PlayFabResult<PlayerJoinedResponse>>() {
@@ -111,7 +123,11 @@ public class PlayFabMatchmakerAPI {
         }
     }
 
-    /** Informs the PlayFab game server hosting service that the indicated user has joined the Game Server Instance specified */
+    /**
+     * Informs the PlayFab game server hosting service that the indicated user has joined the Game Server Instance specified
+     * @deprecated Do not use
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<PlayerJoinedResponse> privatePlayerJoinedAsync(final PlayerJoinedRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -139,9 +155,11 @@ public class PlayFabMatchmakerAPI {
 
     /**
      * Informs the PlayFab game server hosting service that the indicated user has left the Game Server Instance specified
+     * @deprecated Do not use
      * @param request PlayerLeftRequest
      * @return Async Task will return PlayerLeftResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<PlayerLeftResponse>> PlayerLeftAsync(final PlayerLeftRequest request) {
         return new FutureTask(new Callable<PlayFabResult<PlayerLeftResponse>>() {
@@ -153,9 +171,11 @@ public class PlayFabMatchmakerAPI {
 
     /**
      * Informs the PlayFab game server hosting service that the indicated user has left the Game Server Instance specified
+     * @deprecated Do not use
      * @param request PlayerLeftRequest
      * @return PlayerLeftResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<PlayerLeftResponse> PlayerLeft(final PlayerLeftRequest request) {
         FutureTask<PlayFabResult<PlayerLeftResponse>> task = new FutureTask(new Callable<PlayFabResult<PlayerLeftResponse>>() {
@@ -173,7 +193,11 @@ public class PlayFabMatchmakerAPI {
         }
     }
 
-    /** Informs the PlayFab game server hosting service that the indicated user has left the Game Server Instance specified */
+    /**
+     * Informs the PlayFab game server hosting service that the indicated user has left the Game Server Instance specified
+     * @deprecated Do not use
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<PlayerLeftResponse> privatePlayerLeftAsync(final PlayerLeftRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -202,9 +226,11 @@ public class PlayFabMatchmakerAPI {
     /**
      * Retrieves the relevant details for a specified user, which the external match-making service can then use to compute
      * effective matches
+     * @deprecated Do not use
      * @param request UserInfoRequest
      * @return Async Task will return UserInfoResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UserInfoResponse>> UserInfoAsync(final UserInfoRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UserInfoResponse>>() {
@@ -217,9 +243,11 @@ public class PlayFabMatchmakerAPI {
     /**
      * Retrieves the relevant details for a specified user, which the external match-making service can then use to compute
      * effective matches
+     * @deprecated Do not use
      * @param request UserInfoRequest
      * @return UserInfoResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<UserInfoResponse> UserInfo(final UserInfoRequest request) {
         FutureTask<PlayFabResult<UserInfoResponse>> task = new FutureTask(new Callable<PlayFabResult<UserInfoResponse>>() {
@@ -240,7 +268,9 @@ public class PlayFabMatchmakerAPI {
     /**
      * Retrieves the relevant details for a specified user, which the external match-making service can then use to compute
      * effective matches
+     * @deprecated Do not use
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UserInfoResponse> privateUserInfoAsync(final UserInfoRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");

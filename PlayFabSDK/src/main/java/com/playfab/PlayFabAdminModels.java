@@ -1372,6 +1372,8 @@ public class PlayFabAdminModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static enum GameBuildStatus {
         Available,
         Validating,
@@ -1380,6 +1382,8 @@ public class PlayFabAdminModels {
         FailedToProcess
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class GameModeInfo {
         /** specific game mode type */
         public String Gamemode;
@@ -2070,6 +2074,7 @@ public class PlayFabAdminModels {
         AsyncExportNotInFlight,
         AsyncExportNotFound,
         AsyncExportRateLimitExceeded,
+        AnalyticsSegmentCountOverLimit,
         SnapshotNotFound,
         InventoryApiNotImplemented,
         LobbyDoesNotExist,
@@ -2093,6 +2098,7 @@ public class PlayFabAdminModels {
         TelemetryKeyAlreadyExists,
         TelemetryKeyInvalid,
         TelemetryKeyCountOverLimit,
+        TelemetryKeyDeactivated,
         EventSinkConnectionInvalid,
         EventSinkConnectionUnauthorized,
         EventSinkRegionInvalid,
@@ -2246,12 +2252,16 @@ public class PlayFabAdminModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class GetMatchmakerGameInfoRequest {
         /** unique identifier of the lobby for which info is being requested */
         public String LobbyId;
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class GetMatchmakerGameInfoResult {
         /** version identifier of the game server executable binary being run */
         public String BuildVersion;
@@ -2285,13 +2295,17 @@ public class PlayFabAdminModels {
      * These details are used by the PlayFab matchmaking service to determine if an existing Game Server Instance has room for
      * additional users, and by the PlayFab game server management service to determine when a new Game Server Host should be
      * created in order to prevent excess load on existing Hosts.
+     * @deprecated Do not use
      */
+    @Deprecated
     public static class GetMatchmakerGameModesRequest {
         /** previously uploaded build version for which game modes are being requested */
         public String BuildVersion;
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class GetMatchmakerGameModesResult {
         /** array of game modes available for the specified build */
         public ArrayList<GameModeInfo> GameModes;
@@ -3160,6 +3174,8 @@ public class PlayFabAdminModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class ModifyServerBuildRequest {
         /** array of regions where this build can used, when it is active */
         public ArrayList<Region> ActiveRegions;
@@ -3185,6 +3201,8 @@ public class PlayFabAdminModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class ModifyServerBuildResult {
         /** array of regions where this build can used, when it is active */
         public ArrayList<Region> ActiveRegions;
@@ -3595,6 +3613,8 @@ public class PlayFabAdminModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static enum Region {
         USCentral,
         USEast,

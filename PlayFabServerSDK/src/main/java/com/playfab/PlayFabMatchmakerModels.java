@@ -9,13 +9,17 @@ public class PlayFabMatchmakerModels {
      * This API allows the external match-making service to confirm that the user has a valid Session Ticket for the title, in
      * order to securely enable match-making. The client passes the user's Session Ticket to the external match-making service,
      * which then passes the Session Ticket in as the AuthorizationTicket in this call.
+     * @deprecated Do not use
      */
+    @Deprecated
     public static class AuthUserRequest {
         /** Session Ticket provided by the client. */
         public String AuthorizationTicket;
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class AuthUserResponse {
         /** Boolean indicating if the user has been authorized to use the external match-making service. */
         public Boolean Authorized;
@@ -30,7 +34,9 @@ public class PlayFabMatchmakerModels {
      * be matched to a catalog entry, which contains the additional information. Also note that Custom Data is only set when
      * the User's specific instance has updated the CustomData via a call to UpdateUserInventoryItemCustomData. Other fields
      * such as UnitPrice and UnitCurrency are only set when the item was granted via a purchase.
+     * @deprecated Do not use
      */
+    @Deprecated
     public static class ItemInstance implements Comparable<ItemInstance> {
         /** Game specific comment associated with this instance when it was added to the user inventory. */
         public String Annotation;
@@ -76,6 +82,8 @@ public class PlayFabMatchmakerModels {
         }
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class PlayerJoinedRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
@@ -89,10 +97,14 @@ public class PlayFabMatchmakerModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class PlayerJoinedResponse {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class PlayerLeftRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
@@ -106,10 +118,14 @@ public class PlayFabMatchmakerModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class PlayerLeftResponse {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class UserInfoRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
@@ -123,6 +139,8 @@ public class PlayFabMatchmakerModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class UserInfoResponse {
         /** Array of inventory items in the user's current inventory. */
         @Unordered("ItemInstanceId")
@@ -144,6 +162,8 @@ public class PlayFabMatchmakerModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class VirtualCurrencyRechargeTime {
         /**
          * Maximum value to which the regenerating currency will automatically increment. Note that it can exceed this value
