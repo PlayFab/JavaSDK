@@ -265,6 +265,68 @@ public class PlayFabProfilesAPI {
     }
 
     /**
+     * Retrieves the title player accounts associated with the given XUIDs.
+     * @param request GetTitlePlayersFromXboxLiveIDsRequest
+     * @return Async Task will return GetTitlePlayersFromProviderIDsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetTitlePlayersFromProviderIDsResponse>> GetTitlePlayersFromXboxLiveIDsAsync(final GetTitlePlayersFromXboxLiveIDsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetTitlePlayersFromProviderIDsResponse>>() {
+            public PlayFabResult<GetTitlePlayersFromProviderIDsResponse> call() throws Exception {
+                return privateGetTitlePlayersFromXboxLiveIDsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the title player accounts associated with the given XUIDs.
+     * @param request GetTitlePlayersFromXboxLiveIDsRequest
+     * @return GetTitlePlayersFromProviderIDsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetTitlePlayersFromProviderIDsResponse> GetTitlePlayersFromXboxLiveIDs(final GetTitlePlayersFromXboxLiveIDsRequest request) {
+        FutureTask<PlayFabResult<GetTitlePlayersFromProviderIDsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetTitlePlayersFromProviderIDsResponse>>() {
+            public PlayFabResult<GetTitlePlayersFromProviderIDsResponse> call() throws Exception {
+                return privateGetTitlePlayersFromXboxLiveIDsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetTitlePlayersFromProviderIDsResponse> exceptionResult = new PlayFabResult<GetTitlePlayersFromProviderIDsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Retrieves the title player accounts associated with the given XUIDs. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetTitlePlayersFromProviderIDsResponse> privateGetTitlePlayersFromXboxLiveIDsAsync(final GetTitlePlayersFromXboxLiveIDsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Profile/GetTitlePlayersFromXboxLiveIDs"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetTitlePlayersFromProviderIDsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetTitlePlayersFromProviderIDsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetTitlePlayersFromProviderIDsResponse>>(){}.getType());
+        GetTitlePlayersFromProviderIDsResponse result = resultData.data;
+
+        PlayFabResult<GetTitlePlayersFromProviderIDsResponse> pfResult = new PlayFabResult<GetTitlePlayersFromProviderIDsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Sets the global title access policy
      * @param request SetGlobalPolicyRequest
      * @return Async Task will return SetGlobalPolicyResponse

@@ -226,6 +226,28 @@ public class PlayFabProfilesModels {
         
     }
 
+    public static class GetTitlePlayersFromProviderIDsResponse {
+        /**
+         * Dictionary of provider identifiers mapped to title_player_account lineage. Missing lineage indicates the player either
+         * doesn't exist or doesn't play the requested title.
+         */
+        public Map<String,EntityLineage> TitlePlayerAccounts;
+        
+    }
+
+    /** Given a collection of Xbox IDs (XUIDs), returns all title player accounts. */
+    public static class GetTitlePlayersFromXboxLiveIDsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Xbox Sandbox the players had on their Xbox tokens. */
+        public String Sandbox;
+        /** Optional ID of title to get players from, required if calling using a master_player_account. */
+        public String TitleId;
+        /** List of Xbox Live XUIDs */
+        public ArrayList<String> XboxLiveIds;
+        
+    }
+
     public static enum OperationTypes {
         Created,
         Updated,

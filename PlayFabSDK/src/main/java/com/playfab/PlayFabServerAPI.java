@@ -991,9 +991,11 @@ public class PlayFabServerAPI {
 
     /**
      * Inform the matchmaker that a Game Server Instance is removed.
+     * @deprecated Do not use
      * @param request DeregisterGameRequest
      * @return Async Task will return DeregisterGameResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<DeregisterGameResponse>> DeregisterGameAsync(final DeregisterGameRequest request) {
         return new FutureTask(new Callable<PlayFabResult<DeregisterGameResponse>>() {
@@ -1005,9 +1007,11 @@ public class PlayFabServerAPI {
 
     /**
      * Inform the matchmaker that a Game Server Instance is removed.
+     * @deprecated Do not use
      * @param request DeregisterGameRequest
      * @return DeregisterGameResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<DeregisterGameResponse> DeregisterGame(final DeregisterGameRequest request) {
         FutureTask<PlayFabResult<DeregisterGameResponse>> task = new FutureTask(new Callable<PlayFabResult<DeregisterGameResponse>>() {
@@ -1025,7 +1029,11 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Inform the matchmaker that a Game Server Instance is removed. */
+    /**
+     * Inform the matchmaker that a Game Server Instance is removed.
+     * @deprecated Do not use
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeregisterGameResponse> privateDeregisterGameAsync(final DeregisterGameRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4877,6 +4885,68 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Links the Steam account associated with the provided Steam ID to the user's PlayFab account
+     * @param request LinkSteamIdRequest
+     * @return Async Task will return LinkSteamIdResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<LinkSteamIdResult>> LinkSteamIdAsync(final LinkSteamIdRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<LinkSteamIdResult>>() {
+            public PlayFabResult<LinkSteamIdResult> call() throws Exception {
+                return privateLinkSteamIdAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Links the Steam account associated with the provided Steam ID to the user's PlayFab account
+     * @param request LinkSteamIdRequest
+     * @return LinkSteamIdResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<LinkSteamIdResult> LinkSteamId(final LinkSteamIdRequest request) {
+        FutureTask<PlayFabResult<LinkSteamIdResult>> task = new FutureTask(new Callable<PlayFabResult<LinkSteamIdResult>>() {
+            public PlayFabResult<LinkSteamIdResult> call() throws Exception {
+                return privateLinkSteamIdAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<LinkSteamIdResult> exceptionResult = new PlayFabResult<LinkSteamIdResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Links the Steam account associated with the provided Steam ID to the user's PlayFab account */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<LinkSteamIdResult> privateLinkSteamIdAsync(final LinkSteamIdRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/LinkSteamId"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<LinkSteamIdResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<LinkSteamIdResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LinkSteamIdResult>>(){}.getType());
+        LinkSteamIdResult result = resultData.data;
+
+        PlayFabResult<LinkSteamIdResult> pfResult = new PlayFabResult<LinkSteamIdResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Links the Xbox Live account associated with the provided access code to the user's PlayFab account
      * @param request LinkXboxAccountRequest
      * @return Async Task will return LinkXboxAccountResult
@@ -5456,9 +5526,11 @@ public class PlayFabServerAPI {
 
     /**
      * Informs the PlayFab match-making service that the user specified has left the Game Server Instance
+     * @deprecated Do not use
      * @param request NotifyMatchmakerPlayerLeftRequest
      * @return Async Task will return NotifyMatchmakerPlayerLeftResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<NotifyMatchmakerPlayerLeftResult>> NotifyMatchmakerPlayerLeftAsync(final NotifyMatchmakerPlayerLeftRequest request) {
         return new FutureTask(new Callable<PlayFabResult<NotifyMatchmakerPlayerLeftResult>>() {
@@ -5470,9 +5542,11 @@ public class PlayFabServerAPI {
 
     /**
      * Informs the PlayFab match-making service that the user specified has left the Game Server Instance
+     * @deprecated Do not use
      * @param request NotifyMatchmakerPlayerLeftRequest
      * @return NotifyMatchmakerPlayerLeftResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<NotifyMatchmakerPlayerLeftResult> NotifyMatchmakerPlayerLeft(final NotifyMatchmakerPlayerLeftRequest request) {
         FutureTask<PlayFabResult<NotifyMatchmakerPlayerLeftResult>> task = new FutureTask(new Callable<PlayFabResult<NotifyMatchmakerPlayerLeftResult>>() {
@@ -5490,7 +5564,11 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Informs the PlayFab match-making service that the user specified has left the Game Server Instance */
+    /**
+     * Informs the PlayFab match-making service that the user specified has left the Game Server Instance
+     * @deprecated Do not use
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<NotifyMatchmakerPlayerLeftResult> privateNotifyMatchmakerPlayerLeftAsync(final NotifyMatchmakerPlayerLeftRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5585,9 +5663,11 @@ public class PlayFabServerAPI {
 
     /**
      * Validates a Game Server session ticket and returns details about the user
+     * @deprecated Do not use
      * @param request RedeemMatchmakerTicketRequest
      * @return Async Task will return RedeemMatchmakerTicketResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<RedeemMatchmakerTicketResult>> RedeemMatchmakerTicketAsync(final RedeemMatchmakerTicketRequest request) {
         return new FutureTask(new Callable<PlayFabResult<RedeemMatchmakerTicketResult>>() {
@@ -5599,9 +5679,11 @@ public class PlayFabServerAPI {
 
     /**
      * Validates a Game Server session ticket and returns details about the user
+     * @deprecated Do not use
      * @param request RedeemMatchmakerTicketRequest
      * @return RedeemMatchmakerTicketResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<RedeemMatchmakerTicketResult> RedeemMatchmakerTicket(final RedeemMatchmakerTicketRequest request) {
         FutureTask<PlayFabResult<RedeemMatchmakerTicketResult>> task = new FutureTask(new Callable<PlayFabResult<RedeemMatchmakerTicketResult>>() {
@@ -5619,7 +5701,11 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Validates a Game Server session ticket and returns details about the user */
+    /**
+     * Validates a Game Server session ticket and returns details about the user
+     * @deprecated Do not use
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RedeemMatchmakerTicketResult> privateRedeemMatchmakerTicketAsync(final RedeemMatchmakerTicketRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5647,9 +5733,11 @@ public class PlayFabServerAPI {
 
     /**
      * Set the state of the indicated Game Server Instance. Also update the heartbeat for the instance.
+     * @deprecated Do not use
      * @param request RefreshGameServerInstanceHeartbeatRequest
      * @return Async Task will return RefreshGameServerInstanceHeartbeatResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<RefreshGameServerInstanceHeartbeatResult>> RefreshGameServerInstanceHeartbeatAsync(final RefreshGameServerInstanceHeartbeatRequest request) {
         return new FutureTask(new Callable<PlayFabResult<RefreshGameServerInstanceHeartbeatResult>>() {
@@ -5661,9 +5749,11 @@ public class PlayFabServerAPI {
 
     /**
      * Set the state of the indicated Game Server Instance. Also update the heartbeat for the instance.
+     * @deprecated Do not use
      * @param request RefreshGameServerInstanceHeartbeatRequest
      * @return RefreshGameServerInstanceHeartbeatResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<RefreshGameServerInstanceHeartbeatResult> RefreshGameServerInstanceHeartbeat(final RefreshGameServerInstanceHeartbeatRequest request) {
         FutureTask<PlayFabResult<RefreshGameServerInstanceHeartbeatResult>> task = new FutureTask(new Callable<PlayFabResult<RefreshGameServerInstanceHeartbeatResult>>() {
@@ -5681,7 +5771,11 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Set the state of the indicated Game Server Instance. Also update the heartbeat for the instance. */
+    /**
+     * Set the state of the indicated Game Server Instance. Also update the heartbeat for the instance.
+     * @deprecated Do not use
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RefreshGameServerInstanceHeartbeatResult> privateRefreshGameServerInstanceHeartbeatAsync(final RefreshGameServerInstanceHeartbeatRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5709,9 +5803,11 @@ public class PlayFabServerAPI {
 
     /**
      * Inform the matchmaker that a new Game Server Instance is added.
+     * @deprecated Do not use
      * @param request RegisterGameRequest
      * @return Async Task will return RegisterGameResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<RegisterGameResponse>> RegisterGameAsync(final RegisterGameRequest request) {
         return new FutureTask(new Callable<PlayFabResult<RegisterGameResponse>>() {
@@ -5723,9 +5819,11 @@ public class PlayFabServerAPI {
 
     /**
      * Inform the matchmaker that a new Game Server Instance is added.
+     * @deprecated Do not use
      * @param request RegisterGameRequest
      * @return RegisterGameResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<RegisterGameResponse> RegisterGame(final RegisterGameRequest request) {
         FutureTask<PlayFabResult<RegisterGameResponse>> task = new FutureTask(new Callable<PlayFabResult<RegisterGameResponse>>() {
@@ -5743,7 +5841,11 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Inform the matchmaker that a new Game Server Instance is added. */
+    /**
+     * Inform the matchmaker that a new Game Server Instance is added.
+     * @deprecated Do not use
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RegisterGameResponse> privateRegisterGameAsync(final RegisterGameRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -6732,9 +6834,11 @@ public class PlayFabServerAPI {
 
     /**
      * Sets the custom data of the indicated Game Server Instance
+     * @deprecated Do not use
      * @param request SetGameServerInstanceDataRequest
      * @return Async Task will return SetGameServerInstanceDataResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<SetGameServerInstanceDataResult>> SetGameServerInstanceDataAsync(final SetGameServerInstanceDataRequest request) {
         return new FutureTask(new Callable<PlayFabResult<SetGameServerInstanceDataResult>>() {
@@ -6746,9 +6850,11 @@ public class PlayFabServerAPI {
 
     /**
      * Sets the custom data of the indicated Game Server Instance
+     * @deprecated Do not use
      * @param request SetGameServerInstanceDataRequest
      * @return SetGameServerInstanceDataResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<SetGameServerInstanceDataResult> SetGameServerInstanceData(final SetGameServerInstanceDataRequest request) {
         FutureTask<PlayFabResult<SetGameServerInstanceDataResult>> task = new FutureTask(new Callable<PlayFabResult<SetGameServerInstanceDataResult>>() {
@@ -6766,7 +6872,11 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Sets the custom data of the indicated Game Server Instance */
+    /**
+     * Sets the custom data of the indicated Game Server Instance
+     * @deprecated Do not use
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetGameServerInstanceDataResult> privateSetGameServerInstanceDataAsync(final SetGameServerInstanceDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -6794,9 +6904,11 @@ public class PlayFabServerAPI {
 
     /**
      * Set the state of the indicated Game Server Instance.
+     * @deprecated Do not use
      * @param request SetGameServerInstanceStateRequest
      * @return Async Task will return SetGameServerInstanceStateResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<SetGameServerInstanceStateResult>> SetGameServerInstanceStateAsync(final SetGameServerInstanceStateRequest request) {
         return new FutureTask(new Callable<PlayFabResult<SetGameServerInstanceStateResult>>() {
@@ -6808,9 +6920,11 @@ public class PlayFabServerAPI {
 
     /**
      * Set the state of the indicated Game Server Instance.
+     * @deprecated Do not use
      * @param request SetGameServerInstanceStateRequest
      * @return SetGameServerInstanceStateResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<SetGameServerInstanceStateResult> SetGameServerInstanceState(final SetGameServerInstanceStateRequest request) {
         FutureTask<PlayFabResult<SetGameServerInstanceStateResult>> task = new FutureTask(new Callable<PlayFabResult<SetGameServerInstanceStateResult>>() {
@@ -6828,7 +6942,11 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Set the state of the indicated Game Server Instance. */
+    /**
+     * Set the state of the indicated Game Server Instance.
+     * @deprecated Do not use
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetGameServerInstanceStateResult> privateSetGameServerInstanceStateAsync(final SetGameServerInstanceStateRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -6856,9 +6974,11 @@ public class PlayFabServerAPI {
 
     /**
      * Set custom tags for the specified Game Server Instance
+     * @deprecated Do not use
      * @param request SetGameServerInstanceTagsRequest
      * @return Async Task will return SetGameServerInstanceTagsResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<SetGameServerInstanceTagsResult>> SetGameServerInstanceTagsAsync(final SetGameServerInstanceTagsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<SetGameServerInstanceTagsResult>>() {
@@ -6870,9 +6990,11 @@ public class PlayFabServerAPI {
 
     /**
      * Set custom tags for the specified Game Server Instance
+     * @deprecated Do not use
      * @param request SetGameServerInstanceTagsRequest
      * @return SetGameServerInstanceTagsResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<SetGameServerInstanceTagsResult> SetGameServerInstanceTags(final SetGameServerInstanceTagsRequest request) {
         FutureTask<PlayFabResult<SetGameServerInstanceTagsResult>> task = new FutureTask(new Callable<PlayFabResult<SetGameServerInstanceTagsResult>>() {
@@ -6890,7 +7012,11 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Set custom tags for the specified Game Server Instance */
+    /**
+     * Set custom tags for the specified Game Server Instance
+     * @deprecated Do not use
+     */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetGameServerInstanceTagsResult> privateSetGameServerInstanceTagsAsync(final SetGameServerInstanceTagsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -7547,6 +7673,68 @@ public class PlayFabServerAPI {
         UnlinkServerCustomIdResult result = resultData.data;
 
         PlayFabResult<UnlinkServerCustomIdResult> pfResult = new PlayFabResult<UnlinkServerCustomIdResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Unlinks the Steam account associated with the provided Steam ID to the user's PlayFab account
+     * @param request UnlinkSteamIdRequest
+     * @return Async Task will return UnlinkSteamIdResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<UnlinkSteamIdResult>> UnlinkSteamIdAsync(final UnlinkSteamIdRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<UnlinkSteamIdResult>>() {
+            public PlayFabResult<UnlinkSteamIdResult> call() throws Exception {
+                return privateUnlinkSteamIdAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Unlinks the Steam account associated with the provided Steam ID to the user's PlayFab account
+     * @param request UnlinkSteamIdRequest
+     * @return UnlinkSteamIdResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<UnlinkSteamIdResult> UnlinkSteamId(final UnlinkSteamIdRequest request) {
+        FutureTask<PlayFabResult<UnlinkSteamIdResult>> task = new FutureTask(new Callable<PlayFabResult<UnlinkSteamIdResult>>() {
+            public PlayFabResult<UnlinkSteamIdResult> call() throws Exception {
+                return privateUnlinkSteamIdAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<UnlinkSteamIdResult> exceptionResult = new PlayFabResult<UnlinkSteamIdResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Unlinks the Steam account associated with the provided Steam ID to the user's PlayFab account */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<UnlinkSteamIdResult> privateUnlinkSteamIdAsync(final UnlinkSteamIdRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/UnlinkSteamId"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<UnlinkSteamIdResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<UnlinkSteamIdResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UnlinkSteamIdResult>>(){}.getType());
+        UnlinkSteamIdResult result = resultData.data;
+
+        PlayFabResult<UnlinkSteamIdResult> pfResult = new PlayFabResult<UnlinkSteamIdResult>();
         pfResult.Result = result;
         return pfResult;
     }
