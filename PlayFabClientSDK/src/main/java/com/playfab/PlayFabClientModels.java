@@ -1464,18 +1464,6 @@ public class PlayFabClientModels {
          * comma-separated list of platforms.
          */
         public ExternalFriendSources ExternalPlatformFriends;
-        /**
-         * Indicates whether Facebook friends should be included in the response. Default is true.
-         * @deprecated Please use ExternalPlatformFriends instead.
-         */
-        @Deprecated
-        public Boolean IncludeFacebookFriends;
-        /**
-         * Indicates whether Steam service friends should be included in the response. Default is true.
-         * @deprecated Please use ExternalPlatformFriends instead.
-         */
-        @Deprecated
-        public Boolean IncludeSteamFriends;
         /** Maximum number of entries to retrieve. Default 10, maximum 100. */
         public Integer MaxResultsCount;
         /** PlayFab unique identifier of the user to center the leaderboard around. If null will center on the logged in user. */
@@ -1519,18 +1507,6 @@ public class PlayFabClientModels {
          * comma-separated list of platforms.
          */
         public ExternalFriendSources ExternalPlatformFriends;
-        /**
-         * Indicates whether Facebook friends should be included in the response. Default is true.
-         * @deprecated Please use ExternalPlatformFriends instead.
-         */
-        @Deprecated
-        public Boolean IncludeFacebookFriends;
-        /**
-         * Indicates whether Steam service friends should be included in the response. Default is true.
-         * @deprecated Please use ExternalPlatformFriends instead.
-         */
-        @Deprecated
-        public Boolean IncludeSteamFriends;
         /** Maximum number of entries to retrieve. Default 10, maximum 100. */
         public Integer MaxResultsCount;
         /**
@@ -1558,18 +1534,6 @@ public class PlayFabClientModels {
          * comma-separated list of platforms.
          */
         public ExternalFriendSources ExternalPlatformFriends;
-        /**
-         * Indicates whether Facebook friends should be included in the response. Default is true.
-         * @deprecated Please use ExternalPlatformFriends instead.
-         */
-        @Deprecated
-        public Boolean IncludeFacebookFriends;
-        /**
-         * Indicates whether Steam service friends should be included in the response. Default is true.
-         * @deprecated Please use ExternalPlatformFriends instead.
-         */
-        @Deprecated
-        public Boolean IncludeSteamFriends;
         /**
          * If non-null, this determines which properties of the resulting player profiles to return. For API calls from the client,
          * only the allowed client profile properties for the title may be requested. These allowed properties are configured in

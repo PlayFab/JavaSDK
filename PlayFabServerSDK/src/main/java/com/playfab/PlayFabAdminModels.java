@@ -2113,7 +2113,17 @@ public class PlayFabAdminModels {
         EventSinkDatabaseNotFound,
         OperationCanceled,
         InvalidDisplayNameRandomSuffixLength,
-        AllowNonUniquePlayerDisplayNamesDisableNotAllowed
+        AllowNonUniquePlayerDisplayNamesDisableNotAllowed,
+        PartitionedEventInvalid,
+        PartitionedEventCountOverLimit,
+        PlayerCustomPropertiesPropertyNameTooLong,
+        PlayerCustomPropertiesPropertyNameIsInvalid,
+        PlayerCustomPropertiesStringPropertyValueTooLong,
+        PlayerCustomPropertiesValueIsInvalidType,
+        PlayerCustomPropertiesVersionMismatch,
+        PlayerCustomPropertiesPropertyCountTooHigh,
+        PlayerCustomPropertiesDuplicatePropertyName,
+        PlayerCustomPropertiesPropertyDoesNotExist
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {

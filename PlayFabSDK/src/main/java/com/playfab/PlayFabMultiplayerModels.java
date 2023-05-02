@@ -1074,18 +1074,6 @@ public class PlayFabMultiplayerModels {
     public static class FindFriendLobbiesRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /**
-         * Controls whether this query should link to friends made on the Facebook network. Defaults to false
-         * @deprecated Please use ExternalPlatformFriends instead.
-         */
-        @Deprecated
-        public Boolean ExcludeFacebookFriends;
-        /**
-         * Controls whether this query should link to friends made on the Steam network. Defaults to false
-         * @deprecated Please use ExternalPlatformFriends instead.
-         */
-        @Deprecated
-        public Boolean ExcludeSteamFriends;
         /** Indicates which other platforms' friends this query should link to. */
         public ExternalFriendSources ExternalPlatformFriends;
         /**
@@ -1312,6 +1300,8 @@ public class PlayFabMultiplayerModels {
         public String StartMultiplayerServerCommand;
         /** The VM size the build was created on. */
         public AzureVmSize VmSize;
+        /** The configuration for the VmStartupScript feature for the build */
+        public VmStartupScriptConfiguration VmStartupScriptConfiguration;
         
     }
 
@@ -2640,14 +2630,34 @@ public class PlayFabMultiplayerModels {
     }
 
     public static class VmStartupScriptConfiguration {
+        /** Optional port requests (name/protocol) that will be used by the VmStartupScript. Max of 5 requests. */
+        public ArrayList<VmStartupScriptPortRequest> PortRequests;
         /** Asset which contains the VmStartupScript script and any other required files. */
         public AssetReference VmStartupScriptAssetReference;
         
     }
 
     public static class VmStartupScriptParams {
+        /** Optional port requests (name/protocol) that will be used by the VmStartupScript. Max of 5 requests. */
+        public ArrayList<VmStartupScriptPortRequestParams> PortRequests;
         /** Asset which contains the VmStartupScript script and any other required files. */
         public AssetReferenceParams VmStartupScriptAssetReference;
+        
+    }
+
+    public static class VmStartupScriptPortRequest {
+        /** The name for the port. */
+        public String Name;
+        /** The protocol for the port. */
+        public ProtocolType Protocol;
+        
+    }
+
+    public static class VmStartupScriptPortRequestParams {
+        /** The name for the port. */
+        public String Name;
+        /** The protocol for the port. */
+        public ProtocolType Protocol;
         
     }
 
