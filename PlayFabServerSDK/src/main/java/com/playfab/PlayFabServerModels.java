@@ -1842,7 +1842,17 @@ public class PlayFabServerModels {
         EventSinkDatabaseNotFound,
         OperationCanceled,
         InvalidDisplayNameRandomSuffixLength,
-        AllowNonUniquePlayerDisplayNamesDisableNotAllowed
+        AllowNonUniquePlayerDisplayNamesDisableNotAllowed,
+        PartitionedEventInvalid,
+        PartitionedEventCountOverLimit,
+        PlayerCustomPropertiesPropertyNameTooLong,
+        PlayerCustomPropertiesPropertyNameIsInvalid,
+        PlayerCustomPropertiesStringPropertyValueTooLong,
+        PlayerCustomPropertiesValueIsInvalidType,
+        PlayerCustomPropertiesVersionMismatch,
+        PlayerCustomPropertiesPropertyCountTooHigh,
+        PlayerCustomPropertiesDuplicatePropertyName,
+        PlayerCustomPropertiesPropertyDoesNotExist
     }
 
     public static class GenericPlayFabIdPair {
@@ -2018,18 +2028,6 @@ public class PlayFabServerModels {
          * comma-separated list of platforms.
          */
         public ExternalFriendSources ExternalPlatformFriends;
-        /**
-         * Indicates whether Facebook friends should be included in the response. Default is true.
-         * @deprecated Please use ExternalPlatformFriends instead.
-         */
-        @Deprecated
-        public Boolean IncludeFacebookFriends;
-        /**
-         * Indicates whether Steam service friends should be included in the response. Default is true.
-         * @deprecated Please use ExternalPlatformFriends instead.
-         */
-        @Deprecated
-        public Boolean IncludeSteamFriends;
         /** Maximum number of entries to retrieve. */
         public Integer MaxResultsCount;
         /** The player whose friend leaderboard to get */
@@ -2059,18 +2057,6 @@ public class PlayFabServerModels {
          * comma-separated list of platforms.
          */
         public ExternalFriendSources ExternalPlatformFriends;
-        /**
-         * Indicates whether Facebook friends should be included in the response. Default is true.
-         * @deprecated Please use ExternalPlatformFriends instead.
-         */
-        @Deprecated
-        public Boolean IncludeFacebookFriends;
-        /**
-         * Indicates whether Steam service friends should be included in the response. Default is true.
-         * @deprecated Please use ExternalPlatformFriends instead.
-         */
-        @Deprecated
-        public Boolean IncludeSteamFriends;
         /** PlayFab identifier of the player whose friend list to get. */
         public String PlayFabId;
         /**

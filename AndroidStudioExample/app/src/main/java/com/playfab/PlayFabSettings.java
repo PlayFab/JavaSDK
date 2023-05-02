@@ -9,9 +9,9 @@ import android.content.Context;
 import com.playfab.PlayFabErrors.ErrorCallback;
 
 public class PlayFabSettings {
-    public static String SdkVersion = "0.186.230403";
+    public static String SdkVersion = "0.188.230428";
     public static String BuildIdentifier = "adobuild_javasdk_114";
-    public static String SdkVersionString = "JavaSDK-0.186.230403";
+    public static String SdkVersionString = "JavaSDK-0.188.230428";
 
     public static Map<String, String> RequestGetParams;
     static {
