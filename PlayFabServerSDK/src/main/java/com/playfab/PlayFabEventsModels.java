@@ -50,7 +50,7 @@ public class PlayFabEventsModels {
     public static class WriteEventsRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Collection of events to write to PlayStream. */
+        /** The collection of events to write. Up to 200 events can be written per request. */
         public ArrayList<EventContents> Events;
         
     }
