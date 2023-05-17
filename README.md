@@ -3,7 +3,7 @@
 ## ~~0. Install via Maven or Gradle:~~
 > Note: The PlayFab SDK Maven package is out of date. We are working to update to the latest. For now, to get the latest Java SDK for your game, you will need to clone this repo and build from source.
 
-Check the [Public Artifact Repository](https://dev.azure.com/PlayFabInternal/Main/_artifacts/feed/PlayFab-JavaSDK-combined) for latest versions of our SDKs.  
+Check the [Public Artifact Repository](https://dev.azure.com/PlayFabJavaSDK/PlayFab%20JavaSDK/_artifacts/feed/JavaSDK) for latest versions of our SDKs.  
 When using **Maven**, use the following snippet as part of your dependencies set:  
 (Use `client-sdk` or `server-sdk` or `combo-sdk` as ARTIFACT)  
 
