@@ -205,6 +205,8 @@ public class PlayFabEconomyModels {
     public static class CatalogPrice {
         /** The amounts of the catalog item price. Each price can have up to 15 item amounts. */
         public ArrayList<CatalogPriceAmount> Amounts;
+        /** The per-unit amount this price can be used to purchase. */
+        public Integer UnitAmount;
         /** The per-unit duration this price can be used to purchase. The maximum duration is 100 years. */
         public Double UnitDurationInSeconds;
         
