@@ -129,7 +129,7 @@ public class PlayFabProfilesModels {
     public static class EntityStatisticValue {
         /** Child statistic values */
         public Map<String,EntityStatisticChildValue> ChildStatistics;
-        /** Statistic metadata */
+        /** Metadata associated with the Statistic. */
         public String Metadata;
         /** Statistic name */
         public String Name;

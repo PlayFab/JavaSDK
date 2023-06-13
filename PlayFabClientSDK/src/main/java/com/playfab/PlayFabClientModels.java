@@ -2750,6 +2750,11 @@ public class PlayFabClientModels {
          * 0x08 should become "08").
          */
         public String SteamTicket;
+        /**
+         * True if ticket was generated using ISteamUser::GetAuthTicketForWebAPI() using "AzurePlayFab" as the identity string.
+         * False if the ticket was generated with ISteamUser::GetAuthSessionTicket().
+         */
+        public Boolean TicketIsServiceSpecific;
         
     }
 
@@ -3367,6 +3372,11 @@ public class PlayFabClientModels {
          * 0x08 should become "08").
          */
         public String SteamTicket;
+        /**
+         * True if ticket was generated using ISteamUser::GetAuthTicketForWebAPI() using "AzurePlayFab" as the identity string.
+         * False if the ticket was generated with ISteamUser::GetAuthSessionTicket().
+         */
+        public Boolean TicketIsServiceSpecific;
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
          * title has been selected.
