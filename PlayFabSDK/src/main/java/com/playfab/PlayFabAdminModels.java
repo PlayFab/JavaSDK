@@ -2125,7 +2125,9 @@ public class PlayFabAdminModels {
         PlayerCustomPropertiesVersionMismatch,
         PlayerCustomPropertiesPropertyCountTooHigh,
         PlayerCustomPropertiesDuplicatePropertyName,
-        PlayerCustomPropertiesPropertyDoesNotExist
+        PlayerCustomPropertiesPropertyDoesNotExist,
+        AddonAlreadyExists,
+        AddonDoesntExist
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {

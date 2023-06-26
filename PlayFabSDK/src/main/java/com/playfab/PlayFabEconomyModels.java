@@ -187,7 +187,10 @@ public class PlayFabEconomyModels {
          * required. Titles have a 512 character limit per country code.
          */
         public Map<String,String> Title;
-        /** The high-level type of the item. The following item types are supported: bundle, catalogItem, currency, store, ugc. */
+        /**
+         * The high-level type of the item. The following item types are supported: bundle, catalogItem, currency, store, ugc,
+         * subscription.
+         */
         public String Type;
         
     }
@@ -1690,6 +1693,8 @@ public class PlayFabEconomyModels {
          * can be found here: https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/catalog/search#limits
          */
         public String Filter;
+        /** The locale to be returned in the result. */
+        public String Language;
         /** An OData orderBy used to order the results of the search query. For example: "rating/average asc" */
         public String OrderBy;
         /** The text to search for. */

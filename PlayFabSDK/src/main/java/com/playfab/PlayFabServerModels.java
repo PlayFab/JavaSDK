@@ -1854,7 +1854,9 @@ public class PlayFabServerModels {
         PlayerCustomPropertiesVersionMismatch,
         PlayerCustomPropertiesPropertyCountTooHigh,
         PlayerCustomPropertiesDuplicatePropertyName,
-        PlayerCustomPropertiesPropertyDoesNotExist
+        PlayerCustomPropertiesPropertyDoesNotExist,
+        AddonAlreadyExists,
+        AddonDoesntExist
     }
 
     public static class GenericPlayFabIdPair {
