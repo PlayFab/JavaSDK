@@ -127,7 +127,11 @@ public class PlayFabProfilesModels {
     }
 
     public static class EntityStatisticValue {
-        /** Child statistic values */
+        /**
+         * Child statistic values
+         * @deprecated Please use AttributeStatistics instead.
+         */
+        @Deprecated
         public Map<String,EntityStatisticChildValue> ChildStatistics;
         /** Metadata associated with the Statistic. */
         public String Metadata;
