@@ -82,8 +82,6 @@ public class PlayFabProfilesModels {
         public Map<String,EntityProfileFileMetadata> Files;
         /** The language on this profile. */
         public String Language;
-        /** Leaderboard metadata for the entity. */
-        public String LeaderboardMetadata;
         /** The lineage of this profile. */
         public EntityLineage Lineage;
         /** The objects on this profile. */
@@ -116,23 +114,7 @@ public class PlayFabProfilesModels {
         
     }
 
-    public static class EntityStatisticChildValue {
-        /** Child name value, if child statistic */
-        public String ChildName;
-        /** Child statistic metadata */
-        public String Metadata;
-        /** Child statistic value */
-        public Integer Value;
-        
-    }
-
     public static class EntityStatisticValue {
-        /**
-         * Child statistic values
-         * @deprecated Please use AttributeStatistics instead.
-         */
-        @Deprecated
-        public Map<String,EntityStatisticChildValue> ChildStatistics;
         /** Metadata associated with the Statistic. */
         public String Metadata;
         /** Statistic name */
