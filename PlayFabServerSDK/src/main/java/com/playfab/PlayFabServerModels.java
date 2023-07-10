@@ -3137,6 +3137,24 @@ public class PlayFabServerModels {
         
     }
 
+    public static class LinkPSNIdRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** If another user is already linked to the account, unlink the other user and re-link. */
+        public Boolean ForceLink;
+        /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
+        public Integer IssuerId;
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        public String PlayFabId;
+        /** Id of the PlayStation :tm: Network user. */
+        public String PSNUserId;
+        
+    }
+
+    public static class LinkPSNIdResponse {
+        
+    }
+
     public static class LinkServerCustomIdRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
