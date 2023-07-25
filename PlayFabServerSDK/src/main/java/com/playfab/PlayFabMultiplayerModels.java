@@ -441,13 +441,6 @@ public class PlayFabMultiplayerModels {
         public ArrayList<BuildRegionParams> RegionConfigurations;
         /** The resource constraints to apply to each server on the VM (EXPERIMENTAL API) */
         public ServerResourceConstraintParams ServerResourceConstraints;
-        /**
-         * DEPRECATED - this is always true. Assets are downloaded and uncompressed in memory, without the compressedversion being
-         * written first to disc.
-         * @deprecated Please use  instead.
-         */
-        @Deprecated
-        public Boolean UseStreamingForAssetDownloads;
         /** The VM size to create the build on. */
         public AzureVmSize VmSize;
         /** The configuration for the VmStartupScript for the build */
@@ -548,13 +541,6 @@ public class PlayFabMultiplayerModels {
         public ServerResourceConstraintParams ServerResourceConstraints;
         /** The command to run when the multiplayer server is started, including any arguments. */
         public String StartMultiplayerServerCommand;
-        /**
-         * DEPRECATED - this is always true. Assets are downloaded and uncompressed in memory, without the compressedversion being
-         * written first to disc.
-         * @deprecated Please use  instead.
-         */
-        @Deprecated
-        public Boolean UseStreamingForAssetDownloads;
         /** The VM size to create the build on. */
         public AzureVmSize VmSize;
         /** The configuration for the VmStartupScript for the build */
@@ -669,13 +655,6 @@ public class PlayFabMultiplayerModels {
          * relative to the root asset folder when unzipped.
          */
         public String StartMultiplayerServerCommand;
-        /**
-         * DEPRECATED - this is always true. Assets are downloaded and uncompressed in memory, without the compressedversion being
-         * written first to disc.
-         * @deprecated Please use  instead.
-         */
-        @Deprecated
-        public Boolean UseStreamingForAssetDownloads;
         /** The VM size to create the build on. */
         public AzureVmSize VmSize;
         /** The configuration for the VmStartupScript for the build */

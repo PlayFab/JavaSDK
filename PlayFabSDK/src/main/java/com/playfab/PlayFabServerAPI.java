@@ -17,7 +17,8 @@ public class PlayFabServerAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 
     /**
-     * Increments the character's balance of the specified virtual currency by the stated amount
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Increments the character's balance of the specified virtual currency by the stated amount
      * @param request AddCharacterVirtualCurrencyRequest
      * @return Async Task will return ModifyCharacterVirtualCurrencyResult
      */
@@ -31,7 +32,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Increments the character's balance of the specified virtual currency by the stated amount
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Increments the character's balance of the specified virtual currency by the stated amount
      * @param request AddCharacterVirtualCurrencyRequest
      * @return ModifyCharacterVirtualCurrencyResult
      */
@@ -52,7 +54,10 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Increments the character's balance of the specified virtual currency by the stated amount */
+    /**
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Increments the character's balance of the specified virtual currency by the stated amount
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyCharacterVirtualCurrencyResult> privateAddCharacterVirtualCurrencyAsync(final AddCharacterVirtualCurrencyRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -351,7 +356,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Increments the user's balance of the specified virtual currency by the stated amount
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Increments the user's balance of the specified virtual currency by the stated amount
      * @param request AddUserVirtualCurrencyRequest
      * @return Async Task will return ModifyUserVirtualCurrencyResult
      */
@@ -365,7 +371,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Increments the user's balance of the specified virtual currency by the stated amount
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Increments the user's balance of the specified virtual currency by the stated amount
      * @param request AddUserVirtualCurrencyRequest
      * @return ModifyUserVirtualCurrencyResult
      */
@@ -386,7 +393,10 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Increments the user's balance of the specified virtual currency by the stated amount */
+    /**
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Increments the user's balance of the specified virtual currency by the stated amount
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyUserVirtualCurrencyResult> privateAddUserVirtualCurrencyAsync(final AddUserVirtualCurrencyRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -599,7 +609,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's inventory.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's
+     * inventory.
      * @param request ConsumeItemRequest
      * @return Async Task will return ConsumeItemResult
      */
@@ -613,7 +625,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's inventory.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's
+     * inventory.
      * @param request ConsumeItemRequest
      * @return ConsumeItemResult
      */
@@ -634,7 +648,11 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's inventory. */
+    /**
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Consume uses of a consumable item. When all uses are consumed, it will be removed from the player's
+     * inventory.
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ConsumeItemResult> privateConsumeItemAsync(final ConsumeItemRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1060,8 +1078,10 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would have been
-     * added to the player inventory, if the Random Result Table were added via a Bundle or a call to UnlockContainer.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would
+     * have been added to the player inventory, if the Random Result Table were added via a Bundle or a call to
+     * UnlockContainer.
      * @param request EvaluateRandomResultTableRequest
      * @return Async Task will return EvaluateRandomResultTableResult
      */
@@ -1075,8 +1095,10 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would have been
-     * added to the player inventory, if the Random Result Table were added via a Bundle or a call to UnlockContainer.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would
+     * have been added to the player inventory, if the Random Result Table were added via a Bundle or a call to
+     * UnlockContainer.
      * @param request EvaluateRandomResultTableRequest
      * @return EvaluateRandomResultTableResult
      */
@@ -1098,8 +1120,10 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would have been
-     * added to the player inventory, if the Random Result Table were added via a Bundle or a call to UnlockContainer.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Returns the result of an evaluation of a Random Result Table - the ItemId from the game Catalog which would
+     * have been added to the player inventory, if the Random Result Table were added via a Bundle or a call to
+     * UnlockContainer.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EvaluateRandomResultTableResult> privateEvaluateRandomResultTableAsync(final EvaluateRandomResultTableRequest request) throws Exception {
@@ -1328,7 +1352,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
      * @param request GetCatalogItemsRequest
      * @return Async Task will return GetCatalogItemsResult
      */
@@ -1342,7 +1367,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
      * @param request GetCatalogItemsRequest
      * @return GetCatalogItemsResult
      */
@@ -1363,7 +1389,10 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Retrieves the specified version of the title's catalog of virtual goods, including all defined properties */
+    /**
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Retrieves the specified version of the title's catalog of virtual goods, including all defined properties
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCatalogItemsResult> privateGetCatalogItemsAsync(final GetCatalogItemsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -1514,7 +1543,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the specified character's current inventory of virtual goods
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Retrieves the specified character's current inventory of virtual goods
      * @param request GetCharacterInventoryRequest
      * @return Async Task will return GetCharacterInventoryResult
      */
@@ -1528,7 +1558,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the specified character's current inventory of virtual goods
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Retrieves the specified character's current inventory of virtual goods
      * @param request GetCharacterInventoryRequest
      * @return GetCharacterInventoryResult
      */
@@ -1549,7 +1580,10 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Retrieves the specified character's current inventory of virtual goods */
+    /**
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Retrieves the specified character's current inventory of virtual goods
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCharacterInventoryResult> privateGetCharacterInventoryAsync(final GetCharacterInventoryRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3317,8 +3351,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the configuration information for the specified random results tables for the title, including all ItemId
-     * values and weights
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Retrieves the configuration information for the specified random results tables for the title, including all
+     * ItemId values and weights
      * @param request GetRandomResultTablesRequest
      * @return Async Task will return GetRandomResultTablesResult
      */
@@ -3332,8 +3367,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the configuration information for the specified random results tables for the title, including all ItemId
-     * values and weights
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Retrieves the configuration information for the specified random results tables for the title, including all
+     * ItemId values and weights
      * @param request GetRandomResultTablesRequest
      * @return GetRandomResultTablesResult
      */
@@ -3355,8 +3391,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the configuration information for the specified random results tables for the title, including all ItemId
-     * values and weights
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Retrieves the configuration information for the specified random results tables for the title, including all
+     * ItemId values and weights
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetRandomResultTablesResult> privateGetRandomResultTablesAsync(final GetRandomResultTablesRequest request) throws Exception {
@@ -3516,7 +3553,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the set of items defined for the specified store, including all prices defined, for the specified player
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Retrieves the set of items defined for the specified store, including all prices defined, for the specified
+     * player
      * @param request GetStoreItemsServerRequest
      * @return Async Task will return GetStoreItemsResult
      */
@@ -3530,7 +3569,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the set of items defined for the specified store, including all prices defined, for the specified player
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Retrieves the set of items defined for the specified store, including all prices defined, for the specified
+     * player
      * @param request GetStoreItemsServerRequest
      * @return GetStoreItemsResult
      */
@@ -3551,7 +3592,11 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Retrieves the set of items defined for the specified store, including all prices defined, for the specified player */
+    /**
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Retrieves the set of items defined for the specified store, including all prices defined, for the specified
+     * player
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetStoreItemsResult> privateGetStoreItemsAsync(final GetStoreItemsServerRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4074,7 +4119,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the specified user's current inventory of virtual goods
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Retrieves the specified user's current inventory of virtual goods
      * @param request GetUserInventoryRequest
      * @return Async Task will return GetUserInventoryResult
      */
@@ -4088,7 +4134,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Retrieves the specified user's current inventory of virtual goods
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Retrieves the specified user's current inventory of virtual goods
      * @param request GetUserInventoryRequest
      * @return GetUserInventoryResult
      */
@@ -4109,7 +4156,10 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Retrieves the specified user's current inventory of virtual goods */
+    /**
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Retrieves the specified user's current inventory of virtual goods
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetUserInventoryResult> privateGetUserInventoryAsync(final GetUserInventoryRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4451,7 +4501,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds the specified items to the specified character's inventory
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Adds the specified items to the specified character's inventory
      * @param request GrantItemsToCharacterRequest
      * @return Async Task will return GrantItemsToCharacterResult
      */
@@ -4465,7 +4516,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds the specified items to the specified character's inventory
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Adds the specified items to the specified character's inventory
      * @param request GrantItemsToCharacterRequest
      * @return GrantItemsToCharacterResult
      */
@@ -4486,7 +4538,10 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Adds the specified items to the specified character's inventory */
+    /**
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Adds the specified items to the specified character's inventory
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GrantItemsToCharacterResult> privateGrantItemsToCharacterAsync(final GrantItemsToCharacterRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4513,7 +4568,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds the specified items to the specified user's inventory
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Adds the specified items to the specified user's inventory
      * @param request GrantItemsToUserRequest
      * @return Async Task will return GrantItemsToUserResult
      */
@@ -4527,7 +4583,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds the specified items to the specified user's inventory
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Adds the specified items to the specified user's inventory
      * @param request GrantItemsToUserRequest
      * @return GrantItemsToUserResult
      */
@@ -4548,7 +4605,10 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Adds the specified items to the specified user's inventory */
+    /**
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Adds the specified items to the specified user's inventory
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GrantItemsToUserResult> privateGrantItemsToUserAsync(final GrantItemsToUserRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -4575,7 +4635,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds the specified items to the specified user inventories
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Adds the specified items to the specified user inventories
      * @param request GrantItemsToUsersRequest
      * @return Async Task will return GrantItemsToUsersResult
      */
@@ -4589,7 +4650,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds the specified items to the specified user inventories
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Adds the specified items to the specified user inventories
      * @param request GrantItemsToUsersRequest
      * @return GrantItemsToUsersResult
      */
@@ -4610,7 +4672,10 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Adds the specified items to the specified user inventories */
+    /**
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Adds the specified items to the specified user inventories
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GrantItemsToUsersResult> privateGrantItemsToUsersAsync(final GrantItemsToUsersRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5339,7 +5404,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Modifies the number of remaining uses of a player's inventory item
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Modifies the number of remaining uses of a player's inventory item
      * @param request ModifyItemUsesRequest
      * @return Async Task will return ModifyItemUsesResult
      */
@@ -5353,7 +5419,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Modifies the number of remaining uses of a player's inventory item
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Modifies the number of remaining uses of a player's inventory item
      * @param request ModifyItemUsesRequest
      * @return ModifyItemUsesResult
      */
@@ -5374,7 +5441,10 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Modifies the number of remaining uses of a player's inventory item */
+    /**
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Modifies the number of remaining uses of a player's inventory item
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyItemUsesResult> privateModifyItemUsesAsync(final ModifyItemUsesRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5401,7 +5471,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Moves an item from a character's inventory into another of the users's character's inventory.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Moves an item from a character's inventory into another of the users's character's inventory.
      * @param request MoveItemToCharacterFromCharacterRequest
      * @return Async Task will return MoveItemToCharacterFromCharacterResult
      */
@@ -5415,7 +5486,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Moves an item from a character's inventory into another of the users's character's inventory.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Moves an item from a character's inventory into another of the users's character's inventory.
      * @param request MoveItemToCharacterFromCharacterRequest
      * @return MoveItemToCharacterFromCharacterResult
      */
@@ -5436,7 +5508,10 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Moves an item from a character's inventory into another of the users's character's inventory. */
+    /**
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Moves an item from a character's inventory into another of the users's character's inventory.
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<MoveItemToCharacterFromCharacterResult> privateMoveItemToCharacterFromCharacterAsync(final MoveItemToCharacterFromCharacterRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5463,7 +5538,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Moves an item from a user's inventory into their character's inventory.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Moves an item from a user's inventory into their character's inventory.
      * @param request MoveItemToCharacterFromUserRequest
      * @return Async Task will return MoveItemToCharacterFromUserResult
      */
@@ -5477,7 +5553,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Moves an item from a user's inventory into their character's inventory.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Moves an item from a user's inventory into their character's inventory.
      * @param request MoveItemToCharacterFromUserRequest
      * @return MoveItemToCharacterFromUserResult
      */
@@ -5498,7 +5575,10 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Moves an item from a user's inventory into their character's inventory. */
+    /**
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Moves an item from a user's inventory into their character's inventory.
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<MoveItemToCharacterFromUserResult> privateMoveItemToCharacterFromUserAsync(final MoveItemToCharacterFromUserRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5525,7 +5605,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Moves an item from a character's inventory into the owning user's inventory.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Moves an item from a character's inventory into the owning user's inventory.
      * @param request MoveItemToUserFromCharacterRequest
      * @return Async Task will return MoveItemToUserFromCharacterResult
      */
@@ -5539,7 +5620,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Moves an item from a character's inventory into the owning user's inventory.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Moves an item from a character's inventory into the owning user's inventory.
      * @param request MoveItemToUserFromCharacterRequest
      * @return MoveItemToUserFromCharacterResult
      */
@@ -5560,7 +5642,10 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Moves an item from a character's inventory into the owning user's inventory. */
+    /**
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Moves an item from a character's inventory into the owning user's inventory.
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<MoveItemToUserFromCharacterResult> privateMoveItemToUserFromCharacterAsync(final MoveItemToUserFromCharacterRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -5657,7 +5742,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
      * Economy-&gt;Catalogs tab in the PlayFab Game Manager.
      * @param request RedeemCouponRequest
      * @return Async Task will return RedeemCouponResult
@@ -5672,7 +5758,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
      * Economy-&gt;Catalogs tab in the PlayFab Game Manager.
      * @param request RedeemCouponRequest
      * @return RedeemCouponResult
@@ -5695,7 +5782,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Adds the virtual goods associated with the coupon to the user's inventory. Coupons can be generated via the
      * Economy-&gt;Catalogs tab in the PlayFab Game Manager.
      */
     @SuppressWarnings("unchecked")
@@ -6384,7 +6472,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Revokes access to an item in a user's inventory
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Revokes access to an item in a user's inventory
      * @param request RevokeInventoryItemRequest
      * @return Async Task will return RevokeInventoryResult
      */
@@ -6398,7 +6487,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Revokes access to an item in a user's inventory
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Revokes access to an item in a user's inventory
      * @param request RevokeInventoryItemRequest
      * @return RevokeInventoryResult
      */
@@ -6419,7 +6509,10 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Revokes access to an item in a user's inventory */
+    /**
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Revokes access to an item in a user's inventory
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RevokeInventoryResult> privateRevokeInventoryItemAsync(final RevokeInventoryItemRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -6446,7 +6539,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Revokes access for up to 25 items across multiple users and characters.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Revokes access for up to 25 items across multiple users and characters.
      * @param request RevokeInventoryItemsRequest
      * @return Async Task will return RevokeInventoryItemsResult
      */
@@ -6460,7 +6554,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Revokes access for up to 25 items across multiple users and characters.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Revokes access for up to 25 items across multiple users and characters.
      * @param request RevokeInventoryItemsRequest
      * @return RevokeInventoryItemsResult
      */
@@ -6481,7 +6576,10 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Revokes access for up to 25 items across multiple users and characters. */
+    /**
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Revokes access for up to 25 items across multiple users and characters.
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RevokeInventoryItemsResult> privateRevokeInventoryItemsAsync(final RevokeInventoryItemsRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -7358,8 +7456,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Decrements the character's balance of the specified virtual currency by the stated amount. It is possible to make a VC
-     * balance negative with this API.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Decrements the character's balance of the specified virtual currency by the stated amount. It is possible to
+     * make a VC balance negative with this API.
      * @param request SubtractCharacterVirtualCurrencyRequest
      * @return Async Task will return ModifyCharacterVirtualCurrencyResult
      */
@@ -7373,8 +7472,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Decrements the character's balance of the specified virtual currency by the stated amount. It is possible to make a VC
-     * balance negative with this API.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Decrements the character's balance of the specified virtual currency by the stated amount. It is possible to
+     * make a VC balance negative with this API.
      * @param request SubtractCharacterVirtualCurrencyRequest
      * @return ModifyCharacterVirtualCurrencyResult
      */
@@ -7396,8 +7496,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Decrements the character's balance of the specified virtual currency by the stated amount. It is possible to make a VC
-     * balance negative with this API.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Decrements the character's balance of the specified virtual currency by the stated amount. It is possible to
+     * make a VC balance negative with this API.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyCharacterVirtualCurrencyResult> privateSubtractCharacterVirtualCurrencyAsync(final SubtractCharacterVirtualCurrencyRequest request) throws Exception {
@@ -7425,8 +7526,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make a VC
-     * balance negative with this API.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make
+     * a VC balance negative with this API.
      * @param request SubtractUserVirtualCurrencyRequest
      * @return Async Task will return ModifyUserVirtualCurrencyResult
      */
@@ -7440,8 +7542,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make a VC
-     * balance negative with this API.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make
+     * a VC balance negative with this API.
      * @param request SubtractUserVirtualCurrencyRequest
      * @return ModifyUserVirtualCurrencyResult
      */
@@ -7463,8 +7566,9 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make a VC
-     * balance negative with this API.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Decrements the user's balance of the specified virtual currency by the stated amount. It is possible to make
+     * a VC balance negative with this API.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ModifyUserVirtualCurrencyResult> privateSubtractUserVirtualCurrencyAsync(final SubtractUserVirtualCurrencyRequest request) throws Exception {
@@ -7864,9 +7968,10 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Opens a specific container (ContainerItemInstanceId), with a specific key (KeyItemInstanceId, when required), and
-     * returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses &gt;
-     * 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Opens a specific container (ContainerItemInstanceId), with a specific key (KeyItemInstanceId, when
+     * required), and returns the contents of the opened container. If the container (and key when relevant) are consumable
+     * (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
      * @param request UnlockContainerInstanceRequest
      * @return Async Task will return UnlockContainerItemResult
      */
@@ -7880,9 +7985,10 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Opens a specific container (ContainerItemInstanceId), with a specific key (KeyItemInstanceId, when required), and
-     * returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses &gt;
-     * 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Opens a specific container (ContainerItemInstanceId), with a specific key (KeyItemInstanceId, when
+     * required), and returns the contents of the opened container. If the container (and key when relevant) are consumable
+     * (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
      * @param request UnlockContainerInstanceRequest
      * @return UnlockContainerItemResult
      */
@@ -7904,9 +8010,10 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Opens a specific container (ContainerItemInstanceId), with a specific key (KeyItemInstanceId, when required), and
-     * returns the contents of the opened container. If the container (and key when relevant) are consumable (RemainingUses &gt;
-     * 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Opens a specific container (ContainerItemInstanceId), with a specific key (KeyItemInstanceId, when
+     * required), and returns the contents of the opened container. If the container (and key when relevant) are consumable
+     * (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of ConsumeItem.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UnlockContainerItemResult> privateUnlockContainerInstanceAsync(final UnlockContainerInstanceRequest request) throws Exception {
@@ -7934,9 +8041,10 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Searches Player or Character inventory for any ItemInstance matching the given CatalogItemId, if necessary unlocks it
-     * using any appropriate key, and returns the contents of the opened container. If the container (and key when relevant)
-     * are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Searches Player or Character inventory for any ItemInstance matching the given CatalogItemId, if necessary
+     * unlocks it using any appropriate key, and returns the contents of the opened container. If the container (and key when
+     * relevant) are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of
      * ConsumeItem.
      * @param request UnlockContainerItemRequest
      * @return Async Task will return UnlockContainerItemResult
@@ -7951,9 +8059,10 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Searches Player or Character inventory for any ItemInstance matching the given CatalogItemId, if necessary unlocks it
-     * using any appropriate key, and returns the contents of the opened container. If the container (and key when relevant)
-     * are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Searches Player or Character inventory for any ItemInstance matching the given CatalogItemId, if necessary
+     * unlocks it using any appropriate key, and returns the contents of the opened container. If the container (and key when
+     * relevant) are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of
      * ConsumeItem.
      * @param request UnlockContainerItemRequest
      * @return UnlockContainerItemResult
@@ -7976,9 +8085,10 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Searches Player or Character inventory for any ItemInstance matching the given CatalogItemId, if necessary unlocks it
-     * using any appropriate key, and returns the contents of the opened container. If the container (and key when relevant)
-     * are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Searches Player or Character inventory for any ItemInstance matching the given CatalogItemId, if necessary
+     * unlocks it using any appropriate key, and returns the contents of the opened container. If the container (and key when
+     * relevant) are consumable (RemainingUses &gt; 0), their RemainingUses will be decremented, consistent with the operation of
      * ConsumeItem.
      */
     @SuppressWarnings("unchecked")
@@ -8641,7 +8751,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Updates the key-value pair data tagged to the specified item, which is read-only from the client.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Updates the key-value pair data tagged to the specified item, which is read-only from the client.
      * @param request UpdateUserInventoryItemDataRequest
      * @return Async Task will return EmptyResponse
      */
@@ -8655,7 +8766,8 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Updates the key-value pair data tagged to the specified item, which is read-only from the client.
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Updates the key-value pair data tagged to the specified item, which is read-only from the client.
      * @param request UpdateUserInventoryItemDataRequest
      * @return EmptyResponse
      */
@@ -8676,7 +8788,10 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Updates the key-value pair data tagged to the specified item, which is read-only from the client. */
+    /**
+     * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
+     * version 2._ Updates the key-value pair data tagged to the specified item, which is read-only from the client.
+     */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateUpdateUserInventoryItemCustomDataAsync(final UpdateUserInventoryItemDataRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
