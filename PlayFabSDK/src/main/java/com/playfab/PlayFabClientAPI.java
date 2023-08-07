@@ -7738,7 +7738,7 @@ public class PlayFabClientAPI {
 
     /**
      * Registers a new Playfab user account, returning a session identifier that can subsequently be used for API calls which
-     * require an authenticated user. You must supply either a username or an email address.
+     * require an authenticated user. You must supply a username and an email address.
      * @param request RegisterPlayFabUserRequest
      * @return Async Task will return RegisterPlayFabUserResult
      */
@@ -7753,7 +7753,7 @@ public class PlayFabClientAPI {
 
     /**
      * Registers a new Playfab user account, returning a session identifier that can subsequently be used for API calls which
-     * require an authenticated user. You must supply either a username or an email address.
+     * require an authenticated user. You must supply a username and an email address.
      * @param request RegisterPlayFabUserRequest
      * @return RegisterPlayFabUserResult
      */
@@ -7776,7 +7776,7 @@ public class PlayFabClientAPI {
 
     /**
      * Registers a new Playfab user account, returning a session identifier that can subsequently be used for API calls which
-     * require an authenticated user. You must supply either a username or an email address.
+     * require an authenticated user. You must supply a username and an email address.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RegisterPlayFabUserResult> privateRegisterPlayFabUserAsync(final RegisterPlayFabUserRequest request) throws Exception {
