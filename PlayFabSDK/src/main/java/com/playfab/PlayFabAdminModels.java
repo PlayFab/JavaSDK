@@ -487,7 +487,8 @@ public class PlayFabAdminModels {
         EU,
         NA,
         OC,
-        SA
+        SA,
+        Unknown
     }
 
     public static enum CountryCode {
@@ -739,7 +740,8 @@ public class PlayFabAdminModels {
         EH,
         YE,
         ZM,
-        ZW
+        ZW,
+        Unknown
     }
 
     /**
@@ -1066,13 +1068,13 @@ public class PlayFabAdminModels {
     /**
      * Deletes all data associated with the master player account, including data from all titles the player has played, such
      * as statistics, custom data, inventory, purchases, virtual currency balances, characters, group memberships, publisher
-     * data, credential data, account linkages, friends list and PlayStream event history. Removes the player from all
-     * leaderboards and player search indexes. Note, this API queues the player for deletion and returns a receipt immediately.
-     * Record the receipt ID for future reference. It may take some time before all player data is fully deleted. Upon
-     * completion of the deletion, an email will be sent to the notification email address configured for the title confirming
-     * the deletion. Until the player data is fully deleted, attempts to recreate the player with the same user account in the
-     * same title will fail with the 'AccountDeleted' error. It is highly recommended to know the impact of the deletion by
-     * calling GetPlayedTitleList, before calling this API.
+     * data, credential data, account linkages, friends list, PlayStream event data, and telemetry event data. Removes the
+     * player from all leaderboards and player search indexes. Note, this API queues the player for deletion and returns a
+     * receipt immediately. Record the receipt ID for future reference. It may take some time before all player data is fully
+     * deleted. Upon completion of the deletion, an email will be sent to the notification email address configured for the
+     * title confirming the deletion. Until the player data is fully deleted, attempts to recreate the player with the same
+     * user account in the same title will fail with the 'AccountDeleted' error. It is highly recommended to know the impact of
+     * the deletion by calling GetPlayedTitleList, before calling this API.
      */
     public static class DeleteMasterPlayerAccountRequest {
         /** Developer created string to identify a user without PlayFab ID */
@@ -1321,10 +1323,10 @@ public class PlayFabAdminModels {
     /**
      * Exports all data associated with the master player account, including data from all titles the player has played, such
      * as statistics, custom data, inventory, purchases, virtual currency balances, characters, group memberships, publisher
-     * data, credential data, account linkages, friends list and PlayStream event history. Note, this API queues the player for
-     * export and returns a receipt immediately. Record the receipt ID for future reference. It may take some time before the
-     * export is available for download. Upon completion of the export, an email containing the URL to download the export dump
-     * will be sent to the notification email address configured for the title.
+     * data, credential data, account linkages, friends list, PlayStream event data, and telemetry event data. Note, this API
+     * queues the player for export and returns a receipt immediately. Record the receipt ID for future reference. It may take
+     * some time before the export is available for download. Upon completion of the export, an email containing the URL to
+     * download the export dump will be sent to the notification email address configured for the title.
      */
     public static class ExportMasterPlayerDataRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -2118,6 +2120,11 @@ public class PlayFabAdminModels {
         AllowNonUniquePlayerDisplayNamesDisableNotAllowed,
         PartitionedEventInvalid,
         PartitionedEventCountOverLimit,
+        ManageEventNamespaceInvalid,
+        ManageEventNameInvalid,
+        ManagedEventNotFound,
+        ManageEventsInvalidRatio,
+        ManagedEventInvalid,
         PlayerCustomPropertiesPropertyNameTooLong,
         PlayerCustomPropertiesPropertyNameIsInvalid,
         PlayerCustomPropertiesStringPropertyValueTooLong,
@@ -5231,6 +5238,8 @@ public class PlayFabAdminModels {
         public UserPrivateAccountInfo PrivateInfo;
         /** User PlayStation :tm: Network account information, if a PlayStation :tm: Network account has been linked */
         public UserPsnInfo PsnInfo;
+        /** Server Custom ID information, if a server custom ID has been assigned */
+        public UserServerCustomIdInfo ServerCustomIdInfo;
         /** User Steam information, if a Steam account has been linked */
         public UserSteamInfo SteamInfo;
         /** Title-specific information for the user account */
@@ -5408,6 +5417,12 @@ public class PlayFabAdminModels {
         public String PsnAccountId;
         /** PlayStation :tm: Network online ID */
         public String PsnOnlineId;
+        
+    }
+
+    public static class UserServerCustomIdInfo {
+        /** Custom ID */
+        public String CustomId;
         
     }
 
