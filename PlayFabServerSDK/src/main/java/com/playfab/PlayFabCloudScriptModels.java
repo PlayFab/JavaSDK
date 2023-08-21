@@ -38,7 +38,8 @@ public class PlayFabCloudScriptModels {
         EU,
         NA,
         OC,
-        SA
+        SA,
+        Unknown
     }
 
     public static enum CountryCode {
@@ -290,7 +291,8 @@ public class PlayFabCloudScriptModels {
         EH,
         YE,
         ZM,
-        ZW
+        ZW,
+        Unknown
     }
 
     public static enum EmailVerificationStatus {

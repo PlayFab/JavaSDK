@@ -559,7 +559,8 @@ public class PlayFabEconomyModels {
         EH,
         YE,
         ZM,
-        ZW
+        ZW,
+        Unknown
     }
 
     /** The item will not be published to the public catalog until the PublishItem API is called for the item. */

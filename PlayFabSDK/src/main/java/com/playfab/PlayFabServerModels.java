@@ -436,7 +436,8 @@ public class PlayFabServerModels {
         EU,
         NA,
         OC,
-        SA
+        SA,
+        Unknown
     }
 
     public static enum CountryCode {
@@ -688,7 +689,8 @@ public class PlayFabServerModels {
         EH,
         YE,
         ZM,
-        ZW
+        ZW,
+        Unknown
     }
 
     /**
@@ -1847,6 +1849,11 @@ public class PlayFabServerModels {
         AllowNonUniquePlayerDisplayNamesDisableNotAllowed,
         PartitionedEventInvalid,
         PartitionedEventCountOverLimit,
+        ManageEventNamespaceInvalid,
+        ManageEventNameInvalid,
+        ManagedEventNotFound,
+        ManageEventsInvalidRatio,
+        ManagedEventInvalid,
         PlayerCustomPropertiesPropertyNameTooLong,
         PlayerCustomPropertiesPropertyNameIsInvalid,
         PlayerCustomPropertiesStringPropertyValueTooLong,
@@ -4943,6 +4950,8 @@ public class PlayFabServerModels {
         public UserPrivateAccountInfo PrivateInfo;
         /** User PlayStation :tm: Network account information, if a PlayStation :tm: Network account has been linked */
         public UserPsnInfo PsnInfo;
+        /** Server Custom ID information, if a server custom ID has been assigned */
+        public UserServerCustomIdInfo ServerCustomIdInfo;
         /** User Steam information, if a Steam account has been linked */
         public UserSteamInfo SteamInfo;
         /** Title-specific information for the user account */
@@ -5114,6 +5123,12 @@ public class PlayFabServerModels {
         public String PsnAccountId;
         /** PlayStation :tm: Network online ID */
         public String PsnOnlineId;
+        
+    }
+
+    public static class UserServerCustomIdInfo {
+        /** Custom ID */
+        public String CustomId;
         
     }
 
