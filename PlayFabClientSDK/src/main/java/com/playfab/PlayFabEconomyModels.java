@@ -1384,6 +1384,10 @@ public class PlayFabEconomyModels {
         
     }
 
+    public static class PurchaseOverridesInfo {
+        
+    }
+
     public static class PurchasePriceAmount {
         /** The amount of the inventory item to use in the purchase . */
         public Integer Amount;
@@ -1990,6 +1994,11 @@ public class PlayFabEconomyModels {
         public ArrayList<String> GivingTransactionIds;
         /** The idempotency id for the request. */
         public String IdempotencyId;
+        /**
+         * The transfer operation status. Possible values are 'InProgress' or 'Completed'. If the operation has completed, the
+         * response code will be 200. Otherwise, it will be 202.
+         */
+        public String OperationStatus;
         /** The ids of transactions that occurred as a result of the request's receiving action. */
         public ArrayList<String> ReceivingTransactionIds;
         
