@@ -1095,6 +1095,20 @@ public class PlayFabAdminModels {
         
     }
 
+    /**
+     * Deletes any PlayStream or telemetry event associated with the player from PlayFab. Note, this API queues the data for
+     * asynchronous deletion. It may take some time before the data is deleted.
+     */
+    public static class DeleteMasterPlayerEventDataRequest {
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        public String PlayFabId;
+        
+    }
+
+    public static class DeleteMasterPlayerEventDataResult {
+        
+    }
+
     /** This API lets developers delete a membership subscription. */
     public static class DeleteMembershipSubscriptionRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -1948,6 +1962,7 @@ public class PlayFabAdminModels {
         NamespaceMismatch,
         InvalidServiceConfiguration,
         InvalidNamespaceMismatch,
+        LeaderboardColumnLengthMismatch,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -4414,7 +4429,8 @@ public class PlayFabAdminModels {
         FacebookInstantGames,
         OpenIdConnect,
         Apple,
-        NintendoSwitchAccount
+        NintendoSwitchAccount,
+        GooglePlayGames
     }
 
     public static class SegmentModel {

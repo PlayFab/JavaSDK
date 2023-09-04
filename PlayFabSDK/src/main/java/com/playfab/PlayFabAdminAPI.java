@@ -1101,6 +1101,68 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Deletes PlayStream and telemetry event data associated with the master player account from PlayFab storage
+     * @param request DeleteMasterPlayerEventDataRequest
+     * @return Async Task will return DeleteMasterPlayerEventDataResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<DeleteMasterPlayerEventDataResult>> DeleteMasterPlayerEventDataAsync(final DeleteMasterPlayerEventDataRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<DeleteMasterPlayerEventDataResult>>() {
+            public PlayFabResult<DeleteMasterPlayerEventDataResult> call() throws Exception {
+                return privateDeleteMasterPlayerEventDataAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Deletes PlayStream and telemetry event data associated with the master player account from PlayFab storage
+     * @param request DeleteMasterPlayerEventDataRequest
+     * @return DeleteMasterPlayerEventDataResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<DeleteMasterPlayerEventDataResult> DeleteMasterPlayerEventData(final DeleteMasterPlayerEventDataRequest request) {
+        FutureTask<PlayFabResult<DeleteMasterPlayerEventDataResult>> task = new FutureTask(new Callable<PlayFabResult<DeleteMasterPlayerEventDataResult>>() {
+            public PlayFabResult<DeleteMasterPlayerEventDataResult> call() throws Exception {
+                return privateDeleteMasterPlayerEventDataAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<DeleteMasterPlayerEventDataResult> exceptionResult = new PlayFabResult<DeleteMasterPlayerEventDataResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Deletes PlayStream and telemetry event data associated with the master player account from PlayFab storage */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<DeleteMasterPlayerEventDataResult> privateDeleteMasterPlayerEventDataAsync(final DeleteMasterPlayerEventDataRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/DeleteMasterPlayerEventData"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<DeleteMasterPlayerEventDataResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<DeleteMasterPlayerEventDataResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<DeleteMasterPlayerEventDataResult>>(){}.getType());
+        DeleteMasterPlayerEventDataResult result = resultData.data;
+
+        PlayFabResult<DeleteMasterPlayerEventDataResult> pfResult = new PlayFabResult<DeleteMasterPlayerEventDataResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Deletes a player's subscription
      * @param request DeleteMembershipSubscriptionRequest
      * @return Async Task will return DeleteMembershipSubscriptionResult
