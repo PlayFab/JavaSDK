@@ -1388,30 +1388,6 @@ public class PlayFabAdminModels {
         
     }
 
-    /** @deprecated Do not use */
-    @Deprecated
-    public static enum GameBuildStatus {
-        Available,
-        Validating,
-        InvalidBuildPackage,
-        Processing,
-        FailedToProcess
-    }
-
-    /** @deprecated Do not use */
-    @Deprecated
-    public static class GameModeInfo {
-        /** specific game mode type */
-        public String Gamemode;
-        /** maximum user count a specific Game Server Instance can support */
-        public Long MaxPlayerCount;
-        /** minimum user count required for this Game Server Instance to continue (usually 1) */
-        public Long MinPlayerCount;
-        /** whether to start as an open session, meaning that players can matchmake into it (defaults to true) */
-        public Boolean StartOpen;
-        
-    }
-
     public static enum GenericErrorCodes {
         Success,
         UnkownError,
@@ -2288,66 +2264,6 @@ public class PlayFabAdminModels {
         
     }
 
-    /** @deprecated Do not use */
-    @Deprecated
-    public static class GetMatchmakerGameInfoRequest {
-        /** unique identifier of the lobby for which info is being requested */
-        public String LobbyId;
-        
-    }
-
-    /** @deprecated Do not use */
-    @Deprecated
-    public static class GetMatchmakerGameInfoResult {
-        /** version identifier of the game server executable binary being run */
-        public String BuildVersion;
-        /** time when Game Server Instance is currently scheduled to end */
-        public Date EndTime;
-        /** unique identifier of the lobby */
-        public String LobbyId;
-        /** game mode for this Game Server Instance */
-        public String Mode;
-        /** array of unique PlayFab identifiers for users currently connected to this Game Server Instance */
-        @Unordered
-        public ArrayList<String> Players;
-        /** region in which the Game Server Instance is running */
-        public Region Region;
-        /** IPV4 address of the server */
-        public String ServerIPV4Address;
-        /** IPV6 address of the server */
-        public String ServerIPV6Address;
-        /** communication port for this Game Server Instance */
-        public Long ServerPort;
-        /** Public DNS name (if any) of the server */
-        public String ServerPublicDNSName;
-        /** time when the Game Server Instance was created */
-        public Date StartTime;
-        /** unique identifier of the Game Server Instance for this lobby */
-        public String TitleId;
-        
-    }
-
-    /**
-     * These details are used by the PlayFab matchmaking service to determine if an existing Game Server Instance has room for
-     * additional users, and by the PlayFab game server management service to determine when a new Game Server Host should be
-     * created in order to prevent excess load on existing Hosts.
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class GetMatchmakerGameModesRequest {
-        /** previously uploaded build version for which game modes are being requested */
-        public String BuildVersion;
-        
-    }
-
-    /** @deprecated Do not use */
-    @Deprecated
-    public static class GetMatchmakerGameModesResult {
-        /** array of game modes available for the specified build */
-        public ArrayList<GameModeInfo> GameModes;
-        
-    }
-
     /** Useful for identifying titles of which the player's data will be deleted by DeleteMasterPlayer. */
     public static class GetPlayedTitleListRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -3210,65 +3126,6 @@ public class PlayFabAdminModels {
         
     }
 
-    /** @deprecated Do not use */
-    @Deprecated
-    public static class ModifyServerBuildRequest {
-        /** array of regions where this build can used, when it is active */
-        public ArrayList<Region> ActiveRegions;
-        /** unique identifier of the previously uploaded build executable to be updated */
-        public String BuildId;
-        /** appended to the end of the command line when starting game servers */
-        public String CommandLineTemplate;
-        /** developer comment(s) for this build */
-        public String Comment;
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        public Map<String,String> CustomTags;
-        /** path to the game server executable. Defaults to gameserver.exe */
-        public String ExecutablePath;
-        /** maximum number of game server instances that can run on a single host machine */
-        public Integer MaxGamesPerHost;
-        /**
-         * minimum capacity of additional game server instances that can be started before the autoscaling service starts new host
-         * machines (given the number of current running host machines and game server instances)
-         */
-        public Integer MinFreeGameSlots;
-        /** new timestamp */
-        public Date Timestamp;
-        
-    }
-
-    /** @deprecated Do not use */
-    @Deprecated
-    public static class ModifyServerBuildResult {
-        /** array of regions where this build can used, when it is active */
-        public ArrayList<Region> ActiveRegions;
-        /** unique identifier for this build executable */
-        public String BuildId;
-        /** appended to the end of the command line when starting game servers */
-        public String CommandLineTemplate;
-        /** developer comment(s) for this build */
-        public String Comment;
-        /** path to the game server executable. Defaults to gameserver.exe */
-        public String ExecutablePath;
-        /** maximum number of game server instances that can run on a single host machine */
-        public Integer MaxGamesPerHost;
-        /**
-         * minimum capacity of additional game server instances that can be started before the autoscaling service starts new host
-         * machines (given the number of current running host machines and game server instances)
-         */
-        public Integer MinFreeGameSlots;
-        /** the current status of the build validation and processing steps */
-        public GameBuildStatus Status;
-        /** time this build was last modified (or uploaded, if this build has never been modified) */
-        public Date Timestamp;
-        /**
-         * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
-         * title has been selected.
-         */
-        public String TitleId;
-        
-    }
-
     public static class ModifyUserVirtualCurrencyResult {
         /** Balance of the virtual currency after modification. */
         public Integer Balance;
@@ -3647,18 +3504,6 @@ public class PlayFabAdminModels {
         /** The order's updated purchase status. */
         public String PurchaseStatus;
         
-    }
-
-    /** @deprecated Do not use */
-    @Deprecated
-    public static enum Region {
-        USCentral,
-        USEast,
-        EUWest,
-        Singapore,
-        Japan,
-        Brazil,
-        Australia
     }
 
     /**

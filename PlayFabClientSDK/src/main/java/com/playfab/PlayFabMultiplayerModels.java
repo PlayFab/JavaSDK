@@ -1864,10 +1864,18 @@ public class PlayFabMultiplayerModels {
         public Map<String,String> CustomTags;
         /** The container images we want to list tags for. */
         public String ImageName;
+        /** The page size for the request. */
+        public Integer PageSize;
+        /** The skip token for the paged request. */
+        public String SkipToken;
         
     }
 
     public static class ListContainerImageTagsResponse {
+        /** The page size on the response. */
+        public Integer PageSize;
+        /** The skip token for the paged response. */
+        public String SkipToken;
         /** The list of tags for a particular container image. */
         public ArrayList<String> Tags;
         
