@@ -120,7 +120,7 @@ public class PlayFabProfilesModels {
         /** Attribute name. */
         public String Name;
         /** Attribute Statistic scores. */
-        public ArrayList<Integer> Scores;
+        public ArrayList<String> Scores;
         
     }
 
@@ -132,7 +132,7 @@ public class PlayFabProfilesModels {
         /** Statistic name */
         public String Name;
         /** Statistic scores */
-        public ArrayList<Integer> Scores;
+        public ArrayList<String> Scores;
         /** Statistic value */
         public Integer Value;
         /** Statistic version */

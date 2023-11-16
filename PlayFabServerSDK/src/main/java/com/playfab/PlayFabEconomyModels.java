@@ -1472,7 +1472,10 @@ public class PlayFabEconomyModels {
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
-        /** Xbox Token used for delegated business partner authentication. */
+        /**
+         * Xbox Token used for delegated business partner authentication. Token provided by the Xbox Live SDK method
+         * GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", "").
+         */
         public String XboxToken;
         
     }

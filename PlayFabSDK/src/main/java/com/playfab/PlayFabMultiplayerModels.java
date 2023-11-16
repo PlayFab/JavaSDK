@@ -58,7 +58,8 @@ public class PlayFabMultiplayerModels {
         WestUs2,
         CentralIndia,
         UaeNorth,
-        UkSouth
+        UkSouth,
+        SwedenCentral
     }
 
     public static enum AzureVmFamily {
@@ -736,7 +737,7 @@ public class PlayFabMultiplayerModels {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /**
-         * The private key-value pairs which are only visible to members of the lobby. At most 30 key-value pairs may be stored
+         * The private key-value pairs which are visible to all entities in the lobby. At most 30 key-value pairs may be stored
          * here, keys are limited to 30 characters and values to 1000. The total size of all lobbyData values may not exceed 4096
          * bytes. Keys are case sensitive.
          */
@@ -992,6 +993,17 @@ public class PlayFabMultiplayerModels {
         /** The virtual machine ID the multiplayer server is located on. */
         public String VmId;
         
+    }
+
+    public static enum DirectPeerConnectivityOptions {
+        None,
+        SamePlatformType,
+        DifferentPlatformType,
+        AnyPlatformType,
+        SameEntityLoginProvider,
+        DifferentEntityLoginProvider,
+        AnyEntityLoginProvider,
+        AnyPlatformTypeAndEntityLoginProvider
     }
 
     public static class DynamicStandbySettings {
@@ -1665,7 +1677,7 @@ public class PlayFabMultiplayerModels {
         public Long MaxPlayers;
         /**
          * The private key-value pairs used by the member to communicate information to other members and the owner. Visible to all
-         * members of the lobby. At most 30 key-value pairs may be stored here, keys are limited to 30 characters and values to
+         * entities in the lobby. At most 30 key-value pairs may be stored here, keys are limited to 30 characters and values to
          * 1000. The total size of all memberData values may not exceed 4096 bytes. Keys are case sensitive.
          */
         public Map<String,String> MemberData;
@@ -1699,7 +1711,7 @@ public class PlayFabMultiplayerModels {
         public Map<String,String> CustomTags;
         /**
          * The private key-value pairs used by the member to communicate information to other members and the owner. Visible to all
-         * members of the lobby. At most 30 key-value pairs may be stored here, keys are limited to 30 characters and values to
+         * entities in the lobby. At most 30 key-value pairs may be stored here, keys are limited to 30 characters and values to
          * 1000. The total size of all memberData values may not exceed 4096 bytes.Keys are case sensitive.
          */
         public Map<String,String> MemberData;
@@ -2198,6 +2210,46 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    public static class PartyInvitationConfiguration {
+        /**
+         * The list of PlayFab EntityKeys that the invitation allows to authenticate into the network. If this list is empty, all
+         * users are allowed to authenticate using the invitation's identifier. This list may contain no more than 1024 items.
+         */
+        public ArrayList<EntityKey> EntityKeys;
+        /** The invite identifier for this party. If this value is specified, it must be no longer than 127 characters. */
+        public String Identifier;
+        /** Controls which participants can revoke this invite. */
+        public String Revocability;
+        
+    }
+
+    public static enum PartyInvitationRevocability {
+        Creator,
+        Anyone
+    }
+
+    public static class PartyNetworkConfiguration {
+        /** Controls whether and how to support direct peer-to-peer connection attempts among devices in the network. */
+        public String DirectPeerConnectivityOptions;
+        /** The maximum number of devices allowed to connect to the network. Must be between 1 and 32, inclusive. */
+        public Long MaxDevices;
+        /** The maximum number of devices allowed per user. Must be greater than 0. */
+        public Long MaxDevicesPerUser;
+        /** The maximum number of endpoints allowed per device. Must be between 0 and 32, inclusive. */
+        public Long MaxEndpointsPerDevice;
+        /** The maximum number of unique users allowed in the network. Must be greater than 0. */
+        public Long MaxUsers;
+        /** The maximum number of users allowed per device. Must be between 1 and 8, inclusive. */
+        public Long MaxUsersPerDevice;
+        /**
+         * An optionally-specified configuration for the initial invitation for this party. If not provided, default configuration
+         * values will be used: a title-unique invitation identifier will be generated, the revocability will be Anyone, and the
+         * EntityID list will be empty.
+         */
+        public PartyInvitationConfiguration PartyInvitationConfiguration;
+        
+    }
+
     public static class Port {
         /** The name for the port. */
         public String Name;
@@ -2318,6 +2370,38 @@ public class PlayFabMultiplayerModels {
         public String State;
         /** The virtual machine ID that the multiplayer server is located on. */
         public String VmId;
+        
+    }
+
+    /**
+     * Requests a party session from a particular set of builds if build alias params is provided, in any of the given
+     * preferred regions.
+     */
+    public static class RequestPartyServiceRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The network configuration for this request. */
+        public PartyNetworkConfiguration NetworkConfiguration;
+        /** A guid string party ID created track the party session over its life. */
+        public String PartyId;
+        /**
+         * The preferred regions to request a party session from. The party service will iterate through the regions in the
+         * specified order and allocate a party session from the first one that is available.
+         */
+        public ArrayList<String> PreferredRegions;
+        
+    }
+
+    public static class RequestPartyServiceResponse {
+        /**
+         * The invitation identifier supplied in the PartyInvitationConfiguration, or the PlayFab-generated guid if none was
+         * supplied.
+         */
+        public String InvitationId;
+        /** The guid string party ID of the party session. */
+        public String PartyId;
+        /** A base-64 encoded string containing the serialized network descriptor for this party. */
+        public String SerializedNetworkDescriptor;
         
     }
 
@@ -2556,7 +2640,7 @@ public class PlayFabMultiplayerModels {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /**
-         * The private key-value pairs which are only visible to members of the lobby. Optional. Sets or updates key-value pairs on
+         * The private key-value pairs which are visible to all entities in the lobby. Optional. Sets or updates key-value pairs on
          * the lobby. Only the current lobby owner can set lobby data. Keys may be an arbitrary string of at most 30 characters.
          * The total size of all lobbyData values may not exceed 4096 bytes. Values are not individually limited. There can be up
          * to 30 key-value pairs stored here. Keys are case sensitive.
@@ -2575,9 +2659,9 @@ public class PlayFabMultiplayerModels {
         /**
          * The private key-value pairs used by the member to communicate information to other members and the owner. Optional. Sets
          * or updates new key-value pairs on the caller's member data. New keys will be added with their values and existing keys
-         * will be updated with the new values. Visible to all members of the lobby. At most 30 key-value pairs may be stored here,
-         * keys are limited to 30 characters and values to 1000. The total size of all memberData values may not exceed 4096 bytes.
-         * Keys are case sensitive. Servers cannot specifiy this.
+         * will be updated with the new values. Visible to all entities in the lobby. At most 30 key-value pairs may be stored
+         * here, keys are limited to 30 characters and values to 1000. The total size of all memberData values may not exceed 4096
+         * bytes. Keys are case sensitive. Servers cannot specifiy this.
          */
         public Map<String,String> MemberData;
         /**
@@ -2627,6 +2711,8 @@ public class PlayFabMultiplayerModels {
     public static class UploadCertificateRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
+        /** Forces the certificate renewal if the certificate already exists. Default is false */
+        public Boolean ForceUpdate;
         /** The game certificate to upload. */
         public Certificate GameCertificate;
         
