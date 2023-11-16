@@ -7574,6 +7574,7 @@ public class PlayFabClientAPI {
         PlayFabJsonSuccess<RegisterPlayFabUserResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RegisterPlayFabUserResult>>(){}.getType());
         RegisterPlayFabUserResult result = resultData.data;
         PlayFabSettings.ClientSessionTicket = result.SessionTicket != null ? result.SessionTicket : PlayFabSettings.ClientSessionTicket;
+        if (result.EntityToken != null) PlayFabSettings.EntityToken = result.EntityToken.EntityToken != null ? result.EntityToken.EntityToken : PlayFabSettings.EntityToken;
 
         PlayFabResult<RegisterPlayFabUserResult> pfResult = new PlayFabResult<RegisterPlayFabUserResult>();
         pfResult.Result = result;

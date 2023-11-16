@@ -3965,6 +3965,68 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * Request a party session.
+     * @param request RequestPartyServiceRequest
+     * @return Async Task will return RequestPartyServiceResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RequestPartyServiceResponse>> RequestPartyServiceAsync(final RequestPartyServiceRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RequestPartyServiceResponse>>() {
+            public PlayFabResult<RequestPartyServiceResponse> call() throws Exception {
+                return privateRequestPartyServiceAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Request a party session.
+     * @param request RequestPartyServiceRequest
+     * @return RequestPartyServiceResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RequestPartyServiceResponse> RequestPartyService(final RequestPartyServiceRequest request) {
+        FutureTask<PlayFabResult<RequestPartyServiceResponse>> task = new FutureTask(new Callable<PlayFabResult<RequestPartyServiceResponse>>() {
+            public PlayFabResult<RequestPartyServiceResponse> call() throws Exception {
+                return privateRequestPartyServiceAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<RequestPartyServiceResponse> exceptionResult = new PlayFabResult<RequestPartyServiceResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Request a party session. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RequestPartyServiceResponse> privateRequestPartyServiceAsync(final RequestPartyServiceRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Party/RequestPartyService"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RequestPartyServiceResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RequestPartyServiceResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RequestPartyServiceResponse>>(){}.getType());
+        RequestPartyServiceResponse result = resultData.data;
+
+        PlayFabResult<RequestPartyServiceResponse> pfResult = new PlayFabResult<RequestPartyServiceResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Rolls over the credentials to the container registry.
      * @param request RolloverContainerRegistryCredentialsRequest
      * @return Async Task will return RolloverContainerRegistryCredentialsResponse

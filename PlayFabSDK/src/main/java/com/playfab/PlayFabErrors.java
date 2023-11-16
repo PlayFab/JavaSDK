@@ -561,6 +561,8 @@ public class PlayFabErrors {
         InvalidServiceConfiguration(1560),
         InvalidNamespaceMismatch(1561),
         LeaderboardColumnLengthMismatch(1562),
+        InvalidStatisticScore(1563),
+        LeaderboardColumnsNotSpecified(1564),
         MatchmakingEntityInvalid(2001),
         MatchmakingPlayerAttributesInvalid(2002),
         MatchmakingQueueNotFound(2016),
@@ -705,6 +707,12 @@ public class PlayFabErrors {
         LobbyNewOwnerMustBeConnected(13009),
         LobbyCurrentOwnerStillConnected(13010),
         LobbyMemberIsNotOwner(13011),
+        LobbyAssociatedServerMismatch(13012),
+        LobbyAssociatedServerNotFound(13013),
+        LobbyAssociatedToDifferentServer(13014),
+        LobbyServerAlreadyAssociated(13015),
+        LobbyIsNotClientOwned(13016),
+        LobbyDoesNotUseConnections(13017),
         EventSamplingInvalidRatio(14000),
         EventSamplingInvalidEventNamespace(14001),
         EventSamplingInvalidEventName(14002),
@@ -728,6 +736,7 @@ public class PlayFabErrors {
         EventSinkTenantNotFound(15009),
         EventSinkAadNotFound(15010),
         EventSinkDatabaseNotFound(15011),
+        EventSinkTitleUnauthorized(15012),
         OperationCanceled(16000),
         InvalidDisplayNameRandomSuffixLength(17000),
         AllowNonUniquePlayerDisplayNamesDisableNotAllowed(17001),
@@ -747,7 +756,9 @@ public class PlayFabErrors {
         PlayerCustomPropertiesDuplicatePropertyName(19006),
         PlayerCustomPropertiesPropertyDoesNotExist(19007),
         AddonAlreadyExists(19008),
-        AddonDoesntExist(19009);
+        AddonDoesntExist(19009),
+        CopilotDisabled(19100),
+        CopilotInvalidRequest(19101);
 
         public int id;
 

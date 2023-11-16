@@ -1655,6 +1655,8 @@ public class PlayFabServerModels {
         InvalidServiceConfiguration,
         InvalidNamespaceMismatch,
         LeaderboardColumnLengthMismatch,
+        InvalidStatisticScore,
+        LeaderboardColumnsNotSpecified,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1799,6 +1801,12 @@ public class PlayFabServerModels {
         LobbyNewOwnerMustBeConnected,
         LobbyCurrentOwnerStillConnected,
         LobbyMemberIsNotOwner,
+        LobbyAssociatedServerMismatch,
+        LobbyAssociatedServerNotFound,
+        LobbyAssociatedToDifferentServer,
+        LobbyServerAlreadyAssociated,
+        LobbyIsNotClientOwned,
+        LobbyDoesNotUseConnections,
         EventSamplingInvalidRatio,
         EventSamplingInvalidEventNamespace,
         EventSamplingInvalidEventName,
@@ -1822,6 +1830,7 @@ public class PlayFabServerModels {
         EventSinkTenantNotFound,
         EventSinkAadNotFound,
         EventSinkDatabaseNotFound,
+        EventSinkTitleUnauthorized,
         OperationCanceled,
         InvalidDisplayNameRandomSuffixLength,
         AllowNonUniquePlayerDisplayNamesDisableNotAllowed,
@@ -1841,7 +1850,9 @@ public class PlayFabServerModels {
         PlayerCustomPropertiesDuplicatePropertyName,
         PlayerCustomPropertiesPropertyDoesNotExist,
         AddonAlreadyExists,
-        AddonDoesntExist
+        AddonDoesntExist,
+        CopilotDisabled,
+        CopilotInvalidRequest
     }
 
     public static class GenericPlayFabIdPair {

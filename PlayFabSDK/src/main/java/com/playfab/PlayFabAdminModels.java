@@ -14,9 +14,38 @@ public class PlayFabAdminModels {
         
     }
 
+    /** The work to be performed on each entity which can only be of one type. */
+    public static class Action {
+        /** Action content to Add Inventory item v2 */
+        public AddInventoryItemV2Content AddInventoryItemV2Content;
+        /** Action content to ban player */
+        public BanPlayerContent BanPlayerContent;
+        /** Action content to delete inventory item v2 */
+        public DeleteInventoryItemV2Content DeleteInventoryItemV2Content;
+        /** Action content to delete player */
+        public DeletePlayerContent DeletePlayerContent;
+        /** Action content to execute cloud script */
+        public ExecuteCloudScriptContent ExecuteCloudScriptContent;
+        /** Action content to execute azure function */
+        public ExecuteFunctionContent ExecuteFunctionContent;
+        /** Action content to grant item */
+        public GrantItemContent GrantItemContent;
+        /** Action content to grant virtual currency */
+        public GrantVirtualCurrencyContent GrantVirtualCurrencyContent;
+        /** Action content to increment player statistic */
+        public IncrementPlayerStatisticContent IncrementPlayerStatisticContent;
+        /** Action content to send push notification */
+        public PushNotificationContent PushNotificationContent;
+        /** Action content to send email */
+        public SendEmailContent SendEmailContent;
+        /** Action content to Subtract Inventory item v2 */
+        public SubtractInventoryItemV2Content SubtractInventoryItemV2Content;
+        
+    }
+
     public static class ActionsOnPlayersInSegmentTaskParameter {
-        /** ID of the action to perform on each player in segment. */
-        public String ActionId;
+        /** List of actions to perform on each player in a segment. Each action object can contain only one action type. */
+        public ArrayList<Action> Actions;
         /** ID of the segment to perform actions on. */
         public String SegmentId;
         
@@ -77,6 +106,20 @@ public class PlayFabAdminModels {
         public String CampaignSource;
         /** Campaign comparison. */
         public SegmentFilterComparison Comparison;
+        
+    }
+
+    public static class AddInventoryItemV2Content {
+        /** Amount of the item to be granted to a player */
+        public Integer Amount;
+        /** The collection id for where the item will be granted in the player inventory */
+        public String CollectionId;
+        /** The duration in seconds of the subscription to be granted to a player */
+        public Integer DurationInSeconds;
+        /** The id of item to be granted to the player */
+        public String ItemId;
+        /** The stack id for where the item will be granted in the player inventory */
+        public String StackId;
         
     }
 
@@ -193,6 +236,14 @@ public class PlayFabAdminModels {
         public String PlayFabId;
         /** The reason why this ban was applied. */
         public String Reason;
+        
+    }
+
+    public static class BanPlayerContent {
+        /** Duration(in hours) to ban a player. If not provided, the player will be banned permanently. */
+        public Integer BanDurationHours;
+        /** Reason to ban a player */
+        public String BanReason;
         
     }
 
@@ -822,6 +873,8 @@ public class PlayFabAdminModels {
         public String IssuerDiscoveryUrl;
         /** Manually specified information for an OpenID Connect issuer. */
         public OpenIdIssuerInformation IssuerInformation;
+        /** Override the issuer name for user indexing and lookup. */
+        public String IssuerOverride;
         
     }
 
@@ -1065,6 +1118,16 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class DeleteInventoryItemV2Content {
+        /** The collection id for where the item will be removed from the player inventory */
+        public String CollectionId;
+        /** The id of item to be removed from the player */
+        public String ItemId;
+        /** The stack id for where the item will be removed from the player inventory */
+        public String StackId;
+        
+    }
+
     /**
      * Deletes all data associated with the master player account, including data from all titles the player has played, such
      * as statistics, custom data, inventory, purchases, virtual currency balances, characters, group memberships, publisher
@@ -1129,6 +1192,10 @@ public class PlayFabAdminModels {
     public static class DeleteOpenIdConnectionRequest {
         /** unique name of the connection */
         public String ConnectionId;
+        
+    }
+
+    public static class DeletePlayerContent {
         
     }
 
@@ -1284,6 +1351,16 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class ExecuteCloudScriptContent {
+        /** Arguments(JSON) to be passed into the cloudscript method */
+        public String CloudScriptMethodArguments;
+        /** Cloudscript method name */
+        public String CloudScriptMethodName;
+        /** Publish cloudscript results as playstream event */
+        public Boolean PublishResultsToPlayStream;
+        
+    }
+
     public static class ExecuteCloudScriptResult {
         /** Number of PlayFab API requests issued by the CloudScript function */
         public Integer APIRequestsIssued;
@@ -1331,6 +1408,16 @@ public class PlayFabAdminModels {
         public Object FunctionParameter;
         /** Cloud script function parameter json text. */
         public String FunctionParameterJson;
+        
+    }
+
+    public static class ExecuteFunctionContent {
+        /** Arguments(JSON) to be passed into the cloudscript azure function */
+        public String CloudScriptFunctionArguments;
+        /** Cloudscript azure function name */
+        public String CloudScriptFunctionName;
+        /** Publish results from executing the azure function as playstream event */
+        public Boolean PublishResultsToPlayStream;
         
     }
 
@@ -1939,6 +2026,8 @@ public class PlayFabAdminModels {
         InvalidServiceConfiguration,
         InvalidNamespaceMismatch,
         LeaderboardColumnLengthMismatch,
+        InvalidStatisticScore,
+        LeaderboardColumnsNotSpecified,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -2083,6 +2172,12 @@ public class PlayFabAdminModels {
         LobbyNewOwnerMustBeConnected,
         LobbyCurrentOwnerStillConnected,
         LobbyMemberIsNotOwner,
+        LobbyAssociatedServerMismatch,
+        LobbyAssociatedServerNotFound,
+        LobbyAssociatedToDifferentServer,
+        LobbyServerAlreadyAssociated,
+        LobbyIsNotClientOwned,
+        LobbyDoesNotUseConnections,
         EventSamplingInvalidRatio,
         EventSamplingInvalidEventNamespace,
         EventSamplingInvalidEventName,
@@ -2106,6 +2201,7 @@ public class PlayFabAdminModels {
         EventSinkTenantNotFound,
         EventSinkAadNotFound,
         EventSinkDatabaseNotFound,
+        EventSinkTitleUnauthorized,
         OperationCanceled,
         InvalidDisplayNameRandomSuffixLength,
         AllowNonUniquePlayerDisplayNamesDisableNotAllowed,
@@ -2125,7 +2221,9 @@ public class PlayFabAdminModels {
         PlayerCustomPropertiesDuplicatePropertyName,
         PlayerCustomPropertiesPropertyDoesNotExist,
         AddonAlreadyExists,
-        AddonDoesntExist
+        AddonDoesntExist,
+        CopilotDisabled,
+        CopilotInvalidRequest
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {
@@ -2792,6 +2890,16 @@ public class PlayFabAdminModels {
         }
     }
 
+    public static class GrantItemContent {
+        /** The catalog version of the item to be granted to the player */
+        public String CatalogVersion;
+        /** The id of item to be granted to the player */
+        public String ItemId;
+        /** Quantity of the item to be granted to a player */
+        public Integer ItemQuantity;
+        
+    }
+
     public static class GrantItemSegmentAction {
         /** Item catalog id. */
         public String CatelogId;
@@ -2826,6 +2934,14 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class GrantVirtualCurrencyContent {
+        /** Amount of currency to be granted to a player */
+        public Integer CurrencyAmount;
+        /** Code of the currency to be granted to a player */
+        public String CurrencyCode;
+        
+    }
+
     public static class GrantVirtualCurrencySegmentAction {
         /** Virtual currency amount. */
         public Integer Amount;
@@ -2851,6 +2967,14 @@ public class PlayFabAdminModels {
     }
 
     public static class IncrementLimitedEditionItemAvailabilityResult {
+        
+    }
+
+    public static class IncrementPlayerStatisticContent {
+        /** Amount(in whole number) to increase the player statistic by */
+        public Integer StatisticChangeBy;
+        /** Name of the player statistic to be incremented */
+        public String StatisticName;
         
     }
 
@@ -3162,8 +3286,12 @@ public class PlayFabAdminModels {
         public String ConnectionId;
         /** Shows if data about the connection will be loaded from the issuer's discovery document */
         public Boolean DiscoverConfiguration;
+        /** Ignore 'nonce' claim in identity tokens. */
+        public Boolean IgnoreNonce;
         /** Information for an OpenID Connect provider. */
         public OpenIdIssuerInformation IssuerInformation;
+        /** Override the issuer name for user indexing and lookup. */
+        public String IssuerOverride;
         
     }
 
@@ -3426,6 +3554,16 @@ public class PlayFabAdminModels {
         public StatisticVersionStatus Status;
         /** version of the statistic */
         public Long Version;
+        
+    }
+
+    public static class PushNotificationContent {
+        /** Text of message to send. */
+        public String Message;
+        /** Id of the push notification template. */
+        public String PushNotificationTemplateId;
+        /** Subject of message to send (may not be displayed in all platforms) */
+        public String Subject;
         
     }
 
@@ -4350,6 +4488,12 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class SendEmailContent {
+        /** The email template id of the email template to send. */
+        public String EmailTemplateId;
+        
+    }
+
     /** This API lets developers set overrides for membership expirations, independent of any subscriptions setting it. */
     public static class SetMembershipOverrideRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -4630,6 +4774,20 @@ public class PlayFabAdminModels {
         PaymentPending
     }
 
+    public static class SubtractInventoryItemV2Content {
+        /** Amount of the item to removed from the player */
+        public Integer Amount;
+        /** The collection id for where the item will be removed from the player inventory */
+        public String CollectionId;
+        /** The duration in seconds to be removed from the subscription in the players inventory */
+        public Integer DurationInSeconds;
+        /** The id of item to be removed from the player */
+        public String ItemId;
+        /** The stack id for where the item will be removed from the player inventory */
+        public String StackId;
+        
+    }
+
     public static class SubtractUserVirtualCurrencyRequest {
         /** Amount to be subtracted from the user balance of the specified virtual currency. */
         public Integer Amount;
@@ -4805,10 +4963,14 @@ public class PlayFabAdminModels {
         public String ClientSecret;
         /** A name for the connection that identifies it within the title. */
         public String ConnectionId;
+        /** Ignore 'nonce' claim in identity tokens. */
+        public Boolean IgnoreNonce;
         /** The issuer URL or discovery document URL to read issuer information from */
         public String IssuerDiscoveryUrl;
         /** Manually specified information for an OpenID Connect issuer. */
         public OpenIdIssuerInformation IssuerInformation;
+        /** Override the issuer name for user indexing and lookup. */
+        public String IssuerOverride;
         
     }
 
