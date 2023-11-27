@@ -16,7 +16,7 @@ public class PlayFabAdminModels {
 
     /** The work to be performed on each entity which can only be of one type. */
     public static class Action {
-        /** Action content to Add Inventory item v2 */
+        /** Action content to add inventory item v2 */
         public AddInventoryItemV2Content AddInventoryItemV2Content;
         /** Action content to ban player */
         public BanPlayerContent BanPlayerContent;
@@ -38,7 +38,7 @@ public class PlayFabAdminModels {
         public PushNotificationContent PushNotificationContent;
         /** Action content to send email */
         public SendEmailContent SendEmailContent;
-        /** Action content to Subtract Inventory item v2 */
+        /** Action content to subtract inventory item v2 */
         public SubtractInventoryItemV2Content SubtractInventoryItemV2Content;
         
     }
@@ -2172,10 +2172,10 @@ public class PlayFabAdminModels {
         LobbyNewOwnerMustBeConnected,
         LobbyCurrentOwnerStillConnected,
         LobbyMemberIsNotOwner,
-        LobbyAssociatedServerMismatch,
-        LobbyAssociatedServerNotFound,
-        LobbyAssociatedToDifferentServer,
-        LobbyServerAlreadyAssociated,
+        LobbyServerMismatch,
+        LobbyServerNotFound,
+        LobbyDifferentServerAlreadyJoined,
+        LobbyServerAlreadyJoined,
         LobbyIsNotClientOwned,
         LobbyDoesNotUseConnections,
         EventSamplingInvalidRatio,
@@ -2223,7 +2223,8 @@ public class PlayFabAdminModels {
         AddonAlreadyExists,
         AddonDoesntExist,
         CopilotDisabled,
-        CopilotInvalidRequest
+        CopilotInvalidRequest,
+        TrueSkillUnauthorized
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {

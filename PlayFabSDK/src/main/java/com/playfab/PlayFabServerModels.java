@@ -1801,10 +1801,10 @@ public class PlayFabServerModels {
         LobbyNewOwnerMustBeConnected,
         LobbyCurrentOwnerStillConnected,
         LobbyMemberIsNotOwner,
-        LobbyAssociatedServerMismatch,
-        LobbyAssociatedServerNotFound,
-        LobbyAssociatedToDifferentServer,
-        LobbyServerAlreadyAssociated,
+        LobbyServerMismatch,
+        LobbyServerNotFound,
+        LobbyDifferentServerAlreadyJoined,
+        LobbyServerAlreadyJoined,
         LobbyIsNotClientOwned,
         LobbyDoesNotUseConnections,
         EventSamplingInvalidRatio,
@@ -1852,7 +1852,8 @@ public class PlayFabServerModels {
         AddonAlreadyExists,
         AddonDoesntExist,
         CopilotDisabled,
-        CopilotInvalidRequest
+        CopilotInvalidRequest,
+        TrueSkillUnauthorized
     }
 
     public static class GenericPlayFabIdPair {
