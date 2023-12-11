@@ -2832,6 +2832,68 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * Preview: Join a lobby as a server entity. This is restricted to client lobbies which are using connections.
+     * @param request JoinLobbyAsServerRequest
+     * @return Async Task will return JoinLobbyAsServerResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<JoinLobbyAsServerResult>> JoinLobbyAsServerAsync(final JoinLobbyAsServerRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<JoinLobbyAsServerResult>>() {
+            public PlayFabResult<JoinLobbyAsServerResult> call() throws Exception {
+                return privateJoinLobbyAsServerAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Preview: Join a lobby as a server entity. This is restricted to client lobbies which are using connections.
+     * @param request JoinLobbyAsServerRequest
+     * @return JoinLobbyAsServerResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<JoinLobbyAsServerResult> JoinLobbyAsServer(final JoinLobbyAsServerRequest request) {
+        FutureTask<PlayFabResult<JoinLobbyAsServerResult>> task = new FutureTask(new Callable<PlayFabResult<JoinLobbyAsServerResult>>() {
+            public PlayFabResult<JoinLobbyAsServerResult> call() throws Exception {
+                return privateJoinLobbyAsServerAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<JoinLobbyAsServerResult> exceptionResult = new PlayFabResult<JoinLobbyAsServerResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Preview: Join a lobby as a server entity. This is restricted to client lobbies which are using connections. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<JoinLobbyAsServerResult> privateJoinLobbyAsServerAsync(final JoinLobbyAsServerRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Lobby/JoinLobbyAsServer"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<JoinLobbyAsServerResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<JoinLobbyAsServerResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<JoinLobbyAsServerResult>>(){}.getType());
+        JoinLobbyAsServerResult result = resultData.data;
+
+        PlayFabResult<JoinLobbyAsServerResult> pfResult = new PlayFabResult<JoinLobbyAsServerResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Join a matchmaking ticket.
      * @param request JoinMatchmakingTicketRequest
      * @return Async Task will return JoinMatchmakingTicketResult
@@ -2935,6 +2997,68 @@ public class PlayFabMultiplayerAPI {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Lobby/LeaveLobby"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<LobbyEmptyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<LobbyEmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LobbyEmptyResult>>(){}.getType());
+        LobbyEmptyResult result = resultData.data;
+
+        PlayFabResult<LobbyEmptyResult> pfResult = new PlayFabResult<LobbyEmptyResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Preview: Request for server to leave a lobby. This is restricted to client owned lobbies which are using connections.
+     * @param request LeaveLobbyAsServerRequest
+     * @return Async Task will return LobbyEmptyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<LobbyEmptyResult>> LeaveLobbyAsServerAsync(final LeaveLobbyAsServerRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<LobbyEmptyResult>>() {
+            public PlayFabResult<LobbyEmptyResult> call() throws Exception {
+                return privateLeaveLobbyAsServerAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Preview: Request for server to leave a lobby. This is restricted to client owned lobbies which are using connections.
+     * @param request LeaveLobbyAsServerRequest
+     * @return LobbyEmptyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<LobbyEmptyResult> LeaveLobbyAsServer(final LeaveLobbyAsServerRequest request) {
+        FutureTask<PlayFabResult<LobbyEmptyResult>> task = new FutureTask(new Callable<PlayFabResult<LobbyEmptyResult>>() {
+            public PlayFabResult<LobbyEmptyResult> call() throws Exception {
+                return privateLeaveLobbyAsServerAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<LobbyEmptyResult> exceptionResult = new PlayFabResult<LobbyEmptyResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Preview: Request for server to leave a lobby. This is restricted to client owned lobbies which are using connections. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<LobbyEmptyResult> privateLeaveLobbyAsServerAsync(final LeaveLobbyAsServerRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Lobby/LeaveLobbyAsServer"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -4628,6 +4752,76 @@ public class PlayFabMultiplayerAPI {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Lobby/UpdateLobby"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<LobbyEmptyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<LobbyEmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LobbyEmptyResult>>(){}.getType());
+        LobbyEmptyResult result = resultData.data;
+
+        PlayFabResult<LobbyEmptyResult> pfResult = new PlayFabResult<LobbyEmptyResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Preview: Update fields related to a joined server in the lobby the server is in. Servers can keep a lobby from expiring
+     * by being the one to "update" the lobby in some way. Servers have no impact on last member leave/last member disconnect
+     * behavior.
+     * @param request UpdateLobbyAsServerRequest
+     * @return Async Task will return LobbyEmptyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<LobbyEmptyResult>> UpdateLobbyAsServerAsync(final UpdateLobbyAsServerRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<LobbyEmptyResult>>() {
+            public PlayFabResult<LobbyEmptyResult> call() throws Exception {
+                return privateUpdateLobbyAsServerAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Preview: Update fields related to a joined server in the lobby the server is in. Servers can keep a lobby from expiring
+     * by being the one to "update" the lobby in some way. Servers have no impact on last member leave/last member disconnect
+     * behavior.
+     * @param request UpdateLobbyAsServerRequest
+     * @return LobbyEmptyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<LobbyEmptyResult> UpdateLobbyAsServer(final UpdateLobbyAsServerRequest request) {
+        FutureTask<PlayFabResult<LobbyEmptyResult>> task = new FutureTask(new Callable<PlayFabResult<LobbyEmptyResult>>() {
+            public PlayFabResult<LobbyEmptyResult> call() throws Exception {
+                return privateUpdateLobbyAsServerAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<LobbyEmptyResult> exceptionResult = new PlayFabResult<LobbyEmptyResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /**
+     * Preview: Update fields related to a joined server in the lobby the server is in. Servers can keep a lobby from expiring
+     * by being the one to "update" the lobby in some way. Servers have no impact on last member leave/last member disconnect
+     * behavior.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<LobbyEmptyResult> privateUpdateLobbyAsServerAsync(final UpdateLobbyAsServerRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Lobby/UpdateLobbyAsServer"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
