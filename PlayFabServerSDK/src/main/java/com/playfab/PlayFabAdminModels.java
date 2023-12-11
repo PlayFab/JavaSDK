@@ -109,6 +109,20 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class AddInventoryItemsV2SegmentAction {
+        /** Amount of the item to be granted to a player */
+        public Integer Amount;
+        /** The collection id for where the item will be granted in the player inventory */
+        public String CollectionId;
+        /** The duration in seconds of the subscription to be granted to a player */
+        public Integer DurationInSeconds;
+        /** The id of item to be granted to the player */
+        public String ItemId;
+        /** The stack id for where the item will be granted in the player inventory */
+        public String StackId;
+        
+    }
+
     public static class AddInventoryItemV2Content {
         /** Amount of the item to be granted to a player */
         public Integer Amount;
@@ -1118,6 +1132,16 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class DeleteInventoryItemsV2SegmentAction {
+        /** The collection id for where the item will be removed from the player inventory */
+        public String CollectionId;
+        /** The id of item to be removed from the player */
+        public String ItemId;
+        /** The stack id for where the item will be removed from the player inventory */
+        public String StackId;
+        
+    }
+
     public static class DeleteInventoryItemV2Content {
         /** The collection id for where the item will be removed from the player inventory */
         public String CollectionId;
@@ -2028,6 +2052,7 @@ public class PlayFabAdminModels {
         LeaderboardColumnLengthMismatch,
         InvalidStatisticScore,
         LeaderboardColumnsNotSpecified,
+        LeaderboardMaxSizeTooLarge,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -2071,6 +2096,7 @@ public class PlayFabAdminModels {
         CatalogItemTypeInvalid,
         CatalogBadRequest,
         CatalogTooManyRequests,
+        InvalidCatalogItemConfiguration,
         ExportInvalidStatusUpdate,
         ExportInvalidPrefix,
         ExportBlobContainerDoesNotExist,
@@ -4447,8 +4473,12 @@ public class PlayFabAdminModels {
     }
 
     public static class SegmentTrigger {
+        /** Add inventory item v2 segment trigger action. */
+        public AddInventoryItemsV2SegmentAction AddInventoryItemsV2Action;
         /** Ban player segment trigger action. */
         public BanPlayerSegmentAction BanPlayerAction;
+        /** Delete inventory item v2 segment trigger action. */
+        public DeleteInventoryItemsV2SegmentAction DeleteInventoryItemsV2Action;
         /** Delete player segment trigger action. */
         public DeletePlayerSegmentAction DeletePlayerAction;
         /** Delete player statistic segment trigger action. */
@@ -4467,6 +4497,8 @@ public class PlayFabAdminModels {
         public IncrementPlayerStatisticSegmentAction IncrementPlayerStatisticAction;
         /** Push notification segment trigger action. */
         public PushNotificationSegmentAction PushNotificationAction;
+        /** Subtract inventory item v2 segment trigger action. */
+        public SubtractInventoryItemsV2SegmentAction SubtractInventoryItemsV2Action;
         
     }
 
@@ -4773,6 +4805,20 @@ public class PlayFabAdminModels {
         CustomerDidNotAcceptPriceChange,
         FreeTrial,
         PaymentPending
+    }
+
+    public static class SubtractInventoryItemsV2SegmentAction {
+        /** Amount of the item to removed from the player */
+        public Integer Amount;
+        /** The collection id for where the item will be removed from the player inventory */
+        public String CollectionId;
+        /** The duration in seconds to be removed from the subscription in the players inventory */
+        public Integer DurationInSeconds;
+        /** The id of item to be removed from the player */
+        public String ItemId;
+        /** The stack id for where the item will be removed from the player inventory */
+        public String StackId;
+        
     }
 
     public static class SubtractInventoryItemV2Content {
