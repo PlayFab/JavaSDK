@@ -2053,6 +2053,7 @@ public class PlayFabAdminModels {
         InvalidStatisticScore,
         LeaderboardColumnsNotSpecified,
         LeaderboardMaxSizeTooLarge,
+        InvalidAttributeStatisticsSpecified,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -2228,6 +2229,8 @@ public class PlayFabAdminModels {
         EventSinkAadNotFound,
         EventSinkDatabaseNotFound,
         EventSinkTitleUnauthorized,
+        EventSinkInsufficientRoleAssignment,
+        EventSinkContainerNotFound,
         OperationCanceled,
         InvalidDisplayNameRandomSuffixLength,
         AllowNonUniquePlayerDisplayNamesDisableNotAllowed,
@@ -2250,7 +2253,23 @@ public class PlayFabAdminModels {
         AddonDoesntExist,
         CopilotDisabled,
         CopilotInvalidRequest,
-        TrueSkillUnauthorized
+        TrueSkillUnauthorized,
+        TrueSkillBadRequest,
+        TrueSkillMatchResultAlreadySubmitted,
+        TrueSkillDuplicatePlayerInMatchResult,
+        TrueSkillInvalidRanksInMatchResult,
+        TrueSkillNoWinnerInMatchResult,
+        TrueSkillMissingRequiredConditionInMatchResult,
+        TrueSkillMissingRequiredEventInMatchResult,
+        TrueSkillUnknownEventInMatchResult,
+        TrueSkillUnknownConditionName,
+        TrueSkillUnknownConditionValue,
+        TrueSkillUnknownScenarioId,
+        TrueSkillUnknownModelId,
+        TrueSkillNoActiveModelInScenario,
+        StateShareUnauthorized,
+        StateShareStateNotFound,
+        StateShareLinkNotFound
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {

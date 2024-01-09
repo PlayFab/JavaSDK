@@ -1658,6 +1658,7 @@ public class PlayFabServerModels {
         InvalidStatisticScore,
         LeaderboardColumnsNotSpecified,
         LeaderboardMaxSizeTooLarge,
+        InvalidAttributeStatisticsSpecified,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1833,6 +1834,8 @@ public class PlayFabServerModels {
         EventSinkAadNotFound,
         EventSinkDatabaseNotFound,
         EventSinkTitleUnauthorized,
+        EventSinkInsufficientRoleAssignment,
+        EventSinkContainerNotFound,
         OperationCanceled,
         InvalidDisplayNameRandomSuffixLength,
         AllowNonUniquePlayerDisplayNamesDisableNotAllowed,
@@ -1855,7 +1858,23 @@ public class PlayFabServerModels {
         AddonDoesntExist,
         CopilotDisabled,
         CopilotInvalidRequest,
-        TrueSkillUnauthorized
+        TrueSkillUnauthorized,
+        TrueSkillBadRequest,
+        TrueSkillMatchResultAlreadySubmitted,
+        TrueSkillDuplicatePlayerInMatchResult,
+        TrueSkillInvalidRanksInMatchResult,
+        TrueSkillNoWinnerInMatchResult,
+        TrueSkillMissingRequiredConditionInMatchResult,
+        TrueSkillMissingRequiredEventInMatchResult,
+        TrueSkillUnknownEventInMatchResult,
+        TrueSkillUnknownConditionName,
+        TrueSkillUnknownConditionValue,
+        TrueSkillUnknownScenarioId,
+        TrueSkillUnknownModelId,
+        TrueSkillNoActiveModelInScenario,
+        StateShareUnauthorized,
+        StateShareStateNotFound,
+        StateShareLinkNotFound
     }
 
     public static class GenericPlayFabIdPair {

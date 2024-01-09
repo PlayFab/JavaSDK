@@ -564,6 +564,7 @@ public class PlayFabErrors {
         InvalidStatisticScore(1563),
         LeaderboardColumnsNotSpecified(1564),
         LeaderboardMaxSizeTooLarge(1565),
+        InvalidAttributeStatisticsSpecified(1566),
         MatchmakingEntityInvalid(2001),
         MatchmakingPlayerAttributesInvalid(2002),
         MatchmakingQueueNotFound(2016),
@@ -739,6 +740,8 @@ public class PlayFabErrors {
         EventSinkAadNotFound(15010),
         EventSinkDatabaseNotFound(15011),
         EventSinkTitleUnauthorized(15012),
+        EventSinkInsufficientRoleAssignment(15013),
+        EventSinkContainerNotFound(15014),
         OperationCanceled(16000),
         InvalidDisplayNameRandomSuffixLength(17000),
         AllowNonUniquePlayerDisplayNamesDisableNotAllowed(17001),
@@ -761,7 +764,23 @@ public class PlayFabErrors {
         AddonDoesntExist(19009),
         CopilotDisabled(19100),
         CopilotInvalidRequest(19101),
-        TrueSkillUnauthorized(20000);
+        TrueSkillUnauthorized(20000),
+        TrueSkillBadRequest(20001),
+        TrueSkillMatchResultAlreadySubmitted(20002),
+        TrueSkillDuplicatePlayerInMatchResult(20003),
+        TrueSkillInvalidRanksInMatchResult(20004),
+        TrueSkillNoWinnerInMatchResult(20005),
+        TrueSkillMissingRequiredConditionInMatchResult(20006),
+        TrueSkillMissingRequiredEventInMatchResult(20007),
+        TrueSkillUnknownEventInMatchResult(20008),
+        TrueSkillUnknownConditionName(20009),
+        TrueSkillUnknownConditionValue(20010),
+        TrueSkillUnknownScenarioId(20011),
+        TrueSkillUnknownModelId(20012),
+        TrueSkillNoActiveModelInScenario(20013),
+        StateShareUnauthorized(21000),
+        StateShareStateNotFound(21001),
+        StateShareLinkNotFound(21002);
 
         public int id;
 
