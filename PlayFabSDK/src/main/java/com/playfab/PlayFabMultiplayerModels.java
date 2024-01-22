@@ -1733,12 +1733,6 @@ public class PlayFabMultiplayerModels {
     public static class JoinLobbyAsServerResult {
         /** Successfully joined lobby's id. */
         public String LobbyId;
-        /**
-         * A setting that describes the state of the ServerData after JoinLobbyAsServer call is completed. It is "Initialized", the
-         * first time a server joins the lobby. It is "Ignored" in any subsequent JoinLobbyAsServer calls after it has been
-         * initialized. Any new server taking over should call UpdateLobbyAsServer to update ServerData fields.
-         */
-        public ServerDataStatus ServerDataStatus;
         
     }
 
@@ -2020,6 +2014,8 @@ public class PlayFabMultiplayerModels {
          * deployed for the title.
          */
         public Boolean IncludeAllRegions;
+        /** Indicates the Routing Preference used by the Qos servers. The default Routing Preference is Microsoft */
+        public String RoutingPreference;
         
     }
 
@@ -2119,12 +2115,24 @@ public class PlayFabMultiplayerModels {
         public String PubSubConnectionHandle;
         /** Search data. */
         public Map<String,String> SearchData;
+        /** Preview: Lobby joined server. This is not the server owner, rather the server that has joined a client owned lobby. */
+        public LobbyServer Server;
         /** A flag which determines if connections are used. Defaults to true. Only set on create. */
         public Boolean UseConnections;
         
     }
 
     public static class LobbyEmptyResult {
+        
+    }
+
+    public static class LobbyServer {
+        /** Opaque string, stored on a Subscribe call, which indicates the connection a joined server has with PubSub. */
+        public String PubSubConnectionHandle;
+        /** Key-value pairs specific to the joined server. */
+        public Map<String,String> ServerData;
+        /** The server entity key. */
+        public EntityKey ServerEntity;
         
     }
 
@@ -2513,11 +2521,6 @@ public class PlayFabMultiplayerModels {
         
     }
 
-    public static enum ServerDataStatus {
-        Initialized,
-        Ignored
-    }
-
     public static class ServerDetails {
         /** The fully qualified domain name of the virtual machine that is hosting this multiplayer server. */
         public String Fqdn;
@@ -2698,11 +2701,6 @@ public class PlayFabMultiplayerModels {
         /** The id of the lobby. */
         public String LobbyId;
         /**
-         * The lobby server. Optional. Set a different server as the joined server of the lobby (there can only be 1 joined
-         * server). When changing the server the previous server will automatically be unsubscribed.
-         */
-        public EntityKey Server;
-        /**
          * The private key-value pairs which are visible to all entities in the lobby and modifiable by the joined server.
          * Optional. Sets or updates key-value pairs on the lobby. Only the current lobby lobby server can set serverData. Keys may
          * be an arbitrary string of at most 30 characters. The total size of all serverData values may not exceed 4096 bytes.
@@ -2716,6 +2714,11 @@ public class PlayFabMultiplayerModels {
          * request.
          */
         public ArrayList<String> ServerDataToDelete;
+        /**
+         * The lobby server. Optional. Set a different server as the joined server of the lobby (there can only be 1 joined
+         * server). When changing the server the previous server will automatically be unsubscribed.
+         */
+        public EntityKey ServerEntity;
         
     }
 

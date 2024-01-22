@@ -1659,6 +1659,8 @@ public class PlayFabServerModels {
         LeaderboardColumnsNotSpecified,
         LeaderboardMaxSizeTooLarge,
         InvalidAttributeStatisticsSpecified,
+        LeaderboardNotFound,
+        TokenSigningKeyNotFound,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
