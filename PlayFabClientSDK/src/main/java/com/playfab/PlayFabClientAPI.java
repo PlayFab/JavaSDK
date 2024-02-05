@@ -3561,6 +3561,68 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Retrieves the unique PlayFab identifiers for the given set of PlayStation :tm: Network identifiers.
+     * @param request GetPlayFabIDsFromPSNOnlineIDsRequest
+     * @return Async Task will return GetPlayFabIDsFromPSNOnlineIDsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayFabIDsFromPSNOnlineIDsResult>> GetPlayFabIDsFromPSNOnlineIDsAsync(final GetPlayFabIDsFromPSNOnlineIDsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromPSNOnlineIDsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromPSNOnlineIDsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromPSNOnlineIDsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of PlayStation :tm: Network identifiers.
+     * @param request GetPlayFabIDsFromPSNOnlineIDsRequest
+     * @return GetPlayFabIDsFromPSNOnlineIDsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayFabIDsFromPSNOnlineIDsResult> GetPlayFabIDsFromPSNOnlineIDs(final GetPlayFabIDsFromPSNOnlineIDsRequest request) {
+        FutureTask<PlayFabResult<GetPlayFabIDsFromPSNOnlineIDsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromPSNOnlineIDsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromPSNOnlineIDsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromPSNOnlineIDsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetPlayFabIDsFromPSNOnlineIDsResult> exceptionResult = new PlayFabResult<GetPlayFabIDsFromPSNOnlineIDsResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Retrieves the unique PlayFab identifiers for the given set of PlayStation :tm: Network identifiers. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayFabIDsFromPSNOnlineIDsResult> privateGetPlayFabIDsFromPSNOnlineIDsAsync(final GetPlayFabIDsFromPSNOnlineIDsRequest request) throws Exception {
+        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayFabIDsFromPSNOnlineIDs"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayFabIDsFromPSNOnlineIDsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayFabIDsFromPSNOnlineIDsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayFabIDsFromPSNOnlineIDsResult>>(){}.getType());
+        GetPlayFabIDsFromPSNOnlineIDsResult result = resultData.data;
+
+        PlayFabResult<GetPlayFabIDsFromPSNOnlineIDsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromPSNOnlineIDsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
      * IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
      * @param request GetPlayFabIDsFromSteamIDsRequest

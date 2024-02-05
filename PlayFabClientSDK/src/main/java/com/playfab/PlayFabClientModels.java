@@ -1930,6 +1930,24 @@ public class PlayFabClientModels {
         
     }
 
+    public static class GetPlayFabIDsFromPSNOnlineIDsRequest {
+        /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
+        public Integer IssuerId;
+        /**
+         * Array of unique PlayStation :tm: Network identifiers for which the title needs to get PlayFab identifiers. The array
+         * cannot exceed 2,000 in length.
+         */
+        public ArrayList<String> PSNOnlineIDs;
+        
+    }
+
+    /** For PlayStation :tm: Network identifiers which have not been linked to PlayFab accounts, null will be returned. */
+    public static class GetPlayFabIDsFromPSNOnlineIDsResult {
+        /** Mapping of PlayStation :tm: Network identifiers to PlayFab identifiers. */
+        public ArrayList<PSNOnlinePlayFabIdPair> Data;
+        
+    }
+
     public static class GetPlayFabIDsFromSteamIDsRequest {
         /**
          * Array of unique Steam identifiers (Steam profile IDs) for which the title needs to get PlayFab identifiers. The array
@@ -3619,6 +3637,17 @@ public class PlayFabClientModels {
         public String PlayFabId;
         /** Unique PlayStation :tm: Network identifier for a user. */
         public String PSNAccountId;
+        
+    }
+
+    public static class PSNOnlinePlayFabIdPair {
+        /**
+         * Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the PlayStation :tm: Network
+         * identifier.
+         */
+        public String PlayFabId;
+        /** Unique PlayStation :tm: Network identifier for a user. */
+        public String PSNOnlineId;
         
     }
 
