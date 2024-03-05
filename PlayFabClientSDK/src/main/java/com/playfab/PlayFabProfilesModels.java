@@ -114,27 +114,13 @@ public class PlayFabProfilesModels {
         
     }
 
-    public static class EntityStatisticAttributeValue {
-        /** Metadata associated with the Statistic. */
-        public String Metadata;
-        /** Attribute name. */
-        public String Name;
-        /** Attribute Statistic scores. */
-        public ArrayList<String> Scores;
-        
-    }
-
     public static class EntityStatisticValue {
-        /** Attribute Statistic values. */
-        public Map<String,EntityStatisticAttributeValue> AttributeStatistics;
         /** Metadata associated with the Statistic. */
         public String Metadata;
         /** Statistic name */
         public String Name;
         /** Statistic scores */
         public ArrayList<String> Scores;
-        /** Statistic value */
-        public Integer Value;
         /** Statistic version */
         public Integer Version;
         

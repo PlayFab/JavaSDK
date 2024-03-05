@@ -1416,6 +1416,10 @@ public class PlayFabEconomyModels {
         
     }
 
+    public static class RealMoneyPriceDetails {
+        
+    }
+
     /** Redeem items from the Apple App Store. */
     public static class RedeemAppleAppStoreInventoryItemsRequest {
         /** The id of the entity's collection to perform this action on. (Default="default") */
