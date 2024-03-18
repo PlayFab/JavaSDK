@@ -1138,6 +1138,11 @@ public class PlayFabEconomyModels {
          * and (apiname eq 'AddInventoryItems')". By default, a 6 month timespan from the current date is used.
          */
         public String Filter;
+        /**
+         * An OData orderby to order TransactionHistory results. The only supported values are 'timestamp asc' or 'timestamp desc'.
+         * Default orderby is 'timestamp asc'
+         */
+        public String OrderBy;
         
     }
 
@@ -1262,6 +1267,15 @@ public class PlayFabEconomyModels {
     }
 
     public static class PayoutDetails {
+        
+    }
+
+    public static class Permissions {
+        /**
+         * The list of ids of Segments that the a player can be in to purchase from the store. When a value is provided, the player
+         * must be in at least one of the segments listed for the purchase to be allowed.
+         */
+        public ArrayList<String> SegmentIds;
         
     }
 
@@ -1753,6 +1767,8 @@ public class PlayFabEconomyModels {
     public static class StoreDetails {
         /** The options for the filter in filter-based stores. These options are mutually exclusive with item references. */
         public FilterOptions FilterOptions;
+        /** The permissions that control which players can purchase from the store. */
+        public Permissions Permissions;
         /** The global prices utilized in the store. These options are mutually exclusive with price options in item references. */
         public CatalogPriceOptionsOverride PriceOptionsOverride;
         

@@ -2652,9 +2652,7 @@ public class PlayFabEconomyAPI {
     /**
      * Transfer inventory items. When transferring across collections, a 202 response indicates that the transfer did not
      * complete within the timeframe of the request. You can identify the pending operations by looking for OperationStatus =
-     * 'InProgress'. You can check on the operation status at anytime within 30 days of the request by passing the
-     * TransactionToken to the GetInventoryOperationStatus API. More information about item transfer scenarios can be found
-     * here:
+     * 'InProgress'. More information about item transfer scenarios can be found here:
      * https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/inventory/?tabs=inventory-game-manager#transfer-inventory-items
      * @param request TransferInventoryItemsRequest
      * @return Async Task will return TransferInventoryItemsResponse
@@ -2671,9 +2669,7 @@ public class PlayFabEconomyAPI {
     /**
      * Transfer inventory items. When transferring across collections, a 202 response indicates that the transfer did not
      * complete within the timeframe of the request. You can identify the pending operations by looking for OperationStatus =
-     * 'InProgress'. You can check on the operation status at anytime within 30 days of the request by passing the
-     * TransactionToken to the GetInventoryOperationStatus API. More information about item transfer scenarios can be found
-     * here:
+     * 'InProgress'. More information about item transfer scenarios can be found here:
      * https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/inventory/?tabs=inventory-game-manager#transfer-inventory-items
      * @param request TransferInventoryItemsRequest
      * @return TransferInventoryItemsResponse
@@ -2698,9 +2694,7 @@ public class PlayFabEconomyAPI {
     /**
      * Transfer inventory items. When transferring across collections, a 202 response indicates that the transfer did not
      * complete within the timeframe of the request. You can identify the pending operations by looking for OperationStatus =
-     * 'InProgress'. You can check on the operation status at anytime within 30 days of the request by passing the
-     * TransactionToken to the GetInventoryOperationStatus API. More information about item transfer scenarios can be found
-     * here:
+     * 'InProgress'. More information about item transfer scenarios can be found here:
      * https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/inventory/?tabs=inventory-game-manager#transfer-inventory-items
      */
     @SuppressWarnings("unchecked")
