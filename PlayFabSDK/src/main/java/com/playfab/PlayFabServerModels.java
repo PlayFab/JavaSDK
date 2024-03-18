@@ -174,6 +174,8 @@ public class PlayFabServerModels {
         public Date Created;
         /** The time when this ban expires. Permanent bans do not have expiration date. */
         public Date Expires;
+        /** Whether or not the Microsoft family members are included in the ban. */
+        public Boolean IncludeMicrosoftFamily;
         /** The IP address on which the ban was applied. May affect multiple players. */
         public String IPAddress;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -187,6 +189,8 @@ public class PlayFabServerModels {
     public static class BanRequest {
         /** The duration in hours for the ban. Leave this blank for a permanent ban. */
         public Long DurationInHours;
+        /** Whether the Microsoft family members should be included in the ban. May affect multiple players. */
+        public Boolean IncludeMicrosoftFamily;
         /** IP address to be banned. May affect multiple players. */
         public String IPAddress;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -1664,6 +1668,8 @@ public class PlayFabServerModels {
         LeaderboardNameConflict,
         LinkedStatisticColumnMismatch,
         NoLinkedStatisticToLeaderboard,
+        StatDefinitionAlreadyLinkedToLeaderboard,
+        LinkingStatsNotAllowedForEntityType,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -4570,6 +4576,8 @@ public class PlayFabServerModels {
         public String BanId;
         /** The updated expiration date for the ban. Null for no change. */
         public Date Expires;
+        /** The updated decision to ban the Microsoft family members to be updated. Null for no change. */
+        public Boolean IncludeMicrosoftFamily;
         /** The updated IP address for the ban. Null for no change. */
         public String IPAddress;
         /** Whether to make this ban permanent. Set to true to make this ban permanent. This will not modify Active state. */
