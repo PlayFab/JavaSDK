@@ -772,6 +772,64 @@ public class PlayFabEconomyModels {
         
     }
 
+    /** Transfer the specified list of inventory items of an entity's container Id to another entity's container Id. */
+    public static class ExecuteTransferOperationsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The inventory collection id the request is transferring from. (Default="default") */
+        public String GivingCollectionId;
+        /** The entity the request is transferring from. Set to the caller by default. */
+        public EntityKey GivingEntity;
+        /**
+         * ETags are used for concurrency checking when updating resources. More information about using ETags can be found here:
+         * https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/catalog/etags
+         */
+        public String GivingETag;
+        /** The idempotency id for the request. */
+        public String IdempotencyId;
+        /**
+         * The transfer operations to run transactionally. The operations will be executed in-order sequentially and will succeed
+         * or fail as a batch. Up to 50 operations can be added.
+         */
+        public ArrayList<TransferInventoryItemsOperation> Operations;
+        /** The inventory collection id the request is transferring to. (Default="default") */
+        public String ReceivingCollectionId;
+        /** The entity the request is transferring to. Set to the caller by default. */
+        public EntityKey ReceivingEntity;
+        
+    }
+
+    public static class ExecuteTransferOperationsResponse {
+        /**
+         * ETags are used for concurrency checking when updating resources (before transferring from). This value will be empty if
+         * the operation has not completed yet. More information about using ETags can be found here:
+         * https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/catalog/etags
+         */
+        public String GivingETag;
+        /** The ids of transactions that occurred as a result of the request's giving action. */
+        public ArrayList<String> GivingTransactionIds;
+        /** The Idempotency ID for this request. */
+        public String IdempotencyId;
+        /**
+         * The transfer operation status. Possible values are 'InProgress' or 'Completed'. If the operation has completed, the
+         * response code will be 200. Otherwise, it will be 202.
+         */
+        public String OperationStatus;
+        /**
+         * The token that can be used to get the status of the transfer operation. This will only have a value if OperationStatus
+         * is 'InProgress'.
+         */
+        public String OperationToken;
+        /**
+         * ETags are used for concurrency checking when updating resources (before transferring to). This value will be empty if
+         * the operation has not completed yet.
+         */
+        public String ReceivingETag;
+        /** The ids of transactions that occurred as a result of the request's receiving action. */
+        public ArrayList<String> ReceivingTransactionIds;
+        
+    }
+
     public static class FileConfig {
         /**
          * The set of content types that will be used for validation. Each content type can have a maximum character length of 40
@@ -947,6 +1005,23 @@ public class PlayFabEconomyModels {
         public String ETag;
         /** The requested inventory items. */
         public ArrayList<InventoryItem> Items;
+        
+    }
+
+    /** Get the status of an Inventory Operation using an OperationToken. */
+    public static class GetInventoryOperationStatusRequest {
+        /** The id of the entity's collection to perform this action on. (Default="default") */
+        public String CollectionId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The entity to perform this action on. */
+        public EntityKey Entity;
+        
+    }
+
+    public static class GetInventoryOperationStatusResponse {
+        /** The inventory operation status. */
+        public String OperationStatus;
         
     }
 
@@ -2022,6 +2097,11 @@ public class PlayFabEconomyModels {
          * response code will be 200. Otherwise, it will be 202.
          */
         public String OperationStatus;
+        /**
+         * The token that can be used to get the status of the transfer operation. This will only have a value if OperationStatus
+         * is 'InProgress'.
+         */
+        public String OperationToken;
         /** The ids of transactions that occurred as a result of the request's receiving action. */
         public ArrayList<String> ReceivingTransactionIds;
         
