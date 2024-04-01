@@ -540,6 +540,79 @@ public class PlayFabEconomyAPI {
     }
 
     /**
+     * Transfer a list of inventory items. A maximum list of 50 operations can be performed by a single request. When the
+     * response code is 202, one or more operations did not complete within the timeframe of the request. You can identify the
+     * pending operations by looking for OperationStatus = 'InProgress'. You can check on the operation status at anytime
+     * within 1 day of the request by passing the TransactionToken to the GetInventoryOperationStatus API.
+     * @param request ExecuteTransferOperationsRequest
+     * @return Async Task will return ExecuteTransferOperationsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ExecuteTransferOperationsResponse>> ExecuteTransferOperationsAsync(final ExecuteTransferOperationsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ExecuteTransferOperationsResponse>>() {
+            public PlayFabResult<ExecuteTransferOperationsResponse> call() throws Exception {
+                return privateExecuteTransferOperationsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Transfer a list of inventory items. A maximum list of 50 operations can be performed by a single request. When the
+     * response code is 202, one or more operations did not complete within the timeframe of the request. You can identify the
+     * pending operations by looking for OperationStatus = 'InProgress'. You can check on the operation status at anytime
+     * within 1 day of the request by passing the TransactionToken to the GetInventoryOperationStatus API.
+     * @param request ExecuteTransferOperationsRequest
+     * @return ExecuteTransferOperationsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ExecuteTransferOperationsResponse> ExecuteTransferOperations(final ExecuteTransferOperationsRequest request) {
+        FutureTask<PlayFabResult<ExecuteTransferOperationsResponse>> task = new FutureTask(new Callable<PlayFabResult<ExecuteTransferOperationsResponse>>() {
+            public PlayFabResult<ExecuteTransferOperationsResponse> call() throws Exception {
+                return privateExecuteTransferOperationsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<ExecuteTransferOperationsResponse> exceptionResult = new PlayFabResult<ExecuteTransferOperationsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /**
+     * Transfer a list of inventory items. A maximum list of 50 operations can be performed by a single request. When the
+     * response code is 202, one or more operations did not complete within the timeframe of the request. You can identify the
+     * pending operations by looking for OperationStatus = 'InProgress'. You can check on the operation status at anytime
+     * within 1 day of the request by passing the TransactionToken to the GetInventoryOperationStatus API.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ExecuteTransferOperationsResponse> privateExecuteTransferOperationsAsync(final ExecuteTransferOperationsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/ExecuteTransferOperations"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ExecuteTransferOperationsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ExecuteTransferOperationsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ExecuteTransferOperationsResponse>>(){}.getType());
+        ExecuteTransferOperationsResponse result = resultData.data;
+
+        PlayFabResult<ExecuteTransferOperationsResponse> pfResult = new PlayFabResult<ExecuteTransferOperationsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Gets the configuration for the catalog. Only Title Entities can call this API. There is a limit of 100 requests in 10
      * seconds for this API. More information about the Catalog Config can be found here:
      * https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/settings
@@ -1008,6 +1081,73 @@ public class PlayFabEconomyAPI {
         GetInventoryItemsResponse result = resultData.data;
 
         PlayFabResult<GetInventoryItemsResponse> pfResult = new PlayFabResult<GetInventoryItemsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Get the status of an inventory operation using an OperationToken. You can check on the operation status at anytime
+     * within 1 day of the request by passing the TransactionToken to the this API.
+     * @param request GetInventoryOperationStatusRequest
+     * @return Async Task will return GetInventoryOperationStatusResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetInventoryOperationStatusResponse>> GetInventoryOperationStatusAsync(final GetInventoryOperationStatusRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetInventoryOperationStatusResponse>>() {
+            public PlayFabResult<GetInventoryOperationStatusResponse> call() throws Exception {
+                return privateGetInventoryOperationStatusAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Get the status of an inventory operation using an OperationToken. You can check on the operation status at anytime
+     * within 1 day of the request by passing the TransactionToken to the this API.
+     * @param request GetInventoryOperationStatusRequest
+     * @return GetInventoryOperationStatusResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetInventoryOperationStatusResponse> GetInventoryOperationStatus(final GetInventoryOperationStatusRequest request) {
+        FutureTask<PlayFabResult<GetInventoryOperationStatusResponse>> task = new FutureTask(new Callable<PlayFabResult<GetInventoryOperationStatusResponse>>() {
+            public PlayFabResult<GetInventoryOperationStatusResponse> call() throws Exception {
+                return privateGetInventoryOperationStatusAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetInventoryOperationStatusResponse> exceptionResult = new PlayFabResult<GetInventoryOperationStatusResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /**
+     * Get the status of an inventory operation using an OperationToken. You can check on the operation status at anytime
+     * within 1 day of the request by passing the TransactionToken to the this API.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetInventoryOperationStatusResponse> privateGetInventoryOperationStatusAsync(final GetInventoryOperationStatusRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/GetInventoryOperationStatus"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetInventoryOperationStatusResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetInventoryOperationStatusResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetInventoryOperationStatusResponse>>(){}.getType());
+        GetInventoryOperationStatusResponse result = resultData.data;
+
+        PlayFabResult<GetInventoryOperationStatusResponse> pfResult = new PlayFabResult<GetInventoryOperationStatusResponse>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -2652,7 +2792,9 @@ public class PlayFabEconomyAPI {
     /**
      * Transfer inventory items. When transferring across collections, a 202 response indicates that the transfer did not
      * complete within the timeframe of the request. You can identify the pending operations by looking for OperationStatus =
-     * 'InProgress'. More information about item transfer scenarios can be found here:
+     * 'InProgress'. You can check on the operation status at anytime within 1 day of the request by passing the
+     * TransactionToken to the GetInventoryOperationStatus API. More information about item transfer scenarios can be found
+     * here:
      * https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/inventory/?tabs=inventory-game-manager#transfer-inventory-items
      * @param request TransferInventoryItemsRequest
      * @return Async Task will return TransferInventoryItemsResponse
@@ -2669,7 +2811,9 @@ public class PlayFabEconomyAPI {
     /**
      * Transfer inventory items. When transferring across collections, a 202 response indicates that the transfer did not
      * complete within the timeframe of the request. You can identify the pending operations by looking for OperationStatus =
-     * 'InProgress'. More information about item transfer scenarios can be found here:
+     * 'InProgress'. You can check on the operation status at anytime within 1 day of the request by passing the
+     * TransactionToken to the GetInventoryOperationStatus API. More information about item transfer scenarios can be found
+     * here:
      * https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/inventory/?tabs=inventory-game-manager#transfer-inventory-items
      * @param request TransferInventoryItemsRequest
      * @return TransferInventoryItemsResponse
@@ -2694,7 +2838,9 @@ public class PlayFabEconomyAPI {
     /**
      * Transfer inventory items. When transferring across collections, a 202 response indicates that the transfer did not
      * complete within the timeframe of the request. You can identify the pending operations by looking for OperationStatus =
-     * 'InProgress'. More information about item transfer scenarios can be found here:
+     * 'InProgress'. You can check on the operation status at anytime within 1 day of the request by passing the
+     * TransactionToken to the GetInventoryOperationStatus API. More information about item transfer scenarios can be found
+     * here:
      * https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/inventory/?tabs=inventory-game-manager#transfer-inventory-items
      */
     @SuppressWarnings("unchecked")
