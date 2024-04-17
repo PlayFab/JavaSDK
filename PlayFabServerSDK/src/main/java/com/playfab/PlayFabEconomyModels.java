@@ -1989,6 +1989,8 @@ public class PlayFabEconomyModels {
         public Integer Amount;
         /** The duration modified in this transaction. */
         public Double DurationInSeconds;
+        /** The friendly id of the items in this transaction. */
+        public String ItemFriendlyId;
         /** The item id of the items in this transaction. */
         public String ItemId;
         /** The type of item that the operation occurred on. */
@@ -2001,6 +2003,8 @@ public class PlayFabEconomyModels {
     }
 
     public static class TransactionPurchaseDetails {
+        /** The friendly id of the Store the item was purchased from or null. */
+        public String StoreFriendlyId;
         /** The id of the Store the item was purchased from or null. */
         public String StoreId;
         
