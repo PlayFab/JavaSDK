@@ -425,6 +425,8 @@ public class PlayFabMultiplayerModels {
         public ArrayList<AssetReferenceParams> GameAssetReferences;
         /** The game certificates for the build. */
         public ArrayList<GameCertificateReferenceParams> GameCertificateReferences;
+        /** The game secrets for the build. */
+        public ArrayList<GameSecretReferenceParams> GameSecretReferences;
         /** The Linux instrumentation configuration for the build. */
         public LinuxInstrumentationConfiguration LinuxInstrumentationConfiguration;
         /**
@@ -471,6 +473,8 @@ public class PlayFabMultiplayerModels {
         public ArrayList<AssetReference> GameAssetReferences;
         /** The game certificates for the build. */
         public ArrayList<GameCertificateReference> GameCertificateReferences;
+        /** The game secrets for the build. */
+        public ArrayList<GameSecretReference> GameSecretReferences;
         /** The Linux instrumentation configuration for this build. */
         public LinuxInstrumentationConfiguration LinuxInstrumentationConfiguration;
         /** The metadata of the build. */
@@ -518,6 +522,8 @@ public class PlayFabMultiplayerModels {
         public ArrayList<AssetReferenceParams> GameAssetReferences;
         /** The game certificates for the build. */
         public ArrayList<GameCertificateReferenceParams> GameCertificateReferences;
+        /** The game secrets for the build. */
+        public ArrayList<GameSecretReferenceParams> GameSecretReferences;
         /**
          * The directory containing the game executable. This would be the start path of the game assets that contain the main game
          * server executable. If not provided, a best effort will be made to extract it from the start game command.
@@ -569,6 +575,8 @@ public class PlayFabMultiplayerModels {
         public ArrayList<AssetReference> GameAssetReferences;
         /** The game certificates for the build. */
         public ArrayList<GameCertificateReference> GameCertificateReferences;
+        /** The game secrets for the build. */
+        public ArrayList<GameSecretReference> GameSecretReferences;
         /**
          * The directory containing the game executable. This would be the start path of the game assets that contain the main game
          * server executable. If not provided, a best effort will be made to extract it from the start game command.
@@ -624,6 +632,8 @@ public class PlayFabMultiplayerModels {
         public ArrayList<AssetReferenceParams> GameAssetReferences;
         /** The game certificates for the build. */
         public ArrayList<GameCertificateReferenceParams> GameCertificateReferences;
+        /** The game secrets for the build. */
+        public ArrayList<GameSecretReferenceParams> GameSecretReferences;
         /**
          * The working directory for the game process. If this is not provided, the working directory will be set based on the
          * mount path of the game server executable.
@@ -681,6 +691,8 @@ public class PlayFabMultiplayerModels {
         public ArrayList<AssetReference> GameAssetReferences;
         /** The game certificates for the build. */
         public ArrayList<GameCertificateReference> GameCertificateReferences;
+        /** The game secrets for the build. */
+        public ArrayList<GameSecretReference> GameSecretReferences;
         /**
          * The working directory for the game process. If this is not provided, the working directory will be set based on the
          * mount path of the game server executable.
@@ -995,6 +1007,15 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Deletes a multiplayer server game secret. */
+    public static class DeleteSecretRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The name of the secret. */
+        public String Name;
+        
+    }
+
     public static enum DirectPeerConnectivityOptions {
         None,
         SamePlatformType,
@@ -1189,6 +1210,18 @@ public class PlayFabMultiplayerModels {
          * The name of the game certificate. This name should match the name of a certificate that was previously uploaded to this
          * title.
          */
+        public String Name;
+        
+    }
+
+    public static class GameSecretReference {
+        /** The name of the game secret. This name should match the name of a secret that was previously added to this title. */
+        public String Name;
+        
+    }
+
+    public static class GameSecretReferenceParams {
+        /** The name of the game secret. This name should match the name of a secret that was previously added to this title. */
         public String Name;
         
     }
@@ -2029,6 +2062,27 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    /** Returns a list of multiplayer server game secrets for a title. */
+    public static class ListSecretSummariesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The page size for the request. */
+        public Integer PageSize;
+        /** The skip token for the paged request. */
+        public String SkipToken;
+        
+    }
+
+    public static class ListSecretSummariesResponse {
+        /** The page size on the response. */
+        public Integer PageSize;
+        /** The list of game secret. */
+        public ArrayList<SecretSummary> SecretSummaries;
+        /** The skip token for the paged response. */
+        public String SkipToken;
+        
+    }
+
     /** List all server backfill ticket Ids the user is a member of. */
     public static class ListServerBackfillTicketsForPlayerRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -2521,6 +2575,26 @@ public class PlayFabMultiplayerModels {
         
     }
 
+    public static class Secret {
+        /** Optional secret expiration date. */
+        public Date ExpirationDate;
+        /** A name for the secret. This is used to reference secrets in build configurations. */
+        public String Name;
+        /** Secret value. */
+        public String Value;
+        
+    }
+
+    public static class SecretSummary {
+        /** Optional secret expiration date. */
+        public Date ExpirationDate;
+        /** The name of the secret. */
+        public String Name;
+        /** The secret version auto-generated after upload. */
+        public String Version;
+        
+    }
+
     public static class ServerDetails {
         /** The fully qualified domain name of the virtual machine that is hosting this multiplayer server. */
         public String Fqdn;
@@ -2810,6 +2884,17 @@ public class PlayFabMultiplayerModels {
         public Boolean ForceUpdate;
         /** The game certificate to upload. */
         public Certificate GameCertificate;
+        
+    }
+
+    /** Uploads a multiplayer server game secret. */
+    public static class UploadSecretRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Forces the secret renewal if the secret already exists. Default is false */
+        public Boolean ForceUpdate;
+        /** The game secret to add. */
+        public Secret GameSecret;
         
     }
 

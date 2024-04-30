@@ -1396,6 +1396,68 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * Deletes a multiplayer server game secret.
+     * @param request DeleteSecretRequest
+     * @return Async Task will return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResponse>> DeleteSecretAsync(final DeleteSecretRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateDeleteSecretAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Deletes a multiplayer server game secret.
+     * @param request DeleteSecretRequest
+     * @return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResponse> DeleteSecret(final DeleteSecretRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateDeleteSecretAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Deletes a multiplayer server game secret. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResponse> privateDeleteSecretAsync(final DeleteSecretRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/DeleteSecret"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
+
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Enables the multiplayer server feature for a title.
      * @param request EnableMultiplayerServersForTitleRequest
      * @return Async Task will return EnableMultiplayerServersForTitleResponse
@@ -3776,6 +3838,68 @@ public class PlayFabMultiplayerAPI {
     }
 
     /**
+     * Lists multiplayer server game secrets for a title.
+     * @param request ListSecretSummariesRequest
+     * @return Async Task will return ListSecretSummariesResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ListSecretSummariesResponse>> ListSecretSummariesAsync(final ListSecretSummariesRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ListSecretSummariesResponse>>() {
+            public PlayFabResult<ListSecretSummariesResponse> call() throws Exception {
+                return privateListSecretSummariesAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Lists multiplayer server game secrets for a title.
+     * @param request ListSecretSummariesRequest
+     * @return ListSecretSummariesResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ListSecretSummariesResponse> ListSecretSummaries(final ListSecretSummariesRequest request) {
+        FutureTask<PlayFabResult<ListSecretSummariesResponse>> task = new FutureTask(new Callable<PlayFabResult<ListSecretSummariesResponse>>() {
+            public PlayFabResult<ListSecretSummariesResponse> call() throws Exception {
+                return privateListSecretSummariesAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<ListSecretSummariesResponse> exceptionResult = new PlayFabResult<ListSecretSummariesResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Lists multiplayer server game secrets for a title. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ListSecretSummariesResponse> privateListSecretSummariesAsync(final ListSecretSummariesRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/ListSecretSummaries"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ListSecretSummariesResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ListSecretSummariesResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListSecretSummariesResponse>>(){}.getType());
+        ListSecretSummariesResponse result = resultData.data;
+
+        PlayFabResult<ListSecretSummariesResponse> pfResult = new PlayFabResult<ListSecretSummariesResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * List all server backfill ticket Ids the user is a member of.
      * @param request ListServerBackfillTicketsForPlayerRequest
      * @return Async Task will return ListServerBackfillTicketsForPlayerResult
@@ -4884,6 +5008,68 @@ public class PlayFabMultiplayerAPI {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/UploadCertificate"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
+
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Uploads a multiplayer server game secret.
+     * @param request UploadSecretRequest
+     * @return Async Task will return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResponse>> UploadSecretAsync(final UploadSecretRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateUploadSecretAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Uploads a multiplayer server game secret.
+     * @param request UploadSecretRequest
+     * @return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResponse> UploadSecret(final UploadSecretRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateUploadSecretAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Uploads a multiplayer server game secret. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResponse> privateUploadSecretAsync(final UploadSecretRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/MultiplayerServer/UploadSecret"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {

@@ -314,6 +314,16 @@ public class PlayFabCloudScriptModels {
         
     }
 
+    public static class EventHubFunctionModel {
+        /** The connection string for the event hub. */
+        public String ConnectionString;
+        /** The name of the event hub that triggers the Azure Function. */
+        public String EventHubName;
+        /** The name the function was registered under. */
+        public String FunctionName;
+        
+    }
+
     public static class ExecuteCloudScriptResult {
         /** Number of PlayFab API requests issued by the CloudScript function */
         public Integer APIRequestsIssued;
@@ -470,6 +480,12 @@ public class PlayFabCloudScriptModels {
         public String PlatformUserId;
         /** Linked account username of the user on the platform, if available */
         public String Username;
+        
+    }
+
+    public static class ListEventHubFunctionsResult {
+        /** The list of EventHub triggered functions that are currently registered for the title. */
+        public ArrayList<EventHubFunctionModel> Functions;
         
     }
 
@@ -710,6 +726,22 @@ public class PlayFabCloudScriptModels {
         
     }
 
+    /**
+     * A title can have many functions, RegisterEventHubFunction associates a function name with an event hub name and
+     * connection string.
+     */
+    public static class RegisterEventHubFunctionRequest {
+        /** A connection string for the namespace of the event hub for the Azure Function. */
+        public String ConnectionString;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The name of the event hub for the Azure Function. */
+        public String EventHubName;
+        /** The name of the function to register */
+        public String FunctionName;
+        
+    }
+
     public static class RegisterHttpFunctionRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
@@ -796,7 +828,8 @@ public class PlayFabCloudScriptModels {
 
     public static enum TriggerType {
         HTTP,
-        Queue
+        Queue,
+        EventHub
     }
 
     public static class UnregisterFunctionRequest {
