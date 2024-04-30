@@ -210,6 +210,68 @@ public class PlayFabCloudScriptAPI {
     }
 
     /**
+     * Lists all currently registered Event Hub triggered Azure Functions for a given title.
+     * @param request ListFunctionsRequest
+     * @return Async Task will return ListEventHubFunctionsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ListEventHubFunctionsResult>> ListEventHubFunctionsAsync(final ListFunctionsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ListEventHubFunctionsResult>>() {
+            public PlayFabResult<ListEventHubFunctionsResult> call() throws Exception {
+                return privateListEventHubFunctionsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Lists all currently registered Event Hub triggered Azure Functions for a given title.
+     * @param request ListFunctionsRequest
+     * @return ListEventHubFunctionsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ListEventHubFunctionsResult> ListEventHubFunctions(final ListFunctionsRequest request) {
+        FutureTask<PlayFabResult<ListEventHubFunctionsResult>> task = new FutureTask(new Callable<PlayFabResult<ListEventHubFunctionsResult>>() {
+            public PlayFabResult<ListEventHubFunctionsResult> call() throws Exception {
+                return privateListEventHubFunctionsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<ListEventHubFunctionsResult> exceptionResult = new PlayFabResult<ListEventHubFunctionsResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Lists all currently registered Event Hub triggered Azure Functions for a given title. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ListEventHubFunctionsResult> privateListEventHubFunctionsAsync(final ListFunctionsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/ListEventHubFunctions"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ListEventHubFunctionsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ListEventHubFunctionsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListEventHubFunctionsResult>>(){}.getType());
+        ListEventHubFunctionsResult result = resultData.data;
+
+        PlayFabResult<ListEventHubFunctionsResult> pfResult = new PlayFabResult<ListEventHubFunctionsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Lists all currently registered Azure Functions for a given title.
      * @param request ListFunctionsRequest
      * @return Async Task will return ListFunctionsResult
@@ -623,6 +685,68 @@ public class PlayFabCloudScriptAPI {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
 
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/PostFunctionResultForScheduledTask"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
+        EmptyResult result = resultData.data;
+
+        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Registers an event hub triggered Azure Function with a title.
+     * @param request RegisterEventHubFunctionRequest
+     * @return Async Task will return EmptyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResult>> RegisterEventHubFunctionAsync(final RegisterEventHubFunctionRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateRegisterEventHubFunctionAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Registers an event hub triggered Azure Function with a title.
+     * @param request RegisterEventHubFunctionRequest
+     * @return EmptyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResult> RegisterEventHubFunction(final RegisterEventHubFunctionRequest request) {
+        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateRegisterEventHubFunctionAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<EmptyResult> exceptionResult = new PlayFabResult<EmptyResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Registers an event hub triggered Azure Function with a title. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResult> privateRegisterEventHubFunctionAsync(final RegisterEventHubFunctionRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/CloudScript/RegisterEventHubFunction"), request, "X-EntityToken", PlayFabSettings.EntityToken);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {

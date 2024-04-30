@@ -102,6 +102,8 @@ public class PlayFabEconomyModels {
          * to 128 platforms can be listed.
          */
         public ArrayList<String> Platforms;
+        /** The set of configuration that only applies to Ratings and Reviews. */
+        public ReviewConfig Review;
         /** A set of player entity keys that are allowed to review content. There is a maximum of 128 entities that can be added. */
         public ArrayList<EntityKey> ReviewerEntities;
         /** The set of configuration that only applies to user generated contents. */
@@ -265,6 +267,12 @@ public class PlayFabEconomyModels {
          * can be listed.
          */
         public ArrayList<String> Tags;
+        
+    }
+
+    public static class CategoryRatingConfig {
+        /** Name of the category. */
+        public String Name;
         
     }
 
@@ -1616,7 +1624,7 @@ public class PlayFabEconomyModels {
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
-        /** Redirect URI supplied to PlayStation :tm: Network when requesting an auth code */
+        /** Redirect URI supplied to PlayStation :tm: Network when requesting an auth code. */
         public String RedirectUri;
         /** Optional Service Label to pass into the request. */
         public String ServiceLabel;
@@ -1720,6 +1728,8 @@ public class PlayFabEconomyModels {
     }
 
     public static class Review {
+        /** The star rating associated with each selected category in this review. */
+        public Map<String,Integer> CategoryRatings;
         /** The number of negative helpfulness votes for this review. */
         public Integer HelpfulNegative;
         /** The number of positive helpfulness votes for this review. */
@@ -1746,6 +1756,12 @@ public class PlayFabEconomyModels {
         public Date Submitted;
         /** The title of this review. */
         public String Title;
+        
+    }
+
+    public static class ReviewConfig {
+        /** A set of categories that can be applied toward ratings and reviews. */
+        public ArrayList<CategoryRatingConfig> CategoryRatings;
         
     }
 
