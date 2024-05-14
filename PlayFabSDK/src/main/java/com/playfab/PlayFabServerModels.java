@@ -3362,6 +3362,29 @@ public class PlayFabServerModels {
         GooglePlayGames
     }
 
+    /**
+     * If this is the first time a user has signed in with the PlayStation :tm: Network account and CreateAccount is set to
+     * true, a new PlayFab account will be created and linked to the PlayStation :tm: Network account. In this case, no email
+     * or username will be associated with the PlayFab account. Otherwise, if no PlayFab account is linked to the PlayStation
+     * :tm: Network account, an error indicating this will be returned, so that the title can guide the user through creation
+     * of a PlayFab account.
+     */
+    public static class LoginWithPSNRequest {
+        /** Auth code provided by the PlayStation :tm: Network OAuth provider. */
+        public String AuthCode;
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        public Boolean CreateAccount;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Flags for which pieces of info to return for the user. */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
+        public Integer IssuerId;
+        /** Redirect URI supplied to PlayStation :tm: Network when requesting an auth code */
+        public String RedirectUri;
+        
+    }
+
     public static class LoginWithServerCustomIdRequest {
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         public Boolean CreateAccount;

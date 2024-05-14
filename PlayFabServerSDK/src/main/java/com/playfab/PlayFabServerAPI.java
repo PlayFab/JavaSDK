@@ -5190,6 +5190,73 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Signs the user in using a PlayStation :tm: Network authentication code, returning a session identifier that can
+     * subsequently be used for API calls which require an authenticated user
+     * @param request LoginWithPSNRequest
+     * @return Async Task will return ServerLoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ServerLoginResult>> LoginWithPSNAsync(final LoginWithPSNRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ServerLoginResult>>() {
+            public PlayFabResult<ServerLoginResult> call() throws Exception {
+                return privateLoginWithPSNAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Signs the user in using a PlayStation :tm: Network authentication code, returning a session identifier that can
+     * subsequently be used for API calls which require an authenticated user
+     * @param request LoginWithPSNRequest
+     * @return ServerLoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ServerLoginResult> LoginWithPSN(final LoginWithPSNRequest request) {
+        FutureTask<PlayFabResult<ServerLoginResult>> task = new FutureTask(new Callable<PlayFabResult<ServerLoginResult>>() {
+            public PlayFabResult<ServerLoginResult> call() throws Exception {
+                return privateLoginWithPSNAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<ServerLoginResult> exceptionResult = new PlayFabResult<ServerLoginResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /**
+     * Signs the user in using a PlayStation :tm: Network authentication code, returning a session identifier that can
+     * subsequently be used for API calls which require an authenticated user
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ServerLoginResult> privateLoginWithPSNAsync(final LoginWithPSNRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/LoginWithPSN"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ServerLoginResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ServerLoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ServerLoginResult>>(){}.getType());
+        ServerLoginResult result = resultData.data;
+
+        PlayFabResult<ServerLoginResult> pfResult = new PlayFabResult<ServerLoginResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Securely login a game client from an external server backend using a custom identifier for that player. Server Custom ID
      * and Client Custom ID are mutually exclusive and cannot be used to retrieve the same player account.
      * @param request LoginWithServerCustomIdRequest

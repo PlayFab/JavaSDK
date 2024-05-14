@@ -81,7 +81,9 @@ public class PlayFabMultiplayerModels {
         NCasT4_v3,
         Ddv4,
         Ddsv4,
-        HBv3
+        HBv3,
+        Ddv5,
+        Ddsv5
     }
 
     public static enum AzureVmSize {
@@ -153,7 +155,17 @@ public class PlayFabMultiplayerModels {
         Standard_HB120_32rs_v3,
         Standard_HB120_64rs_v3,
         Standard_HB120_96rs_v3,
-        Standard_HB120rs_v3
+        Standard_HB120rs_v3,
+        Standard_D2d_v5,
+        Standard_D4d_v5,
+        Standard_D8d_v5,
+        Standard_D16d_v5,
+        Standard_D32d_v5,
+        Standard_D2ds_v5,
+        Standard_D4ds_v5,
+        Standard_D8ds_v5,
+        Standard_D16ds_v5,
+        Standard_D32ds_v5
     }
 
     public static class BuildAliasDetailsResponse {
@@ -639,13 +651,15 @@ public class PlayFabMultiplayerModels {
          * mount path of the game server executable.
          */
         public String GameWorkingDirectory;
-        /** The instrumentation configuration for the build. */
+        /** The instrumentation configuration for the Build. Used only if it is a Windows Build. */
         public InstrumentationConfiguration InstrumentationConfiguration;
         /**
          * Indicates whether this build will be created using the OS Preview versionPreview OS is recommended for dev builds to
          * detect any breaking changes before they are released to retail. Retail builds should set this value to false.
          */
         public Boolean IsOSPreview;
+        /** The Linux instrumentation configuration for the Build. Used only if it is a Linux Build. */
+        public LinuxInstrumentationConfiguration LinuxInstrumentationConfiguration;
         /**
          * Metadata to tag the build. The keys are case insensitive. The build metadata is made available to the server through
          * Game Server SDK (GSDK).Constraints: Maximum number of keys: 30, Maximum key length: 50, Maximum value length: 100
@@ -705,6 +719,8 @@ public class PlayFabMultiplayerModels {
          * detect any breaking changes before they are released to retail. Retail builds should set this value to false.
          */
         public Boolean IsOSPreview;
+        /** The Linux instrumentation configuration for this build. */
+        public LinuxInstrumentationConfiguration LinuxInstrumentationConfiguration;
         /** The metadata of the build. */
         public Map<String,String> Metadata;
         /** The configuration for the monitoring application for the build */
