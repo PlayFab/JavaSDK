@@ -2071,6 +2071,8 @@ public class PlayFabAdminModels {
         StatisticDefinitionModificationNotAllowedWhileLinked,
         LeaderboardUpdateNotAllowedWhileLinked,
         CloudScriptAzureFunctionsEventHubRequestError,
+        LeaderboardRateLimitExceeded,
+        ExternalEntityNotAllowedForTier,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -2317,9 +2319,27 @@ public class PlayFabAdminModels {
         TrueSkillJobAlreadyExists,
         TrueSkillJobNotFound,
         TrueSkillOperationCanceled,
-        StateShareUnauthorized,
+        TrueSkillActiveModelLimitExceeded,
+        TrueSkillTotalModelLimitExceeded,
+        TrueSkillUnknownInitialModelId,
+        TrueSkillUnauthorizedForJob,
+        TrueSkillInvalidScenarioName,
+        TrueSkillConditionStateIsRequired,
+        TrueSkillEventStateIsRequired,
+        TrueSkillDuplicateEvent,
+        TrueSkillDuplicateCondition,
+        TrueSkillInvalidAnomalyThreshold,
+        TrueSkillConditionKeyLimitExceeded,
+        TrueSkillConditionValuePerKeyLimitExceeded,
+        TrueSkillEventLimitExceeded,
+        StateShareForbidden,
+        StateShareTitleNotInFlight,
         StateShareStateNotFound,
-        StateShareLinkNotFound
+        StateShareLinkNotFound,
+        StateShareStateRedemptionLimitExceeded,
+        StateShareStateRedemptionLimitNotUpdated,
+        StateShareCreatedStatesLimitExceeded,
+        StateShareIdMissingOrMalformed
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {
@@ -3293,7 +3313,8 @@ public class PlayFabAdminModels {
         OpenIdConnect,
         Apple,
         NintendoSwitchAccount,
-        GooglePlayGames
+        GooglePlayGames,
+        XboxMobileStore
     }
 
     public static class LogStatement {
@@ -5544,7 +5565,8 @@ public class PlayFabAdminModels {
         OpenIdConnect,
         Apple,
         NintendoSwitchAccount,
-        GooglePlayGames
+        GooglePlayGames,
+        XboxMobileStore
     }
 
     public static class UserOriginationSegmentFilter {
