@@ -104,7 +104,14 @@ public class PlayFabAuthenticationModels {
     public static enum IdentifiedDeviceType {
         Unknown,
         XboxOne,
-        Scarlett
+        Scarlett,
+        WindowsOneCore,
+        WindowsOneCoreMobile,
+        Win32,
+        android,
+        iOS,
+        PlayStation,
+        Nintendo
     }
 
     public static enum LoginIdentityProvider {
@@ -129,7 +136,8 @@ public class PlayFabAuthenticationModels {
         OpenIdConnect,
         Apple,
         NintendoSwitchAccount,
-        GooglePlayGames
+        GooglePlayGames,
+        XboxMobileStore
     }
 
     /** Given an entity token, validates that it hasn't expired or been revoked and will return details of the owner. */

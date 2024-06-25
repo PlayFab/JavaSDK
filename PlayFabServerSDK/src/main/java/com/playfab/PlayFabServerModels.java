@@ -1676,6 +1676,8 @@ public class PlayFabServerModels {
         StatisticDefinitionModificationNotAllowedWhileLinked,
         LeaderboardUpdateNotAllowedWhileLinked,
         CloudScriptAzureFunctionsEventHubRequestError,
+        LeaderboardRateLimitExceeded,
+        ExternalEntityNotAllowedForTier,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1922,9 +1924,27 @@ public class PlayFabServerModels {
         TrueSkillJobAlreadyExists,
         TrueSkillJobNotFound,
         TrueSkillOperationCanceled,
-        StateShareUnauthorized,
+        TrueSkillActiveModelLimitExceeded,
+        TrueSkillTotalModelLimitExceeded,
+        TrueSkillUnknownInitialModelId,
+        TrueSkillUnauthorizedForJob,
+        TrueSkillInvalidScenarioName,
+        TrueSkillConditionStateIsRequired,
+        TrueSkillEventStateIsRequired,
+        TrueSkillDuplicateEvent,
+        TrueSkillDuplicateCondition,
+        TrueSkillInvalidAnomalyThreshold,
+        TrueSkillConditionKeyLimitExceeded,
+        TrueSkillConditionValuePerKeyLimitExceeded,
+        TrueSkillEventLimitExceeded,
+        StateShareForbidden,
+        StateShareTitleNotInFlight,
         StateShareStateNotFound,
-        StateShareLinkNotFound
+        StateShareLinkNotFound,
+        StateShareStateRedemptionLimitExceeded,
+        StateShareStateRedemptionLimitNotUpdated,
+        StateShareCreatedStatesLimitExceeded,
+        StateShareIdMissingOrMalformed
     }
 
     public static class GenericPlayFabIdPair {
@@ -3359,7 +3379,8 @@ public class PlayFabServerModels {
         OpenIdConnect,
         Apple,
         NintendoSwitchAccount,
-        GooglePlayGames
+        GooglePlayGames,
+        XboxMobileStore
     }
 
     /**
@@ -5060,7 +5081,8 @@ public class PlayFabServerModels {
         OpenIdConnect,
         Apple,
         NintendoSwitchAccount,
-        GooglePlayGames
+        GooglePlayGames,
+        XboxMobileStore
     }
 
     public static class UserPrivateAccountInfo {

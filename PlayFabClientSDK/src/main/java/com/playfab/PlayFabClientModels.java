@@ -2736,7 +2736,8 @@ public class PlayFabClientModels {
         OpenIdConnect,
         Apple,
         NintendoSwitchAccount,
-        GooglePlayGames
+        GooglePlayGames,
+        XboxMobileStore
     }
 
     public static class LoginResult {
@@ -4898,7 +4899,8 @@ public class PlayFabClientModels {
         OpenIdConnect,
         Apple,
         NintendoSwitchAccount,
-        GooglePlayGames
+        GooglePlayGames,
+        XboxMobileStore
     }
 
     public static class UserPrivateAccountInfo {

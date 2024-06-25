@@ -553,7 +553,8 @@ public class PlayFabCloudScriptModels {
         OpenIdConnect,
         Apple,
         NintendoSwitchAccount,
-        GooglePlayGames
+        GooglePlayGames,
+        XboxMobileStore
     }
 
     public static class LogStatement {
