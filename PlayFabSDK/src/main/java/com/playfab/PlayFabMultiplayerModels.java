@@ -1040,7 +1040,8 @@ public class PlayFabMultiplayerModels {
         SameEntityLoginProvider,
         DifferentEntityLoginProvider,
         AnyEntityLoginProvider,
-        AnyPlatformTypeAndEntityLoginProvider
+        AnyPlatformTypeAndEntityLoginProvider,
+        OnlyServers
     }
 
     public static class DynamicStandbySettings {
