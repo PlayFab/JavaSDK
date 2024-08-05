@@ -1685,7 +1685,11 @@ public class PlayFabServerModels {
         LinkedStatisticColumnNotFound,
         LinkedStatisticColumnRequired,
         MultipleLinkedStatisticsNotAllowed,
+        DuplicateLinkedStatisticColumnNameFound,
+        AggregationTypeNotAllowedForMultiColumnStatistic,
         MaxQueryableVerionsValueNotAllowedForTier,
+        StatisticDefinitionHasNullOrEmptyVersionConfiguration,
+        StatisticColumnLengthMismatch,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -3282,7 +3286,7 @@ public class PlayFabServerModels {
         public Integer IssuerId;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
-        /** Id of the PlayStation :tm: Network user. */
+        /** Id of the PlayStation :tm: Network user. Also known as the PSN Account Id. */
         public String PSNUserId;
         
     }
