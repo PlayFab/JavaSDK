@@ -3,7 +3,7 @@ package com.playfab;
 import java.util.*;
 import com.playfab.PlayFabUtil.*;
 
-public class PlayFabLeaderboardsModels {
+public class PlayFabProgressionModels {
 
     public static class CreateLeaderboardDefinitionRequest {
         /** Leaderboard columns describing the sort directions, cannot be changed after creation. */

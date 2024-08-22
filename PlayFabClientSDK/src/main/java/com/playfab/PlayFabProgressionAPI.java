@@ -1,7 +1,7 @@
 package com.playfab;
 
 import com.playfab.internal.*;
-import com.playfab.PlayFabLeaderboardsModels.*;
+import com.playfab.PlayFabProgressionModels.*;
 import com.playfab.PlayFabErrors.*;
 import com.playfab.PlayFabSettings;
 import java.util.concurrent.*;
@@ -9,8 +9,8 @@ import java.util.*;
 import com.google.gson.*;
 import com.google.gson.reflect.*;
 
-    /** Manage entity statistics Manage entity statistics */
-public class PlayFabLeaderboardsAPI {
+    /** Manage entity statistics Manage entity leaderboards */
+public class PlayFabProgressionAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 
     /**
