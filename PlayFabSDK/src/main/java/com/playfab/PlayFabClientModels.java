@@ -1112,20 +1112,23 @@ public class PlayFabClientModels {
     }
 
     public static class FriendInfo {
-        /** Available Facebook information (if the user and PlayFab friend are also connected in Facebook). */
+        /** Available Facebook information (if the user and connected Facebook friend both have PlayFab Accounts in the same title). */
         public UserFacebookInfo FacebookInfo;
         /** PlayFab unique identifier for this friend. */
         public String FriendPlayFabId;
-        /** Available Game Center information (if the user and PlayFab friend are also connected in Game Center). */
+        /**
+         * Available Game Center information (if the user and connected Game Center friend both have PlayFab Accounts in the same
+         * title).
+         */
         public UserGameCenterInfo GameCenterInfo;
         /** The profile of the user, if requested. */
         public PlayerProfileModel Profile;
         /**
-         * Available PlayStation :tm: Network information, if the user and PlayFab friend are both connected to PlayStation :tm:
-         * Network.
+         * Available PlayStation :tm: Network information, if the user connected PlayStation :tm Network friend both have PlayFab
+         * Accounts in the same title.
          */
         public UserPsnInfo PSNInfo;
-        /** Available Steam information (if the user and PlayFab friend are also connected in Steam). */
+        /** Available Steam information (if the user and connected Steam friend both have PlayFab Accounts in the same title). */
         public UserSteamInfo SteamInfo;
         /** Tags which have been associated with this friend. */
         public ArrayList<String> Tags;
@@ -1133,7 +1136,7 @@ public class PlayFabClientModels {
         public String TitleDisplayName;
         /** PlayFab unique username for this friend. */
         public String Username;
-        /** Available Xbox information, if the user and PlayFab friend are both connected to Xbox Live. */
+        /** Available Xbox information, (if the user and connected Xbox Live friend both have PlayFab Accounts in the same title). */
         public UserXboxInfo XboxInfo;
         
     }

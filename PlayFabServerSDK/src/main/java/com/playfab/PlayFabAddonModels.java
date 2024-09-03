@@ -95,6 +95,12 @@ public class PlayFabAddonModels {
          * Required if using Google Authentication.
          */
         public String OAuthClientSecret;
+        /**
+         * Authorized Redirect Uri obtained through the Google Developer Console. This currently defaults to
+         * https://oauth.playfab.com/oauth2/google. If you are authenticating players via browser, please update this to your own
+         * domain.
+         */
+        public String OAuthCustomRedirectUri;
         /** Needed to enable pending purchase handling and subscription processing. */
         public String ServiceAccountKey;
         
@@ -398,6 +404,12 @@ public class PlayFabAddonModels {
          * Required if using Google Authentication.
          */
         public String OAuthClientID;
+        /**
+         * Authorized Redirect Uri obtained through the Google Developer Console. This currently defaults to
+         * https://oauth.playfab.com/oauth2/google. If you are authenticating players via browser, please update this to your own
+         * domain.
+         */
+        public String OauthCustomRedirectUri;
         
     }
 

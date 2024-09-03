@@ -589,7 +589,7 @@ public class PlayFabErrors {
         MultipleLinkedStatisticsNotAllowed(1588),
         DuplicateLinkedStatisticColumnNameFound(1589),
         AggregationTypeNotAllowedForMultiColumnStatistic(1590),
-        MaxQueryableVerionsValueNotAllowedForTier(1591),
+        MaxQueryableVersionsValueNotAllowedForTier(1591),
         StatisticDefinitionHasNullOrEmptyVersionConfiguration(1592),
         StatisticColumnLengthMismatch(1593),
         MatchmakingEntityInvalid(2001),

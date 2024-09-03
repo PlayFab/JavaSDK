@@ -1667,18 +1667,18 @@ public class PlayFabEconomyModels {
         public String FailureCode;
         /** The marketplace error details explaining why the offer failed to redeem. */
         public String FailureDetails;
+        /** The Marketplace Alternate ID being redeemed. */
+        public String MarketplaceAlternateId;
         /** The transaction id in the external marketplace. */
         public String MarketplaceTransactionId;
-        /** The ID of the offer being redeemed. */
-        public String OfferId;
         
     }
 
     public static class RedemptionSuccess {
+        /** The Marketplace Alternate ID being redeemed. */
+        public String MarketplaceAlternateId;
         /** The transaction id in the external marketplace. */
         public String MarketplaceTransactionId;
-        /** The ID of the offer being redeemed. */
-        public String OfferId;
         /** The timestamp for when the redeem was completed. */
         public Date SuccessTimestamp;
         
