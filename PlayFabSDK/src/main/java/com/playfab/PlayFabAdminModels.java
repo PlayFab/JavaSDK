@@ -3342,7 +3342,8 @@ public class PlayFabAdminModels {
         Apple,
         NintendoSwitchAccount,
         GooglePlayGames,
-        XboxMobileStore
+        XboxMobileStore,
+        King
     }
 
     public static class LogStatement {
@@ -5594,7 +5595,8 @@ public class PlayFabAdminModels {
         Apple,
         NintendoSwitchAccount,
         GooglePlayGames,
-        XboxMobileStore
+        XboxMobileStore,
+        King
     }
 
     public static class UserOriginationSegmentFilter {

@@ -327,6 +327,68 @@ public class PlayFabProfilesAPI {
     }
 
     /**
+     * Update the display name of the entity
+     * @param request SetDisplayNameRequest
+     * @return Async Task will return SetDisplayNameResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<SetDisplayNameResponse>> SetDisplayNameAsync(final SetDisplayNameRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<SetDisplayNameResponse>>() {
+            public PlayFabResult<SetDisplayNameResponse> call() throws Exception {
+                return privateSetDisplayNameAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Update the display name of the entity
+     * @param request SetDisplayNameRequest
+     * @return SetDisplayNameResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<SetDisplayNameResponse> SetDisplayName(final SetDisplayNameRequest request) {
+        FutureTask<PlayFabResult<SetDisplayNameResponse>> task = new FutureTask(new Callable<PlayFabResult<SetDisplayNameResponse>>() {
+            public PlayFabResult<SetDisplayNameResponse> call() throws Exception {
+                return privateSetDisplayNameAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<SetDisplayNameResponse> exceptionResult = new PlayFabResult<SetDisplayNameResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Update the display name of the entity */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<SetDisplayNameResponse> privateSetDisplayNameAsync(final SetDisplayNameRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Profile/SetDisplayName"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<SetDisplayNameResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<SetDisplayNameResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<SetDisplayNameResponse>>(){}.getType());
+        SetDisplayNameResponse result = resultData.data;
+
+        PlayFabResult<SetDisplayNameResponse> pfResult = new PlayFabResult<SetDisplayNameResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Sets the global title access policy
      * @param request SetGlobalPolicyRequest
      * @return Async Task will return SetGlobalPolicyResponse

@@ -554,7 +554,8 @@ public class PlayFabCloudScriptModels {
         Apple,
         NintendoSwitchAccount,
         GooglePlayGames,
-        XboxMobileStore
+        XboxMobileStore,
+        King
     }
 
     public static class LogStatement {
