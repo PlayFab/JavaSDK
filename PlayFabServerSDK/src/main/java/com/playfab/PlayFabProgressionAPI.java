@@ -758,68 +758,6 @@ public class PlayFabProgressionAPI {
     }
 
     /**
-     * Get all current statistic definitions information
-     * @param request GetStatisticDefinitionsRequest
-     * @return Async Task will return GetStatisticDefinitionsResponse
-     */
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<GetStatisticDefinitionsResponse>> GetStatisticDefinitionsAsync(final GetStatisticDefinitionsRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<GetStatisticDefinitionsResponse>>() {
-            public PlayFabResult<GetStatisticDefinitionsResponse> call() throws Exception {
-                return privateGetStatisticDefinitionsAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Get all current statistic definitions information
-     * @param request GetStatisticDefinitionsRequest
-     * @return GetStatisticDefinitionsResponse
-     */
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<GetStatisticDefinitionsResponse> GetStatisticDefinitions(final GetStatisticDefinitionsRequest request) {
-        FutureTask<PlayFabResult<GetStatisticDefinitionsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetStatisticDefinitionsResponse>>() {
-            public PlayFabResult<GetStatisticDefinitionsResponse> call() throws Exception {
-                return privateGetStatisticDefinitionsAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            PlayFabResult<GetStatisticDefinitionsResponse> exceptionResult = new PlayFabResult<GetStatisticDefinitionsResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
-            return exceptionResult;
-        }
-    }
-
-    /** Get all current statistic definitions information */
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<GetStatisticDefinitionsResponse> privateGetStatisticDefinitionsAsync(final GetStatisticDefinitionsRequest request) throws Exception {
-        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Statistic/GetStatisticDefinitions"), request, "X-EntityToken", PlayFabSettings.EntityToken);
-        task.run();
-        Object httpResult = task.get();
-        if (httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<GetStatisticDefinitionsResponse>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<GetStatisticDefinitionsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetStatisticDefinitionsResponse>>(){}.getType());
-        GetStatisticDefinitionsResponse result = resultData.data;
-
-        PlayFabResult<GetStatisticDefinitionsResponse> pfResult = new PlayFabResult<GetStatisticDefinitionsResponse>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
      * Gets statistics for the specified entity.
      * @param request GetStatisticsRequest
      * @return Async Task will return GetStatisticsResponse

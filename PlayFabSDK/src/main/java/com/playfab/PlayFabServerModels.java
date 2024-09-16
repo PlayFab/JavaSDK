@@ -3411,7 +3411,8 @@ public class PlayFabServerModels {
         Apple,
         NintendoSwitchAccount,
         GooglePlayGames,
-        XboxMobileStore
+        XboxMobileStore,
+        King
     }
 
     /**
@@ -5113,7 +5114,8 @@ public class PlayFabServerModels {
         Apple,
         NintendoSwitchAccount,
         GooglePlayGames,
-        XboxMobileStore
+        XboxMobileStore,
+        King
     }
 
     public static class UserPrivateAccountInfo {

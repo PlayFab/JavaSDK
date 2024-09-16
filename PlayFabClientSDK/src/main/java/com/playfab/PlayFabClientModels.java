@@ -2741,7 +2741,8 @@ public class PlayFabClientModels {
         Apple,
         NintendoSwitchAccount,
         GooglePlayGames,
-        XboxMobileStore
+        XboxMobileStore,
+        King
     }
 
     public static class LoginResult {
@@ -4907,7 +4908,8 @@ public class PlayFabClientModels {
         Apple,
         NintendoSwitchAccount,
         GooglePlayGames,
-        XboxMobileStore
+        XboxMobileStore,
+        King
     }
 
     public static class UserPrivateAccountInfo {

@@ -277,18 +277,6 @@ public class PlayFabProgressionModels {
         
     }
 
-    public static class GetStatisticDefinitionsRequest {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        public Map<String,String> CustomTags;
-        
-    }
-
-    public static class GetStatisticDefinitionsResponse {
-        /** List of statistic definitions for the title. */
-        public ArrayList<StatisticDefinition> StatisticDefinitions;
-        
-    }
-
     public static class GetStatisticsForEntitiesRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;

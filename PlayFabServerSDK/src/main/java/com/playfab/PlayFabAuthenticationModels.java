@@ -137,7 +137,8 @@ public class PlayFabAuthenticationModels {
         Apple,
         NintendoSwitchAccount,
         GooglePlayGames,
-        XboxMobileStore
+        XboxMobileStore,
+        King
     }
 
     /** Given an entity token, validates that it hasn't expired or been revoked and will return details of the owner. */
