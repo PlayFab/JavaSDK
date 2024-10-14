@@ -386,7 +386,7 @@ public class PlayFabProgressionAPI {
     }
 
     /**
-     * Get the friend leaderboard for the specified entity. A maximum of 100 friend entries are listed in the leaderboard.
+     * Get the friend leaderboard for the specified entity. A maximum of 25 friend entries are listed in the leaderboard.
      * @param request GetFriendLeaderboardForEntityRequest
      * @return Async Task will return GetEntityLeaderboardResponse
      */
@@ -400,7 +400,7 @@ public class PlayFabProgressionAPI {
     }
 
     /**
-     * Get the friend leaderboard for the specified entity. A maximum of 100 friend entries are listed in the leaderboard.
+     * Get the friend leaderboard for the specified entity. A maximum of 25 friend entries are listed in the leaderboard.
      * @param request GetFriendLeaderboardForEntityRequest
      * @return GetEntityLeaderboardResponse
      */
@@ -421,7 +421,7 @@ public class PlayFabProgressionAPI {
         }
     }
 
-    /** Get the friend leaderboard for the specified entity. A maximum of 100 friend entries are listed in the leaderboard. */
+    /** Get the friend leaderboard for the specified entity. A maximum of 25 friend entries are listed in the leaderboard. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetEntityLeaderboardResponse> privateGetFriendLeaderboardForEntityAsync(final GetFriendLeaderboardForEntityRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");

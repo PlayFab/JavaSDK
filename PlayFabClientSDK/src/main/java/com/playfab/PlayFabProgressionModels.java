@@ -31,7 +31,7 @@ public class PlayFabProgressionModels {
         public Map<String,String> CustomTags;
         /** The entity type allowed to have score(s) for this statistic. */
         public String EntityType;
-        /** Name of the statistic. Must be less than 50 characters. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.'. */
+        /** Name of the statistic. Must be less than 150 characters. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.'. */
         public String Name;
         /** The version reset configuration for the statistic definition. */
         public VersionConfiguration VersionConfiguration;
@@ -156,8 +156,10 @@ public class PlayFabProgressionModels {
 
     /** Leaderboard response */
     public static class GetEntityLeaderboardResponse {
-        /** Leaderboard columns describing the sort directions, */
+        /** Leaderboard columns describing the sort directions. */
         public ArrayList<LeaderboardColumn> Columns;
+        /** The number of entries on the leaderboard. */
+        public Long EntryCount;
         /** Individual entity rankings in the leaderboard, in sorted order by rank. */
         public ArrayList<EntityLeaderboardEntry> Rankings;
         /** Version of the leaderboard being returned. */
@@ -252,7 +254,7 @@ public class PlayFabProgressionModels {
     public static class GetStatisticDefinitionRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Name of the statistic. Must be less than 50 characters. */
+        /** Name of the statistic. Must be less than 150 characters. */
         public String Name;
         
     }
