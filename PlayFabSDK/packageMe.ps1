@@ -5,4 +5,4 @@ New-Item -ItemType Directory -Force ./builds
 popd
 
 cd target
-Copy-Item  combo-sdk-0.226.241014.jar -Destination ../../builds/combo-sdk-0.226.241014.jar
+Copy-Item  combo-sdk-0.227.241025.jar -Destination ../../builds/combo-sdk-0.227.241025.jar
