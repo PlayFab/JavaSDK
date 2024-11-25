@@ -1695,6 +1695,8 @@ public class PlayFabServerModels {
         StatisticColumnLengthMismatch,
         InvalidExternalEntityId,
         UpdatingStatisticsUsingTransactionIdNotAvailableForFreeTier,
+        TransactionAlreadyApplied,
+        ReportDataNotRetrievedSuccessfully,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1974,6 +1976,8 @@ public class PlayFabServerModels {
         GameSaveFileNotUploaded,
         GameSaveBadRequest,
         GameSaveOperationNotAllowed,
+        GameSaveDataStorageQuotaExceeded,
+        GameSaveNewerManifestExists,
         StateShareForbidden,
         StateShareTitleNotInFlight,
         StateShareStateNotFound,
@@ -2684,6 +2688,22 @@ public class PlayFabServerModels {
     public static class GetPlayFabIDsFromSteamIDsResult {
         /** Mapping of Steam identifiers to PlayFab identifiers. */
         public ArrayList<SteamPlayFabIdPair> Data;
+        
+    }
+
+    public static class GetPlayFabIDsFromSteamNamesRequest {
+        /**
+         * Array of unique Steam identifiers for which the title needs to get PlayFab identifiers. The array cannot exceed 2,000 in
+         * length.
+         */
+        public ArrayList<String> SteamNames;
+        
+    }
+
+    /** For Steam identifiers which have not been linked to PlayFab accounts, null will be returned. */
+    public static class GetPlayFabIDsFromSteamNamesResult {
+        /** Mapping of Steam identifiers to PlayFab identifiers. */
+        public ArrayList<SteamNamePlayFabIdPair> Data;
         
     }
 
@@ -4413,6 +4433,14 @@ public class PlayFabServerModels {
         public Integer Value;
         /** for updates to an existing statistic value for a player, the version of the statistic when it was loaded */
         public Long Version;
+        
+    }
+
+    public static class SteamNamePlayFabIdPair {
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Steam identifier. */
+        public String PlayFabId;
+        /** Unique Steam identifier for a user, also known as Steam persona name. */
+        public String SteamName;
         
     }
 

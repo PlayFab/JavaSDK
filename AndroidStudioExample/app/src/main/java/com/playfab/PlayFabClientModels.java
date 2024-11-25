@@ -1968,6 +1968,25 @@ public class PlayFabClientModels {
         
     }
 
+    public static class GetPlayFabIDsFromSteamNamesRequest {
+        /**
+         * Array of unique Steam identifiers for which the title needs to get PlayFab identifiers. The array cannot exceed 2,000 in
+         * length.
+         */
+        public ArrayList<String> SteamNames;
+        
+    }
+
+    /**
+     * For Steam identifiers which have not been linked to PlayFab accounts, or if the user has not logged in recently, null
+     * will be returned.
+     */
+    public static class GetPlayFabIDsFromSteamNamesResult {
+        /** Mapping of Steam identifiers to PlayFab identifiers. */
+        public ArrayList<SteamNamePlayFabIdPair> Data;
+        
+    }
+
     public static class GetPlayFabIDsFromTwitchIDsRequest {
         /**
          * Array of unique Twitch identifiers (Twitch's _id) for which the title needs to get PlayFab identifiers. The array cannot
@@ -4122,6 +4141,14 @@ public class PlayFabClientModels {
         public Integer Value;
         /** for updates to an existing statistic value for a player, the version of the statistic when it was loaded */
         public Long Version;
+        
+    }
+
+    public static class SteamNamePlayFabIdPair {
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Steam identifier. */
+        public String PlayFabId;
+        /** Unique Steam identifier for a user, also known as Steam persona name. */
+        public String SteamName;
         
     }
 

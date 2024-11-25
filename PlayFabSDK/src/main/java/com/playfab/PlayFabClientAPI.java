@@ -3690,6 +3690,73 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are persona
+     * names.
+     * @param request GetPlayFabIDsFromSteamNamesRequest
+     * @return Async Task will return GetPlayFabIDsFromSteamNamesResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayFabIDsFromSteamNamesResult>> GetPlayFabIDsFromSteamNamesAsync(final GetPlayFabIDsFromSteamNamesRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromSteamNamesResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromSteamNamesResult> call() throws Exception {
+                return privateGetPlayFabIDsFromSteamNamesAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are persona
+     * names.
+     * @param request GetPlayFabIDsFromSteamNamesRequest
+     * @return GetPlayFabIDsFromSteamNamesResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayFabIDsFromSteamNamesResult> GetPlayFabIDsFromSteamNames(final GetPlayFabIDsFromSteamNamesRequest request) {
+        FutureTask<PlayFabResult<GetPlayFabIDsFromSteamNamesResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromSteamNamesResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromSteamNamesResult> call() throws Exception {
+                return privateGetPlayFabIDsFromSteamNamesAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetPlayFabIDsFromSteamNamesResult> exceptionResult = new PlayFabResult<GetPlayFabIDsFromSteamNamesResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are persona
+     * names.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayFabIDsFromSteamNamesResult> privateGetPlayFabIDsFromSteamNamesAsync(final GetPlayFabIDsFromSteamNamesRequest request) throws Exception {
+        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayFabIDsFromSteamNames"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayFabIDsFromSteamNamesResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayFabIDsFromSteamNamesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayFabIDsFromSteamNamesResult>>(){}.getType());
+        GetPlayFabIDsFromSteamNamesResult result = resultData.data;
+
+        PlayFabResult<GetPlayFabIDsFromSteamNamesResult> pfResult = new PlayFabResult<GetPlayFabIDsFromSteamNamesResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the unique PlayFab identifiers for the given set of Twitch identifiers. The Twitch identifiers are the IDs for
      * the user accounts, available as "_id" from the Twitch API methods (ex:
      * https://github.com/justintv/Twitch-API/blob/master/v3_resources/users.md#get-usersuser).
