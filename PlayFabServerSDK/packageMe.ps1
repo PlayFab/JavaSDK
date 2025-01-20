@@ -5,4 +5,4 @@ New-Item -ItemType Directory -Force ./builds
 popd
 
 cd target
-Copy-Item  server-sdk-0.229.241122.jar -Destination ../../builds/server-sdk-0.229.241122.jar
+Copy-Item  server-sdk-0.230.250117.jar -Destination ../../builds/server-sdk-0.230.250117.jar
