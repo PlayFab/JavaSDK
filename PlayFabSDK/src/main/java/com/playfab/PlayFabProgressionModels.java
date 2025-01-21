@@ -534,6 +534,11 @@ public class PlayFabProgressionModels {
         public EntityKey Entity;
         /** Collection of statistics to update, maximum 50. */
         public ArrayList<StatisticUpdate> Statistics;
+        /**
+         * Optional transactionId of this update which can be used to ensure idempotence. Using this field is still in testing
+         * stage.
+         */
+        public String TransactionId;
         
     }
 
