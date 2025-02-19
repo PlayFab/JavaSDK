@@ -22,6 +22,7 @@ public class PlayFabGroupsAPI {
      * @param request AcceptGroupApplicationRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> AcceptGroupApplicationAsync(final AcceptGroupApplicationRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -36,6 +37,7 @@ public class PlayFabGroupsAPI {
      * @param request AcceptGroupApplicationRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> AcceptGroupApplication(final AcceptGroupApplicationRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -54,6 +56,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Accepts an outstanding invitation to to join a group */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateAcceptGroupApplicationAsync(final AcceptGroupApplicationRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -84,6 +87,7 @@ public class PlayFabGroupsAPI {
      * @param request AcceptGroupInvitationRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> AcceptGroupInvitationAsync(final AcceptGroupInvitationRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -98,6 +102,7 @@ public class PlayFabGroupsAPI {
      * @param request AcceptGroupInvitationRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> AcceptGroupInvitation(final AcceptGroupInvitationRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -116,6 +121,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Accepts an invitation to join a group */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateAcceptGroupInvitationAsync(final AcceptGroupInvitationRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -146,6 +152,7 @@ public class PlayFabGroupsAPI {
      * @param request AddMembersRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> AddMembersAsync(final AddMembersRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -160,6 +167,7 @@ public class PlayFabGroupsAPI {
      * @param request AddMembersRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> AddMembers(final AddMembersRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -178,6 +186,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Adds members to a group or role. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateAddMembersAsync(final AddMembersRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -208,6 +217,7 @@ public class PlayFabGroupsAPI {
      * @param request ApplyToGroupRequest
      * @return Async Task will return ApplyToGroupResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ApplyToGroupResponse>> ApplyToGroupAsync(final ApplyToGroupRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ApplyToGroupResponse>>() {
@@ -222,6 +232,7 @@ public class PlayFabGroupsAPI {
      * @param request ApplyToGroupRequest
      * @return ApplyToGroupResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ApplyToGroupResponse> ApplyToGroup(final ApplyToGroupRequest request) {
         FutureTask<PlayFabResult<ApplyToGroupResponse>> task = new FutureTask(new Callable<PlayFabResult<ApplyToGroupResponse>>() {
@@ -240,6 +251,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Applies to join a group */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ApplyToGroupResponse> privateApplyToGroupAsync(final ApplyToGroupRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -270,6 +282,7 @@ public class PlayFabGroupsAPI {
      * @param request BlockEntityRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> BlockEntityAsync(final BlockEntityRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -284,6 +297,7 @@ public class PlayFabGroupsAPI {
      * @param request BlockEntityRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> BlockEntity(final BlockEntityRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -302,6 +316,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Blocks a list of entities from joining a group. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateBlockEntityAsync(final BlockEntityRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -332,6 +347,7 @@ public class PlayFabGroupsAPI {
      * @param request ChangeMemberRoleRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> ChangeMemberRoleAsync(final ChangeMemberRoleRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -346,6 +362,7 @@ public class PlayFabGroupsAPI {
      * @param request ChangeMemberRoleRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> ChangeMemberRole(final ChangeMemberRoleRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -364,6 +381,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Changes the role membership of a list of entities from one role to another. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateChangeMemberRoleAsync(final ChangeMemberRoleRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -394,6 +412,7 @@ public class PlayFabGroupsAPI {
      * @param request CreateGroupRequest
      * @return Async Task will return CreateGroupResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateGroupResponse>> CreateGroupAsync(final CreateGroupRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateGroupResponse>>() {
@@ -408,6 +427,7 @@ public class PlayFabGroupsAPI {
      * @param request CreateGroupRequest
      * @return CreateGroupResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateGroupResponse> CreateGroup(final CreateGroupRequest request) {
         FutureTask<PlayFabResult<CreateGroupResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateGroupResponse>>() {
@@ -426,6 +446,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Creates a new group. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateGroupResponse> privateCreateGroupAsync(final CreateGroupRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -456,6 +477,7 @@ public class PlayFabGroupsAPI {
      * @param request CreateGroupRoleRequest
      * @return Async Task will return CreateGroupRoleResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateGroupRoleResponse>> CreateRoleAsync(final CreateGroupRoleRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateGroupRoleResponse>>() {
@@ -470,6 +492,7 @@ public class PlayFabGroupsAPI {
      * @param request CreateGroupRoleRequest
      * @return CreateGroupRoleResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateGroupRoleResponse> CreateRole(final CreateGroupRoleRequest request) {
         FutureTask<PlayFabResult<CreateGroupRoleResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateGroupRoleResponse>>() {
@@ -488,6 +511,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Creates a new group role. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateGroupRoleResponse> privateCreateRoleAsync(final CreateGroupRoleRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -518,6 +542,7 @@ public class PlayFabGroupsAPI {
      * @param request DeleteGroupRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> DeleteGroupAsync(final DeleteGroupRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -532,6 +557,7 @@ public class PlayFabGroupsAPI {
      * @param request DeleteGroupRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> DeleteGroup(final DeleteGroupRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -550,6 +576,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Deletes a group and all roles, invitations, join requests, and blocks associated with it. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateDeleteGroupAsync(final DeleteGroupRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -580,6 +607,7 @@ public class PlayFabGroupsAPI {
      * @param request DeleteRoleRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> DeleteRoleAsync(final DeleteRoleRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -594,6 +622,7 @@ public class PlayFabGroupsAPI {
      * @param request DeleteRoleRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> DeleteRole(final DeleteRoleRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -612,6 +641,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Deletes an existing role in a group. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateDeleteRoleAsync(final DeleteRoleRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -642,6 +672,7 @@ public class PlayFabGroupsAPI {
      * @param request GetGroupRequest
      * @return Async Task will return GetGroupResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetGroupResponse>> GetGroupAsync(final GetGroupRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetGroupResponse>>() {
@@ -656,6 +687,7 @@ public class PlayFabGroupsAPI {
      * @param request GetGroupRequest
      * @return GetGroupResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetGroupResponse> GetGroup(final GetGroupRequest request) {
         FutureTask<PlayFabResult<GetGroupResponse>> task = new FutureTask(new Callable<PlayFabResult<GetGroupResponse>>() {
@@ -674,6 +706,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Gets information about a group and its roles */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetGroupResponse> privateGetGroupAsync(final GetGroupRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -704,6 +737,7 @@ public class PlayFabGroupsAPI {
      * @param request InviteToGroupRequest
      * @return Async Task will return InviteToGroupResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<InviteToGroupResponse>> InviteToGroupAsync(final InviteToGroupRequest request) {
         return new FutureTask(new Callable<PlayFabResult<InviteToGroupResponse>>() {
@@ -718,6 +752,7 @@ public class PlayFabGroupsAPI {
      * @param request InviteToGroupRequest
      * @return InviteToGroupResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<InviteToGroupResponse> InviteToGroup(final InviteToGroupRequest request) {
         FutureTask<PlayFabResult<InviteToGroupResponse>> task = new FutureTask(new Callable<PlayFabResult<InviteToGroupResponse>>() {
@@ -736,6 +771,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Invites a player to join a group */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<InviteToGroupResponse> privateInviteToGroupAsync(final InviteToGroupRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -766,6 +802,7 @@ public class PlayFabGroupsAPI {
      * @param request IsMemberRequest
      * @return Async Task will return IsMemberResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<IsMemberResponse>> IsMemberAsync(final IsMemberRequest request) {
         return new FutureTask(new Callable<PlayFabResult<IsMemberResponse>>() {
@@ -780,6 +817,7 @@ public class PlayFabGroupsAPI {
      * @param request IsMemberRequest
      * @return IsMemberResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<IsMemberResponse> IsMember(final IsMemberRequest request) {
         FutureTask<PlayFabResult<IsMemberResponse>> task = new FutureTask(new Callable<PlayFabResult<IsMemberResponse>>() {
@@ -798,6 +836,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Checks to see if an entity is a member of a group or role within the group */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<IsMemberResponse> privateIsMemberAsync(final IsMemberRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -828,6 +867,7 @@ public class PlayFabGroupsAPI {
      * @param request ListGroupApplicationsRequest
      * @return Async Task will return ListGroupApplicationsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListGroupApplicationsResponse>> ListGroupApplicationsAsync(final ListGroupApplicationsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListGroupApplicationsResponse>>() {
@@ -842,6 +882,7 @@ public class PlayFabGroupsAPI {
      * @param request ListGroupApplicationsRequest
      * @return ListGroupApplicationsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListGroupApplicationsResponse> ListGroupApplications(final ListGroupApplicationsRequest request) {
         FutureTask<PlayFabResult<ListGroupApplicationsResponse>> task = new FutureTask(new Callable<PlayFabResult<ListGroupApplicationsResponse>>() {
@@ -860,6 +901,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Lists all outstanding requests to join a group */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListGroupApplicationsResponse> privateListGroupApplicationsAsync(final ListGroupApplicationsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -890,6 +932,7 @@ public class PlayFabGroupsAPI {
      * @param request ListGroupBlocksRequest
      * @return Async Task will return ListGroupBlocksResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListGroupBlocksResponse>> ListGroupBlocksAsync(final ListGroupBlocksRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListGroupBlocksResponse>>() {
@@ -904,6 +947,7 @@ public class PlayFabGroupsAPI {
      * @param request ListGroupBlocksRequest
      * @return ListGroupBlocksResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListGroupBlocksResponse> ListGroupBlocks(final ListGroupBlocksRequest request) {
         FutureTask<PlayFabResult<ListGroupBlocksResponse>> task = new FutureTask(new Callable<PlayFabResult<ListGroupBlocksResponse>>() {
@@ -922,6 +966,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Lists all entities blocked from joining a group */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListGroupBlocksResponse> privateListGroupBlocksAsync(final ListGroupBlocksRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -952,6 +997,7 @@ public class PlayFabGroupsAPI {
      * @param request ListGroupInvitationsRequest
      * @return Async Task will return ListGroupInvitationsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListGroupInvitationsResponse>> ListGroupInvitationsAsync(final ListGroupInvitationsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListGroupInvitationsResponse>>() {
@@ -966,6 +1012,7 @@ public class PlayFabGroupsAPI {
      * @param request ListGroupInvitationsRequest
      * @return ListGroupInvitationsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListGroupInvitationsResponse> ListGroupInvitations(final ListGroupInvitationsRequest request) {
         FutureTask<PlayFabResult<ListGroupInvitationsResponse>> task = new FutureTask(new Callable<PlayFabResult<ListGroupInvitationsResponse>>() {
@@ -984,6 +1031,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Lists all outstanding invitations for a group */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListGroupInvitationsResponse> privateListGroupInvitationsAsync(final ListGroupInvitationsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1014,6 +1062,7 @@ public class PlayFabGroupsAPI {
      * @param request ListGroupMembersRequest
      * @return Async Task will return ListGroupMembersResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListGroupMembersResponse>> ListGroupMembersAsync(final ListGroupMembersRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListGroupMembersResponse>>() {
@@ -1028,6 +1077,7 @@ public class PlayFabGroupsAPI {
      * @param request ListGroupMembersRequest
      * @return ListGroupMembersResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListGroupMembersResponse> ListGroupMembers(final ListGroupMembersRequest request) {
         FutureTask<PlayFabResult<ListGroupMembersResponse>> task = new FutureTask(new Callable<PlayFabResult<ListGroupMembersResponse>>() {
@@ -1046,6 +1096,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Lists all members for a group */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListGroupMembersResponse> privateListGroupMembersAsync(final ListGroupMembersRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1076,6 +1127,7 @@ public class PlayFabGroupsAPI {
      * @param request ListMembershipRequest
      * @return Async Task will return ListMembershipResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListMembershipResponse>> ListMembershipAsync(final ListMembershipRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListMembershipResponse>>() {
@@ -1090,6 +1142,7 @@ public class PlayFabGroupsAPI {
      * @param request ListMembershipRequest
      * @return ListMembershipResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListMembershipResponse> ListMembership(final ListMembershipRequest request) {
         FutureTask<PlayFabResult<ListMembershipResponse>> task = new FutureTask(new Callable<PlayFabResult<ListMembershipResponse>>() {
@@ -1108,6 +1161,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Lists all groups and roles for an entity */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListMembershipResponse> privateListMembershipAsync(final ListMembershipRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1138,6 +1192,7 @@ public class PlayFabGroupsAPI {
      * @param request ListMembershipOpportunitiesRequest
      * @return Async Task will return ListMembershipOpportunitiesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListMembershipOpportunitiesResponse>> ListMembershipOpportunitiesAsync(final ListMembershipOpportunitiesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListMembershipOpportunitiesResponse>>() {
@@ -1152,6 +1207,7 @@ public class PlayFabGroupsAPI {
      * @param request ListMembershipOpportunitiesRequest
      * @return ListMembershipOpportunitiesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListMembershipOpportunitiesResponse> ListMembershipOpportunities(final ListMembershipOpportunitiesRequest request) {
         FutureTask<PlayFabResult<ListMembershipOpportunitiesResponse>> task = new FutureTask(new Callable<PlayFabResult<ListMembershipOpportunitiesResponse>>() {
@@ -1170,6 +1226,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Lists all outstanding invitations and group applications for an entity */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListMembershipOpportunitiesResponse> privateListMembershipOpportunitiesAsync(final ListMembershipOpportunitiesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1200,6 +1257,7 @@ public class PlayFabGroupsAPI {
      * @param request RemoveGroupApplicationRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> RemoveGroupApplicationAsync(final RemoveGroupApplicationRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1214,6 +1272,7 @@ public class PlayFabGroupsAPI {
      * @param request RemoveGroupApplicationRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> RemoveGroupApplication(final RemoveGroupApplicationRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1232,6 +1291,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Removes an application to join a group */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateRemoveGroupApplicationAsync(final RemoveGroupApplicationRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1262,6 +1322,7 @@ public class PlayFabGroupsAPI {
      * @param request RemoveGroupInvitationRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> RemoveGroupInvitationAsync(final RemoveGroupInvitationRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1276,6 +1337,7 @@ public class PlayFabGroupsAPI {
      * @param request RemoveGroupInvitationRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> RemoveGroupInvitation(final RemoveGroupInvitationRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1294,6 +1356,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Removes an invitation join a group */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateRemoveGroupInvitationAsync(final RemoveGroupInvitationRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1324,6 +1387,7 @@ public class PlayFabGroupsAPI {
      * @param request RemoveMembersRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> RemoveMembersAsync(final RemoveMembersRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1338,6 +1402,7 @@ public class PlayFabGroupsAPI {
      * @param request RemoveMembersRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> RemoveMembers(final RemoveMembersRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1356,6 +1421,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Removes members from a group. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateRemoveMembersAsync(final RemoveMembersRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1386,6 +1452,7 @@ public class PlayFabGroupsAPI {
      * @param request UnblockEntityRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> UnblockEntityAsync(final UnblockEntityRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1400,6 +1467,7 @@ public class PlayFabGroupsAPI {
      * @param request UnblockEntityRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> UnblockEntity(final UnblockEntityRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1418,6 +1486,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Unblocks a list of entities from joining a group */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateUnblockEntityAsync(final UnblockEntityRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1448,6 +1517,7 @@ public class PlayFabGroupsAPI {
      * @param request UpdateGroupRequest
      * @return Async Task will return UpdateGroupResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateGroupResponse>> UpdateGroupAsync(final UpdateGroupRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateGroupResponse>>() {
@@ -1462,6 +1532,7 @@ public class PlayFabGroupsAPI {
      * @param request UpdateGroupRequest
      * @return UpdateGroupResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateGroupResponse> UpdateGroup(final UpdateGroupRequest request) {
         FutureTask<PlayFabResult<UpdateGroupResponse>> task = new FutureTask(new Callable<PlayFabResult<UpdateGroupResponse>>() {
@@ -1480,6 +1551,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Updates non-membership data about a group. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateGroupResponse> privateUpdateGroupAsync(final UpdateGroupRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1510,6 +1582,7 @@ public class PlayFabGroupsAPI {
      * @param request UpdateGroupRoleRequest
      * @return Async Task will return UpdateGroupRoleResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateGroupRoleResponse>> UpdateRoleAsync(final UpdateGroupRoleRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateGroupRoleResponse>>() {
@@ -1524,6 +1597,7 @@ public class PlayFabGroupsAPI {
      * @param request UpdateGroupRoleRequest
      * @return UpdateGroupRoleResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateGroupRoleResponse> UpdateRole(final UpdateGroupRoleRequest request) {
         FutureTask<PlayFabResult<UpdateGroupRoleResponse>> task = new FutureTask(new Callable<PlayFabResult<UpdateGroupRoleResponse>>() {
@@ -1542,6 +1616,7 @@ public class PlayFabGroupsAPI {
     }
 
     /** Updates metadata about a role. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateGroupRoleResponse> privateUpdateRoleAsync(final UpdateGroupRoleRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");

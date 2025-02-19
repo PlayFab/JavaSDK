@@ -19,6 +19,7 @@ public class PlayFabInsightsAPI {
      * @param request InsightsEmptyRequest
      * @return Async Task will return InsightsGetDetailsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<InsightsGetDetailsResponse>> GetDetailsAsync(final InsightsEmptyRequest request) {
         return new FutureTask(new Callable<PlayFabResult<InsightsGetDetailsResponse>>() {
@@ -34,6 +35,7 @@ public class PlayFabInsightsAPI {
      * @param request InsightsEmptyRequest
      * @return InsightsGetDetailsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<InsightsGetDetailsResponse> GetDetails(final InsightsEmptyRequest request) {
         FutureTask<PlayFabResult<InsightsGetDetailsResponse>> task = new FutureTask(new Callable<PlayFabResult<InsightsGetDetailsResponse>>() {
@@ -55,6 +57,7 @@ public class PlayFabInsightsAPI {
      * Gets the current values for the Insights performance and data storage retention, list of pending operations, and the
      * performance and data storage retention limits.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<InsightsGetDetailsResponse> privateGetDetailsAsync(final InsightsEmptyRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -86,6 +89,7 @@ public class PlayFabInsightsAPI {
      * @param request InsightsEmptyRequest
      * @return Async Task will return InsightsGetLimitsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<InsightsGetLimitsResponse>> GetLimitsAsync(final InsightsEmptyRequest request) {
         return new FutureTask(new Callable<PlayFabResult<InsightsGetLimitsResponse>>() {
@@ -101,6 +105,7 @@ public class PlayFabInsightsAPI {
      * @param request InsightsEmptyRequest
      * @return InsightsGetLimitsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<InsightsGetLimitsResponse> GetLimits(final InsightsEmptyRequest request) {
         FutureTask<PlayFabResult<InsightsGetLimitsResponse>> task = new FutureTask(new Callable<PlayFabResult<InsightsGetLimitsResponse>>() {
@@ -122,6 +127,7 @@ public class PlayFabInsightsAPI {
      * Retrieves the range of allowed values for performance and data storage retention values as well as the submeter details
      * for each performance level.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<InsightsGetLimitsResponse> privateGetLimitsAsync(final InsightsEmptyRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -152,6 +158,7 @@ public class PlayFabInsightsAPI {
      * @param request InsightsGetOperationStatusRequest
      * @return Async Task will return InsightsGetOperationStatusResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<InsightsGetOperationStatusResponse>> GetOperationStatusAsync(final InsightsGetOperationStatusRequest request) {
         return new FutureTask(new Callable<PlayFabResult<InsightsGetOperationStatusResponse>>() {
@@ -166,6 +173,7 @@ public class PlayFabInsightsAPI {
      * @param request InsightsGetOperationStatusRequest
      * @return InsightsGetOperationStatusResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<InsightsGetOperationStatusResponse> GetOperationStatus(final InsightsGetOperationStatusRequest request) {
         FutureTask<PlayFabResult<InsightsGetOperationStatusResponse>> task = new FutureTask(new Callable<PlayFabResult<InsightsGetOperationStatusResponse>>() {
@@ -184,6 +192,7 @@ public class PlayFabInsightsAPI {
     }
 
     /** Gets the status of a SetPerformance or SetStorageRetention operation. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<InsightsGetOperationStatusResponse> privateGetOperationStatusAsync(final InsightsGetOperationStatusRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -214,6 +223,7 @@ public class PlayFabInsightsAPI {
      * @param request InsightsGetPendingOperationsRequest
      * @return Async Task will return InsightsGetPendingOperationsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<InsightsGetPendingOperationsResponse>> GetPendingOperationsAsync(final InsightsGetPendingOperationsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<InsightsGetPendingOperationsResponse>>() {
@@ -228,6 +238,7 @@ public class PlayFabInsightsAPI {
      * @param request InsightsGetPendingOperationsRequest
      * @return InsightsGetPendingOperationsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<InsightsGetPendingOperationsResponse> GetPendingOperations(final InsightsGetPendingOperationsRequest request) {
         FutureTask<PlayFabResult<InsightsGetPendingOperationsResponse>> task = new FutureTask(new Callable<PlayFabResult<InsightsGetPendingOperationsResponse>>() {
@@ -246,6 +257,7 @@ public class PlayFabInsightsAPI {
     }
 
     /** Gets a list of pending SetPerformance and/or SetStorageRetention operations for the title. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<InsightsGetPendingOperationsResponse> privateGetPendingOperationsAsync(final InsightsGetPendingOperationsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -276,6 +288,7 @@ public class PlayFabInsightsAPI {
      * @param request InsightsSetPerformanceRequest
      * @return Async Task will return InsightsOperationResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<InsightsOperationResponse>> SetPerformanceAsync(final InsightsSetPerformanceRequest request) {
         return new FutureTask(new Callable<PlayFabResult<InsightsOperationResponse>>() {
@@ -290,6 +303,7 @@ public class PlayFabInsightsAPI {
      * @param request InsightsSetPerformanceRequest
      * @return InsightsOperationResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<InsightsOperationResponse> SetPerformance(final InsightsSetPerformanceRequest request) {
         FutureTask<PlayFabResult<InsightsOperationResponse>> task = new FutureTask(new Callable<PlayFabResult<InsightsOperationResponse>>() {
@@ -308,6 +322,7 @@ public class PlayFabInsightsAPI {
     }
 
     /** Sets the Insights performance level value for the title. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<InsightsOperationResponse> privateSetPerformanceAsync(final InsightsSetPerformanceRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -338,6 +353,7 @@ public class PlayFabInsightsAPI {
      * @param request InsightsSetStorageRetentionRequest
      * @return Async Task will return InsightsOperationResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<InsightsOperationResponse>> SetStorageRetentionAsync(final InsightsSetStorageRetentionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<InsightsOperationResponse>>() {
@@ -352,6 +368,7 @@ public class PlayFabInsightsAPI {
      * @param request InsightsSetStorageRetentionRequest
      * @return InsightsOperationResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<InsightsOperationResponse> SetStorageRetention(final InsightsSetStorageRetentionRequest request) {
         FutureTask<PlayFabResult<InsightsOperationResponse>> task = new FutureTask(new Callable<PlayFabResult<InsightsOperationResponse>>() {
@@ -370,6 +387,7 @@ public class PlayFabInsightsAPI {
     }
 
     /** Sets the Insights data storage retention days value for the title. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<InsightsOperationResponse> privateSetStorageRetentionAsync(final InsightsSetStorageRetentionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");

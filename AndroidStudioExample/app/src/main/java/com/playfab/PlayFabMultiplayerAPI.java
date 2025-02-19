@@ -23,6 +23,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CancelAllMatchmakingTicketsForPlayerRequest
      * @return Async Task will return CancelAllMatchmakingTicketsForPlayerResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CancelAllMatchmakingTicketsForPlayerResult>> CancelAllMatchmakingTicketsForPlayerAsync(final CancelAllMatchmakingTicketsForPlayerRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CancelAllMatchmakingTicketsForPlayerResult>>() {
@@ -37,6 +38,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CancelAllMatchmakingTicketsForPlayerRequest
      * @return CancelAllMatchmakingTicketsForPlayerResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CancelAllMatchmakingTicketsForPlayerResult> CancelAllMatchmakingTicketsForPlayer(final CancelAllMatchmakingTicketsForPlayerRequest request) {
         FutureTask<PlayFabResult<CancelAllMatchmakingTicketsForPlayerResult>> task = new FutureTask(new Callable<PlayFabResult<CancelAllMatchmakingTicketsForPlayerResult>>() {
@@ -55,6 +57,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Cancel all active tickets the player is a member of in a given queue. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CancelAllMatchmakingTicketsForPlayerResult> privateCancelAllMatchmakingTicketsForPlayerAsync(final CancelAllMatchmakingTicketsForPlayerRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -85,6 +88,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CancelAllServerBackfillTicketsForPlayerRequest
      * @return Async Task will return CancelAllServerBackfillTicketsForPlayerResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CancelAllServerBackfillTicketsForPlayerResult>> CancelAllServerBackfillTicketsForPlayerAsync(final CancelAllServerBackfillTicketsForPlayerRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CancelAllServerBackfillTicketsForPlayerResult>>() {
@@ -99,6 +103,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CancelAllServerBackfillTicketsForPlayerRequest
      * @return CancelAllServerBackfillTicketsForPlayerResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CancelAllServerBackfillTicketsForPlayerResult> CancelAllServerBackfillTicketsForPlayer(final CancelAllServerBackfillTicketsForPlayerRequest request) {
         FutureTask<PlayFabResult<CancelAllServerBackfillTicketsForPlayerResult>> task = new FutureTask(new Callable<PlayFabResult<CancelAllServerBackfillTicketsForPlayerResult>>() {
@@ -117,6 +122,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Cancel all active backfill tickets the player is a member of in a given queue. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CancelAllServerBackfillTicketsForPlayerResult> privateCancelAllServerBackfillTicketsForPlayerAsync(final CancelAllServerBackfillTicketsForPlayerRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -147,6 +153,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CancelMatchmakingTicketRequest
      * @return Async Task will return CancelMatchmakingTicketResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CancelMatchmakingTicketResult>> CancelMatchmakingTicketAsync(final CancelMatchmakingTicketRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CancelMatchmakingTicketResult>>() {
@@ -161,6 +168,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CancelMatchmakingTicketRequest
      * @return CancelMatchmakingTicketResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CancelMatchmakingTicketResult> CancelMatchmakingTicket(final CancelMatchmakingTicketRequest request) {
         FutureTask<PlayFabResult<CancelMatchmakingTicketResult>> task = new FutureTask(new Callable<PlayFabResult<CancelMatchmakingTicketResult>>() {
@@ -179,6 +187,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Cancel a matchmaking ticket. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CancelMatchmakingTicketResult> privateCancelMatchmakingTicketAsync(final CancelMatchmakingTicketRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -209,6 +218,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CancelServerBackfillTicketRequest
      * @return Async Task will return CancelServerBackfillTicketResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CancelServerBackfillTicketResult>> CancelServerBackfillTicketAsync(final CancelServerBackfillTicketRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CancelServerBackfillTicketResult>>() {
@@ -223,6 +233,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CancelServerBackfillTicketRequest
      * @return CancelServerBackfillTicketResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CancelServerBackfillTicketResult> CancelServerBackfillTicket(final CancelServerBackfillTicketRequest request) {
         FutureTask<PlayFabResult<CancelServerBackfillTicketResult>> task = new FutureTask(new Callable<PlayFabResult<CancelServerBackfillTicketResult>>() {
@@ -241,6 +252,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Cancel a server backfill ticket. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CancelServerBackfillTicketResult> privateCancelServerBackfillTicketAsync(final CancelServerBackfillTicketRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -271,6 +283,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CreateBuildAliasRequest
      * @return Async Task will return BuildAliasDetailsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<BuildAliasDetailsResponse>> CreateBuildAliasAsync(final CreateBuildAliasRequest request) {
         return new FutureTask(new Callable<PlayFabResult<BuildAliasDetailsResponse>>() {
@@ -285,6 +298,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CreateBuildAliasRequest
      * @return BuildAliasDetailsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<BuildAliasDetailsResponse> CreateBuildAlias(final CreateBuildAliasRequest request) {
         FutureTask<PlayFabResult<BuildAliasDetailsResponse>> task = new FutureTask(new Callable<PlayFabResult<BuildAliasDetailsResponse>>() {
@@ -303,6 +317,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Creates a multiplayer server build alias. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<BuildAliasDetailsResponse> privateCreateBuildAliasAsync(final CreateBuildAliasRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -333,6 +348,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CreateBuildWithCustomContainerRequest
      * @return Async Task will return CreateBuildWithCustomContainerResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateBuildWithCustomContainerResponse>> CreateBuildWithCustomContainerAsync(final CreateBuildWithCustomContainerRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateBuildWithCustomContainerResponse>>() {
@@ -347,6 +363,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CreateBuildWithCustomContainerRequest
      * @return CreateBuildWithCustomContainerResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateBuildWithCustomContainerResponse> CreateBuildWithCustomContainer(final CreateBuildWithCustomContainerRequest request) {
         FutureTask<PlayFabResult<CreateBuildWithCustomContainerResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateBuildWithCustomContainerResponse>>() {
@@ -365,6 +382,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Creates a multiplayer server build with a custom container. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateBuildWithCustomContainerResponse> privateCreateBuildWithCustomContainerAsync(final CreateBuildWithCustomContainerRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -395,6 +413,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CreateBuildWithManagedContainerRequest
      * @return Async Task will return CreateBuildWithManagedContainerResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateBuildWithManagedContainerResponse>> CreateBuildWithManagedContainerAsync(final CreateBuildWithManagedContainerRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateBuildWithManagedContainerResponse>>() {
@@ -409,6 +428,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CreateBuildWithManagedContainerRequest
      * @return CreateBuildWithManagedContainerResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateBuildWithManagedContainerResponse> CreateBuildWithManagedContainer(final CreateBuildWithManagedContainerRequest request) {
         FutureTask<PlayFabResult<CreateBuildWithManagedContainerResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateBuildWithManagedContainerResponse>>() {
@@ -427,6 +447,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Creates a multiplayer server build with a managed container. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateBuildWithManagedContainerResponse> privateCreateBuildWithManagedContainerAsync(final CreateBuildWithManagedContainerRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -457,6 +478,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CreateBuildWithProcessBasedServerRequest
      * @return Async Task will return CreateBuildWithProcessBasedServerResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateBuildWithProcessBasedServerResponse>> CreateBuildWithProcessBasedServerAsync(final CreateBuildWithProcessBasedServerRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateBuildWithProcessBasedServerResponse>>() {
@@ -471,6 +493,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CreateBuildWithProcessBasedServerRequest
      * @return CreateBuildWithProcessBasedServerResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateBuildWithProcessBasedServerResponse> CreateBuildWithProcessBasedServer(final CreateBuildWithProcessBasedServerRequest request) {
         FutureTask<PlayFabResult<CreateBuildWithProcessBasedServerResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateBuildWithProcessBasedServerResponse>>() {
@@ -489,6 +512,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Creates a multiplayer server build with the server running as a process. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateBuildWithProcessBasedServerResponse> privateCreateBuildWithProcessBasedServerAsync(final CreateBuildWithProcessBasedServerRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -519,6 +543,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CreateLobbyRequest
      * @return Async Task will return CreateLobbyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateLobbyResult>> CreateLobbyAsync(final CreateLobbyRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateLobbyResult>>() {
@@ -533,6 +558,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CreateLobbyRequest
      * @return CreateLobbyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateLobbyResult> CreateLobby(final CreateLobbyRequest request) {
         FutureTask<PlayFabResult<CreateLobbyResult>> task = new FutureTask(new Callable<PlayFabResult<CreateLobbyResult>>() {
@@ -551,6 +577,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Create a lobby. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateLobbyResult> privateCreateLobbyAsync(final CreateLobbyRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -581,6 +608,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CreateMatchmakingTicketRequest
      * @return Async Task will return CreateMatchmakingTicketResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateMatchmakingTicketResult>> CreateMatchmakingTicketAsync(final CreateMatchmakingTicketRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateMatchmakingTicketResult>>() {
@@ -595,6 +623,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CreateMatchmakingTicketRequest
      * @return CreateMatchmakingTicketResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateMatchmakingTicketResult> CreateMatchmakingTicket(final CreateMatchmakingTicketRequest request) {
         FutureTask<PlayFabResult<CreateMatchmakingTicketResult>> task = new FutureTask(new Callable<PlayFabResult<CreateMatchmakingTicketResult>>() {
@@ -613,6 +642,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Create a matchmaking ticket as a client. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateMatchmakingTicketResult> privateCreateMatchmakingTicketAsync(final CreateMatchmakingTicketRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -643,6 +673,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CreateRemoteUserRequest
      * @return Async Task will return CreateRemoteUserResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateRemoteUserResponse>> CreateRemoteUserAsync(final CreateRemoteUserRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateRemoteUserResponse>>() {
@@ -657,6 +688,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CreateRemoteUserRequest
      * @return CreateRemoteUserResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateRemoteUserResponse> CreateRemoteUser(final CreateRemoteUserRequest request) {
         FutureTask<PlayFabResult<CreateRemoteUserResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateRemoteUserResponse>>() {
@@ -675,6 +707,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Creates a remote user to log on to a VM for a multiplayer server build. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateRemoteUserResponse> privateCreateRemoteUserAsync(final CreateRemoteUserRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -707,6 +740,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CreateServerBackfillTicketRequest
      * @return Async Task will return CreateServerBackfillTicketResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateServerBackfillTicketResult>> CreateServerBackfillTicketAsync(final CreateServerBackfillTicketRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateServerBackfillTicketResult>>() {
@@ -723,6 +757,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CreateServerBackfillTicketRequest
      * @return CreateServerBackfillTicketResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateServerBackfillTicketResult> CreateServerBackfillTicket(final CreateServerBackfillTicketRequest request) {
         FutureTask<PlayFabResult<CreateServerBackfillTicketResult>> task = new FutureTask(new Callable<PlayFabResult<CreateServerBackfillTicketResult>>() {
@@ -745,6 +780,7 @@ public class PlayFabMultiplayerAPI {
      * automatically starts matching the backfill ticket against other matchmaking tickets. Backfill tickets cannot match with
      * other backfill tickets.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateServerBackfillTicketResult> privateCreateServerBackfillTicketAsync(final CreateServerBackfillTicketRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -776,6 +812,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CreateServerMatchmakingTicketRequest
      * @return Async Task will return CreateMatchmakingTicketResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateMatchmakingTicketResult>> CreateServerMatchmakingTicketAsync(final CreateServerMatchmakingTicketRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateMatchmakingTicketResult>>() {
@@ -791,6 +828,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CreateServerMatchmakingTicketRequest
      * @return CreateMatchmakingTicketResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateMatchmakingTicketResult> CreateServerMatchmakingTicket(final CreateServerMatchmakingTicketRequest request) {
         FutureTask<PlayFabResult<CreateMatchmakingTicketResult>> task = new FutureTask(new Callable<PlayFabResult<CreateMatchmakingTicketResult>>() {
@@ -812,6 +850,7 @@ public class PlayFabMultiplayerAPI {
      * Create a matchmaking ticket as a server. The matchmaking service automatically starts matching the ticket against other
      * matchmaking tickets.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateMatchmakingTicketResult> privateCreateServerMatchmakingTicketAsync(final CreateServerMatchmakingTicketRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -842,6 +881,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CreateTitleMultiplayerServersQuotaChangeRequest
      * @return Async Task will return CreateTitleMultiplayerServersQuotaChangeResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateTitleMultiplayerServersQuotaChangeResponse>> CreateTitleMultiplayerServersQuotaChangeAsync(final CreateTitleMultiplayerServersQuotaChangeRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateTitleMultiplayerServersQuotaChangeResponse>>() {
@@ -856,6 +896,7 @@ public class PlayFabMultiplayerAPI {
      * @param request CreateTitleMultiplayerServersQuotaChangeRequest
      * @return CreateTitleMultiplayerServersQuotaChangeResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateTitleMultiplayerServersQuotaChangeResponse> CreateTitleMultiplayerServersQuotaChange(final CreateTitleMultiplayerServersQuotaChangeRequest request) {
         FutureTask<PlayFabResult<CreateTitleMultiplayerServersQuotaChangeResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateTitleMultiplayerServersQuotaChangeResponse>>() {
@@ -874,6 +915,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Creates a request to change a title's multiplayer server quotas. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateTitleMultiplayerServersQuotaChangeResponse> privateCreateTitleMultiplayerServersQuotaChangeAsync(final CreateTitleMultiplayerServersQuotaChangeRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -904,6 +946,7 @@ public class PlayFabMultiplayerAPI {
      * @param request DeleteAssetRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> DeleteAssetAsync(final DeleteAssetRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -918,6 +961,7 @@ public class PlayFabMultiplayerAPI {
      * @param request DeleteAssetRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> DeleteAsset(final DeleteAssetRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -936,6 +980,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Deletes a multiplayer server game asset for a title. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateDeleteAssetAsync(final DeleteAssetRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -966,6 +1011,7 @@ public class PlayFabMultiplayerAPI {
      * @param request DeleteBuildRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> DeleteBuildAsync(final DeleteBuildRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -980,6 +1026,7 @@ public class PlayFabMultiplayerAPI {
      * @param request DeleteBuildRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> DeleteBuild(final DeleteBuildRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -998,6 +1045,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Deletes a multiplayer server build. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateDeleteBuildAsync(final DeleteBuildRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1028,6 +1076,7 @@ public class PlayFabMultiplayerAPI {
      * @param request DeleteBuildAliasRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> DeleteBuildAliasAsync(final DeleteBuildAliasRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1042,6 +1091,7 @@ public class PlayFabMultiplayerAPI {
      * @param request DeleteBuildAliasRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> DeleteBuildAlias(final DeleteBuildAliasRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1060,6 +1110,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Deletes a multiplayer server build alias. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateDeleteBuildAliasAsync(final DeleteBuildAliasRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1090,6 +1141,7 @@ public class PlayFabMultiplayerAPI {
      * @param request DeleteBuildRegionRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> DeleteBuildRegionAsync(final DeleteBuildRegionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1104,6 +1156,7 @@ public class PlayFabMultiplayerAPI {
      * @param request DeleteBuildRegionRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> DeleteBuildRegion(final DeleteBuildRegionRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1122,6 +1175,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Removes a multiplayer server build's region. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateDeleteBuildRegionAsync(final DeleteBuildRegionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1152,6 +1206,7 @@ public class PlayFabMultiplayerAPI {
      * @param request DeleteCertificateRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> DeleteCertificateAsync(final DeleteCertificateRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1166,6 +1221,7 @@ public class PlayFabMultiplayerAPI {
      * @param request DeleteCertificateRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> DeleteCertificate(final DeleteCertificateRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1184,6 +1240,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Deletes a multiplayer server game certificate. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateDeleteCertificateAsync(final DeleteCertificateRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1214,6 +1271,7 @@ public class PlayFabMultiplayerAPI {
      * @param request DeleteContainerImageRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> DeleteContainerImageRepositoryAsync(final DeleteContainerImageRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1228,6 +1286,7 @@ public class PlayFabMultiplayerAPI {
      * @param request DeleteContainerImageRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> DeleteContainerImageRepository(final DeleteContainerImageRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1246,6 +1305,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Deletes a container image repository. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateDeleteContainerImageRepositoryAsync(final DeleteContainerImageRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1276,6 +1336,7 @@ public class PlayFabMultiplayerAPI {
      * @param request DeleteLobbyRequest
      * @return Async Task will return LobbyEmptyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<LobbyEmptyResult>> DeleteLobbyAsync(final DeleteLobbyRequest request) {
         return new FutureTask(new Callable<PlayFabResult<LobbyEmptyResult>>() {
@@ -1290,6 +1351,7 @@ public class PlayFabMultiplayerAPI {
      * @param request DeleteLobbyRequest
      * @return LobbyEmptyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<LobbyEmptyResult> DeleteLobby(final DeleteLobbyRequest request) {
         FutureTask<PlayFabResult<LobbyEmptyResult>> task = new FutureTask(new Callable<PlayFabResult<LobbyEmptyResult>>() {
@@ -1308,6 +1370,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Delete a lobby. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LobbyEmptyResult> privateDeleteLobbyAsync(final DeleteLobbyRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1338,6 +1401,7 @@ public class PlayFabMultiplayerAPI {
      * @param request DeleteRemoteUserRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> DeleteRemoteUserAsync(final DeleteRemoteUserRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1352,6 +1416,7 @@ public class PlayFabMultiplayerAPI {
      * @param request DeleteRemoteUserRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> DeleteRemoteUser(final DeleteRemoteUserRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1370,6 +1435,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Deletes a remote user to log on to a VM for a multiplayer server build. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateDeleteRemoteUserAsync(final DeleteRemoteUserRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1400,6 +1466,7 @@ public class PlayFabMultiplayerAPI {
      * @param request DeleteSecretRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> DeleteSecretAsync(final DeleteSecretRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1414,6 +1481,7 @@ public class PlayFabMultiplayerAPI {
      * @param request DeleteSecretRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> DeleteSecret(final DeleteSecretRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1432,6 +1500,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Deletes a multiplayer server game secret. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateDeleteSecretAsync(final DeleteSecretRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1462,6 +1531,7 @@ public class PlayFabMultiplayerAPI {
      * @param request EnableMultiplayerServersForTitleRequest
      * @return Async Task will return EnableMultiplayerServersForTitleResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EnableMultiplayerServersForTitleResponse>> EnableMultiplayerServersForTitleAsync(final EnableMultiplayerServersForTitleRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EnableMultiplayerServersForTitleResponse>>() {
@@ -1476,6 +1546,7 @@ public class PlayFabMultiplayerAPI {
      * @param request EnableMultiplayerServersForTitleRequest
      * @return EnableMultiplayerServersForTitleResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EnableMultiplayerServersForTitleResponse> EnableMultiplayerServersForTitle(final EnableMultiplayerServersForTitleRequest request) {
         FutureTask<PlayFabResult<EnableMultiplayerServersForTitleResponse>> task = new FutureTask(new Callable<PlayFabResult<EnableMultiplayerServersForTitleResponse>>() {
@@ -1494,6 +1565,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Enables the multiplayer server feature for a title. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EnableMultiplayerServersForTitleResponse> privateEnableMultiplayerServersForTitleAsync(final EnableMultiplayerServersForTitleRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1524,6 +1596,7 @@ public class PlayFabMultiplayerAPI {
      * @param request FindFriendLobbiesRequest
      * @return Async Task will return FindFriendLobbiesResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<FindFriendLobbiesResult>> FindFriendLobbiesAsync(final FindFriendLobbiesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<FindFriendLobbiesResult>>() {
@@ -1538,6 +1611,7 @@ public class PlayFabMultiplayerAPI {
      * @param request FindFriendLobbiesRequest
      * @return FindFriendLobbiesResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<FindFriendLobbiesResult> FindFriendLobbies(final FindFriendLobbiesRequest request) {
         FutureTask<PlayFabResult<FindFriendLobbiesResult>> task = new FutureTask(new Callable<PlayFabResult<FindFriendLobbiesResult>>() {
@@ -1556,6 +1630,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Find lobbies which match certain criteria, and which friends are in. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<FindFriendLobbiesResult> privateFindFriendLobbiesAsync(final FindFriendLobbiesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1586,6 +1661,7 @@ public class PlayFabMultiplayerAPI {
      * @param request FindLobbiesRequest
      * @return Async Task will return FindLobbiesResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<FindLobbiesResult>> FindLobbiesAsync(final FindLobbiesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<FindLobbiesResult>>() {
@@ -1600,6 +1676,7 @@ public class PlayFabMultiplayerAPI {
      * @param request FindLobbiesRequest
      * @return FindLobbiesResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<FindLobbiesResult> FindLobbies(final FindLobbiesRequest request) {
         FutureTask<PlayFabResult<FindLobbiesResult>> task = new FutureTask(new Callable<PlayFabResult<FindLobbiesResult>>() {
@@ -1618,6 +1695,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Find all the lobbies that match certain criteria. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<FindLobbiesResult> privateFindLobbiesAsync(final FindLobbiesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1649,6 +1727,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetAssetDownloadUrlRequest
      * @return Async Task will return GetAssetDownloadUrlResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetAssetDownloadUrlResponse>> GetAssetDownloadUrlAsync(final GetAssetDownloadUrlRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetAssetDownloadUrlResponse>>() {
@@ -1664,6 +1743,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetAssetDownloadUrlRequest
      * @return GetAssetDownloadUrlResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetAssetDownloadUrlResponse> GetAssetDownloadUrl(final GetAssetDownloadUrlRequest request) {
         FutureTask<PlayFabResult<GetAssetDownloadUrlResponse>> task = new FutureTask(new Callable<PlayFabResult<GetAssetDownloadUrlResponse>>() {
@@ -1685,6 +1765,7 @@ public class PlayFabMultiplayerAPI {
      * Gets a URL that can be used to download the specified asset. A sample pre-authenticated url -
      * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&amp;ss=b&amp;srt=sco&amp;sp=rw&amp;st=startDate&amp;se=endDate&amp;spr=https&amp;sig=sampleSig&amp;api-version=2017-07-29
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetAssetDownloadUrlResponse> privateGetAssetDownloadUrlAsync(final GetAssetDownloadUrlRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1716,6 +1797,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetAssetUploadUrlRequest
      * @return Async Task will return GetAssetUploadUrlResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetAssetUploadUrlResponse>> GetAssetUploadUrlAsync(final GetAssetUploadUrlRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetAssetUploadUrlResponse>>() {
@@ -1731,6 +1813,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetAssetUploadUrlRequest
      * @return GetAssetUploadUrlResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetAssetUploadUrlResponse> GetAssetUploadUrl(final GetAssetUploadUrlRequest request) {
         FutureTask<PlayFabResult<GetAssetUploadUrlResponse>> task = new FutureTask(new Callable<PlayFabResult<GetAssetUploadUrlResponse>>() {
@@ -1752,6 +1835,7 @@ public class PlayFabMultiplayerAPI {
      * Gets the URL to upload assets to. A sample pre-authenticated url -
      * https://sampleStorageAccount.blob.core.windows.net/gameassets/gameserver.zip?sv=2015-04-05&amp;ss=b&amp;srt=sco&amp;sp=rw&amp;st=startDate&amp;se=endDate&amp;spr=https&amp;sig=sampleSig&amp;api-version=2017-07-29
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetAssetUploadUrlResponse> privateGetAssetUploadUrlAsync(final GetAssetUploadUrlRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1782,6 +1866,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetBuildRequest
      * @return Async Task will return GetBuildResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetBuildResponse>> GetBuildAsync(final GetBuildRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetBuildResponse>>() {
@@ -1796,6 +1881,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetBuildRequest
      * @return GetBuildResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetBuildResponse> GetBuild(final GetBuildRequest request) {
         FutureTask<PlayFabResult<GetBuildResponse>> task = new FutureTask(new Callable<PlayFabResult<GetBuildResponse>>() {
@@ -1814,6 +1900,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Gets a multiplayer server build. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetBuildResponse> privateGetBuildAsync(final GetBuildRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1844,6 +1931,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetBuildAliasRequest
      * @return Async Task will return BuildAliasDetailsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<BuildAliasDetailsResponse>> GetBuildAliasAsync(final GetBuildAliasRequest request) {
         return new FutureTask(new Callable<PlayFabResult<BuildAliasDetailsResponse>>() {
@@ -1858,6 +1946,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetBuildAliasRequest
      * @return BuildAliasDetailsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<BuildAliasDetailsResponse> GetBuildAlias(final GetBuildAliasRequest request) {
         FutureTask<PlayFabResult<BuildAliasDetailsResponse>> task = new FutureTask(new Callable<PlayFabResult<BuildAliasDetailsResponse>>() {
@@ -1876,6 +1965,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Gets a multiplayer server build alias. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<BuildAliasDetailsResponse> privateGetBuildAliasAsync(final GetBuildAliasRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1906,6 +1996,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetContainerRegistryCredentialsRequest
      * @return Async Task will return GetContainerRegistryCredentialsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetContainerRegistryCredentialsResponse>> GetContainerRegistryCredentialsAsync(final GetContainerRegistryCredentialsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetContainerRegistryCredentialsResponse>>() {
@@ -1920,6 +2011,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetContainerRegistryCredentialsRequest
      * @return GetContainerRegistryCredentialsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetContainerRegistryCredentialsResponse> GetContainerRegistryCredentials(final GetContainerRegistryCredentialsRequest request) {
         FutureTask<PlayFabResult<GetContainerRegistryCredentialsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetContainerRegistryCredentialsResponse>>() {
@@ -1938,6 +2030,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Gets the credentials to the container registry. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetContainerRegistryCredentialsResponse> privateGetContainerRegistryCredentialsAsync(final GetContainerRegistryCredentialsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1968,6 +2061,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetLobbyRequest
      * @return Async Task will return GetLobbyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetLobbyResult>> GetLobbyAsync(final GetLobbyRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetLobbyResult>>() {
@@ -1982,6 +2076,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetLobbyRequest
      * @return GetLobbyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetLobbyResult> GetLobby(final GetLobbyRequest request) {
         FutureTask<PlayFabResult<GetLobbyResult>> task = new FutureTask(new Callable<PlayFabResult<GetLobbyResult>>() {
@@ -2000,6 +2095,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Get a lobby. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetLobbyResult> privateGetLobbyAsync(final GetLobbyRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2030,6 +2126,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetMatchRequest
      * @return Async Task will return GetMatchResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetMatchResult>> GetMatchAsync(final GetMatchRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetMatchResult>>() {
@@ -2044,6 +2141,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetMatchRequest
      * @return GetMatchResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetMatchResult> GetMatch(final GetMatchRequest request) {
         FutureTask<PlayFabResult<GetMatchResult>> task = new FutureTask(new Callable<PlayFabResult<GetMatchResult>>() {
@@ -2062,6 +2160,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Get a match. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetMatchResult> privateGetMatchAsync(final GetMatchRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2092,6 +2191,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetMatchmakingTicketRequest
      * @return Async Task will return GetMatchmakingTicketResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetMatchmakingTicketResult>> GetMatchmakingTicketAsync(final GetMatchmakingTicketRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetMatchmakingTicketResult>>() {
@@ -2106,6 +2206,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetMatchmakingTicketRequest
      * @return GetMatchmakingTicketResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetMatchmakingTicketResult> GetMatchmakingTicket(final GetMatchmakingTicketRequest request) {
         FutureTask<PlayFabResult<GetMatchmakingTicketResult>> task = new FutureTask(new Callable<PlayFabResult<GetMatchmakingTicketResult>>() {
@@ -2124,6 +2225,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Get a matchmaking ticket by ticket Id. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetMatchmakingTicketResult> privateGetMatchmakingTicketAsync(final GetMatchmakingTicketRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2154,6 +2256,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetMultiplayerServerDetailsRequest
      * @return Async Task will return GetMultiplayerServerDetailsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetMultiplayerServerDetailsResponse>> GetMultiplayerServerDetailsAsync(final GetMultiplayerServerDetailsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetMultiplayerServerDetailsResponse>>() {
@@ -2168,6 +2271,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetMultiplayerServerDetailsRequest
      * @return GetMultiplayerServerDetailsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetMultiplayerServerDetailsResponse> GetMultiplayerServerDetails(final GetMultiplayerServerDetailsRequest request) {
         FutureTask<PlayFabResult<GetMultiplayerServerDetailsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetMultiplayerServerDetailsResponse>>() {
@@ -2186,6 +2290,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Gets multiplayer server session details for a build. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetMultiplayerServerDetailsResponse> privateGetMultiplayerServerDetailsAsync(final GetMultiplayerServerDetailsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2216,6 +2321,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetMultiplayerServerLogsRequest
      * @return Async Task will return GetMultiplayerServerLogsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetMultiplayerServerLogsResponse>> GetMultiplayerServerLogsAsync(final GetMultiplayerServerLogsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetMultiplayerServerLogsResponse>>() {
@@ -2230,6 +2336,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetMultiplayerServerLogsRequest
      * @return GetMultiplayerServerLogsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetMultiplayerServerLogsResponse> GetMultiplayerServerLogs(final GetMultiplayerServerLogsRequest request) {
         FutureTask<PlayFabResult<GetMultiplayerServerLogsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetMultiplayerServerLogsResponse>>() {
@@ -2248,6 +2355,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Gets multiplayer server logs after a server has terminated. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetMultiplayerServerLogsResponse> privateGetMultiplayerServerLogsAsync(final GetMultiplayerServerLogsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2278,6 +2386,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetMultiplayerSessionLogsBySessionIdRequest
      * @return Async Task will return GetMultiplayerServerLogsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetMultiplayerServerLogsResponse>> GetMultiplayerSessionLogsBySessionIdAsync(final GetMultiplayerSessionLogsBySessionIdRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetMultiplayerServerLogsResponse>>() {
@@ -2292,6 +2401,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetMultiplayerSessionLogsBySessionIdRequest
      * @return GetMultiplayerServerLogsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetMultiplayerServerLogsResponse> GetMultiplayerSessionLogsBySessionId(final GetMultiplayerSessionLogsBySessionIdRequest request) {
         FutureTask<PlayFabResult<GetMultiplayerServerLogsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetMultiplayerServerLogsResponse>>() {
@@ -2310,6 +2420,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Gets multiplayer server logs after a server has terminated. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetMultiplayerServerLogsResponse> privateGetMultiplayerSessionLogsBySessionIdAsync(final GetMultiplayerSessionLogsBySessionIdRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2340,6 +2451,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetQueueStatisticsRequest
      * @return Async Task will return GetQueueStatisticsResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetQueueStatisticsResult>> GetQueueStatisticsAsync(final GetQueueStatisticsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetQueueStatisticsResult>>() {
@@ -2354,6 +2466,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetQueueStatisticsRequest
      * @return GetQueueStatisticsResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetQueueStatisticsResult> GetQueueStatistics(final GetQueueStatisticsRequest request) {
         FutureTask<PlayFabResult<GetQueueStatisticsResult>> task = new FutureTask(new Callable<PlayFabResult<GetQueueStatisticsResult>>() {
@@ -2372,6 +2485,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Get the statistics for a queue. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetQueueStatisticsResult> privateGetQueueStatisticsAsync(final GetQueueStatisticsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2402,6 +2516,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetRemoteLoginEndpointRequest
      * @return Async Task will return GetRemoteLoginEndpointResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetRemoteLoginEndpointResponse>> GetRemoteLoginEndpointAsync(final GetRemoteLoginEndpointRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetRemoteLoginEndpointResponse>>() {
@@ -2416,6 +2531,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetRemoteLoginEndpointRequest
      * @return GetRemoteLoginEndpointResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetRemoteLoginEndpointResponse> GetRemoteLoginEndpoint(final GetRemoteLoginEndpointRequest request) {
         FutureTask<PlayFabResult<GetRemoteLoginEndpointResponse>> task = new FutureTask(new Callable<PlayFabResult<GetRemoteLoginEndpointResponse>>() {
@@ -2434,6 +2550,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Gets a remote login endpoint to a VM that is hosting a multiplayer server build. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetRemoteLoginEndpointResponse> privateGetRemoteLoginEndpointAsync(final GetRemoteLoginEndpointRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2464,6 +2581,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetServerBackfillTicketRequest
      * @return Async Task will return GetServerBackfillTicketResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetServerBackfillTicketResult>> GetServerBackfillTicketAsync(final GetServerBackfillTicketRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetServerBackfillTicketResult>>() {
@@ -2478,6 +2596,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetServerBackfillTicketRequest
      * @return GetServerBackfillTicketResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetServerBackfillTicketResult> GetServerBackfillTicket(final GetServerBackfillTicketRequest request) {
         FutureTask<PlayFabResult<GetServerBackfillTicketResult>> task = new FutureTask(new Callable<PlayFabResult<GetServerBackfillTicketResult>>() {
@@ -2496,6 +2615,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Get a matchmaking backfill ticket by ticket Id. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetServerBackfillTicketResult> privateGetServerBackfillTicketAsync(final GetServerBackfillTicketRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2526,6 +2646,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetTitleEnabledForMultiplayerServersStatusRequest
      * @return Async Task will return GetTitleEnabledForMultiplayerServersStatusResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetTitleEnabledForMultiplayerServersStatusResponse>> GetTitleEnabledForMultiplayerServersStatusAsync(final GetTitleEnabledForMultiplayerServersStatusRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetTitleEnabledForMultiplayerServersStatusResponse>>() {
@@ -2540,6 +2661,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetTitleEnabledForMultiplayerServersStatusRequest
      * @return GetTitleEnabledForMultiplayerServersStatusResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetTitleEnabledForMultiplayerServersStatusResponse> GetTitleEnabledForMultiplayerServersStatus(final GetTitleEnabledForMultiplayerServersStatusRequest request) {
         FutureTask<PlayFabResult<GetTitleEnabledForMultiplayerServersStatusResponse>> task = new FutureTask(new Callable<PlayFabResult<GetTitleEnabledForMultiplayerServersStatusResponse>>() {
@@ -2558,6 +2680,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Gets the status of whether a title is enabled for the multiplayer server feature. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTitleEnabledForMultiplayerServersStatusResponse> privateGetTitleEnabledForMultiplayerServersStatusAsync(final GetTitleEnabledForMultiplayerServersStatusRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2588,6 +2711,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetTitleMultiplayerServersQuotaChangeRequest
      * @return Async Task will return GetTitleMultiplayerServersQuotaChangeResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetTitleMultiplayerServersQuotaChangeResponse>> GetTitleMultiplayerServersQuotaChangeAsync(final GetTitleMultiplayerServersQuotaChangeRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetTitleMultiplayerServersQuotaChangeResponse>>() {
@@ -2602,6 +2726,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetTitleMultiplayerServersQuotaChangeRequest
      * @return GetTitleMultiplayerServersQuotaChangeResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetTitleMultiplayerServersQuotaChangeResponse> GetTitleMultiplayerServersQuotaChange(final GetTitleMultiplayerServersQuotaChangeRequest request) {
         FutureTask<PlayFabResult<GetTitleMultiplayerServersQuotaChangeResponse>> task = new FutureTask(new Callable<PlayFabResult<GetTitleMultiplayerServersQuotaChangeResponse>>() {
@@ -2620,6 +2745,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Gets a title's server quota change request. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTitleMultiplayerServersQuotaChangeResponse> privateGetTitleMultiplayerServersQuotaChangeAsync(final GetTitleMultiplayerServersQuotaChangeRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2650,6 +2776,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetTitleMultiplayerServersQuotasRequest
      * @return Async Task will return GetTitleMultiplayerServersQuotasResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetTitleMultiplayerServersQuotasResponse>> GetTitleMultiplayerServersQuotasAsync(final GetTitleMultiplayerServersQuotasRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetTitleMultiplayerServersQuotasResponse>>() {
@@ -2664,6 +2791,7 @@ public class PlayFabMultiplayerAPI {
      * @param request GetTitleMultiplayerServersQuotasRequest
      * @return GetTitleMultiplayerServersQuotasResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetTitleMultiplayerServersQuotasResponse> GetTitleMultiplayerServersQuotas(final GetTitleMultiplayerServersQuotasRequest request) {
         FutureTask<PlayFabResult<GetTitleMultiplayerServersQuotasResponse>> task = new FutureTask(new Callable<PlayFabResult<GetTitleMultiplayerServersQuotasResponse>>() {
@@ -2682,6 +2810,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Gets the quotas for a title in relation to multiplayer servers. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTitleMultiplayerServersQuotasResponse> privateGetTitleMultiplayerServersQuotasAsync(final GetTitleMultiplayerServersQuotasRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2712,6 +2841,7 @@ public class PlayFabMultiplayerAPI {
      * @param request InviteToLobbyRequest
      * @return Async Task will return LobbyEmptyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<LobbyEmptyResult>> InviteToLobbyAsync(final InviteToLobbyRequest request) {
         return new FutureTask(new Callable<PlayFabResult<LobbyEmptyResult>>() {
@@ -2726,6 +2856,7 @@ public class PlayFabMultiplayerAPI {
      * @param request InviteToLobbyRequest
      * @return LobbyEmptyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<LobbyEmptyResult> InviteToLobby(final InviteToLobbyRequest request) {
         FutureTask<PlayFabResult<LobbyEmptyResult>> task = new FutureTask(new Callable<PlayFabResult<LobbyEmptyResult>>() {
@@ -2744,6 +2875,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Send a notification to invite a player to a lobby. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LobbyEmptyResult> privateInviteToLobbyAsync(final InviteToLobbyRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2774,6 +2906,7 @@ public class PlayFabMultiplayerAPI {
      * @param request JoinArrangedLobbyRequest
      * @return Async Task will return JoinLobbyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<JoinLobbyResult>> JoinArrangedLobbyAsync(final JoinArrangedLobbyRequest request) {
         return new FutureTask(new Callable<PlayFabResult<JoinLobbyResult>>() {
@@ -2788,6 +2921,7 @@ public class PlayFabMultiplayerAPI {
      * @param request JoinArrangedLobbyRequest
      * @return JoinLobbyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<JoinLobbyResult> JoinArrangedLobby(final JoinArrangedLobbyRequest request) {
         FutureTask<PlayFabResult<JoinLobbyResult>> task = new FutureTask(new Callable<PlayFabResult<JoinLobbyResult>>() {
@@ -2806,6 +2940,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Join an Arranged lobby. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<JoinLobbyResult> privateJoinArrangedLobbyAsync(final JoinArrangedLobbyRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2836,6 +2971,7 @@ public class PlayFabMultiplayerAPI {
      * @param request JoinLobbyRequest
      * @return Async Task will return JoinLobbyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<JoinLobbyResult>> JoinLobbyAsync(final JoinLobbyRequest request) {
         return new FutureTask(new Callable<PlayFabResult<JoinLobbyResult>>() {
@@ -2850,6 +2986,7 @@ public class PlayFabMultiplayerAPI {
      * @param request JoinLobbyRequest
      * @return JoinLobbyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<JoinLobbyResult> JoinLobby(final JoinLobbyRequest request) {
         FutureTask<PlayFabResult<JoinLobbyResult>> task = new FutureTask(new Callable<PlayFabResult<JoinLobbyResult>>() {
@@ -2868,6 +3005,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Join a lobby. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<JoinLobbyResult> privateJoinLobbyAsync(final JoinLobbyRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2898,6 +3036,7 @@ public class PlayFabMultiplayerAPI {
      * @param request JoinLobbyAsServerRequest
      * @return Async Task will return JoinLobbyAsServerResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<JoinLobbyAsServerResult>> JoinLobbyAsServerAsync(final JoinLobbyAsServerRequest request) {
         return new FutureTask(new Callable<PlayFabResult<JoinLobbyAsServerResult>>() {
@@ -2912,6 +3051,7 @@ public class PlayFabMultiplayerAPI {
      * @param request JoinLobbyAsServerRequest
      * @return JoinLobbyAsServerResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<JoinLobbyAsServerResult> JoinLobbyAsServer(final JoinLobbyAsServerRequest request) {
         FutureTask<PlayFabResult<JoinLobbyAsServerResult>> task = new FutureTask(new Callable<PlayFabResult<JoinLobbyAsServerResult>>() {
@@ -2930,6 +3070,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Preview: Join a lobby as a server entity. This is restricted to client lobbies which are using connections. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<JoinLobbyAsServerResult> privateJoinLobbyAsServerAsync(final JoinLobbyAsServerRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2960,6 +3101,7 @@ public class PlayFabMultiplayerAPI {
      * @param request JoinMatchmakingTicketRequest
      * @return Async Task will return JoinMatchmakingTicketResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<JoinMatchmakingTicketResult>> JoinMatchmakingTicketAsync(final JoinMatchmakingTicketRequest request) {
         return new FutureTask(new Callable<PlayFabResult<JoinMatchmakingTicketResult>>() {
@@ -2974,6 +3116,7 @@ public class PlayFabMultiplayerAPI {
      * @param request JoinMatchmakingTicketRequest
      * @return JoinMatchmakingTicketResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<JoinMatchmakingTicketResult> JoinMatchmakingTicket(final JoinMatchmakingTicketRequest request) {
         FutureTask<PlayFabResult<JoinMatchmakingTicketResult>> task = new FutureTask(new Callable<PlayFabResult<JoinMatchmakingTicketResult>>() {
@@ -2992,6 +3135,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Join a matchmaking ticket. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<JoinMatchmakingTicketResult> privateJoinMatchmakingTicketAsync(final JoinMatchmakingTicketRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -3022,6 +3166,7 @@ public class PlayFabMultiplayerAPI {
      * @param request LeaveLobbyRequest
      * @return Async Task will return LobbyEmptyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<LobbyEmptyResult>> LeaveLobbyAsync(final LeaveLobbyRequest request) {
         return new FutureTask(new Callable<PlayFabResult<LobbyEmptyResult>>() {
@@ -3036,6 +3181,7 @@ public class PlayFabMultiplayerAPI {
      * @param request LeaveLobbyRequest
      * @return LobbyEmptyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<LobbyEmptyResult> LeaveLobby(final LeaveLobbyRequest request) {
         FutureTask<PlayFabResult<LobbyEmptyResult>> task = new FutureTask(new Callable<PlayFabResult<LobbyEmptyResult>>() {
@@ -3054,6 +3200,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Leave a lobby. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LobbyEmptyResult> privateLeaveLobbyAsync(final LeaveLobbyRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -3084,6 +3231,7 @@ public class PlayFabMultiplayerAPI {
      * @param request LeaveLobbyAsServerRequest
      * @return Async Task will return LobbyEmptyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<LobbyEmptyResult>> LeaveLobbyAsServerAsync(final LeaveLobbyAsServerRequest request) {
         return new FutureTask(new Callable<PlayFabResult<LobbyEmptyResult>>() {
@@ -3098,6 +3246,7 @@ public class PlayFabMultiplayerAPI {
      * @param request LeaveLobbyAsServerRequest
      * @return LobbyEmptyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<LobbyEmptyResult> LeaveLobbyAsServer(final LeaveLobbyAsServerRequest request) {
         FutureTask<PlayFabResult<LobbyEmptyResult>> task = new FutureTask(new Callable<PlayFabResult<LobbyEmptyResult>>() {
@@ -3116,6 +3265,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Preview: Request for server to leave a lobby. This is restricted to client owned lobbies which are using connections. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LobbyEmptyResult> privateLeaveLobbyAsServerAsync(final LeaveLobbyAsServerRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -3146,6 +3296,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListMultiplayerServersRequest
      * @return Async Task will return ListMultiplayerServersResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListMultiplayerServersResponse>> ListArchivedMultiplayerServersAsync(final ListMultiplayerServersRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListMultiplayerServersResponse>>() {
@@ -3160,6 +3311,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListMultiplayerServersRequest
      * @return ListMultiplayerServersResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListMultiplayerServersResponse> ListArchivedMultiplayerServers(final ListMultiplayerServersRequest request) {
         FutureTask<PlayFabResult<ListMultiplayerServersResponse>> task = new FutureTask(new Callable<PlayFabResult<ListMultiplayerServersResponse>>() {
@@ -3178,6 +3330,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Lists archived multiplayer server sessions for a build. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListMultiplayerServersResponse> privateListArchivedMultiplayerServersAsync(final ListMultiplayerServersRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -3208,6 +3361,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListAssetSummariesRequest
      * @return Async Task will return ListAssetSummariesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListAssetSummariesResponse>> ListAssetSummariesAsync(final ListAssetSummariesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListAssetSummariesResponse>>() {
@@ -3222,6 +3376,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListAssetSummariesRequest
      * @return ListAssetSummariesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListAssetSummariesResponse> ListAssetSummaries(final ListAssetSummariesRequest request) {
         FutureTask<PlayFabResult<ListAssetSummariesResponse>> task = new FutureTask(new Callable<PlayFabResult<ListAssetSummariesResponse>>() {
@@ -3240,6 +3395,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Lists multiplayer server game assets for a title. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListAssetSummariesResponse> privateListAssetSummariesAsync(final ListAssetSummariesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -3271,6 +3427,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListBuildAliasesRequest
      * @return Async Task will return ListBuildAliasesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListBuildAliasesResponse>> ListBuildAliasesAsync(final ListBuildAliasesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListBuildAliasesResponse>>() {
@@ -3286,6 +3443,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListBuildAliasesRequest
      * @return ListBuildAliasesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListBuildAliasesResponse> ListBuildAliases(final ListBuildAliasesRequest request) {
         FutureTask<PlayFabResult<ListBuildAliasesResponse>> task = new FutureTask(new Callable<PlayFabResult<ListBuildAliasesResponse>>() {
@@ -3307,6 +3465,7 @@ public class PlayFabMultiplayerAPI {
      * Lists details of all build aliases for a title. Accepts tokens for title and if game client access is enabled, allows
      * game client to request list of builds with player entity token.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListBuildAliasesResponse> privateListBuildAliasesAsync(final ListBuildAliasesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -3338,6 +3497,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListBuildSummariesRequest
      * @return Async Task will return ListBuildSummariesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListBuildSummariesResponse>> ListBuildSummariesV2Async(final ListBuildSummariesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListBuildSummariesResponse>>() {
@@ -3353,6 +3513,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListBuildSummariesRequest
      * @return ListBuildSummariesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListBuildSummariesResponse> ListBuildSummariesV2(final ListBuildSummariesRequest request) {
         FutureTask<PlayFabResult<ListBuildSummariesResponse>> task = new FutureTask(new Callable<PlayFabResult<ListBuildSummariesResponse>>() {
@@ -3374,6 +3535,7 @@ public class PlayFabMultiplayerAPI {
      * Lists summarized details of all multiplayer server builds for a title. Accepts tokens for title and if game client
      * access is enabled, allows game client to request list of builds with player entity token.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListBuildSummariesResponse> privateListBuildSummariesV2Async(final ListBuildSummariesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -3404,6 +3566,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListCertificateSummariesRequest
      * @return Async Task will return ListCertificateSummariesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListCertificateSummariesResponse>> ListCertificateSummariesAsync(final ListCertificateSummariesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListCertificateSummariesResponse>>() {
@@ -3418,6 +3581,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListCertificateSummariesRequest
      * @return ListCertificateSummariesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListCertificateSummariesResponse> ListCertificateSummaries(final ListCertificateSummariesRequest request) {
         FutureTask<PlayFabResult<ListCertificateSummariesResponse>> task = new FutureTask(new Callable<PlayFabResult<ListCertificateSummariesResponse>>() {
@@ -3436,6 +3600,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Lists multiplayer server game certificates for a title. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListCertificateSummariesResponse> privateListCertificateSummariesAsync(final ListCertificateSummariesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -3466,6 +3631,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListContainerImagesRequest
      * @return Async Task will return ListContainerImagesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListContainerImagesResponse>> ListContainerImagesAsync(final ListContainerImagesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListContainerImagesResponse>>() {
@@ -3480,6 +3646,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListContainerImagesRequest
      * @return ListContainerImagesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListContainerImagesResponse> ListContainerImages(final ListContainerImagesRequest request) {
         FutureTask<PlayFabResult<ListContainerImagesResponse>> task = new FutureTask(new Callable<PlayFabResult<ListContainerImagesResponse>>() {
@@ -3498,6 +3665,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Lists custom container images for a title. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListContainerImagesResponse> privateListContainerImagesAsync(final ListContainerImagesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -3528,6 +3696,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListContainerImageTagsRequest
      * @return Async Task will return ListContainerImageTagsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListContainerImageTagsResponse>> ListContainerImageTagsAsync(final ListContainerImageTagsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListContainerImageTagsResponse>>() {
@@ -3542,6 +3711,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListContainerImageTagsRequest
      * @return ListContainerImageTagsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListContainerImageTagsResponse> ListContainerImageTags(final ListContainerImageTagsRequest request) {
         FutureTask<PlayFabResult<ListContainerImageTagsResponse>> task = new FutureTask(new Callable<PlayFabResult<ListContainerImageTagsResponse>>() {
@@ -3560,6 +3730,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Lists the tags for a custom container image. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListContainerImageTagsResponse> privateListContainerImageTagsAsync(final ListContainerImageTagsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -3590,6 +3761,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListMatchmakingTicketsForPlayerRequest
      * @return Async Task will return ListMatchmakingTicketsForPlayerResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListMatchmakingTicketsForPlayerResult>> ListMatchmakingTicketsForPlayerAsync(final ListMatchmakingTicketsForPlayerRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListMatchmakingTicketsForPlayerResult>>() {
@@ -3604,6 +3776,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListMatchmakingTicketsForPlayerRequest
      * @return ListMatchmakingTicketsForPlayerResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListMatchmakingTicketsForPlayerResult> ListMatchmakingTicketsForPlayer(final ListMatchmakingTicketsForPlayerRequest request) {
         FutureTask<PlayFabResult<ListMatchmakingTicketsForPlayerResult>> task = new FutureTask(new Callable<PlayFabResult<ListMatchmakingTicketsForPlayerResult>>() {
@@ -3622,6 +3795,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** List all matchmaking ticket Ids the user is a member of. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListMatchmakingTicketsForPlayerResult> privateListMatchmakingTicketsForPlayerAsync(final ListMatchmakingTicketsForPlayerRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -3652,6 +3826,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListMultiplayerServersRequest
      * @return Async Task will return ListMultiplayerServersResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListMultiplayerServersResponse>> ListMultiplayerServersAsync(final ListMultiplayerServersRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListMultiplayerServersResponse>>() {
@@ -3666,6 +3841,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListMultiplayerServersRequest
      * @return ListMultiplayerServersResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListMultiplayerServersResponse> ListMultiplayerServers(final ListMultiplayerServersRequest request) {
         FutureTask<PlayFabResult<ListMultiplayerServersResponse>> task = new FutureTask(new Callable<PlayFabResult<ListMultiplayerServersResponse>>() {
@@ -3684,6 +3860,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Lists multiplayer server sessions for a build. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListMultiplayerServersResponse> privateListMultiplayerServersAsync(final ListMultiplayerServersRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -3714,6 +3891,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListPartyQosServersRequest
      * @return Async Task will return ListPartyQosServersResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListPartyQosServersResponse>> ListPartyQosServersAsync(final ListPartyQosServersRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListPartyQosServersResponse>>() {
@@ -3728,6 +3906,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListPartyQosServersRequest
      * @return ListPartyQosServersResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListPartyQosServersResponse> ListPartyQosServers(final ListPartyQosServersRequest request) {
         FutureTask<PlayFabResult<ListPartyQosServersResponse>> task = new FutureTask(new Callable<PlayFabResult<ListPartyQosServersResponse>>() {
@@ -3746,6 +3925,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Lists quality of service servers for party. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListPartyQosServersResponse> privateListPartyQosServersAsync(final ListPartyQosServersRequest request) throws Exception {
 
@@ -3776,6 +3956,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListQosServersForTitleRequest
      * @return Async Task will return ListQosServersForTitleResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListQosServersForTitleResponse>> ListQosServersForTitleAsync(final ListQosServersForTitleRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListQosServersForTitleResponse>>() {
@@ -3791,6 +3972,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListQosServersForTitleRequest
      * @return ListQosServersForTitleResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListQosServersForTitleResponse> ListQosServersForTitle(final ListQosServersForTitleRequest request) {
         FutureTask<PlayFabResult<ListQosServersForTitleResponse>> task = new FutureTask(new Callable<PlayFabResult<ListQosServersForTitleResponse>>() {
@@ -3812,6 +3994,7 @@ public class PlayFabMultiplayerAPI {
      * Lists quality of service servers for the title. By default, servers are only returned for regions where a Multiplayer
      * Servers build has been deployed.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListQosServersForTitleResponse> privateListQosServersForTitleAsync(final ListQosServersForTitleRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -3842,6 +4025,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListSecretSummariesRequest
      * @return Async Task will return ListSecretSummariesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListSecretSummariesResponse>> ListSecretSummariesAsync(final ListSecretSummariesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListSecretSummariesResponse>>() {
@@ -3856,6 +4040,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListSecretSummariesRequest
      * @return ListSecretSummariesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListSecretSummariesResponse> ListSecretSummaries(final ListSecretSummariesRequest request) {
         FutureTask<PlayFabResult<ListSecretSummariesResponse>> task = new FutureTask(new Callable<PlayFabResult<ListSecretSummariesResponse>>() {
@@ -3874,6 +4059,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Lists multiplayer server game secrets for a title. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListSecretSummariesResponse> privateListSecretSummariesAsync(final ListSecretSummariesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -3904,6 +4090,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListServerBackfillTicketsForPlayerRequest
      * @return Async Task will return ListServerBackfillTicketsForPlayerResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListServerBackfillTicketsForPlayerResult>> ListServerBackfillTicketsForPlayerAsync(final ListServerBackfillTicketsForPlayerRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListServerBackfillTicketsForPlayerResult>>() {
@@ -3918,6 +4105,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListServerBackfillTicketsForPlayerRequest
      * @return ListServerBackfillTicketsForPlayerResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListServerBackfillTicketsForPlayerResult> ListServerBackfillTicketsForPlayer(final ListServerBackfillTicketsForPlayerRequest request) {
         FutureTask<PlayFabResult<ListServerBackfillTicketsForPlayerResult>> task = new FutureTask(new Callable<PlayFabResult<ListServerBackfillTicketsForPlayerResult>>() {
@@ -3936,6 +4124,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** List all server backfill ticket Ids the user is a member of. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListServerBackfillTicketsForPlayerResult> privateListServerBackfillTicketsForPlayerAsync(final ListServerBackfillTicketsForPlayerRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -3966,6 +4155,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListTitleMultiplayerServersQuotaChangesRequest
      * @return Async Task will return ListTitleMultiplayerServersQuotaChangesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListTitleMultiplayerServersQuotaChangesResponse>> ListTitleMultiplayerServersQuotaChangesAsync(final ListTitleMultiplayerServersQuotaChangesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListTitleMultiplayerServersQuotaChangesResponse>>() {
@@ -3980,6 +4170,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListTitleMultiplayerServersQuotaChangesRequest
      * @return ListTitleMultiplayerServersQuotaChangesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListTitleMultiplayerServersQuotaChangesResponse> ListTitleMultiplayerServersQuotaChanges(final ListTitleMultiplayerServersQuotaChangesRequest request) {
         FutureTask<PlayFabResult<ListTitleMultiplayerServersQuotaChangesResponse>> task = new FutureTask(new Callable<PlayFabResult<ListTitleMultiplayerServersQuotaChangesResponse>>() {
@@ -3998,6 +4189,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** List all server quota change requests for a title. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListTitleMultiplayerServersQuotaChangesResponse> privateListTitleMultiplayerServersQuotaChangesAsync(final ListTitleMultiplayerServersQuotaChangesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -4028,6 +4220,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListVirtualMachineSummariesRequest
      * @return Async Task will return ListVirtualMachineSummariesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListVirtualMachineSummariesResponse>> ListVirtualMachineSummariesAsync(final ListVirtualMachineSummariesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListVirtualMachineSummariesResponse>>() {
@@ -4042,6 +4235,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ListVirtualMachineSummariesRequest
      * @return ListVirtualMachineSummariesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListVirtualMachineSummariesResponse> ListVirtualMachineSummaries(final ListVirtualMachineSummariesRequest request) {
         FutureTask<PlayFabResult<ListVirtualMachineSummariesResponse>> task = new FutureTask(new Callable<PlayFabResult<ListVirtualMachineSummariesResponse>>() {
@@ -4060,6 +4254,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Lists virtual machines for a title. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListVirtualMachineSummariesResponse> privateListVirtualMachineSummariesAsync(final ListVirtualMachineSummariesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -4090,6 +4285,7 @@ public class PlayFabMultiplayerAPI {
      * @param request RemoveMemberFromLobbyRequest
      * @return Async Task will return LobbyEmptyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<LobbyEmptyResult>> RemoveMemberAsync(final RemoveMemberFromLobbyRequest request) {
         return new FutureTask(new Callable<PlayFabResult<LobbyEmptyResult>>() {
@@ -4104,6 +4300,7 @@ public class PlayFabMultiplayerAPI {
      * @param request RemoveMemberFromLobbyRequest
      * @return LobbyEmptyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<LobbyEmptyResult> RemoveMember(final RemoveMemberFromLobbyRequest request) {
         FutureTask<PlayFabResult<LobbyEmptyResult>> task = new FutureTask(new Callable<PlayFabResult<LobbyEmptyResult>>() {
@@ -4122,6 +4319,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Remove a member from a lobby. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LobbyEmptyResult> privateRemoveMemberAsync(final RemoveMemberFromLobbyRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -4153,6 +4351,7 @@ public class PlayFabMultiplayerAPI {
      * @param request RequestMultiplayerServerRequest
      * @return Async Task will return RequestMultiplayerServerResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<RequestMultiplayerServerResponse>> RequestMultiplayerServerAsync(final RequestMultiplayerServerRequest request) {
         return new FutureTask(new Callable<PlayFabResult<RequestMultiplayerServerResponse>>() {
@@ -4168,6 +4367,7 @@ public class PlayFabMultiplayerAPI {
      * @param request RequestMultiplayerServerRequest
      * @return RequestMultiplayerServerResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<RequestMultiplayerServerResponse> RequestMultiplayerServer(final RequestMultiplayerServerRequest request) {
         FutureTask<PlayFabResult<RequestMultiplayerServerResponse>> task = new FutureTask(new Callable<PlayFabResult<RequestMultiplayerServerResponse>>() {
@@ -4189,6 +4389,7 @@ public class PlayFabMultiplayerAPI {
      * Request a multiplayer server session. Accepts tokens for title and if game client access is enabled, allows game client
      * to request a server with player entity token.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RequestMultiplayerServerResponse> privateRequestMultiplayerServerAsync(final RequestMultiplayerServerRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -4219,6 +4420,7 @@ public class PlayFabMultiplayerAPI {
      * @param request RequestPartyServiceRequest
      * @return Async Task will return RequestPartyServiceResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<RequestPartyServiceResponse>> RequestPartyServiceAsync(final RequestPartyServiceRequest request) {
         return new FutureTask(new Callable<PlayFabResult<RequestPartyServiceResponse>>() {
@@ -4233,6 +4435,7 @@ public class PlayFabMultiplayerAPI {
      * @param request RequestPartyServiceRequest
      * @return RequestPartyServiceResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<RequestPartyServiceResponse> RequestPartyService(final RequestPartyServiceRequest request) {
         FutureTask<PlayFabResult<RequestPartyServiceResponse>> task = new FutureTask(new Callable<PlayFabResult<RequestPartyServiceResponse>>() {
@@ -4251,6 +4454,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Request a party session. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RequestPartyServiceResponse> privateRequestPartyServiceAsync(final RequestPartyServiceRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -4281,6 +4485,7 @@ public class PlayFabMultiplayerAPI {
      * @param request RolloverContainerRegistryCredentialsRequest
      * @return Async Task will return RolloverContainerRegistryCredentialsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<RolloverContainerRegistryCredentialsResponse>> RolloverContainerRegistryCredentialsAsync(final RolloverContainerRegistryCredentialsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<RolloverContainerRegistryCredentialsResponse>>() {
@@ -4295,6 +4500,7 @@ public class PlayFabMultiplayerAPI {
      * @param request RolloverContainerRegistryCredentialsRequest
      * @return RolloverContainerRegistryCredentialsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<RolloverContainerRegistryCredentialsResponse> RolloverContainerRegistryCredentials(final RolloverContainerRegistryCredentialsRequest request) {
         FutureTask<PlayFabResult<RolloverContainerRegistryCredentialsResponse>> task = new FutureTask(new Callable<PlayFabResult<RolloverContainerRegistryCredentialsResponse>>() {
@@ -4313,6 +4519,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Rolls over the credentials to the container registry. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RolloverContainerRegistryCredentialsResponse> privateRolloverContainerRegistryCredentialsAsync(final RolloverContainerRegistryCredentialsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -4343,6 +4550,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ShutdownMultiplayerServerRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> ShutdownMultiplayerServerAsync(final ShutdownMultiplayerServerRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -4357,6 +4565,7 @@ public class PlayFabMultiplayerAPI {
      * @param request ShutdownMultiplayerServerRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> ShutdownMultiplayerServer(final ShutdownMultiplayerServerRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -4375,6 +4584,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Shuts down a multiplayer server session. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateShutdownMultiplayerServerAsync(final ShutdownMultiplayerServerRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -4405,6 +4615,7 @@ public class PlayFabMultiplayerAPI {
      * @param request SubscribeToLobbyResourceRequest
      * @return Async Task will return SubscribeToLobbyResourceResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<SubscribeToLobbyResourceResult>> SubscribeToLobbyResourceAsync(final SubscribeToLobbyResourceRequest request) {
         return new FutureTask(new Callable<PlayFabResult<SubscribeToLobbyResourceResult>>() {
@@ -4419,6 +4630,7 @@ public class PlayFabMultiplayerAPI {
      * @param request SubscribeToLobbyResourceRequest
      * @return SubscribeToLobbyResourceResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<SubscribeToLobbyResourceResult> SubscribeToLobbyResource(final SubscribeToLobbyResourceRequest request) {
         FutureTask<PlayFabResult<SubscribeToLobbyResourceResult>> task = new FutureTask(new Callable<PlayFabResult<SubscribeToLobbyResourceResult>>() {
@@ -4437,6 +4649,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Subscribe to lobby resource notifications. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SubscribeToLobbyResourceResult> privateSubscribeToLobbyResourceAsync(final SubscribeToLobbyResourceRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -4467,6 +4680,7 @@ public class PlayFabMultiplayerAPI {
      * @param request UnsubscribeFromLobbyResourceRequest
      * @return Async Task will return LobbyEmptyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<LobbyEmptyResult>> UnsubscribeFromLobbyResourceAsync(final UnsubscribeFromLobbyResourceRequest request) {
         return new FutureTask(new Callable<PlayFabResult<LobbyEmptyResult>>() {
@@ -4481,6 +4695,7 @@ public class PlayFabMultiplayerAPI {
      * @param request UnsubscribeFromLobbyResourceRequest
      * @return LobbyEmptyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<LobbyEmptyResult> UnsubscribeFromLobbyResource(final UnsubscribeFromLobbyResourceRequest request) {
         FutureTask<PlayFabResult<LobbyEmptyResult>> task = new FutureTask(new Callable<PlayFabResult<LobbyEmptyResult>>() {
@@ -4499,6 +4714,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Unsubscribe from lobby notifications. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LobbyEmptyResult> privateUnsubscribeFromLobbyResourceAsync(final UnsubscribeFromLobbyResourceRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -4529,6 +4745,7 @@ public class PlayFabMultiplayerAPI {
      * @param request UntagContainerImageRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> UntagContainerImageAsync(final UntagContainerImageRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -4543,6 +4760,7 @@ public class PlayFabMultiplayerAPI {
      * @param request UntagContainerImageRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> UntagContainerImage(final UntagContainerImageRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -4561,6 +4779,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Untags a container image. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateUntagContainerImageAsync(final UntagContainerImageRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -4591,6 +4810,7 @@ public class PlayFabMultiplayerAPI {
      * @param request UpdateBuildAliasRequest
      * @return Async Task will return BuildAliasDetailsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<BuildAliasDetailsResponse>> UpdateBuildAliasAsync(final UpdateBuildAliasRequest request) {
         return new FutureTask(new Callable<PlayFabResult<BuildAliasDetailsResponse>>() {
@@ -4605,6 +4825,7 @@ public class PlayFabMultiplayerAPI {
      * @param request UpdateBuildAliasRequest
      * @return BuildAliasDetailsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<BuildAliasDetailsResponse> UpdateBuildAlias(final UpdateBuildAliasRequest request) {
         FutureTask<PlayFabResult<BuildAliasDetailsResponse>> task = new FutureTask(new Callable<PlayFabResult<BuildAliasDetailsResponse>>() {
@@ -4623,6 +4844,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Creates a multiplayer server build alias. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<BuildAliasDetailsResponse> privateUpdateBuildAliasAsync(final UpdateBuildAliasRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -4653,6 +4875,7 @@ public class PlayFabMultiplayerAPI {
      * @param request UpdateBuildNameRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> UpdateBuildNameAsync(final UpdateBuildNameRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -4667,6 +4890,7 @@ public class PlayFabMultiplayerAPI {
      * @param request UpdateBuildNameRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> UpdateBuildName(final UpdateBuildNameRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -4685,6 +4909,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Updates a multiplayer server build's name. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateUpdateBuildNameAsync(final UpdateBuildNameRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -4715,6 +4940,7 @@ public class PlayFabMultiplayerAPI {
      * @param request UpdateBuildRegionRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> UpdateBuildRegionAsync(final UpdateBuildRegionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -4729,6 +4955,7 @@ public class PlayFabMultiplayerAPI {
      * @param request UpdateBuildRegionRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> UpdateBuildRegion(final UpdateBuildRegionRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -4747,6 +4974,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Updates a multiplayer server build's region. If the region is not yet created, it will be created */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateUpdateBuildRegionAsync(final UpdateBuildRegionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -4777,6 +5005,7 @@ public class PlayFabMultiplayerAPI {
      * @param request UpdateBuildRegionsRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> UpdateBuildRegionsAsync(final UpdateBuildRegionsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -4791,6 +5020,7 @@ public class PlayFabMultiplayerAPI {
      * @param request UpdateBuildRegionsRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> UpdateBuildRegions(final UpdateBuildRegionsRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -4809,6 +5039,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Updates a multiplayer server build's regions. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateUpdateBuildRegionsAsync(final UpdateBuildRegionsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -4839,6 +5070,7 @@ public class PlayFabMultiplayerAPI {
      * @param request UpdateLobbyRequest
      * @return Async Task will return LobbyEmptyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<LobbyEmptyResult>> UpdateLobbyAsync(final UpdateLobbyRequest request) {
         return new FutureTask(new Callable<PlayFabResult<LobbyEmptyResult>>() {
@@ -4853,6 +5085,7 @@ public class PlayFabMultiplayerAPI {
      * @param request UpdateLobbyRequest
      * @return LobbyEmptyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<LobbyEmptyResult> UpdateLobby(final UpdateLobbyRequest request) {
         FutureTask<PlayFabResult<LobbyEmptyResult>> task = new FutureTask(new Callable<PlayFabResult<LobbyEmptyResult>>() {
@@ -4871,6 +5104,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Update a lobby. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LobbyEmptyResult> privateUpdateLobbyAsync(final UpdateLobbyRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -4903,6 +5137,7 @@ public class PlayFabMultiplayerAPI {
      * @param request UpdateLobbyAsServerRequest
      * @return Async Task will return LobbyEmptyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<LobbyEmptyResult>> UpdateLobbyAsServerAsync(final UpdateLobbyAsServerRequest request) {
         return new FutureTask(new Callable<PlayFabResult<LobbyEmptyResult>>() {
@@ -4919,6 +5154,7 @@ public class PlayFabMultiplayerAPI {
      * @param request UpdateLobbyAsServerRequest
      * @return LobbyEmptyResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<LobbyEmptyResult> UpdateLobbyAsServer(final UpdateLobbyAsServerRequest request) {
         FutureTask<PlayFabResult<LobbyEmptyResult>> task = new FutureTask(new Callable<PlayFabResult<LobbyEmptyResult>>() {
@@ -4941,6 +5177,7 @@ public class PlayFabMultiplayerAPI {
      * by being the one to "update" the lobby in some way. Servers have no impact on last member leave/last member disconnect
      * behavior.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<LobbyEmptyResult> privateUpdateLobbyAsServerAsync(final UpdateLobbyAsServerRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -4971,6 +5208,7 @@ public class PlayFabMultiplayerAPI {
      * @param request UploadCertificateRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> UploadCertificateAsync(final UploadCertificateRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -4985,6 +5223,7 @@ public class PlayFabMultiplayerAPI {
      * @param request UploadCertificateRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> UploadCertificate(final UploadCertificateRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -5003,6 +5242,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Uploads a multiplayer server game certificate. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateUploadCertificateAsync(final UploadCertificateRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -5033,6 +5273,7 @@ public class PlayFabMultiplayerAPI {
      * @param request UploadSecretRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> UploadSecretAsync(final UploadSecretRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -5047,6 +5288,7 @@ public class PlayFabMultiplayerAPI {
      * @param request UploadSecretRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> UploadSecret(final UploadSecretRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -5065,6 +5307,7 @@ public class PlayFabMultiplayerAPI {
     }
 
     /** Uploads a multiplayer server game secret. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateUploadSecretAsync(final UploadSecretRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");

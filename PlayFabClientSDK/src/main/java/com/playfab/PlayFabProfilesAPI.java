@@ -21,6 +21,7 @@ public class PlayFabProfilesAPI {
      * @param request GetGlobalPolicyRequest
      * @return Async Task will return GetGlobalPolicyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetGlobalPolicyResponse>> GetGlobalPolicyAsync(final GetGlobalPolicyRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetGlobalPolicyResponse>>() {
@@ -35,6 +36,7 @@ public class PlayFabProfilesAPI {
      * @param request GetGlobalPolicyRequest
      * @return GetGlobalPolicyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetGlobalPolicyResponse> GetGlobalPolicy(final GetGlobalPolicyRequest request) {
         FutureTask<PlayFabResult<GetGlobalPolicyResponse>> task = new FutureTask(new Callable<PlayFabResult<GetGlobalPolicyResponse>>() {
@@ -53,6 +55,7 @@ public class PlayFabProfilesAPI {
     }
 
     /** Gets the global title access policy */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetGlobalPolicyResponse> privateGetGlobalPolicyAsync(final GetGlobalPolicyRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -83,6 +86,7 @@ public class PlayFabProfilesAPI {
      * @param request GetEntityProfileRequest
      * @return Async Task will return GetEntityProfileResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetEntityProfileResponse>> GetProfileAsync(final GetEntityProfileRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetEntityProfileResponse>>() {
@@ -97,6 +101,7 @@ public class PlayFabProfilesAPI {
      * @param request GetEntityProfileRequest
      * @return GetEntityProfileResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetEntityProfileResponse> GetProfile(final GetEntityProfileRequest request) {
         FutureTask<PlayFabResult<GetEntityProfileResponse>> task = new FutureTask(new Callable<PlayFabResult<GetEntityProfileResponse>>() {
@@ -115,6 +120,7 @@ public class PlayFabProfilesAPI {
     }
 
     /** Retrieves the entity's profile. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetEntityProfileResponse> privateGetProfileAsync(final GetEntityProfileRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -145,6 +151,7 @@ public class PlayFabProfilesAPI {
      * @param request GetEntityProfilesRequest
      * @return Async Task will return GetEntityProfilesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetEntityProfilesResponse>> GetProfilesAsync(final GetEntityProfilesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetEntityProfilesResponse>>() {
@@ -159,6 +166,7 @@ public class PlayFabProfilesAPI {
      * @param request GetEntityProfilesRequest
      * @return GetEntityProfilesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetEntityProfilesResponse> GetProfiles(final GetEntityProfilesRequest request) {
         FutureTask<PlayFabResult<GetEntityProfilesResponse>> task = new FutureTask(new Callable<PlayFabResult<GetEntityProfilesResponse>>() {
@@ -177,6 +185,7 @@ public class PlayFabProfilesAPI {
     }
 
     /** Retrieves the entity's profile. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetEntityProfilesResponse> privateGetProfilesAsync(final GetEntityProfilesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -207,6 +216,7 @@ public class PlayFabProfilesAPI {
      * @param request GetTitlePlayersFromMasterPlayerAccountIdsRequest
      * @return Async Task will return GetTitlePlayersFromMasterPlayerAccountIdsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetTitlePlayersFromMasterPlayerAccountIdsResponse>> GetTitlePlayersFromMasterPlayerAccountIdsAsync(final GetTitlePlayersFromMasterPlayerAccountIdsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetTitlePlayersFromMasterPlayerAccountIdsResponse>>() {
@@ -221,6 +231,7 @@ public class PlayFabProfilesAPI {
      * @param request GetTitlePlayersFromMasterPlayerAccountIdsRequest
      * @return GetTitlePlayersFromMasterPlayerAccountIdsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetTitlePlayersFromMasterPlayerAccountIdsResponse> GetTitlePlayersFromMasterPlayerAccountIds(final GetTitlePlayersFromMasterPlayerAccountIdsRequest request) {
         FutureTask<PlayFabResult<GetTitlePlayersFromMasterPlayerAccountIdsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetTitlePlayersFromMasterPlayerAccountIdsResponse>>() {
@@ -239,6 +250,7 @@ public class PlayFabProfilesAPI {
     }
 
     /** Retrieves the title player accounts associated with the given master player account. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTitlePlayersFromMasterPlayerAccountIdsResponse> privateGetTitlePlayersFromMasterPlayerAccountIdsAsync(final GetTitlePlayersFromMasterPlayerAccountIdsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -269,6 +281,7 @@ public class PlayFabProfilesAPI {
      * @param request GetTitlePlayersFromXboxLiveIDsRequest
      * @return Async Task will return GetTitlePlayersFromProviderIDsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetTitlePlayersFromProviderIDsResponse>> GetTitlePlayersFromXboxLiveIDsAsync(final GetTitlePlayersFromXboxLiveIDsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetTitlePlayersFromProviderIDsResponse>>() {
@@ -283,6 +296,7 @@ public class PlayFabProfilesAPI {
      * @param request GetTitlePlayersFromXboxLiveIDsRequest
      * @return GetTitlePlayersFromProviderIDsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetTitlePlayersFromProviderIDsResponse> GetTitlePlayersFromXboxLiveIDs(final GetTitlePlayersFromXboxLiveIDsRequest request) {
         FutureTask<PlayFabResult<GetTitlePlayersFromProviderIDsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetTitlePlayersFromProviderIDsResponse>>() {
@@ -301,6 +315,7 @@ public class PlayFabProfilesAPI {
     }
 
     /** Retrieves the title player accounts associated with the given XUIDs. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTitlePlayersFromProviderIDsResponse> privateGetTitlePlayersFromXboxLiveIDsAsync(final GetTitlePlayersFromXboxLiveIDsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -331,6 +346,7 @@ public class PlayFabProfilesAPI {
      * @param request SetDisplayNameRequest
      * @return Async Task will return SetDisplayNameResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<SetDisplayNameResponse>> SetDisplayNameAsync(final SetDisplayNameRequest request) {
         return new FutureTask(new Callable<PlayFabResult<SetDisplayNameResponse>>() {
@@ -345,6 +361,7 @@ public class PlayFabProfilesAPI {
      * @param request SetDisplayNameRequest
      * @return SetDisplayNameResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<SetDisplayNameResponse> SetDisplayName(final SetDisplayNameRequest request) {
         FutureTask<PlayFabResult<SetDisplayNameResponse>> task = new FutureTask(new Callable<PlayFabResult<SetDisplayNameResponse>>() {
@@ -363,6 +380,7 @@ public class PlayFabProfilesAPI {
     }
 
     /** Update the display name of the entity */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetDisplayNameResponse> privateSetDisplayNameAsync(final SetDisplayNameRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -393,6 +411,7 @@ public class PlayFabProfilesAPI {
      * @param request SetGlobalPolicyRequest
      * @return Async Task will return SetGlobalPolicyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<SetGlobalPolicyResponse>> SetGlobalPolicyAsync(final SetGlobalPolicyRequest request) {
         return new FutureTask(new Callable<PlayFabResult<SetGlobalPolicyResponse>>() {
@@ -407,6 +426,7 @@ public class PlayFabProfilesAPI {
      * @param request SetGlobalPolicyRequest
      * @return SetGlobalPolicyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<SetGlobalPolicyResponse> SetGlobalPolicy(final SetGlobalPolicyRequest request) {
         FutureTask<PlayFabResult<SetGlobalPolicyResponse>> task = new FutureTask(new Callable<PlayFabResult<SetGlobalPolicyResponse>>() {
@@ -425,6 +445,7 @@ public class PlayFabProfilesAPI {
     }
 
     /** Sets the global title access policy */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetGlobalPolicyResponse> privateSetGlobalPolicyAsync(final SetGlobalPolicyRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -456,6 +477,7 @@ public class PlayFabProfilesAPI {
      * @param request SetProfileLanguageRequest
      * @return Async Task will return SetProfileLanguageResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<SetProfileLanguageResponse>> SetProfileLanguageAsync(final SetProfileLanguageRequest request) {
         return new FutureTask(new Callable<PlayFabResult<SetProfileLanguageResponse>>() {
@@ -471,6 +493,7 @@ public class PlayFabProfilesAPI {
      * @param request SetProfileLanguageRequest
      * @return SetProfileLanguageResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<SetProfileLanguageResponse> SetProfileLanguage(final SetProfileLanguageRequest request) {
         FutureTask<PlayFabResult<SetProfileLanguageResponse>> task = new FutureTask(new Callable<PlayFabResult<SetProfileLanguageResponse>>() {
@@ -492,6 +515,7 @@ public class PlayFabProfilesAPI {
      * Updates the entity's language. The precedence hierarchy for communication to the player is Title Player Account
      * language, Master Player Account language, and then title default language if the first two aren't set or supported.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetProfileLanguageResponse> privateSetProfileLanguageAsync(final SetProfileLanguageRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -522,6 +546,7 @@ public class PlayFabProfilesAPI {
      * @param request SetEntityProfilePolicyRequest
      * @return Async Task will return SetEntityProfilePolicyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<SetEntityProfilePolicyResponse>> SetProfilePolicyAsync(final SetEntityProfilePolicyRequest request) {
         return new FutureTask(new Callable<PlayFabResult<SetEntityProfilePolicyResponse>>() {
@@ -536,6 +561,7 @@ public class PlayFabProfilesAPI {
      * @param request SetEntityProfilePolicyRequest
      * @return SetEntityProfilePolicyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<SetEntityProfilePolicyResponse> SetProfilePolicy(final SetEntityProfilePolicyRequest request) {
         FutureTask<PlayFabResult<SetEntityProfilePolicyResponse>> task = new FutureTask(new Callable<PlayFabResult<SetEntityProfilePolicyResponse>>() {
@@ -554,6 +580,7 @@ public class PlayFabProfilesAPI {
     }
 
     /** Sets the profiles access policy */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetEntityProfilePolicyResponse> privateSetProfilePolicyAsync(final SetEntityProfilePolicyRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
