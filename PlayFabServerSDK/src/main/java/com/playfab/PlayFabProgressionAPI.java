@@ -18,6 +18,7 @@ public class PlayFabProgressionAPI {
      * @param request CreateLeaderboardDefinitionRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> CreateLeaderboardDefinitionAsync(final CreateLeaderboardDefinitionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -32,6 +33,7 @@ public class PlayFabProgressionAPI {
      * @param request CreateLeaderboardDefinitionRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> CreateLeaderboardDefinition(final CreateLeaderboardDefinitionRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -50,6 +52,7 @@ public class PlayFabProgressionAPI {
     }
 
     /** Creates a new leaderboard definition. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateCreateLeaderboardDefinitionAsync(final CreateLeaderboardDefinitionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -80,6 +83,7 @@ public class PlayFabProgressionAPI {
      * @param request CreateStatisticDefinitionRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> CreateStatisticDefinitionAsync(final CreateStatisticDefinitionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -94,6 +98,7 @@ public class PlayFabProgressionAPI {
      * @param request CreateStatisticDefinitionRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> CreateStatisticDefinition(final CreateStatisticDefinitionRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -112,6 +117,7 @@ public class PlayFabProgressionAPI {
     }
 
     /** Create a new entity statistic definition. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateCreateStatisticDefinitionAsync(final CreateStatisticDefinitionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -142,6 +148,7 @@ public class PlayFabProgressionAPI {
      * @param request DeleteLeaderboardDefinitionRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> DeleteLeaderboardDefinitionAsync(final DeleteLeaderboardDefinitionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -156,6 +163,7 @@ public class PlayFabProgressionAPI {
      * @param request DeleteLeaderboardDefinitionRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> DeleteLeaderboardDefinition(final DeleteLeaderboardDefinitionRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -174,6 +182,7 @@ public class PlayFabProgressionAPI {
     }
 
     /** Deletes a leaderboard definition. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateDeleteLeaderboardDefinitionAsync(final DeleteLeaderboardDefinitionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -204,6 +213,7 @@ public class PlayFabProgressionAPI {
      * @param request DeleteLeaderboardEntriesRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> DeleteLeaderboardEntriesAsync(final DeleteLeaderboardEntriesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -218,6 +228,7 @@ public class PlayFabProgressionAPI {
      * @param request DeleteLeaderboardEntriesRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> DeleteLeaderboardEntries(final DeleteLeaderboardEntriesRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -236,6 +247,7 @@ public class PlayFabProgressionAPI {
     }
 
     /** Deletes the specified entries from the given leaderboard. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateDeleteLeaderboardEntriesAsync(final DeleteLeaderboardEntriesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -266,6 +278,7 @@ public class PlayFabProgressionAPI {
      * @param request DeleteStatisticDefinitionRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> DeleteStatisticDefinitionAsync(final DeleteStatisticDefinitionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -280,6 +293,7 @@ public class PlayFabProgressionAPI {
      * @param request DeleteStatisticDefinitionRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> DeleteStatisticDefinition(final DeleteStatisticDefinitionRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -298,6 +312,7 @@ public class PlayFabProgressionAPI {
     }
 
     /** Delete an entity statistic definition. Will delete all statistics on entity profiles and leaderboards. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateDeleteStatisticDefinitionAsync(final DeleteStatisticDefinitionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -328,6 +343,7 @@ public class PlayFabProgressionAPI {
      * @param request DeleteStatisticsRequest
      * @return Async Task will return DeleteStatisticsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<DeleteStatisticsResponse>> DeleteStatisticsAsync(final DeleteStatisticsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<DeleteStatisticsResponse>>() {
@@ -342,6 +358,7 @@ public class PlayFabProgressionAPI {
      * @param request DeleteStatisticsRequest
      * @return DeleteStatisticsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<DeleteStatisticsResponse> DeleteStatistics(final DeleteStatisticsRequest request) {
         FutureTask<PlayFabResult<DeleteStatisticsResponse>> task = new FutureTask(new Callable<PlayFabResult<DeleteStatisticsResponse>>() {
@@ -360,6 +377,7 @@ public class PlayFabProgressionAPI {
     }
 
     /** Delete statistics on an entity profile. This will remove all rankings from associated leaderboards. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteStatisticsResponse> privateDeleteStatisticsAsync(final DeleteStatisticsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -390,6 +408,7 @@ public class PlayFabProgressionAPI {
      * @param request GetFriendLeaderboardForEntityRequest
      * @return Async Task will return GetEntityLeaderboardResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetEntityLeaderboardResponse>> GetFriendLeaderboardForEntityAsync(final GetFriendLeaderboardForEntityRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetEntityLeaderboardResponse>>() {
@@ -404,6 +423,7 @@ public class PlayFabProgressionAPI {
      * @param request GetFriendLeaderboardForEntityRequest
      * @return GetEntityLeaderboardResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetEntityLeaderboardResponse> GetFriendLeaderboardForEntity(final GetFriendLeaderboardForEntityRequest request) {
         FutureTask<PlayFabResult<GetEntityLeaderboardResponse>> task = new FutureTask(new Callable<PlayFabResult<GetEntityLeaderboardResponse>>() {
@@ -422,6 +442,7 @@ public class PlayFabProgressionAPI {
     }
 
     /** Get the friend leaderboard for the specified entity. A maximum of 25 friend entries are listed in the leaderboard. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetEntityLeaderboardResponse> privateGetFriendLeaderboardForEntityAsync(final GetFriendLeaderboardForEntityRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -452,6 +473,7 @@ public class PlayFabProgressionAPI {
      * @param request GetEntityLeaderboardRequest
      * @return Async Task will return GetEntityLeaderboardResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetEntityLeaderboardResponse>> GetLeaderboardAsync(final GetEntityLeaderboardRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetEntityLeaderboardResponse>>() {
@@ -466,6 +488,7 @@ public class PlayFabProgressionAPI {
      * @param request GetEntityLeaderboardRequest
      * @return GetEntityLeaderboardResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetEntityLeaderboardResponse> GetLeaderboard(final GetEntityLeaderboardRequest request) {
         FutureTask<PlayFabResult<GetEntityLeaderboardResponse>> task = new FutureTask(new Callable<PlayFabResult<GetEntityLeaderboardResponse>>() {
@@ -484,6 +507,7 @@ public class PlayFabProgressionAPI {
     }
 
     /** Get the leaderboard for a specific entity type and statistic. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetEntityLeaderboardResponse> privateGetLeaderboardAsync(final GetEntityLeaderboardRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -514,6 +538,7 @@ public class PlayFabProgressionAPI {
      * @param request GetLeaderboardAroundEntityRequest
      * @return Async Task will return GetEntityLeaderboardResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetEntityLeaderboardResponse>> GetLeaderboardAroundEntityAsync(final GetLeaderboardAroundEntityRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetEntityLeaderboardResponse>>() {
@@ -528,6 +553,7 @@ public class PlayFabProgressionAPI {
      * @param request GetLeaderboardAroundEntityRequest
      * @return GetEntityLeaderboardResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetEntityLeaderboardResponse> GetLeaderboardAroundEntity(final GetLeaderboardAroundEntityRequest request) {
         FutureTask<PlayFabResult<GetEntityLeaderboardResponse>> task = new FutureTask(new Callable<PlayFabResult<GetEntityLeaderboardResponse>>() {
@@ -546,6 +572,7 @@ public class PlayFabProgressionAPI {
     }
 
     /** Get the leaderboard around a specific entity. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetEntityLeaderboardResponse> privateGetLeaderboardAroundEntityAsync(final GetLeaderboardAroundEntityRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -576,6 +603,7 @@ public class PlayFabProgressionAPI {
      * @param request GetLeaderboardDefinitionRequest
      * @return Async Task will return GetLeaderboardDefinitionResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetLeaderboardDefinitionResponse>> GetLeaderboardDefinitionAsync(final GetLeaderboardDefinitionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetLeaderboardDefinitionResponse>>() {
@@ -590,6 +618,7 @@ public class PlayFabProgressionAPI {
      * @param request GetLeaderboardDefinitionRequest
      * @return GetLeaderboardDefinitionResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetLeaderboardDefinitionResponse> GetLeaderboardDefinition(final GetLeaderboardDefinitionRequest request) {
         FutureTask<PlayFabResult<GetLeaderboardDefinitionResponse>> task = new FutureTask(new Callable<PlayFabResult<GetLeaderboardDefinitionResponse>>() {
@@ -608,6 +637,7 @@ public class PlayFabProgressionAPI {
     }
 
     /** Gets the specified leaderboard definition. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetLeaderboardDefinitionResponse> privateGetLeaderboardDefinitionAsync(final GetLeaderboardDefinitionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -638,6 +668,7 @@ public class PlayFabProgressionAPI {
      * @param request GetLeaderboardForEntitiesRequest
      * @return Async Task will return GetEntityLeaderboardResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetEntityLeaderboardResponse>> GetLeaderboardForEntitiesAsync(final GetLeaderboardForEntitiesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetEntityLeaderboardResponse>>() {
@@ -652,6 +683,7 @@ public class PlayFabProgressionAPI {
      * @param request GetLeaderboardForEntitiesRequest
      * @return GetEntityLeaderboardResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetEntityLeaderboardResponse> GetLeaderboardForEntities(final GetLeaderboardForEntitiesRequest request) {
         FutureTask<PlayFabResult<GetEntityLeaderboardResponse>> task = new FutureTask(new Callable<PlayFabResult<GetEntityLeaderboardResponse>>() {
@@ -670,6 +702,7 @@ public class PlayFabProgressionAPI {
     }
 
     /** Get the leaderboard limited to a set of entities. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetEntityLeaderboardResponse> privateGetLeaderboardForEntitiesAsync(final GetLeaderboardForEntitiesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -700,6 +733,7 @@ public class PlayFabProgressionAPI {
      * @param request GetStatisticDefinitionRequest
      * @return Async Task will return GetStatisticDefinitionResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetStatisticDefinitionResponse>> GetStatisticDefinitionAsync(final GetStatisticDefinitionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetStatisticDefinitionResponse>>() {
@@ -714,6 +748,7 @@ public class PlayFabProgressionAPI {
      * @param request GetStatisticDefinitionRequest
      * @return GetStatisticDefinitionResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetStatisticDefinitionResponse> GetStatisticDefinition(final GetStatisticDefinitionRequest request) {
         FutureTask<PlayFabResult<GetStatisticDefinitionResponse>> task = new FutureTask(new Callable<PlayFabResult<GetStatisticDefinitionResponse>>() {
@@ -732,6 +767,7 @@ public class PlayFabProgressionAPI {
     }
 
     /** Get current statistic definition information */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetStatisticDefinitionResponse> privateGetStatisticDefinitionAsync(final GetStatisticDefinitionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -762,6 +798,7 @@ public class PlayFabProgressionAPI {
      * @param request GetStatisticsRequest
      * @return Async Task will return GetStatisticsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetStatisticsResponse>> GetStatisticsAsync(final GetStatisticsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetStatisticsResponse>>() {
@@ -776,6 +813,7 @@ public class PlayFabProgressionAPI {
      * @param request GetStatisticsRequest
      * @return GetStatisticsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetStatisticsResponse> GetStatistics(final GetStatisticsRequest request) {
         FutureTask<PlayFabResult<GetStatisticsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetStatisticsResponse>>() {
@@ -794,6 +832,7 @@ public class PlayFabProgressionAPI {
     }
 
     /** Gets statistics for the specified entity. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetStatisticsResponse> privateGetStatisticsAsync(final GetStatisticsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -824,6 +863,7 @@ public class PlayFabProgressionAPI {
      * @param request GetStatisticsForEntitiesRequest
      * @return Async Task will return GetStatisticsForEntitiesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetStatisticsForEntitiesResponse>> GetStatisticsForEntitiesAsync(final GetStatisticsForEntitiesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetStatisticsForEntitiesResponse>>() {
@@ -838,6 +878,7 @@ public class PlayFabProgressionAPI {
      * @param request GetStatisticsForEntitiesRequest
      * @return GetStatisticsForEntitiesResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetStatisticsForEntitiesResponse> GetStatisticsForEntities(final GetStatisticsForEntitiesRequest request) {
         FutureTask<PlayFabResult<GetStatisticsForEntitiesResponse>> task = new FutureTask(new Callable<PlayFabResult<GetStatisticsForEntitiesResponse>>() {
@@ -856,6 +897,7 @@ public class PlayFabProgressionAPI {
     }
 
     /** Gets statistics for the specified collection of entities. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetStatisticsForEntitiesResponse> privateGetStatisticsForEntitiesAsync(final GetStatisticsForEntitiesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -886,6 +928,7 @@ public class PlayFabProgressionAPI {
      * @param request IncrementLeaderboardVersionRequest
      * @return Async Task will return IncrementLeaderboardVersionResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<IncrementLeaderboardVersionResponse>> IncrementLeaderboardVersionAsync(final IncrementLeaderboardVersionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<IncrementLeaderboardVersionResponse>>() {
@@ -900,6 +943,7 @@ public class PlayFabProgressionAPI {
      * @param request IncrementLeaderboardVersionRequest
      * @return IncrementLeaderboardVersionResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<IncrementLeaderboardVersionResponse> IncrementLeaderboardVersion(final IncrementLeaderboardVersionRequest request) {
         FutureTask<PlayFabResult<IncrementLeaderboardVersionResponse>> task = new FutureTask(new Callable<PlayFabResult<IncrementLeaderboardVersionResponse>>() {
@@ -918,6 +962,7 @@ public class PlayFabProgressionAPI {
     }
 
     /** Increment a leaderboard version. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<IncrementLeaderboardVersionResponse> privateIncrementLeaderboardVersionAsync(final IncrementLeaderboardVersionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -948,6 +993,7 @@ public class PlayFabProgressionAPI {
      * @param request IncrementStatisticVersionRequest
      * @return Async Task will return IncrementStatisticVersionResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<IncrementStatisticVersionResponse>> IncrementStatisticVersionAsync(final IncrementStatisticVersionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<IncrementStatisticVersionResponse>>() {
@@ -962,6 +1008,7 @@ public class PlayFabProgressionAPI {
      * @param request IncrementStatisticVersionRequest
      * @return IncrementStatisticVersionResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<IncrementStatisticVersionResponse> IncrementStatisticVersion(final IncrementStatisticVersionRequest request) {
         FutureTask<PlayFabResult<IncrementStatisticVersionResponse>> task = new FutureTask(new Callable<PlayFabResult<IncrementStatisticVersionResponse>>() {
@@ -980,6 +1027,7 @@ public class PlayFabProgressionAPI {
     }
 
     /** Increment an entity statistic definition version. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<IncrementStatisticVersionResponse> privateIncrementStatisticVersionAsync(final IncrementStatisticVersionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1010,6 +1058,7 @@ public class PlayFabProgressionAPI {
      * @param request ListLeaderboardDefinitionsRequest
      * @return Async Task will return ListLeaderboardDefinitionsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListLeaderboardDefinitionsResponse>> ListLeaderboardDefinitionsAsync(final ListLeaderboardDefinitionsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListLeaderboardDefinitionsResponse>>() {
@@ -1024,6 +1073,7 @@ public class PlayFabProgressionAPI {
      * @param request ListLeaderboardDefinitionsRequest
      * @return ListLeaderboardDefinitionsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListLeaderboardDefinitionsResponse> ListLeaderboardDefinitions(final ListLeaderboardDefinitionsRequest request) {
         FutureTask<PlayFabResult<ListLeaderboardDefinitionsResponse>> task = new FutureTask(new Callable<PlayFabResult<ListLeaderboardDefinitionsResponse>>() {
@@ -1042,6 +1092,7 @@ public class PlayFabProgressionAPI {
     }
 
     /** Lists the leaderboard definitions defined for the Title. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListLeaderboardDefinitionsResponse> privateListLeaderboardDefinitionsAsync(final ListLeaderboardDefinitionsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1072,6 +1123,7 @@ public class PlayFabProgressionAPI {
      * @param request ListStatisticDefinitionsRequest
      * @return Async Task will return ListStatisticDefinitionsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListStatisticDefinitionsResponse>> ListStatisticDefinitionsAsync(final ListStatisticDefinitionsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListStatisticDefinitionsResponse>>() {
@@ -1086,6 +1138,7 @@ public class PlayFabProgressionAPI {
      * @param request ListStatisticDefinitionsRequest
      * @return ListStatisticDefinitionsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListStatisticDefinitionsResponse> ListStatisticDefinitions(final ListStatisticDefinitionsRequest request) {
         FutureTask<PlayFabResult<ListStatisticDefinitionsResponse>> task = new FutureTask(new Callable<PlayFabResult<ListStatisticDefinitionsResponse>>() {
@@ -1104,6 +1157,7 @@ public class PlayFabProgressionAPI {
     }
 
     /** Get all current statistic definitions information */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListStatisticDefinitionsResponse> privateListStatisticDefinitionsAsync(final ListStatisticDefinitionsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1134,6 +1188,7 @@ public class PlayFabProgressionAPI {
      * @param request UnlinkLeaderboardFromStatisticRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> UnlinkLeaderboardFromStatisticAsync(final UnlinkLeaderboardFromStatisticRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1148,6 +1203,7 @@ public class PlayFabProgressionAPI {
      * @param request UnlinkLeaderboardFromStatisticRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> UnlinkLeaderboardFromStatistic(final UnlinkLeaderboardFromStatisticRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1166,6 +1222,7 @@ public class PlayFabProgressionAPI {
     }
 
     /** Unlinks a leaderboard definition from it's linked statistic definition. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateUnlinkLeaderboardFromStatisticAsync(final UnlinkLeaderboardFromStatisticRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1192,10 +1249,76 @@ public class PlayFabProgressionAPI {
     }
 
     /**
+     * Updates a leaderboard definition.
+     * @param request UpdateLeaderboardDefinitionRequest
+     * @return Async Task will return EmptyResponse
+     */
+    @Deprecated
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResponse>> UpdateLeaderboardDefinitionAsync(final UpdateLeaderboardDefinitionRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateUpdateLeaderboardDefinitionAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Updates a leaderboard definition.
+     * @param request UpdateLeaderboardDefinitionRequest
+     * @return EmptyResponse
+     */
+    @Deprecated
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResponse> UpdateLeaderboardDefinition(final UpdateLeaderboardDefinitionRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateUpdateLeaderboardDefinitionAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Updates a leaderboard definition. */
+    @Deprecated
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResponse> privateUpdateLeaderboardDefinitionAsync(final UpdateLeaderboardDefinitionRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Leaderboard/UpdateLeaderboardDefinition"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
+
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Adds or updates entries on the specified leaderboard.
      * @param request UpdateLeaderboardEntriesRequest
      * @return Async Task will return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> UpdateLeaderboardEntriesAsync(final UpdateLeaderboardEntriesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1210,6 +1333,7 @@ public class PlayFabProgressionAPI {
      * @param request UpdateLeaderboardEntriesRequest
      * @return EmptyResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> UpdateLeaderboardEntries(final UpdateLeaderboardEntriesRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -1228,6 +1352,7 @@ public class PlayFabProgressionAPI {
     }
 
     /** Adds or updates entries on the specified leaderboard. */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateUpdateLeaderboardEntriesAsync(final UpdateLeaderboardEntriesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1254,11 +1379,77 @@ public class PlayFabProgressionAPI {
     }
 
     /**
+     * Update an existing entity statistic definition.
+     * @param request UpdateStatisticDefinitionRequest
+     * @return Async Task will return EmptyResponse
+     */
+    @Deprecated
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResponse>> UpdateStatisticDefinitionAsync(final UpdateStatisticDefinitionRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateUpdateStatisticDefinitionAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Update an existing entity statistic definition.
+     * @param request UpdateStatisticDefinitionRequest
+     * @return EmptyResponse
+     */
+    @Deprecated
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResponse> UpdateStatisticDefinition(final UpdateStatisticDefinitionRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateUpdateStatisticDefinitionAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Update an existing entity statistic definition. */
+    @Deprecated
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResponse> privateUpdateStatisticDefinitionAsync(final UpdateStatisticDefinitionRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Statistic/UpdateStatisticDefinition"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
+
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Update statistics on an entity profile. Depending on the statistic definition, this may result in entity being ranked on
      * various leaderboards.
      * @param request UpdateStatisticsRequest
      * @return Async Task will return UpdateStatisticsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateStatisticsResponse>> UpdateStatisticsAsync(final UpdateStatisticsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateStatisticsResponse>>() {
@@ -1274,6 +1465,7 @@ public class PlayFabProgressionAPI {
      * @param request UpdateStatisticsRequest
      * @return UpdateStatisticsResponse
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateStatisticsResponse> UpdateStatistics(final UpdateStatisticsRequest request) {
         FutureTask<PlayFabResult<UpdateStatisticsResponse>> task = new FutureTask(new Callable<PlayFabResult<UpdateStatisticsResponse>>() {
@@ -1295,6 +1487,7 @@ public class PlayFabProgressionAPI {
      * Update statistics on an entity profile. Depending on the statistic definition, this may result in entity being ranked on
      * various leaderboards.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateStatisticsResponse> privateUpdateStatisticsAsync(final UpdateStatisticsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
