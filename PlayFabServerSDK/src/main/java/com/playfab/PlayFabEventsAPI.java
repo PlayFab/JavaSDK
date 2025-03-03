@@ -21,7 +21,6 @@ public class PlayFabEventsAPI {
      * @param request CreateTelemetryKeyRequest
      * @return Async Task will return CreateTelemetryKeyResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateTelemetryKeyResponse>> CreateTelemetryKeyAsync(final CreateTelemetryKeyRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateTelemetryKeyResponse>>() {
@@ -36,7 +35,6 @@ public class PlayFabEventsAPI {
      * @param request CreateTelemetryKeyRequest
      * @return CreateTelemetryKeyResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateTelemetryKeyResponse> CreateTelemetryKey(final CreateTelemetryKeyRequest request) {
         FutureTask<PlayFabResult<CreateTelemetryKeyResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateTelemetryKeyResponse>>() {
@@ -55,7 +53,6 @@ public class PlayFabEventsAPI {
     }
 
     /** Creates a new telemetry key for the title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateTelemetryKeyResponse> privateCreateTelemetryKeyAsync(final CreateTelemetryKeyRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -86,7 +83,6 @@ public class PlayFabEventsAPI {
      * @param request DeleteTelemetryKeyRequest
      * @return Async Task will return DeleteTelemetryKeyResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<DeleteTelemetryKeyResponse>> DeleteTelemetryKeyAsync(final DeleteTelemetryKeyRequest request) {
         return new FutureTask(new Callable<PlayFabResult<DeleteTelemetryKeyResponse>>() {
@@ -101,7 +97,6 @@ public class PlayFabEventsAPI {
      * @param request DeleteTelemetryKeyRequest
      * @return DeleteTelemetryKeyResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<DeleteTelemetryKeyResponse> DeleteTelemetryKey(final DeleteTelemetryKeyRequest request) {
         FutureTask<PlayFabResult<DeleteTelemetryKeyResponse>> task = new FutureTask(new Callable<PlayFabResult<DeleteTelemetryKeyResponse>>() {
@@ -120,7 +115,6 @@ public class PlayFabEventsAPI {
     }
 
     /** Deletes a telemetry key configured for the title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteTelemetryKeyResponse> privateDeleteTelemetryKeyAsync(final DeleteTelemetryKeyRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -151,7 +145,6 @@ public class PlayFabEventsAPI {
      * @param request GetTelemetryKeyRequest
      * @return Async Task will return GetTelemetryKeyResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetTelemetryKeyResponse>> GetTelemetryKeyAsync(final GetTelemetryKeyRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetTelemetryKeyResponse>>() {
@@ -166,7 +159,6 @@ public class PlayFabEventsAPI {
      * @param request GetTelemetryKeyRequest
      * @return GetTelemetryKeyResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetTelemetryKeyResponse> GetTelemetryKey(final GetTelemetryKeyRequest request) {
         FutureTask<PlayFabResult<GetTelemetryKeyResponse>> task = new FutureTask(new Callable<PlayFabResult<GetTelemetryKeyResponse>>() {
@@ -185,7 +177,6 @@ public class PlayFabEventsAPI {
     }
 
     /** Gets information about a telemetry key configured for the title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTelemetryKeyResponse> privateGetTelemetryKeyAsync(final GetTelemetryKeyRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -216,7 +207,6 @@ public class PlayFabEventsAPI {
      * @param request ListTelemetryKeysRequest
      * @return Async Task will return ListTelemetryKeysResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListTelemetryKeysResponse>> ListTelemetryKeysAsync(final ListTelemetryKeysRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListTelemetryKeysResponse>>() {
@@ -231,7 +221,6 @@ public class PlayFabEventsAPI {
      * @param request ListTelemetryKeysRequest
      * @return ListTelemetryKeysResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListTelemetryKeysResponse> ListTelemetryKeys(final ListTelemetryKeysRequest request) {
         FutureTask<PlayFabResult<ListTelemetryKeysResponse>> task = new FutureTask(new Callable<PlayFabResult<ListTelemetryKeysResponse>>() {
@@ -250,7 +239,6 @@ public class PlayFabEventsAPI {
     }
 
     /** Lists all telemetry keys configured for the title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListTelemetryKeysResponse> privateListTelemetryKeysAsync(final ListTelemetryKeysRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -281,7 +269,6 @@ public class PlayFabEventsAPI {
      * @param request SetTelemetryKeyActiveRequest
      * @return Async Task will return SetTelemetryKeyActiveResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<SetTelemetryKeyActiveResponse>> SetTelemetryKeyActiveAsync(final SetTelemetryKeyActiveRequest request) {
         return new FutureTask(new Callable<PlayFabResult<SetTelemetryKeyActiveResponse>>() {
@@ -296,7 +283,6 @@ public class PlayFabEventsAPI {
      * @param request SetTelemetryKeyActiveRequest
      * @return SetTelemetryKeyActiveResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<SetTelemetryKeyActiveResponse> SetTelemetryKeyActive(final SetTelemetryKeyActiveRequest request) {
         FutureTask<PlayFabResult<SetTelemetryKeyActiveResponse>> task = new FutureTask(new Callable<PlayFabResult<SetTelemetryKeyActiveResponse>>() {
@@ -315,7 +301,6 @@ public class PlayFabEventsAPI {
     }
 
     /** Sets a telemetry key to the active or deactivated state. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetTelemetryKeyActiveResponse> privateSetTelemetryKeyActiveAsync(final SetTelemetryKeyActiveRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -346,7 +331,6 @@ public class PlayFabEventsAPI {
      * @param request WriteEventsRequest
      * @return Async Task will return WriteEventsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<WriteEventsResponse>> WriteEventsAsync(final WriteEventsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<WriteEventsResponse>>() {
@@ -361,7 +345,6 @@ public class PlayFabEventsAPI {
      * @param request WriteEventsRequest
      * @return WriteEventsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<WriteEventsResponse> WriteEvents(final WriteEventsRequest request) {
         FutureTask<PlayFabResult<WriteEventsResponse>> task = new FutureTask(new Callable<PlayFabResult<WriteEventsResponse>>() {
@@ -380,7 +363,6 @@ public class PlayFabEventsAPI {
     }
 
     /** Write batches of entity based events to PlayStream. The namespace of the Event must be 'custom' or start with 'custom.'. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<WriteEventsResponse> privateWriteEventsAsync(final WriteEventsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -412,7 +394,6 @@ public class PlayFabEventsAPI {
      * @param request WriteEventsRequest
      * @return Async Task will return WriteEventsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<WriteEventsResponse>> WriteTelemetryEventsAsync(final WriteEventsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<WriteEventsResponse>>() {
@@ -428,7 +409,6 @@ public class PlayFabEventsAPI {
      * @param request WriteEventsRequest
      * @return WriteEventsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<WriteEventsResponse> WriteTelemetryEvents(final WriteEventsRequest request) {
         FutureTask<PlayFabResult<WriteEventsResponse>> task = new FutureTask(new Callable<PlayFabResult<WriteEventsResponse>>() {
@@ -450,7 +430,6 @@ public class PlayFabEventsAPI {
      * Write batches of entity based events to as Telemetry events (bypass PlayStream). The namespace must be 'custom' or start
      * with 'custom.'
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<WriteEventsResponse> privateWriteTelemetryEventsAsync(final WriteEventsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");

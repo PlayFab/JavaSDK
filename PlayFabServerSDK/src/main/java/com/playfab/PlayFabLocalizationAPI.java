@@ -18,7 +18,6 @@ public class PlayFabLocalizationAPI {
      * @param request GetLanguageListRequest
      * @return Async Task will return GetLanguageListResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetLanguageListResponse>> GetLanguageListAsync(final GetLanguageListRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetLanguageListResponse>>() {
@@ -33,7 +32,6 @@ public class PlayFabLocalizationAPI {
      * @param request GetLanguageListRequest
      * @return GetLanguageListResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetLanguageListResponse> GetLanguageList(final GetLanguageListRequest request) {
         FutureTask<PlayFabResult<GetLanguageListResponse>> task = new FutureTask(new Callable<PlayFabResult<GetLanguageListResponse>>() {
@@ -52,7 +50,6 @@ public class PlayFabLocalizationAPI {
     }
 
     /** Retrieves the list of allowed languages, only accessible by title entities */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetLanguageListResponse> privateGetLanguageListAsync(final GetLanguageListRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");

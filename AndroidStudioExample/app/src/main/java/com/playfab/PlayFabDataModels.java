@@ -6,77 +6,58 @@ import com.playfab.PlayFabUtil.*;
 public class PlayFabDataModels {
 
     /** Aborts the pending upload of the requested files. */
-    @Deprecated
     public static class AbortFileUploadsRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        @Deprecated
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
-        @Deprecated
         public EntityKey Entity;
         /** Names of the files to have their pending uploads aborted. */
-        @Deprecated
         public ArrayList<String> FileNames;
         /**
          * The expected version of the profile, if set and doesn't match the current version of the profile the operation will not
          * be performed.
          */
-        @Deprecated
         public Integer ProfileVersion;
         
     }
 
-    @Deprecated
     public static class AbortFileUploadsResponse {
         /** The entity id and type. */
-        @Deprecated
         public EntityKey Entity;
         /** The current version of the profile, can be used for concurrency control during updates. */
-        @Deprecated
         public Integer ProfileVersion;
         
     }
 
     /** Deletes the requested files from the entity's profile. */
-    @Deprecated
     public static class DeleteFilesRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        @Deprecated
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
-        @Deprecated
         public EntityKey Entity;
         /** Names of the files to be deleted. */
-        @Deprecated
         public ArrayList<String> FileNames;
         /**
          * The expected version of the profile, if set and doesn't match the current version of the profile the operation will not
          * be performed.
          */
-        @Deprecated
         public Integer ProfileVersion;
         
     }
 
-    @Deprecated
     public static class DeleteFilesResponse {
         /** The entity id and type. */
-        @Deprecated
         public EntityKey Entity;
         /** The current version of the profile, can be used for concurrency control during updates. */
-        @Deprecated
         public Integer ProfileVersion;
         
     }
 
     /** Combined entity type and ID structure which uniquely identifies a single entity. */
-    @Deprecated
     public static class EntityKey {
         /** Unique ID of the entity. */
-        @Deprecated
         public String Id;
         /** Entity type. See https://docs.microsoft.com/gaming/playfab/features/data/entities/available-built-in-entity-types */
-        @Deprecated
         public String Type;
         
     }
@@ -85,53 +66,38 @@ public class PlayFabDataModels {
      * Finalizes the upload of the requested files. Verifies that the files have been successfully uploaded and moves the file
      * pointers from pending to live.
      */
-    @Deprecated
     public static class FinalizeFileUploadsRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        @Deprecated
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
-        @Deprecated
         public EntityKey Entity;
         /** Names of the files to be finalized. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
-        @Deprecated
         public ArrayList<String> FileNames;
         /** The current version of the profile, can be used for concurrency control during updates. */
-        @Deprecated
         public Integer ProfileVersion;
         
     }
 
-    @Deprecated
     public static class FinalizeFileUploadsResponse {
         /** The entity id and type. */
-        @Deprecated
         public EntityKey Entity;
         /** Collection of metadata for the entity's files */
-        @Deprecated
         public Map<String,GetFileMetadata> Metadata;
         /** The current version of the profile, can be used for concurrency control during updates. */
-        @Deprecated
         public Integer ProfileVersion;
         
     }
 
-    @Deprecated
     public static class GetFileMetadata {
         /** Checksum value for the file, can be used to check if the file on the server has changed. */
-        @Deprecated
         public String Checksum;
         /** Download URL where the file can be retrieved */
-        @Deprecated
         public String DownloadUrl;
         /** Name of the file */
-        @Deprecated
         public String FileName;
         /** Last UTC time the file was modified */
-        @Deprecated
         public Date LastModified;
         /** Storage service's reported byte count */
-        @Deprecated
         public Integer Size;
         
     }
@@ -141,70 +107,52 @@ public class PlayFabDataModels {
      * have been successfully uploaded, files that are still pending will either return the old value, if it exists, or
      * nothing.
      */
-    @Deprecated
     public static class GetFilesRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        @Deprecated
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
-        @Deprecated
         public EntityKey Entity;
         
     }
 
-    @Deprecated
     public static class GetFilesResponse {
         /** The entity id and type. */
-        @Deprecated
         public EntityKey Entity;
         /** Collection of metadata for the entity's files */
-        @Deprecated
         public Map<String,GetFileMetadata> Metadata;
         /** The current version of the profile, can be used for concurrency control during updates. */
-        @Deprecated
         public Integer ProfileVersion;
         
     }
 
     /** Gets JSON objects from an entity profile and returns it. */
-    @Deprecated
     public static class GetObjectsRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        @Deprecated
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
-        @Deprecated
         public EntityKey Entity;
         /**
          * Determines whether the object will be returned as an escaped JSON string or as a un-escaped JSON object. Default is JSON
          * object.
          */
-        @Deprecated
         public Boolean EscapeObject;
         
     }
 
-    @Deprecated
     public static class GetObjectsResponse {
         /** The entity id and type. */
-        @Deprecated
         public EntityKey Entity;
         /** Requested objects that the calling entity has access to */
-        @Deprecated
         public Map<String,ObjectResult> Objects;
         /** The current version of the profile, can be used for concurrency control during updates. */
-        @Deprecated
         public Integer ProfileVersion;
         
     }
 
-    @Deprecated
     public static class InitiateFileUploadMetadata {
         /** Name of the file. */
-        @Deprecated
         public String FileName;
         /** Location the data should be sent to via an HTTP PUT operation. */
-        @Deprecated
         public String UploadUrl;
         
     }
@@ -213,55 +161,41 @@ public class PlayFabDataModels {
      * Returns URLs that may be used to upload the files for a profile 5 minutes. After using the upload calls
      * FinalizeFileUploads must be called to move the file status from pending to live.
      */
-    @Deprecated
     public static class InitiateFileUploadsRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        @Deprecated
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
-        @Deprecated
         public EntityKey Entity;
         /** Names of the files to be set. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
-        @Deprecated
         public ArrayList<String> FileNames;
         /**
          * The expected version of the profile, if set and doesn't match the current version of the profile the operation will not
          * be performed.
          */
-        @Deprecated
         public Integer ProfileVersion;
         
     }
 
-    @Deprecated
     public static class InitiateFileUploadsResponse {
         /** The entity id and type. */
-        @Deprecated
         public EntityKey Entity;
         /** The current version of the profile, can be used for concurrency control during updates. */
-        @Deprecated
         public Integer ProfileVersion;
         /** Collection of file names and upload urls */
-        @Deprecated
         public ArrayList<InitiateFileUploadMetadata> UploadDetails;
         
     }
 
-    @Deprecated
     public static class ObjectResult {
         /** Un-escaped JSON object, if EscapeObject false or default. */
-        @Deprecated
         public Object DataObject;
         /** Escaped string JSON body of the object, if EscapeObject is true. */
-        @Deprecated
         public String EscapedDataObject;
         /** Name of the object. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
-        @Deprecated
         public String ObjectName;
         
     }
 
-    @Deprecated
     public static enum OperationTypes {
         Created,
         Updated,
@@ -269,39 +203,30 @@ public class PlayFabDataModels {
         None
     }
 
-    @Deprecated
     public static class SetObject {
         /**
          * Body of the object to be saved. If empty and DeleteObject is true object will be deleted if it exists, or no operation
          * will occur if it does not exist. Only one of Object or EscapedDataObject fields may be used.
          */
-        @Deprecated
         public Object DataObject;
         /** Flag to indicate that this object should be deleted. Both DataObject and EscapedDataObject must not be set as well. */
-        @Deprecated
         public Boolean DeleteObject;
         /**
          * Body of the object to be saved as an escaped JSON string. If empty and DeleteObject is true object will be deleted if it
          * exists, or no operation will occur if it does not exist. Only one of DataObject or EscapedDataObject fields may be used.
          */
-        @Deprecated
         public String EscapedDataObject;
         /** Name of object. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.'. */
-        @Deprecated
         public String ObjectName;
         
     }
 
-    @Deprecated
     public static class SetObjectInfo {
         /** Name of the object */
-        @Deprecated
         public String ObjectName;
         /** Optional reason to explain why the operation was the result that it was. */
-        @Deprecated
         public String OperationReason;
         /** Indicates which operation was completed, either Created, Updated, Deleted or None. */
-        @Deprecated
         public OperationTypes SetResult;
         
     }
@@ -313,34 +238,26 @@ public class PlayFabDataModels {
      * version value does not guarantee a write though, ConcurrentEditError may still occur if multiple clients are attempting
      * to update the same profile.
      */
-    @Deprecated
     public static class SetObjectsRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        @Deprecated
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
-        @Deprecated
         public EntityKey Entity;
         /**
          * Optional field used for concurrency control. By specifying the previously returned value of ProfileVersion from
          * GetProfile API, you can ensure that the object set will only be performed if the profile has not been updated by any
          * other clients since the version you last loaded.
          */
-        @Deprecated
         public Integer ExpectedProfileVersion;
         /** Collection of objects to set on the profile. */
-        @Deprecated
         public ArrayList<SetObject> Objects;
         
     }
 
-    @Deprecated
     public static class SetObjectsResponse {
         /** New version of the entity profile. */
-        @Deprecated
         public Integer ProfileVersion;
         /** New version of the entity profile. */
-        @Deprecated
         public ArrayList<SetObjectInfo> SetResults;
         
     }
