@@ -23,7 +23,6 @@ public class PlayFabDataAPI {
      * @param request AbortFileUploadsRequest
      * @return Async Task will return AbortFileUploadsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<AbortFileUploadsResponse>> AbortFileUploadsAsync(final AbortFileUploadsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<AbortFileUploadsResponse>>() {
@@ -38,7 +37,6 @@ public class PlayFabDataAPI {
      * @param request AbortFileUploadsRequest
      * @return AbortFileUploadsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<AbortFileUploadsResponse> AbortFileUploads(final AbortFileUploadsRequest request) {
         FutureTask<PlayFabResult<AbortFileUploadsResponse>> task = new FutureTask(new Callable<PlayFabResult<AbortFileUploadsResponse>>() {
@@ -57,7 +55,6 @@ public class PlayFabDataAPI {
     }
 
     /** Abort pending file uploads to an entity's profile. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AbortFileUploadsResponse> privateAbortFileUploadsAsync(final AbortFileUploadsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -88,7 +85,6 @@ public class PlayFabDataAPI {
      * @param request DeleteFilesRequest
      * @return Async Task will return DeleteFilesResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<DeleteFilesResponse>> DeleteFilesAsync(final DeleteFilesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<DeleteFilesResponse>>() {
@@ -103,7 +99,6 @@ public class PlayFabDataAPI {
      * @param request DeleteFilesRequest
      * @return DeleteFilesResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<DeleteFilesResponse> DeleteFiles(final DeleteFilesRequest request) {
         FutureTask<PlayFabResult<DeleteFilesResponse>> task = new FutureTask(new Callable<PlayFabResult<DeleteFilesResponse>>() {
@@ -122,7 +117,6 @@ public class PlayFabDataAPI {
     }
 
     /** Delete files on an entity's profile. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteFilesResponse> privateDeleteFilesAsync(final DeleteFilesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -153,7 +147,6 @@ public class PlayFabDataAPI {
      * @param request FinalizeFileUploadsRequest
      * @return Async Task will return FinalizeFileUploadsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<FinalizeFileUploadsResponse>> FinalizeFileUploadsAsync(final FinalizeFileUploadsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<FinalizeFileUploadsResponse>>() {
@@ -168,7 +161,6 @@ public class PlayFabDataAPI {
      * @param request FinalizeFileUploadsRequest
      * @return FinalizeFileUploadsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<FinalizeFileUploadsResponse> FinalizeFileUploads(final FinalizeFileUploadsRequest request) {
         FutureTask<PlayFabResult<FinalizeFileUploadsResponse>> task = new FutureTask(new Callable<PlayFabResult<FinalizeFileUploadsResponse>>() {
@@ -187,7 +179,6 @@ public class PlayFabDataAPI {
     }
 
     /** Finalize file uploads to an entity's profile. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<FinalizeFileUploadsResponse> privateFinalizeFileUploadsAsync(final FinalizeFileUploadsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -218,7 +209,6 @@ public class PlayFabDataAPI {
      * @param request GetFilesRequest
      * @return Async Task will return GetFilesResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetFilesResponse>> GetFilesAsync(final GetFilesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetFilesResponse>>() {
@@ -233,7 +223,6 @@ public class PlayFabDataAPI {
      * @param request GetFilesRequest
      * @return GetFilesResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetFilesResponse> GetFiles(final GetFilesRequest request) {
         FutureTask<PlayFabResult<GetFilesResponse>> task = new FutureTask(new Callable<PlayFabResult<GetFilesResponse>>() {
@@ -252,7 +241,6 @@ public class PlayFabDataAPI {
     }
 
     /** Retrieves file metadata from an entity's profile. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetFilesResponse> privateGetFilesAsync(final GetFilesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -283,7 +271,6 @@ public class PlayFabDataAPI {
      * @param request GetObjectsRequest
      * @return Async Task will return GetObjectsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetObjectsResponse>> GetObjectsAsync(final GetObjectsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetObjectsResponse>>() {
@@ -298,7 +285,6 @@ public class PlayFabDataAPI {
      * @param request GetObjectsRequest
      * @return GetObjectsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetObjectsResponse> GetObjects(final GetObjectsRequest request) {
         FutureTask<PlayFabResult<GetObjectsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetObjectsResponse>>() {
@@ -317,7 +303,6 @@ public class PlayFabDataAPI {
     }
 
     /** Retrieves objects from an entity's profile. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetObjectsResponse> privateGetObjectsAsync(final GetObjectsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -348,7 +333,6 @@ public class PlayFabDataAPI {
      * @param request InitiateFileUploadsRequest
      * @return Async Task will return InitiateFileUploadsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<InitiateFileUploadsResponse>> InitiateFileUploadsAsync(final InitiateFileUploadsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<InitiateFileUploadsResponse>>() {
@@ -363,7 +347,6 @@ public class PlayFabDataAPI {
      * @param request InitiateFileUploadsRequest
      * @return InitiateFileUploadsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<InitiateFileUploadsResponse> InitiateFileUploads(final InitiateFileUploadsRequest request) {
         FutureTask<PlayFabResult<InitiateFileUploadsResponse>> task = new FutureTask(new Callable<PlayFabResult<InitiateFileUploadsResponse>>() {
@@ -382,7 +365,6 @@ public class PlayFabDataAPI {
     }
 
     /** Initiates file uploads to an entity's profile. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<InitiateFileUploadsResponse> privateInitiateFileUploadsAsync(final InitiateFileUploadsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -413,7 +395,6 @@ public class PlayFabDataAPI {
      * @param request SetObjectsRequest
      * @return Async Task will return SetObjectsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<SetObjectsResponse>> SetObjectsAsync(final SetObjectsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<SetObjectsResponse>>() {
@@ -428,7 +409,6 @@ public class PlayFabDataAPI {
      * @param request SetObjectsRequest
      * @return SetObjectsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<SetObjectsResponse> SetObjects(final SetObjectsRequest request) {
         FutureTask<PlayFabResult<SetObjectsResponse>> task = new FutureTask(new Callable<PlayFabResult<SetObjectsResponse>>() {
@@ -447,7 +427,6 @@ public class PlayFabDataAPI {
     }
 
     /** Sets objects on an entity's profile. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetObjectsResponse> privateSetObjectsAsync(final SetObjectsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");

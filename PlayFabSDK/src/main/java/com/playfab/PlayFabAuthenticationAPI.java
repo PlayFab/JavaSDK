@@ -23,7 +23,6 @@ public class PlayFabAuthenticationAPI {
      * @param request AuthenticateCustomIdRequest
      * @return Async Task will return AuthenticateCustomIdResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<AuthenticateCustomIdResult>> AuthenticateGameServerWithCustomIdAsync(final AuthenticateCustomIdRequest request) {
         return new FutureTask(new Callable<PlayFabResult<AuthenticateCustomIdResult>>() {
@@ -38,7 +37,6 @@ public class PlayFabAuthenticationAPI {
      * @param request AuthenticateCustomIdRequest
      * @return AuthenticateCustomIdResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<AuthenticateCustomIdResult> AuthenticateGameServerWithCustomId(final AuthenticateCustomIdRequest request) {
         FutureTask<PlayFabResult<AuthenticateCustomIdResult>> task = new FutureTask(new Callable<PlayFabResult<AuthenticateCustomIdResult>>() {
@@ -57,7 +55,6 @@ public class PlayFabAuthenticationAPI {
     }
 
     /** Create a game_server entity token and return a new or existing game_server entity. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AuthenticateCustomIdResult> privateAuthenticateGameServerWithCustomIdAsync(final AuthenticateCustomIdRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -89,7 +86,6 @@ public class PlayFabAuthenticationAPI {
      * @param request DeleteRequest
      * @return Async Task will return EmptyResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> DeleteAsync(final DeleteRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -104,7 +100,6 @@ public class PlayFabAuthenticationAPI {
      * @param request DeleteRequest
      * @return EmptyResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> Delete(final DeleteRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -123,7 +118,6 @@ public class PlayFabAuthenticationAPI {
     }
 
     /** Delete a game_server entity. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateDeleteAsync(final DeleteRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -155,7 +149,6 @@ public class PlayFabAuthenticationAPI {
      * @param request GetEntityTokenRequest
      * @return Async Task will return GetEntityTokenResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetEntityTokenResponse>> GetEntityTokenAsync(final GetEntityTokenRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetEntityTokenResponse>>() {
@@ -171,7 +164,6 @@ public class PlayFabAuthenticationAPI {
      * @param request GetEntityTokenRequest
      * @return GetEntityTokenResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetEntityTokenResponse> GetEntityToken(final GetEntityTokenRequest request) {
         FutureTask<PlayFabResult<GetEntityTokenResponse>> task = new FutureTask(new Callable<PlayFabResult<GetEntityTokenResponse>>() {
@@ -193,7 +185,6 @@ public class PlayFabAuthenticationAPI {
      * Method to exchange a legacy AuthenticationTicket or title SecretKey for an Entity Token or to refresh a still valid
      * Entity Token.
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetEntityTokenResponse> privateGetEntityTokenAsync(final GetEntityTokenRequest request) throws Exception {
         String authKey = null, authValue = null;
@@ -228,7 +219,6 @@ public class PlayFabAuthenticationAPI {
      * @param request ValidateEntityTokenRequest
      * @return Async Task will return ValidateEntityTokenResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ValidateEntityTokenResponse>> ValidateEntityTokenAsync(final ValidateEntityTokenRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ValidateEntityTokenResponse>>() {
@@ -243,7 +233,6 @@ public class PlayFabAuthenticationAPI {
      * @param request ValidateEntityTokenRequest
      * @return ValidateEntityTokenResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ValidateEntityTokenResponse> ValidateEntityToken(final ValidateEntityTokenRequest request) {
         FutureTask<PlayFabResult<ValidateEntityTokenResponse>> task = new FutureTask(new Callable<PlayFabResult<ValidateEntityTokenResponse>>() {
@@ -262,7 +251,6 @@ public class PlayFabAuthenticationAPI {
     }
 
     /** Method for a server to validate a client provided EntityToken. Only callable by the title entity. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ValidateEntityTokenResponse> privateValidateEntityTokenAsync(final ValidateEntityTokenRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");

@@ -18,7 +18,6 @@ public class PlayFabExperimentationAPI {
      * @param request CreateExclusionGroupRequest
      * @return Async Task will return CreateExclusionGroupResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateExclusionGroupResult>> CreateExclusionGroupAsync(final CreateExclusionGroupRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateExclusionGroupResult>>() {
@@ -33,7 +32,6 @@ public class PlayFabExperimentationAPI {
      * @param request CreateExclusionGroupRequest
      * @return CreateExclusionGroupResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateExclusionGroupResult> CreateExclusionGroup(final CreateExclusionGroupRequest request) {
         FutureTask<PlayFabResult<CreateExclusionGroupResult>> task = new FutureTask(new Callable<PlayFabResult<CreateExclusionGroupResult>>() {
@@ -52,7 +50,6 @@ public class PlayFabExperimentationAPI {
     }
 
     /** Creates a new experiment exclusion group for a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateExclusionGroupResult> privateCreateExclusionGroupAsync(final CreateExclusionGroupRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -83,7 +80,6 @@ public class PlayFabExperimentationAPI {
      * @param request CreateExperimentRequest
      * @return Async Task will return CreateExperimentResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateExperimentResult>> CreateExperimentAsync(final CreateExperimentRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateExperimentResult>>() {
@@ -98,7 +94,6 @@ public class PlayFabExperimentationAPI {
      * @param request CreateExperimentRequest
      * @return CreateExperimentResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateExperimentResult> CreateExperiment(final CreateExperimentRequest request) {
         FutureTask<PlayFabResult<CreateExperimentResult>> task = new FutureTask(new Callable<PlayFabResult<CreateExperimentResult>>() {
@@ -117,7 +112,6 @@ public class PlayFabExperimentationAPI {
     }
 
     /** Creates a new experiment for a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateExperimentResult> privateCreateExperimentAsync(final CreateExperimentRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -148,7 +142,6 @@ public class PlayFabExperimentationAPI {
      * @param request DeleteExclusionGroupRequest
      * @return Async Task will return EmptyResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> DeleteExclusionGroupAsync(final DeleteExclusionGroupRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -163,7 +156,6 @@ public class PlayFabExperimentationAPI {
      * @param request DeleteExclusionGroupRequest
      * @return EmptyResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> DeleteExclusionGroup(final DeleteExclusionGroupRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -182,7 +174,6 @@ public class PlayFabExperimentationAPI {
     }
 
     /** Deletes an existing exclusion group for a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateDeleteExclusionGroupAsync(final DeleteExclusionGroupRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -213,7 +204,6 @@ public class PlayFabExperimentationAPI {
      * @param request DeleteExperimentRequest
      * @return Async Task will return EmptyResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> DeleteExperimentAsync(final DeleteExperimentRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -228,7 +218,6 @@ public class PlayFabExperimentationAPI {
      * @param request DeleteExperimentRequest
      * @return EmptyResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> DeleteExperiment(final DeleteExperimentRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -247,7 +236,6 @@ public class PlayFabExperimentationAPI {
     }
 
     /** Deletes an existing experiment for a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateDeleteExperimentAsync(final DeleteExperimentRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -278,7 +266,6 @@ public class PlayFabExperimentationAPI {
      * @param request GetExclusionGroupsRequest
      * @return Async Task will return GetExclusionGroupsResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetExclusionGroupsResult>> GetExclusionGroupsAsync(final GetExclusionGroupsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetExclusionGroupsResult>>() {
@@ -293,7 +280,6 @@ public class PlayFabExperimentationAPI {
      * @param request GetExclusionGroupsRequest
      * @return GetExclusionGroupsResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetExclusionGroupsResult> GetExclusionGroups(final GetExclusionGroupsRequest request) {
         FutureTask<PlayFabResult<GetExclusionGroupsResult>> task = new FutureTask(new Callable<PlayFabResult<GetExclusionGroupsResult>>() {
@@ -312,7 +298,6 @@ public class PlayFabExperimentationAPI {
     }
 
     /** Gets the details of all exclusion groups for a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetExclusionGroupsResult> privateGetExclusionGroupsAsync(final GetExclusionGroupsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -343,7 +328,6 @@ public class PlayFabExperimentationAPI {
      * @param request GetExclusionGroupTrafficRequest
      * @return Async Task will return GetExclusionGroupTrafficResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetExclusionGroupTrafficResult>> GetExclusionGroupTrafficAsync(final GetExclusionGroupTrafficRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetExclusionGroupTrafficResult>>() {
@@ -358,7 +342,6 @@ public class PlayFabExperimentationAPI {
      * @param request GetExclusionGroupTrafficRequest
      * @return GetExclusionGroupTrafficResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetExclusionGroupTrafficResult> GetExclusionGroupTraffic(final GetExclusionGroupTrafficRequest request) {
         FutureTask<PlayFabResult<GetExclusionGroupTrafficResult>> task = new FutureTask(new Callable<PlayFabResult<GetExclusionGroupTrafficResult>>() {
@@ -377,7 +360,6 @@ public class PlayFabExperimentationAPI {
     }
 
     /** Gets the details of all exclusion groups for a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetExclusionGroupTrafficResult> privateGetExclusionGroupTrafficAsync(final GetExclusionGroupTrafficRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -408,7 +390,6 @@ public class PlayFabExperimentationAPI {
      * @param request GetExperimentsRequest
      * @return Async Task will return GetExperimentsResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetExperimentsResult>> GetExperimentsAsync(final GetExperimentsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetExperimentsResult>>() {
@@ -423,7 +404,6 @@ public class PlayFabExperimentationAPI {
      * @param request GetExperimentsRequest
      * @return GetExperimentsResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetExperimentsResult> GetExperiments(final GetExperimentsRequest request) {
         FutureTask<PlayFabResult<GetExperimentsResult>> task = new FutureTask(new Callable<PlayFabResult<GetExperimentsResult>>() {
@@ -442,7 +422,6 @@ public class PlayFabExperimentationAPI {
     }
 
     /** Gets the details of all experiments for a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetExperimentsResult> privateGetExperimentsAsync(final GetExperimentsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -473,7 +452,6 @@ public class PlayFabExperimentationAPI {
      * @param request GetLatestScorecardRequest
      * @return Async Task will return GetLatestScorecardResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetLatestScorecardResult>> GetLatestScorecardAsync(final GetLatestScorecardRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetLatestScorecardResult>>() {
@@ -488,7 +466,6 @@ public class PlayFabExperimentationAPI {
      * @param request GetLatestScorecardRequest
      * @return GetLatestScorecardResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetLatestScorecardResult> GetLatestScorecard(final GetLatestScorecardRequest request) {
         FutureTask<PlayFabResult<GetLatestScorecardResult>> task = new FutureTask(new Callable<PlayFabResult<GetLatestScorecardResult>>() {
@@ -507,7 +484,6 @@ public class PlayFabExperimentationAPI {
     }
 
     /** Gets the latest scorecard of the experiment for the title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetLatestScorecardResult> privateGetLatestScorecardAsync(final GetLatestScorecardRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -538,7 +514,6 @@ public class PlayFabExperimentationAPI {
      * @param request GetTreatmentAssignmentRequest
      * @return Async Task will return GetTreatmentAssignmentResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetTreatmentAssignmentResult>> GetTreatmentAssignmentAsync(final GetTreatmentAssignmentRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetTreatmentAssignmentResult>>() {
@@ -553,7 +528,6 @@ public class PlayFabExperimentationAPI {
      * @param request GetTreatmentAssignmentRequest
      * @return GetTreatmentAssignmentResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetTreatmentAssignmentResult> GetTreatmentAssignment(final GetTreatmentAssignmentRequest request) {
         FutureTask<PlayFabResult<GetTreatmentAssignmentResult>> task = new FutureTask(new Callable<PlayFabResult<GetTreatmentAssignmentResult>>() {
@@ -572,7 +546,6 @@ public class PlayFabExperimentationAPI {
     }
 
     /** Gets the treatment assignments for a player for every running experiment in the title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTreatmentAssignmentResult> privateGetTreatmentAssignmentAsync(final GetTreatmentAssignmentRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -603,7 +576,6 @@ public class PlayFabExperimentationAPI {
      * @param request StartExperimentRequest
      * @return Async Task will return EmptyResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> StartExperimentAsync(final StartExperimentRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -618,7 +590,6 @@ public class PlayFabExperimentationAPI {
      * @param request StartExperimentRequest
      * @return EmptyResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> StartExperiment(final StartExperimentRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -637,7 +608,6 @@ public class PlayFabExperimentationAPI {
     }
 
     /** Starts an existing experiment for a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateStartExperimentAsync(final StartExperimentRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -668,7 +638,6 @@ public class PlayFabExperimentationAPI {
      * @param request StopExperimentRequest
      * @return Async Task will return EmptyResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> StopExperimentAsync(final StopExperimentRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -683,7 +652,6 @@ public class PlayFabExperimentationAPI {
      * @param request StopExperimentRequest
      * @return EmptyResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> StopExperiment(final StopExperimentRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -702,7 +670,6 @@ public class PlayFabExperimentationAPI {
     }
 
     /** Stops an existing experiment for a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateStopExperimentAsync(final StopExperimentRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -733,7 +700,6 @@ public class PlayFabExperimentationAPI {
      * @param request UpdateExclusionGroupRequest
      * @return Async Task will return EmptyResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> UpdateExclusionGroupAsync(final UpdateExclusionGroupRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -748,7 +714,6 @@ public class PlayFabExperimentationAPI {
      * @param request UpdateExclusionGroupRequest
      * @return EmptyResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> UpdateExclusionGroup(final UpdateExclusionGroupRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -767,7 +732,6 @@ public class PlayFabExperimentationAPI {
     }
 
     /** Updates an existing exclusion group for a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateUpdateExclusionGroupAsync(final UpdateExclusionGroupRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -798,7 +762,6 @@ public class PlayFabExperimentationAPI {
      * @param request UpdateExperimentRequest
      * @return Async Task will return EmptyResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResponse>> UpdateExperimentAsync(final UpdateExperimentRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -813,7 +776,6 @@ public class PlayFabExperimentationAPI {
      * @param request UpdateExperimentRequest
      * @return EmptyResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResponse> UpdateExperiment(final UpdateExperimentRequest request) {
         FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
@@ -832,7 +794,6 @@ public class PlayFabExperimentationAPI {
     }
 
     /** Updates an existing experiment for a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResponse> privateUpdateExperimentAsync(final UpdateExperimentRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");

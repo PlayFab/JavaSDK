@@ -9,7 +9,10 @@ import java.util.*;
 import com.google.gson.*;
 import com.google.gson.reflect.*;
 
-    /** API methods for managing the catalog. Inventory manages in-game assets for any given entity. */
+    /**
+     * API methods for managing the catalog. Inventory manages in-game assets for any given entity. API methods for managing
+     * the versioned catalogs.
+     */
 public class PlayFabEconomyAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 
@@ -18,7 +21,6 @@ public class PlayFabEconomyAPI {
      * @param request AddInventoryItemsRequest
      * @return Async Task will return AddInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<AddInventoryItemsResponse>> AddInventoryItemsAsync(final AddInventoryItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<AddInventoryItemsResponse>>() {
@@ -33,7 +35,6 @@ public class PlayFabEconomyAPI {
      * @param request AddInventoryItemsRequest
      * @return AddInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<AddInventoryItemsResponse> AddInventoryItems(final AddInventoryItemsRequest request) {
         FutureTask<PlayFabResult<AddInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<AddInventoryItemsResponse>>() {
@@ -52,7 +53,6 @@ public class PlayFabEconomyAPI {
     }
 
     /** Add inventory items. Up to 10,000 stacks of items can be added to a single inventory collection. Stack size is uncapped. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<AddInventoryItemsResponse> privateAddInventoryItemsAsync(final AddInventoryItemsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -83,7 +83,6 @@ public class PlayFabEconomyAPI {
      * @param request CreateDraftItemRequest
      * @return Async Task will return CreateDraftItemResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateDraftItemResponse>> CreateDraftItemAsync(final CreateDraftItemRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateDraftItemResponse>>() {
@@ -98,7 +97,6 @@ public class PlayFabEconomyAPI {
      * @param request CreateDraftItemRequest
      * @return CreateDraftItemResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateDraftItemResponse> CreateDraftItem(final CreateDraftItemRequest request) {
         FutureTask<PlayFabResult<CreateDraftItemResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateDraftItemResponse>>() {
@@ -117,7 +115,6 @@ public class PlayFabEconomyAPI {
     }
 
     /** Creates a new item in the working catalog using provided metadata. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateDraftItemResponse> privateCreateDraftItemAsync(final CreateDraftItemRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -151,7 +148,6 @@ public class PlayFabEconomyAPI {
      * @param request CreateUploadUrlsRequest
      * @return Async Task will return CreateUploadUrlsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateUploadUrlsResponse>> CreateUploadUrlsAsync(final CreateUploadUrlsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateUploadUrlsResponse>>() {
@@ -169,7 +165,6 @@ public class PlayFabEconomyAPI {
      * @param request CreateUploadUrlsRequest
      * @return CreateUploadUrlsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateUploadUrlsResponse> CreateUploadUrls(final CreateUploadUrlsRequest request) {
         FutureTask<PlayFabResult<CreateUploadUrlsResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateUploadUrlsResponse>>() {
@@ -193,7 +188,6 @@ public class PlayFabEconomyAPI {
      * around uploading content can be found here:
      * https://learn.microsoft.com/en-us/gaming/playfab/features/pricing/meters/catalog-meters
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateUploadUrlsResponse> privateCreateUploadUrlsAsync(final CreateUploadUrlsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -224,7 +218,6 @@ public class PlayFabEconomyAPI {
      * @param request DeleteEntityItemReviewsRequest
      * @return Async Task will return DeleteEntityItemReviewsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<DeleteEntityItemReviewsResponse>> DeleteEntityItemReviewsAsync(final DeleteEntityItemReviewsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<DeleteEntityItemReviewsResponse>>() {
@@ -239,7 +232,6 @@ public class PlayFabEconomyAPI {
      * @param request DeleteEntityItemReviewsRequest
      * @return DeleteEntityItemReviewsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<DeleteEntityItemReviewsResponse> DeleteEntityItemReviews(final DeleteEntityItemReviewsRequest request) {
         FutureTask<PlayFabResult<DeleteEntityItemReviewsResponse>> task = new FutureTask(new Callable<PlayFabResult<DeleteEntityItemReviewsResponse>>() {
@@ -258,7 +250,6 @@ public class PlayFabEconomyAPI {
     }
 
     /** Deletes all reviews, helpfulness votes, and ratings submitted by the entity specified. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteEntityItemReviewsResponse> privateDeleteEntityItemReviewsAsync(final DeleteEntityItemReviewsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -290,7 +281,6 @@ public class PlayFabEconomyAPI {
      * @param request DeleteInventoryCollectionRequest
      * @return Async Task will return DeleteInventoryCollectionResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<DeleteInventoryCollectionResponse>> DeleteInventoryCollectionAsync(final DeleteInventoryCollectionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<DeleteInventoryCollectionResponse>>() {
@@ -306,7 +296,6 @@ public class PlayFabEconomyAPI {
      * @param request DeleteInventoryCollectionRequest
      * @return DeleteInventoryCollectionResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<DeleteInventoryCollectionResponse> DeleteInventoryCollection(final DeleteInventoryCollectionRequest request) {
         FutureTask<PlayFabResult<DeleteInventoryCollectionResponse>> task = new FutureTask(new Callable<PlayFabResult<DeleteInventoryCollectionResponse>>() {
@@ -328,7 +317,6 @@ public class PlayFabEconomyAPI {
      * Delete an Inventory Collection. More information about Inventory Collections can be found here:
      * https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/inventory/collections
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteInventoryCollectionResponse> privateDeleteInventoryCollectionAsync(final DeleteInventoryCollectionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -359,7 +347,6 @@ public class PlayFabEconomyAPI {
      * @param request DeleteInventoryItemsRequest
      * @return Async Task will return DeleteInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<DeleteInventoryItemsResponse>> DeleteInventoryItemsAsync(final DeleteInventoryItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<DeleteInventoryItemsResponse>>() {
@@ -374,7 +361,6 @@ public class PlayFabEconomyAPI {
      * @param request DeleteInventoryItemsRequest
      * @return DeleteInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<DeleteInventoryItemsResponse> DeleteInventoryItems(final DeleteInventoryItemsRequest request) {
         FutureTask<PlayFabResult<DeleteInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<DeleteInventoryItemsResponse>>() {
@@ -393,7 +379,6 @@ public class PlayFabEconomyAPI {
     }
 
     /** Delete inventory items */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteInventoryItemsResponse> privateDeleteInventoryItemsAsync(final DeleteInventoryItemsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -424,7 +409,6 @@ public class PlayFabEconomyAPI {
      * @param request DeleteItemRequest
      * @return Async Task will return DeleteItemResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<DeleteItemResponse>> DeleteItemAsync(final DeleteItemRequest request) {
         return new FutureTask(new Callable<PlayFabResult<DeleteItemResponse>>() {
@@ -439,7 +423,6 @@ public class PlayFabEconomyAPI {
      * @param request DeleteItemRequest
      * @return DeleteItemResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<DeleteItemResponse> DeleteItem(final DeleteItemRequest request) {
         FutureTask<PlayFabResult<DeleteItemResponse>> task = new FutureTask(new Callable<PlayFabResult<DeleteItemResponse>>() {
@@ -458,7 +441,6 @@ public class PlayFabEconomyAPI {
     }
 
     /** Removes an item from working catalog and all published versions from the public catalog. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteItemResponse> privateDeleteItemAsync(final DeleteItemRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -492,7 +474,6 @@ public class PlayFabEconomyAPI {
      * @param request ExecuteInventoryOperationsRequest
      * @return Async Task will return ExecuteInventoryOperationsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ExecuteInventoryOperationsResponse>> ExecuteInventoryOperationsAsync(final ExecuteInventoryOperationsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ExecuteInventoryOperationsResponse>>() {
@@ -510,7 +491,6 @@ public class PlayFabEconomyAPI {
      * @param request ExecuteInventoryOperationsRequest
      * @return ExecuteInventoryOperationsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ExecuteInventoryOperationsResponse> ExecuteInventoryOperations(final ExecuteInventoryOperationsRequest request) {
         FutureTask<PlayFabResult<ExecuteInventoryOperationsResponse>> task = new FutureTask(new Callable<PlayFabResult<ExecuteInventoryOperationsResponse>>() {
@@ -534,7 +514,6 @@ public class PlayFabEconomyAPI {
      * counts as 50 items modified. All operations must be done within a single inventory collection. This API has a reduced
      * RPS compared to an individual inventory operation with Player Entities limited to 60 requests in 90 seconds.
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ExecuteInventoryOperationsResponse> privateExecuteInventoryOperationsAsync(final ExecuteInventoryOperationsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -568,7 +547,6 @@ public class PlayFabEconomyAPI {
      * @param request ExecuteTransferOperationsRequest
      * @return Async Task will return ExecuteTransferOperationsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ExecuteTransferOperationsResponse>> ExecuteTransferOperationsAsync(final ExecuteTransferOperationsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ExecuteTransferOperationsResponse>>() {
@@ -586,7 +564,6 @@ public class PlayFabEconomyAPI {
      * @param request ExecuteTransferOperationsRequest
      * @return ExecuteTransferOperationsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ExecuteTransferOperationsResponse> ExecuteTransferOperations(final ExecuteTransferOperationsRequest request) {
         FutureTask<PlayFabResult<ExecuteTransferOperationsResponse>> task = new FutureTask(new Callable<PlayFabResult<ExecuteTransferOperationsResponse>>() {
@@ -610,7 +587,6 @@ public class PlayFabEconomyAPI {
      * pending operations by looking for OperationStatus = 'InProgress'. You can check on the operation status at anytime
      * within 1 day of the request by passing the TransactionToken to the GetInventoryOperationStatus API.
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ExecuteTransferOperationsResponse> privateExecuteTransferOperationsAsync(final ExecuteTransferOperationsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -643,7 +619,6 @@ public class PlayFabEconomyAPI {
      * @param request GetCatalogConfigRequest
      * @return Async Task will return GetCatalogConfigResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetCatalogConfigResponse>> GetCatalogConfigAsync(final GetCatalogConfigRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetCatalogConfigResponse>>() {
@@ -660,7 +635,6 @@ public class PlayFabEconomyAPI {
      * @param request GetCatalogConfigRequest
      * @return GetCatalogConfigResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetCatalogConfigResponse> GetCatalogConfig(final GetCatalogConfigRequest request) {
         FutureTask<PlayFabResult<GetCatalogConfigResponse>> task = new FutureTask(new Callable<PlayFabResult<GetCatalogConfigResponse>>() {
@@ -683,7 +657,6 @@ public class PlayFabEconomyAPI {
      * seconds for this API. More information about the Catalog Config can be found here:
      * https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/settings
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetCatalogConfigResponse> privateGetCatalogConfigAsync(final GetCatalogConfigRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -716,7 +689,6 @@ public class PlayFabEconomyAPI {
      * @param request GetDraftItemRequest
      * @return Async Task will return GetDraftItemResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetDraftItemResponse>> GetDraftItemAsync(final GetDraftItemRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetDraftItemResponse>>() {
@@ -733,7 +705,6 @@ public class PlayFabEconomyAPI {
      * @param request GetDraftItemRequest
      * @return GetDraftItemResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetDraftItemResponse> GetDraftItem(final GetDraftItemRequest request) {
         FutureTask<PlayFabResult<GetDraftItemResponse>> task = new FutureTask(new Callable<PlayFabResult<GetDraftItemResponse>>() {
@@ -756,7 +727,6 @@ public class PlayFabEconomyAPI {
      * does not work off a cache of the Catalog and should be used when trying to get recent item updates. However, please note
      * that item references data is cached and may take a few moments for changes to propagate.
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetDraftItemResponse> privateGetDraftItemAsync(final GetDraftItemRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -788,7 +758,6 @@ public class PlayFabEconomyAPI {
      * @param request GetDraftItemsRequest
      * @return Async Task will return GetDraftItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetDraftItemsResponse>> GetDraftItemsAsync(final GetDraftItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetDraftItemsResponse>>() {
@@ -804,7 +773,6 @@ public class PlayFabEconomyAPI {
      * @param request GetDraftItemsRequest
      * @return GetDraftItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetDraftItemsResponse> GetDraftItems(final GetDraftItemsRequest request) {
         FutureTask<PlayFabResult<GetDraftItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetDraftItemsResponse>>() {
@@ -826,7 +794,6 @@ public class PlayFabEconomyAPI {
      * Retrieves a paginated list of the items from the draft catalog. Up to 50 IDs can be retrieved in a single request.
      * GetDraftItems does not work off a cache of the Catalog and should be used when trying to get recent item updates.
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetDraftItemsResponse> privateGetDraftItemsAsync(final GetDraftItemsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -859,7 +826,6 @@ public class PlayFabEconomyAPI {
      * @param request GetEntityDraftItemsRequest
      * @return Async Task will return GetEntityDraftItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetEntityDraftItemsResponse>> GetEntityDraftItemsAsync(final GetEntityDraftItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetEntityDraftItemsResponse>>() {
@@ -876,7 +842,6 @@ public class PlayFabEconomyAPI {
      * @param request GetEntityDraftItemsRequest
      * @return GetEntityDraftItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetEntityDraftItemsResponse> GetEntityDraftItems(final GetEntityDraftItemsRequest request) {
         FutureTask<PlayFabResult<GetEntityDraftItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetEntityDraftItemsResponse>>() {
@@ -899,7 +864,6 @@ public class PlayFabEconomyAPI {
      * once. You can use continuation tokens to paginate through results that return greater than the limit.
      * GetEntityDraftItems does not work off a cache of the Catalog and should be used when trying to get recent item updates.
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetEntityDraftItemsResponse> privateGetEntityDraftItemsAsync(final GetEntityDraftItemsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -931,7 +895,6 @@ public class PlayFabEconomyAPI {
      * @param request GetEntityItemReviewRequest
      * @return Async Task will return GetEntityItemReviewResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetEntityItemReviewResponse>> GetEntityItemReviewAsync(final GetEntityItemReviewRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetEntityItemReviewResponse>>() {
@@ -947,7 +910,6 @@ public class PlayFabEconomyAPI {
      * @param request GetEntityItemReviewRequest
      * @return GetEntityItemReviewResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetEntityItemReviewResponse> GetEntityItemReview(final GetEntityItemReviewRequest request) {
         FutureTask<PlayFabResult<GetEntityItemReviewResponse>> task = new FutureTask(new Callable<PlayFabResult<GetEntityItemReviewResponse>>() {
@@ -969,7 +931,6 @@ public class PlayFabEconomyAPI {
      * Gets the submitted review for the specified item by the authenticated entity. Individual ratings and reviews data update
      * in near real time with delays within a few seconds.
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetEntityItemReviewResponse> privateGetEntityItemReviewAsync(final GetEntityItemReviewRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1002,7 +963,6 @@ public class PlayFabEconomyAPI {
      * @param request GetInventoryCollectionIdsRequest
      * @return Async Task will return GetInventoryCollectionIdsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetInventoryCollectionIdsResponse>> GetInventoryCollectionIdsAsync(final GetInventoryCollectionIdsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetInventoryCollectionIdsResponse>>() {
@@ -1019,7 +979,6 @@ public class PlayFabEconomyAPI {
      * @param request GetInventoryCollectionIdsRequest
      * @return GetInventoryCollectionIdsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetInventoryCollectionIdsResponse> GetInventoryCollectionIds(final GetInventoryCollectionIdsRequest request) {
         FutureTask<PlayFabResult<GetInventoryCollectionIdsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetInventoryCollectionIdsResponse>>() {
@@ -1042,7 +1001,6 @@ public class PlayFabEconomyAPI {
      * use continuation tokens to paginate through results that return greater than the limit. It can take a few seconds for
      * new collection Ids to show up.
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetInventoryCollectionIdsResponse> privateGetInventoryCollectionIdsAsync(final GetInventoryCollectionIdsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1073,7 +1031,6 @@ public class PlayFabEconomyAPI {
      * @param request GetInventoryItemsRequest
      * @return Async Task will return GetInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetInventoryItemsResponse>> GetInventoryItemsAsync(final GetInventoryItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetInventoryItemsResponse>>() {
@@ -1088,7 +1045,6 @@ public class PlayFabEconomyAPI {
      * @param request GetInventoryItemsRequest
      * @return GetInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetInventoryItemsResponse> GetInventoryItems(final GetInventoryItemsRequest request) {
         FutureTask<PlayFabResult<GetInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetInventoryItemsResponse>>() {
@@ -1107,7 +1063,6 @@ public class PlayFabEconomyAPI {
     }
 
     /** Get current inventory items. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetInventoryItemsResponse> privateGetInventoryItemsAsync(final GetInventoryItemsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1139,7 +1094,6 @@ public class PlayFabEconomyAPI {
      * @param request GetInventoryOperationStatusRequest
      * @return Async Task will return GetInventoryOperationStatusResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetInventoryOperationStatusResponse>> GetInventoryOperationStatusAsync(final GetInventoryOperationStatusRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetInventoryOperationStatusResponse>>() {
@@ -1155,7 +1109,6 @@ public class PlayFabEconomyAPI {
      * @param request GetInventoryOperationStatusRequest
      * @return GetInventoryOperationStatusResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetInventoryOperationStatusResponse> GetInventoryOperationStatus(final GetInventoryOperationStatusRequest request) {
         FutureTask<PlayFabResult<GetInventoryOperationStatusResponse>> task = new FutureTask(new Callable<PlayFabResult<GetInventoryOperationStatusResponse>>() {
@@ -1177,7 +1130,6 @@ public class PlayFabEconomyAPI {
      * Get the status of an inventory operation using an OperationToken. You can check on the operation status at anytime
      * within 1 day of the request by passing the TransactionToken to the this API.
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetInventoryOperationStatusResponse> privateGetInventoryOperationStatusAsync(final GetInventoryOperationStatusRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1210,7 +1162,6 @@ public class PlayFabEconomyAPI {
      * @param request GetItemRequest
      * @return Async Task will return GetItemResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetItemResponse>> GetItemAsync(final GetItemRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetItemResponse>>() {
@@ -1227,7 +1178,6 @@ public class PlayFabEconomyAPI {
      * @param request GetItemRequest
      * @return GetItemResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetItemResponse> GetItem(final GetItemRequest request) {
         FutureTask<PlayFabResult<GetItemResponse>> task = new FutureTask(new Callable<PlayFabResult<GetItemResponse>>() {
@@ -1250,7 +1200,6 @@ public class PlayFabEconomyAPI {
      * trying to get recent item updates. However, please note that item references data is cached and may take a few moments
      * for changes to propagate.
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetItemResponse> privateGetItemAsync(final GetItemRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1284,7 +1233,6 @@ public class PlayFabEconomyAPI {
      * @param request GetItemContainersRequest
      * @return Async Task will return GetItemContainersResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetItemContainersResponse>> GetItemContainersAsync(final GetItemContainersRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetItemContainersResponse>>() {
@@ -1302,7 +1250,6 @@ public class PlayFabEconomyAPI {
      * @param request GetItemContainersRequest
      * @return GetItemContainersResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetItemContainersResponse> GetItemContainers(final GetItemContainersRequest request) {
         FutureTask<PlayFabResult<GetItemContainersResponse>> task = new FutureTask(new Callable<PlayFabResult<GetItemContainersResponse>>() {
@@ -1326,7 +1273,6 @@ public class PlayFabEconomyAPI {
      * intended for tooling/automation scenarios and has a reduced RPS with Player Entities limited to 30 requests in 300
      * seconds and Title Entities limited to 100 requests in 10 seconds.
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetItemContainersResponse> privateGetItemContainersAsync(final GetItemContainersRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1358,7 +1304,6 @@ public class PlayFabEconomyAPI {
      * @param request GetItemModerationStateRequest
      * @return Async Task will return GetItemModerationStateResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetItemModerationStateResponse>> GetItemModerationStateAsync(final GetItemModerationStateRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetItemModerationStateResponse>>() {
@@ -1374,7 +1319,6 @@ public class PlayFabEconomyAPI {
      * @param request GetItemModerationStateRequest
      * @return GetItemModerationStateResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetItemModerationStateResponse> GetItemModerationState(final GetItemModerationStateRequest request) {
         FutureTask<PlayFabResult<GetItemModerationStateResponse>> task = new FutureTask(new Callable<PlayFabResult<GetItemModerationStateResponse>>() {
@@ -1396,7 +1340,6 @@ public class PlayFabEconomyAPI {
      * Gets the moderation state for an item, including the concern category and string reason. More information about
      * moderation states can be found here: https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/ugc/moderation
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetItemModerationStateResponse> privateGetItemModerationStateAsync(final GetItemModerationStateRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1427,7 +1370,6 @@ public class PlayFabEconomyAPI {
      * @param request GetItemPublishStatusRequest
      * @return Async Task will return GetItemPublishStatusResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetItemPublishStatusResponse>> GetItemPublishStatusAsync(final GetItemPublishStatusRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetItemPublishStatusResponse>>() {
@@ -1442,7 +1384,6 @@ public class PlayFabEconomyAPI {
      * @param request GetItemPublishStatusRequest
      * @return GetItemPublishStatusResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetItemPublishStatusResponse> GetItemPublishStatus(final GetItemPublishStatusRequest request) {
         FutureTask<PlayFabResult<GetItemPublishStatusResponse>> task = new FutureTask(new Callable<PlayFabResult<GetItemPublishStatusResponse>>() {
@@ -1461,7 +1402,6 @@ public class PlayFabEconomyAPI {
     }
 
     /** Gets the status of a publish of an item. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetItemPublishStatusResponse> privateGetItemPublishStatusAsync(final GetItemPublishStatusRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1493,7 +1433,6 @@ public class PlayFabEconomyAPI {
      * @param request GetItemReviewsRequest
      * @return Async Task will return GetItemReviewsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetItemReviewsResponse>> GetItemReviewsAsync(final GetItemReviewsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetItemReviewsResponse>>() {
@@ -1509,7 +1448,6 @@ public class PlayFabEconomyAPI {
      * @param request GetItemReviewsRequest
      * @return GetItemReviewsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetItemReviewsResponse> GetItemReviews(final GetItemReviewsRequest request) {
         FutureTask<PlayFabResult<GetItemReviewsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetItemReviewsResponse>>() {
@@ -1531,7 +1469,6 @@ public class PlayFabEconomyAPI {
      * Get a paginated set of reviews associated with the specified item. Individual ratings and reviews data update in near
      * real time with delays within a few seconds.
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetItemReviewsResponse> privateGetItemReviewsAsync(final GetItemReviewsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1563,7 +1500,6 @@ public class PlayFabEconomyAPI {
      * @param request GetItemReviewSummaryRequest
      * @return Async Task will return GetItemReviewSummaryResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetItemReviewSummaryResponse>> GetItemReviewSummaryAsync(final GetItemReviewSummaryRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetItemReviewSummaryResponse>>() {
@@ -1579,7 +1515,6 @@ public class PlayFabEconomyAPI {
      * @param request GetItemReviewSummaryRequest
      * @return GetItemReviewSummaryResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetItemReviewSummaryResponse> GetItemReviewSummary(final GetItemReviewSummaryRequest request) {
         FutureTask<PlayFabResult<GetItemReviewSummaryResponse>> task = new FutureTask(new Callable<PlayFabResult<GetItemReviewSummaryResponse>>() {
@@ -1601,7 +1536,6 @@ public class PlayFabEconomyAPI {
      * Get a summary of all ratings and reviews associated with the specified item. Summary ratings data is cached with update
      * data coming within 15 minutes.
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetItemReviewSummaryResponse> privateGetItemReviewSummaryAsync(final GetItemReviewSummaryRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1634,7 +1568,6 @@ public class PlayFabEconomyAPI {
      * @param request GetItemsRequest
      * @return Async Task will return GetItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetItemsResponse>> GetItemsAsync(final GetItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetItemsResponse>>() {
@@ -1651,7 +1584,6 @@ public class PlayFabEconomyAPI {
      * @param request GetItemsRequest
      * @return GetItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetItemsResponse> GetItems(final GetItemsRequest request) {
         FutureTask<PlayFabResult<GetItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<GetItemsResponse>>() {
@@ -1674,7 +1606,6 @@ public class PlayFabEconomyAPI {
      * the Catalog and should be used when trying to get recent item updates. However, please note that item references data is
      * cached and may take a few moments for changes to propagate.
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetItemsResponse> privateGetItemsAsync(final GetItemsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1705,7 +1636,6 @@ public class PlayFabEconomyAPI {
      * @param request GetMicrosoftStoreAccessTokensRequest
      * @return Async Task will return GetMicrosoftStoreAccessTokensResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetMicrosoftStoreAccessTokensResponse>> GetMicrosoftStoreAccessTokensAsync(final GetMicrosoftStoreAccessTokensRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetMicrosoftStoreAccessTokensResponse>>() {
@@ -1720,7 +1650,6 @@ public class PlayFabEconomyAPI {
      * @param request GetMicrosoftStoreAccessTokensRequest
      * @return GetMicrosoftStoreAccessTokensResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetMicrosoftStoreAccessTokensResponse> GetMicrosoftStoreAccessTokens(final GetMicrosoftStoreAccessTokensRequest request) {
         FutureTask<PlayFabResult<GetMicrosoftStoreAccessTokensResponse>> task = new FutureTask(new Callable<PlayFabResult<GetMicrosoftStoreAccessTokensResponse>>() {
@@ -1739,7 +1668,6 @@ public class PlayFabEconomyAPI {
     }
 
     /** Gets the access tokens. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetMicrosoftStoreAccessTokensResponse> privateGetMicrosoftStoreAccessTokensAsync(final GetMicrosoftStoreAccessTokensRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1772,7 +1700,6 @@ public class PlayFabEconomyAPI {
      * @param request GetTransactionHistoryRequest
      * @return Async Task will return GetTransactionHistoryResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetTransactionHistoryResponse>> GetTransactionHistoryAsync(final GetTransactionHistoryRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetTransactionHistoryResponse>>() {
@@ -1789,7 +1716,6 @@ public class PlayFabEconomyAPI {
      * @param request GetTransactionHistoryRequest
      * @return GetTransactionHistoryResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetTransactionHistoryResponse> GetTransactionHistory(final GetTransactionHistoryRequest request) {
         FutureTask<PlayFabResult<GetTransactionHistoryResponse>> task = new FutureTask(new Callable<PlayFabResult<GetTransactionHistoryResponse>>() {
@@ -1812,7 +1738,6 @@ public class PlayFabEconomyAPI {
      * paginate through results that return greater than the limit. Getting transaction history has a lower RPS limit than
      * getting a Player's inventory with Player Entities having a limit of 30 requests in 300 seconds.
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTransactionHistoryResponse> privateGetTransactionHistoryAsync(final GetTransactionHistoryRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1844,7 +1769,6 @@ public class PlayFabEconomyAPI {
      * @param request PublishDraftItemRequest
      * @return Async Task will return PublishDraftItemResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<PublishDraftItemResponse>> PublishDraftItemAsync(final PublishDraftItemRequest request) {
         return new FutureTask(new Callable<PlayFabResult<PublishDraftItemResponse>>() {
@@ -1860,7 +1784,6 @@ public class PlayFabEconomyAPI {
      * @param request PublishDraftItemRequest
      * @return PublishDraftItemResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<PublishDraftItemResponse> PublishDraftItem(final PublishDraftItemRequest request) {
         FutureTask<PlayFabResult<PublishDraftItemResponse>> task = new FutureTask(new Callable<PlayFabResult<PublishDraftItemResponse>>() {
@@ -1882,7 +1805,6 @@ public class PlayFabEconomyAPI {
      * Initiates a publish of an item from the working catalog to the public catalog. You can use the GetItemPublishStatus API
      * to track the state of the item publish.
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<PublishDraftItemResponse> privatePublishDraftItemAsync(final PublishDraftItemRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1914,7 +1836,6 @@ public class PlayFabEconomyAPI {
      * @param request PurchaseInventoryItemsRequest
      * @return Async Task will return PurchaseInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<PurchaseInventoryItemsResponse>> PurchaseInventoryItemsAsync(final PurchaseInventoryItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<PurchaseInventoryItemsResponse>>() {
@@ -1930,7 +1851,6 @@ public class PlayFabEconomyAPI {
      * @param request PurchaseInventoryItemsRequest
      * @return PurchaseInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<PurchaseInventoryItemsResponse> PurchaseInventoryItems(final PurchaseInventoryItemsRequest request) {
         FutureTask<PlayFabResult<PurchaseInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<PurchaseInventoryItemsResponse>>() {
@@ -1952,7 +1872,6 @@ public class PlayFabEconomyAPI {
      * Purchase an item or bundle. Up to 10,000 stacks of items can be added to a single inventory collection. Stack size is
      * uncapped.
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<PurchaseInventoryItemsResponse> privatePurchaseInventoryItemsAsync(final PurchaseInventoryItemsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1983,7 +1902,6 @@ public class PlayFabEconomyAPI {
      * @param request RedeemAppleAppStoreInventoryItemsRequest
      * @return Async Task will return RedeemAppleAppStoreInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<RedeemAppleAppStoreInventoryItemsResponse>> RedeemAppleAppStoreInventoryItemsAsync(final RedeemAppleAppStoreInventoryItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<RedeemAppleAppStoreInventoryItemsResponse>>() {
@@ -1998,7 +1916,6 @@ public class PlayFabEconomyAPI {
      * @param request RedeemAppleAppStoreInventoryItemsRequest
      * @return RedeemAppleAppStoreInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<RedeemAppleAppStoreInventoryItemsResponse> RedeemAppleAppStoreInventoryItems(final RedeemAppleAppStoreInventoryItemsRequest request) {
         FutureTask<PlayFabResult<RedeemAppleAppStoreInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<RedeemAppleAppStoreInventoryItemsResponse>>() {
@@ -2017,7 +1934,6 @@ public class PlayFabEconomyAPI {
     }
 
     /** Redeem items. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RedeemAppleAppStoreInventoryItemsResponse> privateRedeemAppleAppStoreInventoryItemsAsync(final RedeemAppleAppStoreInventoryItemsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2048,7 +1964,6 @@ public class PlayFabEconomyAPI {
      * @param request RedeemGooglePlayInventoryItemsRequest
      * @return Async Task will return RedeemGooglePlayInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<RedeemGooglePlayInventoryItemsResponse>> RedeemGooglePlayInventoryItemsAsync(final RedeemGooglePlayInventoryItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<RedeemGooglePlayInventoryItemsResponse>>() {
@@ -2063,7 +1978,6 @@ public class PlayFabEconomyAPI {
      * @param request RedeemGooglePlayInventoryItemsRequest
      * @return RedeemGooglePlayInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<RedeemGooglePlayInventoryItemsResponse> RedeemGooglePlayInventoryItems(final RedeemGooglePlayInventoryItemsRequest request) {
         FutureTask<PlayFabResult<RedeemGooglePlayInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<RedeemGooglePlayInventoryItemsResponse>>() {
@@ -2082,7 +1996,6 @@ public class PlayFabEconomyAPI {
     }
 
     /** Redeem items. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RedeemGooglePlayInventoryItemsResponse> privateRedeemGooglePlayInventoryItemsAsync(final RedeemGooglePlayInventoryItemsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2113,7 +2026,6 @@ public class PlayFabEconomyAPI {
      * @param request RedeemMicrosoftStoreInventoryItemsRequest
      * @return Async Task will return RedeemMicrosoftStoreInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<RedeemMicrosoftStoreInventoryItemsResponse>> RedeemMicrosoftStoreInventoryItemsAsync(final RedeemMicrosoftStoreInventoryItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<RedeemMicrosoftStoreInventoryItemsResponse>>() {
@@ -2128,7 +2040,6 @@ public class PlayFabEconomyAPI {
      * @param request RedeemMicrosoftStoreInventoryItemsRequest
      * @return RedeemMicrosoftStoreInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<RedeemMicrosoftStoreInventoryItemsResponse> RedeemMicrosoftStoreInventoryItems(final RedeemMicrosoftStoreInventoryItemsRequest request) {
         FutureTask<PlayFabResult<RedeemMicrosoftStoreInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<RedeemMicrosoftStoreInventoryItemsResponse>>() {
@@ -2147,7 +2058,6 @@ public class PlayFabEconomyAPI {
     }
 
     /** Redeem items. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RedeemMicrosoftStoreInventoryItemsResponse> privateRedeemMicrosoftStoreInventoryItemsAsync(final RedeemMicrosoftStoreInventoryItemsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2178,7 +2088,6 @@ public class PlayFabEconomyAPI {
      * @param request RedeemNintendoEShopInventoryItemsRequest
      * @return Async Task will return RedeemNintendoEShopInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<RedeemNintendoEShopInventoryItemsResponse>> RedeemNintendoEShopInventoryItemsAsync(final RedeemNintendoEShopInventoryItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<RedeemNintendoEShopInventoryItemsResponse>>() {
@@ -2193,7 +2102,6 @@ public class PlayFabEconomyAPI {
      * @param request RedeemNintendoEShopInventoryItemsRequest
      * @return RedeemNintendoEShopInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<RedeemNintendoEShopInventoryItemsResponse> RedeemNintendoEShopInventoryItems(final RedeemNintendoEShopInventoryItemsRequest request) {
         FutureTask<PlayFabResult<RedeemNintendoEShopInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<RedeemNintendoEShopInventoryItemsResponse>>() {
@@ -2212,7 +2120,6 @@ public class PlayFabEconomyAPI {
     }
 
     /** Redeem items. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RedeemNintendoEShopInventoryItemsResponse> privateRedeemNintendoEShopInventoryItemsAsync(final RedeemNintendoEShopInventoryItemsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2243,7 +2150,6 @@ public class PlayFabEconomyAPI {
      * @param request RedeemPlayStationStoreInventoryItemsRequest
      * @return Async Task will return RedeemPlayStationStoreInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<RedeemPlayStationStoreInventoryItemsResponse>> RedeemPlayStationStoreInventoryItemsAsync(final RedeemPlayStationStoreInventoryItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<RedeemPlayStationStoreInventoryItemsResponse>>() {
@@ -2258,7 +2164,6 @@ public class PlayFabEconomyAPI {
      * @param request RedeemPlayStationStoreInventoryItemsRequest
      * @return RedeemPlayStationStoreInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<RedeemPlayStationStoreInventoryItemsResponse> RedeemPlayStationStoreInventoryItems(final RedeemPlayStationStoreInventoryItemsRequest request) {
         FutureTask<PlayFabResult<RedeemPlayStationStoreInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<RedeemPlayStationStoreInventoryItemsResponse>>() {
@@ -2277,7 +2182,6 @@ public class PlayFabEconomyAPI {
     }
 
     /** Redeem items. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RedeemPlayStationStoreInventoryItemsResponse> privateRedeemPlayStationStoreInventoryItemsAsync(final RedeemPlayStationStoreInventoryItemsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2308,7 +2212,6 @@ public class PlayFabEconomyAPI {
      * @param request RedeemSteamInventoryItemsRequest
      * @return Async Task will return RedeemSteamInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<RedeemSteamInventoryItemsResponse>> RedeemSteamInventoryItemsAsync(final RedeemSteamInventoryItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<RedeemSteamInventoryItemsResponse>>() {
@@ -2323,7 +2226,6 @@ public class PlayFabEconomyAPI {
      * @param request RedeemSteamInventoryItemsRequest
      * @return RedeemSteamInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<RedeemSteamInventoryItemsResponse> RedeemSteamInventoryItems(final RedeemSteamInventoryItemsRequest request) {
         FutureTask<PlayFabResult<RedeemSteamInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<RedeemSteamInventoryItemsResponse>>() {
@@ -2342,7 +2244,6 @@ public class PlayFabEconomyAPI {
     }
 
     /** Redeem items. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RedeemSteamInventoryItemsResponse> privateRedeemSteamInventoryItemsAsync(final RedeemSteamInventoryItemsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2373,7 +2274,6 @@ public class PlayFabEconomyAPI {
      * @param request ReportItemRequest
      * @return Async Task will return ReportItemResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ReportItemResponse>> ReportItemAsync(final ReportItemRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ReportItemResponse>>() {
@@ -2388,7 +2288,6 @@ public class PlayFabEconomyAPI {
      * @param request ReportItemRequest
      * @return ReportItemResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ReportItemResponse> ReportItem(final ReportItemRequest request) {
         FutureTask<PlayFabResult<ReportItemResponse>> task = new FutureTask(new Callable<PlayFabResult<ReportItemResponse>>() {
@@ -2407,7 +2306,6 @@ public class PlayFabEconomyAPI {
     }
 
     /** Submit a report for an item, indicating in what way the item is inappropriate. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ReportItemResponse> privateReportItemAsync(final ReportItemRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2438,7 +2336,6 @@ public class PlayFabEconomyAPI {
      * @param request ReportItemReviewRequest
      * @return Async Task will return ReportItemReviewResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ReportItemReviewResponse>> ReportItemReviewAsync(final ReportItemReviewRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ReportItemReviewResponse>>() {
@@ -2453,7 +2350,6 @@ public class PlayFabEconomyAPI {
      * @param request ReportItemReviewRequest
      * @return ReportItemReviewResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ReportItemReviewResponse> ReportItemReview(final ReportItemReviewRequest request) {
         FutureTask<PlayFabResult<ReportItemReviewResponse>> task = new FutureTask(new Callable<PlayFabResult<ReportItemReviewResponse>>() {
@@ -2472,7 +2368,6 @@ public class PlayFabEconomyAPI {
     }
 
     /** Submit a report for a review */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ReportItemReviewResponse> privateReportItemReviewAsync(final ReportItemReviewRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2505,7 +2400,6 @@ public class PlayFabEconomyAPI {
      * @param request ReviewItemRequest
      * @return Async Task will return ReviewItemResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ReviewItemResponse>> ReviewItemAsync(final ReviewItemRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ReviewItemResponse>>() {
@@ -2522,7 +2416,6 @@ public class PlayFabEconomyAPI {
      * @param request ReviewItemRequest
      * @return ReviewItemResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ReviewItemResponse> ReviewItem(final ReviewItemRequest request) {
         FutureTask<PlayFabResult<ReviewItemResponse>> task = new FutureTask(new Callable<PlayFabResult<ReviewItemResponse>>() {
@@ -2545,7 +2438,6 @@ public class PlayFabEconomyAPI {
      * reviews can be found here:
      * https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/catalog/ratings#ratings-design-and-caching
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ReviewItemResponse> privateReviewItemAsync(final ReviewItemRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2579,7 +2471,6 @@ public class PlayFabEconomyAPI {
      * @param request SearchItemsRequest
      * @return Async Task will return SearchItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<SearchItemsResponse>> SearchItemsAsync(final SearchItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<SearchItemsResponse>>() {
@@ -2597,7 +2488,6 @@ public class PlayFabEconomyAPI {
      * @param request SearchItemsRequest
      * @return SearchItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<SearchItemsResponse> SearchItems(final SearchItemsRequest request) {
         FutureTask<PlayFabResult<SearchItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<SearchItemsResponse>>() {
@@ -2621,7 +2511,6 @@ public class PlayFabEconomyAPI {
      * use the GetItem API for when trying to immediately get recent item updates. More information about the Search API can be
      * found here: https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/catalog/search
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SearchItemsResponse> privateSearchItemsAsync(final SearchItemsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2653,7 +2542,6 @@ public class PlayFabEconomyAPI {
      * @param request SetItemModerationStateRequest
      * @return Async Task will return SetItemModerationStateResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<SetItemModerationStateResponse>> SetItemModerationStateAsync(final SetItemModerationStateRequest request) {
         return new FutureTask(new Callable<PlayFabResult<SetItemModerationStateResponse>>() {
@@ -2669,7 +2557,6 @@ public class PlayFabEconomyAPI {
      * @param request SetItemModerationStateRequest
      * @return SetItemModerationStateResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<SetItemModerationStateResponse> SetItemModerationState(final SetItemModerationStateRequest request) {
         FutureTask<PlayFabResult<SetItemModerationStateResponse>> task = new FutureTask(new Callable<PlayFabResult<SetItemModerationStateResponse>>() {
@@ -2691,7 +2578,6 @@ public class PlayFabEconomyAPI {
      * Sets the moderation state for an item, including the concern category and string reason. More information about
      * moderation states can be found here: https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/ugc/moderation
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SetItemModerationStateResponse> privateSetItemModerationStateAsync(final SetItemModerationStateRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2722,7 +2608,6 @@ public class PlayFabEconomyAPI {
      * @param request SubmitItemReviewVoteRequest
      * @return Async Task will return SubmitItemReviewVoteResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<SubmitItemReviewVoteResponse>> SubmitItemReviewVoteAsync(final SubmitItemReviewVoteRequest request) {
         return new FutureTask(new Callable<PlayFabResult<SubmitItemReviewVoteResponse>>() {
@@ -2737,7 +2622,6 @@ public class PlayFabEconomyAPI {
      * @param request SubmitItemReviewVoteRequest
      * @return SubmitItemReviewVoteResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<SubmitItemReviewVoteResponse> SubmitItemReviewVote(final SubmitItemReviewVoteRequest request) {
         FutureTask<PlayFabResult<SubmitItemReviewVoteResponse>> task = new FutureTask(new Callable<PlayFabResult<SubmitItemReviewVoteResponse>>() {
@@ -2756,7 +2640,6 @@ public class PlayFabEconomyAPI {
     }
 
     /** Submit a vote for a review, indicating whether the review was helpful or unhelpful. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SubmitItemReviewVoteResponse> privateSubmitItemReviewVoteAsync(final SubmitItemReviewVoteRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2787,7 +2670,6 @@ public class PlayFabEconomyAPI {
      * @param request SubtractInventoryItemsRequest
      * @return Async Task will return SubtractInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<SubtractInventoryItemsResponse>> SubtractInventoryItemsAsync(final SubtractInventoryItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<SubtractInventoryItemsResponse>>() {
@@ -2802,7 +2684,6 @@ public class PlayFabEconomyAPI {
      * @param request SubtractInventoryItemsRequest
      * @return SubtractInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<SubtractInventoryItemsResponse> SubtractInventoryItems(final SubtractInventoryItemsRequest request) {
         FutureTask<PlayFabResult<SubtractInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<SubtractInventoryItemsResponse>>() {
@@ -2821,7 +2702,6 @@ public class PlayFabEconomyAPI {
     }
 
     /** Subtract inventory items. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<SubtractInventoryItemsResponse> privateSubtractInventoryItemsAsync(final SubtractInventoryItemsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2852,7 +2732,6 @@ public class PlayFabEconomyAPI {
      * @param request TakedownItemReviewsRequest
      * @return Async Task will return TakedownItemReviewsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<TakedownItemReviewsResponse>> TakedownItemReviewsAsync(final TakedownItemReviewsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<TakedownItemReviewsResponse>>() {
@@ -2867,7 +2746,6 @@ public class PlayFabEconomyAPI {
      * @param request TakedownItemReviewsRequest
      * @return TakedownItemReviewsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<TakedownItemReviewsResponse> TakedownItemReviews(final TakedownItemReviewsRequest request) {
         FutureTask<PlayFabResult<TakedownItemReviewsResponse>> task = new FutureTask(new Callable<PlayFabResult<TakedownItemReviewsResponse>>() {
@@ -2886,7 +2764,6 @@ public class PlayFabEconomyAPI {
     }
 
     /** Submit a request to takedown one or more reviews. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<TakedownItemReviewsResponse> privateTakedownItemReviewsAsync(final TakedownItemReviewsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -2922,7 +2799,6 @@ public class PlayFabEconomyAPI {
      * @param request TransferInventoryItemsRequest
      * @return Async Task will return TransferInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<TransferInventoryItemsResponse>> TransferInventoryItemsAsync(final TransferInventoryItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<TransferInventoryItemsResponse>>() {
@@ -2942,7 +2818,6 @@ public class PlayFabEconomyAPI {
      * @param request TransferInventoryItemsRequest
      * @return TransferInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<TransferInventoryItemsResponse> TransferInventoryItems(final TransferInventoryItemsRequest request) {
         FutureTask<PlayFabResult<TransferInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<TransferInventoryItemsResponse>>() {
@@ -2968,7 +2843,6 @@ public class PlayFabEconomyAPI {
      * here:
      * https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/inventory/?tabs=inventory-game-manager#transfer-inventory-items
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<TransferInventoryItemsResponse> privateTransferInventoryItemsAsync(final TransferInventoryItemsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -3001,7 +2875,6 @@ public class PlayFabEconomyAPI {
      * @param request UpdateCatalogConfigRequest
      * @return Async Task will return UpdateCatalogConfigResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateCatalogConfigResponse>> UpdateCatalogConfigAsync(final UpdateCatalogConfigRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateCatalogConfigResponse>>() {
@@ -3018,7 +2891,6 @@ public class PlayFabEconomyAPI {
      * @param request UpdateCatalogConfigRequest
      * @return UpdateCatalogConfigResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateCatalogConfigResponse> UpdateCatalogConfig(final UpdateCatalogConfigRequest request) {
         FutureTask<PlayFabResult<UpdateCatalogConfigResponse>> task = new FutureTask(new Callable<PlayFabResult<UpdateCatalogConfigResponse>>() {
@@ -3041,7 +2913,6 @@ public class PlayFabEconomyAPI {
      * seconds for this API. More information about the Catalog Config can be found here:
      * https://learn.microsoft.com/en-us/gaming/playfab/features/economy-v2/settings
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateCatalogConfigResponse> privateUpdateCatalogConfigAsync(final UpdateCatalogConfigRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -3072,7 +2943,6 @@ public class PlayFabEconomyAPI {
      * @param request UpdateDraftItemRequest
      * @return Async Task will return UpdateDraftItemResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateDraftItemResponse>> UpdateDraftItemAsync(final UpdateDraftItemRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateDraftItemResponse>>() {
@@ -3087,7 +2957,6 @@ public class PlayFabEconomyAPI {
      * @param request UpdateDraftItemRequest
      * @return UpdateDraftItemResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateDraftItemResponse> UpdateDraftItem(final UpdateDraftItemRequest request) {
         FutureTask<PlayFabResult<UpdateDraftItemResponse>> task = new FutureTask(new Callable<PlayFabResult<UpdateDraftItemResponse>>() {
@@ -3106,7 +2975,6 @@ public class PlayFabEconomyAPI {
     }
 
     /** Update the metadata for an item in the working catalog. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateDraftItemResponse> privateUpdateDraftItemAsync(final UpdateDraftItemRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -3137,7 +3005,6 @@ public class PlayFabEconomyAPI {
      * @param request UpdateInventoryItemsRequest
      * @return Async Task will return UpdateInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<UpdateInventoryItemsResponse>> UpdateInventoryItemsAsync(final UpdateInventoryItemsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<UpdateInventoryItemsResponse>>() {
@@ -3152,7 +3019,6 @@ public class PlayFabEconomyAPI {
      * @param request UpdateInventoryItemsRequest
      * @return UpdateInventoryItemsResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<UpdateInventoryItemsResponse> UpdateInventoryItems(final UpdateInventoryItemsRequest request) {
         FutureTask<PlayFabResult<UpdateInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<UpdateInventoryItemsResponse>>() {
@@ -3171,7 +3037,6 @@ public class PlayFabEconomyAPI {
     }
 
     /** Update inventory items */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateInventoryItemsResponse> privateUpdateInventoryItemsAsync(final UpdateInventoryItemsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");

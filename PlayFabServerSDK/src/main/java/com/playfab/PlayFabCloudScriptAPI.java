@@ -19,7 +19,6 @@ public class PlayFabCloudScriptAPI {
      * @param request ExecuteEntityCloudScriptRequest
      * @return Async Task will return ExecuteCloudScriptResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ExecuteCloudScriptResult>> ExecuteEntityCloudScriptAsync(final ExecuteEntityCloudScriptRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ExecuteCloudScriptResult>>() {
@@ -35,7 +34,6 @@ public class PlayFabCloudScriptAPI {
      * @param request ExecuteEntityCloudScriptRequest
      * @return ExecuteCloudScriptResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ExecuteCloudScriptResult> ExecuteEntityCloudScript(final ExecuteEntityCloudScriptRequest request) {
         FutureTask<PlayFabResult<ExecuteCloudScriptResult>> task = new FutureTask(new Callable<PlayFabResult<ExecuteCloudScriptResult>>() {
@@ -57,7 +55,6 @@ public class PlayFabCloudScriptAPI {
      * Cloud Script is one of PlayFab's most versatile features. It allows client code to request execution of any kind of
      * custom server-side functionality you can implement, and it can be used in conjunction with virtually anything.
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ExecuteCloudScriptResult> privateExecuteEntityCloudScriptAsync(final ExecuteEntityCloudScriptRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -89,7 +86,6 @@ public class PlayFabCloudScriptAPI {
      * @param request ExecuteFunctionRequest
      * @return Async Task will return ExecuteFunctionResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ExecuteFunctionResult>> ExecuteFunctionAsync(final ExecuteFunctionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ExecuteFunctionResult>>() {
@@ -105,7 +101,6 @@ public class PlayFabCloudScriptAPI {
      * @param request ExecuteFunctionRequest
      * @return ExecuteFunctionResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ExecuteFunctionResult> ExecuteFunction(final ExecuteFunctionRequest request) {
         FutureTask<PlayFabResult<ExecuteFunctionResult>> task = new FutureTask(new Callable<PlayFabResult<ExecuteFunctionResult>>() {
@@ -127,7 +122,6 @@ public class PlayFabCloudScriptAPI {
      * Cloud Script is one of PlayFab's most versatile features. It allows client code to request execution of any kind of
      * custom server-side functionality you can implement, and it can be used in conjunction with virtually anything.
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ExecuteFunctionResult> privateExecuteFunctionAsync(final ExecuteFunctionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -158,7 +152,6 @@ public class PlayFabCloudScriptAPI {
      * @param request GetFunctionRequest
      * @return Async Task will return GetFunctionResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetFunctionResult>> GetFunctionAsync(final GetFunctionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetFunctionResult>>() {
@@ -173,7 +166,6 @@ public class PlayFabCloudScriptAPI {
      * @param request GetFunctionRequest
      * @return GetFunctionResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetFunctionResult> GetFunction(final GetFunctionRequest request) {
         FutureTask<PlayFabResult<GetFunctionResult>> task = new FutureTask(new Callable<PlayFabResult<GetFunctionResult>>() {
@@ -192,7 +184,6 @@ public class PlayFabCloudScriptAPI {
     }
 
     /** Gets registered Azure Functions for a given title id and function name. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetFunctionResult> privateGetFunctionAsync(final GetFunctionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -223,7 +214,6 @@ public class PlayFabCloudScriptAPI {
      * @param request ListFunctionsRequest
      * @return Async Task will return ListEventHubFunctionsResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListEventHubFunctionsResult>> ListEventHubFunctionsAsync(final ListFunctionsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListEventHubFunctionsResult>>() {
@@ -238,7 +228,6 @@ public class PlayFabCloudScriptAPI {
      * @param request ListFunctionsRequest
      * @return ListEventHubFunctionsResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListEventHubFunctionsResult> ListEventHubFunctions(final ListFunctionsRequest request) {
         FutureTask<PlayFabResult<ListEventHubFunctionsResult>> task = new FutureTask(new Callable<PlayFabResult<ListEventHubFunctionsResult>>() {
@@ -257,7 +246,6 @@ public class PlayFabCloudScriptAPI {
     }
 
     /** Lists all currently registered Event Hub triggered Azure Functions for a given title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListEventHubFunctionsResult> privateListEventHubFunctionsAsync(final ListFunctionsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -288,7 +276,6 @@ public class PlayFabCloudScriptAPI {
      * @param request ListFunctionsRequest
      * @return Async Task will return ListFunctionsResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListFunctionsResult>> ListFunctionsAsync(final ListFunctionsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListFunctionsResult>>() {
@@ -303,7 +290,6 @@ public class PlayFabCloudScriptAPI {
      * @param request ListFunctionsRequest
      * @return ListFunctionsResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListFunctionsResult> ListFunctions(final ListFunctionsRequest request) {
         FutureTask<PlayFabResult<ListFunctionsResult>> task = new FutureTask(new Callable<PlayFabResult<ListFunctionsResult>>() {
@@ -322,7 +308,6 @@ public class PlayFabCloudScriptAPI {
     }
 
     /** Lists all currently registered Azure Functions for a given title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListFunctionsResult> privateListFunctionsAsync(final ListFunctionsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -353,7 +338,6 @@ public class PlayFabCloudScriptAPI {
      * @param request ListFunctionsRequest
      * @return Async Task will return ListHttpFunctionsResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListHttpFunctionsResult>> ListHttpFunctionsAsync(final ListFunctionsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListHttpFunctionsResult>>() {
@@ -368,7 +352,6 @@ public class PlayFabCloudScriptAPI {
      * @param request ListFunctionsRequest
      * @return ListHttpFunctionsResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListHttpFunctionsResult> ListHttpFunctions(final ListFunctionsRequest request) {
         FutureTask<PlayFabResult<ListHttpFunctionsResult>> task = new FutureTask(new Callable<PlayFabResult<ListHttpFunctionsResult>>() {
@@ -387,7 +370,6 @@ public class PlayFabCloudScriptAPI {
     }
 
     /** Lists all currently registered HTTP triggered Azure Functions for a given title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListHttpFunctionsResult> privateListHttpFunctionsAsync(final ListFunctionsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -418,7 +400,6 @@ public class PlayFabCloudScriptAPI {
      * @param request ListFunctionsRequest
      * @return Async Task will return ListQueuedFunctionsResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<ListQueuedFunctionsResult>> ListQueuedFunctionsAsync(final ListFunctionsRequest request) {
         return new FutureTask(new Callable<PlayFabResult<ListQueuedFunctionsResult>>() {
@@ -433,7 +414,6 @@ public class PlayFabCloudScriptAPI {
      * @param request ListFunctionsRequest
      * @return ListQueuedFunctionsResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<ListQueuedFunctionsResult> ListQueuedFunctions(final ListFunctionsRequest request) {
         FutureTask<PlayFabResult<ListQueuedFunctionsResult>> task = new FutureTask(new Callable<PlayFabResult<ListQueuedFunctionsResult>>() {
@@ -452,7 +432,6 @@ public class PlayFabCloudScriptAPI {
     }
 
     /** Lists all currently registered Queue triggered Azure Functions for a given title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<ListQueuedFunctionsResult> privateListQueuedFunctionsAsync(final ListFunctionsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -483,7 +462,6 @@ public class PlayFabCloudScriptAPI {
      * @param request PostFunctionResultForEntityTriggeredActionRequest
      * @return Async Task will return EmptyResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResult>> PostFunctionResultForEntityTriggeredActionAsync(final PostFunctionResultForEntityTriggeredActionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
@@ -498,7 +476,6 @@ public class PlayFabCloudScriptAPI {
      * @param request PostFunctionResultForEntityTriggeredActionRequest
      * @return EmptyResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResult> PostFunctionResultForEntityTriggeredAction(final PostFunctionResultForEntityTriggeredActionRequest request) {
         FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
@@ -517,7 +494,6 @@ public class PlayFabCloudScriptAPI {
     }
 
     /** Generate an entity PlayStream event for the provided function result. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResult> privatePostFunctionResultForEntityTriggeredActionAsync(final PostFunctionResultForEntityTriggeredActionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -548,7 +524,6 @@ public class PlayFabCloudScriptAPI {
      * @param request PostFunctionResultForFunctionExecutionRequest
      * @return Async Task will return EmptyResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResult>> PostFunctionResultForFunctionExecutionAsync(final PostFunctionResultForFunctionExecutionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
@@ -563,7 +538,6 @@ public class PlayFabCloudScriptAPI {
      * @param request PostFunctionResultForFunctionExecutionRequest
      * @return EmptyResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResult> PostFunctionResultForFunctionExecution(final PostFunctionResultForFunctionExecutionRequest request) {
         FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
@@ -582,7 +556,6 @@ public class PlayFabCloudScriptAPI {
     }
 
     /** Generate an entity PlayStream event for the provided function result. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResult> privatePostFunctionResultForFunctionExecutionAsync(final PostFunctionResultForFunctionExecutionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -613,7 +586,6 @@ public class PlayFabCloudScriptAPI {
      * @param request PostFunctionResultForPlayerTriggeredActionRequest
      * @return Async Task will return EmptyResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResult>> PostFunctionResultForPlayerTriggeredActionAsync(final PostFunctionResultForPlayerTriggeredActionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
@@ -628,7 +600,6 @@ public class PlayFabCloudScriptAPI {
      * @param request PostFunctionResultForPlayerTriggeredActionRequest
      * @return EmptyResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResult> PostFunctionResultForPlayerTriggeredAction(final PostFunctionResultForPlayerTriggeredActionRequest request) {
         FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
@@ -647,7 +618,6 @@ public class PlayFabCloudScriptAPI {
     }
 
     /** Generate a player PlayStream event for the provided function result. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResult> privatePostFunctionResultForPlayerTriggeredActionAsync(final PostFunctionResultForPlayerTriggeredActionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -678,7 +648,6 @@ public class PlayFabCloudScriptAPI {
      * @param request PostFunctionResultForScheduledTaskRequest
      * @return Async Task will return EmptyResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResult>> PostFunctionResultForScheduledTaskAsync(final PostFunctionResultForScheduledTaskRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
@@ -693,7 +662,6 @@ public class PlayFabCloudScriptAPI {
      * @param request PostFunctionResultForScheduledTaskRequest
      * @return EmptyResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResult> PostFunctionResultForScheduledTask(final PostFunctionResultForScheduledTaskRequest request) {
         FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
@@ -712,7 +680,6 @@ public class PlayFabCloudScriptAPI {
     }
 
     /** Generate a PlayStream event for the provided function result. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResult> privatePostFunctionResultForScheduledTaskAsync(final PostFunctionResultForScheduledTaskRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -743,7 +710,6 @@ public class PlayFabCloudScriptAPI {
      * @param request RegisterEventHubFunctionRequest
      * @return Async Task will return EmptyResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResult>> RegisterEventHubFunctionAsync(final RegisterEventHubFunctionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
@@ -758,7 +724,6 @@ public class PlayFabCloudScriptAPI {
      * @param request RegisterEventHubFunctionRequest
      * @return EmptyResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResult> RegisterEventHubFunction(final RegisterEventHubFunctionRequest request) {
         FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
@@ -777,7 +742,6 @@ public class PlayFabCloudScriptAPI {
     }
 
     /** Registers an event hub triggered Azure Function with a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResult> privateRegisterEventHubFunctionAsync(final RegisterEventHubFunctionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -808,7 +772,6 @@ public class PlayFabCloudScriptAPI {
      * @param request RegisterHttpFunctionRequest
      * @return Async Task will return EmptyResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResult>> RegisterHttpFunctionAsync(final RegisterHttpFunctionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
@@ -823,7 +786,6 @@ public class PlayFabCloudScriptAPI {
      * @param request RegisterHttpFunctionRequest
      * @return EmptyResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResult> RegisterHttpFunction(final RegisterHttpFunctionRequest request) {
         FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
@@ -842,7 +804,6 @@ public class PlayFabCloudScriptAPI {
     }
 
     /** Registers an HTTP triggered Azure function with a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResult> privateRegisterHttpFunctionAsync(final RegisterHttpFunctionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -873,7 +834,6 @@ public class PlayFabCloudScriptAPI {
      * @param request RegisterQueuedFunctionRequest
      * @return Async Task will return EmptyResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResult>> RegisterQueuedFunctionAsync(final RegisterQueuedFunctionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
@@ -888,7 +848,6 @@ public class PlayFabCloudScriptAPI {
      * @param request RegisterQueuedFunctionRequest
      * @return EmptyResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResult> RegisterQueuedFunction(final RegisterQueuedFunctionRequest request) {
         FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
@@ -907,7 +866,6 @@ public class PlayFabCloudScriptAPI {
     }
 
     /** Registers a queue triggered Azure Function with a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResult> privateRegisterQueuedFunctionAsync(final RegisterQueuedFunctionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -938,7 +896,6 @@ public class PlayFabCloudScriptAPI {
      * @param request UnregisterFunctionRequest
      * @return Async Task will return EmptyResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<EmptyResult>> UnregisterFunctionAsync(final UnregisterFunctionRequest request) {
         return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
@@ -953,7 +910,6 @@ public class PlayFabCloudScriptAPI {
      * @param request UnregisterFunctionRequest
      * @return EmptyResult
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<EmptyResult> UnregisterFunction(final UnregisterFunctionRequest request) {
         FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
@@ -972,7 +928,6 @@ public class PlayFabCloudScriptAPI {
     }
 
     /** Unregisters an Azure Function with a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<EmptyResult> privateUnregisterFunctionAsync(final UnregisterFunctionRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");

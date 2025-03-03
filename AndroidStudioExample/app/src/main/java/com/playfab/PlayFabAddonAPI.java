@@ -18,7 +18,6 @@ public class PlayFabAddonAPI {
      * @param request CreateOrUpdateAppleRequest
      * @return Async Task will return CreateOrUpdateAppleResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateOrUpdateAppleResponse>> CreateOrUpdateAppleAsync(final CreateOrUpdateAppleRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateOrUpdateAppleResponse>>() {
@@ -33,7 +32,6 @@ public class PlayFabAddonAPI {
      * @param request CreateOrUpdateAppleRequest
      * @return CreateOrUpdateAppleResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateOrUpdateAppleResponse> CreateOrUpdateApple(final CreateOrUpdateAppleRequest request) {
         FutureTask<PlayFabResult<CreateOrUpdateAppleResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateOrUpdateAppleResponse>>() {
@@ -52,7 +50,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Creates the Apple addon on a title, or updates it if it already exists. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateOrUpdateAppleResponse> privateCreateOrUpdateAppleAsync(final CreateOrUpdateAppleRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -83,7 +80,6 @@ public class PlayFabAddonAPI {
      * @param request CreateOrUpdateFacebookRequest
      * @return Async Task will return CreateOrUpdateFacebookResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateOrUpdateFacebookResponse>> CreateOrUpdateFacebookAsync(final CreateOrUpdateFacebookRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateOrUpdateFacebookResponse>>() {
@@ -98,7 +94,6 @@ public class PlayFabAddonAPI {
      * @param request CreateOrUpdateFacebookRequest
      * @return CreateOrUpdateFacebookResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateOrUpdateFacebookResponse> CreateOrUpdateFacebook(final CreateOrUpdateFacebookRequest request) {
         FutureTask<PlayFabResult<CreateOrUpdateFacebookResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateOrUpdateFacebookResponse>>() {
@@ -117,7 +112,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Creates the Facebook addon on a title, or updates it if it already exists. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateOrUpdateFacebookResponse> privateCreateOrUpdateFacebookAsync(final CreateOrUpdateFacebookRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -148,7 +142,6 @@ public class PlayFabAddonAPI {
      * @param request CreateOrUpdateFacebookInstantGamesRequest
      * @return Async Task will return CreateOrUpdateFacebookInstantGamesResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateOrUpdateFacebookInstantGamesResponse>> CreateOrUpdateFacebookInstantGamesAsync(final CreateOrUpdateFacebookInstantGamesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateOrUpdateFacebookInstantGamesResponse>>() {
@@ -163,7 +156,6 @@ public class PlayFabAddonAPI {
      * @param request CreateOrUpdateFacebookInstantGamesRequest
      * @return CreateOrUpdateFacebookInstantGamesResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateOrUpdateFacebookInstantGamesResponse> CreateOrUpdateFacebookInstantGames(final CreateOrUpdateFacebookInstantGamesRequest request) {
         FutureTask<PlayFabResult<CreateOrUpdateFacebookInstantGamesResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateOrUpdateFacebookInstantGamesResponse>>() {
@@ -182,7 +174,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Creates the Facebook Instant Games addon on a title, or updates it if it already exists. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateOrUpdateFacebookInstantGamesResponse> privateCreateOrUpdateFacebookInstantGamesAsync(final CreateOrUpdateFacebookInstantGamesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -213,7 +204,6 @@ public class PlayFabAddonAPI {
      * @param request CreateOrUpdateGoogleRequest
      * @return Async Task will return CreateOrUpdateGoogleResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateOrUpdateGoogleResponse>> CreateOrUpdateGoogleAsync(final CreateOrUpdateGoogleRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateOrUpdateGoogleResponse>>() {
@@ -228,7 +218,6 @@ public class PlayFabAddonAPI {
      * @param request CreateOrUpdateGoogleRequest
      * @return CreateOrUpdateGoogleResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateOrUpdateGoogleResponse> CreateOrUpdateGoogle(final CreateOrUpdateGoogleRequest request) {
         FutureTask<PlayFabResult<CreateOrUpdateGoogleResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateOrUpdateGoogleResponse>>() {
@@ -247,7 +236,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Creates the Google addon on a title, or updates it if it already exists. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateOrUpdateGoogleResponse> privateCreateOrUpdateGoogleAsync(final CreateOrUpdateGoogleRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -278,7 +266,6 @@ public class PlayFabAddonAPI {
      * @param request CreateOrUpdateKongregateRequest
      * @return Async Task will return CreateOrUpdateKongregateResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateOrUpdateKongregateResponse>> CreateOrUpdateKongregateAsync(final CreateOrUpdateKongregateRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateOrUpdateKongregateResponse>>() {
@@ -293,7 +280,6 @@ public class PlayFabAddonAPI {
      * @param request CreateOrUpdateKongregateRequest
      * @return CreateOrUpdateKongregateResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateOrUpdateKongregateResponse> CreateOrUpdateKongregate(final CreateOrUpdateKongregateRequest request) {
         FutureTask<PlayFabResult<CreateOrUpdateKongregateResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateOrUpdateKongregateResponse>>() {
@@ -312,7 +298,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Creates the Kongregate addon on a title, or updates it if it already exists. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateOrUpdateKongregateResponse> privateCreateOrUpdateKongregateAsync(final CreateOrUpdateKongregateRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -343,7 +328,6 @@ public class PlayFabAddonAPI {
      * @param request CreateOrUpdateNintendoRequest
      * @return Async Task will return CreateOrUpdateNintendoResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateOrUpdateNintendoResponse>> CreateOrUpdateNintendoAsync(final CreateOrUpdateNintendoRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateOrUpdateNintendoResponse>>() {
@@ -358,7 +342,6 @@ public class PlayFabAddonAPI {
      * @param request CreateOrUpdateNintendoRequest
      * @return CreateOrUpdateNintendoResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateOrUpdateNintendoResponse> CreateOrUpdateNintendo(final CreateOrUpdateNintendoRequest request) {
         FutureTask<PlayFabResult<CreateOrUpdateNintendoResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateOrUpdateNintendoResponse>>() {
@@ -377,7 +360,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Creates the Nintendo addon on a title, or updates it if it already exists. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateOrUpdateNintendoResponse> privateCreateOrUpdateNintendoAsync(final CreateOrUpdateNintendoRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -408,7 +390,6 @@ public class PlayFabAddonAPI {
      * @param request CreateOrUpdatePSNRequest
      * @return Async Task will return CreateOrUpdatePSNResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateOrUpdatePSNResponse>> CreateOrUpdatePSNAsync(final CreateOrUpdatePSNRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateOrUpdatePSNResponse>>() {
@@ -423,7 +404,6 @@ public class PlayFabAddonAPI {
      * @param request CreateOrUpdatePSNRequest
      * @return CreateOrUpdatePSNResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateOrUpdatePSNResponse> CreateOrUpdatePSN(final CreateOrUpdatePSNRequest request) {
         FutureTask<PlayFabResult<CreateOrUpdatePSNResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateOrUpdatePSNResponse>>() {
@@ -442,7 +422,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Creates the PSN addon on a title, or updates it if it already exists. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateOrUpdatePSNResponse> privateCreateOrUpdatePSNAsync(final CreateOrUpdatePSNRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -473,7 +452,6 @@ public class PlayFabAddonAPI {
      * @param request CreateOrUpdateSteamRequest
      * @return Async Task will return CreateOrUpdateSteamResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateOrUpdateSteamResponse>> CreateOrUpdateSteamAsync(final CreateOrUpdateSteamRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateOrUpdateSteamResponse>>() {
@@ -488,7 +466,6 @@ public class PlayFabAddonAPI {
      * @param request CreateOrUpdateSteamRequest
      * @return CreateOrUpdateSteamResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateOrUpdateSteamResponse> CreateOrUpdateSteam(final CreateOrUpdateSteamRequest request) {
         FutureTask<PlayFabResult<CreateOrUpdateSteamResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateOrUpdateSteamResponse>>() {
@@ -507,7 +484,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Creates the Steam addon on a title, or updates it if it already exists. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateOrUpdateSteamResponse> privateCreateOrUpdateSteamAsync(final CreateOrUpdateSteamRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -538,7 +514,6 @@ public class PlayFabAddonAPI {
      * @param request CreateOrUpdateTwitchRequest
      * @return Async Task will return CreateOrUpdateTwitchResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<CreateOrUpdateTwitchResponse>> CreateOrUpdateTwitchAsync(final CreateOrUpdateTwitchRequest request) {
         return new FutureTask(new Callable<PlayFabResult<CreateOrUpdateTwitchResponse>>() {
@@ -553,7 +528,6 @@ public class PlayFabAddonAPI {
      * @param request CreateOrUpdateTwitchRequest
      * @return CreateOrUpdateTwitchResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<CreateOrUpdateTwitchResponse> CreateOrUpdateTwitch(final CreateOrUpdateTwitchRequest request) {
         FutureTask<PlayFabResult<CreateOrUpdateTwitchResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateOrUpdateTwitchResponse>>() {
@@ -572,7 +546,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Creates the Twitch addon on a title, or updates it if it already exists. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateOrUpdateTwitchResponse> privateCreateOrUpdateTwitchAsync(final CreateOrUpdateTwitchRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -603,7 +576,6 @@ public class PlayFabAddonAPI {
      * @param request DeleteAppleRequest
      * @return Async Task will return DeleteAppleResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<DeleteAppleResponse>> DeleteAppleAsync(final DeleteAppleRequest request) {
         return new FutureTask(new Callable<PlayFabResult<DeleteAppleResponse>>() {
@@ -618,7 +590,6 @@ public class PlayFabAddonAPI {
      * @param request DeleteAppleRequest
      * @return DeleteAppleResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<DeleteAppleResponse> DeleteApple(final DeleteAppleRequest request) {
         FutureTask<PlayFabResult<DeleteAppleResponse>> task = new FutureTask(new Callable<PlayFabResult<DeleteAppleResponse>>() {
@@ -637,7 +608,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Deletes the Apple addon on a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteAppleResponse> privateDeleteAppleAsync(final DeleteAppleRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -668,7 +638,6 @@ public class PlayFabAddonAPI {
      * @param request DeleteFacebookRequest
      * @return Async Task will return DeleteFacebookResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<DeleteFacebookResponse>> DeleteFacebookAsync(final DeleteFacebookRequest request) {
         return new FutureTask(new Callable<PlayFabResult<DeleteFacebookResponse>>() {
@@ -683,7 +652,6 @@ public class PlayFabAddonAPI {
      * @param request DeleteFacebookRequest
      * @return DeleteFacebookResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<DeleteFacebookResponse> DeleteFacebook(final DeleteFacebookRequest request) {
         FutureTask<PlayFabResult<DeleteFacebookResponse>> task = new FutureTask(new Callable<PlayFabResult<DeleteFacebookResponse>>() {
@@ -702,7 +670,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Deletes the Facebook addon on a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteFacebookResponse> privateDeleteFacebookAsync(final DeleteFacebookRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -733,7 +700,6 @@ public class PlayFabAddonAPI {
      * @param request DeleteFacebookInstantGamesRequest
      * @return Async Task will return DeleteFacebookInstantGamesResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<DeleteFacebookInstantGamesResponse>> DeleteFacebookInstantGamesAsync(final DeleteFacebookInstantGamesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<DeleteFacebookInstantGamesResponse>>() {
@@ -748,7 +714,6 @@ public class PlayFabAddonAPI {
      * @param request DeleteFacebookInstantGamesRequest
      * @return DeleteFacebookInstantGamesResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<DeleteFacebookInstantGamesResponse> DeleteFacebookInstantGames(final DeleteFacebookInstantGamesRequest request) {
         FutureTask<PlayFabResult<DeleteFacebookInstantGamesResponse>> task = new FutureTask(new Callable<PlayFabResult<DeleteFacebookInstantGamesResponse>>() {
@@ -767,7 +732,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Deletes the Facebook addon on a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteFacebookInstantGamesResponse> privateDeleteFacebookInstantGamesAsync(final DeleteFacebookInstantGamesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -798,7 +762,6 @@ public class PlayFabAddonAPI {
      * @param request DeleteGoogleRequest
      * @return Async Task will return DeleteGoogleResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<DeleteGoogleResponse>> DeleteGoogleAsync(final DeleteGoogleRequest request) {
         return new FutureTask(new Callable<PlayFabResult<DeleteGoogleResponse>>() {
@@ -813,7 +776,6 @@ public class PlayFabAddonAPI {
      * @param request DeleteGoogleRequest
      * @return DeleteGoogleResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<DeleteGoogleResponse> DeleteGoogle(final DeleteGoogleRequest request) {
         FutureTask<PlayFabResult<DeleteGoogleResponse>> task = new FutureTask(new Callable<PlayFabResult<DeleteGoogleResponse>>() {
@@ -832,7 +794,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Deletes the Google addon on a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteGoogleResponse> privateDeleteGoogleAsync(final DeleteGoogleRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -863,7 +824,6 @@ public class PlayFabAddonAPI {
      * @param request DeleteKongregateRequest
      * @return Async Task will return DeleteKongregateResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<DeleteKongregateResponse>> DeleteKongregateAsync(final DeleteKongregateRequest request) {
         return new FutureTask(new Callable<PlayFabResult<DeleteKongregateResponse>>() {
@@ -878,7 +838,6 @@ public class PlayFabAddonAPI {
      * @param request DeleteKongregateRequest
      * @return DeleteKongregateResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<DeleteKongregateResponse> DeleteKongregate(final DeleteKongregateRequest request) {
         FutureTask<PlayFabResult<DeleteKongregateResponse>> task = new FutureTask(new Callable<PlayFabResult<DeleteKongregateResponse>>() {
@@ -897,7 +856,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Deletes the Kongregate addon on a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteKongregateResponse> privateDeleteKongregateAsync(final DeleteKongregateRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -928,7 +886,6 @@ public class PlayFabAddonAPI {
      * @param request DeleteNintendoRequest
      * @return Async Task will return DeleteNintendoResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<DeleteNintendoResponse>> DeleteNintendoAsync(final DeleteNintendoRequest request) {
         return new FutureTask(new Callable<PlayFabResult<DeleteNintendoResponse>>() {
@@ -943,7 +900,6 @@ public class PlayFabAddonAPI {
      * @param request DeleteNintendoRequest
      * @return DeleteNintendoResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<DeleteNintendoResponse> DeleteNintendo(final DeleteNintendoRequest request) {
         FutureTask<PlayFabResult<DeleteNintendoResponse>> task = new FutureTask(new Callable<PlayFabResult<DeleteNintendoResponse>>() {
@@ -962,7 +918,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Deletes the Nintendo addon on a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteNintendoResponse> privateDeleteNintendoAsync(final DeleteNintendoRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -993,7 +948,6 @@ public class PlayFabAddonAPI {
      * @param request DeletePSNRequest
      * @return Async Task will return DeletePSNResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<DeletePSNResponse>> DeletePSNAsync(final DeletePSNRequest request) {
         return new FutureTask(new Callable<PlayFabResult<DeletePSNResponse>>() {
@@ -1008,7 +962,6 @@ public class PlayFabAddonAPI {
      * @param request DeletePSNRequest
      * @return DeletePSNResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<DeletePSNResponse> DeletePSN(final DeletePSNRequest request) {
         FutureTask<PlayFabResult<DeletePSNResponse>> task = new FutureTask(new Callable<PlayFabResult<DeletePSNResponse>>() {
@@ -1027,7 +980,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Deletes the PSN addon on a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeletePSNResponse> privateDeletePSNAsync(final DeletePSNRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1058,7 +1010,6 @@ public class PlayFabAddonAPI {
      * @param request DeleteSteamRequest
      * @return Async Task will return DeleteSteamResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<DeleteSteamResponse>> DeleteSteamAsync(final DeleteSteamRequest request) {
         return new FutureTask(new Callable<PlayFabResult<DeleteSteamResponse>>() {
@@ -1073,7 +1024,6 @@ public class PlayFabAddonAPI {
      * @param request DeleteSteamRequest
      * @return DeleteSteamResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<DeleteSteamResponse> DeleteSteam(final DeleteSteamRequest request) {
         FutureTask<PlayFabResult<DeleteSteamResponse>> task = new FutureTask(new Callable<PlayFabResult<DeleteSteamResponse>>() {
@@ -1092,7 +1042,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Deletes the Steam addon on a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteSteamResponse> privateDeleteSteamAsync(final DeleteSteamRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1123,7 +1072,6 @@ public class PlayFabAddonAPI {
      * @param request DeleteTwitchRequest
      * @return Async Task will return DeleteTwitchResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<DeleteTwitchResponse>> DeleteTwitchAsync(final DeleteTwitchRequest request) {
         return new FutureTask(new Callable<PlayFabResult<DeleteTwitchResponse>>() {
@@ -1138,7 +1086,6 @@ public class PlayFabAddonAPI {
      * @param request DeleteTwitchRequest
      * @return DeleteTwitchResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<DeleteTwitchResponse> DeleteTwitch(final DeleteTwitchRequest request) {
         FutureTask<PlayFabResult<DeleteTwitchResponse>> task = new FutureTask(new Callable<PlayFabResult<DeleteTwitchResponse>>() {
@@ -1157,7 +1104,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Deletes the Twitch addon on a title. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<DeleteTwitchResponse> privateDeleteTwitchAsync(final DeleteTwitchRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1188,7 +1134,6 @@ public class PlayFabAddonAPI {
      * @param request GetAppleRequest
      * @return Async Task will return GetAppleResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetAppleResponse>> GetAppleAsync(final GetAppleRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetAppleResponse>>() {
@@ -1203,7 +1148,6 @@ public class PlayFabAddonAPI {
      * @param request GetAppleRequest
      * @return GetAppleResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetAppleResponse> GetApple(final GetAppleRequest request) {
         FutureTask<PlayFabResult<GetAppleResponse>> task = new FutureTask(new Callable<PlayFabResult<GetAppleResponse>>() {
@@ -1222,7 +1166,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Gets information of the Apple addon on a title, omits secrets. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetAppleResponse> privateGetAppleAsync(final GetAppleRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1253,7 +1196,6 @@ public class PlayFabAddonAPI {
      * @param request GetFacebookRequest
      * @return Async Task will return GetFacebookResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetFacebookResponse>> GetFacebookAsync(final GetFacebookRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetFacebookResponse>>() {
@@ -1268,7 +1210,6 @@ public class PlayFabAddonAPI {
      * @param request GetFacebookRequest
      * @return GetFacebookResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetFacebookResponse> GetFacebook(final GetFacebookRequest request) {
         FutureTask<PlayFabResult<GetFacebookResponse>> task = new FutureTask(new Callable<PlayFabResult<GetFacebookResponse>>() {
@@ -1287,7 +1228,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Gets information of the Facebook addon on a title, omits secrets. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetFacebookResponse> privateGetFacebookAsync(final GetFacebookRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1318,7 +1258,6 @@ public class PlayFabAddonAPI {
      * @param request GetFacebookInstantGamesRequest
      * @return Async Task will return GetFacebookInstantGamesResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetFacebookInstantGamesResponse>> GetFacebookInstantGamesAsync(final GetFacebookInstantGamesRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetFacebookInstantGamesResponse>>() {
@@ -1333,7 +1272,6 @@ public class PlayFabAddonAPI {
      * @param request GetFacebookInstantGamesRequest
      * @return GetFacebookInstantGamesResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetFacebookInstantGamesResponse> GetFacebookInstantGames(final GetFacebookInstantGamesRequest request) {
         FutureTask<PlayFabResult<GetFacebookInstantGamesResponse>> task = new FutureTask(new Callable<PlayFabResult<GetFacebookInstantGamesResponse>>() {
@@ -1352,7 +1290,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Gets information of the Facebook Instant Games addon on a title, omits secrets. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetFacebookInstantGamesResponse> privateGetFacebookInstantGamesAsync(final GetFacebookInstantGamesRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1383,7 +1320,6 @@ public class PlayFabAddonAPI {
      * @param request GetGoogleRequest
      * @return Async Task will return GetGoogleResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetGoogleResponse>> GetGoogleAsync(final GetGoogleRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetGoogleResponse>>() {
@@ -1398,7 +1334,6 @@ public class PlayFabAddonAPI {
      * @param request GetGoogleRequest
      * @return GetGoogleResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetGoogleResponse> GetGoogle(final GetGoogleRequest request) {
         FutureTask<PlayFabResult<GetGoogleResponse>> task = new FutureTask(new Callable<PlayFabResult<GetGoogleResponse>>() {
@@ -1417,7 +1352,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Gets information of the Google addon on a title, omits secrets. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetGoogleResponse> privateGetGoogleAsync(final GetGoogleRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1448,7 +1382,6 @@ public class PlayFabAddonAPI {
      * @param request GetKongregateRequest
      * @return Async Task will return GetKongregateResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetKongregateResponse>> GetKongregateAsync(final GetKongregateRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetKongregateResponse>>() {
@@ -1463,7 +1396,6 @@ public class PlayFabAddonAPI {
      * @param request GetKongregateRequest
      * @return GetKongregateResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetKongregateResponse> GetKongregate(final GetKongregateRequest request) {
         FutureTask<PlayFabResult<GetKongregateResponse>> task = new FutureTask(new Callable<PlayFabResult<GetKongregateResponse>>() {
@@ -1482,7 +1414,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Gets information of the Kongregate addon on a title, omits secrets. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetKongregateResponse> privateGetKongregateAsync(final GetKongregateRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1513,7 +1444,6 @@ public class PlayFabAddonAPI {
      * @param request GetNintendoRequest
      * @return Async Task will return GetNintendoResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetNintendoResponse>> GetNintendoAsync(final GetNintendoRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetNintendoResponse>>() {
@@ -1528,7 +1458,6 @@ public class PlayFabAddonAPI {
      * @param request GetNintendoRequest
      * @return GetNintendoResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetNintendoResponse> GetNintendo(final GetNintendoRequest request) {
         FutureTask<PlayFabResult<GetNintendoResponse>> task = new FutureTask(new Callable<PlayFabResult<GetNintendoResponse>>() {
@@ -1547,7 +1476,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Gets information of the Nintendo addon on a title, omits secrets. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetNintendoResponse> privateGetNintendoAsync(final GetNintendoRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1578,7 +1506,6 @@ public class PlayFabAddonAPI {
      * @param request GetPSNRequest
      * @return Async Task will return GetPSNResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetPSNResponse>> GetPSNAsync(final GetPSNRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetPSNResponse>>() {
@@ -1593,7 +1520,6 @@ public class PlayFabAddonAPI {
      * @param request GetPSNRequest
      * @return GetPSNResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetPSNResponse> GetPSN(final GetPSNRequest request) {
         FutureTask<PlayFabResult<GetPSNResponse>> task = new FutureTask(new Callable<PlayFabResult<GetPSNResponse>>() {
@@ -1612,7 +1538,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Gets information of the PSN addon on a title, omits secrets. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPSNResponse> privateGetPSNAsync(final GetPSNRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1643,7 +1568,6 @@ public class PlayFabAddonAPI {
      * @param request GetSteamRequest
      * @return Async Task will return GetSteamResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetSteamResponse>> GetSteamAsync(final GetSteamRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetSteamResponse>>() {
@@ -1658,7 +1582,6 @@ public class PlayFabAddonAPI {
      * @param request GetSteamRequest
      * @return GetSteamResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetSteamResponse> GetSteam(final GetSteamRequest request) {
         FutureTask<PlayFabResult<GetSteamResponse>> task = new FutureTask(new Callable<PlayFabResult<GetSteamResponse>>() {
@@ -1677,7 +1600,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Gets information of the Steam addon on a title, omits secrets. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetSteamResponse> privateGetSteamAsync(final GetSteamRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -1708,7 +1630,6 @@ public class PlayFabAddonAPI {
      * @param request GetTwitchRequest
      * @return Async Task will return GetTwitchResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetTwitchResponse>> GetTwitchAsync(final GetTwitchRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetTwitchResponse>>() {
@@ -1723,7 +1644,6 @@ public class PlayFabAddonAPI {
      * @param request GetTwitchRequest
      * @return GetTwitchResponse
      */
-    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetTwitchResponse> GetTwitch(final GetTwitchRequest request) {
         FutureTask<PlayFabResult<GetTwitchResponse>> task = new FutureTask(new Callable<PlayFabResult<GetTwitchResponse>>() {
@@ -1742,7 +1662,6 @@ public class PlayFabAddonAPI {
     }
 
     /** Gets information of the Twitch addon on a title, omits secrets. */
-    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetTwitchResponse> privateGetTwitchAsync(final GetTwitchRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
