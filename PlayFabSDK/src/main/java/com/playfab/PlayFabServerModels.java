@@ -878,6 +878,14 @@ public class PlayFabServerModels {
         ZWD
     }
 
+    public static class CustomPropertyDetails {
+        /** The custom property's name. */
+        public String Name;
+        /** The custom property's value. */
+        public Object Value;
+        
+    }
+
     /**
      * This function will delete the specified character from the list allowed by the user, and will also delete any inventory
      * or VC currently held by that character. It will NOT delete any statistics associated for this character, in order to
@@ -899,6 +907,43 @@ public class PlayFabServerModels {
     }
 
     public static class DeleteCharacterFromUserResult {
+        
+    }
+
+    public static class DeletedPropertyDetails {
+        /** The name of the property which was requested to be deleted. */
+        public String Name;
+        /** Indicates whether or not the property was deleted. If false, no property with that name existed. */
+        public Boolean WasDeleted;
+        
+    }
+
+    /** Deletes custom properties for the specified player. The list of provided property names must be non-empty. */
+    public static class DeletePlayerCustomPropertiesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /**
+         * Optional field used for concurrency control. One can ensure that the delete operation will only be performed if the
+         * player's properties have not been updated by any other clients since the last version.
+         */
+        public Integer ExpectedPropertiesVersion;
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        public String PlayFabId;
+        /** A list of property names denoting which properties should be deleted. */
+        public ArrayList<String> PropertyNames;
+        
+    }
+
+    public static class DeletePlayerCustomPropertiesResult {
+        /** The list of properties requested to be deleted. */
+        public ArrayList<DeletedPropertyDetails> DeletedProperties;
+        /** PlayFab unique identifier of the user whose properties were deleted. */
+        public String PlayFabId;
+        /**
+         * Indicates the current version of a player's properties that have been set. This is incremented after updates and
+         * deletes. This version can be provided in update and delete calls for concurrency control.
+         */
+        public Integer PropertiesVersion;
         
     }
 
@@ -1699,6 +1744,7 @@ public class PlayFabServerModels {
         ReportDataNotRetrievedSuccessfully,
         ResetIntervalCannotBeModified,
         VersionIncrementRateExceeded,
+        InvalidSteamUsername,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1832,6 +1878,7 @@ public class PlayFabServerModels {
         AnalyticsSegmentCountOverLimit,
         SnapshotNotFound,
         InventoryApiNotImplemented,
+        InventoryCollectionDeletionDisallowed,
         LobbyDoesNotExist,
         LobbyRateLimitExceeded,
         LobbyPlayerAlreadyJoined,
@@ -1968,6 +2015,7 @@ public class PlayFabServerModels {
         TrueSkillModelStateInvalidForOperation,
         TrueSkillScenarioContainsActiveModel,
         TrueSkillInvalidConditionRank,
+        TrueSkillTotalScenarioLimitExceeded,
         GameSaveManifestNotFound,
         GameSaveManifestVersionAlreadyExists,
         GameSaveConflictUpdatingManifest,
@@ -2412,6 +2460,27 @@ public class PlayFabServerModels {
         public Map<String,Integer> UserVirtualCurrency;
         /** Dictionary of remaining times and timestamps for virtual currencies. */
         public Map<String,VirtualCurrencyRechargeTime> UserVirtualCurrencyRechargeTimes;
+        
+    }
+
+    public static class GetPlayerCustomPropertyRequest {
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        public String PlayFabId;
+        /** Specific property name to search for in the player's properties. */
+        public String PropertyName;
+        
+    }
+
+    public static class GetPlayerCustomPropertyResult {
+        /** PlayFab unique identifier of the user whose properties are being returned. */
+        public String PlayFabId;
+        /**
+         * Indicates the current version of a player's properties that have been set. This is incremented after updates and
+         * deletes. This version can be provided in update and delete calls for concurrency control.
+         */
+        public Integer PropertiesVersion;
+        /** Player specific property and its corresponding value. */
+        public CustomPropertyDetails Property;
         
     }
 
@@ -3383,6 +3452,25 @@ public class PlayFabServerModels {
         
     }
 
+    public static class ListPlayerCustomPropertiesRequest {
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        public String PlayFabId;
+        
+    }
+
+    public static class ListPlayerCustomPropertiesResult {
+        /** PlayFab unique identifier of the user whose properties are being returned. */
+        public String PlayFabId;
+        /** Player specific properties and their corresponding values for this title. */
+        public ArrayList<CustomPropertyDetails> Properties;
+        /**
+         * Indicates the current version of a player's properties that have been set. This is incremented after updates and
+         * deletes. This version can be provided in update and delete calls for concurrency control.
+         */
+        public Integer PropertiesVersion;
+        
+    }
+
     /** Returns a list of every character that currently belongs to a user. */
     public static class ListUsersCharactersRequest {
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
@@ -3743,6 +3831,8 @@ public class PlayFabServerModels {
         public ArrayList<ContactEmailInfo> ContactEmailAddresses;
         /** Player record created */
         public Date Created;
+        /** Dictionary of player's custom properties. */
+        public Map<String,Object> CustomProperties;
         /** Player Display Name */
         public String DisplayName;
         /** Last login */
@@ -4815,6 +4905,37 @@ public class PlayFabServerModels {
     }
 
     /**
+     * Performs an additive update of the custom properties for the specified player. In updating the player's custom
+     * properties, properties which already exist will have their values overwritten. No other properties will be changed apart
+     * from those specified in the call.
+     */
+    public static class UpdatePlayerCustomPropertiesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /**
+         * Optional field used for concurrency control. One can ensure that the update operation will only be performed if the
+         * player's properties have not been updated by any other clients since last the version.
+         */
+        public Integer ExpectedPropertiesVersion;
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        public String PlayFabId;
+        /** Collection of properties to be set for a player. */
+        public ArrayList<UpdateProperty> Properties;
+        
+    }
+
+    public static class UpdatePlayerCustomPropertiesResult {
+        /** PlayFab unique identifier of the user whose properties were updated. */
+        public String PlayFabId;
+        /**
+         * Indicates the current version of a player's properties that have been set. This is incremented after updates and
+         * deletes. This version can be provided in update and delete calls for concurrency control.
+         */
+        public Integer PropertiesVersion;
+        
+    }
+
+    /**
      * This operation is additive. Statistics not currently defined will be added, while those already defined will be updated
      * with the given values. All other user statistics will remain unchanged.
      */
@@ -4834,6 +4955,14 @@ public class PlayFabServerModels {
     }
 
     public static class UpdatePlayerStatisticsResult {
+        
+    }
+
+    public static class UpdateProperty {
+        /** Name of the custom property. Can contain Unicode letters and digits. They are limited in size. */
+        public String Name;
+        /** Value of the custom property. Limited to booleans, numbers, and strings. */
+        public Object Value;
         
     }
 
@@ -5154,7 +5283,8 @@ public class PlayFabServerModels {
         NintendoSwitchAccount,
         GooglePlayGames,
         XboxMobileStore,
-        King
+        King,
+        BattleNet
     }
 
     public static class UserPrivateAccountInfo {

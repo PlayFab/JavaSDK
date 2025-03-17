@@ -79,7 +79,7 @@ public class PlayFabEconomyAPI {
     }
 
     /**
-     * Creates a new item in the working catalog using provided metadata.
+     * Creates a new item in the working catalog using provided metadata. Note: SAS tokens provided are valid for 1 hour.
      * @param request CreateDraftItemRequest
      * @return Async Task will return CreateDraftItemResponse
      */
@@ -93,7 +93,7 @@ public class PlayFabEconomyAPI {
     }
 
     /**
-     * Creates a new item in the working catalog using provided metadata.
+     * Creates a new item in the working catalog using provided metadata. Note: SAS tokens provided are valid for 1 hour.
      * @param request CreateDraftItemRequest
      * @return CreateDraftItemResponse
      */
@@ -114,7 +114,7 @@ public class PlayFabEconomyAPI {
         }
     }
 
-    /** Creates a new item in the working catalog using provided metadata. */
+    /** Creates a new item in the working catalog using provided metadata. Note: SAS tokens provided are valid for 1 hour. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<CreateDraftItemResponse> privateCreateDraftItemAsync(final CreateDraftItemRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
@@ -685,7 +685,8 @@ public class PlayFabEconomyAPI {
     /**
      * Retrieves an item from the working catalog. This item represents the current working state of the item. GetDraftItem
      * does not work off a cache of the Catalog and should be used when trying to get recent item updates. However, please note
-     * that item references data is cached and may take a few moments for changes to propagate.
+     * that item references data is cached and may take a few moments for changes to propagate. Note: SAS tokens provided are
+     * valid for 1 hour.
      * @param request GetDraftItemRequest
      * @return Async Task will return GetDraftItemResponse
      */
@@ -701,7 +702,8 @@ public class PlayFabEconomyAPI {
     /**
      * Retrieves an item from the working catalog. This item represents the current working state of the item. GetDraftItem
      * does not work off a cache of the Catalog and should be used when trying to get recent item updates. However, please note
-     * that item references data is cached and may take a few moments for changes to propagate.
+     * that item references data is cached and may take a few moments for changes to propagate. Note: SAS tokens provided are
+     * valid for 1 hour.
      * @param request GetDraftItemRequest
      * @return GetDraftItemResponse
      */
@@ -725,7 +727,8 @@ public class PlayFabEconomyAPI {
     /**
      * Retrieves an item from the working catalog. This item represents the current working state of the item. GetDraftItem
      * does not work off a cache of the Catalog and should be used when trying to get recent item updates. However, please note
-     * that item references data is cached and may take a few moments for changes to propagate.
+     * that item references data is cached and may take a few moments for changes to propagate. Note: SAS tokens provided are
+     * valid for 1 hour.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetDraftItemResponse> privateGetDraftItemAsync(final GetDraftItemRequest request) throws Exception {
@@ -754,7 +757,8 @@ public class PlayFabEconomyAPI {
 
     /**
      * Retrieves a paginated list of the items from the draft catalog. Up to 50 IDs can be retrieved in a single request.
-     * GetDraftItems does not work off a cache of the Catalog and should be used when trying to get recent item updates.
+     * GetDraftItems does not work off a cache of the Catalog and should be used when trying to get recent item updates. Note:
+     * SAS tokens provided are valid for 1 hour.
      * @param request GetDraftItemsRequest
      * @return Async Task will return GetDraftItemsResponse
      */
@@ -769,7 +773,8 @@ public class PlayFabEconomyAPI {
 
     /**
      * Retrieves a paginated list of the items from the draft catalog. Up to 50 IDs can be retrieved in a single request.
-     * GetDraftItems does not work off a cache of the Catalog and should be used when trying to get recent item updates.
+     * GetDraftItems does not work off a cache of the Catalog and should be used when trying to get recent item updates. Note:
+     * SAS tokens provided are valid for 1 hour.
      * @param request GetDraftItemsRequest
      * @return GetDraftItemsResponse
      */
@@ -792,7 +797,8 @@ public class PlayFabEconomyAPI {
 
     /**
      * Retrieves a paginated list of the items from the draft catalog. Up to 50 IDs can be retrieved in a single request.
-     * GetDraftItems does not work off a cache of the Catalog and should be used when trying to get recent item updates.
+     * GetDraftItems does not work off a cache of the Catalog and should be used when trying to get recent item updates. Note:
+     * SAS tokens provided are valid for 1 hour.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetDraftItemsResponse> privateGetDraftItemsAsync(final GetDraftItemsRequest request) throws Exception {
@@ -2939,7 +2945,7 @@ public class PlayFabEconomyAPI {
     }
 
     /**
-     * Update the metadata for an item in the working catalog.
+     * Update the metadata for an item in the working catalog. Note: SAS tokens provided are valid for 1 hour.
      * @param request UpdateDraftItemRequest
      * @return Async Task will return UpdateDraftItemResponse
      */
@@ -2953,7 +2959,7 @@ public class PlayFabEconomyAPI {
     }
 
     /**
-     * Update the metadata for an item in the working catalog.
+     * Update the metadata for an item in the working catalog. Note: SAS tokens provided are valid for 1 hour.
      * @param request UpdateDraftItemRequest
      * @return UpdateDraftItemResponse
      */
@@ -2974,7 +2980,7 @@ public class PlayFabEconomyAPI {
         }
     }
 
-    /** Update the metadata for an item in the working catalog. */
+    /** Update the metadata for an item in the working catalog. Note: SAS tokens provided are valid for 1 hour. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<UpdateDraftItemResponse> privateUpdateDraftItemAsync(final UpdateDraftItemRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");

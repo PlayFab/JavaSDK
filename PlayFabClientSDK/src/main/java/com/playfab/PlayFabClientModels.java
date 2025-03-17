@@ -985,6 +985,47 @@ public class PlayFabClientModels {
         ZWD
     }
 
+    public static class CustomPropertyDetails {
+        /** The custom property's name. */
+        public String Name;
+        /** The custom property's value. */
+        public Object Value;
+        
+    }
+
+    public static class DeletedPropertyDetails {
+        /** The name of the property which was requested to be deleted. */
+        public String Name;
+        /** Indicates whether or not the property was deleted. If false, no property with that name existed. */
+        public Boolean WasDeleted;
+        
+    }
+
+    /** Deletes custom properties for the specified player. The list of provided property names must be non-empty. */
+    public static class DeletePlayerCustomPropertiesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /**
+         * Optional field used for concurrency control. One can ensure that the delete operation will only be performed if the
+         * player's properties have not been updated by any other clients since the last version.
+         */
+        public Integer ExpectedPropertiesVersion;
+        /** A list of property names denoting which properties should be deleted. */
+        public ArrayList<String> PropertyNames;
+        
+    }
+
+    public static class DeletePlayerCustomPropertiesResult {
+        /** The list of properties requested to be deleted. */
+        public ArrayList<DeletedPropertyDetails> DeletedProperties;
+        /**
+         * Indicates the current version of a player's properties that have been set. This is incremented after updates and
+         * deletes. This version can be provided in update and delete calls for concurrency control.
+         */
+        public Integer PropertiesVersion;
+        
+    }
+
     /** Any arbitrary information collected by the device */
     public static class DeviceInfoRequest {
         /** Information posted to the PlayStream Event. Currently arbitrary, and specific to the environment sending it. */
@@ -1659,6 +1700,23 @@ public class PlayFabClientModels {
         public Map<String,Integer> UserVirtualCurrency;
         /** Dictionary of remaining times and timestamps for virtual currencies. */
         public Map<String,VirtualCurrencyRechargeTime> UserVirtualCurrencyRechargeTimes;
+        
+    }
+
+    public static class GetPlayerCustomPropertyRequest {
+        /** Specific property name to search for in the player's properties. */
+        public String PropertyName;
+        
+    }
+
+    public static class GetPlayerCustomPropertyResult {
+        /**
+         * Indicates the current version of a player's properties that have been set. This is incremented after updates and
+         * deletes. This version can be provided in update and delete calls for concurrency control.
+         */
+        public Integer PropertiesVersion;
+        /** Player specific property and its corresponding value. */
+        public CustomPropertyDetails Property;
         
     }
 
@@ -2707,6 +2765,21 @@ public class PlayFabClientModels {
     }
 
     public static class LinkXboxAccountResult {
+        
+    }
+
+    public static class ListPlayerCustomPropertiesRequest {
+        
+    }
+
+    public static class ListPlayerCustomPropertiesResult {
+        /** Player specific properties and their corresponding values for this title. */
+        public ArrayList<CustomPropertyDetails> Properties;
+        /**
+         * Indicates the current version of a player's properties that have been set. This is incremented after updates and
+         * deletes. This version can be provided in update and delete calls for concurrency control.
+         */
+        public Integer PropertiesVersion;
         
     }
 
@@ -4636,6 +4709,33 @@ public class PlayFabClientModels {
     }
 
     /**
+     * Performs an additive update of the custom properties for the specified player. In updating the player's custom
+     * properties, properties which already exist will have their values overwritten. No other properties will be changed apart
+     * from those specified in the call.
+     */
+    public static class UpdatePlayerCustomPropertiesRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /**
+         * Optional field used for concurrency control. One can ensure that the update operation will only be performed if the
+         * player's properties have not been updated by any other clients since last the version.
+         */
+        public Integer ExpectedPropertiesVersion;
+        /** Collection of properties to be set for a player. */
+        public ArrayList<UpdateProperty> Properties;
+        
+    }
+
+    public static class UpdatePlayerCustomPropertiesResult {
+        /**
+         * Indicates the current version of a player's properties that have been set. This is incremented after updates and
+         * deletes. This version can be provided in update and delete calls for concurrency control.
+         */
+        public Integer PropertiesVersion;
+        
+    }
+
+    /**
      * Enable this option with the 'Allow Client to Post Player Statistics' option in PlayFab GameManager for your title.
      * However, this is not best practice, as this data will no longer be safely controlled by the server. This operation is
      * additive. Statistics not currently defined will be added, while those already defined will be updated with the given
@@ -4653,6 +4753,14 @@ public class PlayFabClientModels {
     }
 
     public static class UpdatePlayerStatisticsResult {
+        
+    }
+
+    public static class UpdateProperty {
+        /** Name of the custom property. Can contain Unicode letters and digits. They are limited in size. */
+        public String Name;
+        /** Value of the custom property. Limited to booleans, numbers, and strings. */
+        public Object Value;
         
     }
 
@@ -4936,7 +5044,8 @@ public class PlayFabClientModels {
         NintendoSwitchAccount,
         GooglePlayGames,
         XboxMobileStore,
-        King
+        King,
+        BattleNet
     }
 
     public static class UserPrivateAccountInfo {
