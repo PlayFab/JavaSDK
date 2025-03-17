@@ -1349,6 +1349,68 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Deletes title-specific custom properties for a player
+     * @param request DeletePlayerCustomPropertiesRequest
+     * @return Async Task will return DeletePlayerCustomPropertiesResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<DeletePlayerCustomPropertiesResult>> DeletePlayerCustomPropertiesAsync(final DeletePlayerCustomPropertiesRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<DeletePlayerCustomPropertiesResult>>() {
+            public PlayFabResult<DeletePlayerCustomPropertiesResult> call() throws Exception {
+                return privateDeletePlayerCustomPropertiesAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Deletes title-specific custom properties for a player
+     * @param request DeletePlayerCustomPropertiesRequest
+     * @return DeletePlayerCustomPropertiesResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<DeletePlayerCustomPropertiesResult> DeletePlayerCustomProperties(final DeletePlayerCustomPropertiesRequest request) {
+        FutureTask<PlayFabResult<DeletePlayerCustomPropertiesResult>> task = new FutureTask(new Callable<PlayFabResult<DeletePlayerCustomPropertiesResult>>() {
+            public PlayFabResult<DeletePlayerCustomPropertiesResult> call() throws Exception {
+                return privateDeletePlayerCustomPropertiesAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<DeletePlayerCustomPropertiesResult> exceptionResult = new PlayFabResult<DeletePlayerCustomPropertiesResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Deletes title-specific custom properties for a player */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<DeletePlayerCustomPropertiesResult> privateDeletePlayerCustomPropertiesAsync(final DeletePlayerCustomPropertiesRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/DeletePlayerCustomProperties"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<DeletePlayerCustomPropertiesResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<DeletePlayerCustomPropertiesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<DeletePlayerCustomPropertiesResult>>(){}.getType());
+        DeletePlayerCustomPropertiesResult result = resultData.data;
+
+        PlayFabResult<DeletePlayerCustomPropertiesResult> pfResult = new PlayFabResult<DeletePlayerCustomPropertiesResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Deletes an existing Player Shared Secret Key. It may take up to 5 minutes for this delete to be reflected after this API
      * returns.
      * @param request DeletePlayerSharedSecretRequest
@@ -2501,6 +2563,68 @@ public class PlayFabAdminAPI {
         GetPlayedTitleListResult result = resultData.data;
 
         PlayFabResult<GetPlayedTitleListResult> pfResult = new PlayFabResult<GetPlayedTitleListResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Retrieves a title-specific custom property value for a player.
+     * @param request GetPlayerCustomPropertyRequest
+     * @return Async Task will return GetPlayerCustomPropertyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayerCustomPropertyResult>> GetPlayerCustomPropertyAsync(final GetPlayerCustomPropertyRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayerCustomPropertyResult>>() {
+            public PlayFabResult<GetPlayerCustomPropertyResult> call() throws Exception {
+                return privateGetPlayerCustomPropertyAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves a title-specific custom property value for a player.
+     * @param request GetPlayerCustomPropertyRequest
+     * @return GetPlayerCustomPropertyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayerCustomPropertyResult> GetPlayerCustomProperty(final GetPlayerCustomPropertyRequest request) {
+        FutureTask<PlayFabResult<GetPlayerCustomPropertyResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayerCustomPropertyResult>>() {
+            public PlayFabResult<GetPlayerCustomPropertyResult> call() throws Exception {
+                return privateGetPlayerCustomPropertyAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetPlayerCustomPropertyResult> exceptionResult = new PlayFabResult<GetPlayerCustomPropertyResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Retrieves a title-specific custom property value for a player. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayerCustomPropertyResult> privateGetPlayerCustomPropertyAsync(final GetPlayerCustomPropertyRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/GetPlayerCustomProperty"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayerCustomPropertyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayerCustomPropertyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayerCustomPropertyResult>>(){}.getType());
+        GetPlayerCustomPropertyResult result = resultData.data;
+
+        PlayFabResult<GetPlayerCustomPropertyResult> pfResult = new PlayFabResult<GetPlayerCustomPropertyResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -4483,6 +4607,68 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Retrieves title-specific custom property values for a player.
+     * @param request ListPlayerCustomPropertiesRequest
+     * @return Async Task will return ListPlayerCustomPropertiesResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ListPlayerCustomPropertiesResult>> ListPlayerCustomPropertiesAsync(final ListPlayerCustomPropertiesRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ListPlayerCustomPropertiesResult>>() {
+            public PlayFabResult<ListPlayerCustomPropertiesResult> call() throws Exception {
+                return privateListPlayerCustomPropertiesAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves title-specific custom property values for a player.
+     * @param request ListPlayerCustomPropertiesRequest
+     * @return ListPlayerCustomPropertiesResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ListPlayerCustomPropertiesResult> ListPlayerCustomProperties(final ListPlayerCustomPropertiesRequest request) {
+        FutureTask<PlayFabResult<ListPlayerCustomPropertiesResult>> task = new FutureTask(new Callable<PlayFabResult<ListPlayerCustomPropertiesResult>>() {
+            public PlayFabResult<ListPlayerCustomPropertiesResult> call() throws Exception {
+                return privateListPlayerCustomPropertiesAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<ListPlayerCustomPropertiesResult> exceptionResult = new PlayFabResult<ListPlayerCustomPropertiesResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Retrieves title-specific custom property values for a player. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ListPlayerCustomPropertiesResult> privateListPlayerCustomPropertiesAsync(final ListPlayerCustomPropertiesRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/ListPlayerCustomProperties"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ListPlayerCustomPropertiesResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ListPlayerCustomPropertiesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ListPlayerCustomPropertiesResult>>(){}.getType());
+        ListPlayerCustomPropertiesResult result = resultData.data;
+
+        PlayFabResult<ListPlayerCustomPropertiesResult> pfResult = new PlayFabResult<ListPlayerCustomPropertiesResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * _NOTE: This is a Legacy Economy API, and is in bugfix-only mode. All new Economy features are being developed only for
      * version 2._ Retuns the list of all defined virtual currencies for the title
      * @param request ListVirtualCurrencyTypesRequest
@@ -6363,6 +6549,68 @@ public class PlayFabAdminAPI {
         EmptyResponse result = resultData.data;
 
         PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Updates the title-specific custom property values for a player
+     * @param request UpdatePlayerCustomPropertiesRequest
+     * @return Async Task will return UpdatePlayerCustomPropertiesResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<UpdatePlayerCustomPropertiesResult>> UpdatePlayerCustomPropertiesAsync(final UpdatePlayerCustomPropertiesRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<UpdatePlayerCustomPropertiesResult>>() {
+            public PlayFabResult<UpdatePlayerCustomPropertiesResult> call() throws Exception {
+                return privateUpdatePlayerCustomPropertiesAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Updates the title-specific custom property values for a player
+     * @param request UpdatePlayerCustomPropertiesRequest
+     * @return UpdatePlayerCustomPropertiesResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<UpdatePlayerCustomPropertiesResult> UpdatePlayerCustomProperties(final UpdatePlayerCustomPropertiesRequest request) {
+        FutureTask<PlayFabResult<UpdatePlayerCustomPropertiesResult>> task = new FutureTask(new Callable<PlayFabResult<UpdatePlayerCustomPropertiesResult>>() {
+            public PlayFabResult<UpdatePlayerCustomPropertiesResult> call() throws Exception {
+                return privateUpdatePlayerCustomPropertiesAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<UpdatePlayerCustomPropertiesResult> exceptionResult = new PlayFabResult<UpdatePlayerCustomPropertiesResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Updates the title-specific custom property values for a player */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<UpdatePlayerCustomPropertiesResult> privateUpdatePlayerCustomPropertiesAsync(final UpdatePlayerCustomPropertiesRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/UpdatePlayerCustomProperties"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<UpdatePlayerCustomPropertiesResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<UpdatePlayerCustomPropertiesResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdatePlayerCustomPropertiesResult>>(){}.getType());
+        UpdatePlayerCustomPropertiesResult result = resultData.data;
+
+        PlayFabResult<UpdatePlayerCustomPropertiesResult> pfResult = new PlayFabResult<UpdatePlayerCustomPropertiesResult>();
         pfResult.Result = result;
         return pfResult;
     }
