@@ -145,7 +145,7 @@ public class PlayFabProgressionModels {
         public Map<String,String> CustomTags;
         /** Name of the leaderboard. */
         public String LeaderboardName;
-        /** Maximum number of results to return from the leaderboard. Minimum 1, maximum 1,000. */
+        /** Maximum number of results to return from the leaderboard. Minimum 1, maximum 100. */
         public Long PageSize;
         /** Index position to start from. 1 is beginning of leaderboard. */
         public Long StartingPosition;
