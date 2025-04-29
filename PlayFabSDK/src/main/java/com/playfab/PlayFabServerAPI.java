@@ -2764,6 +2764,68 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Retrieves the unique PlayFab identifiers for the given set of Battle.net account identifiers.
+     * @param request GetPlayFabIDsFromBattleNetAccountIdsRequest
+     * @return Async Task will return GetPlayFabIDsFromBattleNetAccountIdsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayFabIDsFromBattleNetAccountIdsResult>> GetPlayFabIDsFromBattleNetAccountIdsAsync(final GetPlayFabIDsFromBattleNetAccountIdsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromBattleNetAccountIdsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromBattleNetAccountIdsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromBattleNetAccountIdsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of Battle.net account identifiers.
+     * @param request GetPlayFabIDsFromBattleNetAccountIdsRequest
+     * @return GetPlayFabIDsFromBattleNetAccountIdsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayFabIDsFromBattleNetAccountIdsResult> GetPlayFabIDsFromBattleNetAccountIds(final GetPlayFabIDsFromBattleNetAccountIdsRequest request) {
+        FutureTask<PlayFabResult<GetPlayFabIDsFromBattleNetAccountIdsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromBattleNetAccountIdsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromBattleNetAccountIdsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromBattleNetAccountIdsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetPlayFabIDsFromBattleNetAccountIdsResult> exceptionResult = new PlayFabResult<GetPlayFabIDsFromBattleNetAccountIdsResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Retrieves the unique PlayFab identifiers for the given set of Battle.net account identifiers. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayFabIDsFromBattleNetAccountIdsResult> privateGetPlayFabIDsFromBattleNetAccountIdsAsync(final GetPlayFabIDsFromBattleNetAccountIdsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/GetPlayFabIDsFromBattleNetAccountIds"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayFabIDsFromBattleNetAccountIdsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayFabIDsFromBattleNetAccountIdsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayFabIDsFromBattleNetAccountIdsResult>>(){}.getType());
+        GetPlayFabIDsFromBattleNetAccountIdsResult result = resultData.data;
+
+        PlayFabResult<GetPlayFabIDsFromBattleNetAccountIdsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromBattleNetAccountIdsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the unique PlayFab identifiers for the given set of Facebook identifiers.
      * @param request GetPlayFabIDsFromFacebookIDsRequest
      * @return Async Task will return GetPlayFabIDsFromFacebookIDsResult
@@ -5438,6 +5500,207 @@ public class PlayFabServerAPI {
         ListPlayerCustomPropertiesResult result = resultData.data;
 
         PlayFabResult<ListPlayerCustomPropertiesResult> pfResult = new PlayFabResult<ListPlayerCustomPropertiesResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Signs the user in using the Android device identifier, returning a session identifier that can subsequently be used for
+     * API calls which require an authenticated user
+     * @param request LoginWithAndroidDeviceIDRequest
+     * @return Async Task will return ServerLoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ServerLoginResult>> LoginWithAndroidDeviceIDAsync(final LoginWithAndroidDeviceIDRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ServerLoginResult>>() {
+            public PlayFabResult<ServerLoginResult> call() throws Exception {
+                return privateLoginWithAndroidDeviceIDAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Signs the user in using the Android device identifier, returning a session identifier that can subsequently be used for
+     * API calls which require an authenticated user
+     * @param request LoginWithAndroidDeviceIDRequest
+     * @return ServerLoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ServerLoginResult> LoginWithAndroidDeviceID(final LoginWithAndroidDeviceIDRequest request) {
+        FutureTask<PlayFabResult<ServerLoginResult>> task = new FutureTask(new Callable<PlayFabResult<ServerLoginResult>>() {
+            public PlayFabResult<ServerLoginResult> call() throws Exception {
+                return privateLoginWithAndroidDeviceIDAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<ServerLoginResult> exceptionResult = new PlayFabResult<ServerLoginResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /**
+     * Signs the user in using the Android device identifier, returning a session identifier that can subsequently be used for
+     * API calls which require an authenticated user
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ServerLoginResult> privateLoginWithAndroidDeviceIDAsync(final LoginWithAndroidDeviceIDRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/LoginWithAndroidDeviceID"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ServerLoginResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ServerLoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ServerLoginResult>>(){}.getType());
+        ServerLoginResult result = resultData.data;
+
+        PlayFabResult<ServerLoginResult> pfResult = new PlayFabResult<ServerLoginResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Signs the user in using a custom unique identifier generated by the title, returning a session identifier that can
+     * subsequently be used for API calls which require an authenticated user
+     * @param request LoginWithCustomIDRequest
+     * @return Async Task will return ServerLoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ServerLoginResult>> LoginWithCustomIDAsync(final LoginWithCustomIDRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ServerLoginResult>>() {
+            public PlayFabResult<ServerLoginResult> call() throws Exception {
+                return privateLoginWithCustomIDAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Signs the user in using a custom unique identifier generated by the title, returning a session identifier that can
+     * subsequently be used for API calls which require an authenticated user
+     * @param request LoginWithCustomIDRequest
+     * @return ServerLoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ServerLoginResult> LoginWithCustomID(final LoginWithCustomIDRequest request) {
+        FutureTask<PlayFabResult<ServerLoginResult>> task = new FutureTask(new Callable<PlayFabResult<ServerLoginResult>>() {
+            public PlayFabResult<ServerLoginResult> call() throws Exception {
+                return privateLoginWithCustomIDAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<ServerLoginResult> exceptionResult = new PlayFabResult<ServerLoginResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /**
+     * Signs the user in using a custom unique identifier generated by the title, returning a session identifier that can
+     * subsequently be used for API calls which require an authenticated user
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ServerLoginResult> privateLoginWithCustomIDAsync(final LoginWithCustomIDRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/LoginWithCustomID"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ServerLoginResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ServerLoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ServerLoginResult>>(){}.getType());
+        ServerLoginResult result = resultData.data;
+
+        PlayFabResult<ServerLoginResult> pfResult = new PlayFabResult<ServerLoginResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Signs the user in using the iOS device identifier, returning a session identifier that can subsequently be used for API
+     * calls which require an authenticated user
+     * @param request LoginWithIOSDeviceIDRequest
+     * @return Async Task will return ServerLoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ServerLoginResult>> LoginWithIOSDeviceIDAsync(final LoginWithIOSDeviceIDRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ServerLoginResult>>() {
+            public PlayFabResult<ServerLoginResult> call() throws Exception {
+                return privateLoginWithIOSDeviceIDAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Signs the user in using the iOS device identifier, returning a session identifier that can subsequently be used for API
+     * calls which require an authenticated user
+     * @param request LoginWithIOSDeviceIDRequest
+     * @return ServerLoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ServerLoginResult> LoginWithIOSDeviceID(final LoginWithIOSDeviceIDRequest request) {
+        FutureTask<PlayFabResult<ServerLoginResult>> task = new FutureTask(new Callable<PlayFabResult<ServerLoginResult>>() {
+            public PlayFabResult<ServerLoginResult> call() throws Exception {
+                return privateLoginWithIOSDeviceIDAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<ServerLoginResult> exceptionResult = new PlayFabResult<ServerLoginResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /**
+     * Signs the user in using the iOS device identifier, returning a session identifier that can subsequently be used for API
+     * calls which require an authenticated user
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ServerLoginResult> privateLoginWithIOSDeviceIDAsync(final LoginWithIOSDeviceIDRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/LoginWithIOSDeviceID"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ServerLoginResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ServerLoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ServerLoginResult>>(){}.getType());
+        ServerLoginResult result = resultData.data;
+
+        PlayFabResult<ServerLoginResult> pfResult = new PlayFabResult<ServerLoginResult>();
         pfResult.Result = result;
         return pfResult;
     }

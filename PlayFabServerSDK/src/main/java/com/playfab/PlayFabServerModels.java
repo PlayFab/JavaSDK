@@ -218,6 +218,14 @@ public class PlayFabServerModels {
         
     }
 
+    public static class BattleNetAccountPlayFabIdPair {
+        /** Unique Battle.net account identifier for a user. */
+        public String BattleNetAccountId;
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Battle.net account identifier. */
+        public String PlayFabId;
+        
+    }
+
     /** A purchasable item from the item catalog */
     public static class CatalogItem implements Comparable<CatalogItem> {
         /**
@@ -1261,7 +1269,6 @@ public class PlayFabServerModels {
         UnableToConnectToDatabase,
         InternalServerError,
         InvalidReportDate,
-        ReportNotAvailable,
         DatabaseThroughputExceeded,
         InvalidGameTicket,
         ExpiredGameTicket,
@@ -1746,6 +1753,11 @@ public class PlayFabServerModels {
         VersionIncrementRateExceeded,
         InvalidSteamUsername,
         InvalidVersionResetForLinkedLeaderboard,
+        BattleNetNotEnabledForTitle,
+        ReportNotProcessed,
+        DataNotAvailable,
+        InvalidReportName,
+        ResourceNotModified,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -2025,6 +2037,7 @@ public class PlayFabServerModels {
         TrueSkillScenarioContainsActiveModel,
         TrueSkillInvalidConditionRank,
         TrueSkillTotalScenarioLimitExceeded,
+        TrueSkillInvalidConditionsList,
         GameSaveManifestNotFound,
         GameSaveManifestVersionAlreadyExists,
         GameSaveConflictUpdatingManifest,
@@ -2046,6 +2059,9 @@ public class PlayFabServerModels {
         GameSaveTitleDoesNotExist,
         GameSaveOperationNotAllowedForTitle,
         GameSaveManifestFilesLimitExceeded,
+        GameSaveManifestDescriptionUpdateNotAllowed,
+        GameSaveTitleConfigNotFound,
+        GameSaveTitleAlreadyOnboarded,
         StateShareForbidden,
         StateShareTitleNotInFlight,
         StateShareStateNotFound,
@@ -2053,7 +2069,9 @@ public class PlayFabServerModels {
         StateShareStateRedemptionLimitExceeded,
         StateShareStateRedemptionLimitNotUpdated,
         StateShareCreatedStatesLimitExceeded,
-        StateShareIdMissingOrMalformed
+        StateShareIdMissingOrMalformed,
+        PlayerCreationDisabled,
+        AccountAlreadyExists
     }
 
     public static class GenericPlayFabIdPair {
@@ -2645,6 +2663,22 @@ public class PlayFabServerModels {
         public String PlayFabId;
         /** Canonical tags (including namespace and tag's name) for the requested user */
         public ArrayList<String> Tags;
+        
+    }
+
+    public static class GetPlayFabIDsFromBattleNetAccountIdsRequest {
+        /**
+         * Array of unique Battle.net account identifiers for which the title needs to get PlayFab identifiers. The array cannot
+         * exceed 10 in length.
+         */
+        public ArrayList<String> BattleNetAccountIds;
+        
+    }
+
+    /** For Battle.net account identifiers which have not been linked to PlayFab accounts, null will be returned. */
+    public static class GetPlayFabIDsFromBattleNetAccountIdsResult {
+        /** Mapping of Battle.net account identifiers to PlayFab identifiers. */
+        public ArrayList<BattleNetAccountPlayFabIdPair> Data;
         
     }
 
@@ -3546,7 +3580,81 @@ public class PlayFabServerModels {
         NintendoSwitchAccount,
         GooglePlayGames,
         XboxMobileStore,
-        King
+        King,
+        BattleNet
+    }
+
+    /**
+     * On Android devices, the recommendation is to use the Settings.Secure.ANDROID_ID as the AndroidDeviceId, as described in
+     * this blog post (http://android-developers.blogspot.com/2011/03/identifying-app-installations.html). More information on
+     * this identifier can be found in the Android documentation
+     * (http://developer.android.com/reference/android/provider/Settings.Secure.html). If this is the first time a user has
+     * signed in with the Android device and CreateAccount is set to true, a new PlayFab account will be created and linked to
+     * the Android device ID. In this case, no email or username will be associated with the PlayFab account. Otherwise, if no
+     * PlayFab account is linked to the Android device, an error indicating this will be returned, so that the title can guide
+     * the user through creation of a PlayFab account. Please note that while multiple devices of this type can be linked to a
+     * single user account, only the one most recently used to login (or most recently linked) will be reflected in the user's
+     * account information. We will be updating to show all linked devices in a future release.
+     */
+    public static class LoginWithAndroidDeviceIDRequest {
+        /** Specific model of the user's device. */
+        public String AndroidDevice;
+        /** Android device identifier for the user's device. */
+        public String AndroidDeviceId;
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        public Boolean CreateAccount;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Flags for which pieces of info to return for the user. */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /** Specific Operating System version for the user's device. */
+        public String OS;
+        
+    }
+
+    /**
+     * It is highly recommended that developers ensure that it is extremely unlikely that a customer could generate an ID which
+     * is already in use by another customer. If this is the first time a user has signed in with the Custom ID and
+     * CreateAccount is set to true, a new PlayFab account will be created and linked to the Custom ID. In this case, no email
+     * or username will be associated with the PlayFab account. Otherwise, if no PlayFab account is linked to the Custom ID, an
+     * error indicating this will be returned, so that the title can guide the user through creation of a PlayFab account.
+     */
+    public static class LoginWithCustomIDRequest {
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        public Boolean CreateAccount;
+        /** Custom unique identifier for the user, generated by the title. */
+        public String CustomId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Flags for which pieces of info to return for the user. */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        
+    }
+
+    /**
+     * On iOS devices, the identifierForVendor
+     * (https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIDevice_Class/index.html#//apple_ref/occ/instp/UIDevice/identifierForVendor)
+     * must be used as the DeviceId, as the UIDevice uniqueIdentifier has been deprecated as of iOS 5, and use of the
+     * advertisingIdentifier for this purpose will result in failure of Apple's certification process. If this is the first
+     * time a user has signed in with the iOS device and CreateAccount is set to true, a new PlayFab account will be created
+     * and linked to the vendor-specific iOS device ID. In this case, no email or username will be associated with the PlayFab
+     * account. Otherwise, if no PlayFab account is linked to the iOS device, an error indicating this will be returned, so
+     * that the title can guide the user through creation of a PlayFab account.
+     */
+    public static class LoginWithIOSDeviceIDRequest {
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        public Boolean CreateAccount;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Vendor-specific iOS identifier for the user's device. */
+        public String DeviceId;
+        /** Specific model of the user's device. */
+        public String DeviceModel;
+        /** Flags for which pieces of info to return for the user. */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /** Specific Operating System version for the user's device. */
+        public String OS;
+        
     }
 
     /**

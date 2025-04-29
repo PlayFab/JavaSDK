@@ -1693,7 +1693,6 @@ public class PlayFabAdminModels {
         UnableToConnectToDatabase,
         InternalServerError,
         InvalidReportDate,
-        ReportNotAvailable,
         DatabaseThroughputExceeded,
         InvalidGameTicket,
         ExpiredGameTicket,
@@ -2178,6 +2177,11 @@ public class PlayFabAdminModels {
         VersionIncrementRateExceeded,
         InvalidSteamUsername,
         InvalidVersionResetForLinkedLeaderboard,
+        BattleNetNotEnabledForTitle,
+        ReportNotProcessed,
+        DataNotAvailable,
+        InvalidReportName,
+        ResourceNotModified,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -2457,6 +2461,7 @@ public class PlayFabAdminModels {
         TrueSkillScenarioContainsActiveModel,
         TrueSkillInvalidConditionRank,
         TrueSkillTotalScenarioLimitExceeded,
+        TrueSkillInvalidConditionsList,
         GameSaveManifestNotFound,
         GameSaveManifestVersionAlreadyExists,
         GameSaveConflictUpdatingManifest,
@@ -2478,6 +2483,9 @@ public class PlayFabAdminModels {
         GameSaveTitleDoesNotExist,
         GameSaveOperationNotAllowedForTitle,
         GameSaveManifestFilesLimitExceeded,
+        GameSaveManifestDescriptionUpdateNotAllowed,
+        GameSaveTitleConfigNotFound,
+        GameSaveTitleAlreadyOnboarded,
         StateShareForbidden,
         StateShareTitleNotInFlight,
         StateShareStateNotFound,
@@ -2485,7 +2493,9 @@ public class PlayFabAdminModels {
         StateShareStateRedemptionLimitExceeded,
         StateShareStateRedemptionLimitNotUpdated,
         StateShareCreatedStatesLimitExceeded,
-        StateShareIdMissingOrMalformed
+        StateShareIdMissingOrMalformed,
+        PlayerCreationDisabled,
+        AccountAlreadyExists
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {
@@ -3501,7 +3511,8 @@ public class PlayFabAdminModels {
         NintendoSwitchAccount,
         GooglePlayGames,
         XboxMobileStore,
-        King
+        King,
+        BattleNet
     }
 
     public static class LogStatement {

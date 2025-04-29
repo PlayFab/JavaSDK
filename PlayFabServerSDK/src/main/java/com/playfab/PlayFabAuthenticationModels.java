@@ -138,7 +138,8 @@ public class PlayFabAuthenticationModels {
         NintendoSwitchAccount,
         GooglePlayGames,
         XboxMobileStore,
-        King
+        King,
+        BattleNet
     }
 
     /** Given an entity token, validates that it hasn't expired or been revoked and will return details of the owner. */
