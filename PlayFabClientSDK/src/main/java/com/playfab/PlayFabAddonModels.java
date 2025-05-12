@@ -194,6 +194,26 @@ public class PlayFabAddonModels {
         
     }
 
+    public static class CreateOrUpdateToxModRequest {
+        /** Account ID obtained after creating your ToxMod developer account. */
+        public String AccountId;
+        /** Account Key obtained after creating your ToxMod developer account. */
+        public String AccountKey;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Whether ToxMod Addon is Enabled by Title. */
+        public Boolean Enabled;
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
+        public EntityKey Entity;
+        /** If an error should be returned if the addon already exists. */
+        public Boolean ErrorIfExists;
+        
+    }
+
+    public static class CreateOrUpdateToxModResponse {
+        
+    }
+
     public static class CreateOrUpdateTwitchRequest {
         /** Client ID obtained after creating your Twitch developer account. */
         public String ClientID;
@@ -305,6 +325,18 @@ public class PlayFabAddonModels {
     }
 
     public static class DeleteSteamResponse {
+        
+    }
+
+    public static class DeleteToxModRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
+        public EntityKey Entity;
+        
+    }
+
+    public static class DeleteToxModResponse {
         
     }
 
@@ -483,6 +515,26 @@ public class PlayFabAddonModels {
         public Boolean EnforceServiceSpecificTickets;
         /** Use Steam Payments sandbox endpoint for test transactions. */
         public Boolean UseSandbox;
+        
+    }
+
+    public static class GetToxModRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
+        public EntityKey Entity;
+        
+    }
+
+    public static class GetToxModResponse {
+        /** Account ID obtained after creating your Twitch developer account. */
+        public String AccountId;
+        /** Account Key obtained after creating your Twitch developer account. */
+        public String AccountKey;
+        /** Addon status. */
+        public Boolean Created;
+        /** Whether the ToxMod Addon is enabled by the title. */
+        public Boolean Enabled;
         
     }
 

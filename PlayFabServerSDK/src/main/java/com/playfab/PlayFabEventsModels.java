@@ -21,6 +21,97 @@ public class PlayFabEventsModels {
         
     }
 
+    public static class DataConnectionAzureBlobSettings {
+        /** Name of the storage account. */
+        public String AccountName;
+        /** Name of the container. */
+        public String ContainerName;
+        /** Azure Entra Tenant Id. */
+        public String TenantId;
+        
+    }
+
+    public static class DataConnectionAzureDataExplorerSettings {
+        /** The URI of the ADX cluster. */
+        public String ClusterUri;
+        /** The database to write to. */
+        public String Database;
+        /** The table to write to. */
+        public String Table;
+        
+    }
+
+    public static class DataConnectionDetails {
+        /** Settings of the data connection. */
+        public DataConnectionSettings ConnectionSettings;
+        /** Whether or not the connection is currently active. */
+        public Boolean IsActive;
+        /** The name of the data connection. */
+        public String Name;
+        /** Current status of the data connection, if any. */
+        public DataConnectionStatusDetails Status;
+        /** The type of data connection. */
+        public DataConnectionType Type;
+        
+    }
+
+    public static enum DataConnectionErrorState {
+        OK,
+        Error
+    }
+
+    public static class DataConnectionFabricKQLSettings {
+        /** The URI of the Fabric cluster. */
+        public String ClusterUri;
+        /** The database to write to. */
+        public String Database;
+        /** The table to write to. */
+        public String Table;
+        
+    }
+
+    public static class DataConnectionSettings {
+        /** Settings if the type of connection is AzureBlobStorage. */
+        public DataConnectionAzureBlobSettings AzureBlobSettings;
+        /** Settings if the type of connection is AzureDataExplorer. */
+        public DataConnectionAzureDataExplorerSettings AzureDataExplorerSettings;
+        /** Settings if the type of connection is FabricKQL. */
+        public DataConnectionFabricKQLSettings AzureFabricKQLSettings;
+        
+    }
+
+    public static class DataConnectionStatusDetails {
+        /** The name of the error affecting the data connection, if any. */
+        public String Error;
+        /** A description of the error affecting the data connection, if any. This may be empty for some errors. */
+        public String ErrorMessage;
+        /** The most recent time of the error affecting the data connection, if any. */
+        public Date MostRecentErrorTime;
+        /** Indicates if the connection is in a normal state or error state. */
+        public DataConnectionErrorState State;
+        
+    }
+
+    public static enum DataConnectionType {
+        AzureBlobStorage,
+        AzureDataExplorer,
+        FabricKQL
+    }
+
+    public static class DeleteDataConnectionRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The name of the data connection to delete. */
+        public String Name;
+        
+    }
+
+    public static class DeleteDataConnectionResponse {
+        /** Indicates whether or not the connection was deleted as part of the request. */
+        public Boolean WasDeleted;
+        
+    }
+
     public static class DeleteTelemetryKeyRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
@@ -79,6 +170,20 @@ public class PlayFabEventsModels {
         
     }
 
+    public static class GetDataConnectionRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The name of the data connection to retrieve. */
+        public String Name;
+        
+    }
+
+    public static class GetDataConnectionResponse {
+        /** The details of the queried Data Connection. */
+        public DataConnectionDetails DataConnection;
+        
+    }
+
     public static class GetTelemetryKeyRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
@@ -95,6 +200,18 @@ public class PlayFabEventsModels {
         
     }
 
+    public static class ListDataConnectionsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        
+    }
+
+    public static class ListDataConnectionsResponse {
+        /** The list of existing Data Connections. */
+        public ArrayList<DataConnectionDetails> DataConnections;
+        
+    }
+
     public static class ListTelemetryKeysRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
@@ -106,6 +223,47 @@ public class PlayFabEventsModels {
     public static class ListTelemetryKeysResponse {
         /** The telemetry keys configured for the title. */
         public ArrayList<TelemetryKeyDetails> KeyDetails;
+        
+    }
+
+    public static class SetDataConnectionActiveRequest {
+        /** Whether to set the data connection to active (true) or deactivated (false). */
+        public Boolean Active;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The name of the data connection to update. */
+        public String Name;
+        
+    }
+
+    public static class SetDataConnectionActiveResponse {
+        /** The most current details about the data connection that was to be updated. */
+        public DataConnectionDetails DataConnection;
+        /**
+         * Indicates whether or not the data connection was updated. If false, the data connection was already in the desired
+         * state.
+         */
+        public Boolean WasUpdated;
+        
+    }
+
+    public static class SetDataConnectionRequest {
+        /** Settings of the data connection. */
+        public DataConnectionSettings ConnectionSettings;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Whether or not the connection is currently active. */
+        public Boolean IsActive;
+        /** The name of the data connection to update or create. */
+        public String Name;
+        /** The type of data connection. */
+        public DataConnectionType Type;
+        
+    }
+
+    public static class SetDataConnectionResponse {
+        /** The details of the Data Connection to be created or updated. */
+        public DataConnectionDetails DataConnection;
         
     }
 

@@ -7,4 +7,4 @@ mkdir -p ./builds
 popd
 
 cd target
-cp  client-sdk-0.235.250428.jar ../../builds/client-sdk-0.235.250428.jar
+cp  client-sdk-0.236.250512.jar ../../builds/client-sdk-0.236.250512.jar

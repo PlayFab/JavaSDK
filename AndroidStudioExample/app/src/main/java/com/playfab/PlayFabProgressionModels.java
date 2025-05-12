@@ -25,6 +25,12 @@ public class PlayFabProgressionModels {
     }
 
     public static class CreateStatisticDefinitionRequest {
+        /**
+         * [In Preview]: The list of statistic definition names whose scores must be aggregated towards this stat. If
+         * AggregationSource is specified, the entityType of this definition MUST be Title (making it a CommunityStat). Currently,
+         * only one aggregation source can be specified.
+         */
+        public ArrayList<String> AggregationSources;
         /** The columns for the statistic defining the aggregation method for each column. */
         public ArrayList<StatisticColumn> Columns;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -262,6 +268,14 @@ public class PlayFabProgressionModels {
     }
 
     public static class GetStatisticDefinitionResponse {
+        /** The list of statistic definitions names this definition aggregates to. */
+        public ArrayList<String> AggregationDestinations;
+        /**
+         * The list of statistic definitions names whose values must be aggregated towards this stat. If AggregationSource is
+         * specified, the entityType of this definition MUST be Title (making it a CommunityStat). Currently, only one aggregation
+         * source can be specified.
+         */
+        public ArrayList<String> AggregationSources;
         /** The columns for the statistic defining the aggregation method for each column. */
         public ArrayList<StatisticColumn> Columns;
         /** Created time, in UTC */
@@ -464,6 +478,14 @@ public class PlayFabProgressionModels {
     }
 
     public static class StatisticDefinition {
+        /** The list of statistic definitions names this definition aggregates to. */
+        public ArrayList<String> AggregationDestinations;
+        /**
+         * The list of statistic definitions names whose values must be aggregated towards this stat. If AggregationSource is
+         * specified, the entityType of this definition MUST be Title (making it a CommunityStat). Currently, only one aggregation
+         * source can be specified.
+         */
+        public ArrayList<String> AggregationSources;
         /** The columns for the statistic defining the aggregation method for each column. */
         public ArrayList<StatisticColumn> Columns;
         /** Created time, in UTC */
