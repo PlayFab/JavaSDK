@@ -4915,6 +4915,8 @@ public class PlayFabClientModels {
         public UserAndroidDeviceInfo AndroidDeviceInfo;
         /** Sign in with Apple account information, if an Apple account has been linked */
         public UserAppleIdInfo AppleAccountInfo;
+        /** Battle.net account information, if a Battle.net account has been linked */
+        public UserBattleNetInfo BattleNetAccountInfo;
         /** Timestamp indicating when the user account was created */
         public Date Created;
         /** Custom ID information, if a custom ID has been assigned */
@@ -4969,6 +4971,14 @@ public class PlayFabClientModels {
     public static class UserAppleIdInfo {
         /** Apple subject ID */
         public String AppleSubjectId;
+        
+    }
+
+    public static class UserBattleNetInfo {
+        /** Battle.net identifier */
+        public String BattleNetAccountId;
+        /** Battle.net display name */
+        public String BattleNetBattleTag;
         
     }
 

@@ -510,6 +510,68 @@ public class PlayFabAddonAPI {
     }
 
     /**
+     * Creates the ToxMod addon on a title, or updates it if it already exists.
+     * @param request CreateOrUpdateToxModRequest
+     * @return Async Task will return CreateOrUpdateToxModResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<CreateOrUpdateToxModResponse>> CreateOrUpdateToxModAsync(final CreateOrUpdateToxModRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<CreateOrUpdateToxModResponse>>() {
+            public PlayFabResult<CreateOrUpdateToxModResponse> call() throws Exception {
+                return privateCreateOrUpdateToxModAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Creates the ToxMod addon on a title, or updates it if it already exists.
+     * @param request CreateOrUpdateToxModRequest
+     * @return CreateOrUpdateToxModResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<CreateOrUpdateToxModResponse> CreateOrUpdateToxMod(final CreateOrUpdateToxModRequest request) {
+        FutureTask<PlayFabResult<CreateOrUpdateToxModResponse>> task = new FutureTask(new Callable<PlayFabResult<CreateOrUpdateToxModResponse>>() {
+            public PlayFabResult<CreateOrUpdateToxModResponse> call() throws Exception {
+                return privateCreateOrUpdateToxModAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<CreateOrUpdateToxModResponse> exceptionResult = new PlayFabResult<CreateOrUpdateToxModResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Creates the ToxMod addon on a title, or updates it if it already exists. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<CreateOrUpdateToxModResponse> privateCreateOrUpdateToxModAsync(final CreateOrUpdateToxModRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Addon/CreateOrUpdateToxMod"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<CreateOrUpdateToxModResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<CreateOrUpdateToxModResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<CreateOrUpdateToxModResponse>>(){}.getType());
+        CreateOrUpdateToxModResponse result = resultData.data;
+
+        PlayFabResult<CreateOrUpdateToxModResponse> pfResult = new PlayFabResult<CreateOrUpdateToxModResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Creates the Twitch addon on a title, or updates it if it already exists.
      * @param request CreateOrUpdateTwitchRequest
      * @return Async Task will return CreateOrUpdateTwitchResponse
@@ -1068,6 +1130,68 @@ public class PlayFabAddonAPI {
     }
 
     /**
+     * Deletes the ToxMod addon on a title.
+     * @param request DeleteToxModRequest
+     * @return Async Task will return DeleteToxModResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<DeleteToxModResponse>> DeleteToxModAsync(final DeleteToxModRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<DeleteToxModResponse>>() {
+            public PlayFabResult<DeleteToxModResponse> call() throws Exception {
+                return privateDeleteToxModAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Deletes the ToxMod addon on a title.
+     * @param request DeleteToxModRequest
+     * @return DeleteToxModResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<DeleteToxModResponse> DeleteToxMod(final DeleteToxModRequest request) {
+        FutureTask<PlayFabResult<DeleteToxModResponse>> task = new FutureTask(new Callable<PlayFabResult<DeleteToxModResponse>>() {
+            public PlayFabResult<DeleteToxModResponse> call() throws Exception {
+                return privateDeleteToxModAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<DeleteToxModResponse> exceptionResult = new PlayFabResult<DeleteToxModResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Deletes the ToxMod addon on a title. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<DeleteToxModResponse> privateDeleteToxModAsync(final DeleteToxModRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Addon/DeleteToxMod"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<DeleteToxModResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<DeleteToxModResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<DeleteToxModResponse>>(){}.getType());
+        DeleteToxModResponse result = resultData.data;
+
+        PlayFabResult<DeleteToxModResponse> pfResult = new PlayFabResult<DeleteToxModResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Deletes the Twitch addon on a title.
      * @param request DeleteTwitchRequest
      * @return Async Task will return DeleteTwitchResponse
@@ -1621,6 +1745,68 @@ public class PlayFabAddonAPI {
         GetSteamResponse result = resultData.data;
 
         PlayFabResult<GetSteamResponse> pfResult = new PlayFabResult<GetSteamResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Gets information of the ToxMod addon on a title, omits secrets.
+     * @param request GetToxModRequest
+     * @return Async Task will return GetToxModResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetToxModResponse>> GetToxModAsync(final GetToxModRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetToxModResponse>>() {
+            public PlayFabResult<GetToxModResponse> call() throws Exception {
+                return privateGetToxModAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Gets information of the ToxMod addon on a title, omits secrets.
+     * @param request GetToxModRequest
+     * @return GetToxModResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetToxModResponse> GetToxMod(final GetToxModRequest request) {
+        FutureTask<PlayFabResult<GetToxModResponse>> task = new FutureTask(new Callable<PlayFabResult<GetToxModResponse>>() {
+            public PlayFabResult<GetToxModResponse> call() throws Exception {
+                return privateGetToxModAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetToxModResponse> exceptionResult = new PlayFabResult<GetToxModResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Gets information of the ToxMod addon on a title, omits secrets. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetToxModResponse> privateGetToxModAsync(final GetToxModRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Addon/GetToxMod"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetToxModResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetToxModResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetToxModResponse>>(){}.getType());
+        GetToxModResponse result = resultData.data;
+
+        PlayFabResult<GetToxModResponse> pfResult = new PlayFabResult<GetToxModResponse>();
         pfResult.Result = result;
         return pfResult;
     }
