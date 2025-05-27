@@ -2065,6 +2065,7 @@ public class PlayFabServerModels {
         GameSaveTitleAlreadyOnboarded,
         GameSaveServiceNotEnabledForTitle,
         GameSaveServiceOnboardingPending,
+        GameSaveManifestNotEligibleAsConflictingVersion,
         StateShareForbidden,
         StateShareTitleNotInFlight,
         StateShareStateNotFound,
@@ -3371,6 +3372,18 @@ public class PlayFabServerModels {
         }
     }
 
+    public static class LinkBattleNetAccountRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** If another user is already linked to a specific Battle.net account, unlink the other user and re-link. */
+        public Boolean ForceLink;
+        /** The JSON Web Token (JWT) returned by Battle.net after login */
+        public String IdentityToken;
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        public String PlayFabId;
+        
+    }
+
     public static class LinkedPlatformAccountModel {
         /** Linked account email of the user on the platform, if available */
         public String Email;
@@ -3620,6 +3633,18 @@ public class PlayFabServerModels {
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         /** Specific Operating System version for the user's device. */
         public String OS;
+        
+    }
+
+    public static class LoginWithBattleNetRequest {
+        /** Automatically create a PlayFab account if one is not currently linked to this ID. */
+        public Boolean CreateAccount;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The JSON Web Token (JWT) returned by Battle.net after login */
+        public String IdentityToken;
+        /** Flags for which pieces of info to return for the user. */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         
     }
 
@@ -4809,6 +4834,14 @@ public class PlayFabServerModels {
         public String PlayFabId;
         /** Unique Twitch identifier for a user. */
         public String TwitchId;
+        
+    }
+
+    public static class UnlinkBattleNetAccountRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        public String PlayFabId;
         
     }
 

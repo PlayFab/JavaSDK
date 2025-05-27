@@ -4947,6 +4947,68 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Links the Battle.net account associated with the token to the user's PlayFab account.
+     * @param request LinkBattleNetAccountRequest
+     * @return Async Task will return EmptyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResult>> LinkBattleNetAccountAsync(final LinkBattleNetAccountRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateLinkBattleNetAccountAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Links the Battle.net account associated with the token to the user's PlayFab account.
+     * @param request LinkBattleNetAccountRequest
+     * @return EmptyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResult> LinkBattleNetAccount(final LinkBattleNetAccountRequest request) {
+        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateLinkBattleNetAccountAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<EmptyResult> exceptionResult = new PlayFabResult<EmptyResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Links the Battle.net account associated with the token to the user's PlayFab account. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResult> privateLinkBattleNetAccountAsync(final LinkBattleNetAccountRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/LinkBattleNetAccount"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
+        EmptyResult result = resultData.data;
+
+        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Links the Nintendo account associated with the token to the user's PlayFab account
      * @param request LinkNintendoServiceAccountRequest
      * @return Async Task will return EmptyResult
@@ -5551,6 +5613,68 @@ public class PlayFabServerAPI {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/LoginWithAndroidDeviceID"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ServerLoginResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ServerLoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ServerLoginResult>>(){}.getType());
+        ServerLoginResult result = resultData.data;
+
+        PlayFabResult<ServerLoginResult> pfResult = new PlayFabResult<ServerLoginResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Sign in the user with a Battle.net identity token
+     * @param request LoginWithBattleNetRequest
+     * @return Async Task will return ServerLoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ServerLoginResult>> LoginWithBattleNetAsync(final LoginWithBattleNetRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ServerLoginResult>>() {
+            public PlayFabResult<ServerLoginResult> call() throws Exception {
+                return privateLoginWithBattleNetAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Sign in the user with a Battle.net identity token
+     * @param request LoginWithBattleNetRequest
+     * @return ServerLoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ServerLoginResult> LoginWithBattleNet(final LoginWithBattleNetRequest request) {
+        FutureTask<PlayFabResult<ServerLoginResult>> task = new FutureTask(new Callable<PlayFabResult<ServerLoginResult>>() {
+            public PlayFabResult<ServerLoginResult> call() throws Exception {
+                return privateLoginWithBattleNetAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<ServerLoginResult> exceptionResult = new PlayFabResult<ServerLoginResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Sign in the user with a Battle.net identity token */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ServerLoginResult> privateLoginWithBattleNetAsync(final LoginWithBattleNetRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/LoginWithBattleNet"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -7738,6 +7862,68 @@ public class PlayFabServerAPI {
         ModifyUserVirtualCurrencyResult result = resultData.data;
 
         PlayFabResult<ModifyUserVirtualCurrencyResult> pfResult = new PlayFabResult<ModifyUserVirtualCurrencyResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Unlinks the related Battle.net account from the user's PlayFab account.
+     * @param request UnlinkBattleNetAccountRequest
+     * @return Async Task will return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResponse>> UnlinkBattleNetAccountAsync(final UnlinkBattleNetAccountRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateUnlinkBattleNetAccountAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Unlinks the related Battle.net account from the user's PlayFab account.
+     * @param request UnlinkBattleNetAccountRequest
+     * @return EmptyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResponse> UnlinkBattleNetAccount(final UnlinkBattleNetAccountRequest request) {
+        FutureTask<PlayFabResult<EmptyResponse>> task = new FutureTask(new Callable<PlayFabResult<EmptyResponse>>() {
+            public PlayFabResult<EmptyResponse> call() throws Exception {
+                return privateUnlinkBattleNetAccountAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<EmptyResponse> exceptionResult = new PlayFabResult<EmptyResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Unlinks the related Battle.net account from the user's PlayFab account. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResponse> privateUnlinkBattleNetAccountAsync(final UnlinkBattleNetAccountRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/UnlinkBattleNetAccount"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResponse>>(){}.getType());
+        EmptyResponse result = resultData.data;
+
+        PlayFabResult<EmptyResponse> pfResult = new PlayFabResult<EmptyResponse>();
         pfResult.Result = result;
         return pfResult;
     }

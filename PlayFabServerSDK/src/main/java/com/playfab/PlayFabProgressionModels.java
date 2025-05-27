@@ -6,7 +6,10 @@ import com.playfab.PlayFabUtil.*;
 public class PlayFabProgressionModels {
 
     public static class CreateLeaderboardDefinitionRequest {
-        /** Leaderboard columns describing the sort directions, cannot be changed after creation. */
+        /**
+         * Leaderboard columns describing the sort directions, cannot be changed after creation. A maximum of 5 columns are
+         * allowed.
+         */
         public ArrayList<LeaderboardColumn> Columns;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
@@ -31,7 +34,7 @@ public class PlayFabProgressionModels {
          * only one aggregation source can be specified.
          */
         public ArrayList<String> AggregationSources;
-        /** The columns for the statistic defining the aggregation method for each column. */
+        /** The columns for the statistic defining the aggregation method for each column. A maximum of 5 columns are allowed. */
         public ArrayList<StatisticColumn> Columns;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;

@@ -911,6 +911,7 @@ public class PlayFabErrors {
         GameSaveTitleAlreadyOnboarded(20323),
         GameSaveServiceNotEnabledForTitle(20324),
         GameSaveServiceOnboardingPending(20325),
+        GameSaveManifestNotEligibleAsConflictingVersion(20326),
         StateShareForbidden(21000),
         StateShareTitleNotInFlight(21001),
         StateShareStateNotFound(21002),
