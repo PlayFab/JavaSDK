@@ -2489,6 +2489,7 @@ public class PlayFabAdminModels {
         GameSaveTitleAlreadyOnboarded,
         GameSaveServiceNotEnabledForTitle,
         GameSaveServiceOnboardingPending,
+        GameSaveManifestNotEligibleAsConflictingVersion,
         StateShareForbidden,
         StateShareTitleNotInFlight,
         StateShareStateNotFound,

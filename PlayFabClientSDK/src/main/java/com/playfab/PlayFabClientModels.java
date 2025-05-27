@@ -2502,7 +2502,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class LinkBattleNetRequest {
+    public static class LinkBattleNetAccountRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** If another user is already linked to a specific Battle.net account, unlink the other user and re-link. */
@@ -4489,7 +4489,7 @@ public class PlayFabClientModels {
         
     }
 
-    public static class UnlinkBattleNetRequest {
+    public static class UnlinkBattleNetAccountRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         
