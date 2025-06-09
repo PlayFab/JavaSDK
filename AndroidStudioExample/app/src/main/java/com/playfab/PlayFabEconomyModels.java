@@ -1969,6 +1969,8 @@ public class PlayFabEconomyModels {
     public static class Transaction {
         /** The API call that caused this transaction. */
         public String ApiName;
+        /** Additional details about the transaction. Null if it was not a clawback operation. */
+        public TransactionClawbackDetails ClawbackDetails;
         /** The type of item that the the operation occurred on. */
         public String ItemType;
         /** The operations that occurred. */
@@ -1985,6 +1987,12 @@ public class PlayFabEconomyModels {
         public String TransactionId;
         /** Additional details about the transaction. Null if it was not a transfer operation. */
         public TransactionTransferDetails TransferDetails;
+        
+    }
+
+    public static class TransactionClawbackDetails {
+        /** The id of the clawed back operation. */
+        public String TransactionIdClawedback;
         
     }
 

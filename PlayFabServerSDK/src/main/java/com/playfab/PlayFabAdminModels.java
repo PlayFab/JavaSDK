@@ -2490,6 +2490,9 @@ public class PlayFabAdminModels {
         GameSaveServiceNotEnabledForTitle,
         GameSaveServiceOnboardingPending,
         GameSaveManifestNotEligibleAsConflictingVersion,
+        GameSaveServiceUnavailable,
+        GameSaveConflict,
+        GameSaveManifestNotEligibleForRollback,
         StateShareForbidden,
         StateShareTitleNotInFlight,
         StateShareStateNotFound,
@@ -2507,7 +2510,8 @@ public class PlayFabAdminModels {
         VersionConfigurationCannotBeSpecifiedForLinkedStat,
         VersionConfigurationIsRequired,
         InvalidEntityTypeForAggregation,
-        MultiLevelAggregationNotAllowed
+        MultiLevelAggregationNotAllowed,
+        AggregationTypeNotAllowedForLinkedStat
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {

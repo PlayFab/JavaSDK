@@ -120,9 +120,9 @@ public class PlayFabProgressionModels {
     }
 
     public static class EntityStatistics {
-        /** Entity key */
+        /** The entity for which the statistics are returned. */
         public EntityKey EntityKey;
-        /** All statistics for the given entitykey */
+        /** The statistics for the given entity key. */
         public ArrayList<EntityStatisticValue> Statistics;
         
     }
@@ -303,6 +303,8 @@ public class PlayFabProgressionModels {
         public Map<String,String> CustomTags;
         /** Collection of Entity IDs to retrieve statistics for. */
         public ArrayList<EntityKey> Entities;
+        /** The list of statistics to return for the user. If set to null, the current version of all statistics are returned. */
+        public ArrayList<String> StatisticNames;
         
     }
 
@@ -319,6 +321,8 @@ public class PlayFabProgressionModels {
         public Map<String,String> CustomTags;
         /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         public EntityKey Entity;
+        /** The list of statistics to return for the user. If set to null, the current version of all statistics are returned. */
+        public ArrayList<String> StatisticNames;
         
     }
 

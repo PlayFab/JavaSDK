@@ -2066,6 +2066,9 @@ public class PlayFabServerModels {
         GameSaveServiceNotEnabledForTitle,
         GameSaveServiceOnboardingPending,
         GameSaveManifestNotEligibleAsConflictingVersion,
+        GameSaveServiceUnavailable,
+        GameSaveConflict,
+        GameSaveManifestNotEligibleForRollback,
         StateShareForbidden,
         StateShareTitleNotInFlight,
         StateShareStateNotFound,
@@ -2083,7 +2086,8 @@ public class PlayFabServerModels {
         VersionConfigurationCannotBeSpecifiedForLinkedStat,
         VersionConfigurationIsRequired,
         InvalidEntityTypeForAggregation,
-        MultiLevelAggregationNotAllowed
+        MultiLevelAggregationNotAllowed,
+        AggregationTypeNotAllowedForLinkedStat
     }
 
     public static class GenericPlayFabIdPair {
