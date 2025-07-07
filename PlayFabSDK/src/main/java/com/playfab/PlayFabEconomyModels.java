@@ -894,6 +894,13 @@ public class PlayFabEconomyModels {
     public static class GetDraftItemsRequest {
         /** List of item alternate IDs. */
         public ArrayList<CatalogAlternateId> AlternateIds;
+        /**
+         * An opaque token used to retrieve the next page of items created by the caller, if any are available. Should be null on
+         * initial request.
+         */
+        public String ContinuationToken;
+        /** Number of items to retrieve. This value is optional. Default value is 10. */
+        public Integer Count;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
