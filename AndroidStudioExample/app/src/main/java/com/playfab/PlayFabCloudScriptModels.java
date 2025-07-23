@@ -415,6 +415,8 @@ public class PlayFabCloudScriptModels {
         public String FunctionName;
         /** The object returned from the function, if any */
         public Object FunctionResult;
+        /** The size in bytes of the object returned from the function, if any */
+        public Integer FunctionResultSize;
         /** Flag indicating if the FunctionResult was too large and was subsequently dropped from this event. */
         public Boolean FunctionResultTooLarge;
         

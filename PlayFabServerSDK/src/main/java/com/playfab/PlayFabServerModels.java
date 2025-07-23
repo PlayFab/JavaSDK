@@ -2700,8 +2700,8 @@ public class PlayFabServerModels {
 
     public static class GetPlayFabIDsFromFacebookIDsRequest {
         /**
-         * Array of unique Facebook identifiers for which the title needs to get PlayFab identifiers. The array cannot exceed 2,000
-         * in length.
+         * Array of unique Facebook identifiers for which the title needs to get PlayFab identifiers. The array cannot exceed 25 in
+         * length.
          */
         public ArrayList<String> FacebookIDs;
         
@@ -2749,7 +2749,7 @@ public class PlayFabServerModels {
     public static class GetPlayFabIDsFromNintendoServiceAccountIdsRequest {
         /**
          * Array of unique Nintendo Switch Account identifiers for which the title needs to get PlayFab identifiers. The array
-         * cannot exceed 2,000 in length.
+         * cannot exceed 25 in length.
          */
         public ArrayList<String> NintendoAccountIds;
         
@@ -2765,7 +2765,7 @@ public class PlayFabServerModels {
     public static class GetPlayFabIDsFromNintendoSwitchDeviceIdsRequest {
         /**
          * Array of unique Nintendo Switch Device identifiers for which the title needs to get PlayFab identifiers. The array
-         * cannot exceed 2,000 in length.
+         * cannot exceed 25 in length.
          */
         public ArrayList<String> NintendoSwitchDeviceIds;
         
@@ -2783,7 +2783,7 @@ public class PlayFabServerModels {
         public Integer IssuerId;
         /**
          * Array of unique PlayStation :tm: Network identifiers for which the title needs to get PlayFab identifiers. The array
-         * cannot exceed 2,000 in length.
+         * cannot exceed 25 in length.
          */
         public ArrayList<String> PSNAccountIDs;
         
@@ -2801,7 +2801,7 @@ public class PlayFabServerModels {
         public Integer IssuerId;
         /**
          * Array of unique PlayStation :tm: Network identifiers for which the title needs to get PlayFab identifiers. The array
-         * cannot exceed 2,000 in length.
+         * cannot exceed 25 in length.
          */
         public ArrayList<String> PSNOnlineIDs;
         
@@ -2817,7 +2817,7 @@ public class PlayFabServerModels {
     public static class GetPlayFabIDsFromSteamIDsRequest {
         /**
          * Array of unique Steam identifiers (Steam profile IDs) for which the title needs to get PlayFab identifiers. The array
-         * cannot exceed 2,000 in length.
+         * cannot exceed 25 in length.
          */
         public ArrayList<String> SteamStringIDs;
         
@@ -2832,7 +2832,7 @@ public class PlayFabServerModels {
 
     public static class GetPlayFabIDsFromSteamNamesRequest {
         /**
-         * Array of unique Steam identifiers for which the title needs to get PlayFab identifiers. The array cannot exceed 2,000 in
+         * Array of unique Steam identifiers for which the title needs to get PlayFab identifiers. The array cannot exceed 25 in
          * length.
          */
         public ArrayList<String> SteamNames;
@@ -2849,7 +2849,7 @@ public class PlayFabServerModels {
     public static class GetPlayFabIDsFromTwitchIDsRequest {
         /**
          * Array of unique Twitch identifiers (Twitch's _id) for which the title needs to get PlayFab identifiers. The array cannot
-         * exceed 2,000 in length.
+         * exceed 25 in length.
          */
         public ArrayList<String> TwitchIds;
         
@@ -2867,7 +2867,7 @@ public class PlayFabServerModels {
         public String Sandbox;
         /**
          * Array of unique Xbox Live account identifiers for which the title needs to get PlayFab identifiers. The array cannot
-         * exceed 2,000 in length.
+         * exceed 25 in length.
          */
         public ArrayList<String> XboxLiveAccountIDs;
         
