@@ -1978,6 +1978,8 @@ public class PlayFabEconomyModels {
         public String ApiName;
         /** Additional details about the transaction. Null if it was not a clawback operation. */
         public TransactionClawbackDetails ClawbackDetails;
+        /** The custom tags associated with this transactions. */
+        public Map<String,String> CustomTags;
         /** The type of item that the the operation occurred on. */
         public String ItemType;
         /** The operations that occurred. */
