@@ -2183,6 +2183,7 @@ public class PlayFabAdminModels {
         InvalidReportName,
         ResourceNotModified,
         StudioCreationLimitExceeded,
+        StudioDeletionInitiated,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -2511,7 +2512,8 @@ public class PlayFabAdminModels {
         VersionConfigurationIsRequired,
         InvalidEntityTypeForAggregation,
         MultiLevelAggregationNotAllowed,
-        AggregationTypeNotAllowedForLinkedStat
+        AggregationTypeNotAllowedForLinkedStat,
+        StoreMetricsRequestInvalidInput
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {
