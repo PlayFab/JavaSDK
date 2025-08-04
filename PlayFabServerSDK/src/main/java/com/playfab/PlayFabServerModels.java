@@ -1759,6 +1759,7 @@ public class PlayFabServerModels {
         InvalidReportName,
         ResourceNotModified,
         StudioCreationLimitExceeded,
+        StudioDeletionInitiated,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -2087,7 +2088,8 @@ public class PlayFabServerModels {
         VersionConfigurationIsRequired,
         InvalidEntityTypeForAggregation,
         MultiLevelAggregationNotAllowed,
-        AggregationTypeNotAllowedForLinkedStat
+        AggregationTypeNotAllowedForLinkedStat,
+        StoreMetricsRequestInvalidInput
     }
 
     public static class GenericPlayFabIdPair {
