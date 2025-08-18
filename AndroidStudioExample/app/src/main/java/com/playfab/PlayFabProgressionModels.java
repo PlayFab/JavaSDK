@@ -18,6 +18,8 @@ public class PlayFabProgressionModels {
          * 'external' as the type.
          */
         public String EntityType;
+        /** [In Preview]: The configuration for the events emitted by this leaderboard. If not specified, no events will be emitted. */
+        public LeaderboardEventEmissionConfig EventEmissionConfig;
         /** A name for the leaderboard, unique per title. */
         public String Name;
         /** Maximum number of entries on this leaderboard */
@@ -40,6 +42,8 @@ public class PlayFabProgressionModels {
         public Map<String,String> CustomTags;
         /** The entity type allowed to have score(s) for this statistic. */
         public String EntityType;
+        /** [In Preview]: Configurations for different Statistics events that can be emitted by the service. */
+        public StatisticsEventEmissionConfig EventEmissionConfig;
         /** Name of the statistic. Must be less than 150 characters. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.'. */
         public String Name;
         /** The version reset configuration for the statistic definition. */
@@ -139,6 +143,12 @@ public class PlayFabProgressionModels {
         
     }
 
+    public static enum EventType {
+        None,
+        Telemetry,
+        PlayStream
+    }
+
     public static enum ExternalFriendSources {
         None,
         Steam,
@@ -236,6 +246,8 @@ public class PlayFabProgressionModels {
          * 'external' as the type.
          */
         public String EntityType;
+        /** [In Preview]: The configuration for the events emitted by this leaderboard. If not specified, no events will be emitted. */
+        public LeaderboardEventEmissionConfig EventEmissionConfig;
         /** Last time, in UTC, leaderboard version was incremented. */
         public Date LastResetTime;
         /** A name for the leaderboard, unique per title. */
@@ -285,6 +297,8 @@ public class PlayFabProgressionModels {
         public Date Created;
         /** The entity type that can have this statistic. */
         public String EntityType;
+        /** [In Preview]: Configurations for different Statistics events that can be emitted by the service. */
+        public StatisticsEventEmissionConfig EventEmissionConfig;
         /** Last time, in UTC, statistic version was incremented. */
         public Date LastResetTime;
         /** The list of leaderboards that are linked to this statistic definition. */
@@ -387,6 +401,8 @@ public class PlayFabProgressionModels {
          * 'external' as the type.
          */
         public String EntityType;
+        /** [In Preview]: The configuration for the events emitted by this leaderboard. If not specified, no events will be emitted. */
+        public LeaderboardEventEmissionConfig EventEmissionConfig;
         /** Last time, in UTC, leaderboard version was incremented. */
         public Date LastResetTime;
         /** A name for the leaderboard, unique per title. */
@@ -397,6 +413,14 @@ public class PlayFabProgressionModels {
         public Long Version;
         /** The version reset configuration for the leaderboard definition. */
         public VersionConfiguration VersionConfiguration;
+        
+    }
+
+    public static class LeaderboardEntityRankOnVersionEndConfig {
+        /** The type of event to emit when the leaderboard version end. */
+        public EventType EventType;
+        /** The maximum number of entity to return on leaderboard version end. Range is 1 to 1000. */
+        public Integer RankLimit;
         
     }
 
@@ -416,9 +440,23 @@ public class PlayFabProgressionModels {
         
     }
 
+    public static class LeaderboardEventEmissionConfig {
+        /** This event emits the top ranks of the leaderboard when the leaderboard version end. */
+        public LeaderboardEntityRankOnVersionEndConfig EntityRankOnVersionEndConfig;
+        /** This event is emitted when the leaderboard version end. */
+        public LeaderboardVersionEndConfig VersionEndConfig;
+        
+    }
+
     public static enum LeaderboardSortDirection {
         Descending,
         Ascending
+    }
+
+    public static class LeaderboardVersionEndConfig {
+        /** The type of event to emit when the leaderboard version end. */
+        public EventType EventType;
+        
     }
 
     public static class LinkedStatisticColumn {
@@ -499,6 +537,8 @@ public class PlayFabProgressionModels {
         public Date Created;
         /** The entity type that can have this statistic. */
         public String EntityType;
+        /** [In Preview]: Configurations for different Statistics events that can be emitted by the service. */
+        public StatisticsEventEmissionConfig EventEmissionConfig;
         /** Last time, in UTC, statistic version was incremented. */
         public Date LastResetTime;
         /** The list of leaderboards that are linked to this statistic definition. */
@@ -515,6 +555,18 @@ public class PlayFabProgressionModels {
     public static class StatisticDelete {
         /** Name of the statistic, as originally configured. */
         public String Name;
+        
+    }
+
+    public static class StatisticsEventEmissionConfig {
+        /** Emitted when statistics are updated. */
+        public StatisticsUpdateEventConfig UpdateEventConfig;
+        
+    }
+
+    public static class StatisticsUpdateEventConfig {
+        /** The event type to emit when statistics are updated. */
+        public EventType EventType;
         
     }
 
@@ -551,6 +603,8 @@ public class PlayFabProgressionModels {
     public static class UpdateLeaderboardDefinitionRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
+        /** [In Preview]: The configuration for the events emitted by this leaderboard. If not specified, no events will be emitted. */
+        public LeaderboardEventEmissionConfig EventEmissionConfig;
         /** The name of the leaderboard to update the definition for. */
         public String Name;
         /** Maximum number of entries on this leaderboard */
@@ -573,6 +627,8 @@ public class PlayFabProgressionModels {
     public static class UpdateStatisticDefinitionRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
+        /** [In Preview]: Configurations for different Statistics events that can be emitted by the service. */
+        public StatisticsEventEmissionConfig EventEmissionConfig;
         /** Name of the statistic. Must be less than 150 characters. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.'. */
         public String Name;
         /** The version reset configuration for the statistic definition. */

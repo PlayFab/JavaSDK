@@ -2024,6 +2024,10 @@ public class PlayFabEconomyModels {
     }
 
     public static class TransactionPurchaseDetails {
+        /** The friendly id of the item that was purchased. */
+        public String ItemFriendlyId;
+        /** The id of the item that was purchased. */
+        public String ItemId;
         /** The friendly id of the Store the item was purchased from or null. */
         public String StoreFriendlyId;
         /** The id of the Store the item was purchased from or null. */

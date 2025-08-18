@@ -6,8 +6,14 @@ import com.playfab.PlayFabUtil.*;
 public class PlayFabAddonModels {
 
     public static class CreateOrUpdateAppleRequest {
+        /** Allow validation of receipts from the Apple production environment. Required for app releases. */
+        public Boolean AllowProduction;
+        /** Allow validation of receipts from the Apple sandbox environment. Typically used while testing. */
+        public Boolean AllowSandbox;
         /** iOS App Bundle ID obtained after setting up your app in the App Store. */
         public String AppBundleId;
+        /** AppId obtained after setting up your app in the App Store. */
+        public String AppId;
         /** iOS App Shared Secret obtained after setting up your app in the App Store. */
         public String AppSharedSecret;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
@@ -21,6 +27,12 @@ public class PlayFabAddonModels {
          * case where Apple rotates their signing keys.
          */
         public Boolean IgnoreExpirationDate;
+        /** IssuerId obtained after setting up your app in the App Store. */
+        public String IssuerId;
+        /** KeyId obtained after setting up your app in the App Store. */
+        public String KeyId;
+        /** PrivateKey obtained after setting up your app in the App Store. */
+        public String PrivateKey;
         /** Require secure authentication only for this app. */
         public Boolean RequireSecureAuthentication;
         

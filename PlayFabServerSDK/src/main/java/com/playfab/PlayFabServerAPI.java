@@ -2507,9 +2507,11 @@ public class PlayFabServerAPI {
      * on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected
      * in the results. AB Test segments are currently not supported by this operation. NOTE: This API is limited to being
      * called 30 times in one minute. You will be returned an error if you exceed this threshold.
+     * @deprecated Do not use
      * @param request GetPlayersInSegmentRequest
      * @return Async Task will return GetPlayersInSegmentResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static FutureTask<PlayFabResult<GetPlayersInSegmentResult>> GetPlayersInSegmentAsync(final GetPlayersInSegmentRequest request) {
         return new FutureTask(new Callable<PlayFabResult<GetPlayersInSegmentResult>>() {
@@ -2525,9 +2527,11 @@ public class PlayFabServerAPI {
      * on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected
      * in the results. AB Test segments are currently not supported by this operation. NOTE: This API is limited to being
      * called 30 times in one minute. You will be returned an error if you exceed this threshold.
+     * @deprecated Do not use
      * @param request GetPlayersInSegmentRequest
      * @return GetPlayersInSegmentResult
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     public static PlayFabResult<GetPlayersInSegmentResult> GetPlayersInSegment(final GetPlayersInSegmentRequest request) {
         FutureTask<PlayFabResult<GetPlayersInSegmentResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayersInSegmentResult>>() {
@@ -2551,7 +2555,9 @@ public class PlayFabServerAPI {
      * on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected
      * in the results. AB Test segments are currently not supported by this operation. NOTE: This API is limited to being
      * called 30 times in one minute. You will be returned an error if you exceed this threshold.
+     * @deprecated Do not use
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetPlayersInSegmentResult> privateGetPlayersInSegmentAsync(final GetPlayersInSegmentRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");

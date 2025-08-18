@@ -79,6 +79,8 @@ public class PlayFabAdminModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class AdCampaignAttribution {
         /** UTC time stamp of attribution */
         public Date AttributedAt;
@@ -519,6 +521,8 @@ public class PlayFabAdminModels {
         False
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class ContactEmailInfo {
         /** The email address */
         public String EmailAddress;
@@ -2776,7 +2780,9 @@ public class PlayFabAdminModels {
      * returned and paging will be terminated. This API is resource intensive and should not be used in scenarios which might
      * generate high request volumes. Only one request to this API at a time should be made per title. Concurrent requests to
      * the API may be rejected with the APIConcurrentRequestLimitExceeded error.
+     * @deprecated Do not use
      */
+    @Deprecated
     public static class GetPlayersInSegmentRequest {
         /** Continuation token if retrieving subsequent pages of results. */
         public String ContinuationToken;
@@ -2803,6 +2809,8 @@ public class PlayFabAdminModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class GetPlayersInSegmentResult {
         /** Continuation token to use to retrieve subsequent pages of results. If token returns null there are no more results. */
         public String ContinuationToken;
@@ -3683,6 +3691,8 @@ public class PlayFabAdminModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class PlayerLinkedAccount {
         /** Linked account's email */
         public String Email;
@@ -3695,6 +3705,8 @@ public class PlayFabAdminModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class PlayerLocation {
         /** City of the player's geographic location. */
         public String City;
@@ -3709,6 +3721,8 @@ public class PlayFabAdminModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class PlayerProfile {
         /** Array of ad campaigns player has been attributed to */
         public ArrayList<AdCampaignAttribution> AdCampaignAttributions;
@@ -3848,6 +3862,8 @@ public class PlayFabAdminModels {
         
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class PlayerStatistic {
         /** Statistic ID */
         public String Id;
@@ -3907,6 +3923,8 @@ public class PlayFabAdminModels {
         GoogleCloudMessaging
     }
 
+    /** @deprecated Do not use */
+    @Deprecated
     public static class PushNotificationRegistration {
         /** Notification configured endpoint */
         public String NotificationEndpointARN;
