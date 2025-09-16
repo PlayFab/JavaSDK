@@ -5511,6 +5511,68 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Links the Xbox Live account associated with the provided Xbox ID and Sandbox to the user's PlayFab account
+     * @param request LinkXboxIdRequest
+     * @return Async Task will return LinkXboxAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<LinkXboxAccountResult>> LinkXboxIdAsync(final LinkXboxIdRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<LinkXboxAccountResult>>() {
+            public PlayFabResult<LinkXboxAccountResult> call() throws Exception {
+                return privateLinkXboxIdAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Links the Xbox Live account associated with the provided Xbox ID and Sandbox to the user's PlayFab account
+     * @param request LinkXboxIdRequest
+     * @return LinkXboxAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<LinkXboxAccountResult> LinkXboxId(final LinkXboxIdRequest request) {
+        FutureTask<PlayFabResult<LinkXboxAccountResult>> task = new FutureTask(new Callable<PlayFabResult<LinkXboxAccountResult>>() {
+            public PlayFabResult<LinkXboxAccountResult> call() throws Exception {
+                return privateLinkXboxIdAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<LinkXboxAccountResult> exceptionResult = new PlayFabResult<LinkXboxAccountResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Links the Xbox Live account associated with the provided Xbox ID and Sandbox to the user's PlayFab account */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<LinkXboxAccountResult> privateLinkXboxIdAsync(final LinkXboxIdRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/LinkXboxId"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<LinkXboxAccountResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<LinkXboxAccountResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<LinkXboxAccountResult>>(){}.getType());
+        LinkXboxAccountResult result = resultData.data;
+
+        PlayFabResult<LinkXboxAccountResult> pfResult = new PlayFabResult<LinkXboxAccountResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves title-specific custom property values for a player.
      * @param request ListPlayerCustomPropertiesRequest
      * @return Async Task will return ListPlayerCustomPropertiesResult
