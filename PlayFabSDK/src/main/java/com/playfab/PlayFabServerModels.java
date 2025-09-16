@@ -1766,6 +1766,8 @@ public class PlayFabServerModels {
         ResourceNotModified,
         StudioCreationLimitExceeded,
         StudioDeletionInitiated,
+        ProductDisabledForTitle,
+        PreconditionFailed,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -1898,6 +1900,7 @@ public class PlayFabServerModels {
         AsyncExportNotFound,
         AsyncExportRateLimitExceeded,
         AnalyticsSegmentCountOverLimit,
+        GetPlayersInSegmentDeprecated,
         SnapshotNotFound,
         InventoryApiNotImplemented,
         InventoryCollectionDeletionDisallowed,
@@ -2095,7 +2098,13 @@ public class PlayFabServerModels {
         InvalidEntityTypeForAggregation,
         MultiLevelAggregationNotAllowed,
         AggregationTypeNotAllowedForLinkedStat,
-        StoreMetricsRequestInvalidInput
+        OperationDeniedDueToDefinitionPolicy,
+        StatisticUpdateNotAllowedWhileLinked,
+        UnsupportedEntityType,
+        EntityTypeSpecifiedRequiresAggregationSource,
+        PlayFabErrorEventNotSupportedForEntityType,
+        StoreMetricsRequestInvalidInput,
+        StoreMetricsErrorRetrievingMetrics
     }
 
     public static class GenericPlayFabIdPair {
@@ -3514,7 +3523,7 @@ public class PlayFabServerModels {
         public Map<String,String> CustomTags;
         /** If another user is already linked to the account, unlink the other user and re-link. */
         public Boolean ForceLink;
-        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
+        /** PlayFab unique identifier of the user to link. */
         public String PlayFabId;
         /** Unique Steam identifier for a user. */
         public String SteamId;
@@ -3530,7 +3539,7 @@ public class PlayFabServerModels {
         public Map<String,String> CustomTags;
         /** If another user is already linked to the account, unlink the other user and re-link. */
         public Boolean ForceLink;
-        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
+        /** PlayFab unique identifier of the user to link. */
         public String PlayFabId;
         /** Token provided by the Xbox Live SDK/XDK method GetTokenAndSignatureAsync("POST", "https://playfabapi.com/", ""). */
         public String XboxToken;
@@ -3538,6 +3547,20 @@ public class PlayFabServerModels {
     }
 
     public static class LinkXboxAccountResult {
+        
+    }
+
+    public static class LinkXboxIdRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** If another user is already linked to the account, unlink the other user and re-link. */
+        public Boolean ForceLink;
+        /** PlayFab unique identifier of the user to link. */
+        public String PlayFabId;
+        /** The id of Xbox Live sandbox. */
+        public String Sandbox;
+        /** Unique Xbox identifier for a user. */
+        public String XboxId;
         
     }
 
@@ -4934,7 +4957,7 @@ public class PlayFabServerModels {
     public static class UnlinkXboxAccountRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Xbox Live identifier. */
+        /** PlayFab unique identifier of the user to unlink. */
         public String PlayFabId;
         
     }
