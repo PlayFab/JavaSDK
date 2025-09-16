@@ -590,6 +590,16 @@ public class PlayFabProgressionModels {
         
     }
 
+    public static class UnlinkAggregationSourceFromStatisticRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The name of the statistic to unlink. */
+        public String Name;
+        /** The name of the aggregation source statistic to unlink. */
+        public String SourceStatisticName;
+        
+    }
+
     public static class UnlinkLeaderboardFromStatisticRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;

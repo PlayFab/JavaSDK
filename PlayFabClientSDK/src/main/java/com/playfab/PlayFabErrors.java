@@ -606,6 +606,8 @@ public class PlayFabErrors {
         ResourceNotModified(1606),
         StudioCreationLimitExceeded(1607),
         StudioDeletionInitiated(1608),
+        ProductDisabledForTitle(1609),
+        PreconditionFailed(1610),
         MatchmakingEntityInvalid(2001),
         MatchmakingPlayerAttributesInvalid(2002),
         MatchmakingQueueNotFound(2016),
@@ -738,6 +740,7 @@ public class PlayFabErrors {
         AsyncExportNotFound(10012),
         AsyncExportRateLimitExceeded(10013),
         AnalyticsSegmentCountOverLimit(10014),
+        GetPlayersInSegmentDeprecated(10015),
         SnapshotNotFound(11000),
         InventoryApiNotImplemented(12000),
         InventoryCollectionDeletionDisallowed(12001),
@@ -935,7 +938,13 @@ public class PlayFabErrors {
         InvalidEntityTypeForAggregation(23006),
         MultiLevelAggregationNotAllowed(23007),
         AggregationTypeNotAllowedForLinkedStat(23008),
-        StoreMetricsRequestInvalidInput(23501);
+        OperationDeniedDueToDefinitionPolicy(23009),
+        StatisticUpdateNotAllowedWhileLinked(23010),
+        UnsupportedEntityType(23011),
+        EntityTypeSpecifiedRequiresAggregationSource(23012),
+        PlayFabErrorEventNotSupportedForEntityType(23013),
+        StoreMetricsRequestInvalidInput(23501),
+        StoreMetricsErrorRetrievingMetrics(23502);
 
         public int id;
 

@@ -2188,6 +2188,8 @@ public class PlayFabAdminModels {
         ResourceNotModified,
         StudioCreationLimitExceeded,
         StudioDeletionInitiated,
+        ProductDisabledForTitle,
+        PreconditionFailed,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -2320,6 +2322,7 @@ public class PlayFabAdminModels {
         AsyncExportNotFound,
         AsyncExportRateLimitExceeded,
         AnalyticsSegmentCountOverLimit,
+        GetPlayersInSegmentDeprecated,
         SnapshotNotFound,
         InventoryApiNotImplemented,
         InventoryCollectionDeletionDisallowed,
@@ -2517,7 +2520,13 @@ public class PlayFabAdminModels {
         InvalidEntityTypeForAggregation,
         MultiLevelAggregationNotAllowed,
         AggregationTypeNotAllowedForLinkedStat,
-        StoreMetricsRequestInvalidInput
+        OperationDeniedDueToDefinitionPolicy,
+        StatisticUpdateNotAllowedWhileLinked,
+        UnsupportedEntityType,
+        EntityTypeSpecifiedRequiresAggregationSource,
+        PlayFabErrorEventNotSupportedForEntityType,
+        StoreMetricsRequestInvalidInput,
+        StoreMetricsErrorRetrievingMetrics
     }
 
     public static class GetActionsOnPlayersInSegmentTaskInstanceResult {
