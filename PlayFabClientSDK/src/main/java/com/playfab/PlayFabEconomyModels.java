@@ -1029,6 +1029,8 @@ public class PlayFabEconomyModels {
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
         public EntityKey Entity;
+        /** The token to get the status of the inventory operation. */
+        public String OperationToken;
         
     }
 
@@ -1478,6 +1480,10 @@ public class PlayFabEconomyModels {
         
     }
 
+    public static class PurchaseOverride {
+        
+    }
+
     public static class PurchaseOverridesInfo {
         
     }
@@ -1540,6 +1546,30 @@ public class PlayFabEconomyModels {
     }
 
     public static class RedeemAppleAppStoreInventoryItemsResponse {
+        /** The list of failed redemptions from the external marketplace. */
+        public ArrayList<RedemptionFailure> Failed;
+        /** The list of successful redemptions from the external marketplace. */
+        public ArrayList<RedemptionSuccess> Succeeded;
+        /** The Transaction IDs associated with the inventory modifications */
+        public ArrayList<String> TransactionIds;
+        
+    }
+
+    /** The request for a redeem Apple AppStore With JWS */
+    public static class RedeemAppleAppStoreWithJwsInventoryItemsRequest {
+        /** The id of the entity's collection to perform this action on. (Default="default") */
+        public String CollectionId;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The entity to perform this action on. */
+        public EntityKey Entity;
+        /** The JWS representation of a transaction. */
+        public ArrayList<String> JWSTransactions;
+        
+    }
+
+    /** The response for a redeem Apple AppStore With JWS */
+    public static class RedeemAppleAppStoreWithJwsInventoryItemsResponse {
         /** The list of failed redemptions from the external marketplace. */
         public ArrayList<RedemptionFailure> Failed;
         /** The list of successful redemptions from the external marketplace. */
