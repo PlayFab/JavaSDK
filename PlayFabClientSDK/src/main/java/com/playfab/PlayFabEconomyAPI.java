@@ -1967,6 +1967,68 @@ public class PlayFabEconomyAPI {
 
     /**
      * Redeem items.
+     * @param request RedeemAppleAppStoreWithJwsInventoryItemsRequest
+     * @return Async Task will return RedeemAppleAppStoreWithJwsInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RedeemAppleAppStoreWithJwsInventoryItemsResponse>> RedeemAppleAppStoreWithJwsInventoryItemsAsync(final RedeemAppleAppStoreWithJwsInventoryItemsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RedeemAppleAppStoreWithJwsInventoryItemsResponse>>() {
+            public PlayFabResult<RedeemAppleAppStoreWithJwsInventoryItemsResponse> call() throws Exception {
+                return privateRedeemAppleAppStoreWithJwsInventoryItemsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Redeem items.
+     * @param request RedeemAppleAppStoreWithJwsInventoryItemsRequest
+     * @return RedeemAppleAppStoreWithJwsInventoryItemsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RedeemAppleAppStoreWithJwsInventoryItemsResponse> RedeemAppleAppStoreWithJwsInventoryItems(final RedeemAppleAppStoreWithJwsInventoryItemsRequest request) {
+        FutureTask<PlayFabResult<RedeemAppleAppStoreWithJwsInventoryItemsResponse>> task = new FutureTask(new Callable<PlayFabResult<RedeemAppleAppStoreWithJwsInventoryItemsResponse>>() {
+            public PlayFabResult<RedeemAppleAppStoreWithJwsInventoryItemsResponse> call() throws Exception {
+                return privateRedeemAppleAppStoreWithJwsInventoryItemsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<RedeemAppleAppStoreWithJwsInventoryItemsResponse> exceptionResult = new PlayFabResult<RedeemAppleAppStoreWithJwsInventoryItemsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Redeem items. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RedeemAppleAppStoreWithJwsInventoryItemsResponse> privateRedeemAppleAppStoreWithJwsInventoryItemsAsync(final RedeemAppleAppStoreWithJwsInventoryItemsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/RedeemAppleAppStoreWithJwsInventoryItems"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RedeemAppleAppStoreWithJwsInventoryItemsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RedeemAppleAppStoreWithJwsInventoryItemsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RedeemAppleAppStoreWithJwsInventoryItemsResponse>>(){}.getType());
+        RedeemAppleAppStoreWithJwsInventoryItemsResponse result = resultData.data;
+
+        PlayFabResult<RedeemAppleAppStoreWithJwsInventoryItemsResponse> pfResult = new PlayFabResult<RedeemAppleAppStoreWithJwsInventoryItemsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Redeem items.
      * @param request RedeemGooglePlayInventoryItemsRequest
      * @return Async Task will return RedeemGooglePlayInventoryItemsResponse
      */
