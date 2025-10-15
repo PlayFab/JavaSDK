@@ -2190,6 +2190,7 @@ public class PlayFabAdminModels {
         StudioDeletionInitiated,
         ProductDisabledForTitle,
         PreconditionFailed,
+        CannotEnableAnonymousPlayerCreation,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,

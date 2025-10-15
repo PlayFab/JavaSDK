@@ -1768,6 +1768,7 @@ public class PlayFabServerModels {
         StudioDeletionInitiated,
         ProductDisabledForTitle,
         PreconditionFailed,
+        CannotEnableAnonymousPlayerCreation,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,

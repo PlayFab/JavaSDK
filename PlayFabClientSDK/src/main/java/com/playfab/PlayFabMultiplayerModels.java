@@ -2543,6 +2543,8 @@ public class PlayFabMultiplayerModels {
         public PartyNetworkConfiguration NetworkConfiguration;
         /** A guid string party ID created track the party session over its life. */
         public String PartyId;
+        /** A player entity Id on behalf of whom the request is being made. */
+        public String PlayFabId;
         /**
          * The preferred regions to request a party session from. The party service will iterate through the regions in the
          * specified order and allocate a party session from the first one that is available.
