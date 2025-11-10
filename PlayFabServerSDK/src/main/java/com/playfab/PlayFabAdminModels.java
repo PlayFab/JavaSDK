@@ -2192,6 +2192,7 @@ public class PlayFabAdminModels {
         PreconditionFailed,
         CannotEnableAnonymousPlayerCreation,
         ParentCustomerAccountNotFound,
+        AccountLinkedToABannedPlayer,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
