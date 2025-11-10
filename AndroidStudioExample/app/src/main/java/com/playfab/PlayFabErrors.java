@@ -610,6 +610,7 @@ public class PlayFabErrors {
         PreconditionFailed(1610),
         CannotEnableAnonymousPlayerCreation(1611),
         ParentCustomerAccountNotFound(1612),
+        AccountLinkedToABannedPlayer(1613),
         MatchmakingEntityInvalid(2001),
         MatchmakingPlayerAttributesInvalid(2002),
         MatchmakingQueueNotFound(2016),

@@ -5283,6 +5283,8 @@ public class PlayFabClientModels {
         public String CurrencyCode;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
+        /** Base64 encoded receipt data, passed back by the App Store as a result of a successful purchase. */
+        public String JwsReceiptData;
         /** Amount of the stated currency paid, in centesimal units. */
         public Integer PurchasePrice;
         /** Base64 encoded receipt data, passed back by the App Store as a result of a successful purchase. */

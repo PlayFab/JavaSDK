@@ -470,24 +470,38 @@ public class PlayFabProgressionModels {
     public static class ListLeaderboardDefinitionsRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
+        /** The page size for the request. */
+        public Integer PageSize;
+        /** The skip token for the paged request. */
+        public String SkipToken;
         
     }
 
     public static class ListLeaderboardDefinitionsResponse {
         /** List of leaderboard definitions for the title. */
         public ArrayList<LeaderboardDefinition> LeaderboardDefinitions;
+        /** The page size on the response. */
+        public Integer PageSize;
+        /** The skip token for the paged response. */
+        public String SkipToken;
         
     }
 
     public static class ListStatisticDefinitionsRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
+        /** The page size for the request. */
+        public Integer PageSize;
+        /** The skip token for the paged request. */
+        public String SkipToken;
         
     }
 
     public static class ListStatisticDefinitionsResponse {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        public Map<String,String> CustomTags;
+        /** The page size on the response. */
+        public Integer PageSize;
+        /** The skip token for the paged response. */
+        public String SkipToken;
         /** List of statistic definitions for the title. */
         public ArrayList<StatisticDefinition> StatisticDefinitions;
         
