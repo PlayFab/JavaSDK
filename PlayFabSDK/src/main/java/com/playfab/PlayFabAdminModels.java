@@ -2193,6 +2193,7 @@ public class PlayFabAdminModels {
         CannotEnableAnonymousPlayerCreation,
         ParentCustomerAccountNotFound,
         AccountLinkedToABannedPlayer,
+        AzureSubscriptionNotEligibleForLinking,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
