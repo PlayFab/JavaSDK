@@ -3685,6 +3685,76 @@ public class PlayFabClientAPI {
     }
 
     /**
+     * Retrieves the unique PlayFab identifiers for the given set of OpenId subject identifiers. A OpenId identifier is the
+     * service name plus the service-specific ID for the player, as specified by the title when the OpenId identifier was added
+     * to the player account.
+     * @param request GetPlayFabIDsFromOpenIdsRequest
+     * @return Async Task will return GetPlayFabIDsFromOpenIdsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayFabIDsFromOpenIdsResult>> GetPlayFabIDsFromOpenIdSubjectIdentifiersAsync(final GetPlayFabIDsFromOpenIdsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromOpenIdsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromOpenIdsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromOpenIdSubjectIdentifiersAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of OpenId subject identifiers. A OpenId identifier is the
+     * service name plus the service-specific ID for the player, as specified by the title when the OpenId identifier was added
+     * to the player account.
+     * @param request GetPlayFabIDsFromOpenIdsRequest
+     * @return GetPlayFabIDsFromOpenIdsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayFabIDsFromOpenIdsResult> GetPlayFabIDsFromOpenIdSubjectIdentifiers(final GetPlayFabIDsFromOpenIdsRequest request) {
+        FutureTask<PlayFabResult<GetPlayFabIDsFromOpenIdsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromOpenIdsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromOpenIdsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromOpenIdSubjectIdentifiersAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetPlayFabIDsFromOpenIdsResult> exceptionResult = new PlayFabResult<GetPlayFabIDsFromOpenIdsResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of OpenId subject identifiers. A OpenId identifier is the
+     * service name plus the service-specific ID for the player, as specified by the title when the OpenId identifier was added
+     * to the player account.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayFabIDsFromOpenIdsResult> privateGetPlayFabIDsFromOpenIdSubjectIdentifiersAsync(final GetPlayFabIDsFromOpenIdsRequest request) throws Exception {
+        if (PlayFabSettings.ClientSessionTicket == null) throw new Exception ("Must be logged in to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Client/GetPlayFabIDsFromOpenIdSubjectIdentifiers"), request, "X-Authorization", PlayFabSettings.ClientSessionTicket);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayFabIDsFromOpenIdsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayFabIDsFromOpenIdsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayFabIDsFromOpenIdsResult>>(){}.getType());
+        GetPlayFabIDsFromOpenIdsResult result = resultData.data;
+
+        PlayFabResult<GetPlayFabIDsFromOpenIdsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromOpenIdsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the unique PlayFab identifiers for the given set of PlayStation :tm: Network identifiers.
      * @param request GetPlayFabIDsFromPSNAccountIDsRequest
      * @return Async Task will return GetPlayFabIDsFromPSNAccountIDsResult

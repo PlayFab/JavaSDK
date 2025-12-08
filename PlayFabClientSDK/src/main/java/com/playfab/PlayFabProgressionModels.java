@@ -427,10 +427,7 @@ public class PlayFabProgressionModels {
     public static class LeaderboardEntryUpdate {
         /** The unique Id for the entry. If using PlayFab Entities, this would be the entityId of the entity. */
         public String EntityId;
-        /**
-         * Arbitrary metadata to store along side the leaderboard entry, will be returned by all Leaderboard APIs. Must be less
-         * than 50 UTF8 encoded characters.
-         */
+        /** Arbitrary metadata to store along side the leaderboard entry, will be returned by all Leaderboard APIs. */
         public String Metadata;
         /**
          * The scores for the leaderboard. The number of values provided here must match the number of columns in the Leaderboard
@@ -585,10 +582,7 @@ public class PlayFabProgressionModels {
     }
 
     public static class StatisticUpdate {
-        /**
-         * Arbitrary metadata to store along side the statistic, will be returned by all Leaderboard APIs. Must be less than 50
-         * UTF8 encoded characters.
-         */
+        /** Arbitrary metadata to store along side the statistic, will be returned by all Leaderboard APIs. */
         public String Metadata;
         /** Name of the statistic, as originally configured. */
         public String Name;

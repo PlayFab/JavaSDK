@@ -203,8 +203,8 @@ public class PlayFabServerModels {
     }
 
     /**
-     * The existence of each user will not be verified. When banning by IP or MAC address, multiple players may be affected, so
-     * use this feature with caution. Returns information about the new bans.
+     * The existence of each user will not be verified. When banning by IP, multiple players may be affected, so use this
+     * feature with caution. Returns information about the new bans.
      */
     public static class BanUsersRequest {
         /** List of ban requests to be applied. Maximum 100. */
@@ -2108,6 +2108,7 @@ public class PlayFabServerModels {
         UnsupportedEntityType,
         EntityTypeSpecifiedRequiresAggregationSource,
         PlayFabErrorEventNotSupportedForEntityType,
+        MetadataLengthExceeded,
         StoreMetricsRequestInvalidInput,
         StoreMetricsErrorRetrievingMetrics
     }
@@ -2801,6 +2802,22 @@ public class PlayFabServerModels {
     public static class GetPlayFabIDsFromNintendoSwitchDeviceIdsResult {
         /** Mapping of Nintendo Switch Device identifiers to PlayFab identifiers. */
         public ArrayList<NintendoSwitchPlayFabIdPair> Data;
+        
+    }
+
+    public static class GetPlayFabIDsFromOpenIdsRequest {
+        /**
+         * Array of unique OpenId Connect identifiers for which the title needs to get PlayFab identifiers. The array cannot exceed
+         * 10 in length.
+         */
+        public ArrayList<OpenIdSubjectIdentifier> OpenIdSubjectIdentifiers;
+        
+    }
+
+    /** For OpenId identifiers which have not been linked to PlayFab accounts, null will be returned. */
+    public static class GetPlayFabIDsFromOpenIdsResult {
+        /** Mapping of OpenId Connect identifiers to PlayFab identifiers. */
+        public ArrayList<OpenIdSubjectIdentifierPlayFabIdPair> Data;
         
     }
 
@@ -3539,6 +3556,18 @@ public class PlayFabServerModels {
         
     }
 
+    public static class LinkTwitchAccountRequest {
+        /** Twitch access token for authentication. */
+        public String AccessToken;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** If another user is already linked to the account, unlink the other user and re-link. */
+        public Boolean ForceLink;
+        /** PlayFab unique identifier of the user to link. */
+        public String PlayFabId;
+        
+    }
+
     public static class LinkXboxAccountRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
@@ -3795,6 +3824,31 @@ public class PlayFabServerModels {
     }
 
     /**
+     * More details regarding Twitch and their authentication system can be found at
+     * https://github.com/justintv/Twitch-API/blob/master/authentication.md. Developers must provide the Twitch access token
+     * that is generated using one of the Twitch authentication flows. PlayFab will use the title's unique Twitch Client ID to
+     * authenticate the token and log in to the PlayFab system. If CreateAccount is set to true and there is not already a user
+     * matched to the Twitch username that generated the token, then PlayFab will create a new account for this user and link
+     * the ID. In this case, no email or username will be associated with the PlayFab account. If there is already a different
+     * PlayFab user linked with this account, then an error will be returned.
+     */
+    public static class LoginWithTwitchRequest {
+        /** Twitch access token for authentication. */
+        public String AccessToken;
+        /** If true, create a new PlayFab account if one does not exist. */
+        public Boolean CreateAccount;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Parameters for requesting additional player info. */
+        public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
+        /** Player secret for additional authentication. */
+        public String PlayerSecret;
+        /** PlayFab unique identifier of the user. */
+        public String PlayFabId;
+        
+    }
+
+    /**
      * If this is the first time a user has signed in with the Xbox ID and CreateAccount is set to true, a new PlayFab account
      * will be created and linked to the Xbox Live account. In this case, no email or username will be associated with the
      * PlayFab account. Otherwise, if no PlayFab account is linked to the Xbox Live account, an error indicating this will be
@@ -3977,6 +4031,22 @@ public class PlayFabServerModels {
         /** Unique Nintendo Switch Device identifier for a user. */
         public String NintendoSwitchDeviceId;
         /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Nintendo Switch Device identifier. */
+        public String PlayFabId;
+        
+    }
+
+    public static class OpenIdSubjectIdentifier {
+        /** The issuer URL for the OpenId Connect provider, or the override URL if an override exists. */
+        public String Issuer;
+        /** The unique subject identifier within the context of the issuer. */
+        public String Subject;
+        
+    }
+
+    public static class OpenIdSubjectIdentifierPlayFabIdPair {
+        /** Unique OpenId Connect identifier for a user. */
+        public OpenIdSubjectIdentifier OpenIdSubjectIdentifier;
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the OpenId Connect identifier. */
         public String PlayFabId;
         
     }
@@ -4956,6 +5026,19 @@ public class PlayFabServerModels {
     }
 
     public static class UnlinkSteamIdResult {
+        
+    }
+
+    public static class UnlinkTwitchAccountRequest {
+        /**
+         * Valid token issued by Twitch. Used to specify which twitch account to unlink from the profile. By default it uses the
+         * one that is present on the profile.
+         */
+        public String AccessToken;
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** PlayFab unique identifier of the user to unlink. */
+        public String PlayFabId;
         
     }
 
