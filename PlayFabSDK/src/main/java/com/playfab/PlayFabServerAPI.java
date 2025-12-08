@@ -547,7 +547,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Bans users by PlayFab ID with optional IP address, or MAC address for the provided game.
+     * Bans users by PlayFab ID with optional IP address for the provided game.
      * @param request BanUsersRequest
      * @return Async Task will return BanUsersResult
      */
@@ -561,7 +561,7 @@ public class PlayFabServerAPI {
     }
 
     /**
-     * Bans users by PlayFab ID with optional IP address, or MAC address for the provided game.
+     * Bans users by PlayFab ID with optional IP address for the provided game.
      * @param request BanUsersRequest
      * @return BanUsersResult
      */
@@ -582,7 +582,7 @@ public class PlayFabServerAPI {
         }
     }
 
-    /** Bans users by PlayFab ID with optional IP address, or MAC address for the provided game. */
+    /** Bans users by PlayFab ID with optional IP address for the provided game. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<BanUsersResult> privateBanUsersAsync(final BanUsersRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
@@ -3150,6 +3150,76 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Retrieves the unique PlayFab identifiers for the given set of OpenId subject identifiers. A OpenId subject identifier is
+     * the OpenId issuer plus the OpenId subject for the player, as specified by the title when the OpenId identifier was added
+     * to the player account.
+     * @param request GetPlayFabIDsFromOpenIdsRequest
+     * @return Async Task will return GetPlayFabIDsFromOpenIdsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayFabIDsFromOpenIdsResult>> GetPlayFabIDsFromOpenIdSubjectIdentifiersAsync(final GetPlayFabIDsFromOpenIdsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromOpenIdsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromOpenIdsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromOpenIdSubjectIdentifiersAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of OpenId subject identifiers. A OpenId subject identifier is
+     * the OpenId issuer plus the OpenId subject for the player, as specified by the title when the OpenId identifier was added
+     * to the player account.
+     * @param request GetPlayFabIDsFromOpenIdsRequest
+     * @return GetPlayFabIDsFromOpenIdsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayFabIDsFromOpenIdsResult> GetPlayFabIDsFromOpenIdSubjectIdentifiers(final GetPlayFabIDsFromOpenIdsRequest request) {
+        FutureTask<PlayFabResult<GetPlayFabIDsFromOpenIdsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromOpenIdsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromOpenIdsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromOpenIdSubjectIdentifiersAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetPlayFabIDsFromOpenIdsResult> exceptionResult = new PlayFabResult<GetPlayFabIDsFromOpenIdsResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /**
+     * Retrieves the unique PlayFab identifiers for the given set of OpenId subject identifiers. A OpenId subject identifier is
+     * the OpenId issuer plus the OpenId subject for the player, as specified by the title when the OpenId identifier was added
+     * to the player account.
+     */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayFabIDsFromOpenIdsResult> privateGetPlayFabIDsFromOpenIdSubjectIdentifiersAsync(final GetPlayFabIDsFromOpenIdsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/GetPlayFabIDsFromOpenIdSubjectIdentifiers"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayFabIDsFromOpenIdsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayFabIDsFromOpenIdsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayFabIDsFromOpenIdsResult>>(){}.getType());
+        GetPlayFabIDsFromOpenIdsResult result = resultData.data;
+
+        PlayFabResult<GetPlayFabIDsFromOpenIdsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromOpenIdsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the unique PlayFab identifiers for the given set of PlayStation :tm: Network identifiers.
      * @param request GetPlayFabIDsFromPSNAccountIDsRequest
      * @return Async Task will return GetPlayFabIDsFromPSNAccountIDsResult
@@ -5449,6 +5519,68 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Links the Twitch account associated with the token to the user's PlayFab account.
+     * @param request LinkTwitchAccountRequest
+     * @return Async Task will return EmptyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResult>> LinkTwitchAccountAsync(final LinkTwitchAccountRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateLinkTwitchAccountAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Links the Twitch account associated with the token to the user's PlayFab account.
+     * @param request LinkTwitchAccountRequest
+     * @return EmptyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResult> LinkTwitchAccount(final LinkTwitchAccountRequest request) {
+        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateLinkTwitchAccountAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<EmptyResult> exceptionResult = new PlayFabResult<EmptyResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Links the Twitch account associated with the token to the user's PlayFab account. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResult> privateLinkTwitchAccountAsync(final LinkTwitchAccountRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/LinkTwitchAccount"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
+        EmptyResult result = resultData.data;
+
+        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Links the Xbox Live account associated with the provided access code to the user's PlayFab account
      * @param request LinkXboxAccountRequest
      * @return Async Task will return LinkXboxAccountResult
@@ -6078,6 +6210,68 @@ public class PlayFabServerAPI {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
 
         FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/LoginWithSteamId"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ServerLoginResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ServerLoginResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ServerLoginResult>>(){}.getType());
+        ServerLoginResult result = resultData.data;
+
+        PlayFabResult<ServerLoginResult> pfResult = new PlayFabResult<ServerLoginResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Sign in the user with a Twitch access token
+     * @param request LoginWithTwitchRequest
+     * @return Async Task will return ServerLoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ServerLoginResult>> LoginWithTwitchAsync(final LoginWithTwitchRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ServerLoginResult>>() {
+            public PlayFabResult<ServerLoginResult> call() throws Exception {
+                return privateLoginWithTwitchAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Sign in the user with a Twitch access token
+     * @param request LoginWithTwitchRequest
+     * @return ServerLoginResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ServerLoginResult> LoginWithTwitch(final LoginWithTwitchRequest request) {
+        FutureTask<PlayFabResult<ServerLoginResult>> task = new FutureTask(new Callable<PlayFabResult<ServerLoginResult>>() {
+            public PlayFabResult<ServerLoginResult> call() throws Exception {
+                return privateLoginWithTwitchAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<ServerLoginResult> exceptionResult = new PlayFabResult<ServerLoginResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Sign in the user with a Twitch access token */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ServerLoginResult> privateLoginWithTwitchAsync(final LoginWithTwitchRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/LoginWithTwitch"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
         task.run();
         Object httpResult = task.get();
         if (httpResult instanceof PlayFabError) {
@@ -8302,6 +8496,68 @@ public class PlayFabServerAPI {
         UnlinkSteamIdResult result = resultData.data;
 
         PlayFabResult<UnlinkSteamIdResult> pfResult = new PlayFabResult<UnlinkSteamIdResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Unlinks the related Twitch account from the user's PlayFab account.
+     * @param request UnlinkTwitchAccountRequest
+     * @return Async Task will return EmptyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<EmptyResult>> UnlinkTwitchAccountAsync(final UnlinkTwitchAccountRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateUnlinkTwitchAccountAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Unlinks the related Twitch account from the user's PlayFab account.
+     * @param request UnlinkTwitchAccountRequest
+     * @return EmptyResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<EmptyResult> UnlinkTwitchAccount(final UnlinkTwitchAccountRequest request) {
+        FutureTask<PlayFabResult<EmptyResult>> task = new FutureTask(new Callable<PlayFabResult<EmptyResult>>() {
+            public PlayFabResult<EmptyResult> call() throws Exception {
+                return privateUnlinkTwitchAccountAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<EmptyResult> exceptionResult = new PlayFabResult<EmptyResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Unlinks the related Twitch account from the user's PlayFab account. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<EmptyResult> privateUnlinkTwitchAccountAsync(final UnlinkTwitchAccountRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/UnlinkTwitchAccount"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<EmptyResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<EmptyResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<EmptyResult>>(){}.getType());
+        EmptyResult result = resultData.data;
+
+        PlayFabResult<EmptyResult> pfResult = new PlayFabResult<EmptyResult>();
         pfResult.Result = result;
         return pfResult;
     }

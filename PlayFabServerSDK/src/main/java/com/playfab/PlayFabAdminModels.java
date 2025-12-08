@@ -289,8 +289,8 @@ public class PlayFabAdminModels {
     }
 
     /**
-     * The existence of each user will not be verified. When banning by IP or MAC address, multiple players may be affected, so
-     * use this feature with caution. Returns information about the new bans.
+     * The existence of each user will not be verified. When banning by IP, multiple players may be affected, so use this
+     * feature with caution. Returns information about the new bans.
      */
     public static class BanUsersRequest {
         /** List of ban requests to be applied. Maximum 100. */
@@ -2530,6 +2530,7 @@ public class PlayFabAdminModels {
         UnsupportedEntityType,
         EntityTypeSpecifiedRequiresAggregationSource,
         PlayFabErrorEventNotSupportedForEntityType,
+        MetadataLengthExceeded,
         StoreMetricsRequestInvalidInput,
         StoreMetricsErrorRetrievingMetrics
     }
