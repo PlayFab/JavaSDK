@@ -399,7 +399,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Bans users by PlayFab ID with optional IP address, or MAC address for the provided game.
+     * Bans users by PlayFab ID with optional IP address for the provided game.
      * @param request BanUsersRequest
      * @return Async Task will return BanUsersResult
      */
@@ -413,7 +413,7 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Bans users by PlayFab ID with optional IP address, or MAC address for the provided game.
+     * Bans users by PlayFab ID with optional IP address for the provided game.
      * @param request BanUsersRequest
      * @return BanUsersResult
      */
@@ -434,7 +434,7 @@ public class PlayFabAdminAPI {
         }
     }
 
-    /** Bans users by PlayFab ID with optional IP address, or MAC address for the provided game. */
+    /** Bans users by PlayFab ID with optional IP address for the provided game. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<BanUsersResult> privateBanUsersAsync(final BanUsersRequest request) throws Exception {
         if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");

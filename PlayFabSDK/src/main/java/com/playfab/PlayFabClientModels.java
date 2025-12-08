@@ -1998,6 +1998,22 @@ public class PlayFabClientModels {
         
     }
 
+    public static class GetPlayFabIDsFromOpenIdsRequest {
+        /**
+         * Array of unique OpenId Connect identifiers for which the title needs to get PlayFab identifiers. The array cannot exceed
+         * 10 in length.
+         */
+        public ArrayList<OpenIdSubjectIdentifier> OpenIdSubjectIdentifiers;
+        
+    }
+
+    /** For OpenId identifiers which have not been linked to PlayFab accounts, null will be returned. */
+    public static class GetPlayFabIDsFromOpenIdsResult {
+        /** Mapping of OpenId Connect identifiers to PlayFab identifiers. */
+        public ArrayList<OpenIdSubjectIdentifierPlayFabIdPair> Data;
+        
+    }
+
     public static class GetPlayFabIDsFromPSNAccountIDsRequest {
         /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
         public Integer IssuerId;
@@ -3578,6 +3594,22 @@ public class PlayFabClientModels {
         /** Unique Nintendo Switch Device identifier for a user. */
         public String NintendoSwitchDeviceId;
         /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the Nintendo Switch Device identifier. */
+        public String PlayFabId;
+        
+    }
+
+    public static class OpenIdSubjectIdentifier {
+        /** The issuer URL for the OpenId Connect provider, or the override URL if an override exists. */
+        public String Issuer;
+        /** The unique subject identifier within the context of the issuer. */
+        public String Subject;
+        
+    }
+
+    public static class OpenIdSubjectIdentifierPlayFabIdPair {
+        /** Unique OpenId Connect identifier for a user. */
+        public OpenIdSubjectIdentifier OpenIdSubjectIdentifier;
+        /** Unique PlayFab identifier for a user, or null if no PlayFab account is linked to the OpenId Connect identifier. */
         public String PlayFabId;
         
     }
