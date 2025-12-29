@@ -1302,6 +1302,8 @@ public class PlayFabEconomyModels {
         public String Id;
         /** The stack id of the item. */
         public String StackId;
+        /** Only used for subscriptions. The date of when the item started in UTC. */
+        public Date StartDate;
         /** The type of the item. This should correspond to the item type in the catalog. */
         public String Type;
         
