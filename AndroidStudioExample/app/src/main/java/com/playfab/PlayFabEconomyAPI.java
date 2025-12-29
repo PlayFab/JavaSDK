@@ -2090,7 +2090,7 @@ public class PlayFabEconomyAPI {
     }
 
     /**
-     * Redeem items.
+     * Redeem items from the Microsoft Store. Supported entitlement types are Developer Manager Consumable and Durable.
      * @param request RedeemMicrosoftStoreInventoryItemsRequest
      * @return Async Task will return RedeemMicrosoftStoreInventoryItemsResponse
      */
@@ -2104,7 +2104,7 @@ public class PlayFabEconomyAPI {
     }
 
     /**
-     * Redeem items.
+     * Redeem items from the Microsoft Store. Supported entitlement types are Developer Manager Consumable and Durable.
      * @param request RedeemMicrosoftStoreInventoryItemsRequest
      * @return RedeemMicrosoftStoreInventoryItemsResponse
      */
@@ -2125,7 +2125,7 @@ public class PlayFabEconomyAPI {
         }
     }
 
-    /** Redeem items. */
+    /** Redeem items from the Microsoft Store. Supported entitlement types are Developer Manager Consumable and Durable. */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<RedeemMicrosoftStoreInventoryItemsResponse> privateRedeemMicrosoftStoreInventoryItemsAsync(final RedeemMicrosoftStoreInventoryItemsRequest request) throws Exception {
         if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
