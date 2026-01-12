@@ -1887,6 +1887,7 @@ public class PlayFabServerModels {
         ExperimentationExclusionGroupInvalidTrafficAllocation,
         ExperimentationExclusionGroupInvalidName,
         ExperimentationLegacyExperimentInvalidOperation,
+        ExperimentationExperimentStopFailed,
         MaxActionDepthExceeded,
         TitleNotOnUpdatedPricingPlan,
         SegmentManagementTitleNotInFlight,
@@ -4966,6 +4967,32 @@ public class PlayFabServerModels {
         public Map<String,String> CustomTags;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
+        
+    }
+
+    public static class UnlinkFacebookAccountRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** PlayFab unique identifier of the user to unlink. */
+        public String PlayFabId;
+        
+    }
+
+    public static class UnlinkFacebookAccountResult {
+        
+    }
+
+    public static class UnlinkFacebookInstantGamesIdRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Facebook Instant Games identifier for the user. If not specified, the most recently linked identifier will be used. */
+        public String FacebookInstantGamesId;
+        /** PlayFab unique identifier of the user to unlink. */
+        public String PlayFabId;
+        
+    }
+
+    public static class UnlinkFacebookInstantGamesIdResult {
         
     }
 

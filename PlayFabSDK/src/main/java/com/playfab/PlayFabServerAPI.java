@@ -8191,6 +8191,130 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Unlinks the related Facebook account from the user's PlayFab account
+     * @param request UnlinkFacebookAccountRequest
+     * @return Async Task will return UnlinkFacebookAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<UnlinkFacebookAccountResult>> UnlinkFacebookAccountAsync(final UnlinkFacebookAccountRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<UnlinkFacebookAccountResult>>() {
+            public PlayFabResult<UnlinkFacebookAccountResult> call() throws Exception {
+                return privateUnlinkFacebookAccountAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Unlinks the related Facebook account from the user's PlayFab account
+     * @param request UnlinkFacebookAccountRequest
+     * @return UnlinkFacebookAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<UnlinkFacebookAccountResult> UnlinkFacebookAccount(final UnlinkFacebookAccountRequest request) {
+        FutureTask<PlayFabResult<UnlinkFacebookAccountResult>> task = new FutureTask(new Callable<PlayFabResult<UnlinkFacebookAccountResult>>() {
+            public PlayFabResult<UnlinkFacebookAccountResult> call() throws Exception {
+                return privateUnlinkFacebookAccountAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<UnlinkFacebookAccountResult> exceptionResult = new PlayFabResult<UnlinkFacebookAccountResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Unlinks the related Facebook account from the user's PlayFab account */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<UnlinkFacebookAccountResult> privateUnlinkFacebookAccountAsync(final UnlinkFacebookAccountRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/UnlinkFacebookAccount"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<UnlinkFacebookAccountResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<UnlinkFacebookAccountResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UnlinkFacebookAccountResult>>(){}.getType());
+        UnlinkFacebookAccountResult result = resultData.data;
+
+        PlayFabResult<UnlinkFacebookAccountResult> pfResult = new PlayFabResult<UnlinkFacebookAccountResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Unlinks the related Facebook Instant Games identifier from the user's PlayFab account
+     * @param request UnlinkFacebookInstantGamesIdRequest
+     * @return Async Task will return UnlinkFacebookInstantGamesIdResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<UnlinkFacebookInstantGamesIdResult>> UnlinkFacebookInstantGamesIdAsync(final UnlinkFacebookInstantGamesIdRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<UnlinkFacebookInstantGamesIdResult>>() {
+            public PlayFabResult<UnlinkFacebookInstantGamesIdResult> call() throws Exception {
+                return privateUnlinkFacebookInstantGamesIdAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Unlinks the related Facebook Instant Games identifier from the user's PlayFab account
+     * @param request UnlinkFacebookInstantGamesIdRequest
+     * @return UnlinkFacebookInstantGamesIdResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<UnlinkFacebookInstantGamesIdResult> UnlinkFacebookInstantGamesId(final UnlinkFacebookInstantGamesIdRequest request) {
+        FutureTask<PlayFabResult<UnlinkFacebookInstantGamesIdResult>> task = new FutureTask(new Callable<PlayFabResult<UnlinkFacebookInstantGamesIdResult>>() {
+            public PlayFabResult<UnlinkFacebookInstantGamesIdResult> call() throws Exception {
+                return privateUnlinkFacebookInstantGamesIdAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<UnlinkFacebookInstantGamesIdResult> exceptionResult = new PlayFabResult<UnlinkFacebookInstantGamesIdResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Unlinks the related Facebook Instant Games identifier from the user's PlayFab account */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<UnlinkFacebookInstantGamesIdResult> privateUnlinkFacebookInstantGamesIdAsync(final UnlinkFacebookInstantGamesIdRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/UnlinkFacebookInstantGamesId"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<UnlinkFacebookInstantGamesIdResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<UnlinkFacebookInstantGamesIdResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UnlinkFacebookInstantGamesIdResult>>(){}.getType());
+        UnlinkFacebookInstantGamesIdResult result = resultData.data;
+
+        PlayFabResult<UnlinkFacebookInstantGamesIdResult> pfResult = new PlayFabResult<UnlinkFacebookInstantGamesIdResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Unlinks the related Nintendo account from the user's PlayFab account
      * @param request UnlinkNintendoServiceAccountRequest
      * @return Async Task will return EmptyResponse

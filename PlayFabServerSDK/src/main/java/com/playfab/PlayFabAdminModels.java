@@ -2309,6 +2309,7 @@ public class PlayFabAdminModels {
         ExperimentationExclusionGroupInvalidTrafficAllocation,
         ExperimentationExclusionGroupInvalidName,
         ExperimentationLegacyExperimentInvalidOperation,
+        ExperimentationExperimentStopFailed,
         MaxActionDepthExceeded,
         TitleNotOnUpdatedPricingPlan,
         SegmentManagementTitleNotInFlight,

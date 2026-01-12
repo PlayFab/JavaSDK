@@ -7,4 +7,4 @@ mkdir -p ./builds
 popd
 
 cd target
-cp  server-sdk-0.251.251219.jar ../../builds/server-sdk-0.251.251219.jar
+cp  server-sdk-0.252.260109.jar ../../builds/server-sdk-0.252.260109.jar
