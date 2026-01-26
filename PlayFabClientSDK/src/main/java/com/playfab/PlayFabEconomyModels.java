@@ -1190,24 +1190,6 @@ public class PlayFabEconomyModels {
         
     }
 
-    /** Gets the access tokens for Microsoft Store authentication. */
-    public static class GetMicrosoftStoreAccessTokensRequest {
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        public Map<String,String> CustomTags;
-        
-    }
-
-    public static class GetMicrosoftStoreAccessTokensResponse {
-        /**
-         * The collections access token for calling https://onestore.microsoft.com/b2b/keys/create/collections to obtain a
-         * CollectionsIdKey for the user
-         */
-        public String CollectionsAccessToken;
-        /** The date the collections access token expires */
-        public Date CollectionsAccessTokenExpirationDate;
-        
-    }
-
     /** Get transaction history for specified entity and collection. */
     public static class GetTransactionHistoryRequest {
         /** The id of the entity's collection to perform this action on. (Default="default") */
@@ -1518,6 +1500,13 @@ public class PlayFabEconomyModels {
         
     }
 
+    /**
+     * The multi-currency unit price, in real money, of the item that was redeemed within an individual marketplace. Each
+     * property is a dictionary where the key is the three-letter currency code as defined in ISO 4217, and the value is the
+     * currency amount in the smallest unit (e.g. cents, pence, etc.) in accordance with ISO 4217. Example: If the product
+     * price in USD is $1.39, the dictionary entry would be: ["USD"] = 139. Currently, only United States Dollar (USD) is
+     * supported.
+     */
     public static class RealMoneyPriceDetails {
         /** The 'AppleAppStore' price amount per CurrencyCode. 'USD' supported only. */
         public Map<String,Integer> AppleAppStorePrices;
@@ -1608,8 +1597,6 @@ public class PlayFabEconomyModels {
     public static class RedeemMicrosoftStoreInventoryItemsRequest {
         /** The id of the entity's collection to perform this action on. (Default="default") */
         public String CollectionId;
-        /** The OneStore Collections Id Key used for AAD authentication. */
-        public String CollectionsIdKey;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** The entity to perform this action on. */
@@ -1716,6 +1703,8 @@ public class PlayFabEconomyModels {
     }
 
     public static class RedemptionSuccess {
+        /** The timestamp for when the redeem expired. */
+        public Date ExpirationTimestamp;
         /** The Marketplace Alternate ID being redeemed. */
         public String MarketplaceAlternateId;
         /** The transaction id in the external marketplace. */

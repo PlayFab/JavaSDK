@@ -2238,6 +2238,7 @@ public class PlayFabAdminModels {
         CatalogBadRequest,
         CatalogTooManyRequests,
         InvalidCatalogItemConfiguration,
+        LegacyEconomyDisabled,
         ExportInvalidStatusUpdate,
         ExportInvalidPrefix,
         ExportBlobContainerDoesNotExist,
