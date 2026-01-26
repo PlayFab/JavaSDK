@@ -5,4 +5,4 @@ New-Item -ItemType Directory -Force ./builds
 popd
 
 cd target
-Copy-Item  client-sdk-0.252.260109.jar -Destination ../../builds/client-sdk-0.252.260109.jar
+Copy-Item  client-sdk-0.253.260123.jar -Destination ../../builds/client-sdk-0.253.260123.jar

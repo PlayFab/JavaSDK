@@ -1638,68 +1638,6 @@ public class PlayFabEconomyAPI {
     }
 
     /**
-     * Gets the access tokens.
-     * @param request GetMicrosoftStoreAccessTokensRequest
-     * @return Async Task will return GetMicrosoftStoreAccessTokensResponse
-     */
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<GetMicrosoftStoreAccessTokensResponse>> GetMicrosoftStoreAccessTokensAsync(final GetMicrosoftStoreAccessTokensRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<GetMicrosoftStoreAccessTokensResponse>>() {
-            public PlayFabResult<GetMicrosoftStoreAccessTokensResponse> call() throws Exception {
-                return privateGetMicrosoftStoreAccessTokensAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Gets the access tokens.
-     * @param request GetMicrosoftStoreAccessTokensRequest
-     * @return GetMicrosoftStoreAccessTokensResponse
-     */
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<GetMicrosoftStoreAccessTokensResponse> GetMicrosoftStoreAccessTokens(final GetMicrosoftStoreAccessTokensRequest request) {
-        FutureTask<PlayFabResult<GetMicrosoftStoreAccessTokensResponse>> task = new FutureTask(new Callable<PlayFabResult<GetMicrosoftStoreAccessTokensResponse>>() {
-            public PlayFabResult<GetMicrosoftStoreAccessTokensResponse> call() throws Exception {
-                return privateGetMicrosoftStoreAccessTokensAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            PlayFabResult<GetMicrosoftStoreAccessTokensResponse> exceptionResult = new PlayFabResult<GetMicrosoftStoreAccessTokensResponse>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
-            return exceptionResult;
-        }
-    }
-
-    /** Gets the access tokens. */
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<GetMicrosoftStoreAccessTokensResponse> privateGetMicrosoftStoreAccessTokensAsync(final GetMicrosoftStoreAccessTokensRequest request) throws Exception {
-        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Inventory/GetMicrosoftStoreAccessTokens"), request, "X-EntityToken", PlayFabSettings.EntityToken);
-        task.run();
-        Object httpResult = task.get();
-        if (httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<GetMicrosoftStoreAccessTokensResponse>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<GetMicrosoftStoreAccessTokensResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetMicrosoftStoreAccessTokensResponse>>(){}.getType());
-        GetMicrosoftStoreAccessTokensResponse result = resultData.data;
-
-        PlayFabResult<GetMicrosoftStoreAccessTokensResponse> pfResult = new PlayFabResult<GetMicrosoftStoreAccessTokensResponse>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
      * Get transaction history for a player. Up to 250 Events can be returned at once. You can use continuation tokens to
      * paginate through results that return greater than the limit. Getting transaction history has a lower RPS limit than
      * getting a Player's inventory with Player Entities having a limit of 30 requests in 300 seconds.
