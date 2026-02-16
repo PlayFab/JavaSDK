@@ -221,6 +221,68 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Adds or updates a contact email to the specified player's profile.
+     * @param request AddOrUpdateContactEmailRequest
+     * @return Async Task will return AddOrUpdateContactEmailResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<AddOrUpdateContactEmailResult>> AddOrUpdateContactEmailAsync(final AddOrUpdateContactEmailRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<AddOrUpdateContactEmailResult>>() {
+            public PlayFabResult<AddOrUpdateContactEmailResult> call() throws Exception {
+                return privateAddOrUpdateContactEmailAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Adds or updates a contact email to the specified player's profile.
+     * @param request AddOrUpdateContactEmailRequest
+     * @return AddOrUpdateContactEmailResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<AddOrUpdateContactEmailResult> AddOrUpdateContactEmail(final AddOrUpdateContactEmailRequest request) {
+        FutureTask<PlayFabResult<AddOrUpdateContactEmailResult>> task = new FutureTask(new Callable<PlayFabResult<AddOrUpdateContactEmailResult>>() {
+            public PlayFabResult<AddOrUpdateContactEmailResult> call() throws Exception {
+                return privateAddOrUpdateContactEmailAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<AddOrUpdateContactEmailResult> exceptionResult = new PlayFabResult<AddOrUpdateContactEmailResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Adds or updates a contact email to the specified player's profile. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<AddOrUpdateContactEmailResult> privateAddOrUpdateContactEmailAsync(final AddOrUpdateContactEmailRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/AddOrUpdateContactEmail"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<AddOrUpdateContactEmailResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<AddOrUpdateContactEmailResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<AddOrUpdateContactEmailResult>>(){}.getType());
+        AddOrUpdateContactEmailResult result = resultData.data;
+
+        PlayFabResult<AddOrUpdateContactEmailResult> pfResult = new PlayFabResult<AddOrUpdateContactEmailResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Adds a given tag to a player profile. The tag's namespace is automatically generated based on the source of the tag.
      * @param request AddPlayerTagRequest
      * @return Async Task will return AddPlayerTagResult
