@@ -2533,6 +2533,7 @@ public class PlayFabAdminModels {
         EntityTypeSpecifiedRequiresAggregationSource,
         PlayFabErrorEventNotSupportedForEntityType,
         MetadataLengthExceeded,
+        MaxQueryableVersionsExceeded,
         StoreMetricsRequestInvalidInput,
         StoreMetricsErrorRetrievingMetrics
     }

@@ -951,6 +951,7 @@ public class PlayFabErrors {
         EntityTypeSpecifiedRequiresAggregationSource(23012),
         PlayFabErrorEventNotSupportedForEntityType(23013),
         MetadataLengthExceeded(23014),
+        MaxQueryableVersionsExceeded(23015),
         StoreMetricsRequestInvalidInput(23501),
         StoreMetricsErrorRetrievingMetrics(23502);
 

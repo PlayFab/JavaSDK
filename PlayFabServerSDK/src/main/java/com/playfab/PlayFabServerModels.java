@@ -2129,6 +2129,7 @@ public class PlayFabServerModels {
         EntityTypeSpecifiedRequiresAggregationSource,
         PlayFabErrorEventNotSupportedForEntityType,
         MetadataLengthExceeded,
+        MaxQueryableVersionsExceeded,
         StoreMetricsRequestInvalidInput,
         StoreMetricsErrorRetrievingMetrics
     }
