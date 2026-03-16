@@ -2328,7 +2328,7 @@ public class PlayFabAdminModels {
         AsyncExportNotFound,
         AsyncExportRateLimitExceeded,
         AnalyticsSegmentCountOverLimit,
-        GetPlayersInSegmentDeprecated,
+        GetPlayersInSegmentRetired,
         SnapshotNotFound,
         InventoryApiNotImplemented,
         InventoryCollectionDeletionDisallowed,
