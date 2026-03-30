@@ -2194,6 +2194,7 @@ public class PlayFabAdminModels {
         ParentCustomerAccountNotFound,
         AccountLinkedToABannedPlayer,
         AzureSubscriptionNotEligibleForLinking,
+        EntityIsNotAMember,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -2311,6 +2312,8 @@ public class PlayFabAdminModels {
         ExperimentationExclusionGroupInvalidName,
         ExperimentationLegacyExperimentInvalidOperation,
         ExperimentationExperimentStopFailed,
+        ExperimentationExperimentDeleteFailed,
+        ExperimentationExperimentStartFailed,
         MaxActionDepthExceeded,
         TitleNotOnUpdatedPricingPlan,
         SegmentManagementTitleNotInFlight,
@@ -2508,6 +2511,7 @@ public class PlayFabAdminModels {
         GameSaveConflict,
         GameSaveManifestNotEligibleForRollback,
         GameSaveTitleClientAnonymousAccountCreationNotDisabled,
+        GameSaveTitleConfigNoUpdatesRequested,
         StateShareForbidden,
         StateShareTitleNotInFlight,
         StateShareStateNotFound,
@@ -2918,12 +2922,17 @@ public class PlayFabAdminModels {
 
     /** Views the requested policy. Today, the only supported policy is 'ApiPolicy'. */
     public static class GetPolicyRequest {
-        /** The name of the policy to read. Only supported name is 'ApiPolicy'. */
+        /**
+         * The name of the policy to read. Only 'ApiPolicy' is supported. This parameter is optional and defaults to 'ApiPolicy' if
+         * omitted.
+         */
         public String PolicyName;
         
     }
 
     public static class GetPolicyResponse {
+        /** The UTC date and time when the policy was last updated. Null if the policy has never been customized. */
+        public Date LastUpdated;
         /** The name of the policy read. */
         public String PolicyName;
         /** Policy version. */
@@ -3667,7 +3676,7 @@ public class PlayFabAdminModels {
     }
 
     public static class PermissionStatement {
-        /** The action this statement effects. The only supported action is 'Execute'. */
+        /** The action this statement effects. May only be '*'. This parameter is optional and defaults to '*' if omitted. */
         public String Action;
         /** Additional conditions to be applied for API Resources. */
         public ApiCondition ApiConditions;
@@ -3675,7 +3684,10 @@ public class PlayFabAdminModels {
         public String Comment;
         /** The effect this statement will have. It could be either Allow or Deny */
         public EffectType Effect;
-        /** The principal this statement will effect. The only supported principal is '*'. */
+        /**
+         * The principal this statement will effect. May be '*' to match all callers, or a JSON object targeting a specific entity
+         * type, e.g. {"title_player_account":"*"} for players or {"master_player_account":"*"} for master player accounts.
+         */
         public String Principal;
         /**
          * The resource this statements effects. The only supported resources look like 'pfrn:api--*' for all apis, or
@@ -5468,7 +5480,10 @@ public class PlayFabAdminModels {
     public static class UpdatePolicyRequest {
         /** Whether to overwrite or append to the existing policy. */
         public Boolean OverwritePolicy;
-        /** The name of the policy being updated. Only supported name is 'ApiPolicy' */
+        /**
+         * The name of the policy being updated. Only 'ApiPolicy' is supported. This parameter is optional and defaults to
+         * 'ApiPolicy' if omitted.
+         */
         public String PolicyName;
         /** Version of the policy to update. Must be the latest (as returned by GetPolicy). */
         public Integer PolicyVersion;
@@ -5482,6 +5497,11 @@ public class PlayFabAdminModels {
         public String PolicyName;
         /** The statements included in the new version of the policy. */
         public ArrayList<PermissionStatement> Statements;
+        /**
+         * Optional warnings about policy statements that may not have the intended effect. For example, resource paths that don't
+         * match any known API endpoint. The policy update still succeeds when warnings are present.
+         */
+        public ArrayList<String> Warnings;
         
     }
 
