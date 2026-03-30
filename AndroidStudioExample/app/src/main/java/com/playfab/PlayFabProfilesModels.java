@@ -93,6 +93,8 @@ public class PlayFabProfilesModels {
         public ArrayList<EntityPermissionStatement> Permissions;
         /** The statistics on this profile. */
         public Map<String,EntityStatisticValue> Statistics;
+        /** A mapping of statistic name to the columns defined in the corresponding definition. */
+        public Map<String,StatisticColumnCollection> StatisticsColumnDetails;
         /**
          * The version number of the profile in persistent storage at the time of the read. Used for optional optimistic
          * concurrency during update.
@@ -143,6 +145,8 @@ public class PlayFabProfilesModels {
         public Boolean DataAsObject;
         /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         public EntityKey Entity;
+        /** Determines whether the entity statistics will be returned in the entity profile. Default is false. */
+        public Boolean IncludeStatistics;
         
     }
 
@@ -166,6 +170,8 @@ public class PlayFabProfilesModels {
         public Boolean DataAsObject;
         /** Entity keys of the profiles to load. Must be between 1 and 25 */
         public ArrayList<EntityKey> Entities;
+        /** Determines whether the entity statistics will be returned in the entity profile. Default is false. */
+        public Boolean IncludeStatistics;
         
     }
 
@@ -325,6 +331,27 @@ public class PlayFabProfilesModels {
         public OperationTypes OperationResult;
         /** The updated version of the profile after the language update */
         public Integer VersionNumber;
+        
+    }
+
+    public static enum StatisticAggregationMethod {
+        Last,
+        Min,
+        Max,
+        Sum
+    }
+
+    public static class StatisticColumn {
+        /** Aggregation method for calculating new value of a statistic. */
+        public StatisticAggregationMethod AggregationMethod;
+        /** Name of the statistic column, as originally configured. */
+        public String Name;
+        
+    }
+
+    public static class StatisticColumnCollection {
+        /** Columns for the statistic defining the aggregation method for each column. */
+        public ArrayList<StatisticColumn> Columns;
         
     }
 
