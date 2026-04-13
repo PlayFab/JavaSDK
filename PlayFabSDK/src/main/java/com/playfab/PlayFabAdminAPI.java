@@ -2878,88 +2878,6 @@ public class PlayFabAdminAPI {
     }
 
     /**
-     * Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match
-     * the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span
-     * on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected
-     * in the results. AB Test segments are currently not supported by this operation. NOTE: This API is limited to being
-     * called 30 times in one minute. You will be returned an error if you exceed this threshold.
-     * @deprecated Please use ExportPlayersInSegment instead.
-     * @param request GetPlayersInSegmentRequest
-     * @return Async Task will return GetPlayersInSegmentResult
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static FutureTask<PlayFabResult<GetPlayersInSegmentResult>> GetPlayersInSegmentAsync(final GetPlayersInSegmentRequest request) {
-        return new FutureTask(new Callable<PlayFabResult<GetPlayersInSegmentResult>>() {
-            public PlayFabResult<GetPlayersInSegmentResult> call() throws Exception {
-                return privateGetPlayersInSegmentAsync(request);
-            }
-        });
-    }
-
-    /**
-     * Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match
-     * the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span
-     * on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected
-     * in the results. AB Test segments are currently not supported by this operation. NOTE: This API is limited to being
-     * called 30 times in one minute. You will be returned an error if you exceed this threshold.
-     * @deprecated Please use ExportPlayersInSegment instead.
-     * @param request GetPlayersInSegmentRequest
-     * @return GetPlayersInSegmentResult
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    public static PlayFabResult<GetPlayersInSegmentResult> GetPlayersInSegment(final GetPlayersInSegmentRequest request) {
-        FutureTask<PlayFabResult<GetPlayersInSegmentResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayersInSegmentResult>>() {
-            public PlayFabResult<GetPlayersInSegmentResult> call() throws Exception {
-                return privateGetPlayersInSegmentAsync(request);
-            }
-        });
-        try {
-            task.run();
-            return task.get();
-        } catch(Exception e) {
-            PlayFabResult<GetPlayersInSegmentResult> exceptionResult = new PlayFabResult<GetPlayersInSegmentResult>();
-            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
-            return exceptionResult;
-        }
-    }
-
-    /**
-     * Allows for paging through all players in a given segment. This API creates a snapshot of all player profiles that match
-     * the segment definition at the time of its creation and lives through the Total Seconds to Live, refreshing its life span
-     * on each subsequent use of the Continuation Token. Profiles that change during the course of paging will not be reflected
-     * in the results. AB Test segments are currently not supported by this operation. NOTE: This API is limited to being
-     * called 30 times in one minute. You will be returned an error if you exceed this threshold.
-     * @deprecated Please use ExportPlayersInSegment instead.
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    private static PlayFabResult<GetPlayersInSegmentResult> privateGetPlayersInSegmentAsync(final GetPlayersInSegmentRequest request) throws Exception {
-        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
-
-        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/GetPlayersInSegment"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
-        task.run();
-        Object httpResult = task.get();
-        if (httpResult instanceof PlayFabError) {
-            PlayFabError error = (PlayFabError)httpResult;
-            if (PlayFabSettings.GlobalErrorHandler != null)
-                PlayFabSettings.GlobalErrorHandler.callback(error);
-            PlayFabResult result = new PlayFabResult<GetPlayersInSegmentResult>();
-            result.Error = error;
-            return result;
-        }
-        String resultRawJson = (String) httpResult;
-
-        PlayFabJsonSuccess<GetPlayersInSegmentResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayersInSegmentResult>>(){}.getType());
-        GetPlayersInSegmentResult result = resultData.data;
-
-        PlayFabResult<GetPlayersInSegmentResult> pfResult = new PlayFabResult<GetPlayersInSegmentResult>();
-        pfResult.Result = result;
-        return pfResult;
-    }
-
-    /**
      * Retrieves the configuration information for all player statistics defined in the title, regardless of whether they have
      * a reset interval.
      * @param request GetPlayerStatisticDefinitionsRequest
@@ -7500,6 +7418,68 @@ public class PlayFabAdminAPI {
         UpdateUserTitleDisplayNameResult result = resultData.data;
 
         PlayFabResult<UpdateUserTitleDisplayNameResult> pfResult = new PlayFabResult<UpdateUserTitleDisplayNameResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Validates the result of a policy update without persisting it.
+     * @param request ValidateApiPolicyRequest
+     * @return Async Task will return ValidateApiPolicyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ValidateApiPolicyResponse>> ValidateApiPolicyAsync(final ValidateApiPolicyRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ValidateApiPolicyResponse>>() {
+            public PlayFabResult<ValidateApiPolicyResponse> call() throws Exception {
+                return privateValidateApiPolicyAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Validates the result of a policy update without persisting it.
+     * @param request ValidateApiPolicyRequest
+     * @return ValidateApiPolicyResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ValidateApiPolicyResponse> ValidateApiPolicy(final ValidateApiPolicyRequest request) {
+        FutureTask<PlayFabResult<ValidateApiPolicyResponse>> task = new FutureTask(new Callable<PlayFabResult<ValidateApiPolicyResponse>>() {
+            public PlayFabResult<ValidateApiPolicyResponse> call() throws Exception {
+                return privateValidateApiPolicyAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<ValidateApiPolicyResponse> exceptionResult = new PlayFabResult<ValidateApiPolicyResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Validates the result of a policy update without persisting it. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ValidateApiPolicyResponse> privateValidateApiPolicyAsync(final ValidateApiPolicyRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/ValidateApiPolicy"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ValidateApiPolicyResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ValidateApiPolicyResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ValidateApiPolicyResponse>>(){}.getType());
+        ValidateApiPolicyResponse result = resultData.data;
+
+        PlayFabResult<ValidateApiPolicyResponse> pfResult = new PlayFabResult<ValidateApiPolicyResponse>();
         pfResult.Result = result;
         return pfResult;
     }

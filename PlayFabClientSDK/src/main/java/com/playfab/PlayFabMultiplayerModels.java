@@ -61,7 +61,8 @@ public class PlayFabMultiplayerModels {
         UkSouth,
         SwedenCentral,
         CanadaCentral,
-        MexicoCentral
+        MexicoCentral,
+        WestUs3
     }
 
     public static enum AzureVmFamily {
@@ -87,7 +88,14 @@ public class PlayFabMultiplayerModels {
         HBv3,
         Ddv5,
         Ddsv5,
-        Ddsv6
+        Ddsv6,
+        Fasv6,
+        Fasv7,
+        Fadsv7,
+        Eadsv5,
+        Eadsv6,
+        Eadsv7,
+        Dadsv7
     }
 
     public static enum AzureVmSize {
@@ -117,6 +125,18 @@ public class PlayFabMultiplayerModels {
         Standard_F4s_v2,
         Standard_F8s_v2,
         Standard_F16s_v2,
+        Standard_F2as_v6,
+        Standard_F4as_v6,
+        Standard_F8as_v6,
+        Standard_F16as_v6,
+        Standard_F2as_v7,
+        Standard_F4as_v7,
+        Standard_F8as_v7,
+        Standard_F16as_v7,
+        Standard_F2ads_v7,
+        Standard_F4ads_v7,
+        Standard_F8ads_v7,
+        Standard_F16ads_v7,
         Standard_D2as_v4,
         Standard_D4as_v4,
         Standard_D8as_v4,
@@ -133,6 +153,10 @@ public class PlayFabMultiplayerModels {
         Standard_D4ads_v6,
         Standard_D8ads_v6,
         Standard_D16ads_v6,
+        Standard_D2ads_v7,
+        Standard_D4ads_v7,
+        Standard_D8ads_v7,
+        Standard_D16ads_v7,
         Standard_E2a_v4,
         Standard_E4a_v4,
         Standard_E8a_v4,
@@ -141,6 +165,18 @@ public class PlayFabMultiplayerModels {
         Standard_E4as_v4,
         Standard_E8as_v4,
         Standard_E16as_v4,
+        Standard_E2ads_v5,
+        Standard_E4ads_v5,
+        Standard_E8ads_v5,
+        Standard_E16ads_v5,
+        Standard_E2ads_v6,
+        Standard_E4ads_v6,
+        Standard_E8ads_v6,
+        Standard_E16ads_v6,
+        Standard_E2ads_v7,
+        Standard_E4ads_v7,
+        Standard_E8ads_v7,
+        Standard_E16ads_v7,
         Standard_D2s_v3,
         Standard_D4s_v3,
         Standard_D8s_v3,
