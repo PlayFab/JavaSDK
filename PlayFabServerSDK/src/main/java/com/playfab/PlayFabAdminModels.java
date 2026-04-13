@@ -79,18 +79,6 @@ public class PlayFabAdminModels {
         
     }
 
-    /** @deprecated Do not use */
-    @Deprecated
-    public static class AdCampaignAttribution {
-        /** UTC time stamp of attribution */
-        public Date AttributedAt;
-        /** Attribution campaign identifier */
-        public String CampaignId;
-        /** Attribution network name */
-        public String Platform;
-        
-    }
-
     public static class AdCampaignAttributionModel {
         /** UTC time stamp of attribution */
         public Date AttributedAt;
@@ -519,18 +507,6 @@ public class PlayFabAdminModels {
         Any,
         True,
         False
-    }
-
-    /** @deprecated Do not use */
-    @Deprecated
-    public static class ContactEmailInfo {
-        /** The email address */
-        public String EmailAddress;
-        /** The name of the email info data */
-        public String Name;
-        /** The verification status of the email */
-        public EmailVerificationStatus VerificationStatus;
-        
     }
 
     public static class ContactEmailInfoModel {
@@ -2332,6 +2308,8 @@ public class PlayFabAdminModels {
         AsyncExportRateLimitExceeded,
         AnalyticsSegmentCountOverLimit,
         GetPlayersInSegmentRetired,
+        GetSegmentPlayerCountNotInFlight,
+        GetSegmentPlayerCountRateLimitExceeded,
         SnapshotNotFound,
         InventoryApiNotImplemented,
         InventoryCollectionDeletionDisallowed,
@@ -2512,6 +2490,7 @@ public class PlayFabAdminModels {
         GameSaveManifestNotEligibleForRollback,
         GameSaveTitleClientAnonymousAccountCreationNotDisabled,
         GameSaveTitleConfigNoUpdatesRequested,
+        GameSavePlayerNotEligibleForTransfer,
         StateShareForbidden,
         StateShareTitleNotInFlight,
         StateShareStateNotFound,
@@ -2791,55 +2770,6 @@ public class PlayFabAdminModels {
         public String IndexUrl;
         /** Shows the current status of the export */
         public String State;
-        
-    }
-
-    /**
-     * Initial request must contain at least a Segment ID. Subsequent requests must contain the Segment ID as well as the
-     * Continuation Token. Failure to send the Continuation Token will result in a new player segment list being generated.
-     * Each time the Continuation Token is passed in the length of the Total Seconds to Live is refreshed. If too much time
-     * passes between requests to the point that a subsequent request is past the Total Seconds to Live an error will be
-     * returned and paging will be terminated. This API is resource intensive and should not be used in scenarios which might
-     * generate high request volumes. Only one request to this API at a time should be made per title. Concurrent requests to
-     * the API may be rejected with the APIConcurrentRequestLimitExceeded error.
-     * @deprecated Do not use
-     */
-    @Deprecated
-    public static class GetPlayersInSegmentRequest {
-        /** Continuation token if retrieving subsequent pages of results. */
-        public String ContinuationToken;
-        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
-        public Map<String,String> CustomTags;
-        /**
-         * If set to true, the profiles are loaded asynchronously and the response will include a continuation token and
-         * approximate profile count until the first batch of profiles is loaded. Use this parameter to help avoid network
-         * timeouts.
-         */
-        public Boolean GetProfilesAsync;
-        /**
-         * Maximum is 10,000. The value 0 will prevent loading any profiles and return only the count of profiles matching this
-         * segment.
-         */
-        public Long MaxBatchSize;
-        /**
-         * Number of seconds to keep the continuation token active. After token expiration it is not possible to continue paging
-         * results. Default is 300 (5 minutes). Maximum is 5,400 (90 minutes).
-         */
-        public Long SecondsToLive;
-        /** Unique identifier for this segment. */
-        public String SegmentId;
-        
-    }
-
-    /** @deprecated Do not use */
-    @Deprecated
-    public static class GetPlayersInSegmentResult {
-        /** Continuation token to use to retrieve subsequent pages of results. If token returns null there are no more results. */
-        public String ContinuationToken;
-        /** Array of player profiles in this segment. */
-        public ArrayList<PlayerProfile> PlayerProfiles;
-        /** Count of profiles matching this segment. */
-        public Integer ProfilesInSegment;
         
     }
 
@@ -3721,88 +3651,6 @@ public class PlayFabAdminModels {
         
     }
 
-    /** @deprecated Do not use */
-    @Deprecated
-    public static class PlayerLinkedAccount {
-        /** Linked account's email */
-        public String Email;
-        /** Authentication platform */
-        public LoginIdentityProvider Platform;
-        /** Platform user identifier */
-        public String PlatformUserId;
-        /** Linked account's username */
-        public String Username;
-        
-    }
-
-    /** @deprecated Do not use */
-    @Deprecated
-    public static class PlayerLocation {
-        /** City of the player's geographic location. */
-        public String City;
-        /** The two-character continent code for this location */
-        public ContinentCode ContinentCode;
-        /** The two-character ISO 3166-1 country code for the country associated with the location */
-        public CountryCode CountryCode;
-        /** Latitude coordinate of the player's geographic location. */
-        public Double Latitude;
-        /** Longitude coordinate of the player's geographic location. */
-        public Double Longitude;
-        
-    }
-
-    /** @deprecated Do not use */
-    @Deprecated
-    public static class PlayerProfile {
-        /** Array of ad campaigns player has been attributed to */
-        public ArrayList<AdCampaignAttribution> AdCampaignAttributions;
-        /** Image URL of the player's avatar. */
-        public String AvatarUrl;
-        /** Banned until UTC Date. If permanent ban this is set for 20 years after the original ban date. */
-        public Date BannedUntil;
-        /** The prediction of the player to churn within the next seven days. */
-        public ChurnRiskLevel ChurnPrediction;
-        /** Array of contact email addresses associated with the player */
-        public ArrayList<ContactEmailInfo> ContactEmailAddresses;
-        /** Player record created */
-        public Date Created;
-        /** Dictionary of player's custom properties. */
-        public Map<String,Object> CustomProperties;
-        /** Player Display Name */
-        public String DisplayName;
-        /** Last login */
-        public Date LastLogin;
-        /** Array of third party accounts linked to this player */
-        public ArrayList<PlayerLinkedAccount> LinkedAccounts;
-        /** Dictionary of player's locations by type. */
-        public Map<String,PlayerLocation> Locations;
-        /** Player account origination */
-        public LoginIdentityProvider Origination;
-        /** List of player variants for experimentation */
-        public ArrayList<String> PlayerExperimentVariants;
-        /** PlayFab Player ID */
-        public String PlayerId;
-        /** Array of player statistics */
-        public ArrayList<PlayerStatistic> PlayerStatistics;
-        /** Publisher this player belongs to */
-        public String PublisherId;
-        /** Array of configured push notification end points */
-        public ArrayList<PushNotificationRegistration> PushNotificationRegistrations;
-        /** Dictionary of player's statistics using only the latest version's value */
-        public Map<String,Integer> Statistics;
-        /** List of player's tags for segmentation. */
-        public ArrayList<String> Tags;
-        /** Title ID this profile applies to */
-        public String TitleId;
-        /** A sum of player's total purchases in USD across all currencies. */
-        public Long TotalValueToDateInUSD;
-        /** Dictionary of player's total purchases by currency. */
-        public Map<String,Long> ValuesToDate;
-        /** Dictionary of player's virtual currency balances */
-        public Map<String,Integer> VirtualCurrencyBalances;
-        
-    }
-
     public static class PlayerProfileModel {
         /** List of advertising campaigns the player has been attributed to */
         public ArrayList<AdCampaignAttributionModel> AdCampaignAttributions;
@@ -3892,20 +3740,6 @@ public class PlayFabAdminModels {
         
     }
 
-    /** @deprecated Do not use */
-    @Deprecated
-    public static class PlayerStatistic {
-        /** Statistic ID */
-        public String Id;
-        /** Statistic name */
-        public String Name;
-        /** Current statistic value */
-        public Integer StatisticValue;
-        /** Statistic version (0 if not a versioned statistic) */
-        public Integer StatisticVersion;
-        
-    }
-
     public static class PlayerStatisticDefinition {
         /** the aggregation method to use in updating the statistic (defaults to last) */
         public StatisticAggregationMethod AggregationMethod;
@@ -3938,6 +3772,23 @@ public class PlayFabAdminModels {
         
     }
 
+    public static class PolicyDiffSummary {
+        /** Number of new statements that would be added. */
+        public Integer StatementsAdded;
+        /** Number of existing statements that would be removed. Only applicable when OverwritePolicy is true. */
+        public Integer StatementsRemoved;
+        /**
+         * Number of existing statements that would be replaced by functionally equivalent incoming statements (e.g., same
+         * resource/effect/principal but different comment).
+         */
+        public Integer StatementsReplaced;
+        /** Number of existing statements that would remain unchanged. */
+        public Integer StatementsUnchanged;
+        /** Total number of statements in the resulting policy. */
+        public Integer TotalResultingStatements;
+        
+    }
+
     public static class PushNotificationContent {
         /** Text of message to send. */
         public String Message;
@@ -3951,16 +3802,6 @@ public class PlayFabAdminModels {
     public static enum PushNotificationPlatform {
         ApplePushNotificationService,
         GoogleCloudMessaging
-    }
-
-    /** @deprecated Do not use */
-    @Deprecated
-    public static class PushNotificationRegistration {
-        /** Notification configured endpoint */
-        public String NotificationEndpointARN;
-        /** Push notification platform */
-        public PushNotificationPlatform Platform;
-        
     }
 
     public static class PushNotificationRegistrationModel {
@@ -5981,6 +5822,44 @@ public class PlayFabAdminModels {
         public String XboxUserId;
         /** XBox user sandbox */
         public String XboxUserSandbox;
+        
+    }
+
+    /**
+     * Validates the proposed policy change and returns the resulting merged policy, validation errors, warnings, and a diff
+     * summary showing what would change. Use this to validate the impact of a policy update before calling UpdatePolicy. No
+     * changes are saved.
+     */
+    public static class ValidateApiPolicyRequest {
+        /** Whether the validation should simulate overwriting or appending to the existing policy. */
+        public Boolean OverwritePolicy;
+        /**
+         * The name of the policy to validate. Only 'ApiPolicy' is supported. This parameter is optional and defaults to
+         * 'ApiPolicy' if omitted.
+         */
+        public String PolicyName;
+        /** Version of the policy to validate against. Must be the latest (as returned by GetPolicy). */
+        public Integer PolicyVersion;
+        /** The statements to validate. */
+        public ArrayList<PermissionStatement> Statements;
+        
+    }
+
+    public static class ValidateApiPolicyResponse {
+        /** Summary of what would change compared to the current policy. */
+        public PolicyDiffSummary Diff;
+        /** Whether the proposed policy is valid and would be accepted by UpdatePolicy. */
+        public Boolean IsValid;
+        /** The name of the policy validated. */
+        public String PolicyName;
+        /** Policy version. */
+        public Integer PolicyVersion;
+        /** The full set of statements that would result from applying this update. */
+        public ArrayList<PermissionStatement> ResultingStatements;
+        /** Validation errors that would cause UpdatePolicy to reject this request. Empty if IsValid is true. */
+        public ArrayList<String> ValidationErrors;
+        /** Non-blocking warnings about the proposed policy (e.g., near statement limit, duplicate statements). */
+        public ArrayList<String> Warnings;
         
     }
 
