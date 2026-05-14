@@ -2119,6 +2119,7 @@ public class PlayFabServerModels {
         PlayFabErrorEventNotSupportedForEntityType,
         MetadataLengthExceeded,
         MaxQueryableVersionsExceeded,
+        StatisticVersionIncrementNotAllowedWhileLinked,
         StoreMetricsRequestInvalidInput,
         StoreMetricsErrorRetrievingMetrics
     }
@@ -4836,6 +4837,18 @@ public class PlayFabServerModels {
         
     }
 
+    public static class UnlinkAppleRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        public String PlayFabId;
+        
+    }
+
+    public static class UnlinkAppleResult {
+        
+    }
+
     public static class UnlinkBattleNetAccountRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
@@ -4867,6 +4880,18 @@ public class PlayFabServerModels {
     }
 
     public static class UnlinkFacebookInstantGamesIdResult {
+        
+    }
+
+    public static class UnlinkGameCenterAccountRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
+        public String PlayFabId;
+        
+    }
+
+    public static class UnlinkGameCenterAccountResult {
         
     }
 

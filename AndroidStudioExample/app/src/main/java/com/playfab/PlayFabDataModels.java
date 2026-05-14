@@ -14,8 +14,11 @@ public class PlayFabDataModels {
         /** Names of the files to have their pending uploads aborted. */
         public ArrayList<String> FileNames;
         /**
-         * The expected version of the profile, if set and doesn't match the current version of the profile the operation will not
-         * be performed.
+         * Optional field used for concurrency control. By specifying the previously returned ProfileVersion value from the
+         * InitiateFileUploads API or other APIs, you can ensure that the file upload abort operation is performed only if the
+         * profile has not been updated since you last loaded that version. If the profile for the same entity has been updated,
+         * the operation will fail with an EntityProfileVersionMismatch error. The conflicting update can be caused by any
+         * operation that modifies the entity profile, including SetObjects, FinalizeFileUploads, and UpdateStatistics.
          */
         public Integer ProfileVersion;
         
@@ -38,8 +41,11 @@ public class PlayFabDataModels {
         /** Names of the files to be deleted. */
         public ArrayList<String> FileNames;
         /**
-         * The expected version of the profile, if set and doesn't match the current version of the profile the operation will not
-         * be performed.
+         * Optional field used for concurrency control. By specifying the previously returned ProfileVersion value from the
+         * GetFiles API or other APIs, you can ensure that the file deletion is performed only if the profile has not been updated
+         * since you last loaded that version. If the profile for the same entity has been updated, the operation will fail with an
+         * EntityProfileVersionMismatch error. The conflicting update can be caused by any operation that modifies the entity
+         * profile, including SetObjects, FinalizeFileUploads, and UpdateStatistics.
          */
         public Integer ProfileVersion;
         
@@ -73,7 +79,13 @@ public class PlayFabDataModels {
         public EntityKey Entity;
         /** Names of the files to be finalized. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
         public ArrayList<String> FileNames;
-        /** The current version of the profile, can be used for concurrency control during updates. */
+        /**
+         * Field used for concurrency control. By specifying the previously returned ProfileVersion value from the
+         * InitiateFileUploads API, you can ensure that the file upload finalization is performed only if the profile has not been
+         * updated since you last loaded that version. If the profile for the same entity has been updated, the operation will fail
+         * with an EntityProfileVersionMismatch error. The conflicting update can be caused by any operation that modifies the
+         * entity profile, including SetObjects, FinalizeFileUploads, and UpdateStatistics.
+         */
         public Integer ProfileVersion;
         
     }
@@ -169,8 +181,11 @@ public class PlayFabDataModels {
         /** Names of the files to be set. Restricted to a-Z, 0-9, '(', ')', '_', '-' and '.' */
         public ArrayList<String> FileNames;
         /**
-         * The expected version of the profile, if set and doesn't match the current version of the profile the operation will not
-         * be performed.
+         * Optional field used for concurrency control. By specifying the previously returned ProfileVersion value from the
+         * GetFiles API or other APIs, you can ensure that the file upload initiation is performed only if the profile has not been
+         * updated since you last loaded that version. If the profile for the same entity has been updated, the operation will fail
+         * with an EntityProfileVersionMismatch error. The conflicting update can be caused by any operation that modifies the
+         * entity profile, including SetObjects, FinalizeFileUploads, and UpdateStatistics.
          */
         public Integer ProfileVersion;
         
@@ -244,9 +259,11 @@ public class PlayFabDataModels {
         /** The entity to perform this action on. */
         public EntityKey Entity;
         /**
-         * Optional field used for concurrency control. By specifying the previously returned value of ProfileVersion from
-         * GetProfile API, you can ensure that the object set will only be performed if the profile has not been updated by any
-         * other clients since the version you last loaded.
+         * Optional field used for concurrency control. By specifying the previously returned ProfileVersion value from the
+         * GetObjects API or other APIs, you can ensure that the object update is performed only if the profile has not been
+         * updated since you last loaded that version. If the profile for the same entity has been updated, the operation will fail
+         * with an EntityProfileVersionMismatch error. The conflicting update can be caused by any operation that modifies the
+         * entity profile, including SetObjects, FinalizeFileUploads, and UpdateStatistics.
          */
         public Integer ExpectedProfileVersion;
         /** Collection of objects to set on the profile. */

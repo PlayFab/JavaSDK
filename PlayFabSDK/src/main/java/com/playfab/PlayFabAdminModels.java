@@ -2517,6 +2517,7 @@ public class PlayFabAdminModels {
         PlayFabErrorEventNotSupportedForEntityType,
         MetadataLengthExceeded,
         MaxQueryableVersionsExceeded,
+        StatisticVersionIncrementNotAllowedWhileLinked,
         StoreMetricsRequestInvalidInput,
         StoreMetricsErrorRetrievingMetrics
     }
