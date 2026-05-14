@@ -8252,6 +8252,68 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Unlinks the related Apple account from the specified user's PlayFab account.
+     * @param request UnlinkAppleRequest
+     * @return Async Task will return UnlinkAppleResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<UnlinkAppleResult>> UnlinkAppleAsync(final UnlinkAppleRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<UnlinkAppleResult>>() {
+            public PlayFabResult<UnlinkAppleResult> call() throws Exception {
+                return privateUnlinkAppleAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Unlinks the related Apple account from the specified user's PlayFab account.
+     * @param request UnlinkAppleRequest
+     * @return UnlinkAppleResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<UnlinkAppleResult> UnlinkApple(final UnlinkAppleRequest request) {
+        FutureTask<PlayFabResult<UnlinkAppleResult>> task = new FutureTask(new Callable<PlayFabResult<UnlinkAppleResult>>() {
+            public PlayFabResult<UnlinkAppleResult> call() throws Exception {
+                return privateUnlinkAppleAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<UnlinkAppleResult> exceptionResult = new PlayFabResult<UnlinkAppleResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Unlinks the related Apple account from the specified user's PlayFab account. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<UnlinkAppleResult> privateUnlinkAppleAsync(final UnlinkAppleRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/UnlinkApple"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<UnlinkAppleResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<UnlinkAppleResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UnlinkAppleResult>>(){}.getType());
+        UnlinkAppleResult result = resultData.data;
+
+        PlayFabResult<UnlinkAppleResult> pfResult = new PlayFabResult<UnlinkAppleResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Unlinks the related Battle.net account from the user's PlayFab account.
      * @param request UnlinkBattleNetAccountRequest
      * @return Async Task will return EmptyResponse
@@ -8433,6 +8495,68 @@ public class PlayFabServerAPI {
         UnlinkFacebookInstantGamesIdResult result = resultData.data;
 
         PlayFabResult<UnlinkFacebookInstantGamesIdResult> pfResult = new PlayFabResult<UnlinkFacebookInstantGamesIdResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Unlinks the related Game Center account from the specified user's PlayFab account.
+     * @param request UnlinkGameCenterAccountRequest
+     * @return Async Task will return UnlinkGameCenterAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<UnlinkGameCenterAccountResult>> UnlinkGameCenterAccountAsync(final UnlinkGameCenterAccountRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<UnlinkGameCenterAccountResult>>() {
+            public PlayFabResult<UnlinkGameCenterAccountResult> call() throws Exception {
+                return privateUnlinkGameCenterAccountAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Unlinks the related Game Center account from the specified user's PlayFab account.
+     * @param request UnlinkGameCenterAccountRequest
+     * @return UnlinkGameCenterAccountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<UnlinkGameCenterAccountResult> UnlinkGameCenterAccount(final UnlinkGameCenterAccountRequest request) {
+        FutureTask<PlayFabResult<UnlinkGameCenterAccountResult>> task = new FutureTask(new Callable<PlayFabResult<UnlinkGameCenterAccountResult>>() {
+            public PlayFabResult<UnlinkGameCenterAccountResult> call() throws Exception {
+                return privateUnlinkGameCenterAccountAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<UnlinkGameCenterAccountResult> exceptionResult = new PlayFabResult<UnlinkGameCenterAccountResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Unlinks the related Game Center account from the specified user's PlayFab account. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<UnlinkGameCenterAccountResult> privateUnlinkGameCenterAccountAsync(final UnlinkGameCenterAccountRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/UnlinkGameCenterAccount"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<UnlinkGameCenterAccountResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<UnlinkGameCenterAccountResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UnlinkGameCenterAccountResult>>(){}.getType());
+        UnlinkGameCenterAccountResult result = resultData.data;
+
+        PlayFabResult<UnlinkGameCenterAccountResult> pfResult = new PlayFabResult<UnlinkGameCenterAccountResult>();
         pfResult.Result = result;
         return pfResult;
     }

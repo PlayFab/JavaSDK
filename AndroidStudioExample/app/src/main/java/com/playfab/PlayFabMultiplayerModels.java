@@ -306,7 +306,7 @@ public class PlayFabMultiplayerModels {
     public static class CancelAllMatchmakingTicketsForPlayerRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** The entity key of the player whose tickets should be canceled. */
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         public EntityKey Entity;
         /** The name of the queue from which a player's tickets should be canceled. */
         public String QueueName;
@@ -325,7 +325,7 @@ public class PlayFabMultiplayerModels {
     public static class CancelAllServerBackfillTicketsForPlayerRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** The entity key of the player whose backfill tickets should be canceled. */
+        /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The name of the queue from which a player's backfill tickets should be canceled. */
         public String QueueName;
@@ -2064,7 +2064,7 @@ public class PlayFabMultiplayerModels {
     public static class ListMatchmakingTicketsForPlayerRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** The entity key for which to find the ticket Ids. */
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
         public EntityKey Entity;
         /** The name of the queue to find a match for. */
         public String QueueName;
@@ -2168,7 +2168,7 @@ public class PlayFabMultiplayerModels {
     public static class ListServerBackfillTicketsForPlayerRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** The entity key for which to find the ticket Ids. */
+        /** The entity to perform this action on. */
         public EntityKey Entity;
         /** The name of the queue the tickets are in. */
         public String QueueName;
@@ -2606,6 +2606,8 @@ public class PlayFabMultiplayerModels {
         public String InvitationId;
         /** The guid string party ID of the party session. */
         public String PartyId;
+        /** The region the party session is located in. */
+        public String Region;
         /** A base-64 encoded string containing the serialized network descriptor for this party. */
         public String SerializedNetworkDescriptor;
         
