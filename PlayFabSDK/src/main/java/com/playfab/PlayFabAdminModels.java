@@ -150,6 +150,8 @@ public class PlayFabAdminModels {
         public String Body;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
+        /** Optional status for the new news item. If not set, defaults to Published. */
+        public NewsStatus Status;
         /** Time this news was published. If not set, defaults to now. */
         public Date Timestamp;
         /** Default title (headline) of the news item. */
@@ -2048,7 +2050,6 @@ public class PlayFabAdminModels {
         InsightsManagementGetOperationStatusInvalidParameter,
         DuplicatePurchaseTransactionId,
         EvaluationModePlayerCountExceeded,
-        GetPlayersInSegmentRateLimitExceeded,
         CloudScriptFunctionNameSizeExceeded,
         PaidInsightsFeaturesNotEnabled,
         CloudScriptAzureFunctionsQueueRequestError,
@@ -2307,7 +2308,6 @@ public class PlayFabAdminModels {
         AsyncExportNotFound,
         AsyncExportRateLimitExceeded,
         AnalyticsSegmentCountOverLimit,
-        GetPlayersInSegmentRetired,
         GetSegmentPlayerCountNotInFlight,
         GetSegmentPlayerCountRateLimitExceeded,
         SnapshotNotFound,
@@ -2385,8 +2385,6 @@ public class PlayFabAdminModels {
         PlayerCustomPropertiesPropertyDoesNotExist,
         AddonAlreadyExists,
         AddonDoesntExist,
-        CopilotDisabled,
-        CopilotInvalidRequest,
         TrueSkillUnauthorized,
         TrueSkillInvalidTitleId,
         TrueSkillInvalidScenarioId,
@@ -2900,6 +2898,19 @@ public class PlayFabAdminModels {
     public static class GetRandomResultTablesResult {
         /** array of random result tables currently available */
         public Map<String,RandomResultTableListing> Tables;
+        
+    }
+
+    /** Request must contain a valid Segment ID. */
+    public static class GetSegmentPlayerCountRequest {
+        /** Unique identifier for the requested segment. */
+        public String SegmentId;
+        
+    }
+
+    public static class GetSegmentPlayerCountResult {
+        /** Count of profiles matching this segment. */
+        public Integer ProfilesInSegment;
         
     }
 
@@ -3574,6 +3585,13 @@ public class PlayFabAdminModels {
         /** Name Identifier, if present */
         public String Name;
         
+    }
+
+    public static enum NewsStatus {
+        None,
+        Unpublished,
+        Published,
+        Archived
     }
 
     public static class OpenIdConnection {

@@ -1988,7 +1988,8 @@ public class PlayFabAdminAPI {
 
     /**
      * Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as
-     * GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
+     * ExportPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not
+     * change.
      * @param request GetAllSegmentsRequest
      * @return Async Task will return GetAllSegmentsResult
      */
@@ -2003,7 +2004,8 @@ public class PlayFabAdminAPI {
 
     /**
      * Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as
-     * GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
+     * ExportPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not
+     * change.
      * @param request GetAllSegmentsRequest
      * @return GetAllSegmentsResult
      */
@@ -2026,7 +2028,8 @@ public class PlayFabAdminAPI {
 
     /**
      * Retrieves an array of player segment definitions. Results from this can be used in subsequent API calls such as
-     * GetPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not change.
+     * ExportPlayersInSegment which requires a Segment ID. While segment names can change the ID for that segment will not
+     * change.
      */
     @SuppressWarnings("unchecked")
     private static PlayFabResult<GetAllSegmentsResult> privateGetAllSegmentsAsync(final GetAllSegmentsRequest request) throws Exception {
@@ -3328,6 +3331,68 @@ public class PlayFabAdminAPI {
         GetPlayersInSegmentExportResponse result = resultData.data;
 
         PlayFabResult<GetPlayersInSegmentExportResponse> pfResult = new PlayFabResult<GetPlayersInSegmentExportResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Returns the total number of players in a given segment.
+     * @param request GetSegmentPlayerCountRequest
+     * @return Async Task will return GetSegmentPlayerCountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetSegmentPlayerCountResult>> GetSegmentPlayerCountAsync(final GetSegmentPlayerCountRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetSegmentPlayerCountResult>>() {
+            public PlayFabResult<GetSegmentPlayerCountResult> call() throws Exception {
+                return privateGetSegmentPlayerCountAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Returns the total number of players in a given segment.
+     * @param request GetSegmentPlayerCountRequest
+     * @return GetSegmentPlayerCountResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetSegmentPlayerCountResult> GetSegmentPlayerCount(final GetSegmentPlayerCountRequest request) {
+        FutureTask<PlayFabResult<GetSegmentPlayerCountResult>> task = new FutureTask(new Callable<PlayFabResult<GetSegmentPlayerCountResult>>() {
+            public PlayFabResult<GetSegmentPlayerCountResult> call() throws Exception {
+                return privateGetSegmentPlayerCountAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetSegmentPlayerCountResult> exceptionResult = new PlayFabResult<GetSegmentPlayerCountResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Returns the total number of players in a given segment. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetSegmentPlayerCountResult> privateGetSegmentPlayerCountAsync(final GetSegmentPlayerCountRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/GetSegmentPlayerCount"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetSegmentPlayerCountResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetSegmentPlayerCountResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetSegmentPlayerCountResult>>(){}.getType());
+        GetSegmentPlayerCountResult result = resultData.data;
+
+        PlayFabResult<GetSegmentPlayerCountResult> pfResult = new PlayFabResult<GetSegmentPlayerCountResult>();
         pfResult.Result = result;
         return pfResult;
     }

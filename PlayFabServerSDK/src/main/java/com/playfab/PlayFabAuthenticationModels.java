@@ -77,16 +77,18 @@ public class PlayFabAuthenticationModels {
     }
 
     /**
-     * This API must be called with X-SecretKey, X-Authentication or X-EntityToken headers. An optional EntityKey may be
-     * included to attempt to set the resulting EntityToken to a specific entity, however the entity must be a relation of the
-     * caller, such as the master_player_account of a character. If sending X-EntityToken the account will be marked as freshly
-     * logged in and will issue a new token. If using X-Authentication or X-EntityToken the header must still be valid and
-     * cannot be expired or revoked.
+     * This API must be called with X-SecretKey, X-Authentication or X-EntityToken headers. The header must still be valid and
+     * cannot be expired or revoked.If successful, it will issue a new entity token and emit the "entity_logged_in" PlayStream
+     * event.
      */
     public static class GetEntityTokenRequest {
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
+        /**
+         * The optional entity to perform this action on. Defaults to the currently logged in entity.
+         * @deprecated Do not use
+         */
+        @Deprecated
         public EntityKey Entity;
         
     }
