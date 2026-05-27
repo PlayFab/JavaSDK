@@ -149,6 +149,8 @@ public class PlayFabAddonModels {
         public ArrayList<NintendoEnvironment> Environments;
         /** If an error should be returned if the addon already exists. */
         public Boolean ErrorIfExists;
+        /** List of Nintendo Subscription Environments, currently supporting up to 4. Needs Catalog enabled. */
+        public ArrayList<NintendoEnvironment> SubscriptionEnvironments;
         
     }
 
@@ -486,6 +488,8 @@ public class PlayFabAddonModels {
         public Boolean Created;
         /** List of Nintendo Environments, currently supporting up to 4. */
         public ArrayList<NintendoEnvironment> Environments;
+        /** List of Nintendo Subscription Environments, currently supporting up to 4. */
+        public ArrayList<NintendoEnvironment> SubscriptionEnvironments;
         
     }
 

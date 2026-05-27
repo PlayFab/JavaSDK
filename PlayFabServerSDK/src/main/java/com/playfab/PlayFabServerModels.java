@@ -1650,7 +1650,6 @@ public class PlayFabServerModels {
         InsightsManagementGetOperationStatusInvalidParameter,
         DuplicatePurchaseTransactionId,
         EvaluationModePlayerCountExceeded,
-        GetPlayersInSegmentRateLimitExceeded,
         CloudScriptFunctionNameSizeExceeded,
         PaidInsightsFeaturesNotEnabled,
         CloudScriptAzureFunctionsQueueRequestError,
@@ -1909,7 +1908,6 @@ public class PlayFabServerModels {
         AsyncExportNotFound,
         AsyncExportRateLimitExceeded,
         AnalyticsSegmentCountOverLimit,
-        GetPlayersInSegmentRetired,
         GetSegmentPlayerCountNotInFlight,
         GetSegmentPlayerCountRateLimitExceeded,
         SnapshotNotFound,
@@ -1987,8 +1985,6 @@ public class PlayFabServerModels {
         PlayerCustomPropertiesPropertyDoesNotExist,
         AddonAlreadyExists,
         AddonDoesntExist,
-        CopilotDisabled,
-        CopilotInvalidRequest,
         TrueSkillUnauthorized,
         TrueSkillInvalidTitleId,
         TrueSkillInvalidScenarioId,
@@ -2941,6 +2937,19 @@ public class PlayFabServerModels {
     public static class GetRandomResultTablesResult {
         /** array of random result tables currently available */
         public Map<String,RandomResultTableListing> Tables;
+        
+    }
+
+    /** Request must contain a valid Segment ID. */
+    public static class GetSegmentPlayerCountRequest {
+        /** Unique identifier for the requested segment. */
+        public String SegmentId;
+        
+    }
+
+    public static class GetSegmentPlayerCountResult {
+        /** Count of profiles matching this segment. */
+        public Integer ProfilesInSegment;
         
     }
 
