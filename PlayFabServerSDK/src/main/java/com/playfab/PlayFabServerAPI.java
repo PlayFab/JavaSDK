@@ -3397,6 +3397,68 @@ public class PlayFabServerAPI {
     }
 
     /**
+     * Retrieves the associated PlayFab account identifiers for the given set of server custom player identifiers.
+     * @param request GetPlayFabIDsFromServerCustomIDsRequest
+     * @return Async Task will return GetPlayFabIDsFromServerCustomIDsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetPlayFabIDsFromServerCustomIDsResult>> GetPlayFabIDsFromServerCustomIDsAsync(final GetPlayFabIDsFromServerCustomIDsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromServerCustomIDsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromServerCustomIDsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromServerCustomIDsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Retrieves the associated PlayFab account identifiers for the given set of server custom player identifiers.
+     * @param request GetPlayFabIDsFromServerCustomIDsRequest
+     * @return GetPlayFabIDsFromServerCustomIDsResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetPlayFabIDsFromServerCustomIDsResult> GetPlayFabIDsFromServerCustomIDs(final GetPlayFabIDsFromServerCustomIDsRequest request) {
+        FutureTask<PlayFabResult<GetPlayFabIDsFromServerCustomIDsResult>> task = new FutureTask(new Callable<PlayFabResult<GetPlayFabIDsFromServerCustomIDsResult>>() {
+            public PlayFabResult<GetPlayFabIDsFromServerCustomIDsResult> call() throws Exception {
+                return privateGetPlayFabIDsFromServerCustomIDsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetPlayFabIDsFromServerCustomIDsResult> exceptionResult = new PlayFabResult<GetPlayFabIDsFromServerCustomIDsResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Retrieves the associated PlayFab account identifiers for the given set of server custom player identifiers. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetPlayFabIDsFromServerCustomIDsResult> privateGetPlayFabIDsFromServerCustomIDsAsync(final GetPlayFabIDsFromServerCustomIDsRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Server/GetPlayFabIDsFromServerCustomIDs"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetPlayFabIDsFromServerCustomIDsResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetPlayFabIDsFromServerCustomIDsResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetPlayFabIDsFromServerCustomIDsResult>>(){}.getType());
+        GetPlayFabIDsFromServerCustomIDsResult result = resultData.data;
+
+        PlayFabResult<GetPlayFabIDsFromServerCustomIDsResult> pfResult = new PlayFabResult<GetPlayFabIDsFromServerCustomIDsResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Retrieves the unique PlayFab identifiers for the given set of Steam identifiers. The Steam identifiers are the profile
      * IDs for the user accounts, available as SteamId in the Steamworks Community API calls.
      * @param request GetPlayFabIDsFromSteamIDsRequest

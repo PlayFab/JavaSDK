@@ -488,6 +488,8 @@ public class PlayFabAddonModels {
         public Boolean Created;
         /** List of Nintendo Environments, currently supporting up to 4. */
         public ArrayList<NintendoEnvironment> Environments;
+        /** List of Nintendo Subscription Environments associated to a secondary AppId, currently supporting up to 4. */
+        public ArrayList<NintendoEnvironment> SecondarySubscriptionEnvironments;
         /** List of Nintendo Subscription Environments, currently supporting up to 4. */
         public ArrayList<NintendoEnvironment> SubscriptionEnvironments;
         
