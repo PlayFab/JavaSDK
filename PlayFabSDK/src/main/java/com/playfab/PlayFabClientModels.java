@@ -2939,13 +2939,13 @@ public class PlayFabClientModels {
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        /** Base64 encoded body that is encrypted with the Title's public RSA key. */
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         /** Specific Operating System version for the user's device. */
         public String OS;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
@@ -2960,7 +2960,7 @@ public class PlayFabClientModels {
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        /** Base64 encoded body that is encrypted with the Title's public RSA key. */
         public String EncryptedRequest;
         /**
          * The JSON Web token (JWT) returned by Apple after login. Represented as the identityToken field in the authorization
@@ -2970,7 +2970,7 @@ public class PlayFabClientModels {
         public String IdentityToken;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
@@ -2985,13 +2985,13 @@ public class PlayFabClientModels {
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        /** Base64 encoded body that is encrypted with the Title's public RSA key. */
         public String EncryptedRequest;
         /** The JSON Web Token (JWT) returned by Battle.net after login */
         public String IdentityToken;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
@@ -3015,11 +3015,11 @@ public class PlayFabClientModels {
         public String CustomId;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        /** Base64 encoded body that is encrypted with the Title's public RSA key. */
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
@@ -3056,13 +3056,13 @@ public class PlayFabClientModels {
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        /** Base64 encoded body that is encrypted with the Title's public RSA key. */
         public String EncryptedRequest;
         /** Facebook Instant Games signature for the user. */
         public String FacebookInstantGamesSignature;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
@@ -3095,11 +3095,11 @@ public class PlayFabClientModels {
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        /** Base64 encoded body that is encrypted with the Title's public RSA key. */
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
@@ -3125,13 +3125,13 @@ public class PlayFabClientModels {
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        /** Base64 encoded body that is encrypted with the Title's public RSA key. */
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         /** Unique Game Center player id. */
         public String PlayerId;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /** The URL for the public encryption key that will be used to verify the signature. */
         public String PublicKeyUrl;
@@ -3173,11 +3173,11 @@ public class PlayFabClientModels {
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        /** Base64 encoded body that is encrypted with the Title's public RSA key. */
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /**
          * OAuth 2.0 server authentication code obtained on the client by calling the getServerAuthCode()
@@ -3212,11 +3212,11 @@ public class PlayFabClientModels {
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        /** Base64 encoded body that is encrypted with the Title's public RSA key. */
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /**
          * OAuth 2.0 server authentication code obtained on the client by calling the requestServerSideAccess()
@@ -3252,13 +3252,13 @@ public class PlayFabClientModels {
         public String DeviceId;
         /** Specific model of the user's device. */
         public String DeviceModel;
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        /** Base64 encoded body that is encrypted with the Title's public RSA key. */
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         /** Specific Operating System version for the user's device. */
         public String OS;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
@@ -3284,13 +3284,13 @@ public class PlayFabClientModels {
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        /** Base64 encoded body that is encrypted with the Title's public RSA key. */
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         /** Numeric user ID assigned by Kongregate */
         public String KongregateId;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
@@ -3305,13 +3305,13 @@ public class PlayFabClientModels {
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        /** Base64 encoded body that is encrypted with the Title's public RSA key. */
         public String EncryptedRequest;
         /** The JSON Web token (JWT) returned by Nintendo after login. */
         public String IdentityToken;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
@@ -3326,13 +3326,13 @@ public class PlayFabClientModels {
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        /** Base64 encoded body that is encrypted with the Title's public RSA key. */
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         /** Nintendo Switch unique identifier for the user's device. */
         public String NintendoSwitchDeviceId;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
@@ -3349,7 +3349,7 @@ public class PlayFabClientModels {
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        /** Base64 encoded body that is encrypted with the Title's public RSA key. */
         public String EncryptedRequest;
         /**
          * The JSON Web token (JWT) returned by the identity provider after login. Represented as the id_token field in the
@@ -3358,7 +3358,7 @@ public class PlayFabClientModels {
         public String IdToken;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
@@ -3404,13 +3404,13 @@ public class PlayFabClientModels {
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        /** Base64 encoded body that is encrypted with the Title's public RSA key. */
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
         public Integer IssuerId;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /** Redirect URI supplied to PlayStation :tm: Network when requesting an auth code */
         public String RedirectUri;
@@ -3437,11 +3437,11 @@ public class PlayFabClientModels {
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        /** Base64 encoded body that is encrypted with the Title's public RSA key. */
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /**
          * Authentication token for the user, returned as a byte array from Steam, and converted to a string (for example, the byte
@@ -3477,11 +3477,11 @@ public class PlayFabClientModels {
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        /** Base64 encoded body that is encrypted with the Title's public RSA key. */
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
@@ -3502,11 +3502,11 @@ public class PlayFabClientModels {
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        /** Base64 encoded body that is encrypted with the Title's public RSA key. */
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /**
          * Unique identifier for the title, found in the Settings &gt; Game Properties section of the PlayFab developer site when a
@@ -3963,13 +3963,13 @@ public class PlayFabClientModels {
         public String DisplayName;
         /** User email address attached to their account */
         public String Email;
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        /** Base64 encoded body that is encrypted with the Title's public RSA key. */
         public String EncryptedRequest;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
         /** Password for the PlayFab account (6-100 characters) */
         public String Password;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /**
          * An optional parameter that specifies whether both the username and email parameters are required. If true, both
@@ -4209,9 +4209,9 @@ public class PlayFabClientModels {
      * signature.
      */
     public static class SetPlayerSecretRequest {
-        /** Base64 encoded body that is encrypted with the Title's public RSA key (Enterprise Only). */
+        /** Base64 encoded body that is encrypted with the Title's public RSA key. */
         public String EncryptedRequest;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         
     }

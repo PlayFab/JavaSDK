@@ -4777,7 +4777,7 @@ public class PlayFabAdminModels {
      * signature.
      */
     public static class SetPlayerSecretRequest {
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;

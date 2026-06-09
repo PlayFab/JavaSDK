@@ -2835,6 +2835,22 @@ public class PlayFabServerModels {
         
     }
 
+    public static class GetPlayFabIDsFromServerCustomIDsRequest {
+        /**
+         * Array of unique server custom player identifiers for which the title needs to get PlayFab identifiers. Cannot contain
+         * more than 25 identifiers.
+         */
+        public ArrayList<String> ServerCustomIds;
+        
+    }
+
+    /** For a server player that is not linked to a PlayFab account the PlayFabId will be returned null. */
+    public static class GetPlayFabIDsFromServerCustomIDsResult {
+        /** Mapping of server custom identifiers to PlayFab identifiers. */
+        public ArrayList<ServerCustomIDPlayFabIDPair> Data;
+        
+    }
+
     public static class GetPlayFabIDsFromSteamIDsRequest {
         /**
          * Array of unique Steam identifiers (Steam profile IDs) for which the title needs to get PlayFab identifiers. The array
@@ -3787,7 +3803,7 @@ public class PlayFabServerModels {
         public Map<String,String> CustomTags;
         /** Flags for which pieces of info to return for the user. */
         public GetPlayerCombinedInfoRequestParams InfoRequestParameters;
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /** The backend server identifier for this player. */
         public String ServerCustomId;
@@ -4581,7 +4597,7 @@ public class PlayFabServerModels {
      * signature.
      */
     public static class SetPlayerSecretRequest {
-        /** Player secret that is used to verify API request signatures (Enterprise Only). */
+        /** Player secret that is used to verify API request signatures. */
         public String PlayerSecret;
         /** Unique PlayFab assigned ID of the user on whom the operation will be performed. */
         public String PlayFabId;
