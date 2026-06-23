@@ -14,6 +14,68 @@ public class PlayFabAddonAPI {
     private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").create();
 
     /**
+     * Configures PSN event streams for an existing PSN addon on a title, without requiring a full addon upsert.
+     * @param request ConfigurePSNEventStreamsRequest
+     * @return Async Task will return ConfigurePSNEventStreamsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<ConfigurePSNEventStreamsResponse>> ConfigurePSNEventStreamsAsync(final ConfigurePSNEventStreamsRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<ConfigurePSNEventStreamsResponse>>() {
+            public PlayFabResult<ConfigurePSNEventStreamsResponse> call() throws Exception {
+                return privateConfigurePSNEventStreamsAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Configures PSN event streams for an existing PSN addon on a title, without requiring a full addon upsert.
+     * @param request ConfigurePSNEventStreamsRequest
+     * @return ConfigurePSNEventStreamsResponse
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<ConfigurePSNEventStreamsResponse> ConfigurePSNEventStreams(final ConfigurePSNEventStreamsRequest request) {
+        FutureTask<PlayFabResult<ConfigurePSNEventStreamsResponse>> task = new FutureTask(new Callable<PlayFabResult<ConfigurePSNEventStreamsResponse>>() {
+            public PlayFabResult<ConfigurePSNEventStreamsResponse> call() throws Exception {
+                return privateConfigurePSNEventStreamsAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<ConfigurePSNEventStreamsResponse> exceptionResult = new PlayFabResult<ConfigurePSNEventStreamsResponse>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Configures PSN event streams for an existing PSN addon on a title, without requiring a full addon upsert. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<ConfigurePSNEventStreamsResponse> privateConfigurePSNEventStreamsAsync(final ConfigurePSNEventStreamsRequest request) throws Exception {
+        if (PlayFabSettings.EntityToken == null) throw new Exception ("Must call GetEntityToken before you can use the Entity API");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Addon/ConfigurePSNEventStreams"), request, "X-EntityToken", PlayFabSettings.EntityToken);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<ConfigurePSNEventStreamsResponse>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<ConfigurePSNEventStreamsResponse> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<ConfigurePSNEventStreamsResponse>>(){}.getType());
+        ConfigurePSNEventStreamsResponse result = resultData.data;
+
+        PlayFabResult<ConfigurePSNEventStreamsResponse> pfResult = new PlayFabResult<ConfigurePSNEventStreamsResponse>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Creates the Apple addon on a title, or updates it if it already exists.
      * @param request CreateOrUpdateAppleRequest
      * @return Async Task will return CreateOrUpdateAppleResponse
