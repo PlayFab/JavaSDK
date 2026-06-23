@@ -5,6 +5,20 @@ import com.playfab.PlayFabUtil.*;
 
 public class PlayFabAddonModels {
 
+    public static class ConfigurePSNEventStreamsRequest {
+        /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
+        public Map<String,String> CustomTags;
+        /** The optional entity to perform this action on. Defaults to the currently logged in entity. */
+        public EntityKey Entity;
+        /** Title name obtained after setting a back server for PS5. Used for clawback event listeners. */
+        public String TitleName;
+        
+    }
+
+    public static class ConfigurePSNEventStreamsResponse {
+        
+    }
+
     public static class CreateOrUpdateAppleRequest {
         /** Allow validation of receipts from the Apple production environment. Required for app releases. */
         public Boolean AllowProduction;
