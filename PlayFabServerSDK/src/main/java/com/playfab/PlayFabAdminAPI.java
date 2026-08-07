@@ -714,6 +714,68 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Bans an IP address or CIDR range for a title.
+     * @param request CreateIPBanRequest
+     * @return Async Task will return CreateIPBanResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<CreateIPBanResult>> CreateIPBanAsync(final CreateIPBanRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<CreateIPBanResult>>() {
+            public PlayFabResult<CreateIPBanResult> call() throws Exception {
+                return privateCreateIPBanAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Bans an IP address or CIDR range for a title.
+     * @param request CreateIPBanRequest
+     * @return CreateIPBanResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<CreateIPBanResult> CreateIPBan(final CreateIPBanRequest request) {
+        FutureTask<PlayFabResult<CreateIPBanResult>> task = new FutureTask(new Callable<PlayFabResult<CreateIPBanResult>>() {
+            public PlayFabResult<CreateIPBanResult> call() throws Exception {
+                return privateCreateIPBanAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<CreateIPBanResult> exceptionResult = new PlayFabResult<CreateIPBanResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Bans an IP address or CIDR range for a title. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<CreateIPBanResult> privateCreateIPBanAsync(final CreateIPBanRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/CreateIPBan"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<CreateIPBanResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<CreateIPBanResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<CreateIPBanResult>>(){}.getType());
+        CreateIPBanResult result = resultData.data;
+
+        PlayFabResult<CreateIPBanResult> pfResult = new PlayFabResult<CreateIPBanResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Registers a relationship between a title and an Open ID Connect provider.
      * @param request CreateOpenIdConnectionRequest
      * @return Async Task will return EmptyResponse
@@ -2504,6 +2566,130 @@ public class PlayFabAdminAPI {
         GetDataReportResult result = resultData.data;
 
         PlayFabResult<GetDataReportResult> pfResult = new PlayFabResult<GetDataReportResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Gets all IP bans that apply to a specific IP address.
+     * @param request GetIPBanRequest
+     * @return Async Task will return GetIPBanResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetIPBanResult>> GetIPBansForIPAsync(final GetIPBanRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetIPBanResult>>() {
+            public PlayFabResult<GetIPBanResult> call() throws Exception {
+                return privateGetIPBansForIPAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Gets all IP bans that apply to a specific IP address.
+     * @param request GetIPBanRequest
+     * @return GetIPBanResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetIPBanResult> GetIPBansForIP(final GetIPBanRequest request) {
+        FutureTask<PlayFabResult<GetIPBanResult>> task = new FutureTask(new Callable<PlayFabResult<GetIPBanResult>>() {
+            public PlayFabResult<GetIPBanResult> call() throws Exception {
+                return privateGetIPBansForIPAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetIPBanResult> exceptionResult = new PlayFabResult<GetIPBanResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Gets all IP bans that apply to a specific IP address. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetIPBanResult> privateGetIPBansForIPAsync(final GetIPBanRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/GetIPBansForIP"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetIPBanResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetIPBanResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetIPBanResult>>(){}.getType());
+        GetIPBanResult result = resultData.data;
+
+        PlayFabResult<GetIPBanResult> pfResult = new PlayFabResult<GetIPBanResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Gets all IP bans for a title.
+     * @param request GetAllIPBansRequest
+     * @return Async Task will return GetAllIPBansResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<GetAllIPBansResult>> GetIPBansForTitleAsync(final GetAllIPBansRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<GetAllIPBansResult>>() {
+            public PlayFabResult<GetAllIPBansResult> call() throws Exception {
+                return privateGetIPBansForTitleAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Gets all IP bans for a title.
+     * @param request GetAllIPBansRequest
+     * @return GetAllIPBansResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<GetAllIPBansResult> GetIPBansForTitle(final GetAllIPBansRequest request) {
+        FutureTask<PlayFabResult<GetAllIPBansResult>> task = new FutureTask(new Callable<PlayFabResult<GetAllIPBansResult>>() {
+            public PlayFabResult<GetAllIPBansResult> call() throws Exception {
+                return privateGetIPBansForTitleAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<GetAllIPBansResult> exceptionResult = new PlayFabResult<GetAllIPBansResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Gets all IP bans for a title. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<GetAllIPBansResult> privateGetIPBansForTitleAsync(final GetAllIPBansRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/GetIPBansForTitle"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<GetAllIPBansResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<GetAllIPBansResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<GetAllIPBansResult>>(){}.getType());
+        GetAllIPBansResult result = resultData.data;
+
+        PlayFabResult<GetAllIPBansResult> pfResult = new PlayFabResult<GetAllIPBansResult>();
         pfResult.Result = result;
         return pfResult;
     }
@@ -5432,6 +5618,68 @@ public class PlayFabAdminAPI {
     }
 
     /**
+     * Revokes an active IP ban.
+     * @param request RevokeIPBanRequest
+     * @return Async Task will return RevokeIPBanResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<RevokeIPBanResult>> RevokeIPBanAsync(final RevokeIPBanRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<RevokeIPBanResult>>() {
+            public PlayFabResult<RevokeIPBanResult> call() throws Exception {
+                return privateRevokeIPBanAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Revokes an active IP ban.
+     * @param request RevokeIPBanRequest
+     * @return RevokeIPBanResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<RevokeIPBanResult> RevokeIPBan(final RevokeIPBanRequest request) {
+        FutureTask<PlayFabResult<RevokeIPBanResult>> task = new FutureTask(new Callable<PlayFabResult<RevokeIPBanResult>>() {
+            public PlayFabResult<RevokeIPBanResult> call() throws Exception {
+                return privateRevokeIPBanAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<RevokeIPBanResult> exceptionResult = new PlayFabResult<RevokeIPBanResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Revokes an active IP ban. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<RevokeIPBanResult> privateRevokeIPBanAsync(final RevokeIPBanRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/RevokeIPBan"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<RevokeIPBanResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<RevokeIPBanResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<RevokeIPBanResult>>(){}.getType());
+        RevokeIPBanResult result = resultData.data;
+
+        PlayFabResult<RevokeIPBanResult> pfResult = new PlayFabResult<RevokeIPBanResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
      * Run a task immediately regardless of its schedule.
      * @param request RunTaskRequest
      * @return Async Task will return RunTaskResult
@@ -6476,6 +6724,68 @@ public class PlayFabAdminAPI {
         UpdateCloudScriptResult result = resultData.data;
 
         PlayFabResult<UpdateCloudScriptResult> pfResult = new PlayFabResult<UpdateCloudScriptResult>();
+        pfResult.Result = result;
+        return pfResult;
+    }
+
+    /**
+     * Updates an existing IP ban.
+     * @param request UpdateIPBanRequest
+     * @return Async Task will return UpdateIPBanResult
+     */
+    @SuppressWarnings("unchecked")
+    public static FutureTask<PlayFabResult<UpdateIPBanResult>> UpdateIPBanAsync(final UpdateIPBanRequest request) {
+        return new FutureTask(new Callable<PlayFabResult<UpdateIPBanResult>>() {
+            public PlayFabResult<UpdateIPBanResult> call() throws Exception {
+                return privateUpdateIPBanAsync(request);
+            }
+        });
+    }
+
+    /**
+     * Updates an existing IP ban.
+     * @param request UpdateIPBanRequest
+     * @return UpdateIPBanResult
+     */
+    @SuppressWarnings("unchecked")
+    public static PlayFabResult<UpdateIPBanResult> UpdateIPBan(final UpdateIPBanRequest request) {
+        FutureTask<PlayFabResult<UpdateIPBanResult>> task = new FutureTask(new Callable<PlayFabResult<UpdateIPBanResult>>() {
+            public PlayFabResult<UpdateIPBanResult> call() throws Exception {
+                return privateUpdateIPBanAsync(request);
+            }
+        });
+        try {
+            task.run();
+            return task.get();
+        } catch(Exception e) {
+            PlayFabResult<UpdateIPBanResult> exceptionResult = new PlayFabResult<UpdateIPBanResult>();
+            exceptionResult.Error = PlayFabHTTP.GeneratePfError(-1, PlayFabErrorCode.Unknown, e.getMessage(), null, null);
+            return exceptionResult;
+        }
+    }
+
+    /** Updates an existing IP ban. */
+    @SuppressWarnings("unchecked")
+    private static PlayFabResult<UpdateIPBanResult> privateUpdateIPBanAsync(final UpdateIPBanRequest request) throws Exception {
+        if (PlayFabSettings.DeveloperSecretKey == null) throw new Exception ("Must have PlayFabSettings.DeveloperSecretKey set to call this method");
+
+        FutureTask<Object> task = PlayFabHTTP.doPost(PlayFabSettings.GetURL("/Admin/UpdateIPBan"), request, "X-SecretKey", PlayFabSettings.DeveloperSecretKey);
+        task.run();
+        Object httpResult = task.get();
+        if (httpResult instanceof PlayFabError) {
+            PlayFabError error = (PlayFabError)httpResult;
+            if (PlayFabSettings.GlobalErrorHandler != null)
+                PlayFabSettings.GlobalErrorHandler.callback(error);
+            PlayFabResult result = new PlayFabResult<UpdateIPBanResult>();
+            result.Error = error;
+            return result;
+        }
+        String resultRawJson = (String) httpResult;
+
+        PlayFabJsonSuccess<UpdateIPBanResult> resultData = gson.fromJson(resultRawJson, new TypeToken<PlayFabJsonSuccess<UpdateIPBanResult>>(){}.getType());
+        UpdateIPBanResult result = resultData.data;
+
+        PlayFabResult<UpdateIPBanResult> pfResult = new PlayFabResult<UpdateIPBanResult>();
         pfResult.Result = result;
         return pfResult;
     }

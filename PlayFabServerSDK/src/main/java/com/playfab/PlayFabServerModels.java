@@ -1772,6 +1772,9 @@ public class PlayFabServerModels {
         AccountLinkedToABannedPlayer,
         AzureSubscriptionNotEligibleForLinking,
         EntityIsNotAMember,
+        IPAddressNotFound,
+        PSNNextGenNotConfiguredForTitle,
+        InvalidNintendoIssuer,
         MatchmakingEntityInvalid,
         MatchmakingPlayerAttributesInvalid,
         MatchmakingQueueNotFound,
@@ -2089,6 +2092,7 @@ public class PlayFabServerModels {
         GameSaveTitleClientAnonymousAccountCreationNotDisabled,
         GameSaveTitleConfigNoUpdatesRequested,
         GameSavePlayerNotEligibleForTransfer,
+        GameSaveAlreadyAutoRolledBack,
         StateShareForbidden,
         StateShareTitleNotInFlight,
         StateShareStateNotFound,
@@ -2758,6 +2762,11 @@ public class PlayFabServerModels {
 
     public static class GetPlayFabIDsFromNintendoServiceAccountIdsRequest {
         /**
+         * Nintendo NSA issuer URL identifying the environment. When provided, only accounts registered in that environment are
+         * returned. If null or empty, falls back to the default environment.
+         */
+        public String Issuer;
+        /**
          * Array of unique Nintendo Switch Account identifiers for which the title needs to get PlayFab identifiers. The array
          * cannot exceed 25 in length.
          */
@@ -2812,6 +2821,8 @@ public class PlayFabServerModels {
          * cannot exceed 25 in length.
          */
         public ArrayList<String> PSNAccountIDs;
+        /** Optional sandbox id. When provided, resolves players that logged in from that PlayStation :tm: Network sandbox. */
+        public String SandboxId;
         
     }
 
@@ -2830,6 +2841,8 @@ public class PlayFabServerModels {
          * cannot exceed 25 in length.
          */
         public ArrayList<String> PSNOnlineIDs;
+        /** Optional sandbox id. When provided, resolves players that logged in from that PlayStation :tm: Network sandbox. */
+        public String SandboxId;
         
     }
 
@@ -3501,6 +3514,11 @@ public class PlayFabServerModels {
     public static class LinkPSNAccountRequest {
         /** Authentication code provided by the PlayStation :tm: Network. */
         public String AuthCode;
+        /**
+         * Optional PlayStation :tm: Network auth version. Controls which PlayStation :tm: Network auth version is used. Accepted
+         * values are "v2" and "v3".
+         */
+        public String AuthVersion;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
         public Map<String,String> CustomTags;
         /** If another user is already linked to the account, unlink the other user and re-link. */
@@ -3529,6 +3547,8 @@ public class PlayFabServerModels {
         public String PlayFabId;
         /** Id of the PlayStation :tm: Network user. Also known as the PSN Account Id. */
         public String PSNUserId;
+        /** Optional sandbox id. When provided, resolves and links the player on that PlayStation :tm: Network sandbox. */
+        public String SandboxId;
         
     }
 
@@ -3788,6 +3808,11 @@ public class PlayFabServerModels {
     public static class LoginWithPSNRequest {
         /** Auth code provided by the PlayStation :tm: Network OAuth provider. */
         public String AuthCode;
+        /**
+         * Optional PlayStation :tm: Network auth version. Controls which PlayStation :tm: Network auth version is used. Accepted
+         * values are "v2" and "v3".
+         */
+        public String AuthVersion;
         /** Automatically create a PlayFab account if one is not currently linked to this ID. */
         public Boolean CreateAccount;
         /** The optional custom tags associated with the request (e.g. build number, external trace identifiers, etc.). */
