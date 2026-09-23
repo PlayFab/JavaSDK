@@ -541,8 +541,6 @@ public class PlayFabMultiplayerModels {
          * Game Server SDK (GSDK).Constraints: Maximum number of keys: 30, Maximum key length: 50, Maximum value length: 100
          */
         public Map<String,String> Metadata;
-        /** The configuration for the monitoring application on the build */
-        public MonitoringApplicationConfigurationParams MonitoringApplicationConfiguration;
         /** The number of multiplayer servers to host on a single VM. */
         public Integer MultiplayerServerCountPerVm;
         /** The ports to map the build on. */
@@ -586,8 +584,6 @@ public class PlayFabMultiplayerModels {
         public LinuxInstrumentationConfiguration LinuxInstrumentationConfiguration;
         /** The metadata of the build. */
         public Map<String,String> Metadata;
-        /** The configuration for the monitoring application for the build */
-        public MonitoringApplicationConfiguration MonitoringApplicationConfiguration;
         /** The number of multiplayer servers to host on a single VM of the build. */
         public Integer MultiplayerServerCountPerVm;
         /** The OS platform used for running the game process. */
@@ -600,11 +596,6 @@ public class PlayFabMultiplayerModels {
         public ServerResourceConstraintParams ServerResourceConstraints;
         /** The type of game server being hosted. */
         public String ServerType;
-        /**
-         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
-         * disc.
-         */
-        public Boolean UseStreamingForAssetDownloads;
         /** The VM size the build was created on. */
         public AzureVmSize VmSize;
         /** The configuration for the VmStartupScript feature for the build */
@@ -643,8 +634,6 @@ public class PlayFabMultiplayerModels {
          * Game Server SDK (GSDK).Constraints: Maximum number of keys: 30, Maximum key length: 50, Maximum value length: 100
          */
         public Map<String,String> Metadata;
-        /** The configuration for the monitoring application on the build */
-        public MonitoringApplicationConfigurationParams MonitoringApplicationConfiguration;
         /** The number of multiplayer servers to host on a single VM. */
         public Integer MultiplayerServerCountPerVm;
         /** The ports to map the build on. */
@@ -693,8 +682,6 @@ public class PlayFabMultiplayerModels {
         public InstrumentationConfiguration InstrumentationConfiguration;
         /** The metadata of the build. */
         public Map<String,String> Metadata;
-        /** The configuration for the monitoring application for the build */
-        public MonitoringApplicationConfiguration MonitoringApplicationConfiguration;
         /** The number of multiplayer servers to host on a single VM of the build. */
         public Integer MultiplayerServerCountPerVm;
         /** The OS platform used for running the game process. */
@@ -709,11 +696,6 @@ public class PlayFabMultiplayerModels {
         public String ServerType;
         /** The command to run when the multiplayer server has been allocated, including any arguments. */
         public String StartMultiplayerServerCommand;
-        /**
-         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
-         * disc.
-         */
-        public Boolean UseStreamingForAssetDownloads;
         /** The VM size the build was created on. */
         public AzureVmSize VmSize;
         /** The configuration for the VmStartupScript feature for the build */
@@ -760,8 +742,6 @@ public class PlayFabMultiplayerModels {
          * Game Server SDK (GSDK).Constraints: Maximum number of keys: 30, Maximum key length: 50, Maximum value length: 100
          */
         public Map<String,String> Metadata;
-        /** The configuration for the monitoring application on the build */
-        public MonitoringApplicationConfigurationParams MonitoringApplicationConfiguration;
         /** The number of multiplayer servers to host on a single VM. */
         public Integer MultiplayerServerCountPerVm;
         /** The OS platform used for running the game process. */
@@ -818,8 +798,6 @@ public class PlayFabMultiplayerModels {
         public LinuxInstrumentationConfiguration LinuxInstrumentationConfiguration;
         /** The metadata of the build. */
         public Map<String,String> Metadata;
-        /** The configuration for the monitoring application for the build */
-        public MonitoringApplicationConfiguration MonitoringApplicationConfiguration;
         /** The number of multiplayer servers to host on a single VM of the build. */
         public Integer MultiplayerServerCountPerVm;
         /** The OS platform used for running the game process. */
@@ -835,11 +813,6 @@ public class PlayFabMultiplayerModels {
          * relative to the root asset folder when unzipped.
          */
         public String StartMultiplayerServerCommand;
-        /**
-         * When true, assets will be downloaded and uncompressed in memory, without the compressedversion being written first to
-         * disc.
-         */
-        public Boolean UseStreamingForAssetDownloads;
         /** The VM size the build was created on. */
         public AzureVmSize VmSize;
         /** The configuration for the VmStartupScript feature for the build */
@@ -1427,6 +1400,8 @@ public class PlayFabMultiplayerModels {
         public ArrayList<AssetReference> GameAssetReferences;
         /** The game certificates for the build. */
         public ArrayList<GameCertificateReference> GameCertificateReferences;
+        /** The game secrets for the build. */
+        public ArrayList<GameSecretReference> GameSecretReferences;
         /** The instrumentation configuration of the build. */
         public InstrumentationConfiguration InstrumentationConfiguration;
         /**
@@ -2389,30 +2364,6 @@ public class PlayFabMultiplayerModels {
     public static enum MembershipLock {
         Unlocked,
         Locked
-    }
-
-    public static class MonitoringApplicationConfiguration {
-        /** Asset which contains the monitoring application files and scripts. */
-        public AssetReference AssetReference;
-        /** Execution script name, this will be the main executable for the monitoring application. */
-        public String ExecutionScriptName;
-        /** Installation script name, this will be run before the ExecutionScript. */
-        public String InstallationScriptName;
-        /** Timespan the monitoring application will be kept alive when running from the start of the VM */
-        public Double OnStartRuntimeInMinutes;
-        
-    }
-
-    public static class MonitoringApplicationConfigurationParams {
-        /** Asset which contains the monitoring application files and scripts. */
-        public AssetReferenceParams AssetReference;
-        /** Execution script name, this will be the main executable for the monitoring application. */
-        public String ExecutionScriptName;
-        /** Installation script name, this will be run before the ExecutionScript. */
-        public String InstallationScriptName;
-        /** Timespan the monitoring application will be kept alive when running from the start of the VM */
-        public Double OnStartRuntimeInMinutes;
-        
     }
 
     public static class MultiplayerServerSummary {

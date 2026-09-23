@@ -96,7 +96,7 @@ public class PlayFabInsightsModels {
     }
 
     public static class InsightsPerformanceLevel {
-        /** Number of allowed active event exports. */
+        /** Number of allowed active event exports. This value is always zero. */
         public Integer ActiveEventExports;
         /** Maximum cache size. */
         public Integer CacheSizeMB;
