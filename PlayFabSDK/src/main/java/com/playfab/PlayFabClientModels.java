@@ -2030,14 +2030,22 @@ public class PlayFabClientModels {
     }
 
     public static class GetPlayFabIDsFromPSNAccountIDsRequest {
-        /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
+        /**
+         * Id of the PlayStation :tm: Network issuer environment. If null, defaults to the production environment. This must match
+         * the issuer the account signed in under, otherwise the lookup returns a null PlayFabId rather than an error.
+         */
         public Integer IssuerId;
         /**
          * Array of unique PlayStation :tm: Network identifiers for which the title needs to get PlayFab identifiers. The array
          * cannot exceed 25 in length.
          */
         public ArrayList<String> PSNAccountIDs;
-        /** Optional sandbox id. When provided, resolves players that logged in from that PlayStation :tm: Network sandbox. */
+        /**
+         * The PlayStation :tm: Network sandbox the account is keyed under. Sandbox membership is per account, not per title:
+         * supply this only for accounts that sign in from a sandbox, and omit it for accounts that do not, including all retail
+         * accounts. Supplying a sandbox id that an account is not keyed under, or omitting one that it is, returns a null
+         * PlayFabId rather than an error.
+         */
         public String SandboxId;
         
     }
@@ -2050,14 +2058,22 @@ public class PlayFabClientModels {
     }
 
     public static class GetPlayFabIDsFromPSNOnlineIDsRequest {
-        /** Id of the PlayStation :tm: Network issuer environment. If null, defaults to production environment. */
+        /**
+         * Id of the PlayStation :tm: Network issuer environment. If null, defaults to the production environment. This must match
+         * the issuer the account signed in under, otherwise the lookup returns a null PlayFabId rather than an error.
+         */
         public Integer IssuerId;
         /**
          * Array of unique PlayStation :tm: Network identifiers for which the title needs to get PlayFab identifiers. The array
          * cannot exceed 25 in length.
          */
         public ArrayList<String> PSNOnlineIDs;
-        /** Optional sandbox id. When provided, resolves players that logged in from that PlayStation :tm: Network sandbox. */
+        /**
+         * The PlayStation :tm: Network sandbox the account is keyed under. Sandbox membership is per account, not per title:
+         * supply this only for accounts that sign in from a sandbox, and omit it for accounts that do not, including all retail
+         * accounts. Supplying a sandbox id that an account is not keyed under, or omitting one that it is, returns a null
+         * PlayFabId rather than an error.
+         */
         public String SandboxId;
         
     }
@@ -5190,10 +5206,17 @@ public class PlayFabClientModels {
     }
 
     public static class UserPsnInfo {
+        /**
+         * Id of the PlayStation :tm: Network issuer environment this account is keyed under. Supply this value as IssuerId when
+         * looking the account up.
+         */
+        public Integer IssuerId;
         /** PlayStation :tm: Network account ID */
         public String PsnAccountId;
         /** PlayStation :tm: Network online ID */
         public String PsnOnlineId;
+        /** PlayStation :tm: Network sandbox ID */
+        public String PsnSandboxId;
         
     }
 

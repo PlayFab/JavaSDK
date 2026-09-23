@@ -2516,6 +2516,8 @@ public class PlayFabAdminModels {
         GameSaveTitleConfigNoUpdatesRequested,
         GameSavePlayerNotEligibleForTransfer,
         GameSaveAlreadyAutoRolledBack,
+        GameSaveManifestNotEligibleForRestore,
+        GameSaveManifestArchived,
         StateShareForbidden,
         StateShareTitleNotInFlight,
         StateShareStateNotFound,
@@ -5883,10 +5885,17 @@ public class PlayFabAdminModels {
     }
 
     public static class UserPsnInfo {
+        /**
+         * Id of the PlayStation :tm: Network issuer environment this account is keyed under. Supply this value as IssuerId when
+         * looking the account up.
+         */
+        public Integer IssuerId;
         /** PlayStation :tm: Network account ID */
         public String PsnAccountId;
         /** PlayStation :tm: Network online ID */
         public String PsnOnlineId;
+        /** PlayStation :tm: Network sandbox ID */
+        public String PsnSandboxId;
         
     }
 
